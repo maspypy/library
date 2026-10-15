@@ -30,31 +30,31 @@ data:
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/dirichlet.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
-    \n#line 1 \"my_template.hpp\"\n/*\nlibrary: https://github.com/maspypy/library\n\
-    */\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
-    #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#if\
-    \ !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#endif\n\
-    #include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace std;\n\nusing\
-    \ ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\n\
-    using u64 = uint64_t;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
-    using f128 = __float128;\n\ntemplate <class>\nconstexpr bool dependent_false =\
-    \ false;\n\ntemplate <class T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>,\
-    \ \"infty<T> is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int\
-    \ infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
-    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
-    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
-    \ infty<i128>;\ntemplate <>\nconstexpr long double infty<long double> = infty<i128>;\n\
-    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing pq_max = priority_queue<T>;\ntemplate <class T>\nusing\
-    \ pq_min = priority_queue<T, vector<T>, greater<T>>;\n\n#define vv(type, name,\
-    \ h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n#define\
-    \ vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name( \\\n \
-    \     h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \n#line 1 \"my_template.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n\
+    /*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
+    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
+    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
+    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
+    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
+    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
+    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
+    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
+    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
+    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
+    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
+    \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
+    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq_max = priority_queue<T>;\ntemplate <class T>\nusing pq_min = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR1_R(a)\
@@ -145,49 +145,50 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/dirichlet.test.cpp\"\
-    \n\n#line 1 \"mod/modint_common.hpp\"\n\n\nstruct has_mod_impl {\n  template <class\
-    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
-    \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static vector<mint> dat\
-    \ = {1, 1};\n  static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod =\
-    \ mint::get_mod();\n    dat = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if\
-    \ (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod, 1 << (topbit(n)\
-    \ + 1));\n    dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n\
-    \  if (n < 0) return mint(0);\n  static vector<mint> dat = {1, 1};\n  static int\
+    \n\n#line 1 \"mod/modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint.hpp\n\
+    #line 1 \"mod/modint_common.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint_common.hpp\n\
+    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
+    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
+    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
+    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
+    \ mint>\nmint fact(int n) {\n  static vector<mint> dat = {1, 1};\n  static int\
     \ mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n    dat\
     \ = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if (len(dat) <= n) {\n    int\
     \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
-    \    dat[m - 1] = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i]\
-    \ = dat[i + 1] * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class\
-    \ mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
-    }\n\ntemplate <typename mint>\nmint inv(int n) {\n  return fact<mint>(n - 1) *\
-    \ fact_inv<mint>(n);\n}\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n\
-    \ != 0);\n  return 1.0 / n;\n}\n\ntemplate <typename mint, class Head, class...\
-    \ Tail>\nmint multinomial(Head &&head, Tail &&...tail) {\n  return fact<mint>(head)\
-    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
-    mint C_dense(int n, int k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return\
-    \ 0;\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n  static int mod = 0;\n\
-    \  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n    C.clear();\n\
-    \    H = W = 0;\n  }\n  auto calc = [&](int i, int j) -> mint {\n    if (i ==\
-    \ 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i -\
-    \ 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k\
-    \ + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k +\
-    \ 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n   \
-    \   C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H =\
-    \ n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false,\
-    \ bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 ||\
-    \ n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n, k);\n  if constexpr\
-    \ (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint\
-    \ x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\n\
-    template <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
-    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n  }\n  return dat[n];\n\
+    }\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  if (n < 0) return mint(0);\n\
+    \  static vector<mint> dat = {1, 1};\n  static int mod = 0;\n  if (mod != mint::get_mod())\
+    \ {\n    mod = mint::get_mod();\n    dat = {1, 1};\n  }\n  assert(0 <= n && n\
+    \ < mod);\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
+    \ 1 << (topbit(n) + 1));\n    dat.resize(m);\n    dat[m - 1] = fact<mint>(m -\
+    \ 1).inverse();\n    FOR_R(i, now, m - 1) dat[i] = dat[i + 1] * mint::raw(i +\
+    \ 1);\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts...\
+    \ xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename\
+    \ mint>\nmint inv(int n) {\n  return fact<mint>(n - 1) * fact_inv<mint>(n);\n\
+    }\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0\
+    \ / n;\n}\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&...tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  static vvc<mint> C;\n  static int H = 0, W\
+    \ = 0;\n  static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n\
+    \    C.clear();\n    H = W = 0;\n  }\n  auto calc = [&](int i, int j) -> mint\
+    \ {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
+    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
+    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
+    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
+    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
+    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n,\
+    \ k);\n  if constexpr (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k,\
+    \ n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
+    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
+    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
     \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
     }\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint, bool large = false, bool dense\
     \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
     \ mint(0);\n  if (n == 0) {\n    return (d == 0 ? mint(1) : mint(0));\n  }\n \
-    \ return C<mint, large, dense>(n + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\
+    \ return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\
     \ntemplate <int mod>\nstruct modint {\n  static constexpr u32 umod = u32(mod);\n\
     \  static_assert(0 < umod && umod < u32(1) << 31);\n  u32 val;\n\n  static modint\
     \ raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
@@ -227,82 +228,84 @@ data:
     \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
     \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
     }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    #line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"nt/integer_kth_root.hpp\"\nu64\
-    \ integer_kth_root(u64 k, u64 a) {\r\n  assert(k >= 1);\r\n  if (a == 0 || a ==\
-    \ 1 || k == 1) return a;\r\n  if (k >= 64) return 1;\r\n  if (k == 2) return sqrtl(a);\r\
-    \n  if (a == u64(-1)) --a;\r\n  struct S {\r\n    u64 v;\r\n    S& operator*=(const\
-    \ S& o) {\r\n      v = v <= u64(-1) / o.v ? v * o.v : u64(-1);\r\n      return\
-    \ *this;\r\n    }\r\n  };\r\n  auto power = [&](S x, ll n) -> S {\r\n    S v{1};\r\
-    \n    while (n) {\r\n      if (n & 1) v *= x;\r\n      x *= x;\r\n      n /= 2;\r\
-    \n    }\r\n    return v;\r\n  };\r\n  u64 res = pow(a, nextafter(1 / double(k),\
-    \ 0));\r\n  while (power(S{res + 1}, k).v <= a) ++res;\r\n  return res;\r\n}\r\
-    \n#line 2 \"nt/dirichlet.hpp\"\n\n// Dirichlet \u7D1A\u6570\u81EA\u4F53\u306F\
-    \ vc<T> \u3067\u6301\u3064\u3053\u3068\u306B\u3059\u308B.\n// \u3053\u306E\u69CB\
-    \u9020\u4F53\u304C\u305D\u308C\u306B\u5BFE\u3059\u308B\u64CD\u4F5C\u3092\u6301\
-    \u3063\u3066\u3044\u308B\u3053\u3068\u306B\u3059\u308B.\nstruct Dirichlet {\n\
-    \  u64 N;\n  u32 t, sq, n;\n  Dirichlet(u64 N) : N(N) {\n    assert(N <= u64(1)\
-    \ << 50);\n    sq = sqrtl(N);\n    t = (u64(sq) * sq + sq <= N ? sq : sq - 1);\n\
-    \    n = t + sq + 1;\n    // [0,1,...,t,N/sq,...,N/1] (t<sq \u306E\u5834\u5408\
-    \u306E sq \u3082\u4E21\u5BFE\u5FDC)\n  };\n\n  inline u32 get_index(u64 d) { return\
-    \ (d <= t ? d : n - u32(double(N) / d)); }\n\n  inline u64 get_floor(u32 i) {\
-    \ return (i <= t ? i : double(N) / (n - i)); }\n\n  template <typename T, typename\
-    \ F>\n  vc<T> gen_sum_table(F f) {\n    vc<T> S(n);\n    FOR(i, 1, n) S[i] = f(get_floor(i));\n\
-    \    return S;\n  }\n\n  template <typename T>\n  vc<T> convolution(vc<T> F, vc<T>\
-    \ G) {\n    assert(len(F) == n && len(G) == n);\n    if (N == 1) return {T(0),\
-    \ F[1] * G[1]};\n    vc<T> f(n), g(n);\n    FOR(i, 1, n) f[i] = F[i] - F[i - 1];\n\
-    \    FOR(i, 1, n) g[i] = G[i] - G[i - 1];\n\n    vc<T> H(n);\n    u64 K = integer_kth_root(3,\
-    \ N);\n    u64 S = K * K;\n    // S \u4EE5\u4E0B\u3067\u3042\u308B\u3088\u3046\
-    \u306A\u5546\u306B\u3064\u3044\u3066\n    for (u64 a = 1; a <= K; ++a) {\n   \
-    \   H[(a * a <= sq ? a * a : n - N / (a * a))] += f[a] * g[a];\n      if (a *\
-    \ (a + 1) <= t) {  // a * small = small\n        u64 ub = t / a;\n        for\
-    \ (u64 b = a + 1; b <= ub; ++b) {\n          H[a * b] += f[a] * g[b] + f[b] *\
-    \ g[a];\n        }\n      }\n      // a * small = large\n      {\n        u64\
-    \ q = min<u64>(S / a, t);\n        for (u64 b = max(a, t / a) + 1; b <= q; ++b)\
-    \ {\n          H[n - N / (a * b)] += f[a] * g[b] + f[b] * g[a];\n        }\n \
-    \     }\n      // a * large = large\n      if (N / sq <= S / a) {\n        u64\
-    \ p = N / (S / a + 1) + 1;\n        for (u64 b = p; b <= sq; ++b) {\n        \
-    \  H[n - N / (a * (N / b))] += f[a] * g[n - b] + g[a] * f[n - b];\n        }\n\
-    \      }\n    }\n    FOR(i, 1, n) H[i] += H[i - 1];\n    for (u64 z = 1; N / z\
-    \ > S; ++z) {\n      u64 M = N / z;\n      u64 ub = sqrtl(M);\n      H[n - z]\
-    \ = 0;\n      for (u64 a = 1; a <= ub; ++a) {\n        int idx = get_index(M /\
-    \ a);\n        H[n - z] += f[a] * G[idx] + g[a] * F[idx];\n      }\n      H[n\
-    \ - z] -= F[ub] * G[ub];\n    }\n    return H;\n  }\n\n  // G=H/F. T \u306F 1/F[1]\
-    \ \u304C\u6B63\u3057\u304F\u8A08\u7B97\u3067\u304D\u3066\u307B\u3057\u3044.\n\
-    \  template <typename T>\n  vc<T> div(vc<T> H, vc<T> F) {\n    assert(len(F) ==\
-    \ n && len(H) == n && F[1] != 0);\n    if (N == 1) return {T(0), H[1] / F[1]};\n\
-    \    T c = T(1) / F[1];\n    for (auto &x : F) x *= c;\n\n    vc<T> f(n), g(n),\
-    \ h(n);\n    FOR(i, 1, n) f[i] = F[i] - F[i - 1];\n    FOR(i, 1, n) h[i] = H[i]\
-    \ - H[i - 1];\n\n    u64 K = integer_kth_root(3, N);\n    u64 S = max<u64>(sq,\
-    \ K * K);\n    g[1] = H[1];\n\n    for (u64 i = 2; i < n; ++i) {\n      u64 a\
-    \ = get_floor(i);\n      if (a > S) break;\n      g[i] = h[i] - g[1] * f[i];\n\
-    \      if (a * a <= S) h[get_index(a * a)] -= f[i] * g[i];\n      u64 ub = min(i\
-    \ - 1, S / a);\n      FOR(b, 2, ub + 1) { h[get_index(a * b)] -= f[i] * g[b] +\
-    \ f[b] * g[i]; }\n    }\n    vc<T> G = cumsum<T>(g, 0);\n    for (u64 z = N /\
-    \ (S + 1); z >= 1; --z) {\n      G[n - z] = H[n - z] - g[1] * F[n - z];\n    \
-    \  u64 M = N / z;\n      u64 ub = sqrtl(M);\n      G[n - z] += F[ub] * G[ub];\n\
-    \      for (u64 a = 2; a <= ub; ++a) {\n        int idx = get_index(M / a);\n\
-    \        G[n - z] -= f[a] * G[idx] + g[a] * F[idx];\n      }\n    }\n    for (auto\
-    \ &x : G) x *= c;\n    c = T(1) / c;\n    return G;\n  }\n\n  template <typename\
-    \ T>\n  vc<T> Zeta() {\n    return gen_sum_table<T>([&](u64 n) -> T { return n;\
-    \ });\n  }\n\n  template <typename T>\n  vc<T> Unit() {\n    return gen_sum_table<T>([&](u64\
-    \ n) -> T { return 1; });\n  }\n\n  template <typename T>\n  vc<T> Mobius() {\n\
-    \    return div<T>(Unit<T>(), Zeta<T>());\n  }\n};\n#line 7 \"test/1_mytest/dirichlet.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid test(ll n) {\n  vi FLOOR;\n  FOR(i, 1, n +\
-    \ 1) FLOOR.eb(n / i);\n  UNIQUE(FLOOR);\n  vc<mint> f(n + 1), g(n + 1), h(n +\
-    \ 1);\n  FOR(i, 1, n + 1) f[i] = RNG(1, mint::get_mod());\n  FOR(i, 1, n + 1)\
-    \ g[i] = RNG(1, mint::get_mod());\n\n  FOR(a, 1, n + 1) FOR(b, 1, n / a + 1) h[a\
-    \ * b] += f[a] * g[b];\n  vc<mint> F = cumsum<mint>(f, 0), G = cumsum<mint>(g,\
-    \ 0),\n           H = cumsum<mint>(h, 0);\n  vc<mint> A = {0}, B = {0}, C = {0};\n\
-    \  for (auto &v : FLOOR) A.eb(F[v]), B.eb(G[v]), C.eb(H[v]);\n\n  Dirichlet DIR(n);\n\
-    \  vc<mint> D = DIR.convolution(A, B);\n  assert(C == D);\n  vc<mint> E = DIR.div(C,\
-    \ A);\n  assert(B == E);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(N, 1, 10000) { test(N);\
-    \ }\n  solve();\n}\n"
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"nt/dirichlet.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/nt/dirichlet.hpp\n#line 1 \"nt/integer_kth_root.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/nt/integer_kth_root.hpp\n\
+    u64 integer_kth_root(u64 k, u64 a) {\n  assert(k >= 1);\n  if (a == 0 || a ==\
+    \ 1 || k == 1) return a;\n  if (k >= 64) return 1;\n  if (k == 2) return sqrtl(a);\n\
+    \  if (a == u64(-1)) --a;\n  struct S {\n    u64 v;\n    S& operator*=(const S&\
+    \ o) {\n      v = v <= u64(-1) / o.v ? v * o.v : u64(-1);\n      return *this;\n\
+    \    }\n  };\n  auto power = [&](S x, ll n) -> S {\n    S v{1};\n    while (n)\
+    \ {\n      if (n & 1) v *= x;\n      x *= x;\n      n /= 2;\n    }\n    return\
+    \ v;\n  };\n  u64 res = pow(a, nextafter(1 / double(k), 0));\n  while (power(S{res\
+    \ + 1}, k).v <= a) ++res;\n  return res;\n}\n#line 3 \"nt/dirichlet.hpp\"\n\n\
+    // Dirichlet \u7D1A\u6570\u81EA\u4F53\u306F vc<T> \u3067\u6301\u3064\u3053\u3068\
+    \u306B\u3059\u308B.\n// \u3053\u306E\u69CB\u9020\u4F53\u304C\u305D\u308C\u306B\
+    \u5BFE\u3059\u308B\u64CD\u4F5C\u3092\u6301\u3063\u3066\u3044\u308B\u3053\u3068\
+    \u306B\u3059\u308B.\nstruct Dirichlet {\n  u64 N;\n  u32 t, sq, n;\n  Dirichlet(u64\
+    \ N) : N(N) {\n    assert(N <= u64(1) << 50);\n    sq = sqrtl(N);\n    t = (u64(sq)\
+    \ * sq + sq <= N ? sq : sq - 1);\n    n = t + sq + 1;\n    // [0,1,...,t,N/sq,...,N/1]\
+    \ (t<sq \u306E\u5834\u5408\u306E sq \u3082\u4E21\u5BFE\u5FDC)\n  };\n\n  inline\
+    \ u32 get_index(u64 d) { return (d <= t ? d : n - u32(double(N) / d)); }\n\n \
+    \ inline u64 get_floor(u32 i) { return (i <= t ? i : double(N) / (n - i)); }\n\
+    \n  template <typename T, typename F>\n  vc<T> gen_sum_table(F f) {\n    vc<T>\
+    \ S(n);\n    FOR(i, 1, n) S[i] = f(get_floor(i));\n    return S;\n  }\n\n  template\
+    \ <typename T>\n  vc<T> convolution(vc<T> F, vc<T> G) {\n    assert(len(F) ==\
+    \ n && len(G) == n);\n    if (N == 1) return {T(0), F[1] * G[1]};\n    vc<T> f(n),\
+    \ g(n);\n    FOR(i, 1, n) f[i] = F[i] - F[i - 1];\n    FOR(i, 1, n) g[i] = G[i]\
+    \ - G[i - 1];\n\n    vc<T> H(n);\n    u64 K = integer_kth_root(3, N);\n    u64\
+    \ S = K * K;\n    // S \u4EE5\u4E0B\u3067\u3042\u308B\u3088\u3046\u306A\u5546\u306B\
+    \u3064\u3044\u3066\n    for (u64 a = 1; a <= K; ++a) {\n      H[(a * a <= sq ?\
+    \ a * a : n - N / (a * a))] += f[a] * g[a];\n      if (a * (a + 1) <= t) {  //\
+    \ a * small = small\n        u64 ub = t / a;\n        for (u64 b = a + 1; b <=\
+    \ ub; ++b) {\n          H[a * b] += f[a] * g[b] + f[b] * g[a];\n        }\n  \
+    \    }\n      // a * small = large\n      {\n        u64 q = min<u64>(S / a, t);\n\
+    \        for (u64 b = max(a, t / a) + 1; b <= q; ++b) {\n          H[n - N / (a\
+    \ * b)] += f[a] * g[b] + f[b] * g[a];\n        }\n      }\n      // a * large\
+    \ = large\n      if (N / sq <= S / a) {\n        u64 p = N / (S / a + 1) + 1;\n\
+    \        for (u64 b = p; b <= sq; ++b) {\n          H[n - N / (a * (N / b))] +=\
+    \ f[a] * g[n - b] + g[a] * f[n - b];\n        }\n      }\n    }\n    FOR(i, 1,\
+    \ n) H[i] += H[i - 1];\n    for (u64 z = 1; N / z > S; ++z) {\n      u64 M = N\
+    \ / z;\n      u64 ub = sqrtl(M);\n      H[n - z] = 0;\n      for (u64 a = 1; a\
+    \ <= ub; ++a) {\n        int idx = get_index(M / a);\n        H[n - z] += f[a]\
+    \ * G[idx] + g[a] * F[idx];\n      }\n      H[n - z] -= F[ub] * G[ub];\n    }\n\
+    \    return H;\n  }\n\n  // G=H/F. T \u306F 1/F[1] \u304C\u6B63\u3057\u304F\u8A08\
+    \u7B97\u3067\u304D\u3066\u307B\u3057\u3044.\n  template <typename T>\n  vc<T>\
+    \ div(vc<T> H, vc<T> F) {\n    assert(len(F) == n && len(H) == n && F[1] != 0);\n\
+    \    if (N == 1) return {T(0), H[1] / F[1]};\n    T c = T(1) / F[1];\n    for\
+    \ (auto &x : F) x *= c;\n\n    vc<T> f(n), g(n), h(n);\n    FOR(i, 1, n) f[i]\
+    \ = F[i] - F[i - 1];\n    FOR(i, 1, n) h[i] = H[i] - H[i - 1];\n\n    u64 K =\
+    \ integer_kth_root(3, N);\n    u64 S = max<u64>(sq, K * K);\n    g[1] = H[1];\n\
+    \n    for (u64 i = 2; i < n; ++i) {\n      u64 a = get_floor(i);\n      if (a\
+    \ > S) break;\n      g[i] = h[i] - g[1] * f[i];\n      if (a * a <= S) h[get_index(a\
+    \ * a)] -= f[i] * g[i];\n      u64 ub = min(i - 1, S / a);\n      FOR(b, 2, ub\
+    \ + 1) { h[get_index(a * b)] -= f[i] * g[b] + f[b] * g[i]; }\n    }\n    vc<T>\
+    \ G = cumsum<T>(g, 0);\n    for (u64 z = N / (S + 1); z >= 1; --z) {\n      G[n\
+    \ - z] = H[n - z] - g[1] * F[n - z];\n      u64 M = N / z;\n      u64 ub = sqrtl(M);\n\
+    \      G[n - z] += F[ub] * G[ub];\n      for (u64 a = 2; a <= ub; ++a) {\n   \
+    \     int idx = get_index(M / a);\n        G[n - z] -= f[a] * G[idx] + g[a] *\
+    \ F[idx];\n      }\n    }\n    for (auto &x : G) x *= c;\n    c = T(1) / c;\n\
+    \    return G;\n  }\n\n  template <typename T>\n  vc<T> Zeta() {\n    return gen_sum_table<T>([&](u64\
+    \ n) -> T { return n; });\n  }\n\n  template <typename T>\n  vc<T> Unit() {\n\
+    \    return gen_sum_table<T>([&](u64 n) -> T { return 1; });\n  }\n\n  template\
+    \ <typename T>\n  vc<T> Mobius() {\n    return div<T>(Unit<T>(), Zeta<T>());\n\
+    \  }\n};\n#line 7 \"test/1_mytest/dirichlet.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvoid test(ll n) {\n  vi FLOOR;\n  FOR(i, 1, n + 1) FLOOR.eb(n / i);\n  UNIQUE(FLOOR);\n\
+    \  vc<mint> f(n + 1), g(n + 1), h(n + 1);\n  FOR(i, 1, n + 1) f[i] = RNG(1, mint::get_mod());\n\
+    \  FOR(i, 1, n + 1) g[i] = RNG(1, mint::get_mod());\n\n  FOR(a, 1, n + 1) FOR(b,\
+    \ 1, n / a + 1) h[a * b] += f[a] * g[b];\n  vc<mint> F = cumsum<mint>(f, 0), G\
+    \ = cumsum<mint>(g, 0),\n           H = cumsum<mint>(h, 0);\n  vc<mint> A = {0},\
+    \ B = {0}, C = {0};\n  for (auto &v : FLOOR) A.eb(F[v]), B.eb(G[v]), C.eb(H[v]);\n\
+    \n  Dirichlet DIR(n);\n  vc<mint> D = DIR.convolution(A, B);\n  assert(C == D);\n\
+    \  vc<mint> E = DIR.div(C, A);\n  assert(B == E);\n}\n\nvoid solve() {\n  int\
+    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
+    \  FOR(N, 1, 10000) { test(N); }\n  solve();\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"mod/modint.hpp\"\n#include \"random/base.hpp\"\n#include \"nt/dirichlet.hpp\"\
     \n\nusing mint = modint998;\n\nvoid test(ll n) {\n  vi FLOOR;\n  FOR(i, 1, n +\
@@ -326,7 +329,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/dirichlet.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/dirichlet.test.cpp

@@ -35,10 +35,10 @@ data:
   - icon: ':warning:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/array_on_divisors.hpp
     title: nt/array_on_divisors.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/crt.hpp
     title: nt/crt.hpp
   - icon: ':x:'
@@ -171,7 +171,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
   - icon: ':heavy_check_mark:'
@@ -198,16 +198,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1025.test.cpp
     title: test/3_yukicoder/1025.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/1262.test.cpp
     title: test/3_yukicoder/1262.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1339.test.cpp
     title: test/3_yukicoder/1339.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1411.test.cpp
     title: test/3_yukicoder/1411.test.cpp
   - icon: ':x:'
@@ -228,16 +228,16 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/187.test.cpp
     title: test/3_yukicoder/187.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1881.test.cpp
     title: test/3_yukicoder/1881.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1956.test.cpp
     title: test/3_yukicoder/1956.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/2119.test.cpp
     title: test/3_yukicoder/2119.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2120.test.cpp
     title: test/3_yukicoder/2120.test.cpp
   - icon: ':x:'
@@ -246,7 +246,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/2264.test.cpp
     title: test/3_yukicoder/2264.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2578.test.cpp
     title: test/3_yukicoder/2578.test.cpp
   - icon: ':x:'
@@ -271,29 +271,31 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"mod/montgomery_modint.hpp\"\n\n// odd mod.\n// x \u306E\u4EE3\
-    \u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate <int id, typename U1, typename\
-    \ U2>\nstruct Montgomery_modint {\n  using mint = Montgomery_modint;\n  inline\
-    \ static U1 m, r, n2;\n  static constexpr int W = numeric_limits<U1>::digits;\n\
-    \n  static void set_mod(U1 mod) {\n    assert(mod & 1 && mod <= U1(1) << (W -\
-    \ 2));\n    m = mod, n2 = -U2(m) % m, r = m;\n    FOR(6) r *= 2 - m * r;\n   \
-    \ r = -r;\n    assert(r * m == U1(-1));\n  }\n  static U1 reduce(U2 b) { return\
-    \ (b + U2(U1(b) * r) * m) >> W; }\n\n  U1 x;\n  Montgomery_modint() : x(0) {}\n\
-    \  Montgomery_modint(U1 x) : x(reduce(U2(x) * n2)){};\n  U1 val() const {\n  \
-    \  U1 y = reduce(x);\n    return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint\
-    \ y) {\n    x = ((x += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint\
-    \ &operator-=(mint y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n    return *this;\n\
-    \  }\n  mint &operator*=(mint y) {\n    x = reduce(U2(x) * y.x);\n    return *this;\n\
-    \  }\n  mint operator+(mint y) const { return mint(*this) += y; }\n  mint operator-(mint\
-    \ y) const { return mint(*this) -= y; }\n  mint operator*(mint y) const { return\
-    \ mint(*this) *= y; }\n  bool operator==(mint y) const {\n    return (x >= m ?\
-    \ x - m : x) == (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint y) const\
-    \ { return not operator==(y); }\n  mint pow(ll n) const {\n    assert(n >= 0);\n\
-    \    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if (n & 1)\
-    \ y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Montgomery_modint_32\
+    links:
+    - https://github.com/maspypy/library/blob/main/nt/is_prime.hpp
+  bundledCode: "#line 1 \"nt/is_prime.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/is_prime.hpp\n\
+    #line 1 \"mod/montgomery_modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/montgomery_modint.hpp\n\
+    \n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
+    \ <int id, typename U1, typename U2>\nstruct Montgomery_modint {\n  using mint\
+    \ = Montgomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
+    \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
+    \ & 1 && mod <= U1(1) << (W - 2));\n    m = mod, n2 = -U2(m) % m, r = m;\n   \
+    \ FOR(6) r *= 2 - m * r;\n    r = -r;\n    assert(r * m == U1(-1));\n  }\n  static\
+    \ U1 reduce(U2 b) { return (b + U2(U1(b) * r) * m) >> W; }\n\n  U1 x;\n  Montgomery_modint()\
+    \ : x(0) {}\n  Montgomery_modint(U1 x) : x(reduce(U2(x) * n2)){};\n  U1 val()\
+    \ const {\n    U1 y = reduce(x);\n    return y >= m ? y - m : y;\n  }\n  mint\
+    \ &operator+=(mint y) {\n    x = ((x += y.x) >= m ? x - m : x);\n    return *this;\n\
+    \  }\n  mint &operator-=(mint y) {\n    x -= (x >= y.x ? y.x : y.x - m);\n   \
+    \ return *this;\n  }\n  mint &operator*=(mint y) {\n    x = reduce(U2(x) * y.x);\n\
+    \    return *this;\n  }\n  mint operator+(mint y) const { return mint(*this) +=\
+    \ y; }\n  mint operator-(mint y) const { return mint(*this) -= y; }\n  mint operator*(mint\
+    \ y) const { return mint(*this) *= y; }\n  bool operator==(mint y) const {\n \
+    \   return (x >= m ? x - m : x) == (y.x >= m ? y.x - m : y.x);\n  }\n  bool operator!=(mint\
+    \ y) const { return not operator==(y); }\n  mint pow(ll n) const {\n    assert(n\
+    \ >= 0);\n    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if\
+    \ (n & 1) y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Montgomery_modint_32\
     \ = Montgomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Montgomery_modint_64\
-    \ = Montgomery_modint<id, u64, u128>;\n#line 2 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
+    \ = Montgomery_modint<id, u64, u128>;\n#line 3 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
     \ u64 x) {\n  assert(x < u64(1) << 62);\n  if (x == 2 or x == 3 or x == 5 or x\
     \ == 7) return true;\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 ==\
     \ 0) return false;\n  if (x < 121) return x > 1;\n  const u64 d = (x - 1) >> lowbit(x\
@@ -305,13 +307,14 @@ data:
     \ : {2, 7, 61})\n      if (!ok(a)) return false;\n  } else {\n    for (u64 a :\
     \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\n      if (!ok(a)) return\
     \ false;\n    }\n  }\n  return true;\n}\n"
-  code: "#include \"mod/montgomery_modint.hpp\"\n\nbool is_prime(const u64 x) {\n\
-    \  assert(x < u64(1) << 62);\n  if (x == 2 or x == 3 or x == 5 or x == 7) return\
-    \ true;\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return false;\n\
-    \  if (x < 121) return x > 1;\n  const u64 d = (x - 1) >> lowbit(x - 1);\n\n \
-    \ using mint = Montgomery_modint_64<202311020>;\n\n  mint::set_mod(x);\n  const\
-    \ mint one(u64(1)), minus_one(x - 1);\n  auto ok = [&](u64 a) -> bool {\n    auto\
-    \ y = mint(a).pow(d);\n    u64 t = d;\n    while (y != one && y != minus_one &&\
+  code: "// Source: https://github.com/maspypy/library/blob/main/nt/is_prime.hpp\n\
+    #include \"mod/montgomery_modint.hpp\"\n\nbool is_prime(const u64 x) {\n  assert(x\
+    \ < u64(1) << 62);\n  if (x == 2 or x == 3 or x == 5 or x == 7) return true;\n\
+    \  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 == 0) return false;\n \
+    \ if (x < 121) return x > 1;\n  const u64 d = (x - 1) >> lowbit(x - 1);\n\n  using\
+    \ mint = Montgomery_modint_64<202311020>;\n\n  mint::set_mod(x);\n  const mint\
+    \ one(u64(1)), minus_one(x - 1);\n  auto ok = [&](u64 a) -> bool {\n    auto y\
+    \ = mint(a).pow(d);\n    u64 t = d;\n    while (y != one && y != minus_one &&\
     \ t != x - 1) y *= y, t <<= 1;\n    if (y != minus_one && t % 2 == 0) return false;\n\
     \    return true;\n  };\n  if (x < (u64(1) << 32)) {\n    for (u64 a : {2, 7,\
     \ 61})\n      if (!ok(a)) return false;\n  } else {\n    for (u64 a : {2, 325,\
@@ -348,7 +351,7 @@ data:
   - seq/reeds_sloane.hpp
   - seq/famous/stirling_number_query.hpp
   - seq/sidon_sequence.hpp
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/O1_inv.test.cpp

@@ -24,20 +24,21 @@ data:
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/extended_lichao.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n/*\n\
-    library: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
-    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
-    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
-    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
-    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
-    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
-    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
-    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
-    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
-    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
-    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n//\
+    \ Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\nlibrary:\
+    \ https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
+    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
+    Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\"\
+    )\n#endif\n#endif\n#include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
+    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
+    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class>\nconstexpr\
+    \ bool dependent_false = false;\n\ntemplate <class T>\nconstexpr T infty = []\
+    \ {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\");\n  return\
+    \ T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
     template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
     \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
     using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
@@ -139,8 +140,9 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/extended_lichao.test.cpp\"\
-    \n\n#line 1 \"convex/extended_lichao_1.hpp\"\n// https://codeforces.com/blog/entry/86731)\n\
-    // chmin(A[x],ax+b), A[x]+=ax+b, get A[x]\n// \u3064\u304B\u3048\u305F https://codeforces.com/contest/1120/problem/F\n\
+    \n\n#line 1 \"convex/extended_lichao_1.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/convex/extended_lichao_1.hpp\n\
+    // https://codeforces.com/blog/entry/86731)\n// chmin(A[x],ax+b), A[x]+=ax+b,\
+    \ get A[x]\n// \u3064\u304B\u3048\u305F https://codeforces.com/contest/1120/problem/F\n\
     template <bool MINIMIZE>\nstruct Extended_LiChao_Tree_1 {\n  // \u5165\u51FA\u529B\
     \u4EE5\u5916\u3067\u306F minimize \u3057\u3066\u3044\u308B\n  struct F {\n   \
     \ ll a, b;\n    F(ll a = 0, ll b = 0) : a(a), b(b) {}\n    ll operator()(ll x)\
@@ -200,18 +202,21 @@ data:
     \ node_m) {\n      chmin(res, query_rec(2 * i + 0, x, node_l, node_m, laz));\n\
     \    }\n    if (x >= node_m) {\n      chmin(res, query_rec(2 * i + 1, x, node_m,\
     \ node_r, laz));\n    }\n    return res;\n  }\n};\n#line 1 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\n\
+    u64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64()\
-    \ {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n     \
-    \                 chrono::high_resolution_clock::now().time_since_epoch())\n \
-    \                         .count()) *\n                  10150724397891781847ULL;\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"random/shuffle.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/random/shuffle.hpp\n#line 1 \"\
+    random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 2 \"random/shuffle.hpp\"\n\ntemplate\
+    \  return l + RNG_64() % (r - l);\n}\n#line 3 \"random/shuffle.hpp\"\n\ntemplate\
     \ <typename T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) {\n    int j = RNG(0,\
     \ i + 1);\n    if (i != j) swap(A[i], A[j]);\n  }\n}\n#line 7 \"test/1_mytest/extended_lichao.test.cpp\"\
     \n\nvoid test_minimize() {\n  ll N = RNG(1, 100);\n\n  vi X(201);\n  FOR(i, 201)\
@@ -280,7 +285,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/extended_lichao.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/extended_lichao.test.cpp

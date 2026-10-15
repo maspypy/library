@@ -13,12 +13,15 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"geo/angle_sort.hpp\"\n\n#line 1 \"geo/base.hpp\"\ntemplate\
-    \ <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template\
-    \ <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename\
-    \ A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  template <typename\
-    \ U>\n  Point(Point<U> p) : x(p.x), y(p.y) {\n    static_assert(!is_integral_v<T>\
+    links:
+    - https://github.com/maspypy/library/blob/main/geo/convex_polygon_dp_order.hpp
+  bundledCode: "#line 1 \"geo/convex_polygon_dp_order.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/convex_polygon_dp_order.hpp\n\
+    #line 1 \"geo/angle_sort.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/angle_sort.hpp\n\
+    \n#line 1 \"geo/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/base.hpp\n\
+    template <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
+    \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
+    \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
+    \ {}\n\n  template <typename U>\n  Point(Point<U> p) : x(p.x), y(p.y) {\n    static_assert(!is_integral_v<T>\
     \ || is_integral_v<U>);\n  }\n\n  Point operator+=(const Point p) {\n    x +=\
     \ p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const Point p) {\n\
     \    x -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point p) const\
@@ -69,7 +72,7 @@ data:
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
     \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 3 \"geo/angle_sort.hpp\"\n\n// lower: -1, origin: 0, upper: 1, (-pi,pi]\ntemplate\
+    \ 4 \"geo/angle_sort.hpp\"\n\n// lower: -1, origin: 0, upper: 1, (-pi,pi]\ntemplate\
     \ <typename T> int lower_or_upper(const Point<T> &p) {\n  if (p.y != 0)\n    return\
     \ (p.y > 0 ? 1 : -1);\n  if (p.x > 0)\n    return -1;\n  if (p.x < 0)\n    return\
     \ 1;\n  return 0;\n}\n\n// L<R:-1, L==R:0, L>R:1, (-pi,pi]\ntemplate <typename\
@@ -83,7 +86,7 @@ data:
     \  return I;\n}\n\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort,\
     \ (-pi,pi]\ntemplate <typename T> vector<int> angle_sort(vector<pair<T, T>> &P)\
     \ {\n  vc<Point<T>> tmp(len(P));\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\n\
-    \  return angle_sort<T>(tmp);\n}\n#line 2 \"geo/convex_polygon_dp_order.hpp\"\n\
+    \  return angle_sort<T>(tmp);\n}\n#line 3 \"geo/convex_polygon_dp_order.hpp\"\n\
     \n/*\n\u70B9\u7FA4\u306F distinct\nedge(i,j): i->j \u3067\u9077\u79FB\u3057\u3066\
     \u3044\u304F\u3068\u504F\u89D2\u6607\u9806\uFF08strict\uFF09\u306A\u8FBA\u306E\
     \u5217\u306B\u306A\u308B\u9806\n\u5178\u578B\u7684\u306B\u306F v \u3092\u56FA\u5B9A\
@@ -98,7 +101,8 @@ data:
     \ [c, d] = Y;\n    int k = angle_comp_3(A[b] - A[a], A[d] - A[c]);\n    if (k\
     \ == -1) return true;\n    if (k == 1) return false;\n    P dir = A[b] - A[a];\n\
     \    return dir.dot(A[b] - A[d]) > 0;\n  });\n  return E;\n}\n"
-  code: "#include \"geo/angle_sort.hpp\"\n\n/*\n\u70B9\u7FA4\u306F distinct\nedge(i,j):\
+  code: "// Source: https://github.com/maspypy/library/blob/main/geo/convex_polygon_dp_order.hpp\n\
+    #include \"geo/angle_sort.hpp\"\n\n/*\n\u70B9\u7FA4\u306F distinct\nedge(i,j):\
     \ i->j \u3067\u9077\u79FB\u3057\u3066\u3044\u304F\u3068\u504F\u89D2\u6607\u9806\
     \uFF08strict\uFF09\u306A\u8FBA\u306E\u5217\u306B\u306A\u308B\u9806\n\u5178\u578B\
     \u7684\u306B\u306F v \u3092\u56FA\u5B9A\u3057\u3066 v->v \u3092\u4F5C\u308B\u3068\
@@ -119,7 +123,7 @@ data:
   isVerificationFile: false
   path: geo/convex_polygon_dp_order.hpp
   requiredBy: []
-  timestamp: '2026-09-24 22:40:16+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/convex_polygon_dp_order.hpp

@@ -31,11 +31,13 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"geo/triangle_area.hpp\"\ntemplate <typename REAL, typename\
-    \ T>\nREAL triangle_area(Point<T> A, Point<T> B, Point<T> C) {\n  return abs((B\
-    \ - A).det(C - A)) * 0.5;\n}\n"
-  code: "template <typename REAL, typename T>\nREAL triangle_area(Point<T> A, Point<T>\
+    links:
+    - https://github.com/maspypy/library/blob/main/geo/triangle_area.hpp
+  bundledCode: "#line 1 \"geo/triangle_area.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/triangle_area.hpp\n\
+    template <typename REAL, typename T>\nREAL triangle_area(Point<T> A, Point<T>\
+    \ B, Point<T> C) {\n  return abs((B - A).det(C - A)) * 0.5;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/geo/triangle_area.hpp\n\
+    template <typename REAL, typename T>\nREAL triangle_area(Point<T> A, Point<T>\
     \ B, Point<T> C) {\n  return abs((B - A).det(C - A)) * 0.5;\n}\n"
   dependsOn: []
   isVerificationFile: false
@@ -45,7 +47,7 @@ data:
   - geo/incircle.hpp
   - geo/outcircle.hpp
   - geo/minimum_enclosing_circle.hpp
-  timestamp: '2022-08-20 20:06:17+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2602.test.cpp

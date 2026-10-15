@@ -21,13 +21,13 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1881.test.cpp
     title: test/3_yukicoder/1881.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/578.test.cpp
     title: test/3_yukicoder/578.test.cpp
   - icon: ':x:'
@@ -37,14 +37,17 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"random/hash_vector.hpp\"\n\n#line 1 \"random/base.hpp\"\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/random/hash_vector.hpp
+  bundledCode: "#line 1 \"random/hash_vector.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/hash_vector.hpp\n\
+    \n#line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
     \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/modint61.hpp\"\n\nstruct modint61\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/modint61.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/mod/modint61.hpp\n\nstruct modint61\
     \ {\n  static constexpr u64 mod = (1ULL << 61) - 1;\n  u64 val;\n  constexpr modint61()\
     \ : val(0ULL) {}\n  constexpr modint61(u32 x) : val(x) {}\n  constexpr modint61(u64\
     \ x) : val(x % mod) {}\n  constexpr modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod))\
@@ -71,7 +74,7 @@ data:
     \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
     \ mul *= mul, n >>= 1;\n    }\n    return ret;\n  }\n};\n\n#ifdef FASTIO\nvoid\
     \ rd(modint61 &x) {\n  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < modint61::mod);\n\
-    }\n\nvoid wt(modint61 x) { fastio::wt(x.val); }\n#endif\n#line 4 \"random/hash_vector.hpp\"\
+    }\n\nvoid wt(modint61 x) { fastio::wt(x.val); }\n#endif\n#line 5 \"random/hash_vector.hpp\"\
     \n\ntemplate <typename T>\nu64 hash_vector(vc<T> X) {\n  using mint = modint61;\n\
     \  static vc<mint> hash_base;\n  int n = len(X);\n  while (len(hash_base) <= n)\
     \ { hash_base.eb(RNG(mint::get_mod())); }\n  mint H = 0;\n  FOR(i, n) H += hash_base[i]\
@@ -80,9 +83,10 @@ data:
     \ array<mint, K> hash_base{};\n  if (hash_base[0] == mint(0)) FOR(i, K) hash_base[i]\
     \ = RNG_64();\n  mint H = 0;\n  FOR(i, K) H += hash_base[i] * mint(X[i]);\n  return\
     \ H.val;\n}\n"
-  code: "\n#include \"random/base.hpp\"\n#include \"mod/modint61.hpp\"\n\ntemplate\
-    \ <typename T>\nu64 hash_vector(vc<T> X) {\n  using mint = modint61;\n  static\
-    \ vc<mint> hash_base;\n  int n = len(X);\n  while (len(hash_base) <= n) { hash_base.eb(RNG(mint::get_mod()));\
+  code: "// Source: https://github.com/maspypy/library/blob/main/random/hash_vector.hpp\n\
+    \n#include \"random/base.hpp\"\n#include \"mod/modint61.hpp\"\n\ntemplate <typename\
+    \ T>\nu64 hash_vector(vc<T> X) {\n  using mint = modint61;\n  static vc<mint>\
+    \ hash_base;\n  int n = len(X);\n  while (len(hash_base) <= n) { hash_base.eb(RNG(mint::get_mod()));\
     \ }\n  mint H = 0;\n  FOR(i, n) H += hash_base[i] * mint(X[i]);\n  H += hash_base[n];\n\
     \  return H.val;\n}\n\ntemplate <typename T, int K>\nu64 hash_array(array<T, K>\
     \ X) {\n  using mint = modint61;\n  static array<mint, K> hash_base{};\n  if (hash_base[0]\
@@ -95,7 +99,7 @@ data:
   path: random/hash_vector.hpp
   requiredBy:
   - other/connected_dp.hpp
-  timestamp: '2026-08-30 21:41:42+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/tdpc_grid_dp.test.cpp

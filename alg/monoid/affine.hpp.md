@@ -5,7 +5,7 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/cntsum_affine.hpp
     title: alg/acted_monoid/cntsum_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_affine.hpp
     title: alg/acted_monoid/sum_affine.hpp
   - icon: ':warning:'
@@ -75,7 +75,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1891.test.cpp
     title: test/3_yukicoder/1891.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2342.test.cpp
     title: test/3_yukicoder/2342.test.cpp
   - icon: ':x:'
@@ -91,25 +91,26 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\
-    \u3042\u3068\u3067 G\ntemplate <typename K>\nstruct Monoid_Affine {\n  using F\
-    \ = pair<K, K>;\n  using value_type = F;\n  using X = value_type;\n  static constexpr\
-    \ F op(const F &x, const F &y) noexcept {\n    return F({x.first * y.first, x.second\
-    \ * y.first + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n \
-    \   auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static\
-    \ constexpr K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n\
-    \  }\n  static constexpr F id() { return {K(1), K(0)}; }\n  static constexpr bool\
-    \ commute = false;\n};\n"
-  code: "\n// op(F, G) = comp(G,F), F \u306E\u3042\u3068\u3067 G\ntemplate <typename\
-    \ K>\nstruct Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n\
-    \  using X = value_type;\n  static constexpr F op(const F &x, const F &y) noexcept\
-    \ {\n    return F({x.first * y.first, x.second * y.first + y.second});\n  }\n\
-    \  static constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1)\
-    \ / a;\n    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f,\
-    \ K x) noexcept {\n    return f.first * x + f.second;\n  }\n  static constexpr\
-    \ F id() { return {K(1), K(0)}; }\n  static constexpr bool commute = false;\n\
-    };\n"
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/monoid/affine.hpp
+  bundledCode: "#line 1 \"alg/monoid/affine.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/affine.hpp\n\
+    \n// op(F, G) = comp(G,F), F \u306E\u3042\u3068\u3067 G\ntemplate <typename K>\n\
+    struct Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n  using\
+    \ X = value_type;\n  static constexpr F op(const F &x, const F &y) noexcept {\n\
+    \    return F({x.first * y.first, x.second * y.first + y.second});\n  }\n  static\
+    \ constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n\
+    \    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f, K x) noexcept\
+    \ {\n    return f.first * x + f.second;\n  }\n  static constexpr F id() { return\
+    \ {K(1), K(0)}; }\n  static constexpr bool commute = false;\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/monoid/affine.hpp\n\
+    \n// op(F, G) = comp(G,F), F \u306E\u3042\u3068\u3067 G\ntemplate <typename K>\n\
+    struct Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n  using\
+    \ X = value_type;\n  static constexpr F op(const F &x, const F &y) noexcept {\n\
+    \    return F({x.first * y.first, x.second * y.first + y.second});\n  }\n  static\
+    \ constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n\
+    \    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f, K x) noexcept\
+    \ {\n    return f.first * x + f.second;\n  }\n  static constexpr F id() { return\
+    \ {K(1), K(0)}; }\n  static constexpr bool commute = false;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/affine.hpp
@@ -117,7 +118,7 @@ data:
   - alg/acted_set/affine.hpp
   - alg/acted_monoid/sum_affine.hpp
   - alg/acted_monoid/cntsum_affine.hpp
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/prefix_max_segtree.test.cpp

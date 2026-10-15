@@ -10,13 +10,16 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"mod/mod_inv_u64.hpp\"\nu64 mod_inv_u64(u64 a) {\n  assert(a\
-    \ & 1);\n  u64 x = 1;\n  x = x * (2ULL - a * x);\n  x = x * (2ULL - a * x);\n\
-    \  x = x * (2ULL - a * x);\n  x = x * (2ULL - a * x);\n  x = x * (2ULL - a * x);\n\
-    \  x = x * (2ULL - a * x);\n  assert(a * x == 1);\n  return x;\n}\n"
-  code: "u64 mod_inv_u64(u64 a) {\n  assert(a & 1);\n  u64 x = 1;\n  x = x * (2ULL\
-    \ - a * x);\n  x = x * (2ULL - a * x);\n  x = x * (2ULL - a * x);\n  x = x * (2ULL\
+    links:
+    - https://github.com/maspypy/library/blob/main/mod/mod_inv_u64.hpp
+  bundledCode: "#line 1 \"mod/mod_inv_u64.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/mod_inv_u64.hpp\n\
+    u64 mod_inv_u64(u64 a) {\n  assert(a & 1);\n  u64 x = 1;\n  x = x * (2ULL - a\
+    \ * x);\n  x = x * (2ULL - a * x);\n  x = x * (2ULL - a * x);\n  x = x * (2ULL\
+    \ - a * x);\n  x = x * (2ULL - a * x);\n  x = x * (2ULL - a * x);\n  assert(a\
+    \ * x == 1);\n  return x;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/mod/mod_inv_u64.hpp\n\
+    u64 mod_inv_u64(u64 a) {\n  assert(a & 1);\n  u64 x = 1;\n  x = x * (2ULL - a\
+    \ * x);\n  x = x * (2ULL - a * x);\n  x = x * (2ULL - a * x);\n  x = x * (2ULL\
     \ - a * x);\n  x = x * (2ULL - a * x);\n  x = x * (2ULL - a * x);\n  assert(a\
     \ * x == 1);\n  return x;\n}\n"
   dependsOn: []
@@ -24,7 +27,7 @@ data:
   path: mod/mod_inv_u64.hpp
   requiredBy:
   - mod/mod_log_u64.hpp
-  timestamp: '2026-02-03 22:59:09+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: mod/mod_inv_u64.hpp

@@ -24,16 +24,18 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/2935.test.cpp
     title: test/3_yukicoder/2935.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/789.test.cpp
     title: test/3_yukicoder/789.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/segtree/dynamic_segtree.hpp\"\n\n#line 1 \"ds/node_pool.hpp\"\
-    \n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\
+    links:
+    - https://github.com/maspypy/library/blob/main/ds/segtree/dynamic_segtree.hpp
+  bundledCode: "#line 1 \"ds/segtree/dynamic_segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/dynamic_segtree.hpp\n\
+    \n#line 1 \"ds/node_pool.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/node_pool.hpp\n\
+    // \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\
     \u6E08\u307F chunk \u3092\u518D\u5229\u7528\u3059\u308B\ntemplate <class Node>\n\
     struct Node_Pool {\n  union Slot {\n    Node node;\n    Slot* next;\n\n    Slot()\
     \ {}\n    ~Slot() {}\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE\
@@ -59,7 +61,7 @@ data:
     \ {\n      Slot* s = free_head;\n      free_head = free_head->next;\n      return\
     \ s;\n    }\n\n    if (chunk_id == len(chunks)) alloc_chunk();\n\n    Slot* s\
     \ = &chunks[chunk_id][pos++];\n    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n\
-    \      pos = 0;\n    }\n    return s;\n  }\n};\n#line 3 \"ds/segtree/dynamic_segtree.hpp\"\
+    \      pos = 0;\n    }\n    return s;\n  }\n};\n#line 4 \"ds/segtree/dynamic_segtree.hpp\"\
     \n\n// sparse \u3082\u3042\u308B\u306E\u3067\u72B6\u6CC1\u306B\u3088\u3063\u3066\
     \u306F\u305D\u3063\u3061\u3067\ntemplate <typename Monoid, bool PERSISTENT>\n\
     struct Dynamic_SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
@@ -133,8 +135,9 @@ data:
     \    ll m = (l + r) / 2;\n    if (!c->r) c->r = new_node(m, r);\n    ll k = min_left_rec(c->r,\
     \ check, m, r, qr, x);\n    if (k != L0) return k;\n    if (!c->l) c->l = new_node(l,\
     \ m);\n    return min_left_rec(c->l, check, l, m, qr, x);\n  }\n};\n"
-  code: "\n#include \"ds/node_pool.hpp\"\n\n// sparse \u3082\u3042\u308B\u306E\u3067\
-    \u72B6\u6CC1\u306B\u3088\u3063\u3066\u306F\u305D\u3063\u3061\u3067\ntemplate <typename\
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/segtree/dynamic_segtree.hpp\n\
+    \n#include \"ds/node_pool.hpp\"\n\n// sparse \u3082\u3042\u308B\u306E\u3067\u72B6\
+    \u6CC1\u306B\u3088\u3063\u3066\u306F\u305D\u3063\u3061\u3067\ntemplate <typename\
     \ Monoid, bool PERSISTENT>\nstruct Dynamic_SegTree {\n  using MX = Monoid;\n \
     \ using X = typename MX::value_type;\n  using F = function<X(ll, ll)>;\n  F default_prod;\n\
     \n  struct Node {\n    Node *l, *r;\n    X x;\n  };\n\n  const ll L0, R0;\n  Node_Pool<Node>\
@@ -211,7 +214,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/dynamic_segtree.hpp
   requiredBy: []
-  timestamp: '2026-10-04 10:39:32+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1826.test.cpp

@@ -28,32 +28,36 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
-    struct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
-    \u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n \
-    \   u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n\
-    \    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\
-    \u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build\
-    \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
-    \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
-    \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
-    \ key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
-    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
-    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
-    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
-    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
-    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
-    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/find_cycle.hpp
+  bundledCode: "#line 1 \"graph/find_cycle.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/find_cycle.hpp\n\
+    #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -129,78 +133,74 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 2 \"graph/find_cycle.hpp\"\n\r\n// {vs, es} or empty. minimal.\r\
-    \ntemplate <typename GT>\r\npair<vc<int>, vc<int>> find_cycle_directed(GT& G)\
-    \ {\r\n  static_assert(GT::is_directed);\r\n  assert(G.is_prepared());\r\n\r\n\
-    \  int N = G.N;\r\n  vc<int> used(N);\r\n  vc<pair<int, int>> par(N);\r\n  vector<int>\
-    \ es, vs;\r\n\r\n  auto dfs = [&](auto self, int v) -> void {\r\n    used[v] =\
-    \ 1;\r\n    for (auto&& e: G[v]) {\r\n      if (len(es)) return;\r\n      if (!used[e.to])\
-    \ {\r\n        par[e.to] = {v, e.id};\r\n        self(self, e.to);\r\n      }\r\
-    \n      elif (used[e.to] == 1) {\r\n        es = {e.id};\r\n        int cur =\
-    \ v;\r\n        while (cur != e.to) {\r\n          es.eb(par[cur].se);\r\n   \
-    \       cur = par[cur].fi;\r\n        }\r\n        reverse(all(es));\r\n     \
-    \   return;\r\n      }\r\n    }\r\n    used[v] = 2;\r\n  };\r\n  FOR(v, N) if\
-    \ (!used[v]) dfs(dfs, v);\r\n  if (es.empty()) return {vs, es};\r\n\r\n  // minimal\
-    \ cycle\r\n  vc<int> nxt(N, -1);\r\n  for (auto&& eid: es) nxt[G.edges[eid].frm]\
-    \ = eid;\r\n\r\n  for (auto&& e: G.edges) {\r\n    int a = e.frm, b = e.to;\r\n\
-    \    if (nxt[a] == -1 || nxt[b] == -1) continue;\r\n    if (G.edges[nxt[a]].to\
-    \ == e.to) continue;\r\n    while (a != b) {\r\n      int t = G.edges[nxt[a]].to;\r\
-    \n      nxt[a] = -1;\r\n      a = t;\r\n    }\r\n    nxt[e.frm] = e.id;\r\n  }\r\
-    \n  es.clear();\r\n  FOR(v, N) {\r\n    if (nxt[v] == -1) continue;\r\n    int\
-    \ x = v;\r\n    while (1) {\r\n      vs.eb(x);\r\n      es.eb(nxt[x]);\r\n   \
-    \   x = G.edges[nxt[x]].to;\r\n      if (x == v) break;\r\n    }\r\n    break;\r\
-    \n  }\r\n  return {vs, es};\r\n}\r\n\r\n// {vs, es} or empty. minimal.\r\ntemplate\
-    \ <typename GT>\r\npair<vc<int>, vc<int>> find_cycle_undirected(GT& G) {\r\n \
-    \ assert(!GT::is_directed);\r\n  assert(G.is_prepared());\r\n  const int N = G.N;\r\
-    \n  const int M = G.M;\r\n  vc<int> dep(N, -1);\r\n  vc<bool> used_e(M);\r\n \
-    \ vc<int> par(N, -1); // edge idx\r\n\r\n  auto dfs = [&](auto& dfs, int v, int\
-    \ d) -> void {\r\n    dep[v] = d;\r\n    for (auto&& e: G[v]) {\r\n      if (dep[e.to]\
-    \ != -1) continue;\r\n      used_e[e.id] = 1;\r\n      par[e.to] = e.id;\r\n \
-    \     dfs(dfs, e.to, d + 1);\r\n    }\r\n  };\r\n\r\n  vc<int> vs, es;\r\n  FOR(v,\
-    \ N) {\r\n    if (dep[v] == -1) dfs(dfs, v, 0);\r\n  }\r\n  int mi_len = infty<int>;\r\
-    \n  int back_e = -1;\r\n  for (auto& e: G.edges) {\r\n    if (used_e[e.id]) continue;\r\
-    \n    int d = abs(dep[e.frm] - dep[e.to]);\r\n    if (chmin(mi_len, d)) back_e\
-    \ = e.id;\r\n  }\r\n  if (back_e == -1) return {vs, es};\r\n  int a = G.edges[back_e].frm,\
-    \ b = G.edges[back_e].to;\r\n  if (dep[a] > dep[b]) swap(a, b);\r\n  es.eb(back_e),\
-    \ vs.eb(a);\r\n  while (1) {\r\n    int x = vs.back();\r\n    auto& e = G.edges[es.back()];\r\
-    \n    int y = e.frm + e.to - x;\r\n    if (y == a) break;\r\n    vs.eb(y);\r\n\
-    \    es.eb(par[y]);\r\n  }\r\n  return {vs, es};\r\n}\r\n"
-  code: "#include \"graph/base.hpp\"\r\n\r\n// {vs, es} or empty. minimal.\r\ntemplate\
-    \ <typename GT>\r\npair<vc<int>, vc<int>> find_cycle_directed(GT& G) {\r\n  static_assert(GT::is_directed);\r\
-    \n  assert(G.is_prepared());\r\n\r\n  int N = G.N;\r\n  vc<int> used(N);\r\n \
-    \ vc<pair<int, int>> par(N);\r\n  vector<int> es, vs;\r\n\r\n  auto dfs = [&](auto\
-    \ self, int v) -> void {\r\n    used[v] = 1;\r\n    for (auto&& e: G[v]) {\r\n\
-    \      if (len(es)) return;\r\n      if (!used[e.to]) {\r\n        par[e.to] =\
-    \ {v, e.id};\r\n        self(self, e.to);\r\n      }\r\n      elif (used[e.to]\
-    \ == 1) {\r\n        es = {e.id};\r\n        int cur = v;\r\n        while (cur\
-    \ != e.to) {\r\n          es.eb(par[cur].se);\r\n          cur = par[cur].fi;\r\
-    \n        }\r\n        reverse(all(es));\r\n        return;\r\n      }\r\n   \
-    \ }\r\n    used[v] = 2;\r\n  };\r\n  FOR(v, N) if (!used[v]) dfs(dfs, v);\r\n\
-    \  if (es.empty()) return {vs, es};\r\n\r\n  // minimal cycle\r\n  vc<int> nxt(N,\
-    \ -1);\r\n  for (auto&& eid: es) nxt[G.edges[eid].frm] = eid;\r\n\r\n  for (auto&&\
-    \ e: G.edges) {\r\n    int a = e.frm, b = e.to;\r\n    if (nxt[a] == -1 || nxt[b]\
-    \ == -1) continue;\r\n    if (G.edges[nxt[a]].to == e.to) continue;\r\n    while\
-    \ (a != b) {\r\n      int t = G.edges[nxt[a]].to;\r\n      nxt[a] = -1;\r\n  \
-    \    a = t;\r\n    }\r\n    nxt[e.frm] = e.id;\r\n  }\r\n  es.clear();\r\n  FOR(v,\
-    \ N) {\r\n    if (nxt[v] == -1) continue;\r\n    int x = v;\r\n    while (1) {\r\
-    \n      vs.eb(x);\r\n      es.eb(nxt[x]);\r\n      x = G.edges[nxt[x]].to;\r\n\
-    \      if (x == v) break;\r\n    }\r\n    break;\r\n  }\r\n  return {vs, es};\r\
-    \n}\r\n\r\n// {vs, es} or empty. minimal.\r\ntemplate <typename GT>\r\npair<vc<int>,\
-    \ vc<int>> find_cycle_undirected(GT& G) {\r\n  assert(!GT::is_directed);\r\n \
-    \ assert(G.is_prepared());\r\n  const int N = G.N;\r\n  const int M = G.M;\r\n\
-    \  vc<int> dep(N, -1);\r\n  vc<bool> used_e(M);\r\n  vc<int> par(N, -1); // edge\
-    \ idx\r\n\r\n  auto dfs = [&](auto& dfs, int v, int d) -> void {\r\n    dep[v]\
-    \ = d;\r\n    for (auto&& e: G[v]) {\r\n      if (dep[e.to] != -1) continue;\r\
-    \n      used_e[e.id] = 1;\r\n      par[e.to] = e.id;\r\n      dfs(dfs, e.to, d\
-    \ + 1);\r\n    }\r\n  };\r\n\r\n  vc<int> vs, es;\r\n  FOR(v, N) {\r\n    if (dep[v]\
-    \ == -1) dfs(dfs, v, 0);\r\n  }\r\n  int mi_len = infty<int>;\r\n  int back_e\
-    \ = -1;\r\n  for (auto& e: G.edges) {\r\n    if (used_e[e.id]) continue;\r\n \
-    \   int d = abs(dep[e.frm] - dep[e.to]);\r\n    if (chmin(mi_len, d)) back_e =\
-    \ e.id;\r\n  }\r\n  if (back_e == -1) return {vs, es};\r\n  int a = G.edges[back_e].frm,\
-    \ b = G.edges[back_e].to;\r\n  if (dep[a] > dep[b]) swap(a, b);\r\n  es.eb(back_e),\
-    \ vs.eb(a);\r\n  while (1) {\r\n    int x = vs.back();\r\n    auto& e = G.edges[es.back()];\r\
-    \n    int y = e.frm + e.to - x;\r\n    if (y == a) break;\r\n    vs.eb(y);\r\n\
-    \    es.eb(par[y]);\r\n  }\r\n  return {vs, es};\r\n}\r\n"
+    \   }\n  }\n};\n#line 3 \"graph/find_cycle.hpp\"\n\n// {vs, es} or empty. minimal.\n\
+    template <typename GT>\npair<vc<int>, vc<int>> find_cycle_directed(GT& G) {\n\
+    \  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n\n  int N = G.N;\n\
+    \  vc<int> used(N);\n  vc<pair<int, int>> par(N);\n  vector<int> es, vs;\n\n \
+    \ auto dfs = [&](auto self, int v) -> void {\n    used[v] = 1;\n    for (auto&&\
+    \ e: G[v]) {\n      if (len(es)) return;\n      if (!used[e.to]) {\n        par[e.to]\
+    \ = {v, e.id};\n        self(self, e.to);\n      }\n      elif (used[e.to] ==\
+    \ 1) {\n        es = {e.id};\n        int cur = v;\n        while (cur != e.to)\
+    \ {\n          es.eb(par[cur].se);\n          cur = par[cur].fi;\n        }\n\
+    \        reverse(all(es));\n        return;\n      }\n    }\n    used[v] = 2;\n\
+    \  };\n  FOR(v, N) if (!used[v]) dfs(dfs, v);\n  if (es.empty()) return {vs, es};\n\
+    \n  // minimal cycle\n  vc<int> nxt(N, -1);\n  for (auto&& eid: es) nxt[G.edges[eid].frm]\
+    \ = eid;\n\n  for (auto&& e: G.edges) {\n    int a = e.frm, b = e.to;\n    if\
+    \ (nxt[a] == -1 || nxt[b] == -1) continue;\n    if (G.edges[nxt[a]].to == e.to)\
+    \ continue;\n    while (a != b) {\n      int t = G.edges[nxt[a]].to;\n      nxt[a]\
+    \ = -1;\n      a = t;\n    }\n    nxt[e.frm] = e.id;\n  }\n  es.clear();\n  FOR(v,\
+    \ N) {\n    if (nxt[v] == -1) continue;\n    int x = v;\n    while (1) {\n   \
+    \   vs.eb(x);\n      es.eb(nxt[x]);\n      x = G.edges[nxt[x]].to;\n      if (x\
+    \ == v) break;\n    }\n    break;\n  }\n  return {vs, es};\n}\n\n// {vs, es} or\
+    \ empty. minimal.\ntemplate <typename GT>\npair<vc<int>, vc<int>> find_cycle_undirected(GT&\
+    \ G) {\n  assert(!GT::is_directed);\n  assert(G.is_prepared());\n  const int N\
+    \ = G.N;\n  const int M = G.M;\n  vc<int> dep(N, -1);\n  vc<bool> used_e(M);\n\
+    \  vc<int> par(N, -1); // edge idx\n\n  auto dfs = [&](auto& dfs, int v, int d)\
+    \ -> void {\n    dep[v] = d;\n    for (auto&& e: G[v]) {\n      if (dep[e.to]\
+    \ != -1) continue;\n      used_e[e.id] = 1;\n      par[e.to] = e.id;\n      dfs(dfs,\
+    \ e.to, d + 1);\n    }\n  };\n\n  vc<int> vs, es;\n  FOR(v, N) {\n    if (dep[v]\
+    \ == -1) dfs(dfs, v, 0);\n  }\n  int mi_len = infty<int>;\n  int back_e = -1;\n\
+    \  for (auto& e: G.edges) {\n    if (used_e[e.id]) continue;\n    int d = abs(dep[e.frm]\
+    \ - dep[e.to]);\n    if (chmin(mi_len, d)) back_e = e.id;\n  }\n  if (back_e ==\
+    \ -1) return {vs, es};\n  int a = G.edges[back_e].frm, b = G.edges[back_e].to;\n\
+    \  if (dep[a] > dep[b]) swap(a, b);\n  es.eb(back_e), vs.eb(a);\n  while (1) {\n\
+    \    int x = vs.back();\n    auto& e = G.edges[es.back()];\n    int y = e.frm\
+    \ + e.to - x;\n    if (y == a) break;\n    vs.eb(y);\n    es.eb(par[y]);\n  }\n\
+    \  return {vs, es};\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/find_cycle.hpp\n\
+    #include \"graph/base.hpp\"\n\n// {vs, es} or empty. minimal.\ntemplate <typename\
+    \ GT>\npair<vc<int>, vc<int>> find_cycle_directed(GT& G) {\n  static_assert(GT::is_directed);\n\
+    \  assert(G.is_prepared());\n\n  int N = G.N;\n  vc<int> used(N);\n  vc<pair<int,\
+    \ int>> par(N);\n  vector<int> es, vs;\n\n  auto dfs = [&](auto self, int v) ->\
+    \ void {\n    used[v] = 1;\n    for (auto&& e: G[v]) {\n      if (len(es)) return;\n\
+    \      if (!used[e.to]) {\n        par[e.to] = {v, e.id};\n        self(self,\
+    \ e.to);\n      }\n      elif (used[e.to] == 1) {\n        es = {e.id};\n    \
+    \    int cur = v;\n        while (cur != e.to) {\n          es.eb(par[cur].se);\n\
+    \          cur = par[cur].fi;\n        }\n        reverse(all(es));\n        return;\n\
+    \      }\n    }\n    used[v] = 2;\n  };\n  FOR(v, N) if (!used[v]) dfs(dfs, v);\n\
+    \  if (es.empty()) return {vs, es};\n\n  // minimal cycle\n  vc<int> nxt(N, -1);\n\
+    \  for (auto&& eid: es) nxt[G.edges[eid].frm] = eid;\n\n  for (auto&& e: G.edges)\
+    \ {\n    int a = e.frm, b = e.to;\n    if (nxt[a] == -1 || nxt[b] == -1) continue;\n\
+    \    if (G.edges[nxt[a]].to == e.to) continue;\n    while (a != b) {\n      int\
+    \ t = G.edges[nxt[a]].to;\n      nxt[a] = -1;\n      a = t;\n    }\n    nxt[e.frm]\
+    \ = e.id;\n  }\n  es.clear();\n  FOR(v, N) {\n    if (nxt[v] == -1) continue;\n\
+    \    int x = v;\n    while (1) {\n      vs.eb(x);\n      es.eb(nxt[x]);\n    \
+    \  x = G.edges[nxt[x]].to;\n      if (x == v) break;\n    }\n    break;\n  }\n\
+    \  return {vs, es};\n}\n\n// {vs, es} or empty. minimal.\ntemplate <typename GT>\n\
+    pair<vc<int>, vc<int>> find_cycle_undirected(GT& G) {\n  assert(!GT::is_directed);\n\
+    \  assert(G.is_prepared());\n  const int N = G.N;\n  const int M = G.M;\n  vc<int>\
+    \ dep(N, -1);\n  vc<bool> used_e(M);\n  vc<int> par(N, -1); // edge idx\n\n  auto\
+    \ dfs = [&](auto& dfs, int v, int d) -> void {\n    dep[v] = d;\n    for (auto&&\
+    \ e: G[v]) {\n      if (dep[e.to] != -1) continue;\n      used_e[e.id] = 1;\n\
+    \      par[e.to] = e.id;\n      dfs(dfs, e.to, d + 1);\n    }\n  };\n\n  vc<int>\
+    \ vs, es;\n  FOR(v, N) {\n    if (dep[v] == -1) dfs(dfs, v, 0);\n  }\n  int mi_len\
+    \ = infty<int>;\n  int back_e = -1;\n  for (auto& e: G.edges) {\n    if (used_e[e.id])\
+    \ continue;\n    int d = abs(dep[e.frm] - dep[e.to]);\n    if (chmin(mi_len, d))\
+    \ back_e = e.id;\n  }\n  if (back_e == -1) return {vs, es};\n  int a = G.edges[back_e].frm,\
+    \ b = G.edges[back_e].to;\n  if (dep[a] > dep[b]) swap(a, b);\n  es.eb(back_e),\
+    \ vs.eb(a);\n  while (1) {\n    int x = vs.back();\n    auto& e = G.edges[es.back()];\n\
+    \    int y = e.frm + e.to - x;\n    if (y == a) break;\n    vs.eb(y);\n    es.eb(par[y]);\n\
+    \  }\n  return {vs, es};\n}\n"
   dependsOn:
   - graph/base.hpp
   - ds/hashmap.hpp
@@ -208,7 +208,7 @@ data:
   path: graph/find_cycle.hpp
   requiredBy:
   - graph/all_cycle_common_vertices.hpp
-  timestamp: '2026-09-13 16:05:11+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/find_cycle_minimum.test.cpp

@@ -9,15 +9,17 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/1572/problem/F
-  bundledCode: "#line 1 \"ds/segtree/beats_multiset_chmin.hpp\"\n\n// \u5217 A[i]\
-    \ \u304C multiset \u3068\u3057\u3066\u3069\u3046\u306A\u3063\u3066\u3044\u308B\
-    \u304B\u3092\u7BA1\u7406\u3059\u308B.\n// A[i]:=x, A[i]:=min(A[i],x)\n// https://codeforces.com/contest/1572/problem/F\n\
-    template <typename T>\nstruct Beats_Multiset_Chmin {\n  int n, log, size;\n  struct\
-    \ Data {\n    T max, max2;\n    int cnt, maxc;\n    T lazy;\n  };\n\n  Data from_element(T\
-    \ x) { return {x, -infty<T>, 1, 1, infty<T>}; }\n  vc<Data> dat;\n\n  Data op(Data&\
-    \ L, Data& R) {\n    if (L.cnt == 0) return R;\n    if (R.cnt == 0) return L;\n\
-    \    Data ANS;\n    ANS.max = max(L.max, R.max);\n    ANS.max2 = -infty<T>;\n\
-    \    if (L.max < ANS.max) chmax(ANS.max2, L.max);\n    if (L.max2 < ANS.max) chmax(ANS.max2,\
+    - https://github.com/maspypy/library/blob/main/ds/segtree/beats_multiset_chmin.hpp
+  bundledCode: "#line 1 \"ds/segtree/beats_multiset_chmin.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/beats_multiset_chmin.hpp\n\
+    \n// \u5217 A[i] \u304C multiset \u3068\u3057\u3066\u3069\u3046\u306A\u3063\u3066\
+    \u3044\u308B\u304B\u3092\u7BA1\u7406\u3059\u308B.\n// A[i]:=x, A[i]:=min(A[i],x)\n\
+    // https://codeforces.com/contest/1572/problem/F\ntemplate <typename T>\nstruct\
+    \ Beats_Multiset_Chmin {\n  int n, log, size;\n  struct Data {\n    T max, max2;\n\
+    \    int cnt, maxc;\n    T lazy;\n  };\n\n  Data from_element(T x) { return {x,\
+    \ -infty<T>, 1, 1, infty<T>}; }\n  vc<Data> dat;\n\n  Data op(Data& L, Data& R)\
+    \ {\n    if (L.cnt == 0) return R;\n    if (R.cnt == 0) return L;\n    Data ANS;\n\
+    \    ANS.max = max(L.max, R.max);\n    ANS.max2 = -infty<T>;\n    if (L.max <\
+    \ ANS.max) chmax(ANS.max2, L.max);\n    if (L.max2 < ANS.max) chmax(ANS.max2,\
     \ L.max2);\n    if (R.max < ANS.max) chmax(ANS.max2, R.max);\n    if (R.max2 <\
     \ ANS.max) chmax(ANS.max2, R.max2);\n    ANS.maxc = 0;\n    if (L.max == ANS.max)\
     \ ANS.maxc += L.maxc;\n    if (R.max == ANS.max) ANS.maxc += R.maxc;\n    ANS.lazy\
@@ -49,8 +51,9 @@ data:
     \ i) {\n    assert(i < size);\n    T x = dat[i].lazy;\n    for (int j : {2 * i\
     \ + 0, 2 * i + 1}) {\n      ::chmin(dat[j].max, x);\n      ::chmin(dat[j].lazy,\
     \ x);\n    }\n  }\n};\n"
-  code: "\n// \u5217 A[i] \u304C multiset \u3068\u3057\u3066\u3069\u3046\u306A\u3063\
-    \u3066\u3044\u308B\u304B\u3092\u7BA1\u7406\u3059\u308B.\n// A[i]:=x, A[i]:=min(A[i],x)\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/segtree/beats_multiset_chmin.hpp\n\
+    \n// \u5217 A[i] \u304C multiset \u3068\u3057\u3066\u3069\u3046\u306A\u3063\u3066\
+    \u3044\u308B\u304B\u3092\u7BA1\u7406\u3059\u308B.\n// A[i]:=x, A[i]:=min(A[i],x)\n\
     // https://codeforces.com/contest/1572/problem/F\ntemplate <typename T>\nstruct\
     \ Beats_Multiset_Chmin {\n  int n, log, size;\n  struct Data {\n    T max, max2;\n\
     \    int cnt, maxc;\n    T lazy;\n  };\n\n  Data from_element(T x) { return {x,\
@@ -93,7 +96,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/beats_multiset_chmin.hpp
   requiredBy: []
-  timestamp: '2026-09-17 11:49:38+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/segtree/beats_multiset_chmin.hpp

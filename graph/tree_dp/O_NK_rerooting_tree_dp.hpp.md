@@ -18,31 +18,35 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/2229/problem/I
-  bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
-    struct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
-    \u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n \
-    \   u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n\
-    \    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\
-    \u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build\
-    \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
-    \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
-    \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
-    \ key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
-    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
-    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
-    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
-    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
-    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
-    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    - https://github.com/maspypy/library/blob/main/graph/tree_dp/O_NK_rerooting_tree_dp.hpp
+  bundledCode: "#line 1 \"graph/tree_dp/O_NK_rerooting_tree_dp.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/tree_dp/O_NK_rerooting_tree_dp.hpp\n\
+    #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -118,82 +122,84 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 1 \"ds/offset_vector.hpp\"\n// V[L],...,V[R-1] \u3092\u5927\
-    \u304D\u3055 R-L \u306E vector \u3067\u7BA1\u7406\u3059\u308B\ntemplate <typename\
-    \ T>\nstruct OffsetVector {\n  int off;\n  vc<T> dat;\n  OffsetVector(int L =\
-    \ 0, int R = 0, T t = {}) : off(L), dat(R - L, t) {}\n  T& operator[](int i) {\
-    \ return dat[i - off]; }\n  const T& operator[](int i) const { return dat[i -\
-    \ off]; }\n  int size() const { return dat.size(); }\n  int L() const { return\
-    \ off; }\n  int R() const { return off + (dat.size()); }\n};\n#line 3 \"graph/tree_dp/O_NK_rerooting_tree_dp.hpp\"\
-    \n\n// 2\u4E57\u306E\u6728DP\u578B\u306EO(NK)\u5168\u65B9\u4F4D.\n// \u5404\u9802\
-    \u70B9 v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u30B5\u30A4\u30BA K\
-    \ \u306E DP \u5024\u3060\u3051\u304C\u6700\u7D42\u7684\u306B\u5FC5\u8981\u3067\
-    \u3042\u308B\u5834\u5408\n// https://codeforces.com/contest/2229/problem/I\n//\n\
-    // f_ee(A, B, L, R)\n// f_ev(A, v, L, R)\n// f_ve(A, v, p, L, R)\n// get_ANS(A,\
-    \ v)\n// A, B \u3084\u8FD4\u308A\u5024\u306F Offset_Vector<T> \u3067\u3001\u8FD4\
-    \u308A\u5024\u306F [L,R) \u306B\u306A\u308B\u7D44\u3092\u5168\u8A08\u7B97\n//\n\
-    // f_ee: virtual tree \u306E\u30DE\u30FC\u30B8\n// f_ev: virtual tree \u306B\u6839\
-    \u3092\u3064\u3051\u3066 real tree \u306B\u3059\u308B\n// f_ve: real tree \u306B\
-    \u89AA\u8FBA\u3092\u3064\u3051\u3066 virtual tree \u306B\u3059\u308B\n// get_ANS:\
-    \ virtual tree, v \u304B\u3089\u7B54\u3092\u5F97\u308B. [K-1,K]\ntemplate <typename\
-    \ GT, typename T, typename F1, typename F2, typename F3,\n          typename F4>\n\
-    vc<T> O_NK_rerooting_tree_dp(GT& G, int K, F1 f_ee, F2 f_ev, F3 f_ve,\n      \
-    \                       F4 get_ANS, const T id) {\n  int N = G.N;\n  vc<int> V(N),\
-    \ par(N, -1), sz(N, 1);\n  vvc<int> ch(N);\n  {\n    int t = 0;\n    V[t++] =\
-    \ 0;\n    FOR(i, N) {\n      int v = V[i];\n      for (auto& e : G[v]) {\n   \
-    \     if (e.to == par[v]) continue;\n        V[t++] = e.to;\n        par[e.to]\
-    \ = v;\n        ch[v].eb(e.to);\n      }\n    }\n    FOR_R(i, 1, N) {\n      int\
-    \ v = V[i];\n      sz[par[v]] += sz[v];\n    }\n  }\n\n  /*\n  dp_down[v]: virtual\
-    \ tree at v.\n  dp_prefix[c]: prefix virtual tree at v, before c. (c: not included)\n\
-    \  dp_up[v]: virtual tree at v, upward.\n  */\n\n  using D = OffsetVector<T>;\n\
-    \  vc<D> dp_down(N), dp_prefix(N), dp_up(N);\n  vc<T> ANS(N);\n\n  // calc dp_down,\
-    \ dp_prefix\n  FOR_R(i, N) {\n    int v = V[i];\n    D X(0, 1, id);\n    int n\
-    \ = 0;\n    for (int c : ch[v]) {\n      dp_prefix[c] = X;\n      D Y = f_ev(dp_down[c],\
-    \ c, 0, min<int>(K, sz[c]) + 1);\n      Y = f_ve(Y, c, v, 0, min<int>(K, sz[c])\
-    \ + 1);\n      n += sz[c];\n      X = f_ee(X, Y, 0, min<int>(n, K) + 1);\n   \
-    \ }\n    dp_down[v] = X;\n  }\n\n  dp_up[0] = D(0, 1, id);\n  FOR(i, N) {\n  \
-    \  int v = V[i];\n    int nc = len(ch[v]);\n    D X = dp_up[v];\n    int s = sz[v];\n\
-    \    FOR_R(k, nc) {\n      int c = ch[v][k];\n      D Y = f_ee(X, dp_prefix[c],\
-    \ max(K - sz[c] - 1, 0), K + 1);\n      Y = f_ev(Y, v, max(K - sz[c], 0), K +\
-    \ 1);\n      dp_up[c] = f_ve(Y, v, c, max(K - sz[c], 0), K + 1);\n      s -= sz[c];\n\
-    \      Y = f_ev(dp_down[c], c, 0, min(K, sz[c]) + 1);\n      Y = f_ve(Y, c, v,\
-    \ 0, min(K, sz[c]) + 1);\n      X = f_ee(X, Y, max(K - s, 0), K + 1);\n    }\n\
-    \    ANS[v] = get_ANS(X, v);\n  }\n  return ANS;\n}\n"
-  code: "#include \"graph/base.hpp\"\n#include \"ds/offset_vector.hpp\"\n\n// 2\u4E57\
-    \u306E\u6728DP\u578B\u306EO(NK)\u5168\u65B9\u4F4D.\n// \u5404\u9802\u70B9 v \u3092\
-    \u6839\u3068\u3057\u305F\u3068\u304D\u306E\u30B5\u30A4\u30BA K \u306E DP \u5024\
-    \u3060\u3051\u304C\u6700\u7D42\u7684\u306B\u5FC5\u8981\u3067\u3042\u308B\u5834\
-    \u5408\n// https://codeforces.com/contest/2229/problem/I\n//\n// f_ee(A, B, L,\
-    \ R)\n// f_ev(A, v, L, R)\n// f_ve(A, v, p, L, R)\n// get_ANS(A, v)\n// A, B \u3084\
-    \u8FD4\u308A\u5024\u306F Offset_Vector<T> \u3067\u3001\u8FD4\u308A\u5024\u306F\
-    \ [L,R) \u306B\u306A\u308B\u7D44\u3092\u5168\u8A08\u7B97\n//\n// f_ee: virtual\
-    \ tree \u306E\u30DE\u30FC\u30B8\n// f_ev: virtual tree \u306B\u6839\u3092\u3064\
-    \u3051\u3066 real tree \u306B\u3059\u308B\n// f_ve: real tree \u306B\u89AA\u8FBA\
-    \u3092\u3064\u3051\u3066 virtual tree \u306B\u3059\u308B\n// get_ANS: virtual\
-    \ tree, v \u304B\u3089\u7B54\u3092\u5F97\u308B. [K-1,K]\ntemplate <typename GT,\
-    \ typename T, typename F1, typename F2, typename F3,\n          typename F4>\n\
-    vc<T> O_NK_rerooting_tree_dp(GT& G, int K, F1 f_ee, F2 f_ev, F3 f_ve,\n      \
-    \                       F4 get_ANS, const T id) {\n  int N = G.N;\n  vc<int> V(N),\
-    \ par(N, -1), sz(N, 1);\n  vvc<int> ch(N);\n  {\n    int t = 0;\n    V[t++] =\
-    \ 0;\n    FOR(i, N) {\n      int v = V[i];\n      for (auto& e : G[v]) {\n   \
-    \     if (e.to == par[v]) continue;\n        V[t++] = e.to;\n        par[e.to]\
-    \ = v;\n        ch[v].eb(e.to);\n      }\n    }\n    FOR_R(i, 1, N) {\n      int\
-    \ v = V[i];\n      sz[par[v]] += sz[v];\n    }\n  }\n\n  /*\n  dp_down[v]: virtual\
-    \ tree at v.\n  dp_prefix[c]: prefix virtual tree at v, before c. (c: not included)\n\
-    \  dp_up[v]: virtual tree at v, upward.\n  */\n\n  using D = OffsetVector<T>;\n\
-    \  vc<D> dp_down(N), dp_prefix(N), dp_up(N);\n  vc<T> ANS(N);\n\n  // calc dp_down,\
-    \ dp_prefix\n  FOR_R(i, N) {\n    int v = V[i];\n    D X(0, 1, id);\n    int n\
-    \ = 0;\n    for (int c : ch[v]) {\n      dp_prefix[c] = X;\n      D Y = f_ev(dp_down[c],\
-    \ c, 0, min<int>(K, sz[c]) + 1);\n      Y = f_ve(Y, c, v, 0, min<int>(K, sz[c])\
-    \ + 1);\n      n += sz[c];\n      X = f_ee(X, Y, 0, min<int>(n, K) + 1);\n   \
-    \ }\n    dp_down[v] = X;\n  }\n\n  dp_up[0] = D(0, 1, id);\n  FOR(i, N) {\n  \
-    \  int v = V[i];\n    int nc = len(ch[v]);\n    D X = dp_up[v];\n    int s = sz[v];\n\
-    \    FOR_R(k, nc) {\n      int c = ch[v][k];\n      D Y = f_ee(X, dp_prefix[c],\
-    \ max(K - sz[c] - 1, 0), K + 1);\n      Y = f_ev(Y, v, max(K - sz[c], 0), K +\
-    \ 1);\n      dp_up[c] = f_ve(Y, v, c, max(K - sz[c], 0), K + 1);\n      s -= sz[c];\n\
-    \      Y = f_ev(dp_down[c], c, 0, min(K, sz[c]) + 1);\n      Y = f_ve(Y, c, v,\
-    \ 0, min(K, sz[c]) + 1);\n      X = f_ee(X, Y, max(K - s, 0), K + 1);\n    }\n\
-    \    ANS[v] = get_ANS(X, v);\n  }\n  return ANS;\n}\n"
+    \   }\n  }\n};\n#line 1 \"ds/offset_vector.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/offset_vector.hpp\n\
+    // V[L],...,V[R-1] \u3092\u5927\u304D\u3055 R-L \u306E vector \u3067\u7BA1\u7406\
+    \u3059\u308B\ntemplate <typename T>\nstruct OffsetVector {\n  int off;\n  vc<T>\
+    \ dat;\n  OffsetVector(int L = 0, int R = 0, T t = {}) : off(L), dat(R - L, t)\
+    \ {}\n  T& operator[](int i) { return dat[i - off]; }\n  const T& operator[](int\
+    \ i) const { return dat[i - off]; }\n  int size() const { return dat.size(); }\n\
+    \  int L() const { return off; }\n  int R() const { return off + (dat.size());\
+    \ }\n};\n#line 4 \"graph/tree_dp/O_NK_rerooting_tree_dp.hpp\"\n\n// 2\u4E57\u306E\
+    \u6728DP\u578B\u306EO(NK)\u5168\u65B9\u4F4D.\n// \u5404\u9802\u70B9 v \u3092\u6839\
+    \u3068\u3057\u305F\u3068\u304D\u306E\u30B5\u30A4\u30BA K \u306E DP \u5024\u3060\
+    \u3051\u304C\u6700\u7D42\u7684\u306B\u5FC5\u8981\u3067\u3042\u308B\u5834\u5408\
+    \n// https://codeforces.com/contest/2229/problem/I\n//\n// f_ee(A, B, L, R)\n\
+    // f_ev(A, v, L, R)\n// f_ve(A, v, p, L, R)\n// get_ANS(A, v)\n// A, B \u3084\u8FD4\
+    \u308A\u5024\u306F Offset_Vector<T> \u3067\u3001\u8FD4\u308A\u5024\u306F [L,R)\
+    \ \u306B\u306A\u308B\u7D44\u3092\u5168\u8A08\u7B97\n//\n// f_ee: virtual tree\
+    \ \u306E\u30DE\u30FC\u30B8\n// f_ev: virtual tree \u306B\u6839\u3092\u3064\u3051\
+    \u3066 real tree \u306B\u3059\u308B\n// f_ve: real tree \u306B\u89AA\u8FBA\u3092\
+    \u3064\u3051\u3066 virtual tree \u306B\u3059\u308B\n// get_ANS: virtual tree,\
+    \ v \u304B\u3089\u7B54\u3092\u5F97\u308B. [K-1,K]\ntemplate <typename GT, typename\
+    \ T, typename F1, typename F2, typename F3,\n          typename F4>\nvc<T> O_NK_rerooting_tree_dp(GT&\
+    \ G, int K, F1 f_ee, F2 f_ev, F3 f_ve,\n                             F4 get_ANS,\
+    \ const T id) {\n  int N = G.N;\n  vc<int> V(N), par(N, -1), sz(N, 1);\n  vvc<int>\
+    \ ch(N);\n  {\n    int t = 0;\n    V[t++] = 0;\n    FOR(i, N) {\n      int v =\
+    \ V[i];\n      for (auto& e : G[v]) {\n        if (e.to == par[v]) continue;\n\
+    \        V[t++] = e.to;\n        par[e.to] = v;\n        ch[v].eb(e.to);\n   \
+    \   }\n    }\n    FOR_R(i, 1, N) {\n      int v = V[i];\n      sz[par[v]] += sz[v];\n\
+    \    }\n  }\n\n  /*\n  dp_down[v]: virtual tree at v.\n  dp_prefix[c]: prefix\
+    \ virtual tree at v, before c. (c: not included)\n  dp_up[v]: virtual tree at\
+    \ v, upward.\n  */\n\n  using D = OffsetVector<T>;\n  vc<D> dp_down(N), dp_prefix(N),\
+    \ dp_up(N);\n  vc<T> ANS(N);\n\n  // calc dp_down, dp_prefix\n  FOR_R(i, N) {\n\
+    \    int v = V[i];\n    D X(0, 1, id);\n    int n = 0;\n    for (int c : ch[v])\
+    \ {\n      dp_prefix[c] = X;\n      D Y = f_ev(dp_down[c], c, 0, min<int>(K, sz[c])\
+    \ + 1);\n      Y = f_ve(Y, c, v, 0, min<int>(K, sz[c]) + 1);\n      n += sz[c];\n\
+    \      X = f_ee(X, Y, 0, min<int>(n, K) + 1);\n    }\n    dp_down[v] = X;\n  }\n\
+    \n  dp_up[0] = D(0, 1, id);\n  FOR(i, N) {\n    int v = V[i];\n    int nc = len(ch[v]);\n\
+    \    D X = dp_up[v];\n    int s = sz[v];\n    FOR_R(k, nc) {\n      int c = ch[v][k];\n\
+    \      D Y = f_ee(X, dp_prefix[c], max(K - sz[c] - 1, 0), K + 1);\n      Y = f_ev(Y,\
+    \ v, max(K - sz[c], 0), K + 1);\n      dp_up[c] = f_ve(Y, v, c, max(K - sz[c],\
+    \ 0), K + 1);\n      s -= sz[c];\n      Y = f_ev(dp_down[c], c, 0, min(K, sz[c])\
+    \ + 1);\n      Y = f_ve(Y, c, v, 0, min(K, sz[c]) + 1);\n      X = f_ee(X, Y,\
+    \ max(K - s, 0), K + 1);\n    }\n    ANS[v] = get_ANS(X, v);\n  }\n  return ANS;\n\
+    }\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/tree_dp/O_NK_rerooting_tree_dp.hpp\n\
+    #include \"graph/base.hpp\"\n#include \"ds/offset_vector.hpp\"\n\n// 2\u4E57\u306E\
+    \u6728DP\u578B\u306EO(NK)\u5168\u65B9\u4F4D.\n// \u5404\u9802\u70B9 v \u3092\u6839\
+    \u3068\u3057\u305F\u3068\u304D\u306E\u30B5\u30A4\u30BA K \u306E DP \u5024\u3060\
+    \u3051\u304C\u6700\u7D42\u7684\u306B\u5FC5\u8981\u3067\u3042\u308B\u5834\u5408\
+    \n// https://codeforces.com/contest/2229/problem/I\n//\n// f_ee(A, B, L, R)\n\
+    // f_ev(A, v, L, R)\n// f_ve(A, v, p, L, R)\n// get_ANS(A, v)\n// A, B \u3084\u8FD4\
+    \u308A\u5024\u306F Offset_Vector<T> \u3067\u3001\u8FD4\u308A\u5024\u306F [L,R)\
+    \ \u306B\u306A\u308B\u7D44\u3092\u5168\u8A08\u7B97\n//\n// f_ee: virtual tree\
+    \ \u306E\u30DE\u30FC\u30B8\n// f_ev: virtual tree \u306B\u6839\u3092\u3064\u3051\
+    \u3066 real tree \u306B\u3059\u308B\n// f_ve: real tree \u306B\u89AA\u8FBA\u3092\
+    \u3064\u3051\u3066 virtual tree \u306B\u3059\u308B\n// get_ANS: virtual tree,\
+    \ v \u304B\u3089\u7B54\u3092\u5F97\u308B. [K-1,K]\ntemplate <typename GT, typename\
+    \ T, typename F1, typename F2, typename F3,\n          typename F4>\nvc<T> O_NK_rerooting_tree_dp(GT&\
+    \ G, int K, F1 f_ee, F2 f_ev, F3 f_ve,\n                             F4 get_ANS,\
+    \ const T id) {\n  int N = G.N;\n  vc<int> V(N), par(N, -1), sz(N, 1);\n  vvc<int>\
+    \ ch(N);\n  {\n    int t = 0;\n    V[t++] = 0;\n    FOR(i, N) {\n      int v =\
+    \ V[i];\n      for (auto& e : G[v]) {\n        if (e.to == par[v]) continue;\n\
+    \        V[t++] = e.to;\n        par[e.to] = v;\n        ch[v].eb(e.to);\n   \
+    \   }\n    }\n    FOR_R(i, 1, N) {\n      int v = V[i];\n      sz[par[v]] += sz[v];\n\
+    \    }\n  }\n\n  /*\n  dp_down[v]: virtual tree at v.\n  dp_prefix[c]: prefix\
+    \ virtual tree at v, before c. (c: not included)\n  dp_up[v]: virtual tree at\
+    \ v, upward.\n  */\n\n  using D = OffsetVector<T>;\n  vc<D> dp_down(N), dp_prefix(N),\
+    \ dp_up(N);\n  vc<T> ANS(N);\n\n  // calc dp_down, dp_prefix\n  FOR_R(i, N) {\n\
+    \    int v = V[i];\n    D X(0, 1, id);\n    int n = 0;\n    for (int c : ch[v])\
+    \ {\n      dp_prefix[c] = X;\n      D Y = f_ev(dp_down[c], c, 0, min<int>(K, sz[c])\
+    \ + 1);\n      Y = f_ve(Y, c, v, 0, min<int>(K, sz[c]) + 1);\n      n += sz[c];\n\
+    \      X = f_ee(X, Y, 0, min<int>(n, K) + 1);\n    }\n    dp_down[v] = X;\n  }\n\
+    \n  dp_up[0] = D(0, 1, id);\n  FOR(i, N) {\n    int v = V[i];\n    int nc = len(ch[v]);\n\
+    \    D X = dp_up[v];\n    int s = sz[v];\n    FOR_R(k, nc) {\n      int c = ch[v][k];\n\
+    \      D Y = f_ee(X, dp_prefix[c], max(K - sz[c] - 1, 0), K + 1);\n      Y = f_ev(Y,\
+    \ v, max(K - sz[c], 0), K + 1);\n      dp_up[c] = f_ve(Y, v, c, max(K - sz[c],\
+    \ 0), K + 1);\n      s -= sz[c];\n      Y = f_ev(dp_down[c], c, 0, min(K, sz[c])\
+    \ + 1);\n      Y = f_ve(Y, c, v, 0, min(K, sz[c]) + 1);\n      X = f_ee(X, Y,\
+    \ max(K - s, 0), K + 1);\n    }\n    ANS[v] = get_ANS(X, v);\n  }\n  return ANS;\n\
+    }\n"
   dependsOn:
   - graph/base.hpp
   - ds/hashmap.hpp
@@ -201,7 +207,7 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/O_NK_rerooting_tree_dp.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:05:11+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree_dp/O_NK_rerooting_tree_dp.hpp

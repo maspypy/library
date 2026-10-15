@@ -19,32 +19,36 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
-    struct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
-    \u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n \
-    \   u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n\
-    \    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\
-    \u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build\
-    \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
-    \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
-    \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
-    \ key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
-    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
-    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
-    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
-    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
-    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
-    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/find_centroid.hpp
+  bundledCode: "#line 1 \"graph/find_centroid.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/find_centroid.hpp\n\
+    #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -120,34 +124,33 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 2 \"graph/find_centroid.hpp\"\n\r\n// (v,w) or (v,-1)\r\n\
-    template <typename GT>\r\npair<int, int> find_centroids(GT& G, vi weight = {})\
-    \ {\r\n  int N = G.N;\r\n  if (weight.empty()) weight.assign(N, 1);\r\n  vc<int>\
-    \ par(N, -1);\r\n  vc<int> V(N);\r\n  vc<ll> sz(N);\r\n  int l = 0, r = 0;\r\n\
-    \  V[r++] = 0;\r\n  while (l < r) {\r\n    int v = V[l++];\r\n    for (auto&&\
-    \ e : G[v])\r\n      if (e.to != par[v]) {\r\n        par[e.to] = v;\r\n     \
-    \   V[r++] = e.to;\r\n      }\r\n  }\r\n  FOR_R(i, N) {\r\n    int v = V[i];\r\
-    \n    sz[v] += weight[v];\r\n    int p = par[v];\r\n    if (p != -1) sz[p] +=\
-    \ sz[v];\r\n  }\r\n\r\n  ll FULL = SUM<ll>(weight);\r\n  ll M = FULL / 2;\r\n\
-    \  auto check = [&](int v) -> bool {\r\n    if (FULL - sz[v] > M) return false;\r\
-    \n    for (auto&& e : G[v]) {\r\n      if (e.to != par[v] && sz[e.to] > M) return\
-    \ false;\r\n    }\r\n    return true;\r\n  };\r\n  pair<int, int> ANS = {-1, -1};\r\
-    \n  FOR(v, N) if (check(v)) {\r\n    if (ANS.fi != -1) {\r\n      ANS.se = v;\r\
-    \n    } else {\r\n      ANS.fi = v;\r\n    }\r\n  }\r\n  return ANS;\r\n}\r\n"
-  code: "#include \"graph/base.hpp\"\r\n\r\n// (v,w) or (v,-1)\r\ntemplate <typename\
-    \ GT>\r\npair<int, int> find_centroids(GT& G, vi weight = {}) {\r\n  int N = G.N;\r\
-    \n  if (weight.empty()) weight.assign(N, 1);\r\n  vc<int> par(N, -1);\r\n  vc<int>\
-    \ V(N);\r\n  vc<ll> sz(N);\r\n  int l = 0, r = 0;\r\n  V[r++] = 0;\r\n  while\
-    \ (l < r) {\r\n    int v = V[l++];\r\n    for (auto&& e : G[v])\r\n      if (e.to\
-    \ != par[v]) {\r\n        par[e.to] = v;\r\n        V[r++] = e.to;\r\n      }\r\
-    \n  }\r\n  FOR_R(i, N) {\r\n    int v = V[i];\r\n    sz[v] += weight[v];\r\n \
-    \   int p = par[v];\r\n    if (p != -1) sz[p] += sz[v];\r\n  }\r\n\r\n  ll FULL\
-    \ = SUM<ll>(weight);\r\n  ll M = FULL / 2;\r\n  auto check = [&](int v) -> bool\
-    \ {\r\n    if (FULL - sz[v] > M) return false;\r\n    for (auto&& e : G[v]) {\r\
-    \n      if (e.to != par[v] && sz[e.to] > M) return false;\r\n    }\r\n    return\
-    \ true;\r\n  };\r\n  pair<int, int> ANS = {-1, -1};\r\n  FOR(v, N) if (check(v))\
-    \ {\r\n    if (ANS.fi != -1) {\r\n      ANS.se = v;\r\n    } else {\r\n      ANS.fi\
-    \ = v;\r\n    }\r\n  }\r\n  return ANS;\r\n}\r\n"
+    \   }\n  }\n};\n#line 3 \"graph/find_centroid.hpp\"\n\n// (v,w) or (v,-1)\ntemplate\
+    \ <typename GT>\npair<int, int> find_centroids(GT& G, vi weight = {}) {\n  int\
+    \ N = G.N;\n  if (weight.empty()) weight.assign(N, 1);\n  vc<int> par(N, -1);\n\
+    \  vc<int> V(N);\n  vc<ll> sz(N);\n  int l = 0, r = 0;\n  V[r++] = 0;\n  while\
+    \ (l < r) {\n    int v = V[l++];\n    for (auto&& e : G[v])\n      if (e.to !=\
+    \ par[v]) {\n        par[e.to] = v;\n        V[r++] = e.to;\n      }\n  }\n  FOR_R(i,\
+    \ N) {\n    int v = V[i];\n    sz[v] += weight[v];\n    int p = par[v];\n    if\
+    \ (p != -1) sz[p] += sz[v];\n  }\n\n  ll FULL = SUM<ll>(weight);\n  ll M = FULL\
+    \ / 2;\n  auto check = [&](int v) -> bool {\n    if (FULL - sz[v] > M) return\
+    \ false;\n    for (auto&& e : G[v]) {\n      if (e.to != par[v] && sz[e.to] >\
+    \ M) return false;\n    }\n    return true;\n  };\n  pair<int, int> ANS = {-1,\
+    \ -1};\n  FOR(v, N) if (check(v)) {\n    if (ANS.fi != -1) {\n      ANS.se = v;\n\
+    \    } else {\n      ANS.fi = v;\n    }\n  }\n  return ANS;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/find_centroid.hpp\n\
+    #include \"graph/base.hpp\"\n\n// (v,w) or (v,-1)\ntemplate <typename GT>\npair<int,\
+    \ int> find_centroids(GT& G, vi weight = {}) {\n  int N = G.N;\n  if (weight.empty())\
+    \ weight.assign(N, 1);\n  vc<int> par(N, -1);\n  vc<int> V(N);\n  vc<ll> sz(N);\n\
+    \  int l = 0, r = 0;\n  V[r++] = 0;\n  while (l < r) {\n    int v = V[l++];\n\
+    \    for (auto&& e : G[v])\n      if (e.to != par[v]) {\n        par[e.to] = v;\n\
+    \        V[r++] = e.to;\n      }\n  }\n  FOR_R(i, N) {\n    int v = V[i];\n  \
+    \  sz[v] += weight[v];\n    int p = par[v];\n    if (p != -1) sz[p] += sz[v];\n\
+    \  }\n\n  ll FULL = SUM<ll>(weight);\n  ll M = FULL / 2;\n  auto check = [&](int\
+    \ v) -> bool {\n    if (FULL - sz[v] > M) return false;\n    for (auto&& e : G[v])\
+    \ {\n      if (e.to != par[v] && sz[e.to] > M) return false;\n    }\n    return\
+    \ true;\n  };\n  pair<int, int> ANS = {-1, -1};\n  FOR(v, N) if (check(v)) {\n\
+    \    if (ANS.fi != -1) {\n      ANS.se = v;\n    } else {\n      ANS.fi = v;\n\
+    \    }\n  }\n  return ANS;\n}\n"
   dependsOn:
   - graph/base.hpp
   - ds/hashmap.hpp
@@ -155,7 +158,7 @@ data:
   path: graph/find_centroid.hpp
   requiredBy:
   - graph/centroid_decomposition_old.hpp
-  timestamp: '2026-10-13 08:18:55+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1796.test.cpp

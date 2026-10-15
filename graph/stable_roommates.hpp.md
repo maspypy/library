@@ -9,9 +9,10 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/1423/problem/A
+    - https://github.com/maspypy/library/blob/main/graph/stable_roommates.hpp
     - https://www.sciencedirect.com/science/article/abs/pii/0196677485900331?via%3Dihub
-  bundledCode: "#line 1 \"graph/stable_roommates.hpp\"\n\n// https://codeforces.com/contest/1423/problem/A\n\
-    // https://www.sciencedirect.com/science/article/abs/pii/0196677485900331?via%3Dihub\n\
+  bundledCode: "#line 1 \"graph/stable_roommates.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/stable_roommates.hpp\n\
+    \n// https://codeforces.com/contest/1423/problem/A\n// https://www.sciencedirect.com/science/article/abs/pii/0196677485900331?via%3Dihub\n\
     // \u9078\u597D\u30EA\u30B9\u30C8\u306F\u5DE6\u306B\u3042\u308B\u65B9\u512A\u5148\
     \n// \u5FC5\u8981\u306A\u3089 INF \u3092\u5165\u308C\u3066\u9577\u3055 N-1 \u305A\
     \u3064\u306B\u3057\u3066\u304A\u304F\u3053\u3068\nvc<pair<int, int>> stable_roommates(vvc<int>\
@@ -43,7 +44,8 @@ data:
     \ TO[x] = -1, exist[x][y] = exist[y][x] = 0, que.eb(x);\n    }\n  }\n  vc<pair<int,\
     \ int>> ANS;\n  FOR(i, N) {\n    int j = TO[i];\n    assert(TO[j] == i);\n   \
     \ if (i < j) ANS.eb(i, j);\n  }\n  return ANS;\n}\n"
-  code: "\n// https://codeforces.com/contest/1423/problem/A\n// https://www.sciencedirect.com/science/article/abs/pii/0196677485900331?via%3Dihub\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/stable_roommates.hpp\n\
+    \n// https://codeforces.com/contest/1423/problem/A\n// https://www.sciencedirect.com/science/article/abs/pii/0196677485900331?via%3Dihub\n\
     // \u9078\u597D\u30EA\u30B9\u30C8\u306F\u5DE6\u306B\u3042\u308B\u65B9\u512A\u5148\
     \n// \u5FC5\u8981\u306A\u3089 INF \u3092\u5165\u308C\u3066\u9577\u3055 N-1 \u305A\
     \u3064\u306B\u3057\u3066\u304A\u304F\u3053\u3068\nvc<pair<int, int>> stable_roommates(vvc<int>\
@@ -79,7 +81,7 @@ data:
   isVerificationFile: false
   path: graph/stable_roommates.hpp
   requiredBy: []
-  timestamp: '2026-08-17 18:40:13+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/stable_roommates.hpp

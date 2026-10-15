@@ -28,31 +28,31 @@ data:
     - https://judge.yosupo.jp/problem/convex_layers
   bundledCode: "#line 1 \"test/2_library_checker/geometry/convex_layers.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/convex_layers\"\r\n#line 1\
-    \ \"my_template.hpp\"\n/*\nlibrary: https://github.com/maspypy/library\n*/\n#if\
-    \ defined(USE_PCH)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
-    #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#if\
-    \ !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#endif\n\
-    #include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace std;\n\nusing\
-    \ ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\n\
-    using u64 = uint64_t;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
-    using f128 = __float128;\n\ntemplate <class>\nconstexpr bool dependent_false =\
-    \ false;\n\ntemplate <class T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>,\
-    \ \"infty<T> is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int\
-    \ infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
-    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
-    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
-    \ infty<i128>;\ntemplate <>\nconstexpr long double infty<long double> = infty<i128>;\n\
-    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing pq_max = priority_queue<T>;\ntemplate <class T>\nusing\
-    \ pq_min = priority_queue<T, vector<T>, greater<T>>;\n\n#define vv(type, name,\
-    \ h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n#define\
-    \ vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name( \\\n \
-    \     h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \ \"my_template.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n\
+    /*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
+    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
+    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
+    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
+    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
+    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
+    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
+    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
+    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
+    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
+    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
+    \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
+    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq_max = priority_queue<T>;\ntemplate <class T>\nusing pq_min = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR1_R(a)\
@@ -143,263 +143,254 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 1 \"other/io.hpp\"\
-    \n#define FASTIO\r\n\r\n// https://judge.yosupo.jp/submission/21623\r\nnamespace\
-    \ fastio {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\nchar\
-    \ obuf[SZ];\r\nchar out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil = 0,\
-    \ pir = 0, por = 0;\r\nbool input_eof = false;\r\n\r\ntemplate <class T>\r\nconstexpr\
-    \ bool is_signed_integer_v = is_signed_v<T> || is_same_v<T, i128>;\r\n\r\ntemplate\
-    \ <class T>\r\nstruct unsigned_integer {\r\n  using type = make_unsigned_t<T>;\r\
-    \n};\r\ntemplate <>\r\nstruct unsigned_integer<i128> {\r\n  using type = u128;\r\
-    \n};\r\ntemplate <>\r\nstruct unsigned_integer<u128> {\r\n  using type = u128;\r\
-    \n};\r\ntemplate <class T>\r\nusing unsigned_integer_t = typename unsigned_integer<T>::type;\r\
-    \n\r\n[[noreturn]] inline void input_error(const char *message) {\r\n  fputs(message,\
-    \ stderr);\r\n  fputc('\\n', stderr);\r\n  exit(EXIT_FAILURE);\r\n}\r\n\r\nstruct\
-    \ Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num() {\r\n    for (int\
-    \ i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for (int j = 3; j >= 0;\
-    \ j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n /= 10;\r\n      }\r\
-    \n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline void load() {\r\n  uint32_t n\
-    \ = pir - pil;\r\n  memmove(ibuf, ibuf + pil, n);\r\n  pil = 0;\r\n  pir = n;\r\
-    \n  if (input_eof) return;\r\n\r\n  pir += fread(ibuf + pir, 1, SZ - pir, stdin);\r\
-    \n  if (ferror(stdin)) input_error(\"fastio: input error\");\r\n  if (feof(stdin))\
-    \ {\r\n    input_eof = true;\r\n    // Allows the last token to end exactly at\
-    \ EOF without a trailing\r\n    // whitespace.\r\n    if (pir < SZ) ibuf[pir++]\
-    \ = '\\n';\r\n  }\r\n}\r\n\r\ninline char get_char() {\r\n  if (pil == pir) {\r\
-    \n    load();\r\n    if (pil == pir) input_error(\"fastio: unexpected EOF\");\r\
-    \n  }\r\n  return ibuf[pil++];\r\n}\r\n\r\ninline void flush() {\r\n  fwrite(obuf,\
-    \ 1, por, stdout);\r\n  por = 0;\r\n}\r\n\r\nvoid rd(char &c) {\r\n  do c = get_char();\r\
-    \n  while (isspace(static_cast<unsigned char>(c)));\r\n}\r\n\r\nvoid rd(string\
-    \ &x) {\r\n  x.clear();\r\n  char c;\r\n  do c = get_char();\r\n  while (isspace(static_cast<unsigned\
-    \ char>(c)));\r\n  do {\r\n    x += c;\r\n    c = get_char();\r\n  } while (!isspace(static_cast<unsigned\
-    \ char>(c)));\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T &x) {\r\n  string\
-    \ s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_integer_slow(T\
-    \ &x) {\r\n  char c;\r\n  do c = get_char();\r\n  while (c < '-');\r\n  bool minus\
-    \ = 0;\r\n  if constexpr (is_signed_integer_v<T>) {\r\n    if (c == '-') {\r\n\
-    \      minus = 1, c = get_char();\r\n    }\r\n  }\r\n  x = 0;\r\n  assert('0'\
-    \ <= c && c <= '9');\r\n  while ('0' <= c && c <= '9') {\r\n    x = x * 10 + (c\
-    \ & 15), c = get_char();\r\n  }\r\n  assert(isspace(static_cast<unsigned char>(c)));\r\
-    \n  if constexpr (is_signed_integer_v<T>) {\r\n    if (minus) x = -x;\r\n  }\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nvoid rd_integer(T &x) {\r\n  if (pil + 100\
-    \ > pir) {\r\n    load();\r\n    if (pil + 100 > pir) {\r\n      rd_integer_slow(x);\r\
-    \n      return;\r\n    }\r\n  }\r\n  char c;\r\n  do c = ibuf[pil++];\r\n  while\
-    \ (c < '-');\r\n  bool minus = 0;\r\n  if constexpr (is_signed_integer_v<T>) {\r\
-    \n    if (c == '-') {\r\n      minus = 1, c = ibuf[pil++];\r\n    }\r\n  }\r\n\
-    \  x = 0;\r\n  assert('0' <= c && c <= '9');\r\n  while ('0' <= c && c <= '9')\
-    \ {\r\n    x = x * 10 + (c & 15), c = ibuf[pil++];\r\n  }\r\n  assert(isspace(static_cast<unsigned\
-    \ char>(c)));\r\n  if constexpr (is_signed_integer_v<T>) {\r\n    if (minus) x\
-    \ = -x;\r\n  }\r\n}\r\n\r\ntemplate <class T>\r\nenable_if_t<is_integral_v<T>\
-    \ || is_same_v<T, i128> || is_same_v<T, u128>> rd(\r\n    T &x) {\r\n  rd_integer(x);\r\
-    \n}\r\n\r\ntemplate <class T>\r\nenable_if_t<is_floating_point_v<T> || is_same_v<T,\
-    \ f128>> rd(T &x) {\r\n  rd_real(x);\r\n}\r\n\r\ntemplate <class T, class U>\r\
-    \nvoid rd(pair<T, U> &p) {\r\n  rd(p.first), rd(p.second);\r\n}\r\ntemplate <size_t\
-    \ N = 0, typename T>\r\nvoid rd_tuple(T &t) {\r\n  if constexpr (N < tuple_size<T>::value)\
-    \ {\r\n    auto &x = get<N>(t);\r\n    rd(x);\r\n    rd_tuple<N + 1>(t);\r\n \
-    \ }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...> &tpl) {\r\n  rd_tuple(tpl);\r\
-    \n}\r\n\r\ntemplate <class T, size_t N>\r\nvoid rd(array<T, N> &x) {\r\n  for\
-    \ (auto &d : x) rd(d);\r\n}\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\n \
-    \ for (auto &d : x) rd(d);\r\n}\r\n\r\ntemplate <class... T>\r\nvoid read(T &...x)\
-    \ {\r\n  (rd(x), ...);\r\n}\r\n\r\ninline void wt_range(const char *s, size_t\
-    \ n) {\r\n  size_t i = 0;\r\n  while (i < n) {\r\n    if (por == SZ) flush();\r\
-    \n    size_t chunk = min(n - i, (size_t)(SZ - por));\r\n    memcpy(obuf + por,\
-    \ s + i, chunk);\r\n    por += chunk;\r\n    i += chunk;\r\n  }\r\n}\r\n\r\nvoid\
-    \ wt(const char c) {\r\n  if (por == SZ) flush();\r\n  obuf[por++] = c;\r\n}\r\
-    \nvoid wt(const char *s) { wt_range(s, strlen(s)); }\r\nvoid wt(const string &s)\
-    \ { wt_range(s.data(), s.size()); }\r\n\r\ntemplate <typename T>\r\nvoid wt_integer(T\
-    \ x) {\r\n  if (por > SZ - 100) flush();\r\n  using U = unsigned_integer_t<T>;\r\
-    \n  U y = static_cast<U>(x);\r\n  if constexpr (is_signed_integer_v<T>) {\r\n\
-    \    if (x < 0) {\r\n      obuf[por++] = '-';\r\n      y = U(0) - y;\r\n    }\r\
-    \n  }\r\n  int outi;\r\n  for (outi = 96; y >= 10000; outi -= 4) {\r\n    memcpy(out\
-    \ + outi, pre.num[y % 10000], 4);\r\n    y /= 10000;\r\n  }\r\n  if (y >= 1000)\
-    \ {\r\n    memcpy(obuf + por, pre.num[y], 4);\r\n    por += 4;\r\n  } else if\
-    \ (y >= 100) {\r\n    memcpy(obuf + por, pre.num[y] + 1, 3);\r\n    por += 3;\r\
-    \n  } else if (y >= 10) {\r\n    int q = (y * 103) >> 10;\r\n    obuf[por] = q\
-    \ | '0';\r\n    obuf[por + 1] = (y - q * 10) | '0';\r\n    por += 2;\r\n  } else\r\
-    \n    obuf[por++] = y | '0';\r\n  memcpy(obuf + por, out + outi + 4, 96 - outi);\r\
-    \n  por += 96 - outi;\r\n}\r\n\r\ntemplate <typename T>\r\ninline void wt_real(T\
-    \ x) {\r\n  static char buf[1000];\r\n  int n = std::snprintf(buf, sizeof(buf),\
-    \ \"%.15f\", (double)x);\r\n  wt_range(buf, (size_t)n);\r\n}\r\n\r\ntemplate <class\
-    \ T>\r\nenable_if_t<is_integral_v<T> || is_same_v<T, i128> || is_same_v<T, u128>>\
-    \ wt(\r\n    T x) {\r\n  wt_integer(x);\r\n}\r\n\r\ntemplate <class T>\r\nenable_if_t<is_floating_point_v<T>\
-    \ || is_same_v<T, f128>> wt(T x) {\r\n  wt_real(x);\r\n}\r\n\r\ninline void wt(bool\
-    \ b) { wt(static_cast<char>('0' + (b ? 1 : 0))); }\r\n\r\ntemplate <class T, class\
-    \ U>\r\nvoid wt(const pair<T, U> &val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n\
-    \  wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const\
-    \ T &t) {\r\n  if constexpr (N < tuple_size<T>::value) {\r\n    if constexpr (N\
-    \ > 0) wt(' ');\r\n    wt(get<N>(t));\r\n    wt_tuple<N + 1>(t);\r\n  }\r\n}\r\
-    \ntemplate <class... T>\r\nvoid wt(const tuple<T...> &tpl) {\r\n  wt_tuple(tpl);\r\
-    \n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T, S> &val) {\r\n \
-    \ auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n    if (i) wt('\
-    \ ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\nvoid wt(const vector<T>\
-    \ &val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n\
-    \    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\nvoid print() { wt('\\\
-    n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
-    \ &&...tail) {\r\n  wt(forward<Head>(head));\r\n  ((wt(' '), wt(forward<Tail>(tail))),\
-    \ ...);\r\n  wt('\\n');\r\n}\r\n\r\n// gcc expansion. called automaticall after\
-    \ main.\r\nvoid __attribute__((destructor)) _d() { flush(); }\r\n}  // namespace\
-    \ fastio\r\nusing fastio::flush;\r\nusing fastio::print;\r\nusing fastio::read;\r\
-    \n\r\n#if defined(LOCAL)\r\n#define HDR \"[DEBUG:\", __func__, __LINE__, \"]\"\
-    \r\n#define SHOW(...)                                                        \
-    \ \\\r\n  SHOW_IMPL(__VA_ARGS__, SHOW8, SHOW7, SHOW6, SHOW5, SHOW4, SHOW3, SHOW2,\
-    \ \\\r\n            SHOW1)                                                   \
-    \     \\\r\n  (__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2, _3, _4, _5, _6, _7, _8,\
-    \ NAME, ...) NAME\r\n#define SHOW1(x) print(HDR, #x, \"=\", (x)), flush()\r\n\
-    #define SHOW2(x, y) print(HDR, #x, \"=\", (x), #y, \"=\", (y)), flush()\r\n#define\
-    \ SHOW3(x, y, z) \\\r\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\"\
-    , (z)), flush()\r\n#define SHOW4(x, y, z, w) \\\r\n  print(HDR, #x, \"=\", (x),\
-    \ #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w)), flush()\r\n#define SHOW5(x,\
-    \ y, z, w, v)                                                  \\\r\n  print(HDR,\
-    \ #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\
-    \r\n        (v)),                                                            \
-    \     \\\r\n      flush()\r\n#define SHOW6(x, y, z, w, v, u)                 \
-    \                              \\\r\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y),\
-    \ #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\r\n        (v), #u, \"=\", (u)),\
-    \                                                   \\\r\n      flush()\r\n#define\
-    \ SHOW7(x, y, z, w, v, u, t)                                            \\\r\n\
-    \  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w),\
-    \ #v, \"=\", \\\r\n        (v), #u, \"=\", (u), #t, \"=\", (t)),             \
-    \                        \\\r\n      flush()\r\n#define SHOW8(x, y, z, w, v, u,\
-    \ t, s)                                         \\\r\n  print(HDR, #x, \"=\",\
-    \ (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\r\n     \
-    \   (v), #u, \"=\", (u), #t, \"=\", (t), #s, \"=\", (s)),                    \
-    \   \\\r\n      flush()\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define\
-    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
-    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U32(...)   \\\
-    \r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)   \\\r\n\
-    \  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
-    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n\
-    \  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
-    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
-    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
-    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
-    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
-    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
-    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
-    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
-    \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
-    \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/2_library_checker/geometry/convex_layers.test.cpp\"\
-    \n\r\n#line 1 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x,\
-    \ y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename A, typename B>\n  Point(A\
-    \ x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A,\
-    \ B> p) : x(p.fi), y(p.se) {}\n\n  template <typename U>\n  Point(Point<U> p)\
-    \ : x(p.x), y(p.y) {\n    static_assert(!is_integral_v<T> || is_integral_v<U>);\n\
-    \  }\n\n  Point operator+=(const Point p) {\n    x += p.x, y += p.y;\n    return\
-    \ *this;\n  }\n  Point operator-=(const Point p) {\n    x -= p.x, y -= p.y;\n\
-    \    return *this;\n  }\n  Point operator+(Point p) const { return {x + p.x, y\
-    \ + p.y}; }\n  Point operator-(Point p) const { return {x - p.x, y - p.y}; }\n\
-    \  bool operator==(Point p) const { return x == p.x && y == p.y; }\n  bool operator!=(Point\
-    \ p) const { return x != p.x || y != p.y; }\n  Point operator-() const { return\
-    \ {-x, -y}; }\n  Point operator*(T t) const { return {x * t, y * t}; }\n  Point\
-    \ operator/(T t) const { return {x / t, y / t}; }\n\n  bool operator<(Point p)\
-    \ const {\n    if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(const\
-    \ Point& other) const { return x * other.x + y * other.y; }\n  T det(const Point&\
-    \ other) const { return x * other.y - y * other.x; }\n\n  double norm() { return\
-    \ sqrtl(x * x + y * y); }\n  double angle() { return atan2(y, x); }\n\n  Point\
-    \ rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n    double\
-    \ c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s * x + c *\
-    \ y};\n  }\n  Point rot90(bool ccw) { return (ccw ? Point{-y, x} : Point{y, -x});\
-    \ }\n};\n\n#ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>& p) {\n  fastio::rd(p.x),\
-    \ fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>& p) {\n  fastio::wt(p.x);\n\
-    \  fastio::wt(' ');\n  fastio::wt(p.y);\n}\n#endif\n\n// A -> B -> C \u3068\u9032\
-    \u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
-    \ +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 -1\ntemplate <typename\
-    \ T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n  T x = (B - A).det(C - A);\n\
-    \  if (x > 0) return 1;\n  if (x < 0) return -1;\n  return 0;\n}\n\ntemplate <typename\
-    \ REAL, typename T, typename U>\nREAL distance(Point<T> A, Point<U> B) {\n  REAL\
-    \ dx = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y) - REAL(B.y);\n  return sqrt(dx\
-    \ * dx + dy * dy);\n}\n\n// ax+by+c\ntemplate <typename T>\nstruct Line {\n  T\
-    \ a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n  Line(Point<T> A,\
-    \ Point<T> B) {\n    a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x;\n\
-    \  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2))\
-    \ {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n    return U(a) * P.x\
-    \ + U(b) * P.y + U(c);\n  }\n\n  template <typename U>\n  T eval(U x, U y) {\n\
-    \    return a * x + b * y + c;\n  }\n\n  // \u540C\u3058\u76F4\u7DDA\u304C\u540C\
-    \u3058 a,b,c \u3067\u8868\u73FE\u3055\u308C\u308B\u3088\u3046\u306B\u3059\u308B\
-    \n  void normalize() {\n    static_assert(is_same_v<T, int> || is_same_v<T, long\
-    \ long>);\n    T g = gcd(gcd(abs(a), abs(b)), abs(c));\n    a /= g, b /= g, c\
-    \ /= g;\n    if (b < 0) {\n      a = -a, b = -b, c = -c;\n    }\n    if (b ==\
-    \ 0 && a < 0) {\n      a = -a, b = -b, c = -c;\n    }\n  }\n\n  bool is_parallel(Line\
-    \ other) { return a * other.b - b * other.a == 0; }\n  bool is_orthogonal(Line\
-    \ other) { return a * other.a + b * other.b == 0; }\n  bool is_same(Line other)\
-    \ {\n    if (a * other.b != b * other.a) return 0;\n    if (a * other.c != c *\
-    \ other.a) return 0;\n    if (b * other.c != c * other.b) return 0;\n    return\
-    \ 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A, B;\n\n\
-    \  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1, T y1, T x2,\
-    \ T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  bool contain(Point<T>\
-    \ C) {\n    T det = (C - A).det(B - A);\n    if (det != 0) return 0;\n    return\
-    \ (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line()\
-    \ { return Line(A, B); }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL>\
-    \ O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n\
-    \  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n\
-    \  bool contain(Point<T> p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return\
-    \ dx * dx + dy * dy <= r * r;\n  }\n};\n#line 2 \"geo/dynamic_upper_hull.hpp\"\
-    \n\r\n/*\r\nhttps://codeforces.com/blog/entry/75929\r\n\u52D5\u7684\u51F8\u5305\
-    \u3002\r\nx \u5EA7\u6A19\u3067\u30BD\u30FC\u30C8\u3057\u3066\u5B8C\u5168\u4E8C\
-    \u5206\u6728\u306E\u30BB\u30B0\u6728\u306E\u5F62\u306B\u3057\u3066\u304A\u304F\
-    \u3002\r\n\u30BB\u30B0\u6728\u306E\u30DE\u30FC\u30B8\u90E8\u5206\uFF08\u6B21\u306E\
-    \ bridge \u3092\u6C42\u3081\u308B\uFF09\u3067\u4E8C\u5206\u63A2\u7D22\u3059\u308B\
-    \u3002\r\nbridge \u540C\u58EB\u306E 4 \u70B9\u3067\u306E\u4E0A\u5074\u51F8\u5305\
-    \u3092\u898B\u308C\u3070\u3001\u6B21\u306B\u63A2\u7D22\u3059\u308B\u3079\u304D\
-    \u533A\u9593\u5BFE\u304C\u5206\u304B\u308B\u3002\r\n\r\n\u69CB\u7BC9 O(NlogN)\u3001\
-    \u66F4\u65B0 O(Nlog^2N)\r\n\u5EA7\u6A19 10^9 \u4EE5\u4E0B\u306E\u6574\u6570\u3092\
-    \u4EEE\u5B9A\r\n*/\r\ntemplate <typename Point>\r\nstruct Dynamic_Upper_Hull {\r\
-    \n  struct node {\r\n    int l, r;    // \u7BC4\u56F2 (-1 if no vertex)\r\n  \
-    \  int bl, br;  // bridge idx\r\n  };\r\n  int N, sz;\r\n  vc<Point> P;\r\n  vc<node>\
-    \ seg;\r\n  // \u53D7\u3051\u53D6\u3063\u305F\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\
-    \u3068\u306E\u5BFE\u5FDC\r\n  vc<int> to_original_idx, to_seg_idx;\r\n\r\n  Dynamic_Upper_Hull(vc<Point>\
-    \ P) : Dynamic_Upper_Hull(P, 0) {}\r\n  Dynamic_Upper_Hull(vc<Point> P, bool b)\r\
-    \n      : Dynamic_Upper_Hull(P, vc<bool>(len(P), b)) {}\r\n\r\n  Dynamic_Upper_Hull(vc<Point>\
-    \ _P, vc<bool> isin) : N(len(_P)), P(_P) {\r\n    to_original_idx = argsort(P);\r\
-    \n    sort(all(P));\r\n    sz = 1;\r\n    while (sz < N) sz *= 2;\r\n    to_seg_idx.resize(N);\r\
-    \n    seg.assign(sz + sz, {-1, -1, -1, -1});\r\n    for (int i = 0; i < N; ++i)\
-    \ to_seg_idx[to_original_idx[i]] = i;\r\n    for (int i = 0; i < N; ++i)\r\n \
-    \     if (isin[to_original_idx[i]]) {\r\n        seg[sz + i] = {i, i + 1, i, i};\r\
-    \n      }\r\n    FOR3_R(i, 1, sz) update(i);\r\n  }\r\n\r\n  void insert(int i)\
-    \ {\r\n    i = to_seg_idx[i];\r\n    seg[sz + i] = {i, i + 1, i, i};\r\n    i\
-    \ = (sz + i) / 2;\r\n    while (i) {\r\n      update(i);\r\n      i /= 2;\r\n\
-    \    }\r\n  }\r\n  void add(int i) { insert(i); }\r\n\r\n  void erase(int i) {\r\
-    \n    i = to_seg_idx[i];\r\n    seg[sz + i] = {-1, -1, -1, -1};\r\n    i = (sz\
-    \ + i) / 2;\r\n    while (i) {\r\n      update(i);\r\n      i /= 2;\r\n    }\r\
-    \n  }\r\n  void remove(int i) { insert(i); }\r\n\r\n  inline bool exist(int i)\
-    \ { return seg[i].r != -1; }\r\n\r\n  void update(int i) {\r\n    if (!exist(2\
-    \ * i + 0) && !exist(2 * i + 1)) {\r\n      seg[i].r = -1;\r\n      return;\r\n\
-    \    }\r\n    if (!exist(2 * i + 0)) {\r\n      seg[i] = seg[2 * i + 1];\r\n \
-    \     return;\r\n    }\r\n    if (!exist(2 * i + 1)) {\r\n      seg[i] = seg[2\
-    \ * i + 0];\r\n      return;\r\n    }\r\n    int p = 2 * i, q = 2 * i + 1;\r\n\
-    \    ll X = P[seg[q].l].x;\r\n    while (p < sz || q < sz) {\r\n      if (p <\
-    \ sz && !exist(2 * p + 0)) {\r\n        p = 2 * p + 1;\r\n        continue;\r\n\
-    \      }\r\n      if (p < sz && !exist(2 * p + 1)) {\r\n        p = 2 * p + 0;\r\
-    \n        continue;\r\n      }\r\n      if (q < sz && !exist(2 * q + 0)) {\r\n\
-    \        q = 2 * q + 1;\r\n        continue;\r\n      }\r\n      if (q < sz &&\
-    \ !exist(2 * q + 1)) {\r\n        q = 2 * q + 0;\r\n        continue;\r\n    \
-    \  }\r\n      int a = seg[p].bl, b = seg[p].br, c = seg[q].bl, d = seg[q].br;\r\
-    \n      if (a != b && (P[b] - P[a]).det(P[c] - P[a]) > 0) p = p * 2 + 0;\r\n \
-    \     elif (c != d && (P[c] - P[b]).det(P[d] - P[b]) > 0) q = 2 * q + 1;\r\n \
-    \     elif (a == b) q = 2 * q + 0;\r\n      elif (c == d) p = 2 * p + 1;\r\n \
-    \     else {\r\n        i128 c1 = (P[b] - P[a]).det(P[c] - P[a]);\r\n        i128\
-    \ c2 = (P[a] - P[b]).det(P[d] - P[b]);\r\n        if (c1 + c2 == 0 || c1 * P[d].x\
-    \ + c2 * P[c].x < X * (c1 + c2)) {\r\n          p = 2 * p + 1;\r\n        } else\
-    \ {\r\n          q = 2 * q + 0;\r\n        }\r\n      }\r\n    }\r\n    seg[i].l\
-    \ = seg[2 * i].l, seg[i].r = seg[2 * i + 1].r;\r\n    seg[i].bl = seg[p].l, seg[i].br\
-    \ = seg[q].l;\r\n  }\r\n\r\n  vc<int> get() {\r\n    // output sensitive complexity\r\
-    \n    vc<int> res;\r\n    auto dfs = [&](auto self, int k, int l, int r) -> void\
-    \ {\r\n      if (!exist(k) || l >= r) return;\r\n      if (k >= sz) {\r\n    \
-    \    res.eb(seg[k].l);\r\n        return;\r\n      }\r\n      if (!exist(2 * k\
-    \ + 0)) return self(self, 2 * k + 1, l, r);\r\n      if (!exist(2 * k + 1)) return\
-    \ self(self, 2 * k + 0, l, r);\r\n      if (r <= seg[k].bl) return self(self,\
-    \ 2 * k + 0, l, r);\r\n      if (seg[k].br <= l) return self(self, 2 * k + 1,\
-    \ l, r);\r\n      self(self, 2 * k + 0, l, seg[k].bl + 1);\r\n      self(self,\
-    \ 2 * k + 1, seg[k].br, r);\r\n    };\r\n    dfs(dfs, 1, 0, N);\r\n    for (auto&&\
-    \ i : res) i = to_original_idx[i];\r\n    return res;\r\n  }\r\n\r\n  void debug()\
-    \ {\r\n    print(\"points\");\r\n    FOR(i, len(P)) print(i, P[i].x, P[i].y);\r\
-    \n    print(\"seg\");\r\n    FOR(i, len(seg)) print(i, seg[i].l, seg[i].r, seg[i].bl,\
-    \ seg[i].br);\r\n    print(\"get\");\r\n    print(get());\r\n  }\r\n};\r\n#line\
-    \ 2 \"geo/convex_layers.hpp\"\n\n// https://codeforces.com/contest/1599/problem/D\n\
-    // \u51FA\u529B\u306F\u53CD\u6642\u8A08\u56DE\u308A\u3067\u3042\u308B\nvvc<int>\
-    \ convex_layers(vc<Point<ll>> points) {\n  int N = len(points);\n  Dynamic_Upper_Hull<Point<ll>>\
-    \ DUH(points, 1);\n  FOR(i, N) points[i] = -points[i];\n  Dynamic_Upper_Hull<Point<ll>>\
-    \ DLH(points, 1);\n  vvc<int> ANS;\n  int done = 0;\n  int k = 0;\n  while (done\
-    \ < N) {\n    ++k;\n    auto A = DLH.get();\n    auto B = DUH.get();\n    if (len(A)\
-    \ >= 2) {\n      POP(A), POP(B);\n      A.insert(A.end(), all(B));\n      reverse(all(A));\n\
+    \n// Source: https://github.com/maspypy/library/blob/main/other/io.hpp\n#define\
+    \ FASTIO\n\n// https://judge.yosupo.jp/submission/21623\nnamespace fastio {\n\
+    static constexpr uint32_t SZ = 1 << 17;\nchar ibuf[SZ];\nchar obuf[SZ];\nchar\
+    \ out[100];\n// pointer of ibuf, obuf\nuint32_t pil = 0, pir = 0, por = 0;\nbool\
+    \ input_eof = false;\n\ntemplate <class T>\nconstexpr bool is_signed_integer_v\
+    \ = is_signed_v<T> || is_same_v<T, i128>;\n\ntemplate <class T>\nstruct unsigned_integer\
+    \ {\n  using type = make_unsigned_t<T>;\n};\ntemplate <>\nstruct unsigned_integer<i128>\
+    \ {\n  using type = u128;\n};\ntemplate <>\nstruct unsigned_integer<u128> {\n\
+    \  using type = u128;\n};\ntemplate <class T>\nusing unsigned_integer_t = typename\
+    \ unsigned_integer<T>::type;\n\n[[noreturn]] inline void input_error(const char\
+    \ *message) {\n  fputs(message, stderr);\n  fputc('\\n', stderr);\n  exit(EXIT_FAILURE);\n\
+    }\n\nstruct Pre {\n  char num[10000][4];\n  constexpr Pre() : num() {\n    for\
+    \ (int i = 0; i < 10000; i++) {\n      int n = i;\n      for (int j = 3; j >=\
+    \ 0; j--) {\n        num[i][j] = n % 10 | '0';\n        n /= 10;\n      }\n  \
+    \  }\n  }\n} constexpr pre;\n\ninline void load() {\n  uint32_t n = pir - pil;\n\
+    \  memmove(ibuf, ibuf + pil, n);\n  pil = 0;\n  pir = n;\n  if (input_eof) return;\n\
+    \n  pir += fread(ibuf + pir, 1, SZ - pir, stdin);\n  if (ferror(stdin)) input_error(\"\
+    fastio: input error\");\n  if (feof(stdin)) {\n    input_eof = true;\n    // Allows\
+    \ the last token to end exactly at EOF without a trailing\n    // whitespace.\n\
+    \    if (pir < SZ) ibuf[pir++] = '\\n';\n  }\n}\n\ninline char get_char() {\n\
+    \  if (pil == pir) {\n    load();\n    if (pil == pir) input_error(\"fastio: unexpected\
+    \ EOF\");\n  }\n  return ibuf[pil++];\n}\n\ninline void flush() {\n  fwrite(obuf,\
+    \ 1, por, stdout);\n  por = 0;\n}\n\nvoid rd(char &c) {\n  do c = get_char();\n\
+    \  while (isspace(static_cast<unsigned char>(c)));\n}\n\nvoid rd(string &x) {\n\
+    \  x.clear();\n  char c;\n  do c = get_char();\n  while (isspace(static_cast<unsigned\
+    \ char>(c)));\n  do {\n    x += c;\n    c = get_char();\n  } while (!isspace(static_cast<unsigned\
+    \ char>(c)));\n}\n\ntemplate <typename T>\nvoid rd_real(T &x) {\n  string s;\n\
+    \  rd(s);\n  x = stod(s);\n}\n\ntemplate <typename T>\nvoid rd_integer_slow(T\
+    \ &x) {\n  char c;\n  do c = get_char();\n  while (c < '-');\n  bool minus = 0;\n\
+    \  if constexpr (is_signed_integer_v<T>) {\n    if (c == '-') {\n      minus =\
+    \ 1, c = get_char();\n    }\n  }\n  x = 0;\n  assert('0' <= c && c <= '9');\n\
+    \  while ('0' <= c && c <= '9') {\n    x = x * 10 + (c & 15), c = get_char();\n\
+    \  }\n  assert(isspace(static_cast<unsigned char>(c)));\n  if constexpr (is_signed_integer_v<T>)\
+    \ {\n    if (minus) x = -x;\n  }\n}\n\ntemplate <typename T>\nvoid rd_integer(T\
+    \ &x) {\n  if (pil + 100 > pir) {\n    load();\n    if (pil + 100 > pir) {\n \
+    \     rd_integer_slow(x);\n      return;\n    }\n  }\n  char c;\n  do c = ibuf[pil++];\n\
+    \  while (c < '-');\n  bool minus = 0;\n  if constexpr (is_signed_integer_v<T>)\
+    \ {\n    if (c == '-') {\n      minus = 1, c = ibuf[pil++];\n    }\n  }\n  x =\
+    \ 0;\n  assert('0' <= c && c <= '9');\n  while ('0' <= c && c <= '9') {\n    x\
+    \ = x * 10 + (c & 15), c = ibuf[pil++];\n  }\n  assert(isspace(static_cast<unsigned\
+    \ char>(c)));\n  if constexpr (is_signed_integer_v<T>) {\n    if (minus) x = -x;\n\
+    \  }\n}\n\ntemplate <class T>\nenable_if_t<is_integral_v<T> || is_same_v<T, i128>\
+    \ || is_same_v<T, u128>> rd(\n    T &x) {\n  rd_integer(x);\n}\n\ntemplate <class\
+    \ T>\nenable_if_t<is_floating_point_v<T> || is_same_v<T, f128>> rd(T &x) {\n \
+    \ rd_real(x);\n}\n\ntemplate <class T, class U>\nvoid rd(pair<T, U> &p) {\n  rd(p.first),\
+    \ rd(p.second);\n}\ntemplate <size_t N = 0, typename T>\nvoid rd_tuple(T &t) {\n\
+    \  if constexpr (N < tuple_size<T>::value) {\n    auto &x = get<N>(t);\n    rd(x);\n\
+    \    rd_tuple<N + 1>(t);\n  }\n}\ntemplate <class... T>\nvoid rd(tuple<T...> &tpl)\
+    \ {\n  rd_tuple(tpl);\n}\n\ntemplate <class T, size_t N>\nvoid rd(array<T, N>\
+    \ &x) {\n  for (auto &d : x) rd(d);\n}\ntemplate <class T>\nvoid rd(vc<T> &x)\
+    \ {\n  for (auto &d : x) rd(d);\n}\n\ntemplate <class... T>\nvoid read(T &...x)\
+    \ {\n  (rd(x), ...);\n}\n\ninline void wt_range(const char *s, size_t n) {\n \
+    \ size_t i = 0;\n  while (i < n) {\n    if (por == SZ) flush();\n    size_t chunk\
+    \ = min(n - i, (size_t)(SZ - por));\n    memcpy(obuf + por, s + i, chunk);\n \
+    \   por += chunk;\n    i += chunk;\n  }\n}\n\nvoid wt(const char c) {\n  if (por\
+    \ == SZ) flush();\n  obuf[por++] = c;\n}\nvoid wt(const char *s) { wt_range(s,\
+    \ strlen(s)); }\nvoid wt(const string &s) { wt_range(s.data(), s.size()); }\n\n\
+    template <typename T>\nvoid wt_integer(T x) {\n  if (por > SZ - 100) flush();\n\
+    \  using U = unsigned_integer_t<T>;\n  U y = static_cast<U>(x);\n  if constexpr\
+    \ (is_signed_integer_v<T>) {\n    if (x < 0) {\n      obuf[por++] = '-';\n   \
+    \   y = U(0) - y;\n    }\n  }\n  int outi;\n  for (outi = 96; y >= 10000; outi\
+    \ -= 4) {\n    memcpy(out + outi, pre.num[y % 10000], 4);\n    y /= 10000;\n \
+    \ }\n  if (y >= 1000) {\n    memcpy(obuf + por, pre.num[y], 4);\n    por += 4;\n\
+    \  } else if (y >= 100) {\n    memcpy(obuf + por, pre.num[y] + 1, 3);\n    por\
+    \ += 3;\n  } else if (y >= 10) {\n    int q = (y * 103) >> 10;\n    obuf[por]\
+    \ = q | '0';\n    obuf[por + 1] = (y - q * 10) | '0';\n    por += 2;\n  } else\n\
+    \    obuf[por++] = y | '0';\n  memcpy(obuf + por, out + outi + 4, 96 - outi);\n\
+    \  por += 96 - outi;\n}\n\ntemplate <typename T>\ninline void wt_real(T x) {\n\
+    \  static char buf[1000];\n  int n = std::snprintf(buf, sizeof(buf), \"%.15f\"\
+    , (double)x);\n  wt_range(buf, (size_t)n);\n}\n\ntemplate <class T>\nenable_if_t<is_integral_v<T>\
+    \ || is_same_v<T, i128> || is_same_v<T, u128>> wt(\n    T x) {\n  wt_integer(x);\n\
+    }\n\ntemplate <class T>\nenable_if_t<is_floating_point_v<T> || is_same_v<T, f128>>\
+    \ wt(T x) {\n  wt_real(x);\n}\n\ninline void wt(bool b) { wt(static_cast<char>('0'\
+    \ + (b ? 1 : 0))); }\n\ntemplate <class T, class U>\nvoid wt(const pair<T, U>\
+    \ &val) {\n  wt(val.first);\n  wt(' ');\n  wt(val.second);\n}\ntemplate <size_t\
+    \ N = 0, typename T>\nvoid wt_tuple(const T &t) {\n  if constexpr (N < tuple_size<T>::value)\
+    \ {\n    if constexpr (N > 0) wt(' ');\n    wt(get<N>(t));\n    wt_tuple<N + 1>(t);\n\
+    \  }\n}\ntemplate <class... T>\nvoid wt(const tuple<T...> &tpl) {\n  wt_tuple(tpl);\n\
+    }\ntemplate <class T, size_t S>\nvoid wt(const array<T, S> &val) {\n  auto n =\
+    \ val.size();\n  for (size_t i = 0; i < n; i++) {\n    if (i) wt(' ');\n    wt(val[i]);\n\
+    \  }\n}\ntemplate <class T>\nvoid wt(const vector<T> &val) {\n  auto n = val.size();\n\
+    \  for (size_t i = 0; i < n; i++) {\n    if (i) wt(' ');\n    wt(val[i]);\n  }\n\
+    }\n\nvoid print() { wt('\\n'); }\ntemplate <class Head, class... Tail>\nvoid print(Head\
+    \ &&head, Tail &&...tail) {\n  wt(forward<Head>(head));\n  ((wt(' '), wt(forward<Tail>(tail))),\
+    \ ...);\n  wt('\\n');\n}\n\n// gcc expansion. called automaticall after main.\n\
+    void __attribute__((destructor)) _d() { flush(); }\n}  // namespace fastio\nusing\
+    \ fastio::flush;\nusing fastio::print;\nusing fastio::read;\n\n#if defined(LOCAL)\n\
+    #define HDR \"[DEBUG:\", __func__, __LINE__, \"]\"\n#define SHOW(...)        \
+    \                                                 \\\n  SHOW_IMPL(__VA_ARGS__,\
+    \ SHOW8, SHOW7, SHOW6, SHOW5, SHOW4, SHOW3, SHOW2, \\\n            SHOW1)    \
+    \                                                    \\\n  (__VA_ARGS__)\n#define\
+    \ SHOW_IMPL(_1, _2, _3, _4, _5, _6, _7, _8, NAME, ...) NAME\n#define SHOW1(x)\
+    \ print(HDR, #x, \"=\", (x)), flush()\n#define SHOW2(x, y) print(HDR, #x, \"=\"\
+    , (x), #y, \"=\", (y)), flush()\n#define SHOW3(x, y, z) \\\n  print(HDR, #x, \"\
+    =\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\n#define SHOW4(x, y, z, w)\
+    \ \\\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\",\
+    \ (w)), flush()\n#define SHOW5(x, y, z, w, v)                                \
+    \                  \\\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\"\
+    , (z), #w, \"=\", (w), #v, \"=\", \\\n        (v)),                          \
+    \                                       \\\n      flush()\n#define SHOW6(x, y,\
+    \ z, w, v, u)                                               \\\n  print(HDR, #x,\
+    \ \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\n\
+    \        (v), #u, \"=\", (u)),                                               \
+    \    \\\n      flush()\n#define SHOW7(x, y, z, w, v, u, t)                   \
+    \                         \\\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z,\
+    \ \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\n        (v), #u, \"=\", (u), #t,\
+    \ \"=\", (t)),                                     \\\n      flush()\n#define\
+    \ SHOW8(x, y, z, w, v, u, t, s)                                         \\\n \
+    \ print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v,\
+    \ \"=\", \\\n        (v), #u, \"=\", (u), #t, \"=\", (t), #s, \"=\", (s)),   \
+    \                    \\\n      flush()\n#else\n#define SHOW(...)\n#endif\n\n#define\
+    \ INT(...)   \\\n  int __VA_ARGS__; \\\n  read(__VA_ARGS__)\n#define LL(...) \
+    \  \\\n  ll __VA_ARGS__; \\\n  read(__VA_ARGS__)\n#define U32(...)   \\\n  u32\
+    \ __VA_ARGS__; \\\n  read(__VA_ARGS__)\n#define U64(...)   \\\n  u64 __VA_ARGS__;\
+    \ \\\n  read(__VA_ARGS__)\n#define STR(...)      \\\n  string __VA_ARGS__; \\\n\
+    \  read(__VA_ARGS__)\n#define CHAR(...)   \\\n  char __VA_ARGS__; \\\n  read(__VA_ARGS__)\n\
+    #define DBL(...)      \\\n  double __VA_ARGS__; \\\n  read(__VA_ARGS__)\n\n#define\
+    \ VEC(type, name, size) \\\n  vector<type> name(size);    \\\n  read(name)\n#define\
+    \ VV(type, name, h, w)                     \\\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\n  read(name)\n\nvoid YES(bool t = 1) { print(t ? \"YES\"\
+    \ : \"NO\"); }\nvoid NO(bool t = 1) { YES(!t); }\nvoid Yes(bool t = 1) { print(t\
+    \ ? \"Yes\" : \"No\"); }\nvoid No(bool t = 1) { Yes(!t); }\nvoid yes(bool t =\
+    \ 1) { print(t ? \"yes\" : \"no\"); }\nvoid no(bool t = 1) { yes(!t); }\nvoid\
+    \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\nvoid TIDAK(bool t = 1) {\
+    \ YA(!t); }\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\nvoid\
+    \ Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/2_library_checker/geometry/convex_layers.test.cpp\"\
+    \n\r\n#line 1 \"geo/convex_layers.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/convex_layers.hpp\n\
+    #line 1 \"geo/dynamic_upper_hull.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/dynamic_upper_hull.hpp\n\
+    #line 1 \"geo/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/base.hpp\n\
+    template <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
+    \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
+    \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
+    \ {}\n\n  template <typename U>\n  Point(Point<U> p) : x(p.x), y(p.y) {\n    static_assert(!is_integral_v<T>\
+    \ || is_integral_v<U>);\n  }\n\n  Point operator+=(const Point p) {\n    x +=\
+    \ p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const Point p) {\n\
+    \    x -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point p) const\
+    \ { return {x + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x\
+    \ - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x == p.x && y\
+    \ == p.y; }\n  bool operator!=(Point p) const { return x != p.x || y != p.y; }\n\
+    \  Point operator-() const { return {-x, -y}; }\n  Point operator*(T t) const\
+    \ { return {x * t, y * t}; }\n  Point operator/(T t) const { return {x / t, y\
+    \ / t}; }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return x < p.x;\n\
+    \    return y < p.y;\n  }\n  T dot(const Point& other) const { return x * other.x\
+    \ + y * other.y; }\n  T det(const Point& other) const { return x * other.y - y\
+    \ * other.x; }\n\n  double norm() { return sqrtl(x * x + y * y); }\n  double angle()\
+    \ { return atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
+    \    double c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s\
+    \ * x + c * y};\n  }\n  Point rot90(bool ccw) { return (ccw ? Point{-y, x} : Point{y,\
+    \ -x}); }\n};\n\n#ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>& p) {\n\
+    \  fastio::rd(p.x), fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>&\
+    \ p) {\n  fastio::wt(p.x);\n  fastio::wt(' ');\n  fastio::wt(p.y);\n}\n#endif\n\
+    \n// A -> B -> C \u3068\u9032\u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\
+    \u308B\u306A\u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
+    \ -1\ntemplate <typename T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n \
+    \ T x = (B - A).det(C - A);\n  if (x > 0) return 1;\n  if (x < 0) return -1;\n\
+    \  return 0;\n}\n\ntemplate <typename REAL, typename T, typename U>\nREAL distance(Point<T>\
+    \ A, Point<U> B) {\n  REAL dx = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y)\
+    \ - REAL(B.y);\n  return sqrt(dx * dx + dy * dy);\n}\n\n// ax+by+c\ntemplate <typename\
+    \ T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c)\
+    \ {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y, b = B.x - A.x, c =\
+    \ A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1,\
+    \ y1), Point<T>(x2, y2)) {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n\
+    \    return U(a) * P.x + U(b) * P.y + U(c);\n  }\n\n  template <typename U>\n\
+    \  T eval(U x, U y) {\n    return a * x + b * y + c;\n  }\n\n  // \u540C\u3058\
+    \u76F4\u7DDA\u304C\u540C\u3058 a,b,c \u3067\u8868\u73FE\u3055\u308C\u308B\u3088\
+    \u3046\u306B\u3059\u308B\n  void normalize() {\n    static_assert(is_same_v<T,\
+    \ int> || is_same_v<T, long long>);\n    T g = gcd(gcd(abs(a), abs(b)), abs(c));\n\
+    \    a /= g, b /= g, c /= g;\n    if (b < 0) {\n      a = -a, b = -b, c = -c;\n\
+    \    }\n    if (b == 0 && a < 0) {\n      a = -a, b = -b, c = -c;\n    }\n  }\n\
+    \n  bool is_parallel(Line other) { return a * other.b - b * other.a == 0; }\n\
+    \  bool is_orthogonal(Line other) { return a * other.a + b * other.b == 0; }\n\
+    \  bool is_same(Line other) {\n    if (a * other.b != b * other.a) return 0;\n\
+    \    if (a * other.c != c * other.a) return 0;\n    if (b * other.c != c * other.b)\
+    \ return 0;\n    return 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n\
+    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T\
+    \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
+    \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
+    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
+    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
+    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
+    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
+    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
+    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
+    \ 3 \"geo/dynamic_upper_hull.hpp\"\n\n/*\nhttps://codeforces.com/blog/entry/75929\n\
+    \u52D5\u7684\u51F8\u5305\u3002\nx \u5EA7\u6A19\u3067\u30BD\u30FC\u30C8\u3057\u3066\
+    \u5B8C\u5168\u4E8C\u5206\u6728\u306E\u30BB\u30B0\u6728\u306E\u5F62\u306B\u3057\
+    \u3066\u304A\u304F\u3002\n\u30BB\u30B0\u6728\u306E\u30DE\u30FC\u30B8\u90E8\u5206\
+    \uFF08\u6B21\u306E bridge \u3092\u6C42\u3081\u308B\uFF09\u3067\u4E8C\u5206\u63A2\
+    \u7D22\u3059\u308B\u3002\nbridge \u540C\u58EB\u306E 4 \u70B9\u3067\u306E\u4E0A\
+    \u5074\u51F8\u5305\u3092\u898B\u308C\u3070\u3001\u6B21\u306B\u63A2\u7D22\u3059\
+    \u308B\u3079\u304D\u533A\u9593\u5BFE\u304C\u5206\u304B\u308B\u3002\n\n\u69CB\u7BC9\
+    \ O(NlogN)\u3001\u66F4\u65B0 O(Nlog^2N)\n\u5EA7\u6A19 10^9 \u4EE5\u4E0B\u306E\u6574\
+    \u6570\u3092\u4EEE\u5B9A\n*/\ntemplate <typename Point>\nstruct Dynamic_Upper_Hull\
+    \ {\n  struct node {\n    int l, r;    // \u7BC4\u56F2 (-1 if no vertex)\n   \
+    \ int bl, br;  // bridge idx\n  };\n  int N, sz;\n  vc<Point> P;\n  vc<node> seg;\n\
+    \  // \u53D7\u3051\u53D6\u3063\u305F\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u3068\
+    \u306E\u5BFE\u5FDC\n  vc<int> to_original_idx, to_seg_idx;\n\n  Dynamic_Upper_Hull(vc<Point>\
+    \ P) : Dynamic_Upper_Hull(P, 0) {}\n  Dynamic_Upper_Hull(vc<Point> P, bool b)\n\
+    \      : Dynamic_Upper_Hull(P, vc<bool>(len(P), b)) {}\n\n  Dynamic_Upper_Hull(vc<Point>\
+    \ _P, vc<bool> isin) : N(len(_P)), P(_P) {\n    to_original_idx = argsort(P);\n\
+    \    sort(all(P));\n    sz = 1;\n    while (sz < N) sz *= 2;\n    to_seg_idx.resize(N);\n\
+    \    seg.assign(sz + sz, {-1, -1, -1, -1});\n    for (int i = 0; i < N; ++i) to_seg_idx[to_original_idx[i]]\
+    \ = i;\n    for (int i = 0; i < N; ++i)\n      if (isin[to_original_idx[i]]) {\n\
+    \        seg[sz + i] = {i, i + 1, i, i};\n      }\n    FOR3_R(i, 1, sz) update(i);\n\
+    \  }\n\n  void insert(int i) {\n    i = to_seg_idx[i];\n    seg[sz + i] = {i,\
+    \ i + 1, i, i};\n    i = (sz + i) / 2;\n    while (i) {\n      update(i);\n  \
+    \    i /= 2;\n    }\n  }\n  void add(int i) { insert(i); }\n\n  void erase(int\
+    \ i) {\n    i = to_seg_idx[i];\n    seg[sz + i] = {-1, -1, -1, -1};\n    i = (sz\
+    \ + i) / 2;\n    while (i) {\n      update(i);\n      i /= 2;\n    }\n  }\n  void\
+    \ remove(int i) { insert(i); }\n\n  inline bool exist(int i) { return seg[i].r\
+    \ != -1; }\n\n  void update(int i) {\n    if (!exist(2 * i + 0) && !exist(2 *\
+    \ i + 1)) {\n      seg[i].r = -1;\n      return;\n    }\n    if (!exist(2 * i\
+    \ + 0)) {\n      seg[i] = seg[2 * i + 1];\n      return;\n    }\n    if (!exist(2\
+    \ * i + 1)) {\n      seg[i] = seg[2 * i + 0];\n      return;\n    }\n    int p\
+    \ = 2 * i, q = 2 * i + 1;\n    ll X = P[seg[q].l].x;\n    while (p < sz || q <\
+    \ sz) {\n      if (p < sz && !exist(2 * p + 0)) {\n        p = 2 * p + 1;\n  \
+    \      continue;\n      }\n      if (p < sz && !exist(2 * p + 1)) {\n        p\
+    \ = 2 * p + 0;\n        continue;\n      }\n      if (q < sz && !exist(2 * q +\
+    \ 0)) {\n        q = 2 * q + 1;\n        continue;\n      }\n      if (q < sz\
+    \ && !exist(2 * q + 1)) {\n        q = 2 * q + 0;\n        continue;\n      }\n\
+    \      int a = seg[p].bl, b = seg[p].br, c = seg[q].bl, d = seg[q].br;\n     \
+    \ if (a != b && (P[b] - P[a]).det(P[c] - P[a]) > 0) p = p * 2 + 0;\n      elif\
+    \ (c != d && (P[c] - P[b]).det(P[d] - P[b]) > 0) q = 2 * q + 1;\n      elif (a\
+    \ == b) q = 2 * q + 0;\n      elif (c == d) p = 2 * p + 1;\n      else {\n   \
+    \     i128 c1 = (P[b] - P[a]).det(P[c] - P[a]);\n        i128 c2 = (P[a] - P[b]).det(P[d]\
+    \ - P[b]);\n        if (c1 + c2 == 0 || c1 * P[d].x + c2 * P[c].x < X * (c1 +\
+    \ c2)) {\n          p = 2 * p + 1;\n        } else {\n          q = 2 * q + 0;\n\
+    \        }\n      }\n    }\n    seg[i].l = seg[2 * i].l, seg[i].r = seg[2 * i\
+    \ + 1].r;\n    seg[i].bl = seg[p].l, seg[i].br = seg[q].l;\n  }\n\n  vc<int> get()\
+    \ {\n    // output sensitive complexity\n    vc<int> res;\n    auto dfs = [&](auto\
+    \ self, int k, int l, int r) -> void {\n      if (!exist(k) || l >= r) return;\n\
+    \      if (k >= sz) {\n        res.eb(seg[k].l);\n        return;\n      }\n \
+    \     if (!exist(2 * k + 0)) return self(self, 2 * k + 1, l, r);\n      if (!exist(2\
+    \ * k + 1)) return self(self, 2 * k + 0, l, r);\n      if (r <= seg[k].bl) return\
+    \ self(self, 2 * k + 0, l, r);\n      if (seg[k].br <= l) return self(self, 2\
+    \ * k + 1, l, r);\n      self(self, 2 * k + 0, l, seg[k].bl + 1);\n      self(self,\
+    \ 2 * k + 1, seg[k].br, r);\n    };\n    dfs(dfs, 1, 0, N);\n    for (auto&& i\
+    \ : res) i = to_original_idx[i];\n    return res;\n  }\n\n  void debug() {\n \
+    \   print(\"points\");\n    FOR(i, len(P)) print(i, P[i].x, P[i].y);\n    print(\"\
+    seg\");\n    FOR(i, len(seg)) print(i, seg[i].l, seg[i].r, seg[i].bl, seg[i].br);\n\
+    \    print(\"get\");\n    print(get());\n  }\n};\n#line 3 \"geo/convex_layers.hpp\"\
+    \n\n// https://codeforces.com/contest/1599/problem/D\n// \u51FA\u529B\u306F\u53CD\
+    \u6642\u8A08\u56DE\u308A\u3067\u3042\u308B\nvvc<int> convex_layers(vc<Point<ll>>\
+    \ points) {\n  int N = len(points);\n  Dynamic_Upper_Hull<Point<ll>> DUH(points,\
+    \ 1);\n  FOR(i, N) points[i] = -points[i];\n  Dynamic_Upper_Hull<Point<ll>> DLH(points,\
+    \ 1);\n  vvc<int> ANS;\n  int done = 0;\n  int k = 0;\n  while (done < N) {\n\
+    \    ++k;\n    auto A = DLH.get();\n    auto B = DUH.get();\n    if (len(A) >=\
+    \ 2) {\n      POP(A), POP(B);\n      A.insert(A.end(), all(B));\n      reverse(all(A));\n\
     \    }\n    ANS.eb(A);\n    for (auto&& i : A) {\n      ++done;\n      DUH.erase(i);\n\
     \      DLH.erase(i);\n    }\n  }\n  return ANS;\n}\n#line 6 \"test/2_library_checker/geometry/convex_layers.test.cpp\"\
     \n\r\nusing P = Point<ll>;\r\nvoid solve() {\r\n  LL(N);\r\n  vc<P> A(N);\r\n\
@@ -429,7 +420,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/geometry/convex_layers.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/geometry/convex_layers.test.cpp

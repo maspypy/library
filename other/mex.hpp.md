@@ -19,13 +19,16 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"other/mex.hpp\"\nint mex(const vc<int>& A) {\n  int n =\
-    \ len(A);\n  vc<bool> aru(n + 1);\n  for (auto& x: A)\n    if (x < n) aru[x] =\
-    \ 1;\n  int mex = 0;\n  while (aru[mex]) ++mex;\n  return mex;\n}\n"
-  code: "int mex(const vc<int>& A) {\n  int n = len(A);\n  vc<bool> aru(n + 1);\n\
-    \  for (auto& x: A)\n    if (x < n) aru[x] = 1;\n  int mex = 0;\n  while (aru[mex])\
+    links:
+    - https://github.com/maspypy/library/blob/main/other/mex.hpp
+  bundledCode: "#line 1 \"other/mex.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/other/mex.hpp\n\
+    int mex(const vc<int>& A) {\n  int n = len(A);\n  vc<bool> aru(n + 1);\n  for\
+    \ (auto& x: A)\n    if (x < n) aru[x] = 1;\n  int mex = 0;\n  while (aru[mex])\
     \ ++mex;\n  return mex;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/other/mex.hpp\nint\
+    \ mex(const vc<int>& A) {\n  int n = len(A);\n  vc<bool> aru(n + 1);\n  for (auto&\
+    \ x: A)\n    if (x < n) aru[x] = 1;\n  int mex = 0;\n  while (aru[mex]) ++mex;\n\
+    \  return mex;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: other/mex.hpp
@@ -33,7 +36,7 @@ data:
   - string/inverse_manacher.hpp
   - game/number_and_star.hpp
   - game/solve_partizan_game.hpp
-  timestamp: '2023-10-17 07:10:25+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/partizan.test.cpp

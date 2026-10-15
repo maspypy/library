@@ -18,24 +18,29 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/2155/problem/F
-  bundledCode: "#line 1 \"ds/csr.hpp\"\n\ntemplate <typename T>\nstruct CSR {\n  int\
-    \ n;\n  bool prepared;\n  vc<int> ptr;\n  vc<int> I;\n  vc<T> dat;\n\n  CSR(int\
-    \ n = 0) : n(n), prepared(false) {}\n  void reserve(int n) { dat.reserve(n); }\n\
-    \n  void add(int i, const T& x) {\n    assert(0 <= i && i < n && !prepared);\n\
-    \    I.eb(i), dat.eb(x);\n  }\n\n  void build() {\n    assert(!prepared);\n  \
-    \  prepared = 1;\n    ptr.assign(n + 1, 0);\n    for (auto& i : I) ptr[1 + i]++;\n\
-    \    FOR(i, len(ptr) - 1) ptr[i + 1] += ptr[i];\n    vc<T> tmp(len(dat));\n  \
-    \  FOR(k, len(dat)) {\n      int i = I[k];\n      tmp[ptr[i]++] = dat[k];\n  \
-    \  }\n    swap(dat, tmp);\n    ptr.pop_back();\n    ptr.insert(ptr.begin(), 0);\n\
-    \    I.clear();\n  }\n\n  struct range {\n    T *first, *last;\n    T* begin()\
-    \ const { return first; }\n    T* end() const { return last; }\n    bool empty()\
-    \ const { return first == last; }\n    int size() const { return last - first;\
-    \ }\n  };\n\n  range operator[](int i) {\n    assert(prepared);\n    return range{dat.data()\
-    \ + ptr[i], dat.data() + ptr[i + 1]};\n  }\n};\n#line 1 \"ds/hashmap.hpp\"\n\n\
-    // u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\
-    \u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
-    \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
-    \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    - https://github.com/maspypy/library/blob/main/ds/offline_query/offline_set_intersection.hpp
+  bundledCode: "#line 1 \"ds/offline_query/offline_set_intersection.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/ds/offline_query/offline_set_intersection.hpp\n\
+    #line 1 \"ds/csr.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/csr.hpp\n\
+    \ntemplate <typename T>\nstruct CSR {\n  int n;\n  bool prepared;\n  vc<int> ptr;\n\
+    \  vc<int> I;\n  vc<T> dat;\n\n  CSR(int n = 0) : n(n), prepared(false) {}\n \
+    \ void reserve(int n) { dat.reserve(n); }\n\n  void add(int i, const T& x) {\n\
+    \    assert(0 <= i && i < n && !prepared);\n    I.eb(i), dat.eb(x);\n  }\n\n \
+    \ void build() {\n    assert(!prepared);\n    prepared = 1;\n    ptr.assign(n\
+    \ + 1, 0);\n    for (auto& i : I) ptr[1 + i]++;\n    FOR(i, len(ptr) - 1) ptr[i\
+    \ + 1] += ptr[i];\n    vc<T> tmp(len(dat));\n    FOR(k, len(dat)) {\n      int\
+    \ i = I[k];\n      tmp[ptr[i]++] = dat[k];\n    }\n    swap(dat, tmp);\n    ptr.pop_back();\n\
+    \    ptr.insert(ptr.begin(), 0);\n    I.clear();\n  }\n\n  struct range {\n  \
+    \  T *first, *last;\n    T* begin() const { return first; }\n    T* end() const\
+    \ { return last; }\n    bool empty() const { return first == last; }\n    int\
+    \ size() const { return last - first; }\n  };\n\n  range operator[](int i) {\n\
+    \    assert(prepared);\n    return range{dat.data() + ptr[i], dat.data() + ptr[i\
+    \ + 1]};\n  }\n};\n#line 1 \"ds/to_small_key.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/to_small_key.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
     \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
     \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
     \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
@@ -56,13 +61,13 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"ds/to_small_key.hpp\"\n\n// [30,10,20,30] -> [0,1,2,0] etc.\n\
+    \  }\n};\n#line 3 \"ds/to_small_key.hpp\"\n\n// [30,10,20,30] -> [0,1,2,0] etc.\n\
     struct To_Small_Key {\n  int kind = 0;\n  HashMap<int> MP;\n  vc<u64> raw;\n \
     \ To_Small_Key(u32 n = 0) : MP(n) {}\n  void reserve(u32 n) { MP.build(n); }\n\
     \  int size() { return MP.size(); }\n  u64 restore(int i) { return raw[i]; }\n\
     \  int query(u64 x, bool set_if_not_exist) {\n    int ans = MP.get(x, -1);\n \
     \   if (ans == -1 && set_if_not_exist) {\n      raw.eb(x);\n      MP[x] = ans\
-    \ = kind++;\n    }\n    return ans;\n  }\n};\n#line 3 \"ds/offline_query/offline_set_intersection.hpp\"\
+    \ = kind++;\n    }\n    return ans;\n  }\n};\n#line 4 \"ds/offline_query/offline_set_intersection.hpp\"\
     \n\n// given set S[0],...,S[N-1]\n// Q query: calc |S[i] cap S[j]|\n// M:=sum\
     \ of size\n// complexity: M sqrt{Q}/8\n//\n// https://codeforces.com/contest/2155/problem/F\n\
     // N,M,Q=300000, 300ms \u7A0B\u5EA6\nstruct Offline_Set_Intersection {\n  int\
@@ -99,19 +104,20 @@ data:
     \ += A[j];\n      }\n      for (int x : StoX[i]) {\n        for (int j : XtoS[x])\
     \ {\n          A[j]--;\n        }\n      }\n    }\n    ANS = rearrange(ANS, ids);\n\
     \    return ANS;\n  }\n};\n"
-  code: "#include \"ds/csr.hpp\"\n#include \"ds/to_small_key.hpp\"\n\n// given set\
-    \ S[0],...,S[N-1]\n// Q query: calc |S[i] cap S[j]|\n// M:=sum of size\n// complexity:\
-    \ M sqrt{Q}/8\n//\n// https://codeforces.com/contest/2155/problem/F\n// N,M,Q=300000,\
-    \ 300ms \u7A0B\u5EA6\nstruct Offline_Set_Intersection {\n  int N;\n  To_Small_Key\
-    \ TSK;\n  bool calculated;\n  vc<pair<int, int>> dat;\n  HashMap<int> query_id;\n\
-    \  vc<pair<int, int>> unique_query;\n  vc<int> ids;\n\n  // N: \u96C6\u5408\u306E\
-    \u500B\u6570, K: \u8981\u7D20\u306E\u7A2E\u985E\u6570\n  Offline_Set_Intersection(int\
-    \ N) : N(N), calculated(0) {}\n\n  // x in S[i]\n  // \u540C\u3058\u8981\u7D20\
-    \u3092 2 \u56DE\u767B\u9332\u3059\u308B\u3068\u58CA\u308C\u308B\uFF08\u691C\u67FB\
-    \u3057\u306A\u3044\uFF09\n  void add(int i, int x) {\n    assert(!calculated &&\
-    \ 0 <= i && i < N);\n    int k = TSK.query(x, true);\n    dat.eb(i, k);\n  }\n\
-    \n  int get_qid(int i, int j) {\n    if (i > j) swap(i, j);\n    u64 k = u64(i)\
-    \ << 32 | u64(j);\n    if (!query_id.count(k)) {\n      query_id[k] = len(unique_query);\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/offline_set_intersection.hpp\n\
+    #include \"ds/csr.hpp\"\n#include \"ds/to_small_key.hpp\"\n\n// given set S[0],...,S[N-1]\n\
+    // Q query: calc |S[i] cap S[j]|\n// M:=sum of size\n// complexity: M sqrt{Q}/8\n\
+    //\n// https://codeforces.com/contest/2155/problem/F\n// N,M,Q=300000, 300ms \u7A0B\
+    \u5EA6\nstruct Offline_Set_Intersection {\n  int N;\n  To_Small_Key TSK;\n  bool\
+    \ calculated;\n  vc<pair<int, int>> dat;\n  HashMap<int> query_id;\n  vc<pair<int,\
+    \ int>> unique_query;\n  vc<int> ids;\n\n  // N: \u96C6\u5408\u306E\u500B\u6570\
+    , K: \u8981\u7D20\u306E\u7A2E\u985E\u6570\n  Offline_Set_Intersection(int N) :\
+    \ N(N), calculated(0) {}\n\n  // x in S[i]\n  // \u540C\u3058\u8981\u7D20\u3092\
+    \ 2 \u56DE\u767B\u9332\u3059\u308B\u3068\u58CA\u308C\u308B\uFF08\u691C\u67FB\u3057\
+    \u306A\u3044\uFF09\n  void add(int i, int x) {\n    assert(!calculated && 0 <=\
+    \ i && i < N);\n    int k = TSK.query(x, true);\n    dat.eb(i, k);\n  }\n\n  int\
+    \ get_qid(int i, int j) {\n    if (i > j) swap(i, j);\n    u64 k = u64(i) << 32\
+    \ | u64(j);\n    if (!query_id.count(k)) {\n      query_id[k] = len(unique_query);\n\
     \      unique_query.eb(i, j);\n    }\n    return query_id[k];\n  }\n\n  void query(int\
     \ i, int j) {\n    assert(!calculated && 0 <= i && i < N && 0 <= j && j < N);\n\
     \    ids.eb(get_qid(i, j));\n  }\n\n  vc<int> calc() {\n    assert(!calculated);\n\
@@ -143,7 +149,7 @@ data:
   isVerificationFile: false
   path: ds/offline_query/offline_set_intersection.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/offline_query/offline_set_intersection.hpp

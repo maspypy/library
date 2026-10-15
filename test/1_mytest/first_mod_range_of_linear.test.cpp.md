@@ -25,8 +25,9 @@ data:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/first_mod_range_of_linear.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\
-    \n/*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n\
-    #include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
+    \n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\n\
+    library: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
+    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
     \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
     \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
@@ -139,14 +140,15 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/first_mod_range_of_linear.test.cpp\"\
-    \n\n#line 1 \"mod/min_of_linear_segments.hpp\"\n\n/*\nax + b (x>=0) \u304C\u6700\
-    \u5C0F\u3068\u306A\u308B\u3068\u3053\u308D\u306E\u60C5\u5831\u3092\u8FD4\u3059\
-    \u3002\nprefix min \u3092\u66F4\u65B0\u3059\u308B x \u5168\u4F53\u304C\u3001\u7B49\
-    \u5DEE\u6570\u5217\u306E\u548C\u96C6\u5408\u3002\u6B21\u3092\u8FD4\u3059\u3002\
-    \n\u30FB\u7B49\u5DEE\u6570\u5217\u306E\u5883\u754C\u3068\u306A\u308B x_0, x_1,\
-    \ ..., x_n\n\u30FB\u5404\u5883\u754C\u306E\u9593\u3067\u306E\u4EA4\u5DEE dx_0,\
-    \ ..., dx_{n-1}\n*/\npair<vc<int>, vc<int>> min_of_linear_segments(int a, int\
-    \ b, int mod) {\n  assert(0 <= a && a < mod);\n  assert(0 <= b && b < mod);\n\
+    \n\n#line 1 \"mod/first_mod_range_of_linear.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/first_mod_range_of_linear.hpp\n\
+    #line 1 \"mod/min_of_linear_segments.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/min_of_linear_segments.hpp\n\
+    \n/*\nax + b (x>=0) \u304C\u6700\u5C0F\u3068\u306A\u308B\u3068\u3053\u308D\u306E\
+    \u60C5\u5831\u3092\u8FD4\u3059\u3002\nprefix min \u3092\u66F4\u65B0\u3059\u308B\
+    \ x \u5168\u4F53\u304C\u3001\u7B49\u5DEE\u6570\u5217\u306E\u548C\u96C6\u5408\u3002\
+    \u6B21\u3092\u8FD4\u3059\u3002\n\u30FB\u7B49\u5DEE\u6570\u5217\u306E\u5883\u754C\
+    \u3068\u306A\u308B x_0, x_1, ..., x_n\n\u30FB\u5404\u5883\u754C\u306E\u9593\u3067\
+    \u306E\u4EA4\u5DEE dx_0, ..., dx_{n-1}\n*/\npair<vc<int>, vc<int>> min_of_linear_segments(int\
+    \ a, int b, int mod) {\n  assert(0 <= a && a < mod);\n  assert(0 <= b && b < mod);\n\
     \  vc<int> X = {0};\n  vc<int> DX;\n  int g = gcd(a, mod);\n  a /= g, b /= g,\
     \ mod /= g;\n  // p/q <= (mod-a)/mod <= r/s\n  int p = 0, q = 1, r = 1, s = 1;\n\
     \  int det_l = mod - a, det_r = a;\n  int x = 0, y = b;\n\n  while (y) {\n   \
@@ -158,7 +160,7 @@ data:
     \ y \u304B\u3089\u5F15\u304F\n      k = y / det_l;\n      y -= k * det_l;\n  \
     \    x += q * k;\n      X.eb(x);\n      DX.eb(q);\n    }\n    k = det_l / det_r;\n\
     \    det_l -= k * det_r;\n    p += k * r;\n    q += k * s;\n    assert(min({p,\
-    \ q, r, s}) >= 0);\n  }\n  return {X, DX};\n}\n#line 2 \"mod/first_mod_range_of_linear.hpp\"\
+    \ q, r, s}) >= 0);\n  }\n  return {X, DX};\n}\n#line 3 \"mod/first_mod_range_of_linear.hpp\"\
     \n\n// ax+b in {L, ..., R-1} mod \u3068\u306A\u308B\u6700\u5C0F\u306E x>=0 \u3092\
     \u8FD4\u3059\n// \u4F8B\u3048\u3070 ax+b=1 \u306A\u3089 ax+b in {-1} mod 2 \u306E\
     \u3088\u3046\u306B\u3059\u308B\n// \u5B58\u5728\u3057\u306A\u3051\u308C\u3070\
@@ -169,10 +171,10 @@ data:
     \ len(DX)) {\n    ll x1 = X[i], x2 = X[i + 1];\n    ll y2 = (a * x2 + b) % mod;\n\
     \    if (y2 >= R) continue;\n    ll y1 = (a * x1 + b) % mod;\n    ll d = (y1 -\
     \ y2) * DX[i] / (x2 - x1);\n    ll k = floor(y1 - R, d) + 1;\n    return x1 +\
-    \ k * DX[i];\n  }\n  return -1;\n}\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64()\
-    \ {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n     \
-    \                 chrono::high_resolution_clock::now().time_since_epoch())\n \
-    \                         .count()) *\n                  10150724397891781847ULL;\n\
+    \ k * DX[i];\n  }\n  return -1;\n}\n#line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
     \  return l + RNG_64() % (r - l);\n}\n#line 6 \"test/1_mytest/first_mod_range_of_linear.test.cpp\"\
@@ -210,7 +212,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/first_mod_range_of_linear.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/first_mod_range_of_linear.test.cpp

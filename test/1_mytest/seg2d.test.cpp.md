@@ -24,31 +24,31 @@ data:
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/seg2d.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
-    \n#line 1 \"my_template.hpp\"\n/*\nlibrary: https://github.com/maspypy/library\n\
-    */\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
-    #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#if\
-    \ !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#endif\n\
-    #include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace std;\n\nusing\
-    \ ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\n\
-    using u64 = uint64_t;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
-    using f128 = __float128;\n\ntemplate <class>\nconstexpr bool dependent_false =\
-    \ false;\n\ntemplate <class T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>,\
-    \ \"infty<T> is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int\
-    \ infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
-    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
-    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
-    \ infty<i128>;\ntemplate <>\nconstexpr long double infty<long double> = infty<i128>;\n\
-    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing pq_max = priority_queue<T>;\ntemplate <class T>\nusing\
-    \ pq_min = priority_queue<T, vector<T>, greater<T>>;\n\n#define vv(type, name,\
-    \ h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n#define\
-    \ vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name( \\\n \
-    \     h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \n#line 1 \"my_template.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n\
+    /*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
+    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
+    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
+    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
+    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
+    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
+    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
+    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
+    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
+    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
+    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
+    \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
+    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq_max = priority_queue<T>;\ntemplate <class T>\nusing pq_min = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR1_R(a)\
@@ -139,111 +139,109 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/seg2d.test.cpp\"\
-    \n\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \n\n#line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
     \  return l + RNG_64() % (r - l);\n}\n#line 1 \"ds/segtree/segtree_2d.hpp\"\n\
+    // Source: https://github.com/maspypy/library/blob/main/ds/segtree/segtree_2d.hpp\n\
     // \u70B9\u306E\u91CD\u8907\u304C\u3042\u3063\u3066\u3082\u5225\u306E\u70B9\u3068\
-    \u3057\u3066 set \u306A\u3069\u304C\u3055\u308C\u308B\r\ntemplate <typename Monoid,\
-    \ typename XY, bool SMALL_X = false>\r\nstruct SegTree_2D {\r\n  using MX = Monoid;\r\
-    \n  using S = typename MX::value_type;\r\n  static_assert(MX::commute);\r\n  int\
-    \ N;\r\n  // X to idx\r\n  vc<XY> keyX;\r\n  int minX;\r\n  // top node \u306E\
-    \u70B9\u5217\r\n  vc<XY> all_Y;\r\n  vc<int> pos;\r\n  // segtree data\r\n  int\
-    \ NX, log, size;\r\n  vc<int> indptr;\r\n  vc<S> dat;\r\n  // fractional cascading\r\
-    \n  vc<int> to_left;\r\n\r\n  SegTree_2D(vc<XY>& X, vc<XY>& Y)\r\n      : SegTree_2D(len(X),\
-    \ [&](int i) -> tuple<XY, XY, S> {\r\n          return {X[i], Y[i], MX::id()};\r\
-    \n        }) {}\r\n\r\n  SegTree_2D(vc<XY>& X, vc<XY>& Y, vc<S>& vals)\r\n   \
-    \   : SegTree_2D(len(X), [&](int i) -> tuple<XY, XY, S> {\r\n          return\
-    \ {X[i], Y[i], vals[i]};\r\n        }) {}\r\n\r\n  // f(i) = (x,y,val)\r\n  template\
-    \ <typename F>\r\n  SegTree_2D(int N, F f) {\r\n    vc<XY> X(N), Y(N);\r\n   \
-    \ vc<S> wt(N);\r\n    FOR(i, N) {\r\n      auto [a, b, c] = f(i);\r\n      X[i]\
-    \ = a, Y[i] = b, wt[i] = c;\r\n    }\r\n    if (!SMALL_X) {\r\n      keyX = X;\r\
-    \n      UNIQUE(keyX);\r\n      NX = len(keyX);\r\n    } else {\r\n      minX =\
-    \ (X.empty() ? 0 : MIN(X));\r\n      NX = (X.empty() ? 1 : MAX(X) - minX + 1);\r\
-    \n    }\r\n\r\n    log = 0;\r\n    while ((1 << log) < NX) ++log;\r\n    size\
-    \ = (1 << log);\r\n\r\n    vc<int> IX(N);\r\n    FOR(i, N) IX[i] = xtoi(X[i]);\r\
-    \n    indptr.assign(2 * size, 0);\r\n    for (auto i: IX) {\r\n      i += size;\r\
-    \n      while (i) indptr[i]++, i /= 2;\r\n    }\r\n    indptr = cumsum<int>(indptr);\r\
-    \n    dat.assign(2 * indptr.back(), MX::id());\r\n    to_left.assign(indptr[size],\
-    \ 0);\r\n\r\n    vc<int> ptr = indptr;\r\n    vc<int> I = argsort(Y);\r\n    pos.resize(N);\r\
-    \n    FOR(i, N) pos[I[i]] = i;\r\n    for (auto raw_idx: I) {\r\n      int i =\
-    \ IX[raw_idx] + size;\r\n      int j = -1;\r\n      while (i) {\r\n        int\
-    \ p = ptr[i];\r\n        ptr[i]++;\r\n        dat[indptr[i + 1] + p] = wt[raw_idx];\r\
-    \n        if (j != -1) { to_left[p] = (j % 2 == 0); }\r\n        j = i, i /= 2;\r\
-    \n      }\r\n    }\r\n    to_left = cumsum<int>(to_left);\r\n\r\n    FOR(i, 2\
-    \ * size) {\r\n      int off = 2 * indptr[i], n = indptr[i + 1] - indptr[i];\r\
-    \n      FOR_R(j, 1, n) {\r\n        dat[off + j] = MX::op(dat[off + 2 * j + 0],\
-    \ dat[off + 2 * j + 1]);\r\n      }\r\n    }\r\n    all_Y = Y;\r\n    sort(all(all_Y));\r\
-    \n  }\r\n\r\n  // \u6700\u521D\u306B\u4E0E\u3048\u305F\u70B9\u7FA4\u306E index\r\
-    \n  void multiply(int raw_idx, S val) {\r\n    int i = 1, p = pos[raw_idx];\r\n\
-    \    while (1) {\r\n      multiply_i(i, p - indptr[i], val);\r\n      if (i >=\
-    \ size) break;\r\n      int lc = to_left[p] - to_left[indptr[i]];\r\n      int\
-    \ rc = (p - indptr[i]) - lc;\r\n      if (to_left[p + 1] - to_left[p]) {\r\n \
-    \       p = indptr[2 * i + 0] + lc;\r\n        i = 2 * i + 0;\r\n      } else\
-    \ {\r\n        p = indptr[2 * i + 1] + rc;\r\n        i = 2 * i + 1;\r\n     \
-    \ }\r\n    }\r\n  }\r\n\r\n  // \u6700\u521D\u306B\u4E0E\u3048\u305F\u70B9\u7FA4\
-    \u306E index\r\n  void set(int raw_idx, S val) {\r\n    int i = 1, p = pos[raw_idx];\r\
-    \n    while (1) {\r\n      set_i(i, p - indptr[i], val);\r\n      if (i >= size)\
-    \ break;\r\n      int lc = to_left[p] - to_left[indptr[i]];\r\n      int rc =\
-    \ (p - indptr[i]) - lc;\r\n      if (to_left[p + 1] - to_left[p]) {\r\n      \
-    \  p = indptr[2 * i + 0] + lc;\r\n        i = 2 * i + 0;\r\n      } else {\r\n\
-    \        p = indptr[2 * i + 1] + rc;\r\n        i = 2 * i + 1;\r\n      }\r\n\
-    \    }\r\n  }\r\n\r\n  S prod(XY lx, XY rx, XY ly, XY ry) {\r\n    assert(lx <=\
-    \ rx && ly <= ry);\r\n    int L = xtoi(lx), R = xtoi(rx);\r\n    S res = MX::id();\r\
-    \n    auto dfs = [&](auto& dfs, int i, int l, int r, int a, int b) -> void {\r\
-    \n      if (a == b || R <= l || r <= L) return;\r\n      if (L <= l && r <= R)\
-    \ {\r\n        res = MX::op(res, prod_i(i, a, b));\r\n        return;\r\n    \
-    \  }\r\n      int la = to_left[indptr[i] + a] - to_left[indptr[i]];\r\n      int\
-    \ ra = a - la;\r\n      int lb = to_left[indptr[i] + b] - to_left[indptr[i]];\r\
-    \n      int rb = b - lb;\r\n      int m = (l + r) / 2;\r\n      dfs(dfs, 2 * i\
-    \ + 0, l, m, la, lb);\r\n      dfs(dfs, 2 * i + 1, m, r, ra, rb);\r\n    };\r\n\
-    \    dfs(dfs, 1, 0, size, LB(all_Y, ly), LB(all_Y, ry));\r\n    return res;\r\n\
-    \  }\r\n\r\n  // \u77E9\u5F62\u5185\u306E\u5168\u70B9\u3092\u6570\u3048\u308B\
-    , NlogN\r\n  int count(XY lx, XY rx, XY ly, XY ry) {\r\n    assert(lx <= rx &&\
-    \ ly <= ry);\r\n    int L = xtoi(lx), R = xtoi(rx);\r\n    int res = 0;\r\n  \
-    \  auto dfs = [&](auto& dfs, int i, int l, int r, int a, int b) -> void {\r\n\
-    \      if (a == b || R <= l || r <= L) return;\r\n      if (L <= l && r <= R)\
-    \ {\r\n        res += b - a;\r\n        return;\r\n      }\r\n      int la = to_left[indptr[i]\
-    \ + a] - to_left[indptr[i]];\r\n      int ra = a - la;\r\n      int lb = to_left[indptr[i]\
-    \ + b] - to_left[indptr[i]];\r\n      int rb = b - lb;\r\n      int m = (l + r)\
-    \ / 2;\r\n      dfs(dfs, 2 * i + 0, l, m, la, lb);\r\n      dfs(dfs, 2 * i + 1,\
-    \ m, r, ra, rb);\r\n    };\r\n    dfs(dfs, 1, 0, size, LB(all_Y, ly), LB(all_Y,\
-    \ ry));\r\n    return res;\r\n  }\r\n\r\nprivate:\r\n  inline int xtoi(XY x) {\r\
-    \n    if constexpr (SMALL_X) return clamp<XY>(x - minX, 0, NX);\r\n    return\
-    \ LB(keyX, x);\r\n  }\r\n\r\n  S prod_i(int i, int a, int b) {\r\n    int LID\
-    \ = indptr[i], n = indptr[i + 1] - indptr[i];\r\n    int off = 2 * LID;\r\n  \
-    \  int L = n + a, R = n + b;\r\n    S val = MX::id();\r\n    while (L < R) {\r\
-    \n      if (L & 1) val = MX::op(val, dat[off + (L++)]);\r\n      if (R & 1) val\
-    \ = MX::op(dat[off + (--R)], val);\r\n      L >>= 1, R >>= 1;\r\n    }\r\n   \
-    \ return val;\r\n  }\r\n  void multiply_i(int i, int j, S val) {\r\n    int LID\
-    \ = indptr[i], n = indptr[i + 1] - indptr[i];\r\n    int off = 2 * LID;\r\n  \
-    \  j += n;\r\n    while (j) {\r\n      dat[off + j] = MX::op(dat[off + j], val);\r\
-    \n      j >>= 1;\r\n    }\r\n  }\r\n  void set_i(int i, int j, S val) {\r\n  \
-    \  int LID = indptr[i], n = indptr[i + 1] - indptr[i];\r\n    int off = 2 * LID;\r\
-    \n    j += n;\r\n    dat[off + j] = val;\r\n    while (j > 1) {\r\n      j /=\
-    \ 2;\r\n      dat[off + j] = MX::op(dat[off + 2 * j + 0], dat[off + 2 * j + 1]);\r\
-    \n    }\r\n  }\r\n};\r\n#line 1 \"alg/monoid/min.hpp\"\n// require: all values\
-    \ x satisfy x <= infty<E>\ntemplate <typename E>\nstruct Monoid_Min {\n  using\
-    \ X = E;\n  using value_type = X;\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return min(x, y); }\n  static constexpr X id() { return infty<E>;\
-    \ }\n  static constexpr bool commute = true;\n};\n#line 7 \"test/1_mytest/seg2d.test.cpp\"\
-    \n\nvoid test() {\n  FOR(N, 100) {\n    FOR(Q, 100) {\n      vc<int> X(N), Y(N),\
-    \ val(N);\n      FOR(i, N) X[i] = RNG(0, 5), Y[i] = RNG(0, 5), val[i] = RNG(0,\
-    \ 100);\n      SegTree_2D<Monoid_Min<int>, int, true> seg(X, Y, val);\n      FOR(Q)\
-    \ {\n        int t = RNG(0, 3);\n        if (N == 0) t = 2;\n        if (t ==\
-    \ 0) {\n          int i = RNG(0, N);\n          val[i] = RNG(0, 100);\n      \
-    \    seg.set(i, val[i]);\n        }\n        if (t == 1) {\n          int i =\
-    \ RNG(0, N);\n          int x = RNG(0, 100);\n          chmin(val[i], x);\n  \
-    \        seg.multiply(i, val[i]);\n        }\n        if (t == 2) {\n        \
-    \  int a = RNG(0, 5), b = RNG(0, 5), c = RNG(0, 5), d = RNG(0, 5);\n         \
-    \ if (a > b) swap(a, b);\n          if (c > d) swap(c, d);\n          int ans\
-    \ = infty<int>;\n          FOR(i, N) {\n            if (a <= X[i] && X[i] < b\
-    \ && c <= Y[i] && Y[i] < d)\n              chmin(ans, val[i]);\n          }\n\
-    \          assert(ans == seg.prod(a, b, c, d));\n        }\n      }\n    }\n \
-    \ }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
-    \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \u3057\u3066 set \u306A\u3069\u304C\u3055\u308C\u308B\ntemplate <typename Monoid,\
+    \ typename XY, bool SMALL_X = false>\nstruct SegTree_2D {\n  using MX = Monoid;\n\
+    \  using S = typename MX::value_type;\n  static_assert(MX::commute);\n  int N;\n\
+    \  // X to idx\n  vc<XY> keyX;\n  int minX;\n  // top node \u306E\u70B9\u5217\n\
+    \  vc<XY> all_Y;\n  vc<int> pos;\n  // segtree data\n  int NX, log, size;\n  vc<int>\
+    \ indptr;\n  vc<S> dat;\n  // fractional cascading\n  vc<int> to_left;\n\n  SegTree_2D(vc<XY>&\
+    \ X, vc<XY>& Y)\n      : SegTree_2D(len(X), [&](int i) -> tuple<XY, XY, S> {\n\
+    \          return {X[i], Y[i], MX::id()};\n        }) {}\n\n  SegTree_2D(vc<XY>&\
+    \ X, vc<XY>& Y, vc<S>& vals)\n      : SegTree_2D(len(X), [&](int i) -> tuple<XY,\
+    \ XY, S> {\n          return {X[i], Y[i], vals[i]};\n        }) {}\n\n  // f(i)\
+    \ = (x,y,val)\n  template <typename F>\n  SegTree_2D(int N, F f) {\n    vc<XY>\
+    \ X(N), Y(N);\n    vc<S> wt(N);\n    FOR(i, N) {\n      auto [a, b, c] = f(i);\n\
+    \      X[i] = a, Y[i] = b, wt[i] = c;\n    }\n    if (!SMALL_X) {\n      keyX\
+    \ = X;\n      UNIQUE(keyX);\n      NX = len(keyX);\n    } else {\n      minX =\
+    \ (X.empty() ? 0 : MIN(X));\n      NX = (X.empty() ? 1 : MAX(X) - minX + 1);\n\
+    \    }\n\n    log = 0;\n    while ((1 << log) < NX) ++log;\n    size = (1 << log);\n\
+    \n    vc<int> IX(N);\n    FOR(i, N) IX[i] = xtoi(X[i]);\n    indptr.assign(2 *\
+    \ size, 0);\n    for (auto i: IX) {\n      i += size;\n      while (i) indptr[i]++,\
+    \ i /= 2;\n    }\n    indptr = cumsum<int>(indptr);\n    dat.assign(2 * indptr.back(),\
+    \ MX::id());\n    to_left.assign(indptr[size], 0);\n\n    vc<int> ptr = indptr;\n\
+    \    vc<int> I = argsort(Y);\n    pos.resize(N);\n    FOR(i, N) pos[I[i]] = i;\n\
+    \    for (auto raw_idx: I) {\n      int i = IX[raw_idx] + size;\n      int j =\
+    \ -1;\n      while (i) {\n        int p = ptr[i];\n        ptr[i]++;\n       \
+    \ dat[indptr[i + 1] + p] = wt[raw_idx];\n        if (j != -1) { to_left[p] = (j\
+    \ % 2 == 0); }\n        j = i, i /= 2;\n      }\n    }\n    to_left = cumsum<int>(to_left);\n\
+    \n    FOR(i, 2 * size) {\n      int off = 2 * indptr[i], n = indptr[i + 1] - indptr[i];\n\
+    \      FOR_R(j, 1, n) {\n        dat[off + j] = MX::op(dat[off + 2 * j + 0], dat[off\
+    \ + 2 * j + 1]);\n      }\n    }\n    all_Y = Y;\n    sort(all(all_Y));\n  }\n\
+    \n  // \u6700\u521D\u306B\u4E0E\u3048\u305F\u70B9\u7FA4\u306E index\n  void multiply(int\
+    \ raw_idx, S val) {\n    int i = 1, p = pos[raw_idx];\n    while (1) {\n     \
+    \ multiply_i(i, p - indptr[i], val);\n      if (i >= size) break;\n      int lc\
+    \ = to_left[p] - to_left[indptr[i]];\n      int rc = (p - indptr[i]) - lc;\n \
+    \     if (to_left[p + 1] - to_left[p]) {\n        p = indptr[2 * i + 0] + lc;\n\
+    \        i = 2 * i + 0;\n      } else {\n        p = indptr[2 * i + 1] + rc;\n\
+    \        i = 2 * i + 1;\n      }\n    }\n  }\n\n  // \u6700\u521D\u306B\u4E0E\u3048\
+    \u305F\u70B9\u7FA4\u306E index\n  void set(int raw_idx, S val) {\n    int i =\
+    \ 1, p = pos[raw_idx];\n    while (1) {\n      set_i(i, p - indptr[i], val);\n\
+    \      if (i >= size) break;\n      int lc = to_left[p] - to_left[indptr[i]];\n\
+    \      int rc = (p - indptr[i]) - lc;\n      if (to_left[p + 1] - to_left[p])\
+    \ {\n        p = indptr[2 * i + 0] + lc;\n        i = 2 * i + 0;\n      } else\
+    \ {\n        p = indptr[2 * i + 1] + rc;\n        i = 2 * i + 1;\n      }\n  \
+    \  }\n  }\n\n  S prod(XY lx, XY rx, XY ly, XY ry) {\n    assert(lx <= rx && ly\
+    \ <= ry);\n    int L = xtoi(lx), R = xtoi(rx);\n    S res = MX::id();\n    auto\
+    \ dfs = [&](auto& dfs, int i, int l, int r, int a, int b) -> void {\n      if\
+    \ (a == b || R <= l || r <= L) return;\n      if (L <= l && r <= R) {\n      \
+    \  res = MX::op(res, prod_i(i, a, b));\n        return;\n      }\n      int la\
+    \ = to_left[indptr[i] + a] - to_left[indptr[i]];\n      int ra = a - la;\n   \
+    \   int lb = to_left[indptr[i] + b] - to_left[indptr[i]];\n      int rb = b -\
+    \ lb;\n      int m = (l + r) / 2;\n      dfs(dfs, 2 * i + 0, l, m, la, lb);\n\
+    \      dfs(dfs, 2 * i + 1, m, r, ra, rb);\n    };\n    dfs(dfs, 1, 0, size, LB(all_Y,\
+    \ ly), LB(all_Y, ry));\n    return res;\n  }\n\n  // \u77E9\u5F62\u5185\u306E\u5168\
+    \u70B9\u3092\u6570\u3048\u308B, NlogN\n  int count(XY lx, XY rx, XY ly, XY ry)\
+    \ {\n    assert(lx <= rx && ly <= ry);\n    int L = xtoi(lx), R = xtoi(rx);\n\
+    \    int res = 0;\n    auto dfs = [&](auto& dfs, int i, int l, int r, int a, int\
+    \ b) -> void {\n      if (a == b || R <= l || r <= L) return;\n      if (L <=\
+    \ l && r <= R) {\n        res += b - a;\n        return;\n      }\n      int la\
+    \ = to_left[indptr[i] + a] - to_left[indptr[i]];\n      int ra = a - la;\n   \
+    \   int lb = to_left[indptr[i] + b] - to_left[indptr[i]];\n      int rb = b -\
+    \ lb;\n      int m = (l + r) / 2;\n      dfs(dfs, 2 * i + 0, l, m, la, lb);\n\
+    \      dfs(dfs, 2 * i + 1, m, r, ra, rb);\n    };\n    dfs(dfs, 1, 0, size, LB(all_Y,\
+    \ ly), LB(all_Y, ry));\n    return res;\n  }\n\nprivate:\n  inline int xtoi(XY\
+    \ x) {\n    if constexpr (SMALL_X) return clamp<XY>(x - minX, 0, NX);\n    return\
+    \ LB(keyX, x);\n  }\n\n  S prod_i(int i, int a, int b) {\n    int LID = indptr[i],\
+    \ n = indptr[i + 1] - indptr[i];\n    int off = 2 * LID;\n    int L = n + a, R\
+    \ = n + b;\n    S val = MX::id();\n    while (L < R) {\n      if (L & 1) val =\
+    \ MX::op(val, dat[off + (L++)]);\n      if (R & 1) val = MX::op(dat[off + (--R)],\
+    \ val);\n      L >>= 1, R >>= 1;\n    }\n    return val;\n  }\n  void multiply_i(int\
+    \ i, int j, S val) {\n    int LID = indptr[i], n = indptr[i + 1] - indptr[i];\n\
+    \    int off = 2 * LID;\n    j += n;\n    while (j) {\n      dat[off + j] = MX::op(dat[off\
+    \ + j], val);\n      j >>= 1;\n    }\n  }\n  void set_i(int i, int j, S val) {\n\
+    \    int LID = indptr[i], n = indptr[i + 1] - indptr[i];\n    int off = 2 * LID;\n\
+    \    j += n;\n    dat[off + j] = val;\n    while (j > 1) {\n      j /= 2;\n  \
+    \    dat[off + j] = MX::op(dat[off + 2 * j + 0], dat[off + 2 * j + 1]);\n    }\n\
+    \  }\n};\n#line 1 \"alg/monoid/min.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n\
+    // require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
+    \ Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
+    \ op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
+    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
+    \ 7 \"test/1_mytest/seg2d.test.cpp\"\n\nvoid test() {\n  FOR(N, 100) {\n    FOR(Q,\
+    \ 100) {\n      vc<int> X(N), Y(N), val(N);\n      FOR(i, N) X[i] = RNG(0, 5),\
+    \ Y[i] = RNG(0, 5), val[i] = RNG(0, 100);\n      SegTree_2D<Monoid_Min<int>, int,\
+    \ true> seg(X, Y, val);\n      FOR(Q) {\n        int t = RNG(0, 3);\n        if\
+    \ (N == 0) t = 2;\n        if (t == 0) {\n          int i = RNG(0, N);\n     \
+    \     val[i] = RNG(0, 100);\n          seg.set(i, val[i]);\n        }\n      \
+    \  if (t == 1) {\n          int i = RNG(0, N);\n          int x = RNG(0, 100);\n\
+    \          chmin(val[i], x);\n          seg.multiply(i, val[i]);\n        }\n\
+    \        if (t == 2) {\n          int a = RNG(0, 5), b = RNG(0, 5), c = RNG(0,\
+    \ 5), d = RNG(0, 5);\n          if (a > b) swap(a, b);\n          if (c > d) swap(c,\
+    \ d);\n          int ans = infty<int>;\n          FOR(i, N) {\n            if\
+    \ (a <= X[i] && X[i] < b && c <= Y[i] && Y[i] < d)\n              chmin(ans, val[i]);\n\
+    \          }\n          assert(ans == seg.prod(a, b, c, d));\n        }\n    \
+    \  }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout <<\
+    \ a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/base.hpp\"\n#include \"ds/segtree/segtree_2d.hpp\"\n#include\
     \ \"alg/monoid/min.hpp\"\n\nvoid test() {\n  FOR(N, 100) {\n    FOR(Q, 100) {\n\
@@ -269,7 +267,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/seg2d.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/seg2d.test.cpp

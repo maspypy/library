@@ -22,21 +22,22 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/minmincnt.hpp\"\n\n// \u6700\u5C0F\u5024\u3001\
-    \u6700\u5C0F\u5024\u306E\u500B\u6570\ntemplate <typename E>\nstruct Monoid_MinMincnt\
-    \ {\n  using value_type = pair<E, E>;\n  using X = value_type;\n  static X op(X\
-    \ x, X y) {\n    auto [xmin, xmincnt] = x;\n    auto [ymin, ymincnt] = y;\n  \
-    \  if (xmin > ymin) return y;\n    if (xmin < ymin) return x;\n    return {xmin,\
-    \ xmincnt + ymincnt};\n  }\n  static constexpr X id() { return {infty<E>, 0};\
-    \ }\n  static constexpr bool commute = true;\n};\n"
-  code: "\n// \u6700\u5C0F\u5024\u3001\u6700\u5C0F\u5024\u306E\u500B\u6570\ntemplate\
-    \ <typename E>\nstruct Monoid_MinMincnt {\n  using value_type = pair<E, E>;\n\
-    \  using X = value_type;\n  static X op(X x, X y) {\n    auto [xmin, xmincnt]\
-    \ = x;\n    auto [ymin, ymincnt] = y;\n    if (xmin > ymin) return y;\n    if\
-    \ (xmin < ymin) return x;\n    return {xmin, xmincnt + ymincnt};\n  }\n  static\
-    \ constexpr X id() { return {infty<E>, 0}; }\n  static constexpr bool commute\
-    \ = true;\n};"
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/monoid/minmincnt.hpp
+  bundledCode: "#line 1 \"alg/monoid/minmincnt.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/minmincnt.hpp\n\
+    \n// \u6700\u5C0F\u5024\u3001\u6700\u5C0F\u5024\u306E\u500B\u6570\ntemplate <typename\
+    \ E>\nstruct Monoid_MinMincnt {\n  using value_type = pair<E, E>;\n  using X =\
+    \ value_type;\n  static X op(X x, X y) {\n    auto [xmin, xmincnt] = x;\n    auto\
+    \ [ymin, ymincnt] = y;\n    if (xmin > ymin) return y;\n    if (xmin < ymin) return\
+    \ x;\n    return {xmin, xmincnt + ymincnt};\n  }\n  static constexpr X id() {\
+    \ return {infty<E>, 0}; }\n  static constexpr bool commute = true;\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/monoid/minmincnt.hpp\n\
+    \n// \u6700\u5C0F\u5024\u3001\u6700\u5C0F\u5024\u306E\u500B\u6570\ntemplate <typename\
+    \ E>\nstruct Monoid_MinMincnt {\n  using value_type = pair<E, E>;\n  using X =\
+    \ value_type;\n  static X op(X x, X y) {\n    auto [xmin, xmincnt] = x;\n    auto\
+    \ [ymin, ymincnt] = y;\n    if (xmin > ymin) return y;\n    if (xmin < ymin) return\
+    \ x;\n    return {xmin, xmincnt + ymincnt};\n  }\n  static constexpr X id() {\
+    \ return {infty<E>, 0}; }\n  static constexpr bool commute = true;\n};"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/minmincnt.hpp
@@ -44,7 +45,7 @@ data:
   - graph/count/count_connected_intervals.hpp
   - alg/acted_monoid/minmincnt_add.hpp
   - ds/rectangle_union.hpp
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp

@@ -13,10 +13,12 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/incremental_rectangle_union.hpp\"\n\n#line 1 \"ds/fastset.hpp\"\
-    \n// 64-ary tree\n// space: (N/63) * u64\nstruct FastSet {\n  static constexpr\
-    \ u32 B = 64;\n  int n = 0, log = 0;\n  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int\
+    links:
+    - https://github.com/maspypy/library/blob/main/ds/incremental_rectangle_union.hpp
+  bundledCode: "#line 1 \"ds/incremental_rectangle_union.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/incremental_rectangle_union.hpp\n\
+    \n#line 1 \"ds/fastset.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/fastset.hpp\n\
+    // 64-ary tree\n// space: (N/63) * u64\nstruct FastSet {\n  static constexpr u32\
+    \ B = 64;\n  int n = 0, log = 0;\n  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int\
     \ n) { build(n); }\n\n  int size() { return n; }\n\n  void fill_one() {\n    int\
     \ cur = n;\n    for (auto& vs : seg) {\n      int p = cur / B, q = cur % B;\n\
     \      FOR(i, p) vs[i] = -1ull;\n      if (q) vs[p] = full_mask(q);\n      cur\
@@ -67,7 +69,7 @@ data:
     \  // seg[0][w] \u304C 0 \u306B\u306A\u3063\u305F\u5F8C\u306B\u547C\u3076\u3002\
     \n  void propagate_empty_word(int i) {\n    for (int h = 1; h < log; ++h) {\n\
     \      u64& y = seg[h][i / B];\n      u64 mask = u64(1) << (i % B);\n      y ^=\
-    \ mask;\n      if (y) break;\n      i /= B;\n    }\n  }\n};\n#line 3 \"ds/incremental_rectangle_union.hpp\"\
+    \ mask;\n      if (y) break;\n      i /= B;\n    }\n  }\n};\n#line 4 \"ds/incremental_rectangle_union.hpp\"\
     \n\n// [0, x] x [0, y] \u3092\u8FFD\u52A0 -> \u548C\u96C6\u5408\u9762\u7A4D\u3092\
     \u53D6\u5F97\ntemplate <typename XY, typename AREA, bool SMALL_XY>\nstruct Incremental_Rectangle_Union\
     \ {\n  FastSet ss;\n  vc<XY> ht;\n  map<XY, XY> MP;  // right end -> height\n\
@@ -95,10 +97,11 @@ data:
     \ [x1,x2]: y2 -> 0\n      area -= AREA(x2 - x1) * AREA(y2);\n      x2 = x1;\n\
     \      if (y1 >= y) break;\n    }\n    ss.insert(x), ht[x] = y, area += AREA(x\
     \ - x2) * AREA(y);\n    return;\n  }\n};\n"
-  code: "\n#include \"ds/fastset.hpp\"\n\n// [0, x] x [0, y] \u3092\u8FFD\u52A0 ->\
-    \ \u548C\u96C6\u5408\u9762\u7A4D\u3092\u53D6\u5F97\ntemplate <typename XY, typename\
-    \ AREA, bool SMALL_XY>\nstruct Incremental_Rectangle_Union {\n  FastSet ss;\n\
-    \  vc<XY> ht;\n  map<XY, XY> MP;  // right end -> height\n  AREA area;\n\n  Incremental_Rectangle_Union()\
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/incremental_rectangle_union.hpp\n\
+    \n#include \"ds/fastset.hpp\"\n\n// [0, x] x [0, y] \u3092\u8FFD\u52A0 -> \u548C\
+    \u96C6\u5408\u9762\u7A4D\u3092\u53D6\u5F97\ntemplate <typename XY, typename AREA,\
+    \ bool SMALL_XY>\nstruct Incremental_Rectangle_Union {\n  FastSet ss;\n  vc<XY>\
+    \ ht;\n  map<XY, XY> MP;  // right end -> height\n  AREA area;\n\n  Incremental_Rectangle_Union()\
     \ : area(AREA(0)) {\n    static_assert(!SMALL_XY);\n    MP[0] = infty<XY>, MP[infty<XY>]\
     \ = 0;\n  }\n\n  Incremental_Rectangle_Union(int LIM)\n      : ss(LIM + 1), ht(LIM\
     \ + 1), area(AREA(0)) {\n    static_assert(SMALL_XY);\n    ht[0] = infty<XY>,\
@@ -128,7 +131,7 @@ data:
   path: ds/incremental_rectangle_union.hpp
   requiredBy:
   - other/cuboid_union_volume.hpp
-  timestamp: '2026-10-05 00:23:18+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/incremental_rectangle_union.hpp

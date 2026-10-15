@@ -22,7 +22,8 @@ data:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/index_compression.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\n\
-    /*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
+    // Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\n\
+    library: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
     \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
     \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
@@ -136,22 +137,23 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 4 \"test/1_mytest/index_compression.test.cpp\"\
-    \n\n#line 1 \"ds/index_compression.hpp\"\ntemplate <typename T>\nstruct Index_Compression_DISTINCT_SMALL\
-    \ {\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<int> X) {\n    mi = 0, ma =\
-    \ -1;\n    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi +\
-    \ 2, 0);\n    for (auto& x : X) dat[x - mi + 1]++;\n    FOR(i, len(dat) - 1) dat[i\
-    \ + 1] += dat[i];\n    for (auto& x : X) {\n      x = dat[x - mi]++;\n    }\n\
-    \    FOR_R(i, 1, len(dat)) dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return X;\n\
-    \  }\n  int size() const { return len(dat); }\n  int val_to_idx(T x) const { return\
+    \n\n#line 1 \"ds/index_compression.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/index_compression.hpp\n\
+    template <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  int mi, ma;\n\
+    \  vc<T> dat;\n  vc<T> build(vc<int> X) {\n    mi = 0, ma = -1;\n    if (!X.empty())\
+    \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
+    \ : X) dat[x - mi + 1]++;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n  \
+    \  for (auto& x : X) {\n      x = dat[x - mi]++;\n    }\n    FOR_R(i, 1, len(dat))\
+    \ dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return X;\n  }\n  int size() const\
+    \ { return len(dat); }\n  int val_to_idx(T x) const { return dat[clamp<ll>(x -\
+    \ mi, 0, ma - mi + 1)]; }\n  int idx_to_val(int i) const { return dat[i]; }\n\
+    };\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL {\n  int mi,\
+    \ ma;\n  vc<T> dat;\n  vc<T> build(vc<T> X) {\n    mi = 0, ma = -1;\n    if (!X.empty())\
+    \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
+    \ : X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n\
+    \    for (auto& x : X) {\n      x = dat[x - mi];\n    }\n    return X;\n  }\n\
+    \  int size() const { return len(dat); }\n  int val_to_idx(T x) const { return\
     \ dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }\n  int idx_to_val(int i) const { return\
-    \ dat[i]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL\
-    \ {\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<T> X) {\n    mi = 0, ma = -1;\n\
-    \    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n\
-    \    for (auto& x : X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i +\
-    \ 1] += dat[i];\n    for (auto& x : X) {\n      x = dat[x - mi];\n    }\n    return\
-    \ X;\n  }\n  int size() const { return len(dat); }\n  int val_to_idx(T x) const\
-    \ { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }\n  int idx_to_val(int i)\
-    \ const { return dat[i]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE\
+    \ dat[i]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE\
     \ {\n  vc<T> dat;\n  vc<int> build(const vc<T>& X) {\n    dat.reserve(len(X));\n\
     \    vc<pair<T, int>> tmp(len(X));\n    FOR(i, len(X)) tmp[i] = {X[i], i};\n \
     \   sort(all(tmp));\n    vc<int> ANS(len(X));\n    for (auto [x, j] : tmp) {\n\
@@ -175,7 +177,8 @@ data:
     \u304B\u3048\u3059\ntemplate <typename T, bool SAME, bool SMALL>\nusing Index_Compression\
     \ =\n    typename std::conditional<SAME, Index_Compression_SAME<T, SMALL>,\n \
     \                             Index_Compression_DISTINCT<T, SMALL>>::type;\n#line\
-    \ 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
@@ -238,7 +241,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/index_compression.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/index_compression.test.cpp

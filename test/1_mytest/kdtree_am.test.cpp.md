@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/kdtree/kdtree_acted_monoid.hpp
     title: ds/kdtree/kdtree_acted_monoid.hpp
   - icon: ':question:'
@@ -30,31 +30,31 @@ data:
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/kdtree_am.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
-    \n#line 1 \"my_template.hpp\"\n/*\nlibrary: https://github.com/maspypy/library\n\
-    */\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
-    #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#if\
-    \ !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#endif\n\
-    #include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace std;\n\nusing\
-    \ ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\n\
-    using u64 = uint64_t;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
-    using f128 = __float128;\n\ntemplate <class>\nconstexpr bool dependent_false =\
-    \ false;\n\ntemplate <class T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>,\
-    \ \"infty<T> is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int\
-    \ infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
-    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
-    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
-    \ infty<i128>;\ntemplate <>\nconstexpr long double infty<long double> = infty<i128>;\n\
-    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing pq_max = priority_queue<T>;\ntemplate <class T>\nusing\
-    \ pq_min = priority_queue<T, vector<T>, greater<T>>;\n\n#define vv(type, name,\
-    \ h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n#define\
-    \ vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name( \\\n \
-    \     h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \n#line 1 \"my_template.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n\
+    /*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
+    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
+    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
+    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
+    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
+    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
+    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
+    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
+    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
+    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
+    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
+    \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
+    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq_max = priority_queue<T>;\ntemplate <class T>\nusing pq_min = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR1_R(a)\
@@ -145,85 +145,85 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/kdtree_am.test.cpp\"\
-    \n\n#line 1 \"ds/kdtree/kdtree_acted_monoid.hpp\"\ntemplate <class ActedMonoid,\
-    \ typename XY>\r\nstruct KDTree_ActedMonoid {\r\n  using AM = ActedMonoid;\r\n\
-    \  using MX = typename AM::Monoid_X;\r\n  using MA = typename AM::Monoid_A;\r\n\
-    \  using X = typename AM::X;\r\n  using A = typename AM::A;\r\n  static_assert(MX::commute);\r\
-    \n\r\n  // \u5C0F\u6570\u3082\u8003\u616E\u3059\u308B\u3068\u3001\u9589\u3067\u6301\
+    \n\n#line 1 \"ds/kdtree/kdtree_acted_monoid.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/kdtree/kdtree_acted_monoid.hpp\n\
+    template <class ActedMonoid, typename XY>\nstruct KDTree_ActedMonoid {\n  using\
+    \ AM = ActedMonoid;\n  using MX = typename AM::Monoid_X;\n  using MA = typename\
+    \ AM::Monoid_A;\n  using X = typename AM::X;\n  using A = typename AM::A;\n  static_assert(MX::commute);\n\
+    \n  // \u5C0F\u6570\u3082\u8003\u616E\u3059\u308B\u3068\u3001\u9589\u3067\u6301\
     \u3064\u8A2D\u8A08\u65B9\u91DD\u306B\u306A\u308B\u3002\u305F\u3060\u3057\u3001\
     \u30AF\u30A8\u30EA\u306F\u3044\u3064\u3082\u306E\u534A\u958B\u3092\u4F7F\u3046\
-    \r\n  vc<tuple<XY, XY, XY, XY>> closed_range;\r\n  vc<X> dat;\r\n  vc<A> lazy;\r\
-    \n  vc<int> size;\r\n  vc<int> pos; // raw data -> index\r\n  int n, log;\r\n\r\
-    \n  KDTree_ActedMonoid(vc<XY> xs, vc<XY> ys, vc<X> vs) : n(len(xs)) {\r\n    assert(n\
-    \ > 0);\r\n    log = 0;\r\n    while ((1 << log) < n) ++log;\r\n    dat.resize(1\
-    \ << (log + 1));\r\n    lazy.assign(1 << log, MA::id());\r\n    closed_range.assign(1\
-    \ << (log + 1), {infty<XY>, -infty<XY>, infty<XY>, -infty<XY>});\r\n    size.resize(1\
-    \ << (log + 1));\r\n    vc<int> ids(n);\r\n    pos.resize(n);\r\n    FOR(i, n)\
-    \ ids[i] = i;\r\n    build(1, xs, ys, vs, ids);\r\n  }\r\n\r\n  void set(int i,\
-    \ const X& v) {\r\n    i = pos[i];\r\n    for (int k = log; k >= 1; k--) { push(i\
-    \ >> k); }\r\n    dat[i] = v;\r\n    while (i > 1) i /= 2, dat[i] = MX::op(dat[2\
-    \ * i], dat[2 * i + 1]);\r\n  }\r\n  void multiply(int i, const X& v) {\r\n  \
-    \  i = pos[i];\r\n    for (int k = log; k >= 1; k--) { push(i >> k); }\r\n   \
-    \ dat[i] = MX::op(dat[i], v);\r\n    while (i > 1) i /= 2, dat[i] = MX::op(dat[2\
-    \ * i], dat[2 * i + 1]);\r\n  }\r\n\r\n  // [xl, xr) x [yl, yr)\r\n  X prod(XY\
-    \ xl, XY xr, XY yl, XY yr) {\r\n    assert(xl <= xr && yl <= yr);\r\n    return\
-    \ prod_rec(1, xl, xr, yl, yr);\r\n  }\r\n\r\n  X prod_all() { return dat[1]; }\r\
-    \n\r\n  // [xl, xr) x [yl, yr)\r\n  void apply(XY xl, XY xr, XY yl, XY yr, A a)\
-    \ {\r\n    assert(xl <= xr && yl <= yr);\r\n    return apply_rec(1, xl, xr, yl,\
-    \ yr, a);\r\n  }\r\n\r\nprivate:\r\n  void build(int idx, vc<XY> xs, vc<XY> ys,\
-    \ vc<X> vs, vc<int> ids, bool divx = true) {\r\n    int n = len(xs);\r\n    size[idx]\
-    \ = n;\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    xmin\
-    \ = ymin = infty<XY>;\r\n    xmax = ymax = -infty<XY>;\r\n\r\n    FOR(i, n) {\r\
-    \n      auto x = xs[i], y = ys[i];\r\n      chmin(xmin, x), chmax(xmax, x), chmin(ymin,\
-    \ y), chmax(ymax, y);\r\n    }\r\n    if (n == 1) {\r\n      dat[idx] = vs[0];\r\
-    \n      pos[ids[0]] = idx;\r\n      return;\r\n    }\r\n\r\n    int m = n / 2;\r\
-    \n    vc<int> I(n);\r\n    iota(all(I), 0);\r\n    if (divx) {\r\n      nth_element(I.begin(),\
-    \ I.begin() + m, I.end(), [xs](int i, int j) { return xs[i] < xs[j]; });\r\n \
-    \   } else {\r\n      nth_element(I.begin(), I.begin() + m, I.end(), [ys](int\
-    \ i, int j) { return ys[i] < ys[j]; });\r\n    }\r\n    xs = rearrange(xs, I),\
-    \ ys = rearrange(ys, I), vs = rearrange(vs, I), ids = rearrange(ids, I);\r\n \
-    \   build(2 * idx + 0, {xs.begin(), xs.begin() + m}, {ys.begin(), ys.begin() +\
-    \ m}, {vs.begin(), vs.begin() + m}, {ids.begin(), ids.begin() + m}, !divx);\r\n\
+    \n  vc<tuple<XY, XY, XY, XY>> closed_range;\n  vc<X> dat;\n  vc<A> lazy;\n  vc<int>\
+    \ size;\n  vc<int> pos; // raw data -> index\n  int n, log;\n\n  KDTree_ActedMonoid(vc<XY>\
+    \ xs, vc<XY> ys, vc<X> vs) : n(len(xs)) {\n    assert(n > 0);\n    log = 0;\n\
+    \    while ((1 << log) < n) ++log;\n    dat.resize(1 << (log + 1));\n    lazy.assign(1\
+    \ << log, MA::id());\n    closed_range.assign(1 << (log + 1), {infty<XY>, -infty<XY>,\
+    \ infty<XY>, -infty<XY>});\n    size.resize(1 << (log + 1));\n    vc<int> ids(n);\n\
+    \    pos.resize(n);\n    FOR(i, n) ids[i] = i;\n    build(1, xs, ys, vs, ids);\n\
+    \  }\n\n  void set(int i, const X& v) {\n    i = pos[i];\n    for (int k = log;\
+    \ k >= 1; k--) { push(i >> k); }\n    dat[i] = v;\n    while (i > 1) i /= 2, dat[i]\
+    \ = MX::op(dat[2 * i], dat[2 * i + 1]);\n  }\n  void multiply(int i, const X&\
+    \ v) {\n    i = pos[i];\n    for (int k = log; k >= 1; k--) { push(i >> k); }\n\
+    \    dat[i] = MX::op(dat[i], v);\n    while (i > 1) i /= 2, dat[i] = MX::op(dat[2\
+    \ * i], dat[2 * i + 1]);\n  }\n\n  // [xl, xr) x [yl, yr)\n  X prod(XY xl, XY\
+    \ xr, XY yl, XY yr) {\n    assert(xl <= xr && yl <= yr);\n    return prod_rec(1,\
+    \ xl, xr, yl, yr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  // [xl, xr)\
+    \ x [yl, yr)\n  void apply(XY xl, XY xr, XY yl, XY yr, A a) {\n    assert(xl <=\
+    \ xr && yl <= yr);\n    return apply_rec(1, xl, xr, yl, yr, a);\n  }\n\nprivate:\n\
+    \  void build(int idx, vc<XY> xs, vc<XY> ys, vc<X> vs, vc<int> ids, bool divx\
+    \ = true) {\n    int n = len(xs);\n    size[idx] = n;\n    auto& [xmin, xmax,\
+    \ ymin, ymax] = closed_range[idx];\n    xmin = ymin = infty<XY>;\n    xmax = ymax\
+    \ = -infty<XY>;\n\n    FOR(i, n) {\n      auto x = xs[i], y = ys[i];\n      chmin(xmin,\
+    \ x), chmax(xmax, x), chmin(ymin, y), chmax(ymax, y);\n    }\n    if (n == 1)\
+    \ {\n      dat[idx] = vs[0];\n      pos[ids[0]] = idx;\n      return;\n    }\n\
+    \n    int m = n / 2;\n    vc<int> I(n);\n    iota(all(I), 0);\n    if (divx) {\n\
+    \      nth_element(I.begin(), I.begin() + m, I.end(), [xs](int i, int j) { return\
+    \ xs[i] < xs[j]; });\n    } else {\n      nth_element(I.begin(), I.begin() + m,\
+    \ I.end(), [ys](int i, int j) { return ys[i] < ys[j]; });\n    }\n    xs = rearrange(xs,\
+    \ I), ys = rearrange(ys, I), vs = rearrange(vs, I), ids = rearrange(ids, I);\n\
+    \    build(2 * idx + 0, {xs.begin(), xs.begin() + m}, {ys.begin(), ys.begin()\
+    \ + m}, {vs.begin(), vs.begin() + m}, {ids.begin(), ids.begin() + m}, !divx);\n\
     \    build(2 * idx + 1, {xs.begin() + m, xs.end()}, {ys.begin() + m, ys.end()},\
-    \ {vs.begin() + m, vs.end()}, {ids.begin() + m, ids.end()}, !divx);\r\n    dat[idx]\
-    \ = MX::op(dat[2 * idx + 0], dat[2 * idx + 1]);\r\n  }\r\n\r\n  inline bool isin(XY\
-    \ x, XY y, int idx) {\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\
-    \n    return (xmin <= x && x <= xmax && ymin <= y && y <= ymax);\r\n  }\r\n\r\n\
-    \  void apply_at(int idx, A a) {\r\n    dat[idx] = AM::act(dat[idx], a, size[idx]);\r\
-    \n    if (idx < (1 << log)) lazy[idx] = MA::op(lazy[idx], a);\r\n  }\r\n\r\n \
-    \ void push(int idx) {\r\n    if (lazy[idx] == MA::id()) return;\r\n    apply_at(2\
-    \ * idx + 0, lazy[idx]), apply_at(2 * idx + 1, lazy[idx]);\r\n    lazy[idx] =\
-    \ MA::id();\r\n  }\r\n\r\n  X prod_rec(int idx, XY x1, XY x2, XY y1, XY y2) {\r\
-    \n    if (idx >= len(closed_range)) return MX::id();\r\n    auto& [xmin, xmax,\
-    \ ymin, ymax] = closed_range[idx];\r\n    if (xmin > xmax) return MX::id();\r\n\
-    \    if (x2 <= xmin || xmax < x1) return MX::id();\r\n    if (y2 <= ymin || ymax\
-    \ < y1) return MX::id();\r\n    if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax\
-    \ < y2) { return dat[idx]; }\r\n    push(idx);\r\n    return MX::op(prod_rec(2\
-    \ * idx + 0, x1, x2, y1, y2), prod_rec(2 * idx + 1, x1, x2, y1, y2));\r\n  }\r\
-    \n\r\n  void apply_rec(int idx, XY x1, XY x2, XY y1, XY y2, A a) {\r\n    if (idx\
-    \ >= len(closed_range)) return;\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\
-    \n    if (xmin > xmax) return;\r\n    if (x2 <= xmin || xmax < x1) return;\r\n\
-    \    if (y2 <= ymin || ymax < y1) return;\r\n    if (x1 <= xmin && xmax < x2 &&\
-    \ y1 <= ymin && ymax < y2) { return apply_at(idx, a); }\r\n    push(idx);\r\n\
-    \    apply_rec(2 * idx + 0, x1, x2, y1, y2, a);\r\n    apply_rec(2 * idx + 1,\
-    \ x1, x2, y1, y2, a);\r\n    dat[idx] = MX::op(dat[2 * idx + 0], dat[2 * idx +\
-    \ 1]);\r\n  }\r\n};\r\n#line 1 \"alg/monoid/summax.hpp\"\n\ntemplate <typename\
-    \ E>\nstruct Monoid_SumMax {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
-    \  static X op(X x, X y) { return {x.fi + y.fi, max(x.se, y.se)}; }\n  static\
-    \ X from_element(E e) { return {e, e}; }\n  static constexpr X id() { return {E(0),\
-    \ -infty<E>}; }\n  static constexpr bool commute = 1;\n};\n#line 1 \"alg/monoid/add.hpp\"\
-    \n\ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
+    \ {vs.begin() + m, vs.end()}, {ids.begin() + m, ids.end()}, !divx);\n    dat[idx]\
+    \ = MX::op(dat[2 * idx + 0], dat[2 * idx + 1]);\n  }\n\n  inline bool isin(XY\
+    \ x, XY y, int idx) {\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\n\
+    \    return (xmin <= x && x <= xmax && ymin <= y && y <= ymax);\n  }\n\n  void\
+    \ apply_at(int idx, A a) {\n    dat[idx] = AM::act(dat[idx], a, size[idx]);\n\
+    \    if (idx < (1 << log)) lazy[idx] = MA::op(lazy[idx], a);\n  }\n\n  void push(int\
+    \ idx) {\n    if (lazy[idx] == MA::id()) return;\n    apply_at(2 * idx + 0, lazy[idx]),\
+    \ apply_at(2 * idx + 1, lazy[idx]);\n    lazy[idx] = MA::id();\n  }\n\n  X prod_rec(int\
+    \ idx, XY x1, XY x2, XY y1, XY y2) {\n    if (idx >= len(closed_range)) return\
+    \ MX::id();\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\n    if (xmin\
+    \ > xmax) return MX::id();\n    if (x2 <= xmin || xmax < x1) return MX::id();\n\
+    \    if (y2 <= ymin || ymax < y1) return MX::id();\n    if (x1 <= xmin && xmax\
+    \ < x2 && y1 <= ymin && ymax < y2) { return dat[idx]; }\n    push(idx);\n    return\
+    \ MX::op(prod_rec(2 * idx + 0, x1, x2, y1, y2), prod_rec(2 * idx + 1, x1, x2,\
+    \ y1, y2));\n  }\n\n  void apply_rec(int idx, XY x1, XY x2, XY y1, XY y2, A a)\
+    \ {\n    if (idx >= len(closed_range)) return;\n    auto& [xmin, xmax, ymin, ymax]\
+    \ = closed_range[idx];\n    if (xmin > xmax) return;\n    if (x2 <= xmin || xmax\
+    \ < x1) return;\n    if (y2 <= ymin || ymax < y1) return;\n    if (x1 <= xmin\
+    \ && xmax < x2 && y1 <= ymin && ymax < y2) { return apply_at(idx, a); }\n    push(idx);\n\
+    \    apply_rec(2 * idx + 0, x1, x2, y1, y2, a);\n    apply_rec(2 * idx + 1, x1,\
+    \ x2, y1, y2, a);\n    dat[idx] = MX::op(dat[2 * idx + 0], dat[2 * idx + 1]);\n\
+    \  }\n};\n#line 1 \"alg/acted_monoid/summax_add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/summax_add.hpp\n\
+    #line 1 \"alg/monoid/summax.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/summax.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_SumMax {\n  using value_type = pair<E,\
+    \ E>;\n  using X = value_type;\n  static X op(X x, X y) { return {x.fi + y.fi,\
+    \ max(x.se, y.se)}; }\n  static X from_element(E e) { return {e, e}; }\n  static\
+    \ constexpr X id() { return {E(0), -infty<E>}; }\n  static constexpr bool commute\
+    \ = 1;\n};\n#line 1 \"alg/monoid/add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
     \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
     \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
     \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
     \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
-    };\n#line 3 \"alg/acted_monoid/summax_add.hpp\"\n\ntemplate <typename E>\nstruct\
+    };\n#line 4 \"alg/acted_monoid/summax_add.hpp\"\n\ntemplate <typename E>\nstruct\
     \ ActedMonoid_SumMax_Add {\n  using Monoid_X = Monoid_SumMax<E>;\n  using Monoid_A\
     \ = Monoid_Add<E>;\n  using X = typename Monoid_X::value_type;\n  using A = typename\
     \ Monoid_A::value_type;\n  static constexpr X act(const X& x, const A& a, const\
     \ ll& size) {\n    auto [xs, xm] = x;\n    xm = (xm == -infty<E> ? xm : xm + a);\n\
-    \    return {xs + E(size) * a, xm};\n  }\n};\n#line 1 \"random/base.hpp\"\n\n\
-    u64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \    return {xs + E(size) * a, xm};\n  }\n};\n#line 1 \"random/base.hpp\"\n//\
+    \ Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\nu64\
+    \ RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
@@ -285,7 +285,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/kdtree_am.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/kdtree_am.test.cpp

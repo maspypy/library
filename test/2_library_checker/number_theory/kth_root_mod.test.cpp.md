@@ -49,31 +49,31 @@ data:
     - https://judge.yosupo.jp/problem/kth_root_mod
   bundledCode: "#line 1 \"test/2_library_checker/number_theory/kth_root_mod.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/kth_root_mod\"\r\n#line 1\
-    \ \"my_template.hpp\"\n/*\nlibrary: https://github.com/maspypy/library\n*/\n#if\
-    \ defined(USE_PCH)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
-    #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#if\
-    \ !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#endif\n\
-    #include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace std;\n\nusing\
-    \ ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\n\
-    using u64 = uint64_t;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
-    using f128 = __float128;\n\ntemplate <class>\nconstexpr bool dependent_false =\
-    \ false;\n\ntemplate <class T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>,\
-    \ \"infty<T> is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int\
-    \ infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
-    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
-    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
-    \ infty<i128>;\ntemplate <>\nconstexpr long double infty<long double> = infty<i128>;\n\
-    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing pq_max = priority_queue<T>;\ntemplate <class T>\nusing\
-    \ pq_min = priority_queue<T, vector<T>, greater<T>>;\n\n#define vv(type, name,\
-    \ h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n#define\
-    \ vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name( \\\n \
-    \     h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \ \"my_template.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n\
+    /*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
+    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
+    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
+    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
+    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
+    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
+    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
+    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
+    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
+    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
+    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
+    \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
+    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq_max = priority_queue<T>;\ntemplate <class T>\nusing pq_min = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR1_R(a)\
@@ -164,141 +164,136 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 1 \"other/io.hpp\"\
-    \n#define FASTIO\r\n\r\n// https://judge.yosupo.jp/submission/21623\r\nnamespace\
-    \ fastio {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\nchar\
-    \ obuf[SZ];\r\nchar out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil = 0,\
-    \ pir = 0, por = 0;\r\nbool input_eof = false;\r\n\r\ntemplate <class T>\r\nconstexpr\
-    \ bool is_signed_integer_v = is_signed_v<T> || is_same_v<T, i128>;\r\n\r\ntemplate\
-    \ <class T>\r\nstruct unsigned_integer {\r\n  using type = make_unsigned_t<T>;\r\
-    \n};\r\ntemplate <>\r\nstruct unsigned_integer<i128> {\r\n  using type = u128;\r\
-    \n};\r\ntemplate <>\r\nstruct unsigned_integer<u128> {\r\n  using type = u128;\r\
-    \n};\r\ntemplate <class T>\r\nusing unsigned_integer_t = typename unsigned_integer<T>::type;\r\
-    \n\r\n[[noreturn]] inline void input_error(const char *message) {\r\n  fputs(message,\
-    \ stderr);\r\n  fputc('\\n', stderr);\r\n  exit(EXIT_FAILURE);\r\n}\r\n\r\nstruct\
-    \ Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num() {\r\n    for (int\
-    \ i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for (int j = 3; j >= 0;\
-    \ j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n /= 10;\r\n      }\r\
-    \n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline void load() {\r\n  uint32_t n\
-    \ = pir - pil;\r\n  memmove(ibuf, ibuf + pil, n);\r\n  pil = 0;\r\n  pir = n;\r\
-    \n  if (input_eof) return;\r\n\r\n  pir += fread(ibuf + pir, 1, SZ - pir, stdin);\r\
-    \n  if (ferror(stdin)) input_error(\"fastio: input error\");\r\n  if (feof(stdin))\
-    \ {\r\n    input_eof = true;\r\n    // Allows the last token to end exactly at\
-    \ EOF without a trailing\r\n    // whitespace.\r\n    if (pir < SZ) ibuf[pir++]\
-    \ = '\\n';\r\n  }\r\n}\r\n\r\ninline char get_char() {\r\n  if (pil == pir) {\r\
-    \n    load();\r\n    if (pil == pir) input_error(\"fastio: unexpected EOF\");\r\
-    \n  }\r\n  return ibuf[pil++];\r\n}\r\n\r\ninline void flush() {\r\n  fwrite(obuf,\
-    \ 1, por, stdout);\r\n  por = 0;\r\n}\r\n\r\nvoid rd(char &c) {\r\n  do c = get_char();\r\
-    \n  while (isspace(static_cast<unsigned char>(c)));\r\n}\r\n\r\nvoid rd(string\
-    \ &x) {\r\n  x.clear();\r\n  char c;\r\n  do c = get_char();\r\n  while (isspace(static_cast<unsigned\
-    \ char>(c)));\r\n  do {\r\n    x += c;\r\n    c = get_char();\r\n  } while (!isspace(static_cast<unsigned\
-    \ char>(c)));\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T &x) {\r\n  string\
-    \ s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_integer_slow(T\
-    \ &x) {\r\n  char c;\r\n  do c = get_char();\r\n  while (c < '-');\r\n  bool minus\
-    \ = 0;\r\n  if constexpr (is_signed_integer_v<T>) {\r\n    if (c == '-') {\r\n\
-    \      minus = 1, c = get_char();\r\n    }\r\n  }\r\n  x = 0;\r\n  assert('0'\
-    \ <= c && c <= '9');\r\n  while ('0' <= c && c <= '9') {\r\n    x = x * 10 + (c\
-    \ & 15), c = get_char();\r\n  }\r\n  assert(isspace(static_cast<unsigned char>(c)));\r\
-    \n  if constexpr (is_signed_integer_v<T>) {\r\n    if (minus) x = -x;\r\n  }\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nvoid rd_integer(T &x) {\r\n  if (pil + 100\
-    \ > pir) {\r\n    load();\r\n    if (pil + 100 > pir) {\r\n      rd_integer_slow(x);\r\
-    \n      return;\r\n    }\r\n  }\r\n  char c;\r\n  do c = ibuf[pil++];\r\n  while\
-    \ (c < '-');\r\n  bool minus = 0;\r\n  if constexpr (is_signed_integer_v<T>) {\r\
-    \n    if (c == '-') {\r\n      minus = 1, c = ibuf[pil++];\r\n    }\r\n  }\r\n\
-    \  x = 0;\r\n  assert('0' <= c && c <= '9');\r\n  while ('0' <= c && c <= '9')\
-    \ {\r\n    x = x * 10 + (c & 15), c = ibuf[pil++];\r\n  }\r\n  assert(isspace(static_cast<unsigned\
-    \ char>(c)));\r\n  if constexpr (is_signed_integer_v<T>) {\r\n    if (minus) x\
-    \ = -x;\r\n  }\r\n}\r\n\r\ntemplate <class T>\r\nenable_if_t<is_integral_v<T>\
-    \ || is_same_v<T, i128> || is_same_v<T, u128>> rd(\r\n    T &x) {\r\n  rd_integer(x);\r\
-    \n}\r\n\r\ntemplate <class T>\r\nenable_if_t<is_floating_point_v<T> || is_same_v<T,\
-    \ f128>> rd(T &x) {\r\n  rd_real(x);\r\n}\r\n\r\ntemplate <class T, class U>\r\
-    \nvoid rd(pair<T, U> &p) {\r\n  rd(p.first), rd(p.second);\r\n}\r\ntemplate <size_t\
-    \ N = 0, typename T>\r\nvoid rd_tuple(T &t) {\r\n  if constexpr (N < tuple_size<T>::value)\
-    \ {\r\n    auto &x = get<N>(t);\r\n    rd(x);\r\n    rd_tuple<N + 1>(t);\r\n \
-    \ }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...> &tpl) {\r\n  rd_tuple(tpl);\r\
-    \n}\r\n\r\ntemplate <class T, size_t N>\r\nvoid rd(array<T, N> &x) {\r\n  for\
-    \ (auto &d : x) rd(d);\r\n}\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\n \
-    \ for (auto &d : x) rd(d);\r\n}\r\n\r\ntemplate <class... T>\r\nvoid read(T &...x)\
-    \ {\r\n  (rd(x), ...);\r\n}\r\n\r\ninline void wt_range(const char *s, size_t\
-    \ n) {\r\n  size_t i = 0;\r\n  while (i < n) {\r\n    if (por == SZ) flush();\r\
-    \n    size_t chunk = min(n - i, (size_t)(SZ - por));\r\n    memcpy(obuf + por,\
-    \ s + i, chunk);\r\n    por += chunk;\r\n    i += chunk;\r\n  }\r\n}\r\n\r\nvoid\
-    \ wt(const char c) {\r\n  if (por == SZ) flush();\r\n  obuf[por++] = c;\r\n}\r\
-    \nvoid wt(const char *s) { wt_range(s, strlen(s)); }\r\nvoid wt(const string &s)\
-    \ { wt_range(s.data(), s.size()); }\r\n\r\ntemplate <typename T>\r\nvoid wt_integer(T\
-    \ x) {\r\n  if (por > SZ - 100) flush();\r\n  using U = unsigned_integer_t<T>;\r\
-    \n  U y = static_cast<U>(x);\r\n  if constexpr (is_signed_integer_v<T>) {\r\n\
-    \    if (x < 0) {\r\n      obuf[por++] = '-';\r\n      y = U(0) - y;\r\n    }\r\
-    \n  }\r\n  int outi;\r\n  for (outi = 96; y >= 10000; outi -= 4) {\r\n    memcpy(out\
-    \ + outi, pre.num[y % 10000], 4);\r\n    y /= 10000;\r\n  }\r\n  if (y >= 1000)\
-    \ {\r\n    memcpy(obuf + por, pre.num[y], 4);\r\n    por += 4;\r\n  } else if\
-    \ (y >= 100) {\r\n    memcpy(obuf + por, pre.num[y] + 1, 3);\r\n    por += 3;\r\
-    \n  } else if (y >= 10) {\r\n    int q = (y * 103) >> 10;\r\n    obuf[por] = q\
-    \ | '0';\r\n    obuf[por + 1] = (y - q * 10) | '0';\r\n    por += 2;\r\n  } else\r\
-    \n    obuf[por++] = y | '0';\r\n  memcpy(obuf + por, out + outi + 4, 96 - outi);\r\
-    \n  por += 96 - outi;\r\n}\r\n\r\ntemplate <typename T>\r\ninline void wt_real(T\
-    \ x) {\r\n  static char buf[1000];\r\n  int n = std::snprintf(buf, sizeof(buf),\
-    \ \"%.15f\", (double)x);\r\n  wt_range(buf, (size_t)n);\r\n}\r\n\r\ntemplate <class\
-    \ T>\r\nenable_if_t<is_integral_v<T> || is_same_v<T, i128> || is_same_v<T, u128>>\
-    \ wt(\r\n    T x) {\r\n  wt_integer(x);\r\n}\r\n\r\ntemplate <class T>\r\nenable_if_t<is_floating_point_v<T>\
-    \ || is_same_v<T, f128>> wt(T x) {\r\n  wt_real(x);\r\n}\r\n\r\ninline void wt(bool\
-    \ b) { wt(static_cast<char>('0' + (b ? 1 : 0))); }\r\n\r\ntemplate <class T, class\
-    \ U>\r\nvoid wt(const pair<T, U> &val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n\
-    \  wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const\
-    \ T &t) {\r\n  if constexpr (N < tuple_size<T>::value) {\r\n    if constexpr (N\
-    \ > 0) wt(' ');\r\n    wt(get<N>(t));\r\n    wt_tuple<N + 1>(t);\r\n  }\r\n}\r\
-    \ntemplate <class... T>\r\nvoid wt(const tuple<T...> &tpl) {\r\n  wt_tuple(tpl);\r\
-    \n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T, S> &val) {\r\n \
-    \ auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n    if (i) wt('\
-    \ ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\nvoid wt(const vector<T>\
-    \ &val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n\
-    \    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\nvoid print() { wt('\\\
-    n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
-    \ &&...tail) {\r\n  wt(forward<Head>(head));\r\n  ((wt(' '), wt(forward<Tail>(tail))),\
-    \ ...);\r\n  wt('\\n');\r\n}\r\n\r\n// gcc expansion. called automaticall after\
-    \ main.\r\nvoid __attribute__((destructor)) _d() { flush(); }\r\n}  // namespace\
-    \ fastio\r\nusing fastio::flush;\r\nusing fastio::print;\r\nusing fastio::read;\r\
-    \n\r\n#if defined(LOCAL)\r\n#define HDR \"[DEBUG:\", __func__, __LINE__, \"]\"\
-    \r\n#define SHOW(...)                                                        \
-    \ \\\r\n  SHOW_IMPL(__VA_ARGS__, SHOW8, SHOW7, SHOW6, SHOW5, SHOW4, SHOW3, SHOW2,\
-    \ \\\r\n            SHOW1)                                                   \
-    \     \\\r\n  (__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2, _3, _4, _5, _6, _7, _8,\
-    \ NAME, ...) NAME\r\n#define SHOW1(x) print(HDR, #x, \"=\", (x)), flush()\r\n\
-    #define SHOW2(x, y) print(HDR, #x, \"=\", (x), #y, \"=\", (y)), flush()\r\n#define\
-    \ SHOW3(x, y, z) \\\r\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\"\
-    , (z)), flush()\r\n#define SHOW4(x, y, z, w) \\\r\n  print(HDR, #x, \"=\", (x),\
-    \ #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w)), flush()\r\n#define SHOW5(x,\
-    \ y, z, w, v)                                                  \\\r\n  print(HDR,\
-    \ #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\
-    \r\n        (v)),                                                            \
-    \     \\\r\n      flush()\r\n#define SHOW6(x, y, z, w, v, u)                 \
-    \                              \\\r\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y),\
-    \ #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\r\n        (v), #u, \"=\", (u)),\
-    \                                                   \\\r\n      flush()\r\n#define\
-    \ SHOW7(x, y, z, w, v, u, t)                                            \\\r\n\
-    \  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w),\
-    \ #v, \"=\", \\\r\n        (v), #u, \"=\", (u), #t, \"=\", (t)),             \
-    \                        \\\r\n      flush()\r\n#define SHOW8(x, y, z, w, v, u,\
-    \ t, s)                                         \\\r\n  print(HDR, #x, \"=\",\
-    \ (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\r\n     \
-    \   (v), #u, \"=\", (u), #t, \"=\", (t), #s, \"=\", (s)),                    \
-    \   \\\r\n      flush()\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define\
-    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
-    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U32(...)   \\\
-    \r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)   \\\r\n\
-    \  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
-    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n\
-    \  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
-    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
-    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
-    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
-    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
-    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
-    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
-    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
-    \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
-    \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"mod/montgomery_modint.hpp\"\n\n\
-    // odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
+    \n// Source: https://github.com/maspypy/library/blob/main/other/io.hpp\n#define\
+    \ FASTIO\n\n// https://judge.yosupo.jp/submission/21623\nnamespace fastio {\n\
+    static constexpr uint32_t SZ = 1 << 17;\nchar ibuf[SZ];\nchar obuf[SZ];\nchar\
+    \ out[100];\n// pointer of ibuf, obuf\nuint32_t pil = 0, pir = 0, por = 0;\nbool\
+    \ input_eof = false;\n\ntemplate <class T>\nconstexpr bool is_signed_integer_v\
+    \ = is_signed_v<T> || is_same_v<T, i128>;\n\ntemplate <class T>\nstruct unsigned_integer\
+    \ {\n  using type = make_unsigned_t<T>;\n};\ntemplate <>\nstruct unsigned_integer<i128>\
+    \ {\n  using type = u128;\n};\ntemplate <>\nstruct unsigned_integer<u128> {\n\
+    \  using type = u128;\n};\ntemplate <class T>\nusing unsigned_integer_t = typename\
+    \ unsigned_integer<T>::type;\n\n[[noreturn]] inline void input_error(const char\
+    \ *message) {\n  fputs(message, stderr);\n  fputc('\\n', stderr);\n  exit(EXIT_FAILURE);\n\
+    }\n\nstruct Pre {\n  char num[10000][4];\n  constexpr Pre() : num() {\n    for\
+    \ (int i = 0; i < 10000; i++) {\n      int n = i;\n      for (int j = 3; j >=\
+    \ 0; j--) {\n        num[i][j] = n % 10 | '0';\n        n /= 10;\n      }\n  \
+    \  }\n  }\n} constexpr pre;\n\ninline void load() {\n  uint32_t n = pir - pil;\n\
+    \  memmove(ibuf, ibuf + pil, n);\n  pil = 0;\n  pir = n;\n  if (input_eof) return;\n\
+    \n  pir += fread(ibuf + pir, 1, SZ - pir, stdin);\n  if (ferror(stdin)) input_error(\"\
+    fastio: input error\");\n  if (feof(stdin)) {\n    input_eof = true;\n    // Allows\
+    \ the last token to end exactly at EOF without a trailing\n    // whitespace.\n\
+    \    if (pir < SZ) ibuf[pir++] = '\\n';\n  }\n}\n\ninline char get_char() {\n\
+    \  if (pil == pir) {\n    load();\n    if (pil == pir) input_error(\"fastio: unexpected\
+    \ EOF\");\n  }\n  return ibuf[pil++];\n}\n\ninline void flush() {\n  fwrite(obuf,\
+    \ 1, por, stdout);\n  por = 0;\n}\n\nvoid rd(char &c) {\n  do c = get_char();\n\
+    \  while (isspace(static_cast<unsigned char>(c)));\n}\n\nvoid rd(string &x) {\n\
+    \  x.clear();\n  char c;\n  do c = get_char();\n  while (isspace(static_cast<unsigned\
+    \ char>(c)));\n  do {\n    x += c;\n    c = get_char();\n  } while (!isspace(static_cast<unsigned\
+    \ char>(c)));\n}\n\ntemplate <typename T>\nvoid rd_real(T &x) {\n  string s;\n\
+    \  rd(s);\n  x = stod(s);\n}\n\ntemplate <typename T>\nvoid rd_integer_slow(T\
+    \ &x) {\n  char c;\n  do c = get_char();\n  while (c < '-');\n  bool minus = 0;\n\
+    \  if constexpr (is_signed_integer_v<T>) {\n    if (c == '-') {\n      minus =\
+    \ 1, c = get_char();\n    }\n  }\n  x = 0;\n  assert('0' <= c && c <= '9');\n\
+    \  while ('0' <= c && c <= '9') {\n    x = x * 10 + (c & 15), c = get_char();\n\
+    \  }\n  assert(isspace(static_cast<unsigned char>(c)));\n  if constexpr (is_signed_integer_v<T>)\
+    \ {\n    if (minus) x = -x;\n  }\n}\n\ntemplate <typename T>\nvoid rd_integer(T\
+    \ &x) {\n  if (pil + 100 > pir) {\n    load();\n    if (pil + 100 > pir) {\n \
+    \     rd_integer_slow(x);\n      return;\n    }\n  }\n  char c;\n  do c = ibuf[pil++];\n\
+    \  while (c < '-');\n  bool minus = 0;\n  if constexpr (is_signed_integer_v<T>)\
+    \ {\n    if (c == '-') {\n      minus = 1, c = ibuf[pil++];\n    }\n  }\n  x =\
+    \ 0;\n  assert('0' <= c && c <= '9');\n  while ('0' <= c && c <= '9') {\n    x\
+    \ = x * 10 + (c & 15), c = ibuf[pil++];\n  }\n  assert(isspace(static_cast<unsigned\
+    \ char>(c)));\n  if constexpr (is_signed_integer_v<T>) {\n    if (minus) x = -x;\n\
+    \  }\n}\n\ntemplate <class T>\nenable_if_t<is_integral_v<T> || is_same_v<T, i128>\
+    \ || is_same_v<T, u128>> rd(\n    T &x) {\n  rd_integer(x);\n}\n\ntemplate <class\
+    \ T>\nenable_if_t<is_floating_point_v<T> || is_same_v<T, f128>> rd(T &x) {\n \
+    \ rd_real(x);\n}\n\ntemplate <class T, class U>\nvoid rd(pair<T, U> &p) {\n  rd(p.first),\
+    \ rd(p.second);\n}\ntemplate <size_t N = 0, typename T>\nvoid rd_tuple(T &t) {\n\
+    \  if constexpr (N < tuple_size<T>::value) {\n    auto &x = get<N>(t);\n    rd(x);\n\
+    \    rd_tuple<N + 1>(t);\n  }\n}\ntemplate <class... T>\nvoid rd(tuple<T...> &tpl)\
+    \ {\n  rd_tuple(tpl);\n}\n\ntemplate <class T, size_t N>\nvoid rd(array<T, N>\
+    \ &x) {\n  for (auto &d : x) rd(d);\n}\ntemplate <class T>\nvoid rd(vc<T> &x)\
+    \ {\n  for (auto &d : x) rd(d);\n}\n\ntemplate <class... T>\nvoid read(T &...x)\
+    \ {\n  (rd(x), ...);\n}\n\ninline void wt_range(const char *s, size_t n) {\n \
+    \ size_t i = 0;\n  while (i < n) {\n    if (por == SZ) flush();\n    size_t chunk\
+    \ = min(n - i, (size_t)(SZ - por));\n    memcpy(obuf + por, s + i, chunk);\n \
+    \   por += chunk;\n    i += chunk;\n  }\n}\n\nvoid wt(const char c) {\n  if (por\
+    \ == SZ) flush();\n  obuf[por++] = c;\n}\nvoid wt(const char *s) { wt_range(s,\
+    \ strlen(s)); }\nvoid wt(const string &s) { wt_range(s.data(), s.size()); }\n\n\
+    template <typename T>\nvoid wt_integer(T x) {\n  if (por > SZ - 100) flush();\n\
+    \  using U = unsigned_integer_t<T>;\n  U y = static_cast<U>(x);\n  if constexpr\
+    \ (is_signed_integer_v<T>) {\n    if (x < 0) {\n      obuf[por++] = '-';\n   \
+    \   y = U(0) - y;\n    }\n  }\n  int outi;\n  for (outi = 96; y >= 10000; outi\
+    \ -= 4) {\n    memcpy(out + outi, pre.num[y % 10000], 4);\n    y /= 10000;\n \
+    \ }\n  if (y >= 1000) {\n    memcpy(obuf + por, pre.num[y], 4);\n    por += 4;\n\
+    \  } else if (y >= 100) {\n    memcpy(obuf + por, pre.num[y] + 1, 3);\n    por\
+    \ += 3;\n  } else if (y >= 10) {\n    int q = (y * 103) >> 10;\n    obuf[por]\
+    \ = q | '0';\n    obuf[por + 1] = (y - q * 10) | '0';\n    por += 2;\n  } else\n\
+    \    obuf[por++] = y | '0';\n  memcpy(obuf + por, out + outi + 4, 96 - outi);\n\
+    \  por += 96 - outi;\n}\n\ntemplate <typename T>\ninline void wt_real(T x) {\n\
+    \  static char buf[1000];\n  int n = std::snprintf(buf, sizeof(buf), \"%.15f\"\
+    , (double)x);\n  wt_range(buf, (size_t)n);\n}\n\ntemplate <class T>\nenable_if_t<is_integral_v<T>\
+    \ || is_same_v<T, i128> || is_same_v<T, u128>> wt(\n    T x) {\n  wt_integer(x);\n\
+    }\n\ntemplate <class T>\nenable_if_t<is_floating_point_v<T> || is_same_v<T, f128>>\
+    \ wt(T x) {\n  wt_real(x);\n}\n\ninline void wt(bool b) { wt(static_cast<char>('0'\
+    \ + (b ? 1 : 0))); }\n\ntemplate <class T, class U>\nvoid wt(const pair<T, U>\
+    \ &val) {\n  wt(val.first);\n  wt(' ');\n  wt(val.second);\n}\ntemplate <size_t\
+    \ N = 0, typename T>\nvoid wt_tuple(const T &t) {\n  if constexpr (N < tuple_size<T>::value)\
+    \ {\n    if constexpr (N > 0) wt(' ');\n    wt(get<N>(t));\n    wt_tuple<N + 1>(t);\n\
+    \  }\n}\ntemplate <class... T>\nvoid wt(const tuple<T...> &tpl) {\n  wt_tuple(tpl);\n\
+    }\ntemplate <class T, size_t S>\nvoid wt(const array<T, S> &val) {\n  auto n =\
+    \ val.size();\n  for (size_t i = 0; i < n; i++) {\n    if (i) wt(' ');\n    wt(val[i]);\n\
+    \  }\n}\ntemplate <class T>\nvoid wt(const vector<T> &val) {\n  auto n = val.size();\n\
+    \  for (size_t i = 0; i < n; i++) {\n    if (i) wt(' ');\n    wt(val[i]);\n  }\n\
+    }\n\nvoid print() { wt('\\n'); }\ntemplate <class Head, class... Tail>\nvoid print(Head\
+    \ &&head, Tail &&...tail) {\n  wt(forward<Head>(head));\n  ((wt(' '), wt(forward<Tail>(tail))),\
+    \ ...);\n  wt('\\n');\n}\n\n// gcc expansion. called automaticall after main.\n\
+    void __attribute__((destructor)) _d() { flush(); }\n}  // namespace fastio\nusing\
+    \ fastio::flush;\nusing fastio::print;\nusing fastio::read;\n\n#if defined(LOCAL)\n\
+    #define HDR \"[DEBUG:\", __func__, __LINE__, \"]\"\n#define SHOW(...)        \
+    \                                                 \\\n  SHOW_IMPL(__VA_ARGS__,\
+    \ SHOW8, SHOW7, SHOW6, SHOW5, SHOW4, SHOW3, SHOW2, \\\n            SHOW1)    \
+    \                                                    \\\n  (__VA_ARGS__)\n#define\
+    \ SHOW_IMPL(_1, _2, _3, _4, _5, _6, _7, _8, NAME, ...) NAME\n#define SHOW1(x)\
+    \ print(HDR, #x, \"=\", (x)), flush()\n#define SHOW2(x, y) print(HDR, #x, \"=\"\
+    , (x), #y, \"=\", (y)), flush()\n#define SHOW3(x, y, z) \\\n  print(HDR, #x, \"\
+    =\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\n#define SHOW4(x, y, z, w)\
+    \ \\\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\",\
+    \ (w)), flush()\n#define SHOW5(x, y, z, w, v)                                \
+    \                  \\\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\"\
+    , (z), #w, \"=\", (w), #v, \"=\", \\\n        (v)),                          \
+    \                                       \\\n      flush()\n#define SHOW6(x, y,\
+    \ z, w, v, u)                                               \\\n  print(HDR, #x,\
+    \ \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\n\
+    \        (v), #u, \"=\", (u)),                                               \
+    \    \\\n      flush()\n#define SHOW7(x, y, z, w, v, u, t)                   \
+    \                         \\\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z,\
+    \ \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\n        (v), #u, \"=\", (u), #t,\
+    \ \"=\", (t)),                                     \\\n      flush()\n#define\
+    \ SHOW8(x, y, z, w, v, u, t, s)                                         \\\n \
+    \ print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v,\
+    \ \"=\", \\\n        (v), #u, \"=\", (u), #t, \"=\", (t), #s, \"=\", (s)),   \
+    \                    \\\n      flush()\n#else\n#define SHOW(...)\n#endif\n\n#define\
+    \ INT(...)   \\\n  int __VA_ARGS__; \\\n  read(__VA_ARGS__)\n#define LL(...) \
+    \  \\\n  ll __VA_ARGS__; \\\n  read(__VA_ARGS__)\n#define U32(...)   \\\n  u32\
+    \ __VA_ARGS__; \\\n  read(__VA_ARGS__)\n#define U64(...)   \\\n  u64 __VA_ARGS__;\
+    \ \\\n  read(__VA_ARGS__)\n#define STR(...)      \\\n  string __VA_ARGS__; \\\n\
+    \  read(__VA_ARGS__)\n#define CHAR(...)   \\\n  char __VA_ARGS__; \\\n  read(__VA_ARGS__)\n\
+    #define DBL(...)      \\\n  double __VA_ARGS__; \\\n  read(__VA_ARGS__)\n\n#define\
+    \ VEC(type, name, size) \\\n  vector<type> name(size);    \\\n  read(name)\n#define\
+    \ VV(type, name, h, w)                     \\\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\n  read(name)\n\nvoid YES(bool t = 1) { print(t ? \"YES\"\
+    \ : \"NO\"); }\nvoid NO(bool t = 1) { YES(!t); }\nvoid Yes(bool t = 1) { print(t\
+    \ ? \"Yes\" : \"No\"); }\nvoid No(bool t = 1) { Yes(!t); }\nvoid yes(bool t =\
+    \ 1) { print(t ? \"yes\" : \"no\"); }\nvoid no(bool t = 1) { yes(!t); }\nvoid\
+    \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\nvoid TIDAK(bool t = 1) {\
+    \ YA(!t); }\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\nvoid\
+    \ Bob(bool t = 1) { Alice(!t); }\n#line 1 \"mod/mod_kth_root.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/mod/mod_kth_root.hpp\n#line 1 \"\
+    nt/is_prime.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/is_prime.hpp\n\
+    #line 1 \"mod/montgomery_modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/montgomery_modint.hpp\n\
+    \n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
     \ <int id, typename U1, typename U2>\nstruct Montgomery_modint {\n  using mint\
     \ = Montgomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
     \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
@@ -318,7 +313,7 @@ data:
     \ >= 0);\n    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if\
     \ (n & 1) y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Montgomery_modint_32\
     \ = Montgomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Montgomery_modint_64\
-    \ = Montgomery_modint<id, u64, u128>;\n#line 2 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
+    \ = Montgomery_modint<id, u64, u128>;\n#line 3 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
     \ u64 x) {\n  assert(x < u64(1) << 62);\n  if (x == 2 or x == 3 or x == 5 or x\
     \ == 7) return true;\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 ==\
     \ 0) return false;\n  if (x < 121) return x > 1;\n  const u64 d = (x - 1) >> lowbit(x\
@@ -329,15 +324,19 @@ data:
     \ false;\n    return true;\n  };\n  if (x < (u64(1) << 32)) {\n    for (u64 a\
     \ : {2, 7, 61})\n      if (!ok(a)) return false;\n  } else {\n    for (u64 a :\
     \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\n      if (!ok(a)) return\
-    \ false;\n    }\n  }\n  return true;\n}\n#line 1 \"mod/primitive_root.hpp\"\n\n\
-    #line 1 \"nt/factor.hpp\"\n\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n \
-    \ static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n          \
-    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
-    \                    .count()) *\n                  10150724397891781847ULL;\n\
+    \ false;\n    }\n  }\n  return true;\n}\n#line 1 \"mod/primitive_root.hpp\"\n\
+    // Source: https://github.com/maspypy/library/blob/main/mod/primitive_root.hpp\n\
+    \n#line 1 \"nt/factor.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/factor.hpp\n\
+    \n#line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/montgomery_modint.hpp\"\n\n\
-    // odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"nt/is_prime.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/nt/is_prime.hpp\n#line 1 \"mod/montgomery_modint.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/mod/montgomery_modint.hpp\n\
+    \n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
     \ <int id, typename U1, typename U2>\nstruct Montgomery_modint {\n  using mint\
     \ = Montgomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
     \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
@@ -357,7 +356,7 @@ data:
     \ >= 0);\n    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if\
     \ (n & 1) y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Montgomery_modint_32\
     \ = Montgomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Montgomery_modint_64\
-    \ = Montgomery_modint<id, u64, u128>;\n#line 2 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
+    \ = Montgomery_modint<id, u64, u128>;\n#line 3 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
     \ u64 x) {\n  assert(x < u64(1) << 62);\n  if (x == 2 or x == 3 or x == 5 or x\
     \ == 7) return true;\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 ==\
     \ 0) return false;\n  if (x < 121) return x > 1;\n  const u64 d = (x - 1) >> lowbit(x\
@@ -368,7 +367,7 @@ data:
     \ false;\n    return true;\n  };\n  if (x < (u64(1) << 32)) {\n    for (u64 a\
     \ : {2, 7, 61})\n      if (!ok(a)) return false;\n  } else {\n    for (u64 a :\
     \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\n      if (!ok(a)) return\
-    \ false;\n    }\n  }\n  return true;\n}\n#line 4 \"nt/factor.hpp\"\n\ntemplate\
+    \ false;\n    }\n  }\n  return true;\n}\n#line 5 \"nt/factor.hpp\"\n\ntemplate\
     \ <typename mint>\nll rho(ll n, ll c) {\n  assert(n > 1);\n  const mint cc(c);\n\
     \  auto f = [&](mint x) { return x * x + cc; };\n  mint x = 1, y = 2, z = 1, q\
     \ = 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5);\n  for (ll r = 1; g\
@@ -392,8 +391,9 @@ data:
     \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_spf(ll n, vc<int>& spf) {\n  vc<pair<ll,\
     \ int>> res;\n  while (n > 1) {\n    int p = spf[n];\n    int e = 0;\n    while\
     \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
-    \ return res;\n}\n#line 1 \"mod/mod_pow.hpp\"\n\n#line 1 \"mod/montgomery_modint.hpp\"\
-    \n\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
+    \ return res;\n}\n#line 1 \"mod/mod_pow.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/mod_pow.hpp\n\
+    \n#line 1 \"mod/montgomery_modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/montgomery_modint.hpp\n\
+    \n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
     \ <int id, typename U1, typename U2>\nstruct Montgomery_modint {\n  using mint\
     \ = Montgomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
     \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
@@ -413,7 +413,8 @@ data:
     \ >= 0);\n    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if\
     \ (n & 1) y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Montgomery_modint_32\
     \ = Montgomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Montgomery_modint_64\
-    \ = Montgomery_modint<id, u64, u128>;\n#line 1 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    \ = Montgomery_modint<id, u64, u128>;\n#line 1 \"mod/barrett.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/mod/barrett.hpp\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
     struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
     \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
     \ (m == 1) return 0;\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n\
@@ -429,7 +430,7 @@ data:
     \ const { return mod; }\n\n  u64 modulo(u128 x) {\n    u128 z = (x & u64(-1))\
     \ * ml;\n    z = (x & u64(-1)) * mh + (x >> 64) * ml + (z >> 64);\n    z = (x\
     \ >> 64) * mh + (z >> 64);\n    x -= z * mod;\n    return x < mod ? x : x - mod;\n\
-    \  }\n\n  u64 mul(u64 a, u64 b) { return modulo(u128(a) * b); }\n};\n#line 4 \"\
+    \  }\n\n  u64 mul(u64 a, u64 b) { return modulo(u128(a) * b); }\n};\n#line 5 \"\
     mod/mod_pow.hpp\"\n\nu32 mod_pow(int a, ll n, int mod) {\n  assert(n >= 0);\n\
     \  if (mod == 1) return 0;\n  a = ((a %= mod) < 0 ? a + mod : a);\n  if ((mod\
     \ & 1) && (mod < (1 << 30))) {\n    using mint = Montgomery_modint_32<202311021>;\n\
@@ -441,12 +442,13 @@ data:
     \    mint::set_mod(mod);\n    return mint(a).pow(n).val();\n  }\n  Barrett_64\
     \ bt(mod);\n  ll r = 1;\n  while (n) {\n    if (n & 1) r = bt.mul(r, a);\n   \
     \ a = bt.mul(a, a), n >>= 1;\n  }\n  return r;\n}\n#line 1 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\n\
+    u64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 5 \"mod/primitive_root.hpp\"\n\n//\
+    \  return l + RNG_64() % (r - l);\n}\n#line 6 \"mod/primitive_root.hpp\"\n\n//\
     \ int\nint primitive_root(int p, bool min = true) {\n  auto pf = factor(p - 1);\n\
     \  auto is_ok = [&](int g) -> bool {\n    for (auto&& [q, e] : pf)\n      if (mod_pow(g,\
     \ (p - 1) / q, p) == 1) return false;\n    return true;\n  };\n  if (min) {\n\
@@ -459,17 +461,18 @@ data:
     ll primitive_root_prime_power_64(ll p, ll e) {\n  assert(p >= 3);\n  ll g = primitive_root_64(p);\n\
     \  ll q = p;\n  ll phi = p - 1;\n  FOR(e - 1) {\n    q *= p;\n    phi *= p;\n\
     \    if (mod_pow_64(g, phi / p, q) == 1) g += q / p;\n  }\n  return g;\n}\n#line\
-    \ 1 \"mod/mod_inv.hpp\"\n\n// long \u3067\u3082\u5927\u4E08\u592B\n// (val * x\
-    \ - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\u3059\
-    \u308B\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\nll mod_inv(ll\
-    \ val, ll mod) {\n  if (mod == 0) return 0;\n  mod = abs(mod);\n  val %= mod;\n\
-    \  if (val < 0) val += mod;\n  ll a = val, b = mod, u = 1, v = 0, t;\n  while\
-    \ (b > 0) {\n    t = a / b;\n    swap(a -= t * b, b), swap(u -= t * v, v);\n \
-    \ }\n  if (u < 0) u += mod;\n  return u;\n}\n#line 1 \"ds/hashmap.hpp\"\n\n//\
-    \ u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\
-    \u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
-    \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
-    \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 1 \"mod/mod_inv.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/mod_inv.hpp\n\
+    \n// long \u3067\u3082\u5927\u4E08\u592B\n// (val * x - 1) \u304C mod \u306E\u500D\
+    \u6570\u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n// \u7279\u306B mod=0\
+    \ \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\nll mod_inv(ll val, ll mod) {\n  if\
+    \ (mod == 0) return 0;\n  mod = abs(mod);\n  val %= mod;\n  if (val < 0) val +=\
+    \ mod;\n  ll a = val, b = mod, u = 1, v = 0, t;\n  while (b > 0) {\n    t = a\
+    \ / b;\n    swap(a -= t * b, b), swap(u -= t * v, v);\n  }\n  if (u < 0) u +=\
+    \ mod;\n  return u;\n}\n#line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
     \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
     \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
     \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
@@ -490,78 +493,73 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 5 \"mod/mod_kth_root.hpp\"\n\r\n// mod \u306F int\r\nint mod_kth_root(ll\
-    \ k, ll a, int mod) {\r\n  assert(is_prime(mod) && 0 <= a && a < mod);\r\n  if\
-    \ (k == 0) return (a == 1 ? 1 : -1);\r\n  if (a == 0) return 0;\r\n  if (mod ==\
-    \ 2) return a;\r\n  k %= mod - 1;\r\n  Barrett bt(mod);\r\n\r\n  ll g = gcd(k,\
-    \ mod - 1);\r\n  if (mod_pow(a, (mod - 1) / g, mod) != 1) return -1;\r\n\r\n \
-    \ ll c = mod_inv(k / g, (mod - 1) / g);\r\n  a = mod_pow(a, c, mod);\r\n  k =\
-    \ (k * c) % (mod - 1);\r\n  if (k == 0) return 1;\r\n\r\n  g = primitive_root(mod);\r\
-    \n\r\n  auto solve_pp = [&](ll p, int e, ll a) -> ll {\r\n    int f = 0;\r\n \
-    \   ll pf = 1;\r\n    while ((mod - 1) % (pf * p) == 0) ++f, pf *= p;\r\n    ll\
-    \ m = (mod - 1) / pf;\r\n    /*\r\n    \u30FB\u4F4D\u6570 Qm \u306E\u5DE1\u56DE\
-    \u7FA4\r\n    \u30FBa \u306E p^e \u4E57\u6839\u3092\u3068\u308A\u305F\u3044\u3002\
-    \u6301\u3064\u3053\u3068\u306F\u5206\u304B\u3063\u3066\u3044\u308B\r\n    \u30FB\
-    a / x^{p^e} = b \u3092\u7DAD\u6301\u3059\u308B\u3002\u307E\u305A\u306F\u3001b\
-    \ \u304C p \u3067\u5272\u308C\u308B\u56DE\u6570\u3092\u5897\u3084\u3057\u3066\u3044\
-    \u304F\u3002\r\n    */\r\n    ll x = 1, b = a, c = f - e;  // b ^ {mp^c} = 1\r\
-    \n    int pc = 1;\r\n    FOR(c) pc *= p;\r\n    int pe = 1;\r\n    FOR(e) pe *=\
-    \ p;\r\n    // \u5FC5\u8981\u306A\u3089\u3070\u539F\u59CB p \u4E57\u6839\u306B\
+    \  }\n};\n#line 6 \"mod/mod_kth_root.hpp\"\n\n// mod \u306F int\nint mod_kth_root(ll\
+    \ k, ll a, int mod) {\n  assert(is_prime(mod) && 0 <= a && a < mod);\n  if (k\
+    \ == 0) return (a == 1 ? 1 : -1);\n  if (a == 0) return 0;\n  if (mod == 2) return\
+    \ a;\n  k %= mod - 1;\n  Barrett bt(mod);\n\n  ll g = gcd(k, mod - 1);\n  if (mod_pow(a,\
+    \ (mod - 1) / g, mod) != 1) return -1;\n\n  ll c = mod_inv(k / g, (mod - 1) /\
+    \ g);\n  a = mod_pow(a, c, mod);\n  k = (k * c) % (mod - 1);\n  if (k == 0) return\
+    \ 1;\n\n  g = primitive_root(mod);\n\n  auto solve_pp = [&](ll p, int e, ll a)\
+    \ -> ll {\n    int f = 0;\n    ll pf = 1;\n    while ((mod - 1) % (pf * p) ==\
+    \ 0) ++f, pf *= p;\n    ll m = (mod - 1) / pf;\n    /*\n    \u30FB\u4F4D\u6570\
+    \ Qm \u306E\u5DE1\u56DE\u7FA4\n    \u30FBa \u306E p^e \u4E57\u6839\u3092\u3068\
+    \u308A\u305F\u3044\u3002\u6301\u3064\u3053\u3068\u306F\u5206\u304B\u3063\u3066\
+    \u3044\u308B\n    \u30FBa / x^{p^e} = b \u3092\u7DAD\u6301\u3059\u308B\u3002\u307E\
+    \u305A\u306F\u3001b \u304C p \u3067\u5272\u308C\u308B\u56DE\u6570\u3092\u5897\u3084\
+    \u3057\u3066\u3044\u304F\u3002\n    */\n    ll x = 1, b = a, c = f - e;  // b\
+    \ ^ {mp^c} = 1\n    int pc = 1;\n    FOR(c) pc *= p;\n    int pe = 1;\n    FOR(e)\
+    \ pe *= p;\n    // \u5FC5\u8981\u306A\u3089\u3070\u539F\u59CB p \u4E57\u6839\u306B\
     \u95A2\u3059\u308B\u96E2\u6563\u5BFE\u6570\u554F\u984C\u306E\u30BB\u30C3\u30C8\
-    \u30A2\u30C3\u30D7\r\n    ll G = mod_pow(g, (mod - 1) / p, mod);\r\n    int M\
-    \ = 0;\r\n    HashMap<int> MP;\r\n    ll GM_inv = -1;\r\n    if (c) {\r\n    \
-    \  while (M * M < p) ++M;\r\n      MP.build(M);\r\n      ll Gpow = 1;\r\n    \
-    \  FOR(m, M) {\r\n        MP[Gpow] = m;\r\n        Gpow = bt.mul(Gpow, G);\r\n\
-    \      }\r\n      GM_inv = mod_pow(Gpow, mod - 2, mod);\r\n    }\r\n\r\n    while\
-    \ (c) {\r\n      /*\r\n      b^{mp^c} = 1 \u304C\u5206\u304B\u3063\u3066\u3044\
-    \u308B\u3002(b/x^{p^e}})^{mp^{c-1}} = 1 \u306B\u3057\u305F\u3044\u3002\r\n   \
-    \   x = g^{p^{f-c-e}*k} \u3068\u3057\u3066\u63A2\u3059\u3002\u539F\u59CB p \u4E57\
-    \u6839 B, G \u306B\u5BFE\u3059\u308B B = G^k \u306B\u5E30\u7740\u3002\r\n    \
-    \  */\r\n      ll B = mod_pow(b, m * pc / p, mod);\r\n      int k = [&](ll B)\
-    \ -> int {\r\n        FOR(m, M + 1) {\r\n          if (MP.count(B)) return m *\
-    \ M + MP[B];\r\n          B = bt.mul(B, GM_inv);\r\n        }\r\n        return\
-    \ -1;\r\n      }(B);\r\n      x = bt.mul(x, mod_pow(g, pf / pc / pe * k, mod));\r\
-    \n      ll exp = pf / pc * k % (mod - 1);\r\n      b = bt.mul(b, mod_pow(g, mod\
-    \ - 1 - exp, mod));\r\n      --c;\r\n      pc /= p;\r\n    }\r\n    int k = pe\
-    \ - mod_inv(m, pe);\r\n    k = (k * m + 1) / pe;\r\n    ll y = mod_pow(b, k, mod);\r\
-    \n    x = bt.mul(x, y);\r\n    return x;\r\n  };\r\n\r\n  auto pf = factor(k);\r\
-    \n  for (auto&& [p, e] : pf) a = solve_pp(p, e, a);\r\n  return a;\r\n}\r\n\r\n\
-    ll mod_kth_root_64(ll k, ll a, ll mod) {\r\n  assert(is_prime(mod) && 0 <= a &&\
-    \ a < mod);\r\n  if (k == 0) return (a == 1 ? 1 : -1);\r\n  if (a == 0) return\
-    \ 0;\r\n  if (mod == 2) return a;\r\n  k %= mod - 1;\r\n\r\n  ll g = gcd(k, mod\
-    \ - 1);\r\n  if (mod_pow_64(a, (mod - 1) / g, mod) != 1) return -1;\r\n\r\n  ll\
-    \ c = mod_inv(k / g, (mod - 1) / g);\r\n  a = mod_pow_64(a, c, mod);\r\n  k =\
-    \ i128(k) * c % (mod - 1);\r\n  if (k == 0) return 1;\r\n\r\n  g = primitive_root_64(mod);\r\
-    \n\r\n  auto solve_pp = [&](ll p, ll e, ll a) -> ll {\r\n    ll f = 0;\r\n   \
-    \ ll pf = 1;\r\n    while (((mod - 1) / pf) % p == 0) ++f, pf *= p;\r\n    ll\
-    \ m = (mod - 1) / pf;\r\n    /*\r\n    \u30FB\u4F4D\u6570 Qm \u306E\u5DE1\u56DE\
-    \u7FA4\r\n    \u30FBa \u306E p^e \u4E57\u6839\u3092\u3068\u308A\u305F\u3044\u3002\
-    \u6301\u3064\u3053\u3068\u306F\u5206\u304B\u3063\u3066\u3044\u308B\r\n    \u30FB\
-    a / x^{p^e} = b \u3092\u7DAD\u6301\u3059\u308B\u3002\u307E\u305A\u306F\u3001b\
-    \ \u304C p \u3067\u5272\u308C\u308B\u56DE\u6570\u3092\u5897\u3084\u3057\u3066\u3044\
-    \u304F\u3002\r\n    */\r\n    ll x = 1, b = a, c = f - e;  // b ^ {mp^c} = 1\r\
-    \n    ll pc = 1;\r\n    FOR(c) pc *= p;\r\n    ll pe = 1;\r\n    FOR(e) pe *=\
-    \ p;\r\n    // \u5FC5\u8981\u306A\u3089\u3070\u539F\u59CB p \u4E57\u6839\u306B\
-    \u95A2\u3059\u308B\u96E2\u6563\u5BFE\u6570\u554F\u984C\u306E\u30BB\u30C3\u30C8\
-    \u30A2\u30C3\u30D7\r\n    ll G = mod_pow_64(g, (mod - 1) / p, mod);\r\n    ll\
-    \ M = 0;\r\n    ll GM_inv = -1;\r\n    HashMap<ll> MP;\r\n    if (c) {\r\n   \
-    \   while (M * M < p) ++M;\r\n      MP.build(M);\r\n      ll Gpow = 1;\r\n   \
-    \   FOR(m, M) {\r\n        MP[Gpow] = m;\r\n        Gpow = i128(Gpow) * G % mod;\r\
-    \n      }\r\n      GM_inv = mod_pow_64(Gpow, mod - 2, mod);\r\n    }\r\n\r\n \
-    \   while (c) {\r\n      /*\r\n      b^{mp^c} = 1 \u304C\u5206\u304B\u3063\u3066\
-    \u3044\u308B\u3002(b/x^{p^e}})^{mp^{c-1}} = 1 \u306B\u3057\u305F\u3044\u3002\r\
-    \n      x = g^{p^{f-c-e}*k} \u3068\u3057\u3066\u63A2\u3059\u3002\u539F\u59CB p\
-    \ \u4E57\u6839 B, G \u306B\u5BFE\u3059\u308B B = G^k \u306B\u5E30\u7740\u3002\r\
-    \n      */\r\n      ll B = mod_pow_64(b, pc / p * m, mod);\r\n      ll k = [&](ll\
-    \ B) -> ll {\r\n        FOR(m, M + 1) {\r\n          if (MP.count(B)) return m\
-    \ * M + MP[B];\r\n          B = i128(B) * GM_inv % mod;\r\n        }\r\n     \
-    \   return -1;\r\n      }(B);\r\n      x = i128(x) * mod_pow_64(g, pf / pc / pe\
-    \ * k, mod) % mod;\r\n\r\n      ll exp = pf / pc * i128(k) % (mod - 1);\r\n  \
-    \    b = i128(b) * mod_pow_64(g, mod - 1 - exp, mod) % mod;\r\n      --c;\r\n\
-    \      pc /= p;\r\n    }\r\n    ll k = pe - mod_inv(m, pe);\r\n    k = (i128(k)\
-    \ * m + 1) / pe;\r\n    ll y = mod_pow_64(b, k, mod);\r\n    x = i128(x) * y %\
-    \ mod;\r\n    return x;\r\n  };\r\n\r\n  auto pf = factor(k);\r\n  for (auto&&\
-    \ [p, e] : pf) a = solve_pp(p, e, a);\r\n  return a;\r\n}\r\n#line 5 \"test/2_library_checker/number_theory/kth_root_mod.test.cpp\"\
+    \u30A2\u30C3\u30D7\n    ll G = mod_pow(g, (mod - 1) / p, mod);\n    int M = 0;\n\
+    \    HashMap<int> MP;\n    ll GM_inv = -1;\n    if (c) {\n      while (M * M <\
+    \ p) ++M;\n      MP.build(M);\n      ll Gpow = 1;\n      FOR(m, M) {\n       \
+    \ MP[Gpow] = m;\n        Gpow = bt.mul(Gpow, G);\n      }\n      GM_inv = mod_pow(Gpow,\
+    \ mod - 2, mod);\n    }\n\n    while (c) {\n      /*\n      b^{mp^c} = 1 \u304C\
+    \u5206\u304B\u3063\u3066\u3044\u308B\u3002(b/x^{p^e}})^{mp^{c-1}} = 1 \u306B\u3057\
+    \u305F\u3044\u3002\n      x = g^{p^{f-c-e}*k} \u3068\u3057\u3066\u63A2\u3059\u3002\
+    \u539F\u59CB p \u4E57\u6839 B, G \u306B\u5BFE\u3059\u308B B = G^k \u306B\u5E30\
+    \u7740\u3002\n      */\n      ll B = mod_pow(b, m * pc / p, mod);\n      int k\
+    \ = [&](ll B) -> int {\n        FOR(m, M + 1) {\n          if (MP.count(B)) return\
+    \ m * M + MP[B];\n          B = bt.mul(B, GM_inv);\n        }\n        return\
+    \ -1;\n      }(B);\n      x = bt.mul(x, mod_pow(g, pf / pc / pe * k, mod));\n\
+    \      ll exp = pf / pc * k % (mod - 1);\n      b = bt.mul(b, mod_pow(g, mod -\
+    \ 1 - exp, mod));\n      --c;\n      pc /= p;\n    }\n    int k = pe - mod_inv(m,\
+    \ pe);\n    k = (k * m + 1) / pe;\n    ll y = mod_pow(b, k, mod);\n    x = bt.mul(x,\
+    \ y);\n    return x;\n  };\n\n  auto pf = factor(k);\n  for (auto&& [p, e] : pf)\
+    \ a = solve_pp(p, e, a);\n  return a;\n}\n\nll mod_kth_root_64(ll k, ll a, ll\
+    \ mod) {\n  assert(is_prime(mod) && 0 <= a && a < mod);\n  if (k == 0) return\
+    \ (a == 1 ? 1 : -1);\n  if (a == 0) return 0;\n  if (mod == 2) return a;\n  k\
+    \ %= mod - 1;\n\n  ll g = gcd(k, mod - 1);\n  if (mod_pow_64(a, (mod - 1) / g,\
+    \ mod) != 1) return -1;\n\n  ll c = mod_inv(k / g, (mod - 1) / g);\n  a = mod_pow_64(a,\
+    \ c, mod);\n  k = i128(k) * c % (mod - 1);\n  if (k == 0) return 1;\n\n  g = primitive_root_64(mod);\n\
+    \n  auto solve_pp = [&](ll p, ll e, ll a) -> ll {\n    ll f = 0;\n    ll pf =\
+    \ 1;\n    while (((mod - 1) / pf) % p == 0) ++f, pf *= p;\n    ll m = (mod - 1)\
+    \ / pf;\n    /*\n    \u30FB\u4F4D\u6570 Qm \u306E\u5DE1\u56DE\u7FA4\n    \u30FB\
+    a \u306E p^e \u4E57\u6839\u3092\u3068\u308A\u305F\u3044\u3002\u6301\u3064\u3053\
+    \u3068\u306F\u5206\u304B\u3063\u3066\u3044\u308B\n    \u30FBa / x^{p^e} = b \u3092\
+    \u7DAD\u6301\u3059\u308B\u3002\u307E\u305A\u306F\u3001b \u304C p \u3067\u5272\u308C\
+    \u308B\u56DE\u6570\u3092\u5897\u3084\u3057\u3066\u3044\u304F\u3002\n    */\n \
+    \   ll x = 1, b = a, c = f - e;  // b ^ {mp^c} = 1\n    ll pc = 1;\n    FOR(c)\
+    \ pc *= p;\n    ll pe = 1;\n    FOR(e) pe *= p;\n    // \u5FC5\u8981\u306A\u3089\
+    \u3070\u539F\u59CB p \u4E57\u6839\u306B\u95A2\u3059\u308B\u96E2\u6563\u5BFE\u6570\
+    \u554F\u984C\u306E\u30BB\u30C3\u30C8\u30A2\u30C3\u30D7\n    ll G = mod_pow_64(g,\
+    \ (mod - 1) / p, mod);\n    ll M = 0;\n    ll GM_inv = -1;\n    HashMap<ll> MP;\n\
+    \    if (c) {\n      while (M * M < p) ++M;\n      MP.build(M);\n      ll Gpow\
+    \ = 1;\n      FOR(m, M) {\n        MP[Gpow] = m;\n        Gpow = i128(Gpow) *\
+    \ G % mod;\n      }\n      GM_inv = mod_pow_64(Gpow, mod - 2, mod);\n    }\n\n\
+    \    while (c) {\n      /*\n      b^{mp^c} = 1 \u304C\u5206\u304B\u3063\u3066\u3044\
+    \u308B\u3002(b/x^{p^e}})^{mp^{c-1}} = 1 \u306B\u3057\u305F\u3044\u3002\n     \
+    \ x = g^{p^{f-c-e}*k} \u3068\u3057\u3066\u63A2\u3059\u3002\u539F\u59CB p \u4E57\
+    \u6839 B, G \u306B\u5BFE\u3059\u308B B = G^k \u306B\u5E30\u7740\u3002\n      */\n\
+    \      ll B = mod_pow_64(b, pc / p * m, mod);\n      ll k = [&](ll B) -> ll {\n\
+    \        FOR(m, M + 1) {\n          if (MP.count(B)) return m * M + MP[B];\n \
+    \         B = i128(B) * GM_inv % mod;\n        }\n        return -1;\n      }(B);\n\
+    \      x = i128(x) * mod_pow_64(g, pf / pc / pe * k, mod) % mod;\n\n      ll exp\
+    \ = pf / pc * i128(k) % (mod - 1);\n      b = i128(b) * mod_pow_64(g, mod - 1\
+    \ - exp, mod) % mod;\n      --c;\n      pc /= p;\n    }\n    ll k = pe - mod_inv(m,\
+    \ pe);\n    k = (i128(k) * m + 1) / pe;\n    ll y = mod_pow_64(b, k, mod);\n \
+    \   x = i128(x) * y % mod;\n    return x;\n  };\n\n  auto pf = factor(k);\n  for\
+    \ (auto&& [p, e] : pf) a = solve_pp(p, e, a);\n  return a;\n}\n#line 5 \"test/2_library_checker/number_theory/kth_root_mod.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(k, y, p);\r\n  ll x = mod_kth_root(k, y % p, p);\r\
     \n  print(x);\r\n}\r\n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\
     \r\n  return 0;\r\n}\r\n"
@@ -586,7 +584,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/kth_root_mod.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/kth_root_mod.test.cpp

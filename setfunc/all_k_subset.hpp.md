@@ -10,12 +10,13 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"setfunc/all_k_subset.hpp\"\n\n#ifdef _MSC_VER\n#include\
-    \ <intrin.h>\n#else\n#include <x86intrin.h>\n#endif\n\ntemplate <typename UINT>\n\
-    struct all_k_subset {\n  static_assert(is_unsigned<UINT>::value);\n  struct iter\
-    \ {\n    const UINT n, k, s;\n    UINT t;\n    iter(UINT s, UINT k)\n        :\
-    \ n(UINT(1) << popcnt(s)), k(k), s(s), t(full_mask(k)) {}\n    __attribute__((target(\"\
+    links:
+    - https://github.com/maspypy/library/blob/main/setfunc/all_k_subset.hpp
+  bundledCode: "#line 1 \"setfunc/all_k_subset.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/setfunc/all_k_subset.hpp\n\
+    \n#ifdef _MSC_VER\n#include <intrin.h>\n#else\n#include <x86intrin.h>\n#endif\n\
+    \ntemplate <typename UINT>\nstruct all_k_subset {\n  static_assert(is_unsigned<UINT>::value);\n\
+    \  struct iter {\n    const UINT n, k, s;\n    UINT t;\n    iter(UINT s, UINT\
+    \ k)\n        : n(UINT(1) << popcnt(s)), k(k), s(s), t(full_mask(k)) {}\n    __attribute__((target(\"\
     bmi2\"))) auto operator*() const {\n      return _pdep_u64(t, s);\n    }\n   \
     \ auto operator++() {\n      if (k == 0) {\n        t = UINT(-1);\n      } else\
     \ {\n        UINT y = t + (-t & t);\n        t = y | ((y ^ t) >> lowbit(t << 2));\n\
@@ -25,7 +26,8 @@ data:
     \ }\n};\n\n// all_nCk\u95A2\u6570\u306E\u5B9F\u88C5\ntemplate <typename UINT>\n\
     auto all_nCk(int n, int k) {\n  return all_k_subset<UINT>(full_mask(n), k);\n\
     }\n"
-  code: "\n#ifdef _MSC_VER\n#include <intrin.h>\n#else\n#include <x86intrin.h>\n#endif\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/setfunc/all_k_subset.hpp\n\
+    \n#ifdef _MSC_VER\n#include <intrin.h>\n#else\n#include <x86intrin.h>\n#endif\n\
     \ntemplate <typename UINT>\nstruct all_k_subset {\n  static_assert(is_unsigned<UINT>::value);\n\
     \  struct iter {\n    const UINT n, k, s;\n    UINT t;\n    iter(UINT s, UINT\
     \ k)\n        : n(UINT(1) << popcnt(s)), k(k), s(s), t(full_mask(k)) {}\n    __attribute__((target(\"\
@@ -41,7 +43,7 @@ data:
   isVerificationFile: false
   path: setfunc/all_k_subset.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/ITP2_11_D.test.cpp

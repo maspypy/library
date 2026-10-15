@@ -30,20 +30,21 @@ data:
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/range_closest_pair.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n/*\n\
-    library: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
-    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
-    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
-    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
-    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
-    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
-    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
-    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
-    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
-    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
-    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n//\
+    \ Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\nlibrary:\
+    \ https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
+    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
+    Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\"\
+    )\n#endif\n#endif\n#include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
+    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
+    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class>\nconstexpr\
+    \ bool dependent_false = false;\n\ntemplate <class T>\nconstexpr T infty = []\
+    \ {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\");\n  return\
+    \ T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
     template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
     \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
     using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
@@ -145,16 +146,19 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 1 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\n\
+    u64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 ->\
-    \ Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\u305F\
-    \u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
-    \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
-    \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"geo/range_closest_pair_query.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/geo/range_closest_pair_query.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
     \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
     \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
     \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
@@ -175,37 +179,39 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 1 \"ds/segtree/dual_segtree.hpp\"\n\ntemplate <typename Monoid>\n\
-    struct Dual_SegTree {\n  using MA = Monoid;\n  using A = typename MA::value_type;\n\
-    \  int n, log, size;\n  vc<A> laz;\n  vc<bool> has_laz;\n\n  Dual_SegTree() :\
-    \ Dual_SegTree(0) {}\n  Dual_SegTree(int n) {\n    build(n, [&](int i) -> A {\
-    \ return MA::id(); });\n  }\n  template <typename F>\n  Dual_SegTree(int n, F\
-    \ f) {\n    build(n, f);\n  }\n\n  template <typename F>\n  void build(int m,\
-    \ F f) {\n    n = m;\n    log = 0;\n    while ((1 << log) < n) ++log;\n    size\
-    \ = 1 << log;\n    laz.assign(size << 1, MA::id());\n    FOR(i, n) laz[size +\
-    \ i] = f(i);\n    has_laz.assign(size, false);\n  }\n  void build(int n) {\n \
-    \   build(n, [&](int i) -> A { return MA::id(); });\n  }\n\n  A get(int p) {\n\
-    \    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--)\
-    \ push(p >> i);\n    return laz[p];\n  }\n\n  vc<A> get_all() {\n    FOR(i, size)\
-    \ push(i);\n    return {laz.begin() + size, laz.begin() + size + n};\n  }\n\n\
-    \  void set(int p, A x) {\n    get(p);\n    laz[p + size] = x;\n  }\n\n  void\
-    \ apply(int l, int r, const A& a) {\n    assert(0 <= l && l <= r && r <= n);\n\
-    \    if (l == r) return;\n    l += size, r += size;\n    if (!MA::commute) {\n\
-    \      for (int i = log; i >= 1; i--) {\n        if (((l >> i) << i) != l) push(l\
-    \ >> i);\n        if (((r >> i) << i) != r) push((r - 1) >> i);\n      }\n   \
-    \ }\n    while (l < r) {\n      if (l & 1) all_apply(l++, a);\n      if (r & 1)\
-    \ all_apply(--r, a);\n      l >>= 1, r >>= 1;\n    }\n  }\n\n private:\n  void\
-    \ push(int k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = false;\n    all_apply(2\
-    \ * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k] = MA::id();\n  }\n \
-    \ void all_apply(int k, A a) {\n    laz[k] = MA::op(laz[k], a);\n    if (k < size)\
-    \ has_laz[k] = true;\n  }\n};\n#line 1 \"alg/monoid/min.hpp\"\n// require: all\
-    \ values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct Monoid_Min {\n\
-    \  using X = E;\n  using value_type = X;\n  static constexpr X op(const X &x,\
-    \ const X &y) noexcept { return min(x, y); }\n  static constexpr X id() { return\
-    \ infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 4 \"geo/range_closest_pair_query.hpp\"\
-    \n\n// \u70B9\u7FA4 {p_i | i in [l, r)} \u306B\u5BFE\u3059\u308B\u6700\u8FD1\u70B9\
-    \u5BFE\u306E\u8A08\u7B97\u3092\u884C\u3046\u30AF\u30A8\u30EA\n// O(KNlogKN + QlogN)\n\
-    // https://qoj.ac/problem/5463\n// https://codeforces.com/gym/104172/attachments/download/18933/Hong_Kong_Tutorial.pdf\n\
+    \  }\n};\n#line 1 \"ds/segtree/dual_segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/dual_segtree.hpp\n\
+    \ntemplate <typename Monoid>\nstruct Dual_SegTree {\n  using MA = Monoid;\n  using\
+    \ A = typename MA::value_type;\n  int n, log, size;\n  vc<A> laz;\n  vc<bool>\
+    \ has_laz;\n\n  Dual_SegTree() : Dual_SegTree(0) {}\n  Dual_SegTree(int n) {\n\
+    \    build(n, [&](int i) -> A { return MA::id(); });\n  }\n  template <typename\
+    \ F>\n  Dual_SegTree(int n, F f) {\n    build(n, f);\n  }\n\n  template <typename\
+    \ F>\n  void build(int m, F f) {\n    n = m;\n    log = 0;\n    while ((1 << log)\
+    \ < n) ++log;\n    size = 1 << log;\n    laz.assign(size << 1, MA::id());\n  \
+    \  FOR(i, n) laz[size + i] = f(i);\n    has_laz.assign(size, false);\n  }\n  void\
+    \ build(int n) {\n    build(n, [&](int i) -> A { return MA::id(); });\n  }\n\n\
+    \  A get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int\
+    \ i = log; i >= 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n  vc<A> get_all()\
+    \ {\n    FOR(i, size) push(i);\n    return {laz.begin() + size, laz.begin() +\
+    \ size + n};\n  }\n\n  void set(int p, A x) {\n    get(p);\n    laz[p + size]\
+    \ = x;\n  }\n\n  void apply(int l, int r, const A& a) {\n    assert(0 <= l &&\
+    \ l <= r && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n   \
+    \ if (!MA::commute) {\n      for (int i = log; i >= 1; i--) {\n        if (((l\
+    \ >> i) << i) != l) push(l >> i);\n        if (((r >> i) << i) != r) push((r -\
+    \ 1) >> i);\n      }\n    }\n    while (l < r) {\n      if (l & 1) all_apply(l++,\
+    \ a);\n      if (r & 1) all_apply(--r, a);\n      l >>= 1, r >>= 1;\n    }\n \
+    \ }\n\n private:\n  void push(int k) {\n    if (!has_laz[k]) return;\n    has_laz[k]\
+    \ = false;\n    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k]\
+    \ = MA::id();\n  }\n  void all_apply(int k, A a) {\n    laz[k] = MA::op(laz[k],\
+    \ a);\n    if (k < size) has_laz[k] = true;\n  }\n};\n#line 1 \"alg/monoid/min.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n\
+    // require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
+    \ Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
+    \ op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
+    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
+    \ 5 \"geo/range_closest_pair_query.hpp\"\n\n// \u70B9\u7FA4 {p_i | i in [l, r)}\
+    \ \u306B\u5BFE\u3059\u308B\u6700\u8FD1\u70B9\u5BFE\u306E\u8A08\u7B97\u3092\u884C\
+    \u3046\u30AF\u30A8\u30EA\n// O(KNlogKN + QlogN)\n// https://qoj.ac/problem/5463\n\
+    // https://codeforces.com/gym/104172/attachments/download/18933/Hong_Kong_Tutorial.pdf\n\
     // \u70B9\u7FA4\u304C 1 \u6B21\u5143\uFF1Ahttps://codeforces.com/problemset/problem/765/F\n\
     struct Range_Closest_Pair_Query {\n  /*\n  \u30FBR \u3092\u5897\u3084\u3057\u306A\
     \u304C\u3089\u3001L \u3054\u3068\u306E\u7B54\u3092\u7BA1\u7406\u3059\u308B\n \
@@ -307,7 +313,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_closest_pair.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/range_closest_pair.test.cpp

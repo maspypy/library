@@ -22,36 +22,39 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
-    \ SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using\
-    \ value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int\
-    \ n) { build(n); }\n  template <typename F>\n  SegTree(int n, F f) {\n    build(n,\
-    \ f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n\
-    \    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const vc<X>&\
-    \ v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 0;\n    while ((1\
-    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::id());\n\
-    \    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n\
-    \  X get(int i) const { return dat[size + i]; }\n  vc<X> get_all() const { return\
-    \ {dat.begin() + size, dat.begin() + size + n}; }\n\n  void update(int i) { dat[i]\
-    \ = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n  void set(int i, const X& x) {\n\
-    \    assert(0 <= i && i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n\
-    \  }\n\n  void multiply(int i, const X& x) {\n    assert(0 <= i && i < n);\n \
-    \   i += size;\n    dat[i] = Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n\
-    \  }\n\n  X prod(int L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n\
-    \    X vl = Monoid::id(), vr = Monoid::id();\n    L += size, R += size;\n    while\
-    \ (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1)\
-    \ vr = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl,\
-    \ vr);\n  }\n\n  vc<int> prod_ids(int L, int R) const {\n    assert(0 <= L &&\
-    \ L <= R && R <= n);\n    vc<int> I, J;\n    L += size, R += size;\n    while\
-    \ (L < R) {\n      if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n      L\
-    \ >>= 1, R >>= 1;\n    }\n    reverse(all(J));\n    concat(I, J);\n    return\
-    \ I;\n  }\n\n  X prod_all() const { return dat[1]; }\n\n  template <class F>\n\
-    \  int max_right(F check, int L) const {\n    assert(0 <= L && L <= n && check(Monoid::id()));\n\
-    \    if (L == n) return n;\n    L += size;\n    X sm = Monoid::id();\n    do {\n\
-    \      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
-    \ {\n        while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
+    links:
+    - https://github.com/maspypy/library/blob/main/ds/segtree/range_assignment_segtree.hpp
+  bundledCode: "#line 1 \"ds/segtree/range_assignment_segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/range_assignment_segtree.hpp\n\
+    #line 1 \"ds/segtree/segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/segtree.hpp\n\
+    \ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X =\
+    \ typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log,\
+    \ size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
+    \ F>\n  SegTree(int n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v)\
+    \ { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return\
+    \ MX::id(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int\
+    \ i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
+    \ F f) {\n    n = m, log = 0;\n    while ((1 << log) < n) ++log;\n    size = 1\
+    \ << log;\n    dat.assign(size << 1, MX::id());\n    FOR(i, n) dat[size + i] =\
+    \ f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  X get(int i) const { return\
+    \ dat[size + i]; }\n  vc<X> get_all() const { return {dat.begin() + size, dat.begin()\
+    \ + size + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2\
+    \ * i + 1]); }\n  void set(int i, const X& x) {\n    assert(0 <= i && i < n);\n\
+    \    dat[i += size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int\
+    \ i, const X& x) {\n    assert(0 <= i && i < n);\n    i += size;\n    dat[i] =\
+    \ Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n  X prod(int\
+    \ L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n    X vl = Monoid::id(),\
+    \ vr = Monoid::id();\n    L += size, R += size;\n    while (L < R) {\n      if\
+    \ (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R],\
+    \ vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n\
+    \  vc<int> prod_ids(int L, int R) const {\n    assert(0 <= L && L <= R && R <=\
+    \ n);\n    vc<int> I, J;\n    L += size, R += size;\n    while (L < R) {\n   \
+    \   if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n      L >>= 1, R >>= 1;\n\
+    \    }\n    reverse(all(J));\n    concat(I, J);\n    return I;\n  }\n\n  X prod_all()\
+    \ const { return dat[1]; }\n\n  template <class F>\n  int max_right(F check, int\
+    \ L) const {\n    assert(0 <= L && L <= n && check(Monoid::id()));\n    if (L\
+    \ == n) return n;\n    L += size;\n    X sm = Monoid::id();\n    do {\n      while\
+    \ (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L]))) {\n       \
+    \ while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
     \ dat[L]))) {\n            sm = Monoid::op(sm, dat[L++]);\n          }\n     \
     \   }\n        return L - size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n\
     \    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class F>\n  int\
@@ -78,7 +81,8 @@ data:
     \    int last = -1;\n      FOR(k, m) {\n        int p = I[k] >> 1;\n        if\
     \ (p == last) continue;\n        update(p);\n        I[nxt++] = p;\n        last\
     \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 1 \"alg/monoid_pow.hpp\"\
-    \n\n// chat gpt\ntemplate <typename U, typename Arg1, typename Arg2>\nstruct has_power_method\
+    \n// Source: https://github.com/maspypy/library/blob/main/alg/monoid_pow.hpp\n\
+    \n// chat gpt\ntemplate <typename U, typename Arg1, typename Arg2>\nstruct has_power_method\
     \ {\n private:\n  // \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n\
     \  template <typename V, typename A1, typename A2>\n  static auto check(int)\n\
     \      -> decltype(std::declval<V>().power(std::declval<A1>(),\n             \
@@ -92,40 +96,41 @@ data:
     \ >= 0);\n    if (exp == 0) return Monoid::id();\n    if (exp == 1) return x;\n\
     \    X res = Monoid::id();\n    while (exp) {\n      if (exp & 1) res = Monoid::op(res,\
     \ x);\n      x = Monoid::op(x, x);\n      exp >>= 1;\n    }\n    return res;\n\
-    \  }\n}\n#line 1 \"ds/fastset.hpp\"\n// 64-ary tree\n// space: (N/63) * u64\n\
-    struct FastSet {\n  static constexpr u32 B = 64;\n  int n = 0, log = 0;\n  vvc<u64>\
-    \ seg;\n\n  FastSet() {}\n  FastSet(int n) { build(n); }\n\n  int size() { return\
-    \ n; }\n\n  void fill_one() {\n    int cur = n;\n    for (auto& vs : seg) {\n\
-    \      int p = cur / B, q = cur % B;\n      FOR(i, p) vs[i] = -1ull;\n      if\
-    \ (q) vs[p] = full_mask(q);\n      cur = (cur + B - 1) / B;\n    }\n  }\n\n  template\
-    \ <typename F>\n  FastSet(int n, F f) {\n    build(n, f);\n  }\n\n  void build(int\
-    \ m) {\n    seg.clear();\n    n = m;\n    do {\n      seg.push_back(vc<u64>((m\
-    \ + B - 1) / B));\n      m = (m + B - 1) / B;\n    } while (m > 1);\n    log =\
-    \ len(seg);\n  }\n  template <typename F>\n  void build(int n, F f) {\n    build(n);\n\
-    \    FOR(i, n) { seg[0][i / B] |= u64(bool(f(i))) << (i % B); }\n    FOR(h, log\
-    \ - 1) {\n      FOR(i, len(seg[h])) {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i]))\
-    \ << (i % B);\n      }\n    }\n  }\n\n  bool operator[](int i) const {\n    assert(0\
-    \ <= i && i < n);\n    return seg[0][i / B] >> (i % B) & 1;\n  }\n  void insert(int\
-    \ i) {\n    assert(0 <= i && i < n);\n    for (int h = 0; h < log; h++) {\n  \
-    \    u64& x = seg[h][i / B];\n      u64 mask = u64(1) << (i % B);\n      if (x\
-    \ & mask) return;\n      x |= mask;\n      i /= B;\n    }\n  }\n  void add(int\
-    \ i) { insert(i); }\n  void erase(int i) {\n    assert(0 <= i && i < n);\n   \
-    \ for (int h = 0; h < log; h++) {\n      u64& x = seg[h][i / B];\n      u64 mask\
-    \ = u64(1) << (i % B);\n      if (!(x & mask)) return;\n      x ^= mask;\n   \
-    \   if (x) return;\n      i /= B;\n    }\n  }\n  void remove(int i) { erase(i);\
-    \ }\n\n  // min[x,n) or n\n  int next(int i) {\n    assert(i <= n);\n    chmax(i,\
-    \ 0);\n    for (int h = 0; h < log; h++) {\n      if (i / B == seg[h].size())\
-    \ break;\n      u64 d = seg[h][i / B] >> (i % B);\n      if (!d) {\n        i\
-    \ = i / B + 1;\n        continue;\n      }\n      i += lowbit(d);\n      for (int\
-    \ g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i / B]);\n\
-    \      }\n      return i;\n    }\n    return n;\n  }\n\n  // max [0,x], or -1\n\
-    \  int prev(int i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n    for\
-    \ (int h = 0; h < log; h++) {\n      if (i == -1) break;\n      u64 d = seg[h][i\
-    \ / B] << (63 - i % B);\n      if (!d) {\n        i = i / B - 1;\n        continue;\n\
-    \      }\n      i -= __builtin_clzll(d);\n      for (int g = h - 1; g >= 0; g--)\
-    \ {\n        i *= B;\n        i += topbit(seg[g][i / B]);\n      }\n      return\
-    \ i;\n    }\n    return -1;\n  }\n\n  bool any(int l, int r) {\n    assert(0 <=\
-    \ l && l <= r && r <= n);\n    return next(l) < r;\n  }\n\n  // [l, r). erase=true\
+    \  }\n}\n#line 1 \"ds/fastset.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/fastset.hpp\n\
+    // 64-ary tree\n// space: (N/63) * u64\nstruct FastSet {\n  static constexpr u32\
+    \ B = 64;\n  int n = 0, log = 0;\n  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int\
+    \ n) { build(n); }\n\n  int size() { return n; }\n\n  void fill_one() {\n    int\
+    \ cur = n;\n    for (auto& vs : seg) {\n      int p = cur / B, q = cur % B;\n\
+    \      FOR(i, p) vs[i] = -1ull;\n      if (q) vs[p] = full_mask(q);\n      cur\
+    \ = (cur + B - 1) / B;\n    }\n  }\n\n  template <typename F>\n  FastSet(int n,\
+    \ F f) {\n    build(n, f);\n  }\n\n  void build(int m) {\n    seg.clear();\n \
+    \   n = m;\n    do {\n      seg.push_back(vc<u64>((m + B - 1) / B));\n      m\
+    \ = (m + B - 1) / B;\n    } while (m > 1);\n    log = len(seg);\n  }\n  template\
+    \ <typename F>\n  void build(int n, F f) {\n    build(n);\n    FOR(i, n) { seg[0][i\
+    \ / B] |= u64(bool(f(i))) << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h]))\
+    \ {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\n      }\n\
+    \    }\n  }\n\n  bool operator[](int i) const {\n    assert(0 <= i && i < n);\n\
+    \    return seg[0][i / B] >> (i % B) & 1;\n  }\n  void insert(int i) {\n    assert(0\
+    \ <= i && i < n);\n    for (int h = 0; h < log; h++) {\n      u64& x = seg[h][i\
+    \ / B];\n      u64 mask = u64(1) << (i % B);\n      if (x & mask) return;\n  \
+    \    x |= mask;\n      i /= B;\n    }\n  }\n  void add(int i) { insert(i); }\n\
+    \  void erase(int i) {\n    assert(0 <= i && i < n);\n    for (int h = 0; h <\
+    \ log; h++) {\n      u64& x = seg[h][i / B];\n      u64 mask = u64(1) << (i %\
+    \ B);\n      if (!(x & mask)) return;\n      x ^= mask;\n      if (x) return;\n\
+    \      i /= B;\n    }\n  }\n  void remove(int i) { erase(i); }\n\n  // min[x,n)\
+    \ or n\n  int next(int i) {\n    assert(i <= n);\n    chmax(i, 0);\n    for (int\
+    \ h = 0; h < log; h++) {\n      if (i / B == seg[h].size()) break;\n      u64\
+    \ d = seg[h][i / B] >> (i % B);\n      if (!d) {\n        i = i / B + 1;\n   \
+    \     continue;\n      }\n      i += lowbit(d);\n      for (int g = h - 1; g >=\
+    \ 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i / B]);\n      }\n \
+    \     return i;\n    }\n    return n;\n  }\n\n  // max [0,x], or -1\n  int prev(int\
+    \ i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n    for (int h = 0;\
+    \ h < log; h++) {\n      if (i == -1) break;\n      u64 d = seg[h][i / B] << (63\
+    \ - i % B);\n      if (!d) {\n        i = i / B - 1;\n        continue;\n    \
+    \  }\n      i -= __builtin_clzll(d);\n      for (int g = h - 1; g >= 0; g--) {\n\
+    \        i *= B;\n        i += topbit(seg[g][i / B]);\n      }\n      return i;\n\
+    \    }\n    return -1;\n  }\n\n  bool any(int l, int r) {\n    assert(0 <= l &&\
+    \ l <= r && r <= n);\n    return next(l) < r;\n  }\n\n  // [l, r). erase=true\
     \ \u306E\u3068\u304D\u3001callback \u5185\u304B\u3089 this \u3092\u5909\u66F4\u3057\
     \u3066\u306F\u3044\u3051\u306A\u3044\u3002\n  template <typename F>\n  void enumerate(int\
     \ l, int r, F f, bool erase = false) {\n    assert(0 <= l && l <= r && r <= n);\n\
@@ -144,7 +149,7 @@ data:
     \  // seg[0][w] \u304C 0 \u306B\u306A\u3063\u305F\u5F8C\u306B\u547C\u3076\u3002\
     \n  void propagate_empty_word(int i) {\n    for (int h = 1; h < log; ++h) {\n\
     \      u64& y = seg[h][i / B];\n      u64 mask = u64(1) << (i % B);\n      y ^=\
-    \ mask;\n      if (y) break;\n      i /= B;\n    }\n  }\n};\n#line 4 \"ds/segtree/range_assignment_segtree.hpp\"\
+    \ mask;\n      if (y) break;\n      i /= B;\n    }\n  }\n};\n#line 5 \"ds/segtree/range_assignment_segtree.hpp\"\
     \n\ntemplate <typename Monoid>\nstruct Range_Assignment_SegTree {\n  using MX\
     \ = Monoid;\n  using X = typename MX::value_type;\n  int n;\n  SegTree<MX> seg;\n\
     \  FastSet cut;\n  vc<X> dat;\n\n  Range_Assignment_SegTree() {}\n  Range_Assignment_SegTree(int\
@@ -174,7 +179,8 @@ data:
     \    });\n  }\n\n  vc<X> get_all() {\n    vc<X> ANS(n);\n    int p = 0;\n    while\
     \ (p < n) {\n      int q = cut.next(p + 1);\n      FOR(i, p, q) ANS[i] = dat[p];\n\
     \      p = q;\n    }\n    return ANS;\n  }\n};\n"
-  code: "#include \"ds/segtree/segtree.hpp\"\n#include \"alg/monoid_pow.hpp\"\n#include\
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/segtree/range_assignment_segtree.hpp\n\
+    #include \"ds/segtree/segtree.hpp\"\n#include \"alg/monoid_pow.hpp\"\n#include\
     \ \"ds/fastset.hpp\"\n\ntemplate <typename Monoid>\nstruct Range_Assignment_SegTree\
     \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  int n;\n  SegTree<MX>\
     \ seg;\n  FastSet cut;\n  vc<X> dat;\n\n  Range_Assignment_SegTree() {}\n  Range_Assignment_SegTree(int\
@@ -211,7 +217,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/range_assignment_segtree.hpp
   requiredBy: []
-  timestamp: '2026-10-13 08:18:55+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/range_assign.test.cpp

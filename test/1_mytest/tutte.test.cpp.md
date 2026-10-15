@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
   - icon: ':question:'
@@ -45,31 +45,31 @@ data:
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/tutte.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
-    \n#line 1 \"my_template.hpp\"\n/*\nlibrary: https://github.com/maspypy/library\n\
-    */\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
-    #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#if\
-    \ !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#endif\n\
-    #include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace std;\n\nusing\
-    \ ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\n\
-    using u64 = uint64_t;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
-    using f128 = __float128;\n\ntemplate <class>\nconstexpr bool dependent_false =\
-    \ false;\n\ntemplate <class T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>,\
-    \ \"infty<T> is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int\
-    \ infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
-    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
-    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
-    \ infty<i128>;\ntemplate <>\nconstexpr long double infty<long double> = infty<i128>;\n\
-    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing pq_max = priority_queue<T>;\ntemplate <class T>\nusing\
-    \ pq_min = priority_queue<T, vector<T>, greater<T>>;\n\n#define vv(type, name,\
-    \ h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n#define\
-    \ vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name( \\\n \
-    \     h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \n#line 1 \"my_template.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n\
+    /*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
+    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
+    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
+    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
+    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
+    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
+    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
+    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
+    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
+    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
+    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
+    \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
+    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq_max = priority_queue<T>;\ntemplate <class T>\nusing pq_min = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR1_R(a)\
@@ -160,12 +160,15 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/tutte.test.cpp\"\
-    \n\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \n\n#line 1 \"graph/maximum_matching_size.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/maximum_matching_size.hpp\n\
+    #line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/modint61.hpp\"\n\nstruct modint61\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/modint61.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/mod/modint61.hpp\n\nstruct modint61\
     \ {\n  static constexpr u64 mod = (1ULL << 61) - 1;\n  u64 val;\n  constexpr modint61()\
     \ : val(0ULL) {}\n  constexpr modint61(u32 x) : val(x) {}\n  constexpr modint61(u64\
     \ x) : val(x % mod) {}\n  constexpr modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod))\
@@ -193,44 +196,47 @@ data:
     \ mul *= mul, n >>= 1;\n    }\n    return ret;\n  }\n};\n\n#ifdef FASTIO\nvoid\
     \ rd(modint61 &x) {\n  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < modint61::mod);\n\
     }\n\nvoid wt(modint61 x) { fastio::wt(x.val); }\n#endif\n#line 1 \"linalg/matrix_rank.hpp\"\
-    \ntemplate <typename T>\nint matrix_rank(vc<vc<T>> a, int n = -1, int m = -1)\
-    \ {\n  if (n == 0) return 0;\n  if (n == -1) { n = len(a), m = len(a[0]); }\n\
-    \  assert(n == len(a) && m == len(a[0]));\n  int rk = 0;\n  FOR(j, m) {\n    if\
-    \ (rk == n) break;\n    if (a[rk][j] == 0) {\n      FOR(i, rk + 1, n) if (a[i][j]\
-    \ != T(0)) {\n        swap(a[rk], a[i]);\n        break;\n      }\n    }\n   \
-    \ if (a[rk][j] == 0) continue;\n    T c = T(1) / a[rk][j];\n    FOR(k, j, m) a[rk][k]\
-    \ *= c;\n    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n      FOR3(k, j, m) {\
-    \ a[i][k] -= a[rk][k] * c; }\n    }\n    ++rk;\n  }\n  return rk;\n}\n#line 4\
-    \ \"graph/maximum_matching_size.hpp\"\n\ntemplate <typename GT>\nint maximum_matching_size(GT&\
-    \ G) {\n  static_assert(!GT::is_directed);\n  using mint = modint61;\n  int N\
-    \ = G.N;\n  vv(mint, tutte, N, N);\n  for (auto&& e: G.edges) {\n    mint x =\
-    \ RNG(mint::get_mod());\n    int i = e.frm, j = e.to;\n    tutte[i][j] += x;\n\
-    \    tutte[j][i] -= x;\n  }\n  return matrix_rank(tutte, N, N) / 2;\n}\n#line\
-    \ 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap\
-    \ {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067\
-    \ ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n\
-    \    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k),\
-    \ val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\
-    \u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\
-    \u3068.\n  void clear() {\n    used.assign(len(used), 0);\n    cap = (mask + 1)\
-    \ / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\n  int index(const\
-    \ u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] && key[i] != k; i =\
-    \ (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const u64&\
-    \ k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap ==\
-    \ 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n\
-    \    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value) {\n   \
-    \ int i = index(k);\n    return (used[i] ? val[i] : default_value);\n  }\n\n \
-    \ bool count(const u64& k) {\n    int i = index(k);\n    return used[i] && key[i]\
-    \ == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \n// Source: https://github.com/maspypy/library/blob/main/linalg/matrix_rank.hpp\n\
+    template <typename T>\nint matrix_rank(vc<vc<T>> a, int n = -1, int m = -1) {\n\
+    \  if (n == 0) return 0;\n  if (n == -1) { n = len(a), m = len(a[0]); }\n  assert(n\
+    \ == len(a) && m == len(a[0]));\n  int rk = 0;\n  FOR(j, m) {\n    if (rk == n)\
+    \ break;\n    if (a[rk][j] == 0) {\n      FOR(i, rk + 1, n) if (a[i][j] != T(0))\
+    \ {\n        swap(a[rk], a[i]);\n        break;\n      }\n    }\n    if (a[rk][j]\
+    \ == 0) continue;\n    T c = T(1) / a[rk][j];\n    FOR(k, j, m) a[rk][k] *= c;\n\
+    \    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n      FOR3(k, j, m) { a[i][k]\
+    \ -= a[rk][k] * c; }\n    }\n    ++rk;\n  }\n  return rk;\n}\n#line 5 \"graph/maximum_matching_size.hpp\"\
+    \n\ntemplate <typename GT>\nint maximum_matching_size(GT& G) {\n  static_assert(!GT::is_directed);\n\
+    \  using mint = modint61;\n  int N = G.N;\n  vv(mint, tutte, N, N);\n  for (auto&&\
+    \ e: G.edges) {\n    mint x = RNG(mint::get_mod());\n    int i = e.frm, j = e.to;\n\
+    \    tutte[i][j] += x;\n    tutte[j][i] -= x;\n  }\n  return matrix_rank(tutte,\
+    \ N, N) / 2;\n}\n#line 1 \"flow/bipartite_matching.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/flow/bipartite_matching.hpp\n\
+    #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -306,32 +312,34 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 1 \"graph/bipartite_vertex_coloring.hpp\"\n\n#line 1 \"\
-    ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n\
-    \  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n\
-    \  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n \
-    \   while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k),\
-    \ val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\
-    \u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\
-    \u3068.\n  void clear() {\n    used.assign(len(used), 0);\n    cap = (mask + 1)\
-    \ / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\n  int index(const\
-    \ u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] && key[i] != k; i =\
-    \ (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const u64&\
-    \ k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap ==\
-    \ 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n\
-    \    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value) {\n   \
-    \ int i = index(k);\n    return (used[i] ? val[i] : default_value);\n  }\n\n \
-    \ bool count(const u64& k) {\n    int i = index(k);\n    return used[i] && key[i]\
-    \ == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \   }\n  }\n};\n#line 1 \"graph/bipartite_vertex_coloring.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/bipartite_vertex_coloring.hpp\n\
+    \n#line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -407,9 +415,9 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 1 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n\
-    \  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) {\
-    \ build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
+    \   }\n  }\n};\n#line 1 \"ds/unionfind/unionfind.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\n\
+    \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
+    \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
     \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
     \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
     \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
@@ -417,7 +425,7 @@ data:
     \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
     \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
     \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
-    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 4 \"graph/bipartite_vertex_coloring.hpp\"\
+    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 5 \"graph/bipartite_vertex_coloring.hpp\"\
     \n\n// \u73FE\u5728\u306E\u8FBA\u91CD\u307F\u5076\u5947\u3067\u4E8C\u90E8\u30B0\
     \u30E9\u30D5\u9802\u70B9\u5F69\u8272, \u4E8C\u90E8\u3067\u306A\u304B\u3063\u305F\
     \u5834\u5408\u306B\u306F empty\n// weight_one=true: \u8FBA\u91CD\u307F\u3092 1\
@@ -430,31 +438,34 @@ data:
     \ n) if (uf[v] == v && color[uf[v]] < 0) {\n    color[uf[v]] = 0;\n    color[uf[v\
     \ + n]] = 1;\n  }\n  FOR(v, n) color[v] = color[uf[v]];\n  color.resize(n);\n\
     \  FOR(v, n) if (uf[v] == uf[v + n]) return {};\n  return color;\n}\n#line 1 \"\
-    ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n\
-    \  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n\
-    \  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n \
-    \   while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k),\
-    \ val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\
-    \u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\
-    \u3068.\n  void clear() {\n    used.assign(len(used), 0);\n    cap = (mask + 1)\
-    \ / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\n  int index(const\
-    \ u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] && key[i] != k; i =\
-    \ (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const u64&\
-    \ k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap ==\
-    \ 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n\
-    \    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value) {\n   \
-    \ int i = index(k);\n    return (used[i] ? val[i] : default_value);\n  }\n\n \
-    \ bool count(const u64& k) {\n    int i = index(k);\n    return used[i] && key[i]\
-    \ == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    graph/strongly_connected_component.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/strongly_connected_component.hpp\n\
+    #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -530,7 +541,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 2 \"graph/strongly_connected_component.hpp\"\n\ntemplate\
+    \   }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\n\ntemplate\
     \ <typename GT>\npair<int, vc<int>> strongly_connected_component(GT& G) {\n  static_assert(GT::is_directed);\n\
     \  assert(G.is_prepared());\n  int N = G.N;\n  int C = 0;\n  vc<int> comp(N),\
     \ low(N), ord(N, -1), path;\n  int now = 0;\n\n  auto dfs = [&](auto& dfs, int\
@@ -545,83 +556,78 @@ data:
     \  Graph<int, 1> DAG(C);\n  vvc<int> edges(C);\n  for (auto&& e: G.edges) {\n\
     \    int x = comp[e.frm], y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n\
     \  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c,\
-    \ to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line 4 \"flow/bipartite_matching.hpp\"\
-    \n\r\ntemplate <typename GT>\r\nstruct Bipartite_Matching {\r\n  int N;\r\n  GT&\
-    \ G;\r\n  vc<int> color;\r\n  vc<int> dist, match;\r\n  vc<int> vis;\r\n\r\n \
-    \ Bipartite_Matching(GT& G) : N(G.N), G(G), dist(G.N, -1), match(G.N, -1) {\r\n\
-    \    color = bipartite_vertex_coloring(G);\r\n    if (N > 0) assert(!color.empty());\r\
-    \n    while (1) {\r\n      bfs();\r\n      vis.assign(N, false);\r\n      int\
-    \ flow = 0;\r\n      FOR(v, N) if (!color[v] && match[v] == -1 && dfs(v))++ flow;\r\
-    \n      if (!flow) break;\r\n    }\r\n  }\r\n\r\n  Bipartite_Matching(GT& G, vc<int>\
-    \ color)\r\n      : N(G.N), G(G), color(color), dist(G.N, -1), match(G.N, -1)\
-    \ {\r\n    while (1) {\r\n      bfs();\r\n      vis.assign(N, false);\r\n    \
-    \  int flow = 0;\r\n      FOR(v, N) if (!color[v] && match[v] == -1 && dfs(v))++\
-    \ flow;\r\n      if (!flow) break;\r\n    }\r\n  }\r\n\r\n  void bfs() {\r\n \
-    \   dist.assign(N, -1);\r\n    queue<int> que;\r\n    FOR(v, N) if (!color[v]\
-    \ && match[v] == -1) que.emplace(v), dist[v] = 0;\r\n    while (!que.empty())\
-    \ {\r\n      int v = que.front();\r\n      que.pop();\r\n      for (auto&& e :\
-    \ G[v]) {\r\n        dist[e.to] = 0;\r\n        int w = match[e.to];\r\n     \
-    \   if (w != -1 && dist[w] == -1) dist[w] = dist[v] + 1, que.emplace(w);\r\n \
-    \     }\r\n    }\r\n  }\r\n\r\n  bool dfs(int v) {\r\n    vis[v] = 1;\r\n    for\
-    \ (auto&& e : G[v]) {\r\n      int w = match[e.to];\r\n      if (w == -1 || (!vis[w]\
-    \ && dist[w] == dist[v] + 1 && dfs(w))) {\r\n        match[e.to] = v, match[v]\
-    \ = e.to;\r\n        return true;\r\n      }\r\n    }\r\n    return false;\r\n\
-    \  }\r\n\r\n  vc<pair<int, int>> matching() {\r\n    vc<pair<int, int>> res;\r\
-    \n    FOR(v, N) if (v < match[v]) res.eb(v, match[v]);\r\n    return res;\r\n\
-    \  }\r\n\r\n  vc<int> vertex_cover() {\r\n    vc<int> res;\r\n    FOR(v, N) if\
-    \ (color[v] ^ (dist[v] == -1)) { res.eb(v); }\r\n    return res;\r\n  }\r\n\r\n\
-    \  vc<int> independent_set() {\r\n    vc<int> res;\r\n    FOR(v, N) if (!(color[v]\
-    \ ^ (dist[v] == -1))) { res.eb(v); }\r\n    return res;\r\n  }\r\n\r\n  vc<int>\
-    \ edge_cover() {\r\n    vc<bool> done(N);\r\n    vc<int> res;\r\n    for (auto&&\
-    \ e : G.edges) {\r\n      if (done[e.frm] || done[e.to]) continue;\r\n      if\
-    \ (match[e.frm] == e.to) {\r\n        res.eb(e.id);\r\n        done[e.frm] = done[e.to]\
-    \ = 1;\r\n      }\r\n    }\r\n    for (auto&& e : G.edges) {\r\n      if (!done[e.frm])\
-    \ {\r\n        res.eb(e.id);\r\n        done[e.frm] = 1;\r\n      }\r\n      if\
-    \ (!done[e.to]) {\r\n        res.eb(e.id);\r\n        done[e.to] = 1;\r\n    \
-    \  }\r\n    }\r\n    sort(all(res));\r\n    return res;\r\n  }\r\n\r\n  /* Dulmage\u2013\
-    Mendelsohn decomposition\r\n  https://en.wikipedia.org/wiki/Dulmage%E2%80%93Mendelsohn_decomposition\r\
-    \n  http://www.misojiro.t.u-tokyo.ac.jp/~murota/lect-ouyousurigaku/dm050410.pdf\r\
-    \n  https://hitonanode.github.io/cplib-cpp/graph/dulmage_mendelsohn_decomposition.hpp.html\r\
-    \n  - \u6700\u5927\u30DE\u30C3\u30C1\u30F3\u30B0\u3068\u3057\u3066\u3042\u308A\
-    \u3046\u308B iff \u540C\u3058 W \u3092\u6301\u3064\r\n  - \u8FBA uv \u304C\u5FC5\
-    \u305A\u4F7F\u308F\u308C\u308B\uFF1A\u540C\u3058 W \u3092\u6301\u3064\u8FBA\u304C\
-    \u552F\u4E00\r\n  - \u8FBA uv \u306F\u4F7F\u308F\u308C\u308B\u3053\u3068\u306F\
-    \u306A\u3044\uFF1AW[l] ! =W[r]\r\n  - color=0 \u304B\u3089 1 \u3078\u306E\u8FBA\
-    \uFF1AW[l] <= W[r]\r\n  - color=0 \u306E\u70B9\u304C\u5FC5\u305A\u4F7F\u308F\u308C\
-    \u308B\uFF1AW=1,2,...,K\r\n  - color=1 \u306E\u70B9\u304C\u5FC5\u305A\u4F7F\u308F\
-    \u308C\u308B\uFF1AW=0,1,...,K-1\r\n  */\r\n  pair<int, vc<int>> DM_decomposition()\
-    \ {\r\n    // \u975E\u98FD\u548C\u70B9\u304B\u3089\u306E\u63A2\u7D22\r\n    vc<int>\
-    \ W(N, -1);\r\n    vc<int> que;\r\n    auto add = [&](int v, int x) -> void {\r\
-    \n      if (W[v] == -1) {\r\n        W[v] = x;\r\n        que.eb(v);\r\n     \
-    \ }\r\n    };\r\n    FOR(v, N) if (match[v] == -1 && color[v] == 0) add(v, 0);\r\
-    \n    FOR(v, N) if (match[v] == -1 && color[v] == 1) add(v, infty<int>);\r\n \
-    \   while (len(que)) {\r\n      auto v = POP(que);\r\n      if (match[v] != -1)\
-    \ add(match[v], W[v]);\r\n      if (color[v] == 0 && W[v] == 0) {\r\n        for\
-    \ (auto&& e : G[v]) {\r\n          add(e.to, W[v]);\r\n        }\r\n      }\r\n\
-    \      if (color[v] == 1 && W[v] == infty<int>) {\r\n        for (auto&& e : G[v])\
-    \ {\r\n          add(e.to, W[v]);\r\n        }\r\n      }\r\n    }\r\n    // \u6B8B\
-    \u3063\u305F\u70B9\u304B\u3089\u306A\u308B\u30B0\u30E9\u30D5\u3092\u4F5C\u3063\
-    \u3066\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\r\n    vc<int> V;\r\n    FOR(v,\
-    \ N) if (W[v] == -1) V.eb(v);\r\n    int n = len(V);\r\n    Graph<bool, 1> DG(n);\r\
-    \n    FOR(i, n) {\r\n      int v = V[i];\r\n      if (match[v] != -1) {\r\n  \
-    \      int j = LB(V, match[v]);\r\n        DG.add(i, j);\r\n      }\r\n      if\
-    \ (color[v] == 0) {\r\n        for (auto&& e : G[v]) {\r\n          if (W[e.to]\
-    \ != -1 || e.to == match[v]) continue;\r\n          int j = LB(V, e.to);\r\n \
-    \         DG.add(i, j);\r\n        }\r\n      }\r\n    }\r\n    DG.build();\r\n\
-    \    auto [K, comp] = strongly_connected_component(DG);\r\n    K += 1;\r\n   \
-    \ // \u7B54\r\n    FOR(i, n) { W[V[i]] = 1 + comp[i]; }\r\n    FOR(v, N) if (W[v]\
-    \ == infty<int>) W[v] = K;\r\n    return {K, W};\r\n  }\r\n\r\n#ifdef FASTIO\r\
-    \n  void debug() {\r\n    print(\"match\", match);\r\n    print(\"min vertex covor\"\
-    , vertex_cover());\r\n    print(\"max indep set\", independent_set());\r\n   \
-    \ print(\"min edge cover\", edge_cover());\r\n  }\r\n#endif\r\n};\r\n#line 6 \"\
-    test/1_mytest/tutte.test.cpp\"\n\nvoid test_bipartite() {\n  FOR(N, 1, 50) {\n\
-    \    FOR(M, RNG(0, N * (N - 1) / 2 + 1)) {\n      Graph<bool, 0> G(N);\n     \
-    \ FOR(M) {\n        int a = RNG(0, N);\n        int b = RNG(0, N);\n        if\
-    \ (a % 2 == b % 2) continue;\n        G.add(a, b);\n      }\n      G.build();\n\
-    \      Bipartite_Matching<decltype(G)> X(G);\n      int a = len(X.matching());\n\
-    \      int b = maximum_matching_size(G);\n      assert(a == b);\n    }\n  }\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
-    ;\n}\n\nsigned main() {\n  test_bipartite();\n  solve();\n\n  return 0;\n}\n"
+    \ to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line 5 \"flow/bipartite_matching.hpp\"\
+    \n\ntemplate <typename GT>\nstruct Bipartite_Matching {\n  int N;\n  GT& G;\n\
+    \  vc<int> color;\n  vc<int> dist, match;\n  vc<int> vis;\n\n  Bipartite_Matching(GT&\
+    \ G) : N(G.N), G(G), dist(G.N, -1), match(G.N, -1) {\n    color = bipartite_vertex_coloring(G);\n\
+    \    if (N > 0) assert(!color.empty());\n    while (1) {\n      bfs();\n     \
+    \ vis.assign(N, false);\n      int flow = 0;\n      FOR(v, N) if (!color[v] &&\
+    \ match[v] == -1 && dfs(v))++ flow;\n      if (!flow) break;\n    }\n  }\n\n \
+    \ Bipartite_Matching(GT& G, vc<int> color)\n      : N(G.N), G(G), color(color),\
+    \ dist(G.N, -1), match(G.N, -1) {\n    while (1) {\n      bfs();\n      vis.assign(N,\
+    \ false);\n      int flow = 0;\n      FOR(v, N) if (!color[v] && match[v] == -1\
+    \ && dfs(v))++ flow;\n      if (!flow) break;\n    }\n  }\n\n  void bfs() {\n\
+    \    dist.assign(N, -1);\n    queue<int> que;\n    FOR(v, N) if (!color[v] &&\
+    \ match[v] == -1) que.emplace(v), dist[v] = 0;\n    while (!que.empty()) {\n \
+    \     int v = que.front();\n      que.pop();\n      for (auto&& e : G[v]) {\n\
+    \        dist[e.to] = 0;\n        int w = match[e.to];\n        if (w != -1 &&\
+    \ dist[w] == -1) dist[w] = dist[v] + 1, que.emplace(w);\n      }\n    }\n  }\n\
+    \n  bool dfs(int v) {\n    vis[v] = 1;\n    for (auto&& e : G[v]) {\n      int\
+    \ w = match[e.to];\n      if (w == -1 || (!vis[w] && dist[w] == dist[v] + 1 &&\
+    \ dfs(w))) {\n        match[e.to] = v, match[v] = e.to;\n        return true;\n\
+    \      }\n    }\n    return false;\n  }\n\n  vc<pair<int, int>> matching() {\n\
+    \    vc<pair<int, int>> res;\n    FOR(v, N) if (v < match[v]) res.eb(v, match[v]);\n\
+    \    return res;\n  }\n\n  vc<int> vertex_cover() {\n    vc<int> res;\n    FOR(v,\
+    \ N) if (color[v] ^ (dist[v] == -1)) { res.eb(v); }\n    return res;\n  }\n\n\
+    \  vc<int> independent_set() {\n    vc<int> res;\n    FOR(v, N) if (!(color[v]\
+    \ ^ (dist[v] == -1))) { res.eb(v); }\n    return res;\n  }\n\n  vc<int> edge_cover()\
+    \ {\n    vc<bool> done(N);\n    vc<int> res;\n    for (auto&& e : G.edges) {\n\
+    \      if (done[e.frm] || done[e.to]) continue;\n      if (match[e.frm] == e.to)\
+    \ {\n        res.eb(e.id);\n        done[e.frm] = done[e.to] = 1;\n      }\n \
+    \   }\n    for (auto&& e : G.edges) {\n      if (!done[e.frm]) {\n        res.eb(e.id);\n\
+    \        done[e.frm] = 1;\n      }\n      if (!done[e.to]) {\n        res.eb(e.id);\n\
+    \        done[e.to] = 1;\n      }\n    }\n    sort(all(res));\n    return res;\n\
+    \  }\n\n  /* Dulmage\u2013Mendelsohn decomposition\n  https://en.wikipedia.org/wiki/Dulmage%E2%80%93Mendelsohn_decomposition\n\
+    \  http://www.misojiro.t.u-tokyo.ac.jp/~murota/lect-ouyousurigaku/dm050410.pdf\n\
+    \  https://hitonanode.github.io/cplib-cpp/graph/dulmage_mendelsohn_decomposition.hpp.html\n\
+    \  - \u6700\u5927\u30DE\u30C3\u30C1\u30F3\u30B0\u3068\u3057\u3066\u3042\u308A\u3046\
+    \u308B iff \u540C\u3058 W \u3092\u6301\u3064\n  - \u8FBA uv \u304C\u5FC5\u305A\
+    \u4F7F\u308F\u308C\u308B\uFF1A\u540C\u3058 W \u3092\u6301\u3064\u8FBA\u304C\u552F\
+    \u4E00\n  - \u8FBA uv \u306F\u4F7F\u308F\u308C\u308B\u3053\u3068\u306F\u306A\u3044\
+    \uFF1AW[l] ! =W[r]\n  - color=0 \u304B\u3089 1 \u3078\u306E\u8FBA\uFF1AW[l] <=\
+    \ W[r]\n  - color=0 \u306E\u70B9\u304C\u5FC5\u305A\u4F7F\u308F\u308C\u308B\uFF1A\
+    W=1,2,...,K\n  - color=1 \u306E\u70B9\u304C\u5FC5\u305A\u4F7F\u308F\u308C\u308B\
+    \uFF1AW=0,1,...,K-1\n  */\n  pair<int, vc<int>> DM_decomposition() {\n    // \u975E\
+    \u98FD\u548C\u70B9\u304B\u3089\u306E\u63A2\u7D22\n    vc<int> W(N, -1);\n    vc<int>\
+    \ que;\n    auto add = [&](int v, int x) -> void {\n      if (W[v] == -1) {\n\
+    \        W[v] = x;\n        que.eb(v);\n      }\n    };\n    FOR(v, N) if (match[v]\
+    \ == -1 && color[v] == 0) add(v, 0);\n    FOR(v, N) if (match[v] == -1 && color[v]\
+    \ == 1) add(v, infty<int>);\n    while (len(que)) {\n      auto v = POP(que);\n\
+    \      if (match[v] != -1) add(match[v], W[v]);\n      if (color[v] == 0 && W[v]\
+    \ == 0) {\n        for (auto&& e : G[v]) {\n          add(e.to, W[v]);\n     \
+    \   }\n      }\n      if (color[v] == 1 && W[v] == infty<int>) {\n        for\
+    \ (auto&& e : G[v]) {\n          add(e.to, W[v]);\n        }\n      }\n    }\n\
+    \    // \u6B8B\u3063\u305F\u70B9\u304B\u3089\u306A\u308B\u30B0\u30E9\u30D5\u3092\
+    \u4F5C\u3063\u3066\u5F37\u9023\u7D50\u6210\u5206\u5206\u89E3\n    vc<int> V;\n\
+    \    FOR(v, N) if (W[v] == -1) V.eb(v);\n    int n = len(V);\n    Graph<bool,\
+    \ 1> DG(n);\n    FOR(i, n) {\n      int v = V[i];\n      if (match[v] != -1) {\n\
+    \        int j = LB(V, match[v]);\n        DG.add(i, j);\n      }\n      if (color[v]\
+    \ == 0) {\n        for (auto&& e : G[v]) {\n          if (W[e.to] != -1 || e.to\
+    \ == match[v]) continue;\n          int j = LB(V, e.to);\n          DG.add(i,\
+    \ j);\n        }\n      }\n    }\n    DG.build();\n    auto [K, comp] = strongly_connected_component(DG);\n\
+    \    K += 1;\n    // \u7B54\n    FOR(i, n) { W[V[i]] = 1 + comp[i]; }\n    FOR(v,\
+    \ N) if (W[v] == infty<int>) W[v] = K;\n    return {K, W};\n  }\n\n#ifdef FASTIO\n\
+    \  void debug() {\n    print(\"match\", match);\n    print(\"min vertex covor\"\
+    , vertex_cover());\n    print(\"max indep set\", independent_set());\n    print(\"\
+    min edge cover\", edge_cover());\n  }\n#endif\n};\n#line 6 \"test/1_mytest/tutte.test.cpp\"\
+    \n\nvoid test_bipartite() {\n  FOR(N, 1, 50) {\n    FOR(M, RNG(0, N * (N - 1)\
+    \ / 2 + 1)) {\n      Graph<bool, 0> G(N);\n      FOR(M) {\n        int a = RNG(0,\
+    \ N);\n        int b = RNG(0, N);\n        if (a % 2 == b % 2) continue;\n   \
+    \     G.add(a, b);\n      }\n      G.build();\n      Bipartite_Matching<decltype(G)>\
+    \ X(G);\n      int a = len(X.matching());\n      int b = maximum_matching_size(G);\n\
+    \      assert(a == b);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
+    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test_bipartite();\n\
+    \  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"graph/maximum_matching_size.hpp\"\n#include \"flow/bipartite_matching.hpp\"\
     \n\nvoid test_bipartite() {\n  FOR(N, 1, 50) {\n    FOR(M, RNG(0, N * (N - 1)\
@@ -647,7 +653,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/tutte.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/tutte.test.cpp

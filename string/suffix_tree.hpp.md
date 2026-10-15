@@ -45,16 +45,19 @@ data:
   attributes:
     links:
     - https://codeforces.com/problemset/problem/1098/F
+    - https://github.com/maspypy/library/blob/main/string/suffix_tree.hpp
     - https://twitter.com/maspy_stars/status/1565901414236205057?s=20&t=S2Tu6ayozHcakxai8dmh4g
-  bundledCode: "#line 1 \"string/suffix_tree.hpp\"\n\n#line 1 \"ds/index_compression.hpp\"\
-    \ntemplate <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  int mi,\
-    \ ma;\n  vc<T> dat;\n  vc<T> build(vc<int> X) {\n    mi = 0, ma = -1;\n    if\
-    \ (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n  \
-    \  for (auto& x : X) dat[x - mi + 1]++;\n    FOR(i, len(dat) - 1) dat[i + 1] +=\
-    \ dat[i];\n    for (auto& x : X) {\n      x = dat[x - mi]++;\n    }\n    FOR_R(i,\
-    \ 1, len(dat)) dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return X;\n  }\n  int\
-    \ size() const { return len(dat); }\n  int val_to_idx(T x) const { return dat[clamp<ll>(x\
-    \ - mi, 0, ma - mi + 1)]; }\n  int idx_to_val(int i) const { return dat[i]; }\n\
+  bundledCode: "#line 1 \"string/suffix_tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/suffix_tree.hpp\n\
+    \n#line 1 \"string/suffix_array.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/suffix_array.hpp\n\
+    #line 1 \"ds/index_compression.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/index_compression.hpp\n\
+    template <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  int mi, ma;\n\
+    \  vc<T> dat;\n  vc<T> build(vc<int> X) {\n    mi = 0, ma = -1;\n    if (!X.empty())\
+    \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
+    \ : X) dat[x - mi + 1]++;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n  \
+    \  for (auto& x : X) {\n      x = dat[x - mi]++;\n    }\n    FOR_R(i, 1, len(dat))\
+    \ dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return X;\n  }\n  int size() const\
+    \ { return len(dat); }\n  int val_to_idx(T x) const { return dat[clamp<ll>(x -\
+    \ mi, 0, ma - mi + 1)]; }\n  int idx_to_val(int i) const { return dat[i]; }\n\
     };\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL {\n  int mi,\
     \ ma;\n  vc<T> dat;\n  vc<T> build(vc<T> X) {\n    mi = 0, ma = -1;\n    if (!X.empty())\
     \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
@@ -86,18 +89,19 @@ data:
     \u304B\u3048\u3059\ntemplate <typename T, bool SAME, bool SMALL>\nusing Index_Compression\
     \ =\n    typename std::conditional<SAME, Index_Compression_SAME<T, SMALL>,\n \
     \                             Index_Compression_DISTINCT<T, SMALL>>::type;\n#line\
-    \ 1 \"alg/monoid/min.hpp\"\n// require: all values x satisfy x <= infty<E>\ntemplate\
-    \ <typename E>\nstruct Monoid_Min {\n  using X = E;\n  using value_type = X;\n\
-    \  static constexpr X op(const X &x, const X &y) noexcept { return min(x, y);\
-    \ }\n  static constexpr X id() { return infty<E>; }\n  static constexpr bool commute\
-    \ = true;\n};\n#line 1 \"ds/sparse_table/sparse_table.hpp\"\n\n// \u51AA\u7B49\
-    \u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\
-    \u3002disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\ntemplate <class\
-    \ Monoid>\nstruct Sparse_Table {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
-    \  int n, log;\n  vvc<X> dat;\n\n  Sparse_Table() {}\n  Sparse_Table(int n) {\
-    \ build(n); }\n  template <typename F>\n  Sparse_Table(int n, F f) {\n    build(n,\
-    \ f);\n  }\n  Sparse_Table(const vc<X>& v) { build(v); }\n\n  void build(int m)\
-    \ {\n    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const\
+    \ 1 \"alg/monoid/min.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n\
+    // require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
+    \ Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
+    \ op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
+    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
+    \ 1 \"ds/sparse_table/sparse_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/sparse_table/sparse_table.hpp\n\
+    \n// \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\
+    \u4EEE\u5B9A\u3002disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\ntemplate\
+    \ <class Monoid>\nstruct Sparse_Table {\n  using MX = Monoid;\n  using X = typename\
+    \ MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Sparse_Table() {}\n  Sparse_Table(int\
+    \ n) { build(n); }\n  template <typename F>\n  Sparse_Table(int n, F f) {\n  \
+    \  build(n, f);\n  }\n  Sparse_Table(const vc<X>& v) { build(v); }\n\n  void build(int\
+    \ m) {\n    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const\
     \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
     \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
     \ << log) < n) ++log;\n    dat.resize(log);\n    dat[0].resize(n);\n    FOR(i,\
@@ -115,35 +119,36 @@ data:
     \ check(MX::id()));\n    if (R == 0) return 0;\n    int ok = R, ng = -1;\n   \
     \ while (ng + 1 < ok) {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k,\
     \ R));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n\
-    \  }\n};\n#line 1 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
-    \ SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using\
-    \ value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int\
-    \ n) { build(n); }\n  template <typename F>\n  SegTree(int n, F f) {\n    build(n,\
-    \ f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n\
-    \    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const vc<X>&\
-    \ v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 0;\n    while ((1\
-    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::id());\n\
-    \    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n\
-    \  X get(int i) const { return dat[size + i]; }\n  vc<X> get_all() const { return\
-    \ {dat.begin() + size, dat.begin() + size + n}; }\n\n  void update(int i) { dat[i]\
-    \ = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n  void set(int i, const X& x) {\n\
-    \    assert(0 <= i && i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n\
-    \  }\n\n  void multiply(int i, const X& x) {\n    assert(0 <= i && i < n);\n \
-    \   i += size;\n    dat[i] = Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n\
-    \  }\n\n  X prod(int L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n\
-    \    X vl = Monoid::id(), vr = Monoid::id();\n    L += size, R += size;\n    while\
-    \ (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1)\
-    \ vr = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl,\
-    \ vr);\n  }\n\n  vc<int> prod_ids(int L, int R) const {\n    assert(0 <= L &&\
-    \ L <= R && R <= n);\n    vc<int> I, J;\n    L += size, R += size;\n    while\
-    \ (L < R) {\n      if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n      L\
-    \ >>= 1, R >>= 1;\n    }\n    reverse(all(J));\n    concat(I, J);\n    return\
-    \ I;\n  }\n\n  X prod_all() const { return dat[1]; }\n\n  template <class F>\n\
-    \  int max_right(F check, int L) const {\n    assert(0 <= L && L <= n && check(Monoid::id()));\n\
-    \    if (L == n) return n;\n    L += size;\n    X sm = Monoid::id();\n    do {\n\
-    \      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
-    \ {\n        while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
+    \  }\n};\n#line 1 \"ds/segtree/segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/segtree.hpp\n\
+    \ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X =\
+    \ typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log,\
+    \ size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
+    \ F>\n  SegTree(int n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v)\
+    \ { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return\
+    \ MX::id(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int\
+    \ i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
+    \ F f) {\n    n = m, log = 0;\n    while ((1 << log) < n) ++log;\n    size = 1\
+    \ << log;\n    dat.assign(size << 1, MX::id());\n    FOR(i, n) dat[size + i] =\
+    \ f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  X get(int i) const { return\
+    \ dat[size + i]; }\n  vc<X> get_all() const { return {dat.begin() + size, dat.begin()\
+    \ + size + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2\
+    \ * i + 1]); }\n  void set(int i, const X& x) {\n    assert(0 <= i && i < n);\n\
+    \    dat[i += size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int\
+    \ i, const X& x) {\n    assert(0 <= i && i < n);\n    i += size;\n    dat[i] =\
+    \ Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n  X prod(int\
+    \ L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n    X vl = Monoid::id(),\
+    \ vr = Monoid::id();\n    L += size, R += size;\n    while (L < R) {\n      if\
+    \ (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R],\
+    \ vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n\
+    \  vc<int> prod_ids(int L, int R) const {\n    assert(0 <= L && L <= R && R <=\
+    \ n);\n    vc<int> I, J;\n    L += size, R += size;\n    while (L < R) {\n   \
+    \   if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n      L >>= 1, R >>= 1;\n\
+    \    }\n    reverse(all(J));\n    concat(I, J);\n    return I;\n  }\n\n  X prod_all()\
+    \ const { return dat[1]; }\n\n  template <class F>\n  int max_right(F check, int\
+    \ L) const {\n    assert(0 <= L && L <= n && check(Monoid::id()));\n    if (L\
+    \ == n) return n;\n    L += size;\n    X sm = Monoid::id();\n    do {\n      while\
+    \ (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L]))) {\n       \
+    \ while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
     \ dat[L]))) {\n            sm = Monoid::op(sm, dat[L++]);\n          }\n     \
     \   }\n        return L - size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n\
     \    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class F>\n  int\
@@ -169,18 +174,20 @@ data:
     \    }\n\n    int m = len(I);\n    while (I[0] > 1) {\n      int nxt = 0;\n  \
     \    int last = -1;\n      FOR(k, m) {\n        int p = I[k] >> 1;\n        if\
     \ (p == last) continue;\n        update(p);\n        I[nxt++] = p;\n        last\
-    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 1 \"ds/sparse_table/sparse_table.hpp\"\
-    \n\n// \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\
-    \u3092\u4EEE\u5B9A\u3002disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\
-    \ntemplate <class Monoid>\nstruct Sparse_Table {\n  using MX = Monoid;\n  using\
-    \ X = typename MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Sparse_Table()\
-    \ {}\n  Sparse_Table(int n) { build(n); }\n  template <typename F>\n  Sparse_Table(int\
-    \ n, F f) {\n    build(n, f);\n  }\n  Sparse_Table(const vc<X>& v) { build(v);\
-    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::id(); });\n\
-    \  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return\
-    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n =\
-    \ m, log = 1;\n    while ((1 << log) < n) ++log;\n    dat.resize(log);\n    dat[0].resize(n);\n\
-    \    FOR(i, n) dat[0][i] = f(i);\n\n    FOR(i, log - 1) {\n      dat[i + 1].resize(len(dat[i])\
+    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 1 \"ds/static_range_product.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/ds/static_range_product.hpp\n\
+    #line 1 \"ds/sparse_table/sparse_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/sparse_table/sparse_table.hpp\n\
+    \n// \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\
+    \u4EEE\u5B9A\u3002disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\ntemplate\
+    \ <class Monoid>\nstruct Sparse_Table {\n  using MX = Monoid;\n  using X = typename\
+    \ MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Sparse_Table() {}\n  Sparse_Table(int\
+    \ n) { build(n); }\n  template <typename F>\n  Sparse_Table(int n, F f) {\n  \
+    \  build(n, f);\n  }\n  Sparse_Table(const vc<X>& v) { build(v); }\n\n  void build(int\
+    \ m) {\n    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const\
+    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
+    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
+    \ << log) < n) ++log;\n    dat.resize(log);\n    dat[0].resize(n);\n    FOR(i,\
+    \ n) dat[0][i] = f(i);\n\n    FOR(i, log - 1) {\n      dat[i + 1].resize(len(dat[i])\
     \ - (1 << i));\n      FOR(j, len(dat[i]) - (1 << i)) {\n        dat[i + 1][j]\
     \ = MX::op(dat[i][j], dat[i][j + (1 << i)]);\n      }\n    }\n  }\n\n  X prod(int\
     \ L, int R) const {\n    if (L == R) return MX::id();\n    if (R == L + 1) return\
@@ -194,15 +201,15 @@ data:
     \ check(MX::id()));\n    if (R == 0) return 0;\n    int ok = R, ng = -1;\n   \
     \ while (ng + 1 < ok) {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k,\
     \ R));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n\
-    \  }\n};\n#line 1 \"ds/sparse_table/disjoint_sparse_table.hpp\"\n\ntemplate <class\
-    \ Monoid>\nstruct Disjoint_Sparse_Table {\n  using MX = Monoid;\n  using X = typename\
-    \ MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Disjoint_Sparse_Table() {}\n\
-    \  Disjoint_Sparse_Table(int n) { build(n); }\n  template <typename F>\n  Disjoint_Sparse_Table(int\
-    \ n, F f) {\n    build(n, f);\n  }\n  Disjoint_Sparse_Table(const vc<X>& v) {\
-    \ build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::id();\
-    \ });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X\
-    \ { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
-    \    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    dat.resize(log);\n\
+    \  }\n};\n#line 1 \"ds/sparse_table/disjoint_sparse_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/sparse_table/disjoint_sparse_table.hpp\n\
+    \ntemplate <class Monoid>\nstruct Disjoint_Sparse_Table {\n  using MX = Monoid;\n\
+    \  using X = typename MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Disjoint_Sparse_Table()\
+    \ {}\n  Disjoint_Sparse_Table(int n) { build(n); }\n  template <typename F>\n\
+    \  Disjoint_Sparse_Table(int n, F f) {\n    build(n, f);\n  }\n  Disjoint_Sparse_Table(const\
+    \ vc<X>& v) { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) ->\
+    \ X { return MX::id(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v),\
+    \ [&](int i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    dat.resize(log);\n\
     \    dat[0].reserve(n);\n    FOR(i, n) dat[0].eb(f(i));\n    FOR(i, 1, log) {\n\
     \      auto& v = dat[i];\n      v = dat[0];\n      int b = 1 << i;\n      for\
     \ (int m = b; m <= n; m += 2 * b) {\n        int L = m - b, R = min(n, m + b);\n\
@@ -219,7 +226,7 @@ data:
     \ check(MX::id()));\n    if (R == 0) return 0;\n    int ok = R, ng = -1;\n   \
     \ while (ng + 1 < ok) {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k,\
     \ R));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n\
-    \  }\n};\n#line 3 \"ds/static_range_product.hpp\"\n\n/*\n\u53C2\u8003\uFF1Ahttps://judge.yosupo.jp/submission/106668\n\
+    \  }\n};\n#line 4 \"ds/static_range_product.hpp\"\n\n/*\n\u53C2\u8003\uFF1Ahttps://judge.yosupo.jp/submission/106668\n\
     \u9577\u3055 2^LOG \u306E\u30D6\u30ED\u30C3\u30AF\u306B\u5206\u3051\u308B\uFF0E\
     \u30D6\u30ED\u30C3\u30AF\u5185\u306E prefix, suffix \u3092\u6301\u3064\uFF0E\n\
     \u30D6\u30ED\u30C3\u30AF\u7A4D\u306E\u5217\u3092 ST(DST) \u3067\u6301\u3064\uFF0E\
@@ -252,7 +259,7 @@ data:
     \    if (R == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok)\
     \ {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if\
     \ (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n#line\
-    \ 6 \"string/suffix_array.hpp\"\n\n// \u8F9E\u66F8\u9806 i \u756A\u76EE\u306E\
+    \ 7 \"string/suffix_array.hpp\"\n\n// \u8F9E\u66F8\u9806 i \u756A\u76EE\u306E\
     \ suffix \u304C j \u6587\u5B57\u76EE\u59CB\u307E\u308A\u3067\u3042\u308B\u3068\
     \u304D\u3001\n// SA[i] = j, ISA[j] = i\n// |S|>0 \u3092\u524D\u63D0\uFF08\u305D\
     \u3046\u3067\u306A\u3044\u5834\u5408 dummy \u6587\u5B57\u3092\u8FFD\u52A0\u3057\
@@ -323,7 +330,8 @@ data:
     \        k = 0;\n        continue;\n      }\n      int j = SA[ISA[i] + 1];\n \
     \     while (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]]\
     \ = k;\n    }\n    LCP.resize(n - 1);\n  }\n};\n#line 1 \"seq/cartesian_tree.hpp\"\
-    \n/*\n\u8F9E\u66F8\u9806\u3067\u9AD8\u3055\u3092 unique \u3057\u3066\u3001\u6728\
+    \n// Source: https://github.com/maspypy/library/blob/main/seq/cartesian_tree.hpp\n\
+    /*\n\u8F9E\u66F8\u9806\u3067\u9AD8\u3055\u3092 unique \u3057\u3066\u3001\u6728\
     \u306B\u3057\u3066\u3044\u308B\u3002\n\u6975\u5927\u9577\u65B9\u5F62\u30A2\u30EB\
     \u30B4\u30EA\u30BA\u30E0\u3067\u7DDA\u5F62\u6642\u9593\u69CB\u7BC9\u3002\n*/\n\
     template <typename T, bool IS_MIN>\nstruct CartesianTree {\n  int n;\n  vc<T>&\
@@ -348,11 +356,13 @@ data:
     \  }\n\n  ll count_subrectangle(bool baseline) {\n    assert(IS_MIN);\n    ll\
     \ res = 0;\n    FOR(i, n) {\n      auto [l, r, h] = maximum_rectangle(i);\n  \
     \    ll x = (baseline ? h : ll(h) * (h + 1) / 2);\n      res += x * (i - l + 1)\
-    \ * (r - i);\n    }\n    return res;\n  }\n};\n#line 1 \"ds/hashmap.hpp\"\n\n\
-    // u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\
-    \u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
-    \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
-    \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ * (r - i);\n    }\n    return res;\n  }\n};\n#line 1 \"graph/base.hpp\"\n//\
+    \ Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n#line 1\
+    \ \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
     \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
     \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
     \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
@@ -373,7 +383,7 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -449,40 +459,41 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 1 \"ds/fastset.hpp\"\n// 64-ary tree\n// space: (N/63) *\
-    \ u64\nstruct FastSet {\n  static constexpr u32 B = 64;\n  int n = 0, log = 0;\n\
-    \  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int n) { build(n); }\n\n  int size()\
-    \ { return n; }\n\n  void fill_one() {\n    int cur = n;\n    for (auto& vs :\
-    \ seg) {\n      int p = cur / B, q = cur % B;\n      FOR(i, p) vs[i] = -1ull;\n\
-    \      if (q) vs[p] = full_mask(q);\n      cur = (cur + B - 1) / B;\n    }\n \
-    \ }\n\n  template <typename F>\n  FastSet(int n, F f) {\n    build(n, f);\n  }\n\
-    \n  void build(int m) {\n    seg.clear();\n    n = m;\n    do {\n      seg.push_back(vc<u64>((m\
-    \ + B - 1) / B));\n      m = (m + B - 1) / B;\n    } while (m > 1);\n    log =\
-    \ len(seg);\n  }\n  template <typename F>\n  void build(int n, F f) {\n    build(n);\n\
-    \    FOR(i, n) { seg[0][i / B] |= u64(bool(f(i))) << (i % B); }\n    FOR(h, log\
-    \ - 1) {\n      FOR(i, len(seg[h])) {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i]))\
-    \ << (i % B);\n      }\n    }\n  }\n\n  bool operator[](int i) const {\n    assert(0\
-    \ <= i && i < n);\n    return seg[0][i / B] >> (i % B) & 1;\n  }\n  void insert(int\
-    \ i) {\n    assert(0 <= i && i < n);\n    for (int h = 0; h < log; h++) {\n  \
-    \    u64& x = seg[h][i / B];\n      u64 mask = u64(1) << (i % B);\n      if (x\
-    \ & mask) return;\n      x |= mask;\n      i /= B;\n    }\n  }\n  void add(int\
-    \ i) { insert(i); }\n  void erase(int i) {\n    assert(0 <= i && i < n);\n   \
-    \ for (int h = 0; h < log; h++) {\n      u64& x = seg[h][i / B];\n      u64 mask\
-    \ = u64(1) << (i % B);\n      if (!(x & mask)) return;\n      x ^= mask;\n   \
-    \   if (x) return;\n      i /= B;\n    }\n  }\n  void remove(int i) { erase(i);\
-    \ }\n\n  // min[x,n) or n\n  int next(int i) {\n    assert(i <= n);\n    chmax(i,\
-    \ 0);\n    for (int h = 0; h < log; h++) {\n      if (i / B == seg[h].size())\
-    \ break;\n      u64 d = seg[h][i / B] >> (i % B);\n      if (!d) {\n        i\
-    \ = i / B + 1;\n        continue;\n      }\n      i += lowbit(d);\n      for (int\
-    \ g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i / B]);\n\
-    \      }\n      return i;\n    }\n    return n;\n  }\n\n  // max [0,x], or -1\n\
-    \  int prev(int i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n    for\
-    \ (int h = 0; h < log; h++) {\n      if (i == -1) break;\n      u64 d = seg[h][i\
-    \ / B] << (63 - i % B);\n      if (!d) {\n        i = i / B - 1;\n        continue;\n\
-    \      }\n      i -= __builtin_clzll(d);\n      for (int g = h - 1; g >= 0; g--)\
-    \ {\n        i *= B;\n        i += topbit(seg[g][i / B]);\n      }\n      return\
-    \ i;\n    }\n    return -1;\n  }\n\n  bool any(int l, int r) {\n    assert(0 <=\
-    \ l && l <= r && r <= n);\n    return next(l) < r;\n  }\n\n  // [l, r). erase=true\
+    \   }\n  }\n};\n#line 1 \"ds/fastset.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/fastset.hpp\n\
+    // 64-ary tree\n// space: (N/63) * u64\nstruct FastSet {\n  static constexpr u32\
+    \ B = 64;\n  int n = 0, log = 0;\n  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int\
+    \ n) { build(n); }\n\n  int size() { return n; }\n\n  void fill_one() {\n    int\
+    \ cur = n;\n    for (auto& vs : seg) {\n      int p = cur / B, q = cur % B;\n\
+    \      FOR(i, p) vs[i] = -1ull;\n      if (q) vs[p] = full_mask(q);\n      cur\
+    \ = (cur + B - 1) / B;\n    }\n  }\n\n  template <typename F>\n  FastSet(int n,\
+    \ F f) {\n    build(n, f);\n  }\n\n  void build(int m) {\n    seg.clear();\n \
+    \   n = m;\n    do {\n      seg.push_back(vc<u64>((m + B - 1) / B));\n      m\
+    \ = (m + B - 1) / B;\n    } while (m > 1);\n    log = len(seg);\n  }\n  template\
+    \ <typename F>\n  void build(int n, F f) {\n    build(n);\n    FOR(i, n) { seg[0][i\
+    \ / B] |= u64(bool(f(i))) << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h]))\
+    \ {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\n      }\n\
+    \    }\n  }\n\n  bool operator[](int i) const {\n    assert(0 <= i && i < n);\n\
+    \    return seg[0][i / B] >> (i % B) & 1;\n  }\n  void insert(int i) {\n    assert(0\
+    \ <= i && i < n);\n    for (int h = 0; h < log; h++) {\n      u64& x = seg[h][i\
+    \ / B];\n      u64 mask = u64(1) << (i % B);\n      if (x & mask) return;\n  \
+    \    x |= mask;\n      i /= B;\n    }\n  }\n  void add(int i) { insert(i); }\n\
+    \  void erase(int i) {\n    assert(0 <= i && i < n);\n    for (int h = 0; h <\
+    \ log; h++) {\n      u64& x = seg[h][i / B];\n      u64 mask = u64(1) << (i %\
+    \ B);\n      if (!(x & mask)) return;\n      x ^= mask;\n      if (x) return;\n\
+    \      i /= B;\n    }\n  }\n  void remove(int i) { erase(i); }\n\n  // min[x,n)\
+    \ or n\n  int next(int i) {\n    assert(i <= n);\n    chmax(i, 0);\n    for (int\
+    \ h = 0; h < log; h++) {\n      if (i / B == seg[h].size()) break;\n      u64\
+    \ d = seg[h][i / B] >> (i % B);\n      if (!d) {\n        i = i / B + 1;\n   \
+    \     continue;\n      }\n      i += lowbit(d);\n      for (int g = h - 1; g >=\
+    \ 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i / B]);\n      }\n \
+    \     return i;\n    }\n    return n;\n  }\n\n  // max [0,x], or -1\n  int prev(int\
+    \ i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n    for (int h = 0;\
+    \ h < log; h++) {\n      if (i == -1) break;\n      u64 d = seg[h][i / B] << (63\
+    \ - i % B);\n      if (!d) {\n        i = i / B - 1;\n        continue;\n    \
+    \  }\n      i -= __builtin_clzll(d);\n      for (int g = h - 1; g >= 0; g--) {\n\
+    \        i *= B;\n        i += topbit(seg[g][i / B]);\n      }\n      return i;\n\
+    \    }\n    return -1;\n  }\n\n  bool any(int l, int r) {\n    assert(0 <= l &&\
+    \ l <= r && r <= n);\n    return next(l) < r;\n  }\n\n  // [l, r). erase=true\
     \ \u306E\u3068\u304D\u3001callback \u5185\u304B\u3089 this \u3092\u5909\u66F4\u3057\
     \u3066\u306F\u3044\u3051\u306A\u3044\u3002\n  template <typename F>\n  void enumerate(int\
     \ l, int r, F f, bool erase = false) {\n    assert(0 <= l && l <= r && r <= n);\n\
@@ -501,7 +512,7 @@ data:
     \  // seg[0][w] \u304C 0 \u306B\u306A\u3063\u305F\u5F8C\u306B\u547C\u3076\u3002\
     \n  void propagate_empty_word(int i) {\n    for (int h = 1; h < log; ++h) {\n\
     \      u64& y = seg[h][i / B];\n      u64 mask = u64(1) << (i % B);\n      y ^=\
-    \ mask;\n      if (y) break;\n      i /= B;\n    }\n  }\n};\n#line 6 \"string/suffix_tree.hpp\"\
+    \ mask;\n      if (y) break;\n      i /= B;\n    }\n  }\n};\n#line 7 \"string/suffix_tree.hpp\"\
     \n\n// https://twitter.com/maspy_stars/status/1565901414236205057?s=20&t=S2Tu6ayozHcakxai8dmh4g\n\
     // \u5404\u30CE\u30FC\u30C9\u306F\u3001suffix array \u3067\u306E\u9577\u65B9\u5F62\
     \u9818\u57DF\u3068\u898B\u306A\u3057\u3066\u3001\n// \u30B0\u30E9\u30D5\u304A\u3088\
@@ -548,8 +559,9 @@ data:
     \      auto [l, r, a, b] = dat[n];\n      assert(a == length + 1);\n      int\
     \ i = X.SA[l];\n      // S[i:i+length]\n      if (ch == S[i + length]) return\
     \ {n, length + 1};\n    }\n    return {-1, 0};\n  }\n};\n"
-  code: "\n#include \"string/suffix_array.hpp\"\n#include \"seq/cartesian_tree.hpp\"\
-    \n#include \"graph/base.hpp\"\n#include \"ds/fastset.hpp\"\n\n// https://twitter.com/maspy_stars/status/1565901414236205057?s=20&t=S2Tu6ayozHcakxai8dmh4g\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/string/suffix_tree.hpp\n\
+    \n#include \"string/suffix_array.hpp\"\n#include \"seq/cartesian_tree.hpp\"\n\
+    #include \"graph/base.hpp\"\n#include \"ds/fastset.hpp\"\n\n// https://twitter.com/maspy_stars/status/1565901414236205057?s=20&t=S2Tu6ayozHcakxai8dmh4g\n\
     // \u5404\u30CE\u30FC\u30C9\u306F\u3001suffix array \u3067\u306E\u9577\u65B9\u5F62\
     \u9818\u57DF\u3068\u898B\u306A\u3057\u3066\u3001\n// \u30B0\u30E9\u30D5\u304A\u3088\
     \u3073\u3001\u9818\u57DF\u30C7\u30FC\u30BF\u3092\u4F5C\u308B\u3002\n// sample:\
@@ -610,7 +622,7 @@ data:
   isVerificationFile: false
   path: string/suffix_tree.hpp
   requiredBy: []
-  timestamp: '2026-10-13 08:18:55+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2361.test.cpp

@@ -9,7 +9,9 @@ data:
   attributes:
     links:
     - https://atcoder.jp/contests/yahoo-procon2018-final-open/tasks/yahoo_procon2018_final_d
-  bundledCode: "#line 1 \"string/inverse_z_algorithm.hpp\"\n\n// https://atcoder.jp/contests/yahoo-procon2018-final-open/tasks/yahoo_procon2018_final_d\n\
+    - https://github.com/maspypy/library/blob/main/string/inverse_z_algorithm.hpp
+  bundledCode: "#line 1 \"string/inverse_z_algorithm.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/inverse_z_algorithm.hpp\n\
+    \n// https://atcoder.jp/contests/yahoo-procon2018-final-open/tasks/yahoo_procon2018_final_d\n\
     // empty OR \u8F9E\u66F8\u9806\u6700\u5C0F\nvc<int> inverse_z_algorithm(vc<int>\
     \ Z) {\n  int N = len(Z);\n  if (Z[0] != N) return {};\n  UnionFind uf(N);\n \
     \ vvc<int> NEQ(N);\n  int i = 1, j = 0;\n  while (i < N) {\n    while (i + j <\
@@ -23,7 +25,8 @@ data:
     \ (auto& w: vs[r]) {\n      for (auto& to: NEQ[w]) {\n        if (ANS[to] != -1)\
     \ tmp.eb(ANS[to]);\n      }\n    }\n    int x = mex(tmp);\n    for (auto& w: vs[r])\
     \ ANS[w] = x;\n  }\n  return ANS;\n}\n"
-  code: "\n// https://atcoder.jp/contests/yahoo-procon2018-final-open/tasks/yahoo_procon2018_final_d\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/string/inverse_z_algorithm.hpp\n\
+    \n// https://atcoder.jp/contests/yahoo-procon2018-final-open/tasks/yahoo_procon2018_final_d\n\
     // empty OR \u8F9E\u66F8\u9806\u6700\u5C0F\nvc<int> inverse_z_algorithm(vc<int>\
     \ Z) {\n  int N = len(Z);\n  if (Z[0] != N) return {};\n  UnionFind uf(N);\n \
     \ vvc<int> NEQ(N);\n  int i = 1, j = 0;\n  while (i < N) {\n    while (i + j <\
@@ -41,7 +44,7 @@ data:
   isVerificationFile: false
   path: string/inverse_z_algorithm.hpp
   requiredBy: []
-  timestamp: '2024-10-11 20:53:53+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/inverse_z_algorithm.hpp

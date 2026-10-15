@@ -19,10 +19,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/lct_node_commutative_monoid.hpp
     title: graph/ds/lct_node_commutative_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/link_cut_tree.hpp
     title: graph/ds/link_cut_tree.hpp
   _extendedRequiredBy: []
@@ -33,39 +33,41 @@ data:
   attributes:
     links:
     - https://codeforces.com/problemset/problem/1386/C
-  bundledCode: "#line 1 \"graph/ds/range_edge_connected_component_query.hpp\"\n\n\
-    #line 1 \"graph/ds/link_cut_tree.hpp\"\n/*\n\u5404 heavy path \u3092 head \u304C\
-    \u5DE6, tail \u304C\u53F3\u3068\u306A\u308B\u3088\u3046\u306B splay tree \u3067\
-    \u6301\u3064.\n\u30E6\u30FC\u30B6\u30FC\u304C\u76F4\u63A5\u547C\u3076\u53EF\u80FD\
-    \u6027\u304C\u3042\u308B\u3082\u306E\u3060\u3051 int \u3067\u3082\u5B9F\u88C5\
-    .\nLCT \u5916\u3067\u63A2\u7D22\u3059\u308B\u3068\u304D\u306A\u3069\uFF0Cpush\
-    \ \u3092\u5FD8\u308C\u306A\u3044\u3088\u3046\u306B\u6CE8\u610F.\n*/\n\ntemplate\
-    \ <typename Node>\nstruct Link_Cut_Tree {\n  using np = Node *;\n  int n;\n  vc<Node>\
-    \ nodes;\n\n  Link_Cut_Tree(int n = 0) : n(n), nodes(n) { FOR(i, n) nodes[i] =\
-    \ Node(i); }\n\n  Node *operator[](int v) { return &nodes[v]; }\n\n  // underlying\
-    \ tree \u306E\u6839\n  Node *get_root(Node *c) {\n    expose(c);\n    c->push();\n\
-    \    while (c->l) {\n      c = c->l;\n      c->push();\n    }\n    splay(c);\n\
-    \    return c;\n  }\n\n  // underlying tree \u306E\u6839\n  int get_root(int c)\
-    \ { return get_root(&nodes[c])->idx; }\n\n  // parent(c)==p \u3068\u306A\u308B\
-    \u3088\u3046\u306B link. p \u306E\u6839\u306F\u5909\u308F\u3089\u306A\u3044.\n\
-    \  void link(Node *p, Node *c) {\n    evert(c);\n    expose(p);\n    p->push();\n\
-    \    // no edge -> heavy edge\n    assert(!(c->p));\n    assert(!(p->r));\n  \
-    \  c->p = p;\n    p->r = c;\n    p->update();\n  }\n\n  // parent(c)==p \u3068\
-    \u306A\u308B\u3088\u3046\u306B link. p \u306E\u6839\u306F\u5909\u308F\u3089\u306A\
-    \u3044.\n  void link(int p, int c) { return link(&nodes[p], &nodes[c]); }\n\n\
-    \  // a,b \u304C\u6839\u306B\u5909\u66F4\u3055\u308C\u308B\n  void cut(Node *a,\
-    \ Node *b) {\n    evert(a);\n    expose(b);\n    assert(!b->p);\n    assert((b->l)\
-    \ == a);\n    // heavy edge -> no edge\n    b->l->p = nullptr;\n    b->l = nullptr;\n\
-    \    b->update();\n  }\n\n  // a,b \u304C\u6839\u306B\u5909\u66F4\u3055\u308C\u308B\
-    \n  void cut(int a, int b) { return cut(&nodes[a], &nodes[b]); }\n\n  // c \u3092\
-    \ underlying tree \u306E\u6839\u3068\u3059\u308B.\n  // c \u306F splay tree \u306E\
-    \u6839\u306B\u3082\u306A\u308B.\n  // c \u306F push \u6E08\u306B\u306A\u308B\n\
-    \  void evert(Node *c) {\n    expose(c);\n    c->reverse();\n    c->push();\n\
-    \  }\n\n  // c \u3092 underlying tree \u306E\u6839\u3068\u3059\u308B.\n  // c\
-    \ \u306F splay tree \u306E\u6839\u306B\u3082\u306A\u308B.\n  void evert(int c)\
-    \ { evert(&nodes[c]); }\n\n  // \u6839\u306F\u5909\u3048\u306A\u3044\n  Node *LCA(Node\
-    \ *u, Node *v) {\n    assert(get_root(u) == get_root(v));\n    expose(u);\n  \
-    \  return expose(v);\n  }\n\n  // \u6839\u306F\u5909\u3048\u306A\u3044\n  int\
+    - https://github.com/maspypy/library/blob/main/graph/ds/range_edge_connected_component_query.hpp
+  bundledCode: "#line 1 \"graph/ds/range_edge_connected_component_query.hpp\"\n//\
+    \ Source: https://github.com/maspypy/library/blob/main/graph/ds/range_edge_connected_component_query.hpp\n\
+    \n#line 1 \"graph/ds/link_cut_tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/ds/link_cut_tree.hpp\n\
+    /*\n\u5404 heavy path \u3092 head \u304C\u5DE6, tail \u304C\u53F3\u3068\u306A\u308B\
+    \u3088\u3046\u306B splay tree \u3067\u6301\u3064.\n\u30E6\u30FC\u30B6\u30FC\u304C\
+    \u76F4\u63A5\u547C\u3076\u53EF\u80FD\u6027\u304C\u3042\u308B\u3082\u306E\u3060\
+    \u3051 int \u3067\u3082\u5B9F\u88C5.\nLCT \u5916\u3067\u63A2\u7D22\u3059\u308B\
+    \u3068\u304D\u306A\u3069\uFF0Cpush \u3092\u5FD8\u308C\u306A\u3044\u3088\u3046\u306B\
+    \u6CE8\u610F.\n*/\n\ntemplate <typename Node>\nstruct Link_Cut_Tree {\n  using\
+    \ np = Node *;\n  int n;\n  vc<Node> nodes;\n\n  Link_Cut_Tree(int n = 0) : n(n),\
+    \ nodes(n) { FOR(i, n) nodes[i] = Node(i); }\n\n  Node *operator[](int v) { return\
+    \ &nodes[v]; }\n\n  // underlying tree \u306E\u6839\n  Node *get_root(Node *c)\
+    \ {\n    expose(c);\n    c->push();\n    while (c->l) {\n      c = c->l;\n   \
+    \   c->push();\n    }\n    splay(c);\n    return c;\n  }\n\n  // underlying tree\
+    \ \u306E\u6839\n  int get_root(int c) { return get_root(&nodes[c])->idx; }\n\n\
+    \  // parent(c)==p \u3068\u306A\u308B\u3088\u3046\u306B link. p \u306E\u6839\u306F\
+    \u5909\u308F\u3089\u306A\u3044.\n  void link(Node *p, Node *c) {\n    evert(c);\n\
+    \    expose(p);\n    p->push();\n    // no edge -> heavy edge\n    assert(!(c->p));\n\
+    \    assert(!(p->r));\n    c->p = p;\n    p->r = c;\n    p->update();\n  }\n\n\
+    \  // parent(c)==p \u3068\u306A\u308B\u3088\u3046\u306B link. p \u306E\u6839\u306F\
+    \u5909\u308F\u3089\u306A\u3044.\n  void link(int p, int c) { return link(&nodes[p],\
+    \ &nodes[c]); }\n\n  // a,b \u304C\u6839\u306B\u5909\u66F4\u3055\u308C\u308B\n\
+    \  void cut(Node *a, Node *b) {\n    evert(a);\n    expose(b);\n    assert(!b->p);\n\
+    \    assert((b->l) == a);\n    // heavy edge -> no edge\n    b->l->p = nullptr;\n\
+    \    b->l = nullptr;\n    b->update();\n  }\n\n  // a,b \u304C\u6839\u306B\u5909\
+    \u66F4\u3055\u308C\u308B\n  void cut(int a, int b) { return cut(&nodes[a], &nodes[b]);\
+    \ }\n\n  // c \u3092 underlying tree \u306E\u6839\u3068\u3059\u308B.\n  // c \u306F\
+    \ splay tree \u306E\u6839\u306B\u3082\u306A\u308B.\n  // c \u306F push \u6E08\u306B\
+    \u306A\u308B\n  void evert(Node *c) {\n    expose(c);\n    c->reverse();\n   \
+    \ c->push();\n  }\n\n  // c \u3092 underlying tree \u306E\u6839\u3068\u3059\u308B\
+    .\n  // c \u306F splay tree \u306E\u6839\u306B\u3082\u306A\u308B.\n  void evert(int\
+    \ c) { evert(&nodes[c]); }\n\n  // \u6839\u306F\u5909\u3048\u306A\u3044\n  Node\
+    \ *LCA(Node *u, Node *v) {\n    assert(get_root(u) == get_root(v));\n    expose(u);\n\
+    \    return expose(v);\n  }\n\n  // \u6839\u306F\u5909\u3048\u306A\u3044\n  int\
     \ LCA(int u, int v) { return LCA(&nodes[u], &nodes[v])->idx; }\n\n  // \u8FBA\u306E\
     \u500B\u6570. \u6839\u306F\u5909\u3048\u306A\u3044.\n  int dist(int u, int v)\
     \ {\n    int w = LCA(u, v);\n    return depth(u) + depth(v) - 2 * depth(w);\n\
@@ -155,9 +157,10 @@ data:
     \      pp->change_light(p, n);\n      }\n    }\n    n->p = pp;\n    p->p = n;\n\
     \    if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n    if (!n->p) return\
     \ 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r == n) return -1;\n    return\
-    \ 0;\n  }\n};\n#line 1 \"graph/ds/lct_node_commutative_monoid.hpp\"\n\n// SUBTREE\
-    \ : cluster \u304C subtree \u60C5\u5831\u3092\u6301\u3064\u5834\u5408\ntemplate\
-    \ <typename Monoid, bool SUBTREE = false>\nstruct LCT_Node_Commutative_Monoid\
+    \ 0;\n  }\n};\n#line 1 \"graph/ds/lct_node_commutative_monoid.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/graph/ds/lct_node_commutative_monoid.hpp\n\
+    \n// SUBTREE : cluster \u304C subtree \u60C5\u5831\u3092\u6301\u3064\u5834\u5408\
+    \ntemplate <typename Monoid, bool SUBTREE = false>\nstruct LCT_Node_Commutative_Monoid\
     \ {\n  static_assert(Monoid::commute);\n  static constexpr bool NODE_FOR_SUBTREE\
     \ = SUBTREE;\n  using np = LCT_Node_Commutative_Monoid *;\n  // \u30C7\u30D5\u30A9\
     \u30EB\u30C8\n  np l, r, p;\n  int idx, size; // size \u306F heavy path \u306E\
@@ -177,36 +180,39 @@ data:
     \ c) {\n    if constexpr (SUBTREE) mid = MX::op(mid, c->x);\n  }\n  void erase_light(np\
     \ c) {\n    if constexpr (SUBTREE) mid = MX::op(mid, MX::inverse(c->x));\n  }\n\
     \n  // b->x \u306B subtree value \u304C\u5165\u3063\u3066\u3044\u308B.\n  void\
-    \ change_light(np a, np b) {}\n};\n#line 1 \"alg/monoid/min.hpp\"\n// require:\
+    \ change_light(np a, np b) {}\n};\n#line 1 \"alg/monoid/min.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n// require:\
     \ all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct Monoid_Min\
     \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
     \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
     \ return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 1 \"\
-    ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n\
-    \  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n\
-    \  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n \
-    \   while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k),\
-    \ val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\
-    \u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\
-    \u3068.\n  void clear() {\n    used.assign(len(used), 0);\n    cap = (mask + 1)\
-    \ / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\n  int index(const\
-    \ u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] && key[i] != k; i =\
-    \ (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const u64&\
-    \ k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap ==\
-    \ 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n\
-    \    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value) {\n   \
-    \ int i = index(k);\n    return (used[i] ? val[i] : default_value);\n  }\n\n \
-    \ bool count(const u64& k) {\n    int i = index(k);\n    return used[i] && key[i]\
-    \ == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -282,13 +288,15 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 1 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\n#line 1 \"alg/monoid/add.hpp\"\
-    \n\ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
+    \   }\n  }\n};\n#line 1 \"ds/fenwicktree/fenwicktree_01.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/fenwicktree/fenwicktree_01.hpp\n\
+    \n#line 1 \"ds/fenwicktree/fenwicktree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/fenwicktree/fenwicktree.hpp\n\
+    #line 1 \"alg/monoid/add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
     \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
     \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
     \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
     \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
-    };\n#line 2 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
+    };\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
     struct FenwickTree {\n  using G = Monoid;\n  using MX = Monoid;\n  using E = typename\
     \ G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree() {}\n\
     \  FenwickTree(int n) { build(n); }\n  template <typename F>\n  FenwickTree(int\
@@ -349,7 +357,7 @@ data:
     \ G::inverse(dat[i + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1\
     \ << k), s = t;\n      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int\
     \ L = 0) const {\n    return max_right([&k](E x) -> bool { return x <= k; }, L);\n\
-    \  }\n};\n#line 3 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\nstruct FenwickTree_01\
+    \  }\n};\n#line 4 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\nstruct FenwickTree_01\
     \ {\n  using MX = Monoid_Add<int>;\n  int N, n;\n  vc<u64> dat;\n  FenwickTree<Monoid_Add<int>>\
     \ bit;\n  FenwickTree_01() {}\n  FenwickTree_01(int n) { build(n); }\n  template\
     \ <typename F>\n  FenwickTree_01(int n, F f) {\n    build(n, f);\n  }\n\n  void\
@@ -392,7 +400,7 @@ data:
     \ e) -> bool { return e <= 0; }, idx) - 1;\n    if (idx == -1) return -1;\n  \
     \  return 64 * idx + topbit(dat[idx]);\n  }\n\n  string to_string() {\n    string\
     \ out;\n    FOR(i, N) out += '0' + (dat[i / 64] >> (i & 63) & 1);\n    return\
-    \ out;\n  }\n};\n#line 7 \"graph/ds/range_edge_connected_component_query.hpp\"\
+    \ out;\n  }\n};\n#line 8 \"graph/ds/range_edge_connected_component_query.hpp\"\
     \n\n// https://codeforces.com/problemset/problem/1386/C (TLE)\n// query(L,R) =\
     \ # of component if edge L,...,R-1 are used.\nstruct Range_Edge_Connected_Component_Query\
     \ {\n  Graph<int, 0>& G;\n  vc<pair<int, int>> query;\n\n  Range_Edge_Connected_Component_Query(Graph<int,\
@@ -410,7 +418,8 @@ data:
     \ + i);\n        bit.add(i, 1);\n      }\n      for (auto& q : QID[i]) {\n   \
     \     auto [l, r] = query[q];\n        ANS[q] = N - bit.sum(l, r);\n      }\n\
     \    }\n    return ANS;\n  }\n};\n"
-  code: "\n#include \"graph/ds/link_cut_tree.hpp\"\n#include \"graph/ds/lct_node_commutative_monoid.hpp\"\
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/ds/range_edge_connected_component_query.hpp\n\
+    \n#include \"graph/ds/link_cut_tree.hpp\"\n#include \"graph/ds/lct_node_commutative_monoid.hpp\"\
     \n#include \"alg/monoid/min.hpp\"\n#include \"graph/base.hpp\"\n#include \"ds/fenwicktree/fenwicktree_01.hpp\"\
     \n\n// https://codeforces.com/problemset/problem/1386/C (TLE)\n// query(L,R) =\
     \ # of component if edge L,...,R-1 are used.\nstruct Range_Edge_Connected_Component_Query\
@@ -441,7 +450,7 @@ data:
   isVerificationFile: false
   path: graph/ds/range_edge_connected_component_query.hpp
   requiredBy: []
-  timestamp: '2026-10-06 15:40:07+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/ds/range_edge_connected_component_query.hpp

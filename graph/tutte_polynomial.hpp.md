@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
   - icon: ':question:'
@@ -25,19 +25,24 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
-    \ n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n);\
-    \ }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n\
-    \  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x]\
-    \ >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n\
-    \      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n   \
-    \ x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n\
-    \    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x]\
-    \ < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return\
-    \ true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] =\
-    \ (*this)[i];\n    return A;\n  }\n};\n#line 1 \"setfunc/sps_exp.hpp\"\n\n#line\
-    \ 1 \"setfunc/ranked_zeta.hpp\"\n\n#line 1 \"setfunc/bitwise_transform.hpp\"\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/tutte_polynomial.hpp
+  bundledCode: "#line 1 \"graph/tutte_polynomial.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/tutte_polynomial.hpp\n\
+    #line 1 \"ds/unionfind/unionfind.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\n\
+    \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
+    \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
+    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
+    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
+    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
+    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
+    \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
+    \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
+    \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
+    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 1 \"setfunc/sps_exp.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/setfunc/sps_exp.hpp\n\
+    \n#line 1 \"setfunc/subset_convolution.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/setfunc/subset_convolution.hpp\n\
+    #line 1 \"setfunc/ranked_zeta.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/setfunc/ranked_zeta.hpp\n\
+    \n#line 1 \"setfunc/bitwise_transform.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/setfunc/bitwise_transform.hpp\n\
     \nnamespace bitwise {\n\nenum class trans_type {\n  hadamard,\n  superset_zeta,\n\
     \  superset_mobius,\n  subset_zeta,\n  subset_mobius,\n  ranked_zeta,\n  ranked_mobius,\n\
     \  superset_zeta_or\n};\n\ntemplate <typename ARR>\ninline void ranked_add(ARR&\
@@ -67,14 +72,14 @@ data:
     template <trans_type type, typename T>\ninline void bitwise_transform(vc<T>& a)\
     \ {\n  int n = len(a);\n  assert(n >= 1);\n  assert((n & (n - 1)) == 0);\n  assert(n\
     \ <= (1 << 25));\n  bitwise_transform_dispatch<type, 1 << 25>(a);\n}\n}  // namespace\
-    \ bitwise\n#line 3 \"setfunc/ranked_zeta.hpp\"\n\ntemplate <typename T, int LIM>\n\
+    \ bitwise\n#line 4 \"setfunc/ranked_zeta.hpp\"\n\ntemplate <typename T, int LIM>\n\
     vc<array<T, LIM + 1>> ranked_zeta(const vc<T>& f) {\n  int n = topbit(len(f));\n\
     \  assert(n <= LIM);\n  assert(len(f) == 1 << n);\n  vc<array<T, LIM + 1>> Rf(1\
     \ << n);\n  for (int s = 0; s < (1 << n); ++s) Rf[s][popcnt(s)] = f[s];\n  bitwise::bitwise_transform<bitwise::trans_type::ranked_zeta>(Rf);\n\
     \  return Rf;\n}\n\ntemplate <typename T, int LIM>\nvc<T> ranked_mobius(vc<array<T,\
     \ LIM + 1>>& Rf) {\n  bitwise::bitwise_transform<bitwise::trans_type::ranked_mobius>(Rf);\n\
     \  vc<T> f(len(Rf));\n  for (int s = 0; s < len(f); ++s) f[s] = Rf[s][popcnt(s)];\n\
-    \  return f;\n}\n#line 2 \"setfunc/subset_convolution.hpp\"\n\ntemplate <typename\
+    \  return f;\n}\n#line 3 \"setfunc/subset_convolution.hpp\"\n\ntemplate <typename\
     \ T, int LIM = 20>\nvc<T> subset_convolution_square(const vc<T>& A) {\n  auto\
     \ RA = ranked_zeta<T, LIM>(A);\n  int n = topbit(len(RA));\n  FOR(s, len(RA))\
     \ {\n    auto& f = RA[s];\n    FOR_R(d, n + 1) {\n      T x = 0;\n      FOR(i,\
@@ -85,51 +90,53 @@ data:
     \ n = topbit(len(RA));\n  FOR(s, len(RA)) {\n    auto &f = RA[s], &g = RB[s];\n\
     \    FOR_R(d, n + 1) {\n      T x = 0;\n      FOR(i, d + 1) x += f[i] * g[d -\
     \ i];\n      f[d] = x;\n    }\n  }\n  return ranked_mobius<T, LIM>(RA);\n}\n#line\
-    \ 3 \"setfunc/sps_exp.hpp\"\n\n// sum_i 1/i! s^i, s^i is subset-convolution\n\
+    \ 4 \"setfunc/sps_exp.hpp\"\n\n// sum_i 1/i! s^i, s^i is subset-convolution\n\
     template <typename mint, int LIM>\nvc<mint> sps_exp(vc<mint>& s) {\n  const int\
     \ N = topbit(len(s));\n  assert(len(s) == (1 << N) && s[0] == mint(0));\n  vc<mint>\
     \ dp(1 << N);\n  dp[0] = mint(1);\n  FOR(i, N) {\n    vc<mint> a = {s.begin()\
     \ + (1 << i), s.begin() + (2 << i)};\n    vc<mint> b = {dp.begin(), dp.begin()\
     \ + (1 << i)};\n    a = subset_convolution<mint, LIM>(a, b);\n    copy(all(a),\
-    \ dp.begin() + (1 << i));\n  }\n  return dp;\n}\n#line 1 \"setfunc/ranked_zeta.hpp\"\
-    \n\n#line 1 \"setfunc/bitwise_transform.hpp\"\n\nnamespace bitwise {\n\nenum class\
-    \ trans_type {\n  hadamard,\n  superset_zeta,\n  superset_mobius,\n  subset_zeta,\n\
-    \  subset_mobius,\n  ranked_zeta,\n  ranked_mobius,\n  superset_zeta_or\n};\n\n\
-    template <typename ARR>\ninline void ranked_add(ARR& a, const ARR& b) {\n  for\
-    \ (int d = 0; d < int(a.size()); ++d) a[d] += b[d];\n}\n\ntemplate <typename ARR>\n\
-    inline void ranked_sub(ARR& a, const ARR& b) {\n  for (int d = 0; d < int(a.size());\
-    \ ++d) a[d] -= b[d];\n}\n\ntemplate <trans_type type, int N, typename T>\ninline\
-    \ void bitwise_transform_fixed(T* a) {\n  static_assert(N >= 1 && (N & (N - 1))\
-    \ == 0);\n  if constexpr (N == 1) {\n    return;\n  } else {\n    constexpr int\
-    \ H = N / 2;\n    bitwise_transform_fixed<type, H>(a);\n    bitwise_transform_fixed<type,\
-    \ H>(a + H);\n    if constexpr (type == trans_type::hadamard) {\n      for (int\
-    \ i = 0; i < H; ++i) {\n        auto x = a[i], y = a[H + i];\n        a[i] = x\
-    \ + y, a[H + i] = x - y;\n      }\n    }\n    if constexpr (type == trans_type::superset_zeta)\
-    \ {\n      for (int i = 0; i < H; ++i) a[i] += a[H + i];\n    }\n    if constexpr\
-    \ (type == trans_type::superset_mobius) {\n      for (int i = 0; i < H; ++i) a[i]\
-    \ -= a[H + i];\n    }\n    if constexpr (type == trans_type::subset_zeta) {\n\
-    \      for (int i = 0; i < H; ++i) a[H + i] += a[i];\n    }\n    if constexpr\
-    \ (type == trans_type::subset_mobius) {\n      for (int i = 0; i < H; ++i) a[H\
-    \ + i] -= a[i];\n    }\n    if constexpr (type == trans_type::ranked_zeta) {\n\
-    \      for (int i = 0; i < H; ++i) ranked_add(a[H + i], a[i]);\n    }\n    if\
-    \ constexpr (type == trans_type::ranked_mobius) {\n      for (int i = 0; i < H;\
-    \ ++i) ranked_sub(a[H + i], a[i]);\n    }\n    if constexpr (type == trans_type::superset_zeta_or)\
-    \ {\n      for (int i = 0; i < H; ++i) a[i] |= a[H + i];\n    }\n  }\n}\n\ntemplate\
-    \ <trans_type type, int N, typename T>\ninline void bitwise_transform_dispatch(vc<T>&\
-    \ a) {\n  if (len(a) == N) {\n    return bitwise_transform_fixed<type, N>(a.data());\n\
-    \  }\n  if constexpr (N > 1) {\n    return bitwise_transform_dispatch<type, N\
-    \ / 2>(a);\n  }\n}\n\ntemplate <trans_type type, typename T>\ninline void bitwise_transform(vc<T>&\
-    \ a) {\n  int n = len(a);\n  assert(n >= 1);\n  assert((n & (n - 1)) == 0);\n\
-    \  assert(n <= (1 << 25));\n  bitwise_transform_dispatch<type, 1 << 25>(a);\n\
-    }\n}  // namespace bitwise\n#line 3 \"setfunc/ranked_zeta.hpp\"\n\ntemplate <typename\
-    \ T, int LIM>\nvc<array<T, LIM + 1>> ranked_zeta(const vc<T>& f) {\n  int n =\
-    \ topbit(len(f));\n  assert(n <= LIM);\n  assert(len(f) == 1 << n);\n  vc<array<T,\
-    \ LIM + 1>> Rf(1 << n);\n  for (int s = 0; s < (1 << n); ++s) Rf[s][popcnt(s)]\
-    \ = f[s];\n  bitwise::bitwise_transform<bitwise::trans_type::ranked_zeta>(Rf);\n\
+    \ dp.begin() + (1 << i));\n  }\n  return dp;\n}\n#line 1 \"setfunc/sps_composition.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/setfunc/sps_composition.hpp\n\
+    #line 1 \"setfunc/ranked_zeta.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/setfunc/ranked_zeta.hpp\n\
+    \n#line 1 \"setfunc/bitwise_transform.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/setfunc/bitwise_transform.hpp\n\
+    \nnamespace bitwise {\n\nenum class trans_type {\n  hadamard,\n  superset_zeta,\n\
+    \  superset_mobius,\n  subset_zeta,\n  subset_mobius,\n  ranked_zeta,\n  ranked_mobius,\n\
+    \  superset_zeta_or\n};\n\ntemplate <typename ARR>\ninline void ranked_add(ARR&\
+    \ a, const ARR& b) {\n  for (int d = 0; d < int(a.size()); ++d) a[d] += b[d];\n\
+    }\n\ntemplate <typename ARR>\ninline void ranked_sub(ARR& a, const ARR& b) {\n\
+    \  for (int d = 0; d < int(a.size()); ++d) a[d] -= b[d];\n}\n\ntemplate <trans_type\
+    \ type, int N, typename T>\ninline void bitwise_transform_fixed(T* a) {\n  static_assert(N\
+    \ >= 1 && (N & (N - 1)) == 0);\n  if constexpr (N == 1) {\n    return;\n  } else\
+    \ {\n    constexpr int H = N / 2;\n    bitwise_transform_fixed<type, H>(a);\n\
+    \    bitwise_transform_fixed<type, H>(a + H);\n    if constexpr (type == trans_type::hadamard)\
+    \ {\n      for (int i = 0; i < H; ++i) {\n        auto x = a[i], y = a[H + i];\n\
+    \        a[i] = x + y, a[H + i] = x - y;\n      }\n    }\n    if constexpr (type\
+    \ == trans_type::superset_zeta) {\n      for (int i = 0; i < H; ++i) a[i] += a[H\
+    \ + i];\n    }\n    if constexpr (type == trans_type::superset_mobius) {\n   \
+    \   for (int i = 0; i < H; ++i) a[i] -= a[H + i];\n    }\n    if constexpr (type\
+    \ == trans_type::subset_zeta) {\n      for (int i = 0; i < H; ++i) a[H + i] +=\
+    \ a[i];\n    }\n    if constexpr (type == trans_type::subset_mobius) {\n     \
+    \ for (int i = 0; i < H; ++i) a[H + i] -= a[i];\n    }\n    if constexpr (type\
+    \ == trans_type::ranked_zeta) {\n      for (int i = 0; i < H; ++i) ranked_add(a[H\
+    \ + i], a[i]);\n    }\n    if constexpr (type == trans_type::ranked_mobius) {\n\
+    \      for (int i = 0; i < H; ++i) ranked_sub(a[H + i], a[i]);\n    }\n    if\
+    \ constexpr (type == trans_type::superset_zeta_or) {\n      for (int i = 0; i\
+    \ < H; ++i) a[i] |= a[H + i];\n    }\n  }\n}\n\ntemplate <trans_type type, int\
+    \ N, typename T>\ninline void bitwise_transform_dispatch(vc<T>& a) {\n  if (len(a)\
+    \ == N) {\n    return bitwise_transform_fixed<type, N>(a.data());\n  }\n  if constexpr\
+    \ (N > 1) {\n    return bitwise_transform_dispatch<type, N / 2>(a);\n  }\n}\n\n\
+    template <trans_type type, typename T>\ninline void bitwise_transform(vc<T>& a)\
+    \ {\n  int n = len(a);\n  assert(n >= 1);\n  assert((n & (n - 1)) == 0);\n  assert(n\
+    \ <= (1 << 25));\n  bitwise_transform_dispatch<type, 1 << 25>(a);\n}\n}  // namespace\
+    \ bitwise\n#line 4 \"setfunc/ranked_zeta.hpp\"\n\ntemplate <typename T, int LIM>\n\
+    vc<array<T, LIM + 1>> ranked_zeta(const vc<T>& f) {\n  int n = topbit(len(f));\n\
+    \  assert(n <= LIM);\n  assert(len(f) == 1 << n);\n  vc<array<T, LIM + 1>> Rf(1\
+    \ << n);\n  for (int s = 0; s < (1 << n); ++s) Rf[s][popcnt(s)] = f[s];\n  bitwise::bitwise_transform<bitwise::trans_type::ranked_zeta>(Rf);\n\
     \  return Rf;\n}\n\ntemplate <typename T, int LIM>\nvc<T> ranked_mobius(vc<array<T,\
     \ LIM + 1>>& Rf) {\n  bitwise::bitwise_transform<bitwise::trans_type::ranked_mobius>(Rf);\n\
     \  vc<T> f(len(Rf));\n  for (int s = 0; s < len(f); ++s) f[s] = Rf[s][popcnt(s)];\n\
-    \  return f;\n}\n#line 2 \"setfunc/sps_composition.hpp\"\n\n// sum_i f_i/i! s^i,\
+    \  return f;\n}\n#line 3 \"setfunc/sps_composition.hpp\"\n\n// sum_i f_i/i! s^i,\
     \ s^i is subset-convolution\ntemplate <typename mint, int LIM>\nvc<mint> sps_composition_egf(vc<mint>\
     \ f, vc<mint>& s) {\n  const int N = topbit(len(s));\n  assert(len(s) == (1 <<\
     \ N) && s[0] == mint(0));\n  if (f.empty()) return vc<mint>(1 << N, mint(0));\n\
@@ -152,7 +159,7 @@ data:
     \ g[j] += f[i] * pow[j];\n    FOR_R(j, D + 1) pow[j] = pow[j] * c + (j == 0 ?\
     \ mint(0) : pow[j - 1]);\n  }\n  // to egf\n  mint factorial = 1;\n  FOR(j, D\
     \ + 1) g[j] *= factorial, factorial *= mint(j + 1);\n  return sps_composition_egf<mint,\
-    \ LIM>(g, s);\n}\n#line 4 \"graph/tutte_polynomial.hpp\"\n\ntemplate <typename\
+    \ LIM>(g, s);\n}\n#line 5 \"graph/tutte_polynomial.hpp\"\n\ntemplate <typename\
     \ mint, int NMAX>\nmint tutte_polynomial_eval_connected(Graph<int, 0> G, mint\
     \ X, mint Y) {\n  int N = G.N;\n  X -= 1, Y -= 1;\n  /*\n  V \u306E\u9023\u7D50\
     \u6210\u5206\u5206\u89E3\u3092\u8003\u3048\u308B\u3068,\n  \u5404\u90E8\u5206\u96C6\
@@ -182,10 +189,11 @@ data:
     \ V : vs) {\n    if (V.empty()) continue;\n    Graph<int, 0> H = G.rearrange(V);\n\
     \    ANS *= tutte_polynomial_eval_connected<mint, NMAX>(H, X, Y);\n  }\n  return\
     \ ANS;\n}\n"
-  code: "#include \"ds/unionfind/unionfind.hpp\"\n#include \"setfunc/sps_exp.hpp\"\
-    \n#include \"setfunc/sps_composition.hpp\"\n\ntemplate <typename mint, int NMAX>\n\
-    mint tutte_polynomial_eval_connected(Graph<int, 0> G, mint X, mint Y) {\n  int\
-    \ N = G.N;\n  X -= 1, Y -= 1;\n  /*\n  V \u306E\u9023\u7D50\u6210\u5206\u5206\u89E3\
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/tutte_polynomial.hpp\n\
+    #include \"ds/unionfind/unionfind.hpp\"\n#include \"setfunc/sps_exp.hpp\"\n#include\
+    \ \"setfunc/sps_composition.hpp\"\n\ntemplate <typename mint, int NMAX>\nmint\
+    \ tutte_polynomial_eval_connected(Graph<int, 0> G, mint X, mint Y) {\n  int N\
+    \ = G.N;\n  X -= 1, Y -= 1;\n  /*\n  V \u306E\u9023\u7D50\u6210\u5206\u5206\u89E3\
     \u3092\u8003\u3048\u308B\u3068,\n  \u5404\u90E8\u5206\u96C6\u5408\u306B S \u306B\
     \u5BFE\u3057\u3066, S \u3092 span \u3059\u308B A \u306E\u9078\u3073\u65B9\u306B\
     \u5BFE\u3059\u308B y^{cycle} \u306E sum \u3092\n  F[S] \u3068\u3057\u3066 c[n]F^n/n!,\
@@ -222,7 +230,7 @@ data:
   isVerificationFile: false
   path: graph/tutte_polynomial.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tutte_polynomial.hpp

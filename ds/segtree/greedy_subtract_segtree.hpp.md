@@ -12,26 +12,29 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/1515/problem/I
-  bundledCode: "#line 1 \"alg/monoid_pow.hpp\"\n\n// chat gpt\ntemplate <typename\
-    \ U, typename Arg1, typename Arg2>\nstruct has_power_method {\n private:\n  //\
-    \ \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n  template <typename\
-    \ V, typename A1, typename A2>\n  static auto check(int)\n      -> decltype(std::declval<V>().power(std::declval<A1>(),\n\
-    \                                          std::declval<A2>()),\n            \
-    \      std::true_type{});\n  template <typename, typename, typename>\n  static\
-    \ auto check(...) -> std::false_type;\n\n public:\n  // \u30E1\u30BD\u30C3\u30C9\
-    \u306E\u6709\u7121\u3092\u8868\u3059\u578B\n  static constexpr bool value = decltype(check<U,\
-    \ Arg1, Arg2>(0))::value;\n};\n\ntemplate <typename Monoid>\ntypename Monoid::X\
-    \ monoid_pow(typename Monoid::X x, ll exp) {\n  using X = typename Monoid::X;\n\
-    \  if constexpr (has_power_method<Monoid, X, ll>::value) {\n    return Monoid::power(x,\
-    \ exp);\n  } else {\n    assert(exp >= 0);\n    if (exp == 0) return Monoid::id();\n\
-    \    if (exp == 1) return x;\n    X res = Monoid::id();\n    while (exp) {\n \
-    \     if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n  \
-    \    exp >>= 1;\n    }\n    return res;\n  }\n}\n#line 2 \"ds/segtree/greedy_subtract_segtree.hpp\"\
-    \n\n/*\n\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9 i \u306B\u30B3\u30B9\u30C8 cost_i\
-    \ \u306E\u7269\u304C cnt_i \u500B\u3042\u308B. dat_i in Monoid \u3082\u3042\u308B\
-    .\n\u6240\u6301\u91D1 x \u304B\u3089\u306F\u3058\u3081\u3066 i=l,l+1,...,r-1 \u306B\
-    \u3064\u3044\u3066\u8CAA\u6B32\u306B\u3068\u3063\u3066 Monoid \u7A4D\u3092\u8A08\
-    \u7B97.\ncost_i < LOG. O(LOG * logN time).\nhttps://codeforces.com/contest/1515/problem/I\n\
+    - https://github.com/maspypy/library/blob/main/ds/segtree/greedy_subtract_segtree.hpp
+  bundledCode: "#line 1 \"ds/segtree/greedy_subtract_segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/greedy_subtract_segtree.hpp\n\
+    #line 1 \"alg/monoid_pow.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid_pow.hpp\n\
+    \n// chat gpt\ntemplate <typename U, typename Arg1, typename Arg2>\nstruct has_power_method\
+    \ {\n private:\n  // \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n\
+    \  template <typename V, typename A1, typename A2>\n  static auto check(int)\n\
+    \      -> decltype(std::declval<V>().power(std::declval<A1>(),\n             \
+    \                             std::declval<A2>()),\n                  std::true_type{});\n\
+    \  template <typename, typename, typename>\n  static auto check(...) -> std::false_type;\n\
+    \n public:\n  // \u30E1\u30BD\u30C3\u30C9\u306E\u6709\u7121\u3092\u8868\u3059\u578B\
+    \n  static constexpr bool value = decltype(check<U, Arg1, Arg2>(0))::value;\n\
+    };\n\ntemplate <typename Monoid>\ntypename Monoid::X monoid_pow(typename Monoid::X\
+    \ x, ll exp) {\n  using X = typename Monoid::X;\n  if constexpr (has_power_method<Monoid,\
+    \ X, ll>::value) {\n    return Monoid::power(x, exp);\n  } else {\n    assert(exp\
+    \ >= 0);\n    if (exp == 0) return Monoid::id();\n    if (exp == 1) return x;\n\
+    \    X res = Monoid::id();\n    while (exp) {\n      if (exp & 1) res = Monoid::op(res,\
+    \ x);\n      x = Monoid::op(x, x);\n      exp >>= 1;\n    }\n    return res;\n\
+    \  }\n}\n#line 3 \"ds/segtree/greedy_subtract_segtree.hpp\"\n\n/*\n\u30A4\u30F3\
+    \u30C7\u30C3\u30AF\u30B9 i \u306B\u30B3\u30B9\u30C8 cost_i \u306E\u7269\u304C\
+    \ cnt_i \u500B\u3042\u308B. dat_i in Monoid \u3082\u3042\u308B.\n\u6240\u6301\u91D1\
+    \ x \u304B\u3089\u306F\u3058\u3081\u3066 i=l,l+1,...,r-1 \u306B\u3064\u3044\u3066\
+    \u8CAA\u6B32\u306B\u3068\u3063\u3066 Monoid \u7A4D\u3092\u8A08\u7B97.\ncost_i\
+    \ < LOG. O(LOG * logN time).\nhttps://codeforces.com/contest/1515/problem/I\n\
     */\ntemplate <typename Monoid, int LOG>\nstruct Greedy_Subtract_SegTree {\n  using\
     \ MX = Monoid;\n  using X = typename MX::value_type;\n  /*\n  [0,2^k) \u306E sum\
     \ \u306B\u6700\u5F8C\u306B [2^k,infty) \u3092\u3061\u3087\u3046\u3069\u3072\u3068\
@@ -79,8 +82,9 @@ data:
     \    return {x, prod};\n  }\n\n  // \u5168\u533A\u9593. return: \u6B8B\u91D1,\
     \ \u30E2\u30CE\u30A4\u30C9\u7A4D\n  pair<ll, X> query(ll x) { return query(0,\
     \ size, x); }\n};\n"
-  code: "#include \"alg/monoid_pow.hpp\"\n\n/*\n\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\
-    \ i \u306B\u30B3\u30B9\u30C8 cost_i \u306E\u7269\u304C cnt_i \u500B\u3042\u308B\
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/segtree/greedy_subtract_segtree.hpp\n\
+    #include \"alg/monoid_pow.hpp\"\n\n/*\n\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9 i\
+    \ \u306B\u30B3\u30B9\u30C8 cost_i \u306E\u7269\u304C cnt_i \u500B\u3042\u308B\
     . dat_i in Monoid \u3082\u3042\u308B.\n\u6240\u6301\u91D1 x \u304B\u3089\u306F\
     \u3058\u3081\u3066 i=l,l+1,...,r-1 \u306B\u3064\u3044\u3066\u8CAA\u6B32\u306B\u3068\
     \u3063\u3066 Monoid \u7A4D\u3092\u8A08\u7B97.\ncost_i < LOG. O(LOG * logN time).\n\
@@ -136,7 +140,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/greedy_subtract_segtree.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/segtree/greedy_subtract_segtree.hpp

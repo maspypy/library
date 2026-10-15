@@ -14,7 +14,7 @@ data:
   - icon: ':warning:'
     path: graph/ds/tree_wavelet_matrix.hpp
     title: graph/ds/tree_wavelet_matrix.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/prefix_substring_LCS.hpp
     title: string/prefix_substring_LCS.hpp
   _extendedVerifiedWith:
@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/prefix_substring_lcs.test.cpp
     title: test/2_library_checker/string/prefix_substring_lcs.test.cpp
   - icon: ':x:'
@@ -64,16 +64,19 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/dummy.hpp\"\nstruct Monoid_Dummy {\n  using value_type\
-    \ = char;\n  static constexpr bool commute = true;\n  static value_type op(value_type,\
-    \ value_type) { return 0; }\n  static value_type id() { return 0; }\n};\n#line\
-    \ 2 \"ds/dummy_data_structure.hpp\"\n\nstruct Dummy_Data_Structure {\n  using\
-    \ MX = Monoid_Dummy;\n  using T = typename MX::value_type;\n  void build(const\
-    \ vc<T>& A) {}\n};\n"
-  code: "#include \"alg/monoid/dummy.hpp\"\n\nstruct Dummy_Data_Structure {\n  using\
-    \ MX = Monoid_Dummy;\n  using T = typename MX::value_type;\n  void build(const\
-    \ vc<T>& A) {}\n};"
+    links:
+    - https://github.com/maspypy/library/blob/main/ds/dummy_data_structure.hpp
+  bundledCode: "#line 1 \"ds/dummy_data_structure.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/dummy_data_structure.hpp\n\
+    #line 1 \"alg/monoid/dummy.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/dummy.hpp\n\
+    struct Monoid_Dummy {\n  using value_type = char;\n  static constexpr bool commute\
+    \ = true;\n  static value_type op(value_type, value_type) { return 0; }\n  static\
+    \ value_type id() { return 0; }\n};\n#line 3 \"ds/dummy_data_structure.hpp\"\n\
+    \nstruct Dummy_Data_Structure {\n  using MX = Monoid_Dummy;\n  using T = typename\
+    \ MX::value_type;\n  void build(const vc<T>& A) {}\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/dummy_data_structure.hpp\n\
+    #include \"alg/monoid/dummy.hpp\"\n\nstruct Dummy_Data_Structure {\n  using MX\
+    \ = Monoid_Dummy;\n  using T = typename MX::value_type;\n  void build(const vc<T>&\
+    \ A) {}\n};"
   dependsOn:
   - alg/monoid/dummy.hpp
   isVerificationFile: false
@@ -83,7 +86,7 @@ data:
   - ds/wavelet_matrix/wavelet_matrix.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - string/prefix_substring_LCS.hpp
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1332.test.cpp

@@ -15,14 +15,17 @@ data:
   attributes:
     links:
     - https://codeforces.com/problemset/problem/713/D
-  bundledCode: "#line 1 \"ds/sparse_table/sparse_table.hpp\"\n\n// \u51AA\u7B49\u306A\
-    \u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3002\
-    disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\ntemplate <class Monoid>\n\
-    struct Sparse_Table {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
-    \  int n, log;\n  vvc<X> dat;\n\n  Sparse_Table() {}\n  Sparse_Table(int n) {\
-    \ build(n); }\n  template <typename F>\n  Sparse_Table(int n, F f) {\n    build(n,\
-    \ f);\n  }\n  Sparse_Table(const vc<X>& v) { build(v); }\n\n  void build(int m)\
-    \ {\n    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const\
+    - https://github.com/maspypy/library/blob/main/ds/sparse_table/sparse_table_on_segtree.hpp
+  bundledCode: "#line 1 \"ds/sparse_table/sparse_table_on_segtree.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/ds/sparse_table/sparse_table_on_segtree.hpp\n\
+    #line 1 \"ds/sparse_table/sparse_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/sparse_table/sparse_table.hpp\n\
+    \n// \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\
+    \u4EEE\u5B9A\u3002disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\ntemplate\
+    \ <class Monoid>\nstruct Sparse_Table {\n  using MX = Monoid;\n  using X = typename\
+    \ MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Sparse_Table() {}\n  Sparse_Table(int\
+    \ n) { build(n); }\n  template <typename F>\n  Sparse_Table(int n, F f) {\n  \
+    \  build(n, f);\n  }\n  Sparse_Table(const vc<X>& v) { build(v); }\n\n  void build(int\
+    \ m) {\n    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const\
     \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
     \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
     \ << log) < n) ++log;\n    dat.resize(log);\n    dat[0].resize(n);\n    FOR(i,\
@@ -40,7 +43,7 @@ data:
     \ check(MX::id()));\n    if (R == 0) return 0;\n    int ok = R, ng = -1;\n   \
     \ while (ng + 1 < ok) {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k,\
     \ R));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n\
-    \  }\n};\n#line 2 \"ds/sparse_table/sparse_table_on_segtree.hpp\"\n/*\nhttps://codeforces.com/problemset/problem/713/D\n\
+    \  }\n};\n#line 3 \"ds/sparse_table/sparse_table_on_segtree.hpp\"\n/*\nhttps://codeforces.com/problemset/problem/713/D\n\
     \u30FBsparse_table OR disjoint_sparse table \u3092\u30BB\u30B0\u6728\u306B\u4E57\
     \u305B\u308B\n\u30FB\u69CB\u7BC9 O(HW log W)\n\u30FB\u30AF\u30A8\u30EA O(log H)\n\
     */\ntemplate <typename SPARSE_TABLE>\nstruct Sparse_Table_on_SegTree {\n  using\
@@ -57,7 +60,8 @@ data:
     \      if (xl & 1) res = MX::op(res, dat[xl++].prod(yl, yr));\n      if (xr &\
     \ 1) res = MX::op(res, dat[--xr].prod(yl, yr));\n      xl >>= 1, xr >>= 1;\n \
     \   }\n    return res;\n  }\n};\n"
-  code: "#include \"ds/sparse_table/sparse_table.hpp\"\n/*\nhttps://codeforces.com/problemset/problem/713/D\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/sparse_table/sparse_table_on_segtree.hpp\n\
+    #include \"ds/sparse_table/sparse_table.hpp\"\n/*\nhttps://codeforces.com/problemset/problem/713/D\n\
     \u30FBsparse_table OR disjoint_sparse table \u3092\u30BB\u30B0\u6728\u306B\u4E57\
     \u305B\u308B\n\u30FB\u69CB\u7BC9 O(HW log W)\n\u30FB\u30AF\u30A8\u30EA O(log H)\n\
     */\ntemplate <typename SPARSE_TABLE>\nstruct Sparse_Table_on_SegTree {\n  using\
@@ -79,7 +83,7 @@ data:
   isVerificationFile: false
   path: ds/sparse_table/sparse_table_on_segtree.hpp
   requiredBy: []
-  timestamp: '2026-10-04 20:03:31+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/866.test.cpp

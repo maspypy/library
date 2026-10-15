@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':question:'
@@ -16,9 +16,13 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"flow/k_ary_optimization.hpp\"\n\n#line 1 \"ds/hashmap.hpp\"\
-    \n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    links:
+    - https://github.com/maspypy/library/blob/main/flow/k_ary_optimization.hpp
+  bundledCode: "#line 1 \"flow/k_ary_optimization.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/flow/k_ary_optimization.hpp\n\
+    \n#line 1 \"flow/maxflow.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/flow/maxflow.hpp\n\
+    #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
     \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
     \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
     \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
@@ -42,7 +46,7 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -118,7 +122,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 2 \"flow/maxflow.hpp\"\n\ntemplate <typename Cap>\nstruct\
+    \   }\n  }\n};\n#line 3 \"flow/maxflow.hpp\"\n\ntemplate <typename Cap>\nstruct\
     \ MaxFlow {\n  struct Edge {\n    int to, rev;\n    Cap cap;\n  };\n\n  vc<Edge>\
     \ edges;\n  vc<int> indptr, level;\n  vc<Cap> init_cap;\n  vc<tuple<int, int,\
     \ Cap, Cap>> edge_pool;\n\n  const int N, source, sink;\n  bool calculated;\n\
@@ -210,7 +214,7 @@ data:
     \   print(\"edges (frm, to, cap, flow)\");\n    SHOW(N, len(indptr));\n    FOR(v,\
     \ N) {\n      FOR(i, indptr[v], indptr[v + 1]) {\n        Edge& e = edges[i];\n\
     \        Cap f = init_cap[i] - e.cap;\n        SHOW(i, v, e.to, e.cap, f);\n \
-    \     }\n    }\n#endif\n  }\n};\n#line 3 \"flow/k_ary_optimization.hpp\"\n\n//\
+    \     }\n    }\n#endif\n  }\n};\n#line 4 \"flow/k_ary_optimization.hpp\"\n\n//\
     \ ABC347G\ntemplate <typename T, bool MINIMIZE>\nstruct K_ary_Optimization {\n\
     \  int n;\n  vc<int> ks;\n  vvc<int> idx;\n  map<pair<int, int>, T> edges;\n \
     \ int source, sink, nxt;\n  T base_cost;\n\n  // idx[i][j] \u304C cut \u306E source\
@@ -247,10 +251,11 @@ data:
     \ tmp[a];\n    FOR(a, 1, H) FOR(b, W - 1) {\n      T x = cost[a][b] + cost[a -\
     \ 1][b + 1] - cost[a - 1][b] - cost[a][b + 1];\n      assert(x >= 0); // monge\n\
     \      add_edge(idx[i][a], idx[j][b + 1], x);\n    }\n  }\n};\n"
-  code: "\n#include \"flow/maxflow.hpp\"\n\n// ABC347G\ntemplate <typename T, bool\
-    \ MINIMIZE>\nstruct K_ary_Optimization {\n  int n;\n  vc<int> ks;\n  vvc<int>\
-    \ idx;\n  map<pair<int, int>, T> edges;\n  int source, sink, nxt;\n  T base_cost;\n\
-    \n  // idx[i][j] \u304C cut \u306E source \u5074\uFF1Aval[i]>=j\n  K_ary_Optimization(vc<int>\
+  code: "// Source: https://github.com/maspypy/library/blob/main/flow/k_ary_optimization.hpp\n\
+    \n#include \"flow/maxflow.hpp\"\n\n// ABC347G\ntemplate <typename T, bool MINIMIZE>\n\
+    struct K_ary_Optimization {\n  int n;\n  vc<int> ks;\n  vvc<int> idx;\n  map<pair<int,\
+    \ int>, T> edges;\n  int source, sink, nxt;\n  T base_cost;\n\n  // idx[i][j]\
+    \ \u304C cut \u306E source \u5074\uFF1Aval[i]>=j\n  K_ary_Optimization(vc<int>\
     \ ks) : n(len(ks)), ks(ks), base_cost(0) {\n    source = 0, sink = 1, nxt = 2;\n\
     \    for (auto& k: ks) {\n      assert(k >= 1);\n      vc<int> I(k + 1);\n   \
     \   I[0] = source, I[k] = sink;\n      FOR(i, 1, k) { I[i] = nxt++; }\n      idx.eb(I);\n\
@@ -291,7 +296,7 @@ data:
   isVerificationFile: false
   path: flow/k_ary_optimization.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:05:11+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: flow/k_ary_optimization.hpp

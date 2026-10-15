@@ -25,15 +25,18 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"linalg/transpose.hpp\"\ntemplate <typename VC>\nvc<VC> transpose(const\
-    \ vc<VC>& A, int H = -1, int W = -1) {\n  if (H == -1) { H = len(A), W = (len(A)\
-    \ == 0 ? 0 : len(A[0])); }\n  vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x]\
-    \ = A[x][y];\n  return B;\n}\n"
-  code: "template <typename VC>\nvc<VC> transpose(const vc<VC>& A, int H = -1, int\
-    \ W = -1) {\n  if (H == -1) { H = len(A), W = (len(A) == 0 ? 0 : len(A[0])); }\n\
-    \  vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x] = A[x][y];\n  return\
-    \ B;\n}\n"
+    links:
+    - https://github.com/maspypy/library/blob/main/linalg/transpose.hpp
+  bundledCode: "#line 1 \"linalg/transpose.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/linalg/transpose.hpp\n\
+    template <typename VC>\nvc<VC> transpose(const vc<VC>& A, int H = -1, int W =\
+    \ -1) {\n  if (H == -1) { H = len(A), W = (len(A) == 0 ? 0 : len(A[0])); }\n \
+    \ vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x] = A[x][y];\n  return B;\n\
+    }\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/linalg/transpose.hpp\n\
+    template <typename VC>\nvc<VC> transpose(const vc<VC>& A, int H = -1, int W =\
+    \ -1) {\n  if (H == -1) { H = len(A), W = (len(A) == 0 ? 0 : len(A[0])); }\n \
+    \ vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x] = A[x][y];\n  return B;\n\
+    }\n"
   dependsOn: []
   isVerificationFile: false
   path: linalg/transpose.hpp
@@ -41,7 +44,7 @@ data:
   - linalg/diagonalize_triangular_matrix.hpp
   - other/sliding_puzzle_solver.hpp
   - poly/coef_of_rational_fps_2d.hpp
-  timestamp: '2025-01-06 16:30:28+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/equal_4square_sum_grid.test.cpp

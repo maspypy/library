@@ -12,10 +12,11 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/60/problem/D
-  bundledCode: "#line 1 \"nt/pythagorean_triple.hpp\"\n\n/*\nc <= LIM, (a,b,c) \u3068\
-    \ (b,a,c) \u306F\u540C\u4E00\u8996, O(LIM) \u6642\u9593\n\u30FBLIM = 10^8\uFF1A\
-    \u4E92\u3044\u306B\u7D20 1.59*10^7 \u500B, 0.13sec\n\u30FBLIM = 10^8\uFF1A\u5168\
-    \u90E8 2.71*10^8 \u500B, 0.53sec\nhttps://codeforces.com/contest/60/problem/D\n\
+    - https://github.com/maspypy/library/blob/main/nt/pythagorean_triple.hpp
+  bundledCode: "#line 1 \"nt/pythagorean_triple.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/pythagorean_triple.hpp\n\
+    \n/*\nc <= LIM, (a,b,c) \u3068 (b,a,c) \u306F\u540C\u4E00\u8996, O(LIM) \u6642\
+    \u9593\n\u30FBLIM = 10^8\uFF1A\u4E92\u3044\u306B\u7D20 1.59*10^7 \u500B, 0.13sec\n\
+    \u30FBLIM = 10^8\uFF1A\u5168\u90E8 2.71*10^8 \u500B, 0.53sec\nhttps://codeforces.com/contest/60/problem/D\n\
     */\ntemplate <bool coprime_only, typename F>\nvoid enumerate_pythagorean_triple(int\
     \ LIM, F f) {\n  vc<tuple<int, int, int>> que;\n  auto add = [&](int a, int b,\
     \ int c) -> void {\n    if (c <= LIM) que.eb(a, b, c);\n  };\n  add(3, 4, 5);\n\
@@ -26,7 +27,8 @@ data:
     \     f(min(a, b), max(a, b), c);\n    } else {\n      int x = min(a, b), y =\
     \ max(a, b), z = c;\n      while (z <= LIM) {\n        f(x, y, z);\n        x\
     \ += min(a, b), y += max(a, b), z += c;\n      }\n    }\n  }\n}\n"
-  code: "\n/*\nc <= LIM, (a,b,c) \u3068 (b,a,c) \u306F\u540C\u4E00\u8996, O(LIM) \u6642\
+  code: "// Source: https://github.com/maspypy/library/blob/main/nt/pythagorean_triple.hpp\n\
+    \n/*\nc <= LIM, (a,b,c) \u3068 (b,a,c) \u306F\u540C\u4E00\u8996, O(LIM) \u6642\
     \u9593\n\u30FBLIM = 10^8\uFF1A\u4E92\u3044\u306B\u7D20 1.59*10^7 \u500B, 0.13sec\n\
     \u30FBLIM = 10^8\uFF1A\u5168\u90E8 2.71*10^8 \u500B, 0.53sec\nhttps://codeforces.com/contest/60/problem/D\n\
     */\ntemplate <bool coprime_only, typename F>\nvoid enumerate_pythagorean_triple(int\
@@ -43,7 +45,7 @@ data:
   isVerificationFile: false
   path: nt/pythagorean_triple.hpp
   requiredBy: []
-  timestamp: '2026-08-17 09:25:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/pythagorean_triples.test.cpp

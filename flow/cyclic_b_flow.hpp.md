@@ -9,8 +9,10 @@ data:
   attributes:
     links:
     - https://atcoder.jp/contests/dwango2015-prelims/tasks/dwango2015_prelims_4
-  bundledCode: "#line 1 \"flow/cyclic_b_flow.hpp\"\n/*\n\u5186\u74B0\u4E0A\u306E MCF\u3002\
-    \ncost[i]\uFF1Ai \u2192 i+1 \u306E\u30B3\u30B9\u30C8\nhttps://atcoder.jp/contests/dwango2015-prelims/tasks/dwango2015_prelims_4\n\
+    - https://github.com/maspypy/library/blob/main/flow/cyclic_b_flow.hpp
+  bundledCode: "#line 1 \"flow/cyclic_b_flow.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/flow/cyclic_b_flow.hpp\n\
+    /*\n\u5186\u74B0\u4E0A\u306E MCF\u3002\ncost[i]\uFF1Ai \u2192 i+1 \u306E\u30B3\
+    \u30B9\u30C8\nhttps://atcoder.jp/contests/dwango2015-prelims/tasks/dwango2015_prelims_4\n\
     */\ntemplate <typename CAP, typename COST>\nCOST cyclic_b_flow(vc<CAP> supply,\
     \ vc<COST> cost) {\n  const int N = len(supply);\n  if (N == 0) return 0;\n  assert(SUM(supply)\
     \ == 0);\n  auto f = [&](ll x) -> ll {\n    // N-1 \u2192 0 \u306E\u79FB\u52D5\
@@ -20,7 +22,8 @@ data:
     \ { return f(x) <= f(x + 1); };\n  ll LIM = 5;\n  for (auto&& x : supply) LIM\
     \ += max<ll>(x, 0);\n  ll x = binary_search(check, LIM, -LIM);\n  return f(x);\n\
     }\n"
-  code: "/*\n\u5186\u74B0\u4E0A\u306E MCF\u3002\ncost[i]\uFF1Ai \u2192 i+1 \u306E\u30B3\
+  code: "// Source: https://github.com/maspypy/library/blob/main/flow/cyclic_b_flow.hpp\n\
+    /*\n\u5186\u74B0\u4E0A\u306E MCF\u3002\ncost[i]\uFF1Ai \u2192 i+1 \u306E\u30B3\
     \u30B9\u30C8\nhttps://atcoder.jp/contests/dwango2015-prelims/tasks/dwango2015_prelims_4\n\
     */\ntemplate <typename CAP, typename COST>\nCOST cyclic_b_flow(vc<CAP> supply,\
     \ vc<COST> cost) {\n  const int N = len(supply);\n  if (N == 0) return 0;\n  assert(SUM(supply)\
@@ -35,7 +38,7 @@ data:
   isVerificationFile: false
   path: flow/cyclic_b_flow.hpp
   requiredBy: []
-  timestamp: '2026-08-17 12:20:35+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: flow/cyclic_b_flow.hpp

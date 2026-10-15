@@ -23,80 +23,87 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links:
+    - https://github.com/maspypy/library/blob/main/string/aho_corasick_for_general_trie.hpp
     - https://qoj.ac/contest/1435/problem/7742
-  bundledCode: "#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\
-    \u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\u6E08\u307F chunk \u3092\u518D\u5229\
-    \u7528\u3059\u308B\ntemplate <class Node>\nstruct Node_Pool {\n  union Slot {\n\
-    \    Node node;\n    Slot* next;\n\n    Slot() {}\n    ~Slot() {}\n  };\n  using\
-    \ np = Node*;\n\n  static constexpr int CHUNK_SIZE = 1 << 12;\n\n  vc<unique_ptr<Slot[]>>\
-    \ chunks;\n  int chunk_id = 0;\n  int pos = 0;\n  Slot* free_head = nullptr;\n\
-    \n  ~Node_Pool() {\n    auto& cache = chunk_cache();\n    for (auto& p : chunks)\
-    \ cache.eb(std::move(p));\n  }\n\n  template <class... Args>\n  np create(Args&&...\
-    \ args) {\n    Slot* s = new_slot();\n    return ::new (&s->node) Node(forward<Args>(args)...);\n\
-    \  }\n\n  np clone(const np x) {\n    assert(x);\n    Slot* s = new_slot();\n\
-    \    return ::new (&s->node) Node(*x);\n  }\n\n  void destroy(np x) {\n    if\
-    \ (!x) return;\n    x->~Node();\n    Slot* s = reinterpret_cast<Slot*>(x);\n \
-    \   s->next = free_head;\n    free_head = s;\n  }\n\n  // \u5168 node \u3092\u7121\
-    \u52B9\u5316\u3059\u308B\u3002\n  // \u78BA\u4FDD\u6E08\u307F chunk \u306F\u89E3\
-    \u653E\u305B\u305A\u3001\u6B21\u56DE\u4EE5\u964D\u306B\u518D\u5229\u7528\u3059\
-    \u308B\u3002\n  void reset() {\n    free_head = nullptr;\n    chunk_id = 0;\n\
-    \    pos = 0;\n  }\n\n  int used() const { return chunk_id * CHUNK_SIZE + pos;\
-    \ }\n\n private:\n  static vc<unique_ptr<Slot[]>>& chunk_cache() {\n    // static\
-    \ Node_Pool \u306E destructor \u3088\u308A\u5148\u306B\u7834\u68C4\u3055\u308C\
-    \u306A\u3044\u3088\u3046\u306B\u3059\u308B\u3002\n    static auto* cache = new\
-    \ vc<unique_ptr<Slot[]>>();\n    return *cache;\n  }\n\n  void alloc_chunk() {\n\
-    \    auto& cache = chunk_cache();\n    if (cache.empty()) {\n      chunks.eb(make_unique<Slot[]>(CHUNK_SIZE));\n\
-    \    } else {\n      chunks.eb(std::move(cache.back()));\n      cache.pop_back();\n\
-    \    }\n  }\n\n  Slot* new_slot() {\n    if (free_head) {\n      Slot* s = free_head;\n\
-    \      free_head = free_head->next;\n      return s;\n    }\n\n    if (chunk_id\
-    \ == len(chunks)) alloc_chunk();\n\n    Slot* s = &chunks[chunk_id][pos++];\n\
-    \    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n      pos = 0;\n    }\n    return\
-    \ s;\n  }\n};\n#line 2 \"ds/dynamic_array.hpp\"\n\ntemplate <typename T, bool\
-    \ PERSISTENT>\nstruct Dynamic_Array {\n  static constexpr int LOG = 4;\n  static\
-    \ constexpr int MASK = (1 << LOG) - 1;\n  struct Node {\n    T x;\n    Node* ch[1\
-    \ << LOG] = {};\n  };\n  Node_Pool<Node> pool;\n  using np = Node*;\n  const T\
-    \ x0;\n\n  Dynamic_Array(T default_value) : x0(default_value) {}\n  np new_root()\
-    \ {\n    np c = pool.create();\n    c->x = x0;\n    fill(c->ch, c->ch + (1 <<\
-    \ LOG), nullptr);\n    return c;\n  }\n\n  np new_node(vc<T> dat) {\n    np root\
-    \ = new_root();\n    FOR(i, len(dat)) root = set(root, i, dat[i], false);\n  \
-    \  return root;\n  }\n\n  T get(np c, int idx) {\n    if (!c) return x0;\n   \
-    \ if (idx == 0) return c->x;\n    return get(c->ch[idx & MASK], (idx - 1) >> LOG);\n\
-    \  }\n\n  np set(np c, int idx, T x, bool make_copy = true) {\n    c = (c ? clone(c,\
-    \ make_copy) : new_root());\n    if (idx == 0) {\n      c->x = x;\n      return\
-    \ c;\n    }\n    c->ch[idx & MASK] = set(c->ch[idx & MASK], (idx - 1) >> LOG,\
-    \ x);\n    return c;\n  }\n\n private:\n  np clone(np c, bool make_copy) {\n \
-    \   if (!make_copy || !PERSISTENT) return c;\n    return pool.clone(c);\n  }\n\
-    };\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\nstruct\
-    \ HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\
-    \u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n    u32\
-    \ k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k),\
-    \ val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\
-    \u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\
-    \u3068.\n  void clear() {\n    used.assign(len(used), 0);\n    cap = (mask + 1)\
-    \ / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\n  int index(const\
-    \ u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] && key[i] != k; i =\
-    \ (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const u64&\
-    \ k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap ==\
-    \ 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n\
-    \    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value) {\n   \
-    \ int i = index(k);\n    return (used[i] ? val[i] : default_value);\n  }\n\n \
-    \ bool count(const u64& k) {\n    int i = index(k);\n    return used[i] && key[i]\
-    \ == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+  bundledCode: "#line 1 \"string/aho_corasick_for_general_trie.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/aho_corasick_for_general_trie.hpp\n\
+    #line 1 \"ds/dynamic_array.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/dynamic_array.hpp\n\
+    #line 1 \"ds/node_pool.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/node_pool.hpp\n\
+    // \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\
+    \u6E08\u307F chunk \u3092\u518D\u5229\u7528\u3059\u308B\ntemplate <class Node>\n\
+    struct Node_Pool {\n  union Slot {\n    Node node;\n    Slot* next;\n\n    Slot()\
+    \ {}\n    ~Slot() {}\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE\
+    \ = 1 << 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  int chunk_id = 0;\n  int pos\
+    \ = 0;\n  Slot* free_head = nullptr;\n\n  ~Node_Pool() {\n    auto& cache = chunk_cache();\n\
+    \    for (auto& p : chunks) cache.eb(std::move(p));\n  }\n\n  template <class...\
+    \ Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n    return\
+    \ ::new (&s->node) Node(forward<Args>(args)...);\n  }\n\n  np clone(const np x)\
+    \ {\n    assert(x);\n    Slot* s = new_slot();\n    return ::new (&s->node) Node(*x);\n\
+    \  }\n\n  void destroy(np x) {\n    if (!x) return;\n    x->~Node();\n    Slot*\
+    \ s = reinterpret_cast<Slot*>(x);\n    s->next = free_head;\n    free_head = s;\n\
+    \  }\n\n  // \u5168 node \u3092\u7121\u52B9\u5316\u3059\u308B\u3002\n  // \u78BA\
+    \u4FDD\u6E08\u307F chunk \u306F\u89E3\u653E\u305B\u305A\u3001\u6B21\u56DE\u4EE5\
+    \u964D\u306B\u518D\u5229\u7528\u3059\u308B\u3002\n  void reset() {\n    free_head\
+    \ = nullptr;\n    chunk_id = 0;\n    pos = 0;\n  }\n\n  int used() const { return\
+    \ chunk_id * CHUNK_SIZE + pos; }\n\n private:\n  static vc<unique_ptr<Slot[]>>&\
+    \ chunk_cache() {\n    // static Node_Pool \u306E destructor \u3088\u308A\u5148\
+    \u306B\u7834\u68C4\u3055\u308C\u306A\u3044\u3088\u3046\u306B\u3059\u308B\u3002\
+    \n    static auto* cache = new vc<unique_ptr<Slot[]>>();\n    return *cache;\n\
+    \  }\n\n  void alloc_chunk() {\n    auto& cache = chunk_cache();\n    if (cache.empty())\
+    \ {\n      chunks.eb(make_unique<Slot[]>(CHUNK_SIZE));\n    } else {\n      chunks.eb(std::move(cache.back()));\n\
+    \      cache.pop_back();\n    }\n  }\n\n  Slot* new_slot() {\n    if (free_head)\
+    \ {\n      Slot* s = free_head;\n      free_head = free_head->next;\n      return\
+    \ s;\n    }\n\n    if (chunk_id == len(chunks)) alloc_chunk();\n\n    Slot* s\
+    \ = &chunks[chunk_id][pos++];\n    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n\
+    \      pos = 0;\n    }\n    return s;\n  }\n};\n#line 3 \"ds/dynamic_array.hpp\"\
+    \n\ntemplate <typename T, bool PERSISTENT>\nstruct Dynamic_Array {\n  static constexpr\
+    \ int LOG = 4;\n  static constexpr int MASK = (1 << LOG) - 1;\n  struct Node {\n\
+    \    T x;\n    Node* ch[1 << LOG] = {};\n  };\n  Node_Pool<Node> pool;\n  using\
+    \ np = Node*;\n  const T x0;\n\n  Dynamic_Array(T default_value) : x0(default_value)\
+    \ {}\n  np new_root() {\n    np c = pool.create();\n    c->x = x0;\n    fill(c->ch,\
+    \ c->ch + (1 << LOG), nullptr);\n    return c;\n  }\n\n  np new_node(vc<T> dat)\
+    \ {\n    np root = new_root();\n    FOR(i, len(dat)) root = set(root, i, dat[i],\
+    \ false);\n    return root;\n  }\n\n  T get(np c, int idx) {\n    if (!c) return\
+    \ x0;\n    if (idx == 0) return c->x;\n    return get(c->ch[idx & MASK], (idx\
+    \ - 1) >> LOG);\n  }\n\n  np set(np c, int idx, T x, bool make_copy = true) {\n\
+    \    c = (c ? clone(c, make_copy) : new_root());\n    if (idx == 0) {\n      c->x\
+    \ = x;\n      return c;\n    }\n    c->ch[idx & MASK] = set(c->ch[idx & MASK],\
+    \ (idx - 1) >> LOG, x);\n    return c;\n  }\n\n private:\n  np clone(np c, bool\
+    \ make_copy) {\n    if (!make_copy || !PERSISTENT) return c;\n    return pool.clone(c);\n\
+    \  }\n};\n#line 1 \"ds/to_small_key.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/to_small_key.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"ds/to_small_key.hpp\"\n\n// [30,10,20,30] -> [0,1,2,0] etc.\n\
+    \  }\n};\n#line 3 \"ds/to_small_key.hpp\"\n\n// [30,10,20,30] -> [0,1,2,0] etc.\n\
     struct To_Small_Key {\n  int kind = 0;\n  HashMap<int> MP;\n  vc<u64> raw;\n \
     \ To_Small_Key(u32 n = 0) : MP(n) {}\n  void reserve(u32 n) { MP.build(n); }\n\
     \  int size() { return MP.size(); }\n  u64 restore(int i) { return raw[i]; }\n\
     \  int query(u64 x, bool set_if_not_exist) {\n    int ans = MP.get(x, -1);\n \
     \   if (ans == -1 && set_if_not_exist) {\n      raw.eb(x);\n      MP[x] = ans\
-    \ = kind++;\n    }\n    return ans;\n  }\n};\n#line 1 \"ds/hashmap.hpp\"\n\n//\
+    \ = kind++;\n    }\n    return ans;\n  }\n};\n#line 1 \"graph/base.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/graph/base.hpp\n#line 1 \"ds/hashmap.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\n//\
     \ u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\
     \u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
     \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
@@ -121,7 +128,7 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -197,7 +204,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 4 \"string/aho_corasick_for_general_trie.hpp\"\n\n// \u5165\
+    \   }\n  }\n};\n#line 5 \"string/aho_corasick_for_general_trie.hpp\"\n\n// \u5165\
     \u529B: 0 \u3092\u6839\u3068\u3059\u308B\u6728\u3067\u8FBA\u306B\u306F int \u30E9\
     \u30D9\u30EB\u304C\u3064\u3044\u3066\u3044\u308B\n// return: suffix link\n// https://qoj.ac/contest/1435/problem/7742\n\
     vc<int> aho_corasick_for_general_trie(Graph<int, 1> G) {\n  const int N = G.N;\n\
@@ -208,7 +215,8 @@ data:
     \ e: G[v]) {\n      int s = MP.query(e.cost, 1), w = e.to;\n      link[w] = X.get(S[v],\
     \ s);\n      S[v] = X.set(S[v], s, w);\n      BFS[q++] = w;\n    }\n  }\n  return\
     \ link;\n}\n"
-  code: "#include \"ds/dynamic_array.hpp\"\n#include \"ds/to_small_key.hpp\"\n#include\
+  code: "// Source: https://github.com/maspypy/library/blob/main/string/aho_corasick_for_general_trie.hpp\n\
+    #include \"ds/dynamic_array.hpp\"\n#include \"ds/to_small_key.hpp\"\n#include\
     \ \"graph/base.hpp\"\n\n// \u5165\u529B: 0 \u3092\u6839\u3068\u3059\u308B\u6728\
     \u3067\u8FBA\u306B\u306F int \u30E9\u30D9\u30EB\u304C\u3064\u3044\u3066\u3044\u308B\
     \n// return: suffix link\n// https://qoj.ac/contest/1435/problem/7742\nvc<int>\
@@ -229,7 +237,7 @@ data:
   isVerificationFile: false
   path: string/aho_corasick_for_general_trie.hpp
   requiredBy: []
-  timestamp: '2026-10-04 10:39:32+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/aho_corasick_for_general_trie.hpp

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':question:'
@@ -26,9 +26,13 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links:
+    - https://github.com/maspypy/library/blob/main/game/graph_path_game.hpp
     - https://qoj.ac/contest/1576/problem/8507
-  bundledCode: "#line 1 \"graph/bipartite_vertex_coloring.hpp\"\n\n#line 1 \"ds/hashmap.hpp\"\
-    \n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+  bundledCode: "#line 1 \"game/graph_path_game.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/game/graph_path_game.hpp\n\
+    #line 1 \"graph/bipartite_vertex_coloring.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/bipartite_vertex_coloring.hpp\n\
+    \n#line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
     \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
     \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
     \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
@@ -52,7 +56,7 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -128,9 +132,9 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 1 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n\
-    \  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) {\
-    \ build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
+    \   }\n  }\n};\n#line 1 \"ds/unionfind/unionfind.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\n\
+    \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
+    \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
     \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
     \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
     \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
@@ -138,7 +142,7 @@ data:
     \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
     \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
     \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
-    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 4 \"graph/bipartite_vertex_coloring.hpp\"\
+    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 5 \"graph/bipartite_vertex_coloring.hpp\"\
     \n\n// \u73FE\u5728\u306E\u8FBA\u91CD\u307F\u5076\u5947\u3067\u4E8C\u90E8\u30B0\
     \u30E9\u30D5\u9802\u70B9\u5F69\u8272, \u4E8C\u90E8\u3067\u306A\u304B\u3063\u305F\
     \u5834\u5408\u306B\u306F empty\n// weight_one=true: \u8FBA\u91CD\u307F\u3092 1\
@@ -151,31 +155,34 @@ data:
     \ n) if (uf[v] == v && color[uf[v]] < 0) {\n    color[uf[v]] = 0;\n    color[uf[v\
     \ + n]] = 1;\n  }\n  FOR(v, n) color[v] = color[uf[v]];\n  color.resize(n);\n\
     \  FOR(v, n) if (uf[v] == uf[v + n]) return {};\n  return color;\n}\n#line 1 \"\
-    ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n\
-    \  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n\
-    \  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n \
-    \   while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k),\
-    \ val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\
-    \u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\
-    \u3068.\n  void clear() {\n    used.assign(len(used), 0);\n    cap = (mask + 1)\
-    \ / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\n  int index(const\
-    \ u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] && key[i] != k; i =\
-    \ (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const u64&\
-    \ k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap ==\
-    \ 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n\
-    \    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value) {\n   \
-    \ int i = index(k);\n    return (used[i] ? val[i] : default_value);\n  }\n\n \
-    \ bool count(const u64& k) {\n    int i = index(k);\n    return used[i] && key[i]\
-    \ == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    flow/maxflow.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/flow/maxflow.hpp\n\
+    #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -251,7 +258,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 2 \"flow/maxflow.hpp\"\n\ntemplate <typename Cap>\nstruct\
+    \   }\n  }\n};\n#line 3 \"flow/maxflow.hpp\"\n\ntemplate <typename Cap>\nstruct\
     \ MaxFlow {\n  struct Edge {\n    int to, rev;\n    Cap cap;\n  };\n\n  vc<Edge>\
     \ edges;\n  vc<int> indptr, level;\n  vc<Cap> init_cap;\n  vc<tuple<int, int,\
     \ Cap, Cap>> edge_pool;\n\n  const int N, source, sink;\n  bool calculated;\n\
@@ -343,31 +350,35 @@ data:
     \   print(\"edges (frm, to, cap, flow)\");\n    SHOW(N, len(indptr));\n    FOR(v,\
     \ N) {\n      FOR(i, indptr[v], indptr[v + 1]) {\n        Edge& e = edges[i];\n\
     \        Cap f = init_cap[i] - e.cap;\n        SHOW(i, v, e.to, e.cap, f);\n \
-    \     }\n    }\n#endif\n  }\n};\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\n\
-    template <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\
-    \u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n\
-    \  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap\
-    \ = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k, 0);\n\
-    \  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\
-    \u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used),\
-    \ 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap;\
-    \ }\n\n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i]\
-    \ && key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
-    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
-    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
-    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
-    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
-    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
-    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \     }\n    }\n#endif\n  }\n};\n#line 1 \"graph/reverse_graph.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/graph/reverse_graph.hpp\n#line\
+    \ 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -443,33 +454,34 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\n\r\ntemplate <typename GT>\r\
-    \nGT reverse_graph(const GT& G) {\r\n  static_assert(GT::is_directed);\r\n  GT\
-    \ G1(G.N);\r\n  for (auto&& e : G.edges) {\r\n    G1.add(e.to, e.frm, e.cost,\
-    \ e.id);\r\n  }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 4 \"game/graph_path_game.hpp\"\
-    \n\n// \u30B0\u30E9\u30D5\u304C\u3042\u308B. \u9802\u70B9 v \u306F A[v] \u56DE\
-    \u307E\u3067\u4F7F\u3048\u308B\uFF08\u591A\u91CD\u9802\u70B9\uFF09\n// winning\
-    \ position \u306E\u5217\u3092\u304B\u3048\u3059. \u305D\u308C\u3092\u542B\u307E\
-    \u306A\u3044\u6700\u5927\u30DE\u30C3\u30C1\u30F3\u30B0\u304C\u3042\u3042\u308B\
-    \u3068\u3044\u3046\u3053\u3068\n// https://qoj.ac/contest/1576/problem/8507\n\
-    vc<int> graph_path_game(Graph<int, 0> G, vc<int> A) {\n  // \u4E8C\u90E8\u3060\
-    \u3051\n  auto color = bipartite_vertex_coloring(G);\n  assert(!color.empty());\n\
-    \  int N = G.N;\n  int s = N, t = N + 1;\n  MaxFlow<int> F(N + 2, s, t);\n  FOR(v,\
-    \ N) {\n    if (color[v] == 0) F.add(s, v, A[v]);\n    if (color[v] == 1) F.add(v,\
-    \ t, A[v]);\n  }\n  for (auto& e: G.edges) {\n    int a = e.frm, b = e.to;\n \
-    \   if (color[a] == 1) swap(a, b);\n    F.add(a, b, infty<int>);\n  }\n  F.flow();\n\
-    \  // \u6B8B\u4F59\u30B0\u30E9\u30D5\u3067 s \u304B\u3089\u5230\u9054\u53EF\u80FD\
-    \u306A\u5DE6\u5074\u306E\u70B9\n  // t \u3078\u5230\u9054\u53EF\u80FD\u306A\u53F3\
-    \u5074\u306E\u70B9\n  Graph<int, 1> H(N + 2);\n  FOR(v, N + 2) {\n    for (auto&\
-    \ e: F.edges[v]) {\n      if (e.cap > 0) H.add(v, e.to);\n    }\n  }\n  H.build();\n\
-    \  auto reach = [&](int v) -> vc<int> {\n    vc<bool> vis(N + 2);\n    vc<int>\
-    \ que;\n    que.eb(v), vis[v] = 1;\n    FOR(i, len(que)) {\n      int v = que[i];\n\
-    \      for (auto& e: H[v]) {\n        if (!vis[e.to]) vis[e.to] = 1, que.eb(e.to);\n\
-    \      }\n    }\n    return que;\n  };\n  vc<int> ANS;\n  for (auto& v: reach(s))\
-    \ {\n    if (v < N && color[v] == 0) ANS.eb(v);\n  }\n  H = reverse_graph(H);\n\
-    \  for (auto& v: reach(t)) {\n    if (v < N && color[v] == 1) ANS.eb(v);\n  }\n\
-    \  return ANS;\n}\n"
-  code: "#include \"graph/bipartite_vertex_coloring.hpp\"\n#include \"flow/maxflow.hpp\"\
+    \   }\n  }\n};\n#line 3 \"graph/reverse_graph.hpp\"\n\ntemplate <typename GT>\n\
+    GT reverse_graph(const GT& G) {\n  static_assert(GT::is_directed);\n  GT G1(G.N);\n\
+    \  for (auto&& e : G.edges) {\n    G1.add(e.to, e.frm, e.cost, e.id);\n  }\n \
+    \ G1.build();\n  return G1;\n}\n#line 5 \"game/graph_path_game.hpp\"\n\n// \u30B0\
+    \u30E9\u30D5\u304C\u3042\u308B. \u9802\u70B9 v \u306F A[v] \u56DE\u307E\u3067\u4F7F\
+    \u3048\u308B\uFF08\u591A\u91CD\u9802\u70B9\uFF09\n// winning position \u306E\u5217\
+    \u3092\u304B\u3048\u3059. \u305D\u308C\u3092\u542B\u307E\u306A\u3044\u6700\u5927\
+    \u30DE\u30C3\u30C1\u30F3\u30B0\u304C\u3042\u3042\u308B\u3068\u3044\u3046\u3053\
+    \u3068\n// https://qoj.ac/contest/1576/problem/8507\nvc<int> graph_path_game(Graph<int,\
+    \ 0> G, vc<int> A) {\n  // \u4E8C\u90E8\u3060\u3051\n  auto color = bipartite_vertex_coloring(G);\n\
+    \  assert(!color.empty());\n  int N = G.N;\n  int s = N, t = N + 1;\n  MaxFlow<int>\
+    \ F(N + 2, s, t);\n  FOR(v, N) {\n    if (color[v] == 0) F.add(s, v, A[v]);\n\
+    \    if (color[v] == 1) F.add(v, t, A[v]);\n  }\n  for (auto& e: G.edges) {\n\
+    \    int a = e.frm, b = e.to;\n    if (color[a] == 1) swap(a, b);\n    F.add(a,\
+    \ b, infty<int>);\n  }\n  F.flow();\n  // \u6B8B\u4F59\u30B0\u30E9\u30D5\u3067\
+    \ s \u304B\u3089\u5230\u9054\u53EF\u80FD\u306A\u5DE6\u5074\u306E\u70B9\n  // t\
+    \ \u3078\u5230\u9054\u53EF\u80FD\u306A\u53F3\u5074\u306E\u70B9\n  Graph<int, 1>\
+    \ H(N + 2);\n  FOR(v, N + 2) {\n    for (auto& e: F.edges[v]) {\n      if (e.cap\
+    \ > 0) H.add(v, e.to);\n    }\n  }\n  H.build();\n  auto reach = [&](int v) ->\
+    \ vc<int> {\n    vc<bool> vis(N + 2);\n    vc<int> que;\n    que.eb(v), vis[v]\
+    \ = 1;\n    FOR(i, len(que)) {\n      int v = que[i];\n      for (auto& e: H[v])\
+    \ {\n        if (!vis[e.to]) vis[e.to] = 1, que.eb(e.to);\n      }\n    }\n  \
+    \  return que;\n  };\n  vc<int> ANS;\n  for (auto& v: reach(s)) {\n    if (v <\
+    \ N && color[v] == 0) ANS.eb(v);\n  }\n  H = reverse_graph(H);\n  for (auto& v:\
+    \ reach(t)) {\n    if (v < N && color[v] == 1) ANS.eb(v);\n  }\n  return ANS;\n\
+    }\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/game/graph_path_game.hpp\n\
+    #include \"graph/bipartite_vertex_coloring.hpp\"\n#include \"flow/maxflow.hpp\"\
     \n#include \"graph/reverse_graph.hpp\"\n\n// \u30B0\u30E9\u30D5\u304C\u3042\u308B\
     . \u9802\u70B9 v \u306F A[v] \u56DE\u307E\u3067\u4F7F\u3048\u308B\uFF08\u591A\u91CD\
     \u9802\u70B9\uFF09\n// winning position \u306E\u5217\u3092\u304B\u3048\u3059.\
@@ -502,7 +514,7 @@ data:
   isVerificationFile: false
   path: game/graph_path_game.hpp
   requiredBy: []
-  timestamp: '2026-09-24 22:40:16+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: game/graph_path_game.hpp

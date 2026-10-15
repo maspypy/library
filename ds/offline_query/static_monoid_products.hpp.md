@@ -11,10 +11,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
+    - https://github.com/maspypy/library/blob/main/ds/offline_query/static_monoid_products.hpp
     - https://qoj.ac/contest/1784/problem/9245
-  bundledCode: "#line 1 \"ds/offline_query/static_monoid_products.hpp\"\n\n// f(q,\
-    \ Lprod, Rprod)\n// f \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\u306E\u306F\
-    \u3059\u3079\u3066\u5358\u9805\u8FFD\u52A0\n// https://qoj.ac/contest/1784/problem/9245\n\
+  bundledCode: "#line 1 \"ds/offline_query/static_monoid_products.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/ds/offline_query/static_monoid_products.hpp\n\
+    \n// f(q, Lprod, Rprod)\n// f \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\
+    \u306E\u306F\u3059\u3079\u3066\u5358\u9805\u8FFD\u52A0\n// https://qoj.ac/contest/1784/problem/9245\n\
     template <typename Mono, typename T, typename F>\nvoid static_monoid_products(vc<T>&\
     \ A, vc<pair<int, int>>& query, F f) {\n  int N = len(A), Q = len(query);\n  vvc<int>\
     \ IDS(N);\n  FOR(q, Q) {\n    auto [L, R] = query[q];\n    if (L == R) {\n   \
@@ -30,7 +32,8 @@ data:
     \ ++i) dp[i + 1] = Mono::op(dp[i], A[i]);\n    // \u7B54\u306E\u8A08\u7B97\n \
     \   for (int q : I) {\n      auto [a, b] = query[q];\n      f(q, dp[a], dp[b]);\n\
     \    }\n  }\n}\n"
-  code: "\n// f(q, Lprod, Rprod)\n// f \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/static_monoid_products.hpp\n\
+    \n// f(q, Lprod, Rprod)\n// f \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\
     \u306E\u306F\u3059\u3079\u3066\u5358\u9805\u8FFD\u52A0\n// https://qoj.ac/contest/1784/problem/9245\n\
     template <typename Mono, typename T, typename F>\nvoid static_monoid_products(vc<T>&\
     \ A, vc<pair<int, int>>& query, F f) {\n  int N = len(A), Q = len(query);\n  vvc<int>\
@@ -51,7 +54,7 @@ data:
   isVerificationFile: false
   path: ds/offline_query/static_monoid_products.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/staticrmq_dc.test.cpp

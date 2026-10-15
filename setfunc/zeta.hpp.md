@@ -22,9 +22,11 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"setfunc/zeta.hpp\"\n\n#line 1 \"setfunc/bitwise_transform.hpp\"\
-    \n\nnamespace bitwise {\n\nenum class trans_type {\n  hadamard,\n  superset_zeta,\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/setfunc/zeta.hpp
+  bundledCode: "#line 1 \"setfunc/zeta.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/setfunc/zeta.hpp\n\
+    \n#line 1 \"setfunc/bitwise_transform.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/setfunc/bitwise_transform.hpp\n\
+    \nnamespace bitwise {\n\nenum class trans_type {\n  hadamard,\n  superset_zeta,\n\
     \  superset_mobius,\n  subset_zeta,\n  subset_mobius,\n  ranked_zeta,\n  ranked_mobius,\n\
     \  superset_zeta_or\n};\n\ntemplate <typename ARR>\ninline void ranked_add(ARR&\
     \ a, const ARR& b) {\n  for (int d = 0; d < int(a.size()); ++d) a[d] += b[d];\n\
@@ -53,14 +55,15 @@ data:
     template <trans_type type, typename T>\ninline void bitwise_transform(vc<T>& a)\
     \ {\n  int n = len(a);\n  assert(n >= 1);\n  assert((n & (n - 1)) == 0);\n  assert(n\
     \ <= (1 << 25));\n  bitwise_transform_dispatch<type, 1 << 25>(a);\n}\n}  // namespace\
-    \ bitwise\n#line 3 \"setfunc/zeta.hpp\"\n\ntemplate <typename T>\nvoid superset_zeta(vc<T>&\
+    \ bitwise\n#line 4 \"setfunc/zeta.hpp\"\n\ntemplate <typename T>\nvoid superset_zeta(vc<T>&\
     \ a) {\n  bitwise::bitwise_transform<bitwise::trans_type::superset_zeta>(a);\n\
     }\n\ntemplate <typename T>\nvoid superset_mobius(vc<T>& a) {\n  bitwise::bitwise_transform<bitwise::trans_type::superset_mobius>(a);\n\
     }\n\ntemplate <typename T>\nvoid subset_zeta(vc<T>& a) {\n  bitwise::bitwise_transform<bitwise::trans_type::subset_zeta>(a);\n\
     }\n\ntemplate <typename T>\nvoid subset_mobius(vc<T>& a) {\n  bitwise::bitwise_transform<bitwise::trans_type::subset_mobius>(a);\n\
     }\n"
-  code: "\n#include \"setfunc/bitwise_transform.hpp\"\n\ntemplate <typename T>\nvoid\
-    \ superset_zeta(vc<T>& a) {\n  bitwise::bitwise_transform<bitwise::trans_type::superset_zeta>(a);\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/setfunc/zeta.hpp\n\
+    \n#include \"setfunc/bitwise_transform.hpp\"\n\ntemplate <typename T>\nvoid superset_zeta(vc<T>&\
+    \ a) {\n  bitwise::bitwise_transform<bitwise::trans_type::superset_zeta>(a);\n\
     }\n\ntemplate <typename T>\nvoid superset_mobius(vc<T>& a) {\n  bitwise::bitwise_transform<bitwise::trans_type::superset_mobius>(a);\n\
     }\n\ntemplate <typename T>\nvoid subset_zeta(vc<T>& a) {\n  bitwise::bitwise_transform<bitwise::trans_type::subset_zeta>(a);\n\
     }\n\ntemplate <typename T>\nvoid subset_mobius(vc<T>& a) {\n  bitwise::bitwise_transform<bitwise::trans_type::subset_mobius>(a);\n\
@@ -72,7 +75,7 @@ data:
   requiredBy:
   - setfunc/or_convolution.hpp
   - setfunc/and_convolution.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/convolution/bitwise_and_convolution.test.cpp

@@ -25,18 +25,22 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/random/hash_pair.hpp
+  bundledCode: "#line 1 \"random/hash_pair.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/hash_pair.hpp\n\
+    #line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 2 \"random/hash_pair.hpp\"\n\ntemplate\
+    \  return l + RNG_64() % (r - l);\n}\n#line 3 \"random/hash_pair.hpp\"\n\ntemplate\
     \ <typename T>\nu64 hash_pair(pair<T, T> X) {\n  static ll hash_base = 0;\n  if\
     \ (hash_base == 0) hash_base = RNG_64();\n  return hash_base * X.fi + X.se;\n\
     }\n"
-  code: "#include \"random/base.hpp\"\n\ntemplate <typename T>\nu64 hash_pair(pair<T,\
-    \ T> X) {\n  static ll hash_base = 0;\n  if (hash_base == 0) hash_base = RNG_64();\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/random/hash_pair.hpp\n\
+    #include \"random/base.hpp\"\n\ntemplate <typename T>\nu64 hash_pair(pair<T, T>\
+    \ X) {\n  static ll hash_base = 0;\n  if (hash_base == 0) hash_base = RNG_64();\n\
     \  return hash_base * X.fi + X.se;\n}\n"
   dependsOn:
   - random/base.hpp
@@ -44,7 +48,7 @@ data:
   path: random/hash_pair.hpp
   requiredBy:
   - geo/closest_pair.hpp
-  timestamp: '2026-08-30 21:41:42+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2167.test.cpp

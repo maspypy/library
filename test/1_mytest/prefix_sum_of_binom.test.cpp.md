@@ -27,20 +27,21 @@ data:
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/prefix_sum_of_binom.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n/*\n\
-    library: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
-    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
-    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
-    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
-    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
-    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
-    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
-    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
-    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
-    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
-    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n//\
+    \ Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\nlibrary:\
+    \ https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
+    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
+    Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\"\
+    )\n#endif\n#endif\n#include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
+    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
+    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class>\nconstexpr\
+    \ bool dependent_false = false;\n\ntemplate <class T>\nconstexpr T infty = []\
+    \ {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\");\n  return\
+    \ T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
     template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
     \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
     using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
@@ -142,49 +143,50 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/prefix_sum_of_binom.test.cpp\"\
-    \n\n#line 1 \"mod/modint_common.hpp\"\n\n\nstruct has_mod_impl {\n  template <class\
-    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
-    \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static vector<mint> dat\
-    \ = {1, 1};\n  static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod =\
-    \ mint::get_mod();\n    dat = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if\
-    \ (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod, 1 << (topbit(n)\
-    \ + 1));\n    dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n\
-    \  if (n < 0) return mint(0);\n  static vector<mint> dat = {1, 1};\n  static int\
+    \n\n#line 1 \"mod/modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint.hpp\n\
+    #line 1 \"mod/modint_common.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint_common.hpp\n\
+    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
+    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
+    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
+    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
+    \ mint>\nmint fact(int n) {\n  static vector<mint> dat = {1, 1};\n  static int\
     \ mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n    dat\
     \ = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if (len(dat) <= n) {\n    int\
     \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
-    \    dat[m - 1] = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i]\
-    \ = dat[i + 1] * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class\
-    \ mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
-    }\n\ntemplate <typename mint>\nmint inv(int n) {\n  return fact<mint>(n - 1) *\
-    \ fact_inv<mint>(n);\n}\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n\
-    \ != 0);\n  return 1.0 / n;\n}\n\ntemplate <typename mint, class Head, class...\
-    \ Tail>\nmint multinomial(Head &&head, Tail &&...tail) {\n  return fact<mint>(head)\
-    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
-    mint C_dense(int n, int k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return\
-    \ 0;\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n  static int mod = 0;\n\
-    \  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n    C.clear();\n\
-    \    H = W = 0;\n  }\n  auto calc = [&](int i, int j) -> mint {\n    if (i ==\
-    \ 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i -\
-    \ 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k\
-    \ + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k +\
-    \ 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n   \
-    \   C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H =\
-    \ n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false,\
-    \ bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 ||\
-    \ n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n, k);\n  if constexpr\
-    \ (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint\
-    \ x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\n\
-    template <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
-    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n  }\n  return dat[n];\n\
+    }\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  if (n < 0) return mint(0);\n\
+    \  static vector<mint> dat = {1, 1};\n  static int mod = 0;\n  if (mod != mint::get_mod())\
+    \ {\n    mod = mint::get_mod();\n    dat = {1, 1};\n  }\n  assert(0 <= n && n\
+    \ < mod);\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
+    \ 1 << (topbit(n) + 1));\n    dat.resize(m);\n    dat[m - 1] = fact<mint>(m -\
+    \ 1).inverse();\n    FOR_R(i, now, m - 1) dat[i] = dat[i + 1] * mint::raw(i +\
+    \ 1);\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts...\
+    \ xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename\
+    \ mint>\nmint inv(int n) {\n  return fact<mint>(n - 1) * fact_inv<mint>(n);\n\
+    }\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0\
+    \ / n;\n}\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&...tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  static vvc<mint> C;\n  static int H = 0, W\
+    \ = 0;\n  static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n\
+    \    C.clear();\n    H = W = 0;\n  }\n  auto calc = [&](int i, int j) -> mint\
+    \ {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
+    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
+    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
+    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
+    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
+    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n,\
+    \ k);\n  if constexpr (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k,\
+    \ n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
+    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
+    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
     \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
     }\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint, bool large = false, bool dense\
     \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
     \ mint(0);\n  if (n == 0) {\n    return (d == 0 ? mint(1) : mint(0));\n  }\n \
-    \ return C<mint, large, dense>(n + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\
+    \ return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\
     \ntemplate <int mod>\nstruct modint {\n  static constexpr u32 umod = u32(mod);\n\
     \  static_assert(0 < umod && umod < u32(1) << 31);\n  u32 val;\n\n  static modint\
     \ raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
@@ -224,44 +226,44 @@ data:
     \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
     \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
     }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 1 \"ds/offline_query/mo.hpp\"\n// Nsqrt(Q)\r\nstruct Mo {\r\n  vc<pair<int,\
-    \ int>> LR;\r\n  void add(int L, int R) { LR.emplace_back(L, R); }\r\n\r\n  static\
-    \ vc<int> get_mo_order(vc<pair<int, int>> LR) {\r\n    int N = 1;\r\n    for (auto\
-    \ &&[l, r] : LR) chmax(N, l), chmax(N, r);\r\n    int Q = len(LR);\r\n    if (Q\
-    \ == 0) return {};\r\n    int bs = sqrt(3) * N / sqrt(2 * Q);\r\n    chmax(bs,\
-    \ 1);\r\n    vc<int> I(Q);\r\n    iota(all(I), 0);\r\n    sort(all(I), [&](int\
-    \ a, int b) {\r\n      int aa = LR[a].fi / bs, bb = LR[b].fi / bs;\r\n      if\
-    \ (aa != bb) return aa < bb;\r\n      return (aa & 1) ? LR[a].se > LR[b].se :\
-    \ LR[a].se < LR[b].se;\r\n    });\r\n\r\n    auto cost = [&](int a, int b) ->\
-    \ int {\r\n      return abs(LR[I[a]].fi - LR[I[b]].fi) + abs(LR[I[a]].se - LR[I[b]].se);\r\
-    \n    };\r\n\r\n    // \u30E9\u30F3\u30C0\u30E0\u30B1\u30FC\u30B9\u30676%\u7A0B\
-    \u5EA6\u6539\u5584\r\n    auto work = [&](int k) -> void {\r\n      if (cost(k,\
-    \ k + 2) + cost(k + 1, k + 3) <\r\n          cost(k, k + 1) + cost(k + 2, k +\
-    \ 3)) {\r\n        swap(I[k + 1], I[k + 2]);\r\n      }\r\n      if (cost(k, k\
-    \ + 3) + cost(k + 1, k + 4) <\r\n          cost(k, k + 1) + cost(k + 3, k + 4))\
-    \ {\r\n        swap(I[k + 1], I[k + 3]);\r\n      }\r\n    };\r\n    FOR(k, Q\
-    \ - 5) work(k);\r\n    FOR_R(k, Q - 5) work(k);\r\n    return I;\r\n  }\r\n\r\n\
-    \  template <typename F1, typename F2, typename F3, typename F4, typename F5>\r\
-    \n  void calc(F1 add_l, F2 add_r, F3 rm_l, F4 rm_r, F5 query) {\r\n    auto I\
-    \ = get_mo_order(LR);\r\n    int l = 0, r = 0;\r\n    for (auto idx : I) {\r\n\
-    \      while (l > LR[idx].fi) add_l(--l);\r\n      while (r < LR[idx].se) add_r(r++);\r\
-    \n      while (l < LR[idx].fi) rm_l(l++);\r\n      while (r > LR[idx].se) rm_r(--r);\r\
-    \n      query(idx);\r\n    }\r\n  }\r\n};\r\n#line 2 \"mod/prefix_sum_of_binom.hpp\"\
-    \n\ntemplate <typename mint>\nstruct Prefix_Sum_of_Binom {\n  static constexpr\
-    \ u32 mod = mint::get_mod();\n  const int MAX_N;\n  const int B;\n  vc<mint> POW;\n\
-    \  vvc<mint> dat;\n\n  Prefix_Sum_of_Binom(int MAX_N) : MAX_N(MAX_N), B(sqrt(MAX_N\
-    \ + 1)) {\n    assert(MAX_N >= 0);\n    int K = ceil(MAX_N, B + B) + 2;\n    int\
-    \ p = max(MAX_N, K * B);\n    POW.assign(p + 1, mint(1));\n    FOR(i, p) POW[i\
-    \ + 1] = POW[i] + POW[i];\n    dat.resize(K);\n    FOR(k, 0, K) {\n      // [0,\
-    \ kB] \u3067\u306E closed sum\n      vc<mint>& f = dat[k];\n      if (MAX_N +\
-    \ 1 - k * B <= 0) continue;\n      f.resize(MAX_N + 1 - k * B);\n      int m =\
-    \ k * B;\n      f[0] = POW[m] * fact<mint>(m);\n      FOR(i, MAX_N - m) {\n  \
-    \      f[i + 1] = f[i] + f[i] - fact<mint>(i + m) * fact_inv<mint>(i);\n     \
-    \ }\n    }\n  }\n\n  // \\sum_{k=0}^{m-1} binom(n,k)\n  mint query(int n, int\
-    \ m) {\n    assert(0 <= m);\n    chmin(m, n + 1);\n    if (m == 0) return mint(0);\n\
-    \    if (m + m > n + 1) return POW[n] - query(n, n + 1 - m);\n    --m;\n    int\
-    \ a = m / B;\n\n    if (m <= a * B + B / 2) {\n      u128 t = 0;\n      FOR(i,\
-    \ a * B + 1, m + 1) {\n        t += u64(fact_inv<mint>(i).val) * (fact_inv<mint>(n\
+    #line 1 \"mod/prefix_sum_of_binom.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/prefix_sum_of_binom.hpp\n\
+    #line 1 \"ds/offline_query/mo.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/mo.hpp\n\
+    // Nsqrt(Q)\nstruct Mo {\n  vc<pair<int, int>> LR;\n  void add(int L, int R) {\
+    \ LR.emplace_back(L, R); }\n\n  static vc<int> get_mo_order(vc<pair<int, int>>\
+    \ LR) {\n    int N = 1;\n    for (auto &&[l, r] : LR) chmax(N, l), chmax(N, r);\n\
+    \    int Q = len(LR);\n    if (Q == 0) return {};\n    int bs = sqrt(3) * N /\
+    \ sqrt(2 * Q);\n    chmax(bs, 1);\n    vc<int> I(Q);\n    iota(all(I), 0);\n \
+    \   sort(all(I), [&](int a, int b) {\n      int aa = LR[a].fi / bs, bb = LR[b].fi\
+    \ / bs;\n      if (aa != bb) return aa < bb;\n      return (aa & 1) ? LR[a].se\
+    \ > LR[b].se : LR[a].se < LR[b].se;\n    });\n\n    auto cost = [&](int a, int\
+    \ b) -> int {\n      return abs(LR[I[a]].fi - LR[I[b]].fi) + abs(LR[I[a]].se -\
+    \ LR[I[b]].se);\n    };\n\n    // \u30E9\u30F3\u30C0\u30E0\u30B1\u30FC\u30B9\u3067\
+    6%\u7A0B\u5EA6\u6539\u5584\n    auto work = [&](int k) -> void {\n      if (cost(k,\
+    \ k + 2) + cost(k + 1, k + 3) <\n          cost(k, k + 1) + cost(k + 2, k + 3))\
+    \ {\n        swap(I[k + 1], I[k + 2]);\n      }\n      if (cost(k, k + 3) + cost(k\
+    \ + 1, k + 4) <\n          cost(k, k + 1) + cost(k + 3, k + 4)) {\n        swap(I[k\
+    \ + 1], I[k + 3]);\n      }\n    };\n    FOR(k, Q - 5) work(k);\n    FOR_R(k,\
+    \ Q - 5) work(k);\n    return I;\n  }\n\n  template <typename F1, typename F2,\
+    \ typename F3, typename F4, typename F5>\n  void calc(F1 add_l, F2 add_r, F3 rm_l,\
+    \ F4 rm_r, F5 query) {\n    auto I = get_mo_order(LR);\n    int l = 0, r = 0;\n\
+    \    for (auto idx : I) {\n      while (l > LR[idx].fi) add_l(--l);\n      while\
+    \ (r < LR[idx].se) add_r(r++);\n      while (l < LR[idx].fi) rm_l(l++);\n    \
+    \  while (r > LR[idx].se) rm_r(--r);\n      query(idx);\n    }\n  }\n};\n#line\
+    \ 3 \"mod/prefix_sum_of_binom.hpp\"\n\ntemplate <typename mint>\nstruct Prefix_Sum_of_Binom\
+    \ {\n  static constexpr u32 mod = mint::get_mod();\n  const int MAX_N;\n  const\
+    \ int B;\n  vc<mint> POW;\n  vvc<mint> dat;\n\n  Prefix_Sum_of_Binom(int MAX_N)\
+    \ : MAX_N(MAX_N), B(sqrt(MAX_N + 1)) {\n    assert(MAX_N >= 0);\n    int K = ceil(MAX_N,\
+    \ B + B) + 2;\n    int p = max(MAX_N, K * B);\n    POW.assign(p + 1, mint(1));\n\
+    \    FOR(i, p) POW[i + 1] = POW[i] + POW[i];\n    dat.resize(K);\n    FOR(k, 0,\
+    \ K) {\n      // [0, kB] \u3067\u306E closed sum\n      vc<mint>& f = dat[k];\n\
+    \      if (MAX_N + 1 - k * B <= 0) continue;\n      f.resize(MAX_N + 1 - k * B);\n\
+    \      int m = k * B;\n      f[0] = POW[m] * fact<mint>(m);\n      FOR(i, MAX_N\
+    \ - m) {\n        f[i + 1] = f[i] + f[i] - fact<mint>(i + m) * fact_inv<mint>(i);\n\
+    \      }\n    }\n  }\n\n  // \\sum_{k=0}^{m-1} binom(n,k)\n  mint query(int n,\
+    \ int m) {\n    assert(0 <= m);\n    chmin(m, n + 1);\n    if (m == 0) return\
+    \ mint(0);\n    if (m + m > n + 1) return POW[n] - query(n, n + 1 - m);\n    --m;\n\
+    \    int a = m / B;\n\n    if (m <= a * B + B / 2) {\n      u128 t = 0;\n    \
+    \  FOR(i, a * B + 1, m + 1) {\n        t += u64(fact_inv<mint>(i).val) * (fact_inv<mint>(n\
     \ - i).val);\n      }\n      return _get(n, a) + mint::raw(t % mod) * fact<mint>(n);\n\
     \    } else {\n      u128 t = 0;\n      FOR(i, m + 1, (a + 1) * B + 1) {\n   \
     \     t += u64(fact_inv<mint>(i).val) * (fact_inv<mint>(n - i).val);\n      }\n\
@@ -299,7 +301,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/prefix_sum_of_binom.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/prefix_sum_of_binom.test.cpp

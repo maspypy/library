@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
   - icon: ':question:'
@@ -28,13 +28,17 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/maximum_matching_size.hpp
+  bundledCode: "#line 1 \"graph/maximum_matching_size.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/maximum_matching_size.hpp\n\
+    #line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/modint61.hpp\"\n\nstruct modint61\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/modint61.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/mod/modint61.hpp\n\nstruct modint61\
     \ {\n  static constexpr u64 mod = (1ULL << 61) - 1;\n  u64 val;\n  constexpr modint61()\
     \ : val(0ULL) {}\n  constexpr modint61(u32 x) : val(x) {}\n  constexpr modint61(u64\
     \ x) : val(x % mod) {}\n  constexpr modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod))\
@@ -62,25 +66,27 @@ data:
     \ mul *= mul, n >>= 1;\n    }\n    return ret;\n  }\n};\n\n#ifdef FASTIO\nvoid\
     \ rd(modint61 &x) {\n  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < modint61::mod);\n\
     }\n\nvoid wt(modint61 x) { fastio::wt(x.val); }\n#endif\n#line 1 \"linalg/matrix_rank.hpp\"\
-    \ntemplate <typename T>\nint matrix_rank(vc<vc<T>> a, int n = -1, int m = -1)\
-    \ {\n  if (n == 0) return 0;\n  if (n == -1) { n = len(a), m = len(a[0]); }\n\
-    \  assert(n == len(a) && m == len(a[0]));\n  int rk = 0;\n  FOR(j, m) {\n    if\
-    \ (rk == n) break;\n    if (a[rk][j] == 0) {\n      FOR(i, rk + 1, n) if (a[i][j]\
-    \ != T(0)) {\n        swap(a[rk], a[i]);\n        break;\n      }\n    }\n   \
-    \ if (a[rk][j] == 0) continue;\n    T c = T(1) / a[rk][j];\n    FOR(k, j, m) a[rk][k]\
-    \ *= c;\n    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n      FOR3(k, j, m) {\
-    \ a[i][k] -= a[rk][k] * c; }\n    }\n    ++rk;\n  }\n  return rk;\n}\n#line 4\
-    \ \"graph/maximum_matching_size.hpp\"\n\ntemplate <typename GT>\nint maximum_matching_size(GT&\
-    \ G) {\n  static_assert(!GT::is_directed);\n  using mint = modint61;\n  int N\
-    \ = G.N;\n  vv(mint, tutte, N, N);\n  for (auto&& e: G.edges) {\n    mint x =\
-    \ RNG(mint::get_mod());\n    int i = e.frm, j = e.to;\n    tutte[i][j] += x;\n\
-    \    tutte[j][i] -= x;\n  }\n  return matrix_rank(tutte, N, N) / 2;\n}\n"
-  code: "#include \"random/base.hpp\"\n#include \"mod/modint61.hpp\"\n#include \"\
-    linalg/matrix_rank.hpp\"\n\ntemplate <typename GT>\nint maximum_matching_size(GT&\
-    \ G) {\n  static_assert(!GT::is_directed);\n  using mint = modint61;\n  int N\
-    \ = G.N;\n  vv(mint, tutte, N, N);\n  for (auto&& e: G.edges) {\n    mint x =\
-    \ RNG(mint::get_mod());\n    int i = e.frm, j = e.to;\n    tutte[i][j] += x;\n\
-    \    tutte[j][i] -= x;\n  }\n  return matrix_rank(tutte, N, N) / 2;\n}\n"
+    \n// Source: https://github.com/maspypy/library/blob/main/linalg/matrix_rank.hpp\n\
+    template <typename T>\nint matrix_rank(vc<vc<T>> a, int n = -1, int m = -1) {\n\
+    \  if (n == 0) return 0;\n  if (n == -1) { n = len(a), m = len(a[0]); }\n  assert(n\
+    \ == len(a) && m == len(a[0]));\n  int rk = 0;\n  FOR(j, m) {\n    if (rk == n)\
+    \ break;\n    if (a[rk][j] == 0) {\n      FOR(i, rk + 1, n) if (a[i][j] != T(0))\
+    \ {\n        swap(a[rk], a[i]);\n        break;\n      }\n    }\n    if (a[rk][j]\
+    \ == 0) continue;\n    T c = T(1) / a[rk][j];\n    FOR(k, j, m) a[rk][k] *= c;\n\
+    \    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n      FOR3(k, j, m) { a[i][k]\
+    \ -= a[rk][k] * c; }\n    }\n    ++rk;\n  }\n  return rk;\n}\n#line 5 \"graph/maximum_matching_size.hpp\"\
+    \n\ntemplate <typename GT>\nint maximum_matching_size(GT& G) {\n  static_assert(!GT::is_directed);\n\
+    \  using mint = modint61;\n  int N = G.N;\n  vv(mint, tutte, N, N);\n  for (auto&&\
+    \ e: G.edges) {\n    mint x = RNG(mint::get_mod());\n    int i = e.frm, j = e.to;\n\
+    \    tutte[i][j] += x;\n    tutte[j][i] -= x;\n  }\n  return matrix_rank(tutte,\
+    \ N, N) / 2;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/maximum_matching_size.hpp\n\
+    #include \"random/base.hpp\"\n#include \"mod/modint61.hpp\"\n#include \"linalg/matrix_rank.hpp\"\
+    \n\ntemplate <typename GT>\nint maximum_matching_size(GT& G) {\n  static_assert(!GT::is_directed);\n\
+    \  using mint = modint61;\n  int N = G.N;\n  vv(mint, tutte, N, N);\n  for (auto&&\
+    \ e: G.edges) {\n    mint x = RNG(mint::get_mod());\n    int i = e.frm, j = e.to;\n\
+    \    tutte[i][j] += x;\n    tutte[j][i] -= x;\n  }\n  return matrix_rank(tutte,\
+    \ N, N) / 2;\n}\n"
   dependsOn:
   - random/base.hpp
   - mod/modint61.hpp
@@ -88,7 +94,7 @@ data:
   isVerificationFile: false
   path: graph/maximum_matching_size.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:41:42+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/tutte.test.cpp

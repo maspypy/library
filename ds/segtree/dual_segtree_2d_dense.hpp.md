@@ -7,11 +7,12 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/segtree/dual_segtree_2d_dense.hpp\"\n\ntemplate <class\
-    \ Monoid>\nstruct Dual_SegTree_2D_Dense {\n  using MX = Monoid;\n  using X = typename\
-    \ MX::value_type;\n  using value_type = X;\n  static_assert(MX::commute);\n  int\
-    \ H, W;\n  vc<X> dat;\n\n  Dual_SegTree_2D_Dense() : Dual_SegTree_2D_Dense(0,\
+    links:
+    - https://github.com/maspypy/library/blob/main/ds/segtree/dual_segtree_2d_dense.hpp
+  bundledCode: "#line 1 \"ds/segtree/dual_segtree_2d_dense.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/dual_segtree_2d_dense.hpp\n\
+    \ntemplate <class Monoid>\nstruct Dual_SegTree_2D_Dense {\n  using MX = Monoid;\n\
+    \  using X = typename MX::value_type;\n  using value_type = X;\n  static_assert(MX::commute);\n\
+    \  int H, W;\n  vc<X> dat;\n\n  Dual_SegTree_2D_Dense() : Dual_SegTree_2D_Dense(0,\
     \ 0) {}\n  Dual_SegTree_2D_Dense(int H, int W)\n      : H(H), W(W), dat(4 * H\
     \ * W, MX::id()) {}\n\n  X get(int x, int y) {\n    X t = MX::id();\n    int a\
     \ = x + H;\n    while (a) {\n      int b = y + W;\n      while (b) {\n       \
@@ -35,7 +36,8 @@ data:
     \    dat[idx(x, 2 * k + 0)] = MX::op(dat[idx(x, 2 * k + 0)], dat[idx(x, k)]);\n\
     \    dat[idx(x, 2 * k + 1)] = MX::op(dat[idx(x, 2 * k + 1)], dat[idx(x, k)]);\n\
     \    dat[idx(x, k)] = MX::id();\n  }\n};\n"
-  code: "\ntemplate <class Monoid>\nstruct Dual_SegTree_2D_Dense {\n  using MX = Monoid;\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/segtree/dual_segtree_2d_dense.hpp\n\
+    \ntemplate <class Monoid>\nstruct Dual_SegTree_2D_Dense {\n  using MX = Monoid;\n\
     \  using X = typename MX::value_type;\n  using value_type = X;\n  static_assert(MX::commute);\n\
     \  int H, W;\n  vc<X> dat;\n\n  Dual_SegTree_2D_Dense() : Dual_SegTree_2D_Dense(0,\
     \ 0) {}\n  Dual_SegTree_2D_Dense(int H, int W)\n      : H(H), W(W), dat(4 * H\
@@ -65,7 +67,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/dual_segtree_2d_dense.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/segtree/dual_segtree_2d_dense.hpp

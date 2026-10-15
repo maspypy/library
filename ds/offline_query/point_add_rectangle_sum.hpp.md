@@ -19,21 +19,26 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add\
-    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\n  static constexpr X id() { return X(0); }\n\
-    \  static constexpr bool commute = true;\n};\n#line 2 \"ds/fenwicktree/fenwicktree.hpp\"\
-    \n\ntemplate <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
-    \ MX = Monoid;\n  using E = typename G::value_type;\n  int n;\n  vector<E> dat;\n\
-    \  E total;\n\n  FenwickTree() {}\n  FenwickTree(int n) { build(n); }\n  template\
-    \ <typename F>\n  FenwickTree(int n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const\
-    \ vc<E>& v) { build(v); }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m,\
-    \ G::id());\n    total = G::id();\n  }\n  void build(const vc<E>& v) {\n    build(len(v),\
-    \ [&](int i) -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
-    \ m, F f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::id();\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/ds/offline_query/point_add_rectangle_sum.hpp
+  bundledCode: "#line 1 \"ds/offline_query/point_add_rectangle_sum.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/ds/offline_query/point_add_rectangle_sum.hpp\n\
+    #line 1 \"ds/fenwicktree/fenwicktree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/fenwicktree/fenwicktree.hpp\n\
+    #line 1 \"alg/monoid/add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
+    \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
+    \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
+    \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
+    };\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
+    struct FenwickTree {\n  using G = Monoid;\n  using MX = Monoid;\n  using E = typename\
+    \ G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree() {}\n\
+    \  FenwickTree(int n) { build(n); }\n  template <typename F>\n  FenwickTree(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v);\
+    \ }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m, G::id());\n    total\
+    \ = G::id();\n  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int i)\
+    \ -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F\
+    \ f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::id();\n\
     \    FOR(i, n) { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int\
     \ j = i + (i & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j -\
     \ 1]);\n    }\n    total = prefix_sum(m);\n  }\n\n  E prod_all() const { return\
@@ -86,75 +91,73 @@ data:
     \ G::inverse(dat[i + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1\
     \ << k), s = t;\n      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int\
     \ L = 0) const {\n    return max_right([&k](E x) -> bool { return x <= k; }, L);\n\
-    \  }\n};\n#line 2 \"ds/offline_query/point_add_rectangle_sum.hpp\"\n\r\ntemplate\
-    \ <typename AbelianGroup, typename XY, bool SMALL_X = false>\r\nstruct Point_Add_Rectangle_Sum\
-    \ {\r\n  using G = typename AbelianGroup::value_type;\r\n  using Point = tuple<XY,\
-    \ XY, G>;\r\n  vector<Point> point;\r\n  vector<tuple<XY, XY, XY, XY>> rect;\r\
-    \n\r\n  Point_Add_Rectangle_Sum() {}\r\n\r\n  void add_query(XY x, XY y, G w)\
-    \ { point.eb(x, y, w); }\r\n  void sum_query(XY xl, XY xr, XY yl, XY yr) { rect.eb(xl,\
-    \ xr, yl, yr); }\r\n\r\n  vector<G> calc() {\r\n    int N = point.size(), Q =\
-    \ rect.size();\r\n    if (N == 0 || Q == 0) return vector<G>(Q, AbelianGroup::id());\r\
-    \n    // X \u65B9\u5411\u306E\u5EA7\u5727\r\n    int NX = 0;\r\n    if (!SMALL_X)\
-    \ {\r\n      sort(all(point),\r\n           [&](auto &x, auto &y) -> bool { return\
-    \ get<0>(x) < get<0>(y); });\r\n      vc<XY> keyX;\r\n      keyX.reserve(N);\r\
-    \n      for (auto &&[a, b, c]: point) {\r\n        if (len(keyX) == 0 || keyX.back()\
-    \ != a) { keyX.eb(a); }\r\n        a = len(keyX) - 1;\r\n      }\r\n      for\
-    \ (auto &&[xl, xr, yl, yr]: rect) {\r\n        xl = LB(keyX, xl);\r\n        xr\
-    \ = LB(keyX, xr);\r\n      }\r\n      NX = len(keyX);\r\n    }\r\n    if (SMALL_X)\
-    \ {\r\n      XY mx = infty<XY>;\r\n      for (auto &&[x, y, g]: point) chmin(mx,\
-    \ x);\r\n      for (auto &&[x, y, g]: point) x -= mx, chmax(NX, x + 1);\r\n  \
-    \    for (auto &&[xl, xr, yl, yr]: rect) {\r\n        xl -= mx, xr -= mx;\r\n\
-    \        xl = max(0, min<int>(xl, NX));\r\n        xr = max(0, min<int>(xr, NX));\r\
-    \n      }\r\n    }\r\n\r\n    vc<tuple<XY, int, int, int>> event(Q + Q);\r\n \
-    \   FOR(q, Q) {\r\n      auto &[xl, xr, yl, yr] = rect[q];\r\n      event[2 *\
-    \ q] = {yl, xl, xr, 2 * q};\r\n      event[2 * q + 1] = {yr, xl, xr, 2 * q + 1};\r\
-    \n    }\r\n    sort(all(point),\r\n         [&](auto &x, auto &y) -> bool { return\
-    \ get<1>(x) < get<1>(y); });\r\n    sort(all(event),\r\n         [&](auto &x,\
-    \ auto &y) -> bool { return get<0>(x) < get<0>(y); });\r\n\r\n    FenwickTree<AbelianGroup>\
-    \ bit(NX);\r\n    vc<G> res(Q, AbelianGroup::id());\r\n    int j = 0;\r\n    for\
-    \ (auto &&[y, xl, xr, qq]: event) {\r\n      while (j < N && get<1>(point[j])\
-    \ < y) {\r\n        bit.add(get<0>(point[j]), get<2>(point[j]));\r\n        ++j;\r\
-    \n      }\r\n      G g = bit.sum(xl, xr);\r\n      int q = qq / 2;\r\n      if\
-    \ (qq % 2 == 0) g = AbelianGroup::inverse(g);\r\n      res[q] = AbelianGroup::op(res[q],\
-    \ g);\r\n    }\r\n    return res;\r\n  }\r\n};\n"
-  code: "#include \"ds/fenwicktree/fenwicktree.hpp\"\r\n\r\ntemplate <typename AbelianGroup,\
-    \ typename XY, bool SMALL_X = false>\r\nstruct Point_Add_Rectangle_Sum {\r\n \
-    \ using G = typename AbelianGroup::value_type;\r\n  using Point = tuple<XY, XY,\
-    \ G>;\r\n  vector<Point> point;\r\n  vector<tuple<XY, XY, XY, XY>> rect;\r\n\r\
-    \n  Point_Add_Rectangle_Sum() {}\r\n\r\n  void add_query(XY x, XY y, G w) { point.eb(x,\
-    \ y, w); }\r\n  void sum_query(XY xl, XY xr, XY yl, XY yr) { rect.eb(xl, xr, yl,\
-    \ yr); }\r\n\r\n  vector<G> calc() {\r\n    int N = point.size(), Q = rect.size();\r\
-    \n    if (N == 0 || Q == 0) return vector<G>(Q, AbelianGroup::id());\r\n    //\
-    \ X \u65B9\u5411\u306E\u5EA7\u5727\r\n    int NX = 0;\r\n    if (!SMALL_X) {\r\
-    \n      sort(all(point),\r\n           [&](auto &x, auto &y) -> bool { return\
-    \ get<0>(x) < get<0>(y); });\r\n      vc<XY> keyX;\r\n      keyX.reserve(N);\r\
-    \n      for (auto &&[a, b, c]: point) {\r\n        if (len(keyX) == 0 || keyX.back()\
-    \ != a) { keyX.eb(a); }\r\n        a = len(keyX) - 1;\r\n      }\r\n      for\
-    \ (auto &&[xl, xr, yl, yr]: rect) {\r\n        xl = LB(keyX, xl);\r\n        xr\
-    \ = LB(keyX, xr);\r\n      }\r\n      NX = len(keyX);\r\n    }\r\n    if (SMALL_X)\
-    \ {\r\n      XY mx = infty<XY>;\r\n      for (auto &&[x, y, g]: point) chmin(mx,\
-    \ x);\r\n      for (auto &&[x, y, g]: point) x -= mx, chmax(NX, x + 1);\r\n  \
-    \    for (auto &&[xl, xr, yl, yr]: rect) {\r\n        xl -= mx, xr -= mx;\r\n\
-    \        xl = max(0, min<int>(xl, NX));\r\n        xr = max(0, min<int>(xr, NX));\r\
-    \n      }\r\n    }\r\n\r\n    vc<tuple<XY, int, int, int>> event(Q + Q);\r\n \
-    \   FOR(q, Q) {\r\n      auto &[xl, xr, yl, yr] = rect[q];\r\n      event[2 *\
-    \ q] = {yl, xl, xr, 2 * q};\r\n      event[2 * q + 1] = {yr, xl, xr, 2 * q + 1};\r\
-    \n    }\r\n    sort(all(point),\r\n         [&](auto &x, auto &y) -> bool { return\
-    \ get<1>(x) < get<1>(y); });\r\n    sort(all(event),\r\n         [&](auto &x,\
-    \ auto &y) -> bool { return get<0>(x) < get<0>(y); });\r\n\r\n    FenwickTree<AbelianGroup>\
-    \ bit(NX);\r\n    vc<G> res(Q, AbelianGroup::id());\r\n    int j = 0;\r\n    for\
-    \ (auto &&[y, xl, xr, qq]: event) {\r\n      while (j < N && get<1>(point[j])\
-    \ < y) {\r\n        bit.add(get<0>(point[j]), get<2>(point[j]));\r\n        ++j;\r\
-    \n      }\r\n      G g = bit.sum(xl, xr);\r\n      int q = qq / 2;\r\n      if\
-    \ (qq % 2 == 0) g = AbelianGroup::inverse(g);\r\n      res[q] = AbelianGroup::op(res[q],\
-    \ g);\r\n    }\r\n    return res;\r\n  }\r\n};"
+    \  }\n};\n#line 3 \"ds/offline_query/point_add_rectangle_sum.hpp\"\n\ntemplate\
+    \ <typename AbelianGroup, typename XY, bool SMALL_X = false>\nstruct Point_Add_Rectangle_Sum\
+    \ {\n  using G = typename AbelianGroup::value_type;\n  using Point = tuple<XY,\
+    \ XY, G>;\n  vector<Point> point;\n  vector<tuple<XY, XY, XY, XY>> rect;\n\n \
+    \ Point_Add_Rectangle_Sum() {}\n\n  void add_query(XY x, XY y, G w) { point.eb(x,\
+    \ y, w); }\n  void sum_query(XY xl, XY xr, XY yl, XY yr) { rect.eb(xl, xr, yl,\
+    \ yr); }\n\n  vector<G> calc() {\n    int N = point.size(), Q = rect.size();\n\
+    \    if (N == 0 || Q == 0) return vector<G>(Q, AbelianGroup::id());\n    // X\
+    \ \u65B9\u5411\u306E\u5EA7\u5727\n    int NX = 0;\n    if (!SMALL_X) {\n     \
+    \ sort(all(point),\n           [&](auto &x, auto &y) -> bool { return get<0>(x)\
+    \ < get<0>(y); });\n      vc<XY> keyX;\n      keyX.reserve(N);\n      for (auto\
+    \ &&[a, b, c]: point) {\n        if (len(keyX) == 0 || keyX.back() != a) { keyX.eb(a);\
+    \ }\n        a = len(keyX) - 1;\n      }\n      for (auto &&[xl, xr, yl, yr]:\
+    \ rect) {\n        xl = LB(keyX, xl);\n        xr = LB(keyX, xr);\n      }\n \
+    \     NX = len(keyX);\n    }\n    if (SMALL_X) {\n      XY mx = infty<XY>;\n \
+    \     for (auto &&[x, y, g]: point) chmin(mx, x);\n      for (auto &&[x, y, g]:\
+    \ point) x -= mx, chmax(NX, x + 1);\n      for (auto &&[xl, xr, yl, yr]: rect)\
+    \ {\n        xl -= mx, xr -= mx;\n        xl = max(0, min<int>(xl, NX));\n   \
+    \     xr = max(0, min<int>(xr, NX));\n      }\n    }\n\n    vc<tuple<XY, int,\
+    \ int, int>> event(Q + Q);\n    FOR(q, Q) {\n      auto &[xl, xr, yl, yr] = rect[q];\n\
+    \      event[2 * q] = {yl, xl, xr, 2 * q};\n      event[2 * q + 1] = {yr, xl,\
+    \ xr, 2 * q + 1};\n    }\n    sort(all(point),\n         [&](auto &x, auto &y)\
+    \ -> bool { return get<1>(x) < get<1>(y); });\n    sort(all(event),\n        \
+    \ [&](auto &x, auto &y) -> bool { return get<0>(x) < get<0>(y); });\n\n    FenwickTree<AbelianGroup>\
+    \ bit(NX);\n    vc<G> res(Q, AbelianGroup::id());\n    int j = 0;\n    for (auto\
+    \ &&[y, xl, xr, qq]: event) {\n      while (j < N && get<1>(point[j]) < y) {\n\
+    \        bit.add(get<0>(point[j]), get<2>(point[j]));\n        ++j;\n      }\n\
+    \      G g = bit.sum(xl, xr);\n      int q = qq / 2;\n      if (qq % 2 == 0) g\
+    \ = AbelianGroup::inverse(g);\n      res[q] = AbelianGroup::op(res[q], g);\n \
+    \   }\n    return res;\n  }\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/point_add_rectangle_sum.hpp\n\
+    #include \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename AbelianGroup,\
+    \ typename XY, bool SMALL_X = false>\nstruct Point_Add_Rectangle_Sum {\n  using\
+    \ G = typename AbelianGroup::value_type;\n  using Point = tuple<XY, XY, G>;\n\
+    \  vector<Point> point;\n  vector<tuple<XY, XY, XY, XY>> rect;\n\n  Point_Add_Rectangle_Sum()\
+    \ {}\n\n  void add_query(XY x, XY y, G w) { point.eb(x, y, w); }\n  void sum_query(XY\
+    \ xl, XY xr, XY yl, XY yr) { rect.eb(xl, xr, yl, yr); }\n\n  vector<G> calc()\
+    \ {\n    int N = point.size(), Q = rect.size();\n    if (N == 0 || Q == 0) return\
+    \ vector<G>(Q, AbelianGroup::id());\n    // X \u65B9\u5411\u306E\u5EA7\u5727\n\
+    \    int NX = 0;\n    if (!SMALL_X) {\n      sort(all(point),\n           [&](auto\
+    \ &x, auto &y) -> bool { return get<0>(x) < get<0>(y); });\n      vc<XY> keyX;\n\
+    \      keyX.reserve(N);\n      for (auto &&[a, b, c]: point) {\n        if (len(keyX)\
+    \ == 0 || keyX.back() != a) { keyX.eb(a); }\n        a = len(keyX) - 1;\n    \
+    \  }\n      for (auto &&[xl, xr, yl, yr]: rect) {\n        xl = LB(keyX, xl);\n\
+    \        xr = LB(keyX, xr);\n      }\n      NX = len(keyX);\n    }\n    if (SMALL_X)\
+    \ {\n      XY mx = infty<XY>;\n      for (auto &&[x, y, g]: point) chmin(mx, x);\n\
+    \      for (auto &&[x, y, g]: point) x -= mx, chmax(NX, x + 1);\n      for (auto\
+    \ &&[xl, xr, yl, yr]: rect) {\n        xl -= mx, xr -= mx;\n        xl = max(0,\
+    \ min<int>(xl, NX));\n        xr = max(0, min<int>(xr, NX));\n      }\n    }\n\
+    \n    vc<tuple<XY, int, int, int>> event(Q + Q);\n    FOR(q, Q) {\n      auto\
+    \ &[xl, xr, yl, yr] = rect[q];\n      event[2 * q] = {yl, xl, xr, 2 * q};\n  \
+    \    event[2 * q + 1] = {yr, xl, xr, 2 * q + 1};\n    }\n    sort(all(point),\n\
+    \         [&](auto &x, auto &y) -> bool { return get<1>(x) < get<1>(y); });\n\
+    \    sort(all(event),\n         [&](auto &x, auto &y) -> bool { return get<0>(x)\
+    \ < get<0>(y); });\n\n    FenwickTree<AbelianGroup> bit(NX);\n    vc<G> res(Q,\
+    \ AbelianGroup::id());\n    int j = 0;\n    for (auto &&[y, xl, xr, qq]: event)\
+    \ {\n      while (j < N && get<1>(point[j]) < y) {\n        bit.add(get<0>(point[j]),\
+    \ get<2>(point[j]));\n        ++j;\n      }\n      G g = bit.sum(xl, xr);\n  \
+    \    int q = qq / 2;\n      if (qq % 2 == 0) g = AbelianGroup::inverse(g);\n \
+    \     res[q] = AbelianGroup::op(res[q], g);\n    }\n    return res;\n  }\n};"
   dependsOn:
   - ds/fenwicktree/fenwicktree.hpp
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: ds/offline_query/point_add_rectangle_sum.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2161.test.cpp

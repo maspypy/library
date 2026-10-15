@@ -13,25 +13,28 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"string/lyndon.hpp\"\n\ntemplate <typename CHAR>\nstruct\
-    \ Incremental_Lyndon_Factorization {\n  vc<CHAR> S;\n  int i = 0, j = 0, k = 0;\n\
-    \  vc<int> minimum_suffix_len = {0};\n\n  int add(CHAR c) {\n    S.eb(c);\n  \
-    \  // [j, j+(i-k)) simple\n    while (i < len(S)) {\n      if (k == i) {\n   \
-    \     assert(j == k);\n        ++i;\n      }\n      elif (S[k] == S[i]) { ++k,\
-    \ ++i; }\n      elif (S[k] < S[i]) { k = j, ++i; }\n      else {\n        j +=\
-    \ (i - j) / (i - k) * (i - k);\n        i = k = j;\n      }\n    }\n    if ((i\
-    \ - j) % (i - k) == 0) {\n      minimum_suffix_len.eb(i - k);\n    } else {\n\
-    \      minimum_suffix_len.eb(minimum_suffix_len[k]);\n    }\n    return minimum_suffix_len[i];\n\
-    \  }\n\n  vc<int> factorize() {\n    int i = len(S);\n    vc<int> I;\n    while\
-    \ (i) {\n      I.eb(i);\n      i -= minimum_suffix_len[i];\n    }\n    I.eb(0);\n\
-    \    reverse(all(I));\n    return I;\n  }\n};\n#line 1 \"string/z_algorithm.hpp\"\
-    \n\ntemplate <typename STRING>  // string, vector \u3069\u3061\u3089\u3067\u3082\
+    links:
+    - https://github.com/maspypy/library/blob/main/string/non_dominated_suffix.hpp
+  bundledCode: "#line 1 \"string/non_dominated_suffix.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/non_dominated_suffix.hpp\n\
+    #line 1 \"string/lyndon.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/lyndon.hpp\n\
+    \ntemplate <typename CHAR>\nstruct Incremental_Lyndon_Factorization {\n  vc<CHAR>\
+    \ S;\n  int i = 0, j = 0, k = 0;\n  vc<int> minimum_suffix_len = {0};\n\n  int\
+    \ add(CHAR c) {\n    S.eb(c);\n    // [j, j+(i-k)) simple\n    while (i < len(S))\
+    \ {\n      if (k == i) {\n        assert(j == k);\n        ++i;\n      }\n   \
+    \   elif (S[k] == S[i]) { ++k, ++i; }\n      elif (S[k] < S[i]) { k = j, ++i;\
+    \ }\n      else {\n        j += (i - j) / (i - k) * (i - k);\n        i = k =\
+    \ j;\n      }\n    }\n    if ((i - j) % (i - k) == 0) {\n      minimum_suffix_len.eb(i\
+    \ - k);\n    } else {\n      minimum_suffix_len.eb(minimum_suffix_len[k]);\n \
+    \   }\n    return minimum_suffix_len[i];\n  }\n\n  vc<int> factorize() {\n   \
+    \ int i = len(S);\n    vc<int> I;\n    while (i) {\n      I.eb(i);\n      i -=\
+    \ minimum_suffix_len[i];\n    }\n    I.eb(0);\n    reverse(all(I));\n    return\
+    \ I;\n  }\n};\n#line 1 \"string/z_algorithm.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/z_algorithm.hpp\n\
+    \ntemplate <typename STRING>  // string, vector \u3069\u3061\u3089\u3067\u3082\
     \nvector<int> z_algorithm(const STRING& s) {\n  int n = int(s.size());\n  if (n\
     \ == 0) return {};\n  vector<int> z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0;\
     \ i < n; i++) {\n    int& k = z[i];\n    k = (j + z[j] <= i) ? 0 : min(j + z[j]\
     \ - i, z[i - j]);\n    while (i + k < n && s[k] == s[i + k]) k++;\n    if (j +\
-    \ z[j] < i + z[i]) j = i;\n  }\n  z[0] = n;\n  return z;\n}\n#line 3 \"string/non_dominated_suffix.hpp\"\
+    \ z[j] < i + z[i]) j = i;\n  }\n  z[0] = n;\n  return z;\n}\n#line 4 \"string/non_dominated_suffix.hpp\"\
     \n\n// suffix X,Y \u306B\u3064\u3044\u3066, Y<X \u304B\u3064 Y notin prefix(X)\
     \ \u3068\u306A\u308B Y \u304C\u306A\u3044 X \u305F\u3061.\n// \u9577\u3055\u306E\
     \u5217\u3092\u8FD4\u3059. \u4E92\u3044\u306B border \u306B\u306A\u3063\u3066\u3044\
@@ -48,11 +51,12 @@ data:
     \ while (len(cut) >= 2) {\n    int r = POP(cut);\n    int l = cut.back();\n  \
     \  int n = r - l;\n    int m = N - r;\n    if (Z[n] < m) break;\n    ANS.eb(n\
     \ + m);\n  }\n  return ANS;\n}\n"
-  code: "#include \"string/lyndon.hpp\"\n#include \"string/z_algorithm.hpp\"\n\n//\
-    \ suffix X,Y \u306B\u3064\u3044\u3066, Y<X \u304B\u3064 Y notin prefix(X) \u3068\
-    \u306A\u308B Y \u304C\u306A\u3044 X \u305F\u3061.\n// \u9577\u3055\u306E\u5217\
-    \u3092\u8FD4\u3059. \u4E92\u3044\u306B border \u306B\u306A\u3063\u3066\u3044\u308B\
-    .\n// donimate \u3068\u3044\u3046\u547C\u79F0\u306F\u898B\u304B\u3051\u306F\u3057\
+  code: "// Source: https://github.com/maspypy/library/blob/main/string/non_dominated_suffix.hpp\n\
+    #include \"string/lyndon.hpp\"\n#include \"string/z_algorithm.hpp\"\n\n// suffix\
+    \ X,Y \u306B\u3064\u3044\u3066, Y<X \u304B\u3064 Y notin prefix(X) \u3068\u306A\
+    \u308B Y \u304C\u306A\u3044 X \u305F\u3061.\n// \u9577\u3055\u306E\u5217\u3092\
+    \u8FD4\u3059. \u4E92\u3044\u306B border \u306B\u306A\u3063\u3066\u3044\u308B.\n\
+    // donimate \u3068\u3044\u3046\u547C\u79F0\u306F\u898B\u304B\u3051\u306F\u3057\
     \u305F\u3051\u3069\u6A19\u6E96\u7684\u3067\u306A\u3044\u6C17\u304C\u3059\u308B\
     \nvc<int> non_dominated_suffix(string S) {\n  // Lyndon \u306E\u3068\u3053\u308D\
     \u304C\u5019\u88DC\u306A\u306E\u3060\u304C, \u3069\u3046\u3084\u3063\u3066\u8A08\
@@ -71,7 +75,7 @@ data:
   isVerificationFile: false
   path: string/non_dominated_suffix.hpp
   requiredBy: []
-  timestamp: '2026-08-17 09:36:33+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/non_dominated_suffix.hpp

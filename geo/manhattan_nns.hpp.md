@@ -19,36 +19,39 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
-    \ SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using\
-    \ value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int\
-    \ n) { build(n); }\n  template <typename F>\n  SegTree(int n, F f) {\n    build(n,\
-    \ f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n\
-    \    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const vc<X>&\
-    \ v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 0;\n    while ((1\
-    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::id());\n\
-    \    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n\
-    \  X get(int i) const { return dat[size + i]; }\n  vc<X> get_all() const { return\
-    \ {dat.begin() + size, dat.begin() + size + n}; }\n\n  void update(int i) { dat[i]\
-    \ = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n  void set(int i, const X& x) {\n\
-    \    assert(0 <= i && i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n\
-    \  }\n\n  void multiply(int i, const X& x) {\n    assert(0 <= i && i < n);\n \
-    \   i += size;\n    dat[i] = Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n\
-    \  }\n\n  X prod(int L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n\
-    \    X vl = Monoid::id(), vr = Monoid::id();\n    L += size, R += size;\n    while\
-    \ (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1)\
-    \ vr = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl,\
-    \ vr);\n  }\n\n  vc<int> prod_ids(int L, int R) const {\n    assert(0 <= L &&\
-    \ L <= R && R <= n);\n    vc<int> I, J;\n    L += size, R += size;\n    while\
-    \ (L < R) {\n      if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n      L\
-    \ >>= 1, R >>= 1;\n    }\n    reverse(all(J));\n    concat(I, J);\n    return\
-    \ I;\n  }\n\n  X prod_all() const { return dat[1]; }\n\n  template <class F>\n\
-    \  int max_right(F check, int L) const {\n    assert(0 <= L && L <= n && check(Monoid::id()));\n\
-    \    if (L == n) return n;\n    L += size;\n    X sm = Monoid::id();\n    do {\n\
-    \      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
-    \ {\n        while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
+    links:
+    - https://github.com/maspypy/library/blob/main/geo/manhattan_nns.hpp
+  bundledCode: "#line 1 \"geo/manhattan_nns.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/manhattan_nns.hpp\n\
+    #line 1 \"ds/segtree/segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/segtree.hpp\n\
+    \ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X =\
+    \ typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log,\
+    \ size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
+    \ F>\n  SegTree(int n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v)\
+    \ { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return\
+    \ MX::id(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int\
+    \ i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
+    \ F f) {\n    n = m, log = 0;\n    while ((1 << log) < n) ++log;\n    size = 1\
+    \ << log;\n    dat.assign(size << 1, MX::id());\n    FOR(i, n) dat[size + i] =\
+    \ f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  X get(int i) const { return\
+    \ dat[size + i]; }\n  vc<X> get_all() const { return {dat.begin() + size, dat.begin()\
+    \ + size + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2\
+    \ * i + 1]); }\n  void set(int i, const X& x) {\n    assert(0 <= i && i < n);\n\
+    \    dat[i += size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int\
+    \ i, const X& x) {\n    assert(0 <= i && i < n);\n    i += size;\n    dat[i] =\
+    \ Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n  X prod(int\
+    \ L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n    X vl = Monoid::id(),\
+    \ vr = Monoid::id();\n    L += size, R += size;\n    while (L < R) {\n      if\
+    \ (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R],\
+    \ vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n\
+    \  vc<int> prod_ids(int L, int R) const {\n    assert(0 <= L && L <= R && R <=\
+    \ n);\n    vc<int> I, J;\n    L += size, R += size;\n    while (L < R) {\n   \
+    \   if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n      L >>= 1, R >>= 1;\n\
+    \    }\n    reverse(all(J));\n    concat(I, J);\n    return I;\n  }\n\n  X prod_all()\
+    \ const { return dat[1]; }\n\n  template <class F>\n  int max_right(F check, int\
+    \ L) const {\n    assert(0 <= L && L <= n && check(Monoid::id()));\n    if (L\
+    \ == n) return n;\n    L += size;\n    X sm = Monoid::id();\n    do {\n      while\
+    \ (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L]))) {\n       \
+    \ while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
     \ dat[L]))) {\n            sm = Monoid::op(sm, dat[L++]);\n          }\n     \
     \   }\n        return L - size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n\
     \    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class F>\n  int\
@@ -75,61 +78,59 @@ data:
     \    int last = -1;\n      FOR(k, m) {\n        int p = I[k] >> 1;\n        if\
     \ (p == last) continue;\n        update(p);\n        I[nxt++] = p;\n        last\
     \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 1 \"alg/monoid/minidx.hpp\"\
-    \n\ntemplate <typename T, bool tie_is_left = true>\nstruct Monoid_MinIdx {\n \
-    \ using value_type = pair<T, int>;\n  using X = value_type;\n  static constexpr\
-    \ bool is_small(const X& x, const X& y) {\n    if (x.fi < y.fi) return true;\n\
-    \    if (x.fi > y.fi) return false;\n    return (tie_is_left ? (x.se < y.se) :\
-    \ (x.se >= y.se));\n  }\n  static X op(X x, X y) { return (is_small(x, y) ? x\
-    \ : y); }\n  static constexpr X id() { return {infty<T>, -1}; }\n  static constexpr\
-    \ bool commute = true;\n};\n#line 3 \"geo/manhattan_nns.hpp\"\n\r\n// \u70B9\u7FA4\
-    \ FRM \u304B\u3089\u70B9\u7FA4 TO \u3078\u306E\u6700\u8FD1\u70B9\u63A2\u7D22\r\
-    \n// vector \u306E pair \u3092\u8FD4\u3059\uFF1Adist, nbd_idx\r\ntemplate <typename\
-    \ X = ll>\r\npair<vc<X>, vc<int>> manhattan_nns(vc<pair<X, X>> FRM, vc<pair<X,\
-    \ X>>& TO) {\r\n  assert(len(TO) >= 1);\r\n  int N = len(FRM), M = len(TO);\r\n\
-    \  vc<pair<X, X>> points(N + M);\r\n  FOR(i, N) points[i] = FRM[i];\r\n  FOR(i,\
-    \ M) points[N + i] = TO[i];\r\n  vc<X> Y(M);\r\n  FOR(i, M) Y[i] = TO[i].se;\r\
-    \n  UNIQUE(Y);\r\n\r\n  vc<int> nbd_idx(N, -1);\r\n  vc<X> dist(N, infty<X>);\r\
-    \n\r\n  auto add_ans = [&](int i, int j) -> void {\r\n    if (j == -1) return;\r\
-    \n    X dx = points[i].fi - points[j].fi;\r\n    X dy = points[i].se - points[j].se;\r\
-    \n    if (chmin(dist[i], abs(dx) + abs(dy))) nbd_idx[i] = j - N;\r\n  };\r\n\r\
-    \n  vc<int> I(N + M);\r\n  iota(all(I), 0);\r\n  sort(all(I), [&](auto& i, auto&\
-    \ j) { return (points[i].fi < points[j].fi); });\r\n  auto calc = [&]() -> void\
-    \ {\r\n    SegTree<Monoid_MinIdx<X>> seg1(len(Y)), seg2(len(Y));\r\n    for (auto&&\
-    \ i : I) {\r\n      auto [x, y] = points[i];\r\n      int idx = LB(Y, y);\r\n\
-    \      if (i < N) {\r\n        add_ans(i, seg1.prod(idx, len(Y)).se);\r\n    \
-    \    add_ans(i, seg2.prod(0, idx).se);\r\n      }\r\n      elif (i >= N) {\r\n\
-    \        seg1.set(idx, {y - x, i});\r\n        seg2.set(idx, {-(x + y), i});\r\
-    \n      }\r\n    }\r\n  };\r\n\r\n  calc();\r\n  reverse(all(I));\r\n  FOR(i,\
-    \ N + M) points[i].fi *= -1;\r\n  calc();\r\n\r\n  return {dist, nbd_idx};\r\n\
-    };\n"
-  code: "#include \"ds/segtree/segtree.hpp\"\r\n#include \"alg/monoid/minidx.hpp\"\
-    \r\n\r\n// \u70B9\u7FA4 FRM \u304B\u3089\u70B9\u7FA4 TO \u3078\u306E\u6700\u8FD1\
-    \u70B9\u63A2\u7D22\r\n// vector \u306E pair \u3092\u8FD4\u3059\uFF1Adist, nbd_idx\r\
-    \ntemplate <typename X = ll>\r\npair<vc<X>, vc<int>> manhattan_nns(vc<pair<X,\
-    \ X>> FRM, vc<pair<X, X>>& TO) {\r\n  assert(len(TO) >= 1);\r\n  int N = len(FRM),\
-    \ M = len(TO);\r\n  vc<pair<X, X>> points(N + M);\r\n  FOR(i, N) points[i] = FRM[i];\r\
-    \n  FOR(i, M) points[N + i] = TO[i];\r\n  vc<X> Y(M);\r\n  FOR(i, M) Y[i] = TO[i].se;\r\
-    \n  UNIQUE(Y);\r\n\r\n  vc<int> nbd_idx(N, -1);\r\n  vc<X> dist(N, infty<X>);\r\
-    \n\r\n  auto add_ans = [&](int i, int j) -> void {\r\n    if (j == -1) return;\r\
-    \n    X dx = points[i].fi - points[j].fi;\r\n    X dy = points[i].se - points[j].se;\r\
-    \n    if (chmin(dist[i], abs(dx) + abs(dy))) nbd_idx[i] = j - N;\r\n  };\r\n\r\
-    \n  vc<int> I(N + M);\r\n  iota(all(I), 0);\r\n  sort(all(I), [&](auto& i, auto&\
-    \ j) { return (points[i].fi < points[j].fi); });\r\n  auto calc = [&]() -> void\
-    \ {\r\n    SegTree<Monoid_MinIdx<X>> seg1(len(Y)), seg2(len(Y));\r\n    for (auto&&\
-    \ i : I) {\r\n      auto [x, y] = points[i];\r\n      int idx = LB(Y, y);\r\n\
-    \      if (i < N) {\r\n        add_ans(i, seg1.prod(idx, len(Y)).se);\r\n    \
-    \    add_ans(i, seg2.prod(0, idx).se);\r\n      }\r\n      elif (i >= N) {\r\n\
-    \        seg1.set(idx, {y - x, i});\r\n        seg2.set(idx, {-(x + y), i});\r\
-    \n      }\r\n    }\r\n  };\r\n\r\n  calc();\r\n  reverse(all(I));\r\n  FOR(i,\
-    \ N + M) points[i].fi *= -1;\r\n  calc();\r\n\r\n  return {dist, nbd_idx};\r\n\
-    };"
+    \n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/minidx.hpp\n\
+    \ntemplate <typename T, bool tie_is_left = true>\nstruct Monoid_MinIdx {\n  using\
+    \ value_type = pair<T, int>;\n  using X = value_type;\n  static constexpr bool\
+    \ is_small(const X& x, const X& y) {\n    if (x.fi < y.fi) return true;\n    if\
+    \ (x.fi > y.fi) return false;\n    return (tie_is_left ? (x.se < y.se) : (x.se\
+    \ >= y.se));\n  }\n  static X op(X x, X y) { return (is_small(x, y) ? x : y);\
+    \ }\n  static constexpr X id() { return {infty<T>, -1}; }\n  static constexpr\
+    \ bool commute = true;\n};\n#line 4 \"geo/manhattan_nns.hpp\"\n\n// \u70B9\u7FA4\
+    \ FRM \u304B\u3089\u70B9\u7FA4 TO \u3078\u306E\u6700\u8FD1\u70B9\u63A2\u7D22\n\
+    // vector \u306E pair \u3092\u8FD4\u3059\uFF1Adist, nbd_idx\ntemplate <typename\
+    \ X = ll>\npair<vc<X>, vc<int>> manhattan_nns(vc<pair<X, X>> FRM, vc<pair<X, X>>&\
+    \ TO) {\n  assert(len(TO) >= 1);\n  int N = len(FRM), M = len(TO);\n  vc<pair<X,\
+    \ X>> points(N + M);\n  FOR(i, N) points[i] = FRM[i];\n  FOR(i, M) points[N +\
+    \ i] = TO[i];\n  vc<X> Y(M);\n  FOR(i, M) Y[i] = TO[i].se;\n  UNIQUE(Y);\n\n \
+    \ vc<int> nbd_idx(N, -1);\n  vc<X> dist(N, infty<X>);\n\n  auto add_ans = [&](int\
+    \ i, int j) -> void {\n    if (j == -1) return;\n    X dx = points[i].fi - points[j].fi;\n\
+    \    X dy = points[i].se - points[j].se;\n    if (chmin(dist[i], abs(dx) + abs(dy)))\
+    \ nbd_idx[i] = j - N;\n  };\n\n  vc<int> I(N + M);\n  iota(all(I), 0);\n  sort(all(I),\
+    \ [&](auto& i, auto& j) { return (points[i].fi < points[j].fi); });\n  auto calc\
+    \ = [&]() -> void {\n    SegTree<Monoid_MinIdx<X>> seg1(len(Y)), seg2(len(Y));\n\
+    \    for (auto&& i : I) {\n      auto [x, y] = points[i];\n      int idx = LB(Y,\
+    \ y);\n      if (i < N) {\n        add_ans(i, seg1.prod(idx, len(Y)).se);\n  \
+    \      add_ans(i, seg2.prod(0, idx).se);\n      }\n      elif (i >= N) {\n   \
+    \     seg1.set(idx, {y - x, i});\n        seg2.set(idx, {-(x + y), i});\n    \
+    \  }\n    }\n  };\n\n  calc();\n  reverse(all(I));\n  FOR(i, N + M) points[i].fi\
+    \ *= -1;\n  calc();\n\n  return {dist, nbd_idx};\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/geo/manhattan_nns.hpp\n\
+    #include \"ds/segtree/segtree.hpp\"\n#include \"alg/monoid/minidx.hpp\"\n\n//\
+    \ \u70B9\u7FA4 FRM \u304B\u3089\u70B9\u7FA4 TO \u3078\u306E\u6700\u8FD1\u70B9\u63A2\
+    \u7D22\n// vector \u306E pair \u3092\u8FD4\u3059\uFF1Adist, nbd_idx\ntemplate\
+    \ <typename X = ll>\npair<vc<X>, vc<int>> manhattan_nns(vc<pair<X, X>> FRM, vc<pair<X,\
+    \ X>>& TO) {\n  assert(len(TO) >= 1);\n  int N = len(FRM), M = len(TO);\n  vc<pair<X,\
+    \ X>> points(N + M);\n  FOR(i, N) points[i] = FRM[i];\n  FOR(i, M) points[N +\
+    \ i] = TO[i];\n  vc<X> Y(M);\n  FOR(i, M) Y[i] = TO[i].se;\n  UNIQUE(Y);\n\n \
+    \ vc<int> nbd_idx(N, -1);\n  vc<X> dist(N, infty<X>);\n\n  auto add_ans = [&](int\
+    \ i, int j) -> void {\n    if (j == -1) return;\n    X dx = points[i].fi - points[j].fi;\n\
+    \    X dy = points[i].se - points[j].se;\n    if (chmin(dist[i], abs(dx) + abs(dy)))\
+    \ nbd_idx[i] = j - N;\n  };\n\n  vc<int> I(N + M);\n  iota(all(I), 0);\n  sort(all(I),\
+    \ [&](auto& i, auto& j) { return (points[i].fi < points[j].fi); });\n  auto calc\
+    \ = [&]() -> void {\n    SegTree<Monoid_MinIdx<X>> seg1(len(Y)), seg2(len(Y));\n\
+    \    for (auto&& i : I) {\n      auto [x, y] = points[i];\n      int idx = LB(Y,\
+    \ y);\n      if (i < N) {\n        add_ans(i, seg1.prod(idx, len(Y)).se);\n  \
+    \      add_ans(i, seg2.prod(0, idx).se);\n      }\n      elif (i >= N) {\n   \
+    \     seg1.set(idx, {y - x, i});\n        seg2.set(idx, {-(x + y), i});\n    \
+    \  }\n    }\n  };\n\n  calc();\n  reverse(all(I));\n  FOR(i, N + M) points[i].fi\
+    \ *= -1;\n  calc();\n\n  return {dist, nbd_idx};\n};"
   dependsOn:
   - ds/segtree/segtree.hpp
   - alg/monoid/minidx.hpp
   isVerificationFile: false
   path: geo/manhattan_nns.hpp
   requiredBy: []
-  timestamp: '2026-10-13 08:18:55+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/manhattan_nns.test.cpp

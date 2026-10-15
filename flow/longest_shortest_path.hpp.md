@@ -20,51 +20,54 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links:
+    - https://github.com/maspypy/library/blob/main/flow/longest_shortest_path.hpp
     - https://qoj.ac/contest/1435/problem/7737
-  bundledCode: "#line 1 \"flow/min_cost_flow.hpp\"\n\n// atcoder library \u306E\u3082\
-    \u306E\u3092\u6539\u5909\nnamespace internal {\ntemplate <class E>\nstruct csr\
-    \ {\n  vector<int> start;\n  vector<E> elist;\n  explicit csr(int n, const vector<pair<int,\
-    \ E>>& edges) : start(n + 1), elist(edges.size()) {\n    for (auto e: edges) {\
-    \ start[e.first + 1]++; }\n    for (int i = 1; i <= n; i++) { start[i] += start[i\
-    \ - 1]; }\n    auto counter = start;\n    for (auto e: edges) { elist[counter[e.first]++]\
-    \ = e.second; }\n  }\n};\n\ntemplate <class T>\nstruct simple_queue {\n  vector<T>\
-    \ payload;\n  int pos = 0;\n  void reserve(int n) { payload.reserve(n); }\n  int\
-    \ size() const { return int(payload.size()) - pos; }\n  bool empty() const { return\
-    \ pos == int(payload.size()); }\n  void push(const T& t) { payload.push_back(t);\
-    \ }\n  T& front() { return payload[pos]; }\n  void clear() {\n    payload.clear();\n\
-    \    pos = 0;\n  }\n  void pop() { pos++; }\n};\n\n} // namespace internal\n\n\
-    /*\n\u30FBatcoder library \u3092\u3059\u3053\u3057\u6539\u5909\u3057\u305F\u3082\
-    \u306E\n\u30FBDAG = true \u3067\u3042\u308C\u3070\u3001\u8CA0\u8FBA OK \uFF08\
-    1 \u56DE\u76EE\u306E\u6700\u77ED\u8DEF\u3092 dp \u3067\u884C\u3046\uFF09\n\u305F\
-    \u3060\u3057\u3001\u9802\u70B9\u756A\u53F7\u306F toposort \u3055\u308C\u3066\u3044\
-    \u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\u3002\n*/\ntemplate\
-    \ <class Cap = int, class Cost = ll, bool DAG = false>\nstruct Min_Cost_Flow {\n\
-    public:\n  Min_Cost_Flow() {}\n  explicit Min_Cost_Flow(int n, int source, int\
-    \ sink) : n(n), source(source), sink(sink) {\n    assert(0 <= source && source\
-    \ < n);\n    assert(0 <= sink && sink < n);\n    assert(source != sink);\n  }\n\
-    \n  // frm, to, cap, cost\n  int add(int frm, int to, Cap cap, Cost cost) {\n\
-    \    assert(0 <= frm && frm < n);\n    assert(0 <= to && to < n);\n    assert(0\
-    \ <= cap);\n    assert(DAG || 0 <= cost);\n    if (DAG) assert(frm < to);\n  \
-    \  int m = int(_edges.size());\n    _edges.push_back({frm, to, cap, 0, cost});\n\
-    \    return m;\n  }\n\n  void debug() {\n    print(\"flow graph\");\n    print(\"\
-    frm, to, cap, cost\");\n    for (auto&& [frm, to, cap, flow, cost]: _edges) {\
-    \ print(frm, to, cap, cost); }\n  }\n\n  struct edge {\n    int frm, to;\n   \
-    \ Cap cap, flow;\n    Cost cost;\n  };\n\n  edge get_edge(int i) {\n    int m\
-    \ = int(_edges.size());\n    assert(0 <= i && i < m);\n    return _edges[i];\n\
-    \  }\n  vector<edge> edges() { return _edges; }\n\n  // (\u6D41\u91CF, \u8CBB\u7528\
-    )\n  pair<Cap, Cost> flow() { return flow(infty<Cap>); }\n  // (\u6D41\u91CF,\
-    \ \u8CBB\u7528)\n  pair<Cap, Cost> flow(Cap flow_limit) { return slope(flow_limit).back();\
-    \ }\n  vector<pair<Cap, Cost>> slope() { return slope(infty<Cap>); }\n  vector<pair<Cap,\
-    \ Cost>> slope(Cap flow_limit) {\n    int m = int(_edges.size());\n    vector<int>\
-    \ edge_idx(m);\n\n    auto g = [&]() {\n      vector<int> degree(n), redge_idx(m);\n\
-    \      vector<pair<int, _edge>> elist;\n      elist.reserve(2 * m);\n      for\
-    \ (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
-    \ = degree[e.frm]++;\n        redge_idx[i] = degree[e.to]++;\n        elist.push_back({e.frm,\
-    \ {e.to, -1, e.cap - e.flow, e.cost}});\n        elist.push_back({e.to, {e.frm,\
-    \ -1, e.flow, -e.cost}});\n      }\n      auto _g = internal::csr<_edge>(n, elist);\n\
-    \      for (int i = 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i]\
-    \ += _g.start[e.frm];\n        redge_idx[i] += _g.start[e.to];\n        _g.elist[edge_idx[i]].rev\
-    \ = redge_idx[i];\n        _g.elist[redge_idx[i]].rev = edge_idx[i];\n      }\n\
+  bundledCode: "#line 1 \"flow/longest_shortest_path.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/flow/longest_shortest_path.hpp\n\
+    #line 1 \"flow/min_cost_flow.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/flow/min_cost_flow.hpp\n\
+    \n// atcoder library \u306E\u3082\u306E\u3092\u6539\u5909\nnamespace internal\
+    \ {\ntemplate <class E>\nstruct csr {\n  vector<int> start;\n  vector<E> elist;\n\
+    \  explicit csr(int n, const vector<pair<int, E>>& edges) : start(n + 1), elist(edges.size())\
+    \ {\n    for (auto e: edges) { start[e.first + 1]++; }\n    for (int i = 1; i\
+    \ <= n; i++) { start[i] += start[i - 1]; }\n    auto counter = start;\n    for\
+    \ (auto e: edges) { elist[counter[e.first]++] = e.second; }\n  }\n};\n\ntemplate\
+    \ <class T>\nstruct simple_queue {\n  vector<T> payload;\n  int pos = 0;\n  void\
+    \ reserve(int n) { payload.reserve(n); }\n  int size() const { return int(payload.size())\
+    \ - pos; }\n  bool empty() const { return pos == int(payload.size()); }\n  void\
+    \ push(const T& t) { payload.push_back(t); }\n  T& front() { return payload[pos];\
+    \ }\n  void clear() {\n    payload.clear();\n    pos = 0;\n  }\n  void pop() {\
+    \ pos++; }\n};\n\n} // namespace internal\n\n/*\n\u30FBatcoder library \u3092\u3059\
+    \u3053\u3057\u6539\u5909\u3057\u305F\u3082\u306E\n\u30FBDAG = true \u3067\u3042\
+    \u308C\u3070\u3001\u8CA0\u8FBA OK \uFF081 \u56DE\u76EE\u306E\u6700\u77ED\u8DEF\
+    \u3092 dp \u3067\u884C\u3046\uFF09\n\u305F\u3060\u3057\u3001\u9802\u70B9\u756A\
+    \u53F7\u306F toposort \u3055\u308C\u3066\u3044\u308B\u3053\u3068\u3092\u4EEE\u5B9A\
+    \u3057\u3066\u3044\u308B\u3002\n*/\ntemplate <class Cap = int, class Cost = ll,\
+    \ bool DAG = false>\nstruct Min_Cost_Flow {\npublic:\n  Min_Cost_Flow() {}\n \
+    \ explicit Min_Cost_Flow(int n, int source, int sink) : n(n), source(source),\
+    \ sink(sink) {\n    assert(0 <= source && source < n);\n    assert(0 <= sink &&\
+    \ sink < n);\n    assert(source != sink);\n  }\n\n  // frm, to, cap, cost\n  int\
+    \ add(int frm, int to, Cap cap, Cost cost) {\n    assert(0 <= frm && frm < n);\n\
+    \    assert(0 <= to && to < n);\n    assert(0 <= cap);\n    assert(DAG || 0 <=\
+    \ cost);\n    if (DAG) assert(frm < to);\n    int m = int(_edges.size());\n  \
+    \  _edges.push_back({frm, to, cap, 0, cost});\n    return m;\n  }\n\n  void debug()\
+    \ {\n    print(\"flow graph\");\n    print(\"frm, to, cap, cost\");\n    for (auto&&\
+    \ [frm, to, cap, flow, cost]: _edges) { print(frm, to, cap, cost); }\n  }\n\n\
+    \  struct edge {\n    int frm, to;\n    Cap cap, flow;\n    Cost cost;\n  };\n\
+    \n  edge get_edge(int i) {\n    int m = int(_edges.size());\n    assert(0 <= i\
+    \ && i < m);\n    return _edges[i];\n  }\n  vector<edge> edges() { return _edges;\
+    \ }\n\n  // (\u6D41\u91CF, \u8CBB\u7528)\n  pair<Cap, Cost> flow() { return flow(infty<Cap>);\
+    \ }\n  // (\u6D41\u91CF, \u8CBB\u7528)\n  pair<Cap, Cost> flow(Cap flow_limit)\
+    \ { return slope(flow_limit).back(); }\n  vector<pair<Cap, Cost>> slope() { return\
+    \ slope(infty<Cap>); }\n  vector<pair<Cap, Cost>> slope(Cap flow_limit) {\n  \
+    \  int m = int(_edges.size());\n    vector<int> edge_idx(m);\n\n    auto g = [&]()\
+    \ {\n      vector<int> degree(n), redge_idx(m);\n      vector<pair<int, _edge>>\
+    \ elist;\n      elist.reserve(2 * m);\n      for (int i = 0; i < m; i++) {\n \
+    \       auto e = _edges[i];\n        edge_idx[i] = degree[e.frm]++;\n        redge_idx[i]\
+    \ = degree[e.to]++;\n        elist.push_back({e.frm, {e.to, -1, e.cap - e.flow,\
+    \ e.cost}});\n        elist.push_back({e.to, {e.frm, -1, e.flow, -e.cost}});\n\
+    \      }\n      auto _g = internal::csr<_edge>(n, elist);\n      for (int i =\
+    \ 0; i < m; i++) {\n        auto e = _edges[i];\n        edge_idx[i] += _g.start[e.frm];\n\
+    \        redge_idx[i] += _g.start[e.to];\n        _g.elist[edge_idx[i]].rev =\
+    \ redge_idx[i];\n        _g.elist[redge_idx[i]].rev = edge_idx[i];\n      }\n\
     \      return _g;\n    }();\n\n    auto result = slope(g, flow_limit);\n\n   \
     \ for (int i = 0; i < m; i++) {\n      auto e = g.elist[edge_idx[i]];\n      _edges[i].flow\
     \ = _edges[i].cap - e.cap;\n    }\n\n    return result;\n  }\n\n  // O(F(N+M))\
@@ -128,31 +131,34 @@ data:
     \ (prev_cost_per_flow == d) { result.pop_back(); }\n      result.push_back({flow,\
     \ cost});\n      prev_cost_per_flow = d;\n    }\n    dual_ref();\n    potential.resize(n);\n\
     \    FOR(v, n) potential[v] = dual_dist[v].fi;\n    return result;\n  }\n};\n\
-    #line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap\
-    \ {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067\
-    \ ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n\
-    \    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k),\
-    \ val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\
-    \u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\
-    \u3068.\n  void clear() {\n    used.assign(len(used), 0);\n    cap = (mask + 1)\
-    \ / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\n  int index(const\
-    \ u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] && key[i] != k; i =\
-    \ (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const u64&\
-    \ k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap ==\
-    \ 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n\
-    \    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value) {\n   \
-    \ int i = index(k);\n    return (used[i] ? val[i] : default_value);\n  }\n\n \
-    \ bool count(const u64& k) {\n    int i = index(k);\n    return used[i] && key[i]\
-    \ == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    #line 1 \"graph/shortest_path/dijkstra.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/shortest_path/dijkstra.hpp\n\
+    #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -228,7 +234,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 2 \"graph/shortest_path/dijkstra.hpp\"\n\ntemplate <typename\
+    \   }\n  }\n};\n#line 3 \"graph/shortest_path/dijkstra.hpp\"\n\ntemplate <typename\
     \ T, typename GT>\npair<vc<T>, vc<int>> dijkstra_dense(GT& G, int s) {\n  const\
     \ int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  vc<bool>\
     \ done(N);\n  dist[s] = 0;\n  while (1) {\n    int v = -1;\n    T mi = infty<T>;\n\
@@ -253,7 +259,7 @@ data:
     \    if (dv > dist[v]) continue;\n    for (auto&& e : G[v]) {\n      if (chmin(dist[e.to],\
     \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
     \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
-    \ {dist, par, root};\n}\n#line 3 \"flow/longest_shortest_path.hpp\"\n\n/*\npotential\
+    \ {dist, par, root};\n}\n#line 4 \"flow/longest_shortest_path.hpp\"\n\n/*\npotential\
     \ p[v]\n\u8DDD\u96E2\u3092 L \u4EE5\u4E0A\u306B\u3057\u305F\u3044 : L<=p[t]-p[s]\n\
     \u8FBA (u,v,w)\n\u4F38\u3070\u3059\u91CF max(0,p[v]-p[u]-w)\n- t \u304B\u3089\
     \ s \u306B\u8CBB\u7528-L, \u5BB9\u91CFINF\n- u \u304B\u3089 v \u306B\u8CBB\u7528\
@@ -288,7 +294,8 @@ data:
     \ {\n    get_potentials();\n    vc<T> res;\n    for (auto [frm, to, length, cost]\
     \ : dat) {\n      res.eb(max<T>(length, pot[to] - pot[frm]));\n    }\n    return\
     \ res;\n  }\n};\n"
-  code: "#include \"flow/min_cost_flow.hpp\"\n#include \"graph/shortest_path/dijkstra.hpp\"\
+  code: "// Source: https://github.com/maspypy/library/blob/main/flow/longest_shortest_path.hpp\n\
+    #include \"flow/min_cost_flow.hpp\"\n#include \"graph/shortest_path/dijkstra.hpp\"\
     \n\n/*\npotential p[v]\n\u8DDD\u96E2\u3092 L \u4EE5\u4E0A\u306B\u3057\u305F\u3044\
     \ : L<=p[t]-p[s]\n\u8FBA (u,v,w)\n\u4F38\u3070\u3059\u91CF max(0,p[v]-p[u]-w)\n\
     - t \u304B\u3089 s \u306B\u8CBB\u7528-L, \u5BB9\u91CFINF\n- u \u304B\u3089 v \u306B\
@@ -331,7 +338,7 @@ data:
   isVerificationFile: false
   path: flow/longest_shortest_path.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:05:11+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: flow/longest_shortest_path.hpp

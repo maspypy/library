@@ -25,14 +25,16 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"graph/shortest_path/restore_path.hpp\"\nvector<int> restore_path(const\
-    \ vector<int>& par, int t) {\r\n  vector<int> pth = {t};\r\n  while (par[pth.back()]\
-    \ != -1) pth.eb(par[pth.back()]);\r\n  reverse(all(pth));\r\n  return pth;\r\n\
-    }\n"
-  code: "vector<int> restore_path(const vector<int>& par, int t) {\r\n  vector<int>\
-    \ pth = {t};\r\n  while (par[pth.back()] != -1) pth.eb(par[pth.back()]);\r\n \
-    \ reverse(all(pth));\r\n  return pth;\r\n}"
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/shortest_path/restore_path.hpp
+  bundledCode: "#line 1 \"graph/shortest_path/restore_path.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/shortest_path/restore_path.hpp\n\
+    vector<int> restore_path(const vector<int>& par, int t) {\n  vector<int> pth =\
+    \ {t};\n  while (par[pth.back()] != -1) pth.eb(par[pth.back()]);\n  reverse(all(pth));\n\
+    \  return pth;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/shortest_path/restore_path.hpp\n\
+    vector<int> restore_path(const vector<int>& par, int t) {\n  vector<int> pth =\
+    \ {t};\n  while (par[pth.back()] != -1) pth.eb(par[pth.back()]);\n  reverse(all(pth));\n\
+    \  return pth;\n}"
   dependsOn: []
   isVerificationFile: false
   path: graph/shortest_path/restore_path.hpp
@@ -40,7 +42,7 @@ data:
   - graph/tree_diameter.hpp
   - graph/tree_center.hpp
   - graph/st_numbering.hpp
-  timestamp: '2026-09-24 22:40:16+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/graph/st_numbering.test.cpp

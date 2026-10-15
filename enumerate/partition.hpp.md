@@ -12,7 +12,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1263.test.cpp
     title: test/3_yukicoder/1263.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1881.test.cpp
     title: test/3_yukicoder/1881.test.cpp
   _isVerificationFailed: true
@@ -21,15 +21,17 @@ data:
   attributes:
     links:
     - https://atcoder.jp/contests/abc390/tasks/abc390_d
-  bundledCode: "#line 1 \"enumerate/bits.hpp\"\ntemplate <typename BS, typename F>\n\
-    void enumerate_bits_bitset(BS& b, int L, int R, F&& f) {\n  if (L >= len(b)) return;\n\
-    \  int p = (b[L] ? L : b._Find_next(L));\n  while (p < R) {\n    f(p);\n    p\
-    \ = b._Find_next(p);\n  }\n}\n\ntemplate <typename UINT, typename F>\ninline void\
-    \ enumerate_all_bit(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
+    - https://github.com/maspypy/library/blob/main/enumerate/partition.hpp
+  bundledCode: "#line 1 \"enumerate/partition.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/enumerate/partition.hpp\n\
+    #line 1 \"enumerate/bits.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/enumerate/bits.hpp\n\
+    template <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L, int\
+    \ R, F&& f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L : b._Find_next(L));\n\
+    \  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n\ntemplate <typename\
+    \ UINT, typename F>\ninline void enumerate_all_bit(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
     \  while (s) {\n    f(lowbit(s));\n    s &= s - 1;\n  }\n}\n\ntemplate <typename\
     \ UINT, bool inc_empty, typename F>\ninline void enumerate_all_subset(UINT s,\
     \ F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n  for (UINT t = s; t;\
-    \ t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n}\n#line 2 \"enumerate/partition.hpp\"\
+    \ t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n}\n#line 3 \"enumerate/partition.hpp\"\
     \n\n/*\npartition \u306F\u3001\u300C\u6E1B\u5C11\u5217\u300D\u3068\u3057\u3066\
     \u8F9E\u66F8\u5F0F\u306E\u964D\u9806\u306B\u5217\u6319\u3059\u308B\u3002\nN=10,20,30,40\uFF1A\
     42, 527, 5604, 37338\nN = 50\uFF08204226\uFF09\uFF1A12 ms\nN = 60\uFF08966467\uFF09\
@@ -51,9 +53,10 @@ data:
     \ a = lowbit(rest);\n    rest -= u32(1) << a;\n    enumerate_all_subset<u32, true>(rest,\
     \ [&](u32 s) -> void {\n      S.eb(s | 1 << a);\n      dfs(dfs, rest - s);\n \
     \     POP(S);\n    });\n  };\n  dfs(dfs, (u32(1) << N) - 1);\n}\n"
-  code: "#include \"enumerate/bits.hpp\"\n\n/*\npartition \u306F\u3001\u300C\u6E1B\
-    \u5C11\u5217\u300D\u3068\u3057\u3066\u8F9E\u66F8\u5F0F\u306E\u964D\u9806\u306B\
-    \u5217\u6319\u3059\u308B\u3002\nN=10,20,30,40\uFF1A42, 527, 5604, 37338\nN = 50\uFF08\
+  code: "// Source: https://github.com/maspypy/library/blob/main/enumerate/partition.hpp\n\
+    #include \"enumerate/bits.hpp\"\n\n/*\npartition \u306F\u3001\u300C\u6E1B\u5C11\
+    \u5217\u300D\u3068\u3057\u3066\u8F9E\u66F8\u5F0F\u306E\u964D\u9806\u306B\u5217\
+    \u6319\u3059\u308B\u3002\nN=10,20,30,40\uFF1A42, 527, 5604, 37338\nN = 50\uFF08\
     204226\uFF09\uFF1A12 ms\nN = 60\uFF08966467\uFF09\uFF1A60 ms\nN = 70\uFF084087968\uFF09\
     \uFF1A270 ms\nN = 80\uFF0815796476\uFF09\uFF1A1100 ms\nN = 90\uFF0856634173\uFF09\
     \uFF1A4800 ms\nN = 100 (190569292) : 15600 ms\n*/\ntemplate <typename F>\nvoid\
@@ -78,7 +81,7 @@ data:
   isVerificationFile: false
   path: enumerate/partition.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/enum_partitions.test.cpp

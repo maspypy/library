@@ -9,11 +9,12 @@ data:
   attributes:
     links:
     - https://ac.nowcoder.com/acm/contest/33188/B
+    - https://github.com/maspypy/library/blob/main/flow/unbalanced_transportation.hpp
     - https://qoj.ac/contest/1356/problem/7185
-  bundledCode: "#line 1 \"flow/unbalanced_transportation.hpp\"\n/*\n\u5DE6\u5074\u306B\
-    \ K \u9802\u70B9\u3001\u53F3\u5074\u306B N \u9802\u70B9\u3001\u6D41\u91CF N \u306E\
-    \u4E8C\u90E8\u6700\u5C0F\u8CBB\u7528\u6D41\u3092\nO((K^2logN+K^3)N) \u3067\u89E3\
-    \u304F\nhttps://ac.nowcoder.com/acm/contest/33188/B\nhttps://qoj.ac/contest/1356/problem/7185\n\
+  bundledCode: "#line 1 \"flow/unbalanced_transportation.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/flow/unbalanced_transportation.hpp\n\
+    /*\n\u5DE6\u5074\u306B K \u9802\u70B9\u3001\u53F3\u5074\u306B N \u9802\u70B9\u3001\
+    \u6D41\u91CF N \u306E\u4E8C\u90E8\u6700\u5C0F\u8CBB\u7528\u6D41\u3092\nO((K^2logN+K^3)N)\
+    \ \u3067\u89E3\u304F\nhttps://ac.nowcoder.com/acm/contest/33188/B\nhttps://qoj.ac/contest/1356/problem/7185\n\
     */\ntemplate <typename T>\nstruct Unbalanced_Transportation_Problem {\n  int K,\
     \ N;\n  vc<int> supply;\n  vvc<T> cost;\n  vc<int> FRM;\n  Unbalanced_Transportation_Problem(int\
     \ K, int N, vc<int>& supply)\n      : K(K), N(N), supply(supply) {\n    assert(SUM<ll>(supply)\
@@ -52,11 +53,12 @@ data:
     \ != -1) {\n        match(par[v], edge[par[v]][v].top().se);\n        v = par[v];\n\
     \      }\n      supply[v]--;\n      res.eb(MCF);\n    }\n    return res;\n  }\n\
     };\n"
-  code: "/*\n\u5DE6\u5074\u306B K \u9802\u70B9\u3001\u53F3\u5074\u306B N \u9802\u70B9\
-    \u3001\u6D41\u91CF N \u306E\u4E8C\u90E8\u6700\u5C0F\u8CBB\u7528\u6D41\u3092\n\
-    O((K^2logN+K^3)N) \u3067\u89E3\u304F\nhttps://ac.nowcoder.com/acm/contest/33188/B\n\
-    https://qoj.ac/contest/1356/problem/7185\n*/\ntemplate <typename T>\nstruct Unbalanced_Transportation_Problem\
-    \ {\n  int K, N;\n  vc<int> supply;\n  vvc<T> cost;\n  vc<int> FRM;\n  Unbalanced_Transportation_Problem(int\
+  code: "// Source: https://github.com/maspypy/library/blob/main/flow/unbalanced_transportation.hpp\n\
+    /*\n\u5DE6\u5074\u306B K \u9802\u70B9\u3001\u53F3\u5074\u306B N \u9802\u70B9\u3001\
+    \u6D41\u91CF N \u306E\u4E8C\u90E8\u6700\u5C0F\u8CBB\u7528\u6D41\u3092\nO((K^2logN+K^3)N)\
+    \ \u3067\u89E3\u304F\nhttps://ac.nowcoder.com/acm/contest/33188/B\nhttps://qoj.ac/contest/1356/problem/7185\n\
+    */\ntemplate <typename T>\nstruct Unbalanced_Transportation_Problem {\n  int K,\
+    \ N;\n  vc<int> supply;\n  vvc<T> cost;\n  vc<int> FRM;\n  Unbalanced_Transportation_Problem(int\
     \ K, int N, vc<int>& supply)\n      : K(K), N(N), supply(supply) {\n    assert(SUM<ll>(supply)\
     \ >= N);\n    cost.assign(K, vc<T>(N, infty<T>));\n    FRM.assign(N, -1);\n  }\n\
     \n  void add(int a, int b, T c) {\n    assert(0 <= a && a < K);\n    assert(0\
@@ -97,7 +99,7 @@ data:
   isVerificationFile: false
   path: flow/unbalanced_transportation.hpp
   requiredBy: []
-  timestamp: '2025-07-04 07:32:29+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: flow/unbalanced_transportation.hpp

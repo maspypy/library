@@ -13,9 +13,12 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"setfunc/ranked_zeta.hpp\"\n\n#line 1 \"setfunc/bitwise_transform.hpp\"\
-    \n\nnamespace bitwise {\n\nenum class trans_type {\n  hadamard,\n  superset_zeta,\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/setfunc/sps_inv.hpp
+  bundledCode: "#line 1 \"setfunc/sps_inv.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/setfunc/sps_inv.hpp\n\
+    #line 1 \"setfunc/ranked_zeta.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/setfunc/ranked_zeta.hpp\n\
+    \n#line 1 \"setfunc/bitwise_transform.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/setfunc/bitwise_transform.hpp\n\
+    \nnamespace bitwise {\n\nenum class trans_type {\n  hadamard,\n  superset_zeta,\n\
     \  superset_mobius,\n  subset_zeta,\n  subset_mobius,\n  ranked_zeta,\n  ranked_mobius,\n\
     \  superset_zeta_or\n};\n\ntemplate <typename ARR>\ninline void ranked_add(ARR&\
     \ a, const ARR& b) {\n  for (int d = 0; d < int(a.size()); ++d) a[d] += b[d];\n\
@@ -44,22 +47,23 @@ data:
     template <trans_type type, typename T>\ninline void bitwise_transform(vc<T>& a)\
     \ {\n  int n = len(a);\n  assert(n >= 1);\n  assert((n & (n - 1)) == 0);\n  assert(n\
     \ <= (1 << 25));\n  bitwise_transform_dispatch<type, 1 << 25>(a);\n}\n}  // namespace\
-    \ bitwise\n#line 3 \"setfunc/ranked_zeta.hpp\"\n\ntemplate <typename T, int LIM>\n\
+    \ bitwise\n#line 4 \"setfunc/ranked_zeta.hpp\"\n\ntemplate <typename T, int LIM>\n\
     vc<array<T, LIM + 1>> ranked_zeta(const vc<T>& f) {\n  int n = topbit(len(f));\n\
     \  assert(n <= LIM);\n  assert(len(f) == 1 << n);\n  vc<array<T, LIM + 1>> Rf(1\
     \ << n);\n  for (int s = 0; s < (1 << n); ++s) Rf[s][popcnt(s)] = f[s];\n  bitwise::bitwise_transform<bitwise::trans_type::ranked_zeta>(Rf);\n\
     \  return Rf;\n}\n\ntemplate <typename T, int LIM>\nvc<T> ranked_mobius(vc<array<T,\
     \ LIM + 1>>& Rf) {\n  bitwise::bitwise_transform<bitwise::trans_type::ranked_mobius>(Rf);\n\
     \  vc<T> f(len(Rf));\n  for (int s = 0; s < len(f); ++s) f[s] = Rf[s][popcnt(s)];\n\
-    \  return f;\n}\n#line 2 \"setfunc/sps_inv.hpp\"\n\ntemplate <typename mint, int\
+    \  return f;\n}\n#line 3 \"setfunc/sps_inv.hpp\"\n\ntemplate <typename mint, int\
     \ LIM>\nvc<mint> sps_inv(vc<mint>& dp) {\n  const int N = topbit(len(dp));\n \
     \ assert(len(dp) == (1 << N) && dp[0] == mint(1));\n  auto RA = ranked_zeta<mint,\
     \ LIM>(dp);\n  array<mint, LIM + 1> g;\n  FOR(s, 1 << N) {\n    auto& f = RA[s];\n\
     \    g[0] = 1;\n    FOR(k, 1, N + 1) {\n      g[k] = 0;\n      FOR(i, k) g[k]\
     \ -= g[i] * f[k - i];\n    }\n    RA[s] = g;\n  }\n  return ranked_mobius<mint,\
     \ LIM>(RA);\n}\n"
-  code: "#include \"setfunc/ranked_zeta.hpp\"\n\ntemplate <typename mint, int LIM>\n\
-    vc<mint> sps_inv(vc<mint>& dp) {\n  const int N = topbit(len(dp));\n  assert(len(dp)\
+  code: "// Source: https://github.com/maspypy/library/blob/main/setfunc/sps_inv.hpp\n\
+    #include \"setfunc/ranked_zeta.hpp\"\n\ntemplate <typename mint, int LIM>\nvc<mint>\
+    \ sps_inv(vc<mint>& dp) {\n  const int N = topbit(len(dp));\n  assert(len(dp)\
     \ == (1 << N) && dp[0] == mint(1));\n  auto RA = ranked_zeta<mint, LIM>(dp);\n\
     \  array<mint, LIM + 1> g;\n  FOR(s, 1 << N) {\n    auto& f = RA[s];\n    g[0]\
     \ = 1;\n    FOR(k, 1, N + 1) {\n      g[k] = 0;\n      FOR(i, k) g[k] -= g[i]\
@@ -71,7 +75,7 @@ data:
   isVerificationFile: false
   path: setfunc/sps_inv.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: setfunc/sps_inv.hpp

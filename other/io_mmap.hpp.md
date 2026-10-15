@@ -8,27 +8,28 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links:
+    - https://github.com/maspypy/library/blob/main/other/io_mmap.hpp
     - https://judge.yosupo.jp/submission/21623
     - https://judge.yosupo.jp/submission/70667
-  bundledCode: "#line 1 \"other/io_mmap.hpp\"\n\n#include <unistd.h>\n#include <sys/mman.h>\n\
-    #include <sys/stat.h>\n\nnamespace fastio {\n// https://judge.yosupo.jp/submission/21623\n\
-    // https://judge.yosupo.jp/submission/70667\n\nstruct Pre {\n  char num[10000][4];\n\
-    \  constexpr Pre() : num() {\n    for (int i = 0; i < 10000; i++) {\n      int\
-    \ n = i;\n      for (int j = 3; j >= 0; j--) {\n        num[i][j] = n % 10 | '0';\n\
-    \        n /= 10;\n      }\n    }\n  }\n} constexpr pre;\n\nconstexpr int BSZ\
-    \ = 1 << 19;\nchar *ibuf, obuf[BSZ], out[100];\nint outi, obufi;\n\n// gcc expansion.\
-    \ called automaticall before main.\nvoid __attribute__((constructor)) _c() {\n\
-    \  struct stat sb;\n  fstat(0, &sb);\n  ibuf\n      = (char *)mmap(0, sb.st_size,\
-    \ PROT_READ, MAP_SHARED | MAP_POPULATE, 0, 0);\n}\n\nvoid flush() { write(1, obuf,\
-    \ obufi), obufi = 0; }\n\nvoid rd(char &c) { c = *ibuf++; }\nvoid rd(string &x)\
-    \ {\n  x.clear();\n  char c;\n  do { rd(c); } while (isspace(c));\n  do { x +=\
-    \ c, rd(c); } while (!isspace(c));\n}\n\ntemplate <typename T>\nvoid rd_integer(T\
-    \ &x) {\n  char c;\n  do\n    rd(c);\n  while (c < '-');\n  bool minus = 0;\n\
-    \  if constexpr (is_signed<T>::value || is_same_v<T, i128>) {\n    if (c == '-')\
-    \ { minus = 1, rd(c); }\n  }\n  x = 0;\n  while (c >= '0') { x = x * 10 + (c &\
-    \ 15), rd(c); }\n  if constexpr (is_signed<T>::value || is_same_v<T, i128>) {\n\
-    \    if (minus) x = -x;\n  }\n}\n\ntemplate <typename T>\nvoid rd_real(T &x) {\n\
-    \  string s;\n  rd(s);\n  x = stod(s);\n}\n\nvoid rd(int &x) { rd_integer(x);\
+  bundledCode: "#line 1 \"other/io_mmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/other/io_mmap.hpp\n\
+    \n#include <unistd.h>\n#include <sys/mman.h>\n#include <sys/stat.h>\n\nnamespace\
+    \ fastio {\n// https://judge.yosupo.jp/submission/21623\n// https://judge.yosupo.jp/submission/70667\n\
+    \nstruct Pre {\n  char num[10000][4];\n  constexpr Pre() : num() {\n    for (int\
+    \ i = 0; i < 10000; i++) {\n      int n = i;\n      for (int j = 3; j >= 0; j--)\
+    \ {\n        num[i][j] = n % 10 | '0';\n        n /= 10;\n      }\n    }\n  }\n\
+    } constexpr pre;\n\nconstexpr int BSZ = 1 << 19;\nchar *ibuf, obuf[BSZ], out[100];\n\
+    int outi, obufi;\n\n// gcc expansion. called automaticall before main.\nvoid __attribute__((constructor))\
+    \ _c() {\n  struct stat sb;\n  fstat(0, &sb);\n  ibuf\n      = (char *)mmap(0,\
+    \ sb.st_size, PROT_READ, MAP_SHARED | MAP_POPULATE, 0, 0);\n}\n\nvoid flush()\
+    \ { write(1, obuf, obufi), obufi = 0; }\n\nvoid rd(char &c) { c = *ibuf++; }\n\
+    void rd(string &x) {\n  x.clear();\n  char c;\n  do { rd(c); } while (isspace(c));\n\
+    \  do { x += c, rd(c); } while (!isspace(c));\n}\n\ntemplate <typename T>\nvoid\
+    \ rd_integer(T &x) {\n  char c;\n  do\n    rd(c);\n  while (c < '-');\n  bool\
+    \ minus = 0;\n  if constexpr (is_signed<T>::value || is_same_v<T, i128>) {\n \
+    \   if (c == '-') { minus = 1, rd(c); }\n  }\n  x = 0;\n  while (c >= '0') { x\
+    \ = x * 10 + (c & 15), rd(c); }\n  if constexpr (is_signed<T>::value || is_same_v<T,\
+    \ i128>) {\n    if (minus) x = -x;\n  }\n}\n\ntemplate <typename T>\nvoid rd_real(T\
+    \ &x) {\n  string s;\n  rd(s);\n  x = stod(s);\n}\n\nvoid rd(int &x) { rd_integer(x);\
     \ }\nvoid rd(ll &x) { rd_integer(x); }\nvoid rd(i128 &x) { rd_integer(x); }\n\
     void rd(u32 &x) { rd_integer(x); }\nvoid rd(u64 &x) { rd_integer(x); }\nvoid rd(u128\
     \ &x) { rd_integer(x); }\nvoid rd(double &x) { rd_real(x); }\nvoid rd(long double\
@@ -81,7 +82,8 @@ data:
     void NO(bool t = 1) { YES(!t); }\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"\
     No\"); }\nvoid No(bool t = 1) { Yes(!t); }\nvoid yes(bool t = 1) { print(t ? \"\
     yes\" : \"no\"); }\nvoid no(bool t = 1) { yes(!t); }\n"
-  code: "\n#include <unistd.h>\n#include <sys/mman.h>\n#include <sys/stat.h>\n\nnamespace\
+  code: "// Source: https://github.com/maspypy/library/blob/main/other/io_mmap.hpp\n\
+    \n#include <unistd.h>\n#include <sys/mman.h>\n#include <sys/stat.h>\n\nnamespace\
     \ fastio {\n// https://judge.yosupo.jp/submission/21623\n// https://judge.yosupo.jp/submission/70667\n\
     \nstruct Pre {\n  char num[10000][4];\n  constexpr Pre() : num() {\n    for (int\
     \ i = 0; i < 10000; i++) {\n      int n = i;\n      for (int j = 3; j >= 0; j--)\
@@ -155,7 +157,7 @@ data:
   isVerificationFile: false
   path: other/io_mmap.hpp
   requiredBy: []
-  timestamp: '2024-05-04 19:14:00+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: other/io_mmap.hpp

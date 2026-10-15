@@ -7,13 +7,15 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"string/all_pairs_lcp.hpp\"\n// dp[i][j] = lcp(S[i:], T[j:])\n\
-    template <typename STRING>\nvvc<int> all_pairs_lcp(STRING& S, STRING& T) {\n \
-    \ int N = len(S), M = len(T);\n  vv(int, dp, N, M);\n  FOR_R(i, N) FOR_R(j, M)\
-    \ {\n    if (S[i] != T[j]) continue;\n    dp[i][j] = 1 + (i + 1 < N && j + 1 <\
-    \ M ? dp[i + 1][j + 1] : 0);\n  }\n  return dp;\n}\n"
-  code: "// dp[i][j] = lcp(S[i:], T[j:])\ntemplate <typename STRING>\nvvc<int> all_pairs_lcp(STRING&\
+    links:
+    - https://github.com/maspypy/library/blob/main/string/all_pairs_lcp.hpp
+  bundledCode: "#line 1 \"string/all_pairs_lcp.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/all_pairs_lcp.hpp\n\
+    // dp[i][j] = lcp(S[i:], T[j:])\ntemplate <typename STRING>\nvvc<int> all_pairs_lcp(STRING&\
+    \ S, STRING& T) {\n  int N = len(S), M = len(T);\n  vv(int, dp, N, M);\n  FOR_R(i,\
+    \ N) FOR_R(j, M) {\n    if (S[i] != T[j]) continue;\n    dp[i][j] = 1 + (i + 1\
+    \ < N && j + 1 < M ? dp[i + 1][j + 1] : 0);\n  }\n  return dp;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/string/all_pairs_lcp.hpp\n\
+    // dp[i][j] = lcp(S[i:], T[j:])\ntemplate <typename STRING>\nvvc<int> all_pairs_lcp(STRING&\
     \ S, STRING& T) {\n  int N = len(S), M = len(T);\n  vv(int, dp, N, M);\n  FOR_R(i,\
     \ N) FOR_R(j, M) {\n    if (S[i] != T[j]) continue;\n    dp[i][j] = 1 + (i + 1\
     \ < N && j + 1 < M ? dp[i + 1][j + 1] : 0);\n  }\n  return dp;\n}"
@@ -21,7 +23,7 @@ data:
   isVerificationFile: false
   path: string/all_pairs_lcp.hpp
   requiredBy: []
-  timestamp: '2026-08-17 08:30:43+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/all_pairs_lcp.hpp

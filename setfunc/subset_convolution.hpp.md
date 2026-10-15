@@ -58,9 +58,12 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"setfunc/ranked_zeta.hpp\"\n\n#line 1 \"setfunc/bitwise_transform.hpp\"\
-    \n\nnamespace bitwise {\n\nenum class trans_type {\n  hadamard,\n  superset_zeta,\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/setfunc/subset_convolution.hpp
+  bundledCode: "#line 1 \"setfunc/subset_convolution.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/setfunc/subset_convolution.hpp\n\
+    #line 1 \"setfunc/ranked_zeta.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/setfunc/ranked_zeta.hpp\n\
+    \n#line 1 \"setfunc/bitwise_transform.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/setfunc/bitwise_transform.hpp\n\
+    \nnamespace bitwise {\n\nenum class trans_type {\n  hadamard,\n  superset_zeta,\n\
     \  superset_mobius,\n  subset_zeta,\n  subset_mobius,\n  ranked_zeta,\n  ranked_mobius,\n\
     \  superset_zeta_or\n};\n\ntemplate <typename ARR>\ninline void ranked_add(ARR&\
     \ a, const ARR& b) {\n  for (int d = 0; d < int(a.size()); ++d) a[d] += b[d];\n\
@@ -89,14 +92,14 @@ data:
     template <trans_type type, typename T>\ninline void bitwise_transform(vc<T>& a)\
     \ {\n  int n = len(a);\n  assert(n >= 1);\n  assert((n & (n - 1)) == 0);\n  assert(n\
     \ <= (1 << 25));\n  bitwise_transform_dispatch<type, 1 << 25>(a);\n}\n}  // namespace\
-    \ bitwise\n#line 3 \"setfunc/ranked_zeta.hpp\"\n\ntemplate <typename T, int LIM>\n\
+    \ bitwise\n#line 4 \"setfunc/ranked_zeta.hpp\"\n\ntemplate <typename T, int LIM>\n\
     vc<array<T, LIM + 1>> ranked_zeta(const vc<T>& f) {\n  int n = topbit(len(f));\n\
     \  assert(n <= LIM);\n  assert(len(f) == 1 << n);\n  vc<array<T, LIM + 1>> Rf(1\
     \ << n);\n  for (int s = 0; s < (1 << n); ++s) Rf[s][popcnt(s)] = f[s];\n  bitwise::bitwise_transform<bitwise::trans_type::ranked_zeta>(Rf);\n\
     \  return Rf;\n}\n\ntemplate <typename T, int LIM>\nvc<T> ranked_mobius(vc<array<T,\
     \ LIM + 1>>& Rf) {\n  bitwise::bitwise_transform<bitwise::trans_type::ranked_mobius>(Rf);\n\
     \  vc<T> f(len(Rf));\n  for (int s = 0; s < len(f); ++s) f[s] = Rf[s][popcnt(s)];\n\
-    \  return f;\n}\n#line 2 \"setfunc/subset_convolution.hpp\"\n\ntemplate <typename\
+    \  return f;\n}\n#line 3 \"setfunc/subset_convolution.hpp\"\n\ntemplate <typename\
     \ T, int LIM = 20>\nvc<T> subset_convolution_square(const vc<T>& A) {\n  auto\
     \ RA = ranked_zeta<T, LIM>(A);\n  int n = topbit(len(RA));\n  FOR(s, len(RA))\
     \ {\n    auto& f = RA[s];\n    FOR_R(d, n + 1) {\n      T x = 0;\n      FOR(i,\
@@ -107,7 +110,8 @@ data:
     \ n = topbit(len(RA));\n  FOR(s, len(RA)) {\n    auto &f = RA[s], &g = RB[s];\n\
     \    FOR_R(d, n + 1) {\n      T x = 0;\n      FOR(i, d + 1) x += f[i] * g[d -\
     \ i];\n      f[d] = x;\n    }\n  }\n  return ranked_mobius<T, LIM>(RA);\n}\n"
-  code: "#include \"setfunc/ranked_zeta.hpp\"\n\ntemplate <typename T, int LIM = 20>\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/setfunc/subset_convolution.hpp\n\
+    #include \"setfunc/ranked_zeta.hpp\"\n\ntemplate <typename T, int LIM = 20>\n\
     vc<T> subset_convolution_square(const vc<T>& A) {\n  auto RA = ranked_zeta<T,\
     \ LIM>(A);\n  int n = topbit(len(RA));\n  FOR(s, len(RA)) {\n    auto& f = RA[s];\n\
     \    FOR_R(d, n + 1) {\n      T x = 0;\n      FOR(i, d + 1) x += f[i] * f[d -\
@@ -131,7 +135,7 @@ data:
   - linalg/hafnian.hpp
   - setfunc/sps_exp.hpp
   - setfunc/power_projection_of_sps.hpp
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2507.test.cpp

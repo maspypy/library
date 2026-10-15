@@ -51,7 +51,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/string/longest_common_substring.test.cpp
     title: test/2_library_checker/string/longest_common_substring.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/number_of_substrings.test.cpp
     title: test/2_library_checker/string/number_of_substrings.test.cpp
   - icon: ':x:'
@@ -71,15 +71,17 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links:
+    - https://github.com/maspypy/library/blob/main/ds/static_range_product.hpp
     - https://judge.yosupo.jp/submission/106668
-  bundledCode: "#line 1 \"ds/sparse_table/sparse_table.hpp\"\n\n// \u51AA\u7B49\u306A\
-    \u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3002\
-    disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\ntemplate <class Monoid>\n\
-    struct Sparse_Table {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
-    \  int n, log;\n  vvc<X> dat;\n\n  Sparse_Table() {}\n  Sparse_Table(int n) {\
-    \ build(n); }\n  template <typename F>\n  Sparse_Table(int n, F f) {\n    build(n,\
-    \ f);\n  }\n  Sparse_Table(const vc<X>& v) { build(v); }\n\n  void build(int m)\
-    \ {\n    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const\
+  bundledCode: "#line 1 \"ds/static_range_product.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/static_range_product.hpp\n\
+    #line 1 \"ds/sparse_table/sparse_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/sparse_table/sparse_table.hpp\n\
+    \n// \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\
+    \u4EEE\u5B9A\u3002disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\ntemplate\
+    \ <class Monoid>\nstruct Sparse_Table {\n  using MX = Monoid;\n  using X = typename\
+    \ MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Sparse_Table() {}\n  Sparse_Table(int\
+    \ n) { build(n); }\n  template <typename F>\n  Sparse_Table(int n, F f) {\n  \
+    \  build(n, f);\n  }\n  Sparse_Table(const vc<X>& v) { build(v); }\n\n  void build(int\
+    \ m) {\n    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const\
     \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
     \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
     \ << log) < n) ++log;\n    dat.resize(log);\n    dat[0].resize(n);\n    FOR(i,\
@@ -97,15 +99,15 @@ data:
     \ check(MX::id()));\n    if (R == 0) return 0;\n    int ok = R, ng = -1;\n   \
     \ while (ng + 1 < ok) {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k,\
     \ R));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n\
-    \  }\n};\n#line 1 \"ds/sparse_table/disjoint_sparse_table.hpp\"\n\ntemplate <class\
-    \ Monoid>\nstruct Disjoint_Sparse_Table {\n  using MX = Monoid;\n  using X = typename\
-    \ MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Disjoint_Sparse_Table() {}\n\
-    \  Disjoint_Sparse_Table(int n) { build(n); }\n  template <typename F>\n  Disjoint_Sparse_Table(int\
-    \ n, F f) {\n    build(n, f);\n  }\n  Disjoint_Sparse_Table(const vc<X>& v) {\
-    \ build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::id();\
-    \ });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X\
-    \ { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
-    \    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    dat.resize(log);\n\
+    \  }\n};\n#line 1 \"ds/sparse_table/disjoint_sparse_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/sparse_table/disjoint_sparse_table.hpp\n\
+    \ntemplate <class Monoid>\nstruct Disjoint_Sparse_Table {\n  using MX = Monoid;\n\
+    \  using X = typename MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Disjoint_Sparse_Table()\
+    \ {}\n  Disjoint_Sparse_Table(int n) { build(n); }\n  template <typename F>\n\
+    \  Disjoint_Sparse_Table(int n, F f) {\n    build(n, f);\n  }\n  Disjoint_Sparse_Table(const\
+    \ vc<X>& v) { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) ->\
+    \ X { return MX::id(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v),\
+    \ [&](int i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    dat.resize(log);\n\
     \    dat[0].reserve(n);\n    FOR(i, n) dat[0].eb(f(i));\n    FOR(i, 1, log) {\n\
     \      auto& v = dat[i];\n      v = dat[0];\n      int b = 1 << i;\n      for\
     \ (int m = b; m <= n; m += 2 * b) {\n        int L = m - b, R = min(n, m + b);\n\
@@ -122,7 +124,7 @@ data:
     \ check(MX::id()));\n    if (R == 0) return 0;\n    int ok = R, ng = -1;\n   \
     \ while (ng + 1 < ok) {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k,\
     \ R));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n\
-    \  }\n};\n#line 3 \"ds/static_range_product.hpp\"\n\n/*\n\u53C2\u8003\uFF1Ahttps://judge.yosupo.jp/submission/106668\n\
+    \  }\n};\n#line 4 \"ds/static_range_product.hpp\"\n\n/*\n\u53C2\u8003\uFF1Ahttps://judge.yosupo.jp/submission/106668\n\
     \u9577\u3055 2^LOG \u306E\u30D6\u30ED\u30C3\u30AF\u306B\u5206\u3051\u308B\uFF0E\
     \u30D6\u30ED\u30C3\u30AF\u5185\u306E prefix, suffix \u3092\u6301\u3064\uFF0E\n\
     \u30D6\u30ED\u30C3\u30AF\u7A4D\u306E\u5217\u3092 ST(DST) \u3067\u6301\u3064\uFF0E\
@@ -155,7 +157,8 @@ data:
     \    if (R == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok)\
     \ {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if\
     \ (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n"
-  code: "#include \"ds/sparse_table/sparse_table.hpp\"\n#include \"ds/sparse_table/disjoint_sparse_table.hpp\"\
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/static_range_product.hpp\n\
+    #include \"ds/sparse_table/sparse_table.hpp\"\n#include \"ds/sparse_table/disjoint_sparse_table.hpp\"\
     \n\n/*\n\u53C2\u8003\uFF1Ahttps://judge.yosupo.jp/submission/106668\n\u9577\u3055\
     \ 2^LOG \u306E\u30D6\u30ED\u30C3\u30AF\u306B\u5206\u3051\u308B\uFF0E\u30D6\u30ED\
     \u30C3\u30AF\u5185\u306E prefix, suffix \u3092\u6301\u3064\uFF0E\n\u30D6\u30ED\
@@ -204,7 +207,7 @@ data:
   - string/substring_shortest_border.hpp
   - string/suffix_tree.hpp
   - string/suffix_lcp_change.hpp
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/longest_common_substr.test.cpp

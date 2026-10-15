@@ -16,20 +16,22 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"string/split.hpp\"\nvc<string> split(string S, string seps\
-    \ = \" ,\") {\r\n  vc<string> res = {\"\"};\r\n  for (auto&& s : S) {\r\n    if\
-    \ (count(all(seps), s))\r\n      res.eb(\"\");\r\n    else\r\n      res.back()\
-    \ += s;\r\n  }\r\n  return res;\r\n}\r\n"
-  code: "vc<string> split(string S, string seps = \" ,\") {\r\n  vc<string> res =\
-    \ {\"\"};\r\n  for (auto&& s : S) {\r\n    if (count(all(seps), s))\r\n      res.eb(\"\
-    \");\r\n    else\r\n      res.back() += s;\r\n  }\r\n  return res;\r\n}\r\n"
+    links:
+    - https://github.com/maspypy/library/blob/main/string/split.hpp
+  bundledCode: "#line 1 \"string/split.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/split.hpp\n\
+    vc<string> split(string S, string seps = \" ,\") {\n  vc<string> res = {\"\"};\n\
+    \  for (auto&& s : S) {\n    if (count(all(seps), s))\n      res.eb(\"\");\n \
+    \   else\n      res.back() += s;\n  }\n  return res;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/string/split.hpp\n\
+    vc<string> split(string S, string seps = \" ,\") {\n  vc<string> res = {\"\"};\n\
+    \  for (auto&& s : S) {\n    if (count(all(seps), s))\n      res.eb(\"\");\n \
+    \   else\n      res.back() += s;\n  }\n  return res;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: string/split.hpp
   requiredBy:
   - linalg/ecottea_matrix_dp.hpp
-  timestamp: '2026-08-15 15:50:39+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp

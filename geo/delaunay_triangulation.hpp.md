@@ -12,8 +12,10 @@ data:
   attributes:
     links:
     - https://cp-algorithms.com/geometry/delaunay.html
-  bundledCode: "#line 1 \"geo/delaunay_triangulation.hpp\"\n\n#line 1 \"geo/base.hpp\"\
-    \ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
+    - https://github.com/maspypy/library/blob/main/geo/delaunay_triangulation.hpp
+  bundledCode: "#line 1 \"geo/delaunay_triangulation.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/delaunay_triangulation.hpp\n\
+    \n#line 1 \"geo/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/base.hpp\n\
+    template <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
     \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
     \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
     \ {}\n\n  template <typename U>\n  Point(Point<U> p) : x(p.x), y(p.y) {\n    static_assert(!is_integral_v<T>\
@@ -67,7 +69,7 @@ data:
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
     \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 3 \"geo/delaunay_triangulation.hpp\"\n\n// \u3068\u308A\u3042\u3048\u305A\u30B3\
+    \ 4 \"geo/delaunay_triangulation.hpp\"\n\n// \u3068\u308A\u3042\u3048\u305A\u30B3\
     \u30D4\u30DA\u3057\u305F\u3082\u306E\u3092\u4F7F\u3046\n\nnamespace CP_ALGO {\n\
     // https://cp-algorithms.com/geometry/delaunay.html\ntypedef long long ll;\n\n\
     bool ge(const ll& a, const ll& b) { return a >= b; }\nbool le(const ll& a, const\
@@ -155,8 +157,9 @@ data:
     \ ANS;\n  for (auto [a, b, c]: tri) {\n    int i = MP[P(a.x, a.y)];\n    int j\
     \ = MP[P(b.x, b.y)];\n    int k = MP[P(c.x, c.y)];\n    ANS.eb(i, j, k);\n  }\n\
     \  return ANS;\n}\n"
-  code: "\n#include \"geo/base.hpp\"\n\n// \u3068\u308A\u3042\u3048\u305A\u30B3\u30D4\
-    \u30DA\u3057\u305F\u3082\u306E\u3092\u4F7F\u3046\n\nnamespace CP_ALGO {\n// https://cp-algorithms.com/geometry/delaunay.html\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/geo/delaunay_triangulation.hpp\n\
+    \n#include \"geo/base.hpp\"\n\n// \u3068\u308A\u3042\u3048\u305A\u30B3\u30D4\u30DA\
+    \u3057\u305F\u3082\u306E\u3092\u4F7F\u3046\n\nnamespace CP_ALGO {\n// https://cp-algorithms.com/geometry/delaunay.html\n\
     typedef long long ll;\n\nbool ge(const ll& a, const ll& b) { return a >= b; }\n\
     bool le(const ll& a, const ll& b) { return a <= b; }\nbool eq(const ll& a, const\
     \ ll& b) { return a == b; }\nbool gt(const ll& a, const ll& b) { return a > b;\
@@ -247,7 +250,7 @@ data:
   isVerificationFile: false
   path: geo/delaunay_triangulation.hpp
   requiredBy: []
-  timestamp: '2026-09-24 22:40:16+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/delaunay_triangulation.hpp

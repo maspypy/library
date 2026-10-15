@@ -22,9 +22,11 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"setfunc/hadamard.hpp\"\n\n#line 1 \"setfunc/bitwise_transform.hpp\"\
-    \n\nnamespace bitwise {\n\nenum class trans_type {\n  hadamard,\n  superset_zeta,\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/setfunc/hadamard.hpp
+  bundledCode: "#line 1 \"setfunc/hadamard.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/setfunc/hadamard.hpp\n\
+    \n#line 1 \"setfunc/bitwise_transform.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/setfunc/bitwise_transform.hpp\n\
+    \nnamespace bitwise {\n\nenum class trans_type {\n  hadamard,\n  superset_zeta,\n\
     \  superset_mobius,\n  subset_zeta,\n  subset_mobius,\n  ranked_zeta,\n  ranked_mobius,\n\
     \  superset_zeta_or\n};\n\ntemplate <typename ARR>\ninline void ranked_add(ARR&\
     \ a, const ARR& b) {\n  for (int d = 0; d < int(a.size()); ++d) a[d] += b[d];\n\
@@ -53,12 +55,13 @@ data:
     template <trans_type type, typename T>\ninline void bitwise_transform(vc<T>& a)\
     \ {\n  int n = len(a);\n  assert(n >= 1);\n  assert((n & (n - 1)) == 0);\n  assert(n\
     \ <= (1 << 25));\n  bitwise_transform_dispatch<type, 1 << 25>(a);\n}\n}  // namespace\
-    \ bitwise\n#line 3 \"setfunc/hadamard.hpp\"\n\n// B[j] = sum_i (-1)^{popcnt(i&j)}\
+    \ bitwise\n#line 4 \"setfunc/hadamard.hpp\"\n\n// B[j] = sum_i (-1)^{popcnt(i&j)}\
     \ A[i]\n// len(A) \u306F 2^25 \u4EE5\u4E0B\u306E 2 \u51AA\u3092\u4EEE\u5B9A\u3002\
     2^k \u3067\u5272\u308B\u3053\u3068\u306F\u3057\u3066\u3044\u306A\u3044\u3002\n\
     template <typename T>\nvoid hadamard(vc<T>& A) {\n  bitwise::bitwise_transform<bitwise::trans_type::hadamard>(A);\n\
     }\n"
-  code: "\n#include \"setfunc/bitwise_transform.hpp\"\n\n// B[j] = sum_i (-1)^{popcnt(i&j)}\
+  code: "// Source: https://github.com/maspypy/library/blob/main/setfunc/hadamard.hpp\n\
+    \n#include \"setfunc/bitwise_transform.hpp\"\n\n// B[j] = sum_i (-1)^{popcnt(i&j)}\
     \ A[i]\n// len(A) \u306F 2^25 \u4EE5\u4E0B\u306E 2 \u51AA\u3092\u4EEE\u5B9A\u3002\
     2^k \u3067\u5272\u308B\u3053\u3068\u306F\u3057\u3066\u3044\u306A\u3044\u3002\n\
     template <typename T>\nvoid hadamard(vc<T>& A) {\n  bitwise::bitwise_transform<bitwise::trans_type::hadamard>(A);\n\
@@ -69,7 +72,7 @@ data:
   path: setfunc/hadamard.hpp
   requiredBy:
   - setfunc/xor_convolution.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1753.test.cpp

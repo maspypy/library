@@ -19,12 +19,14 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"graph/vs_to_es.hpp\"\n\n#line 1 \"ds/hashmap.hpp\"\n\n//\
-    \ u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\
-    \u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
-    \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
-    \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/vs_to_es.hpp
+  bundledCode: "#line 1 \"graph/vs_to_es.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/vs_to_es.hpp\n\
+    \n#line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
     \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
     \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
     \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
@@ -45,7 +47,7 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 3 \"graph/vs_to_es.hpp\"\n\ntemplate <typename GT>\nvc<int> vs_to_es(GT&\
+    \  }\n};\n#line 4 \"graph/vs_to_es.hpp\"\n\ntemplate <typename GT>\nvc<int> vs_to_es(GT&\
     \ G, vc<int>& vs, bool allow_use_twice = false) {\n  assert(!vs.empty());\n\n\
     \  HashMap<int> MP(G.M);\n  vc<int> nxt(G.M, -1);\n\n  auto get = [&](ll a, ll\
     \ b) -> u64 {\n    if (!GT::is_directed && a > b) swap(a, b);\n    return a *\
@@ -54,7 +56,8 @@ data:
     \  vc<int> es(n - 1);\n  FOR(i, n - 1) {\n    u64 k = get(vs[i], vs[i + 1]);\n\
     \    int eid = MP.get(k, -1);\n    assert(eid != -1);\n    es[i] = eid;\n    if\
     \ (!allow_use_twice) { MP[k] = nxt[eid]; }\n  }\n  return es;\n}\n"
-  code: "\n#include \"ds/hashmap.hpp\"\n\ntemplate <typename GT>\nvc<int> vs_to_es(GT&\
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/vs_to_es.hpp\n\
+    \n#include \"ds/hashmap.hpp\"\n\ntemplate <typename GT>\nvc<int> vs_to_es(GT&\
     \ G, vc<int>& vs, bool allow_use_twice = false) {\n  assert(!vs.empty());\n\n\
     \  HashMap<int> MP(G.M);\n  vc<int> nxt(G.M, -1);\n\n  auto get = [&](ll a, ll\
     \ b) -> u64 {\n    if (!GT::is_directed && a > b) swap(a, b);\n    return a *\
@@ -69,7 +72,7 @@ data:
   path: graph/vs_to_es.hpp
   requiredBy:
   - graph/euler_walk.hpp
-  timestamp: '2026-09-01 10:19:35+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/graph/eulerwalk_d.test.cpp

@@ -19,16 +19,20 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"seq/hook_length_formula.hpp\"\n\n#line 1 \"mod/modint_common.hpp\"\
-    \n\n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x)\
-    \ -> decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static\
-    \ auto check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod\
-    \ : public decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate\
-    \ <typename mint>\nmint fact(int n) {\n  static vector<mint> dat = {1, 1};\n \
-    \ static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n\
-    \    dat = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if (len(dat) <= n) {\n\
-    \    int now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/seq/domino_standard_tableaux.hpp
+  bundledCode: "#line 1 \"seq/domino_standard_tableaux.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/seq/domino_standard_tableaux.hpp\n\
+    #line 1 \"seq/hook_length_formula.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/seq/hook_length_formula.hpp\n\
+    \n#line 1 \"mod/modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint.hpp\n\
+    #line 1 \"mod/modint_common.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint_common.hpp\n\
+    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
+    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
+    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
+    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
+    \ mint>\nmint fact(int n) {\n  static vector<mint> dat = {1, 1};\n  static int\
+    \ mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n    dat\
+    \ = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if (len(dat) <= n) {\n    int\
+    \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
     \    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n  }\n  return dat[n];\n\
     }\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  if (n < 0) return mint(0);\n\
     \  static vector<mint> dat = {1, 1};\n  static int mod = 0;\n  if (mod != mint::get_mod())\
@@ -62,7 +66,7 @@ data:
     }\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint, bool large = false, bool dense\
     \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
     \ mint(0);\n  if (n == 0) {\n    return (d == 0 ? mint(1) : mint(0));\n  }\n \
-    \ return C<mint, large, dense>(n + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\
+    \ return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\
     \ntemplate <int mod>\nstruct modint {\n  static constexpr u32 umod = u32(mod);\n\
     \  static_assert(0 < umod && umod < u32(1) << 31);\n  u32 val;\n\n  static modint\
     \ raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
@@ -102,11 +106,11 @@ data:
     \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
     \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
     }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 3 \"seq/hook_length_formula.hpp\"\n\ntemplate <typename mint>\nmint hook_length_formula(vc<int>\
+    #line 4 \"seq/hook_length_formula.hpp\"\n\ntemplate <typename mint>\nmint hook_length_formula(vc<int>\
     \ A) {\n  if (len(A) == 0) return 1;\n  int H = len(A);\n  FOR(i, H - 1) assert(A[i]\
     \ >= A[i + 1]);\n  int N = SUM<int>(A);\n\n  FOR(i, H) A[i] += H - 1 - i;\n  mint\
     \ ANS = fact<mint>(N);\n  FOR(j, H) FOR(i, j) ANS *= A[i] - A[j];\n  FOR(i, H)\
-    \ ANS *= fact_inv<mint>(A[i]);\n  return ANS;\n}\n#line 2 \"seq/domino_standard_tableaux.hpp\"\
+    \ ANS *= fact_inv<mint>(A[i]);\n  return ANS;\n}\n#line 3 \"seq/domino_standard_tableaux.hpp\"\
     \n\ntemplate <typename mint>\nmint domino_standard_tableaux(vc<int> A) {\n  int\
     \ N = len(A);\n  if (N == 0) return mint(1);\n  FOR(i, N - 1) assert(A[i] >= A[i\
     \ + 1]);\n  int x = 0;\n  FOR(i, N) {\n    if (A[i] % 2 == 1) { x += (i % 2 ==\
@@ -116,16 +120,16 @@ data:
     \ od), ++od; }\n  }\n  reverse(all(P)), reverse(all(Q));\n  int b = SUM<int>(P),\
     \ c = SUM<int>(Q);\n  return C<mint>(b + c, b) * hook_length_formula<mint>(P)\n\
     \         * hook_length_formula<mint>(Q);\n}\n"
-  code: "#include \"seq/hook_length_formula.hpp\"\n\ntemplate <typename mint>\nmint\
-    \ domino_standard_tableaux(vc<int> A) {\n  int N = len(A);\n  if (N == 0) return\
-    \ mint(1);\n  FOR(i, N - 1) assert(A[i] >= A[i + 1]);\n  int x = 0;\n  FOR(i,\
-    \ N) {\n    if (A[i] % 2 == 1) { x += (i % 2 == 0 ? 1 : -1); }\n  }\n  if (x !=\
-    \ 0) return 0;\n  FOR(i, N) A[i] += N - 1 - i;\n  int ev = 0, od = 0;\n  vc<int>\
-    \ P, Q;\n  FOR_R(i, N) {\n    if (A[i] % 2 == 0) { P.eb(A[i] / 2 - ev), ++ev;\
-    \ }\n    if (A[i] % 2 == 1) { Q.eb(A[i] / 2 - od), ++od; }\n  }\n  reverse(all(P)),\
-    \ reverse(all(Q));\n  int b = SUM<int>(P), c = SUM<int>(Q);\n  return C<mint>(b\
-    \ + c, b) * hook_length_formula<mint>(P)\n         * hook_length_formula<mint>(Q);\n\
-    }\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/seq/domino_standard_tableaux.hpp\n\
+    #include \"seq/hook_length_formula.hpp\"\n\ntemplate <typename mint>\nmint domino_standard_tableaux(vc<int>\
+    \ A) {\n  int N = len(A);\n  if (N == 0) return mint(1);\n  FOR(i, N - 1) assert(A[i]\
+    \ >= A[i + 1]);\n  int x = 0;\n  FOR(i, N) {\n    if (A[i] % 2 == 1) { x += (i\
+    \ % 2 == 0 ? 1 : -1); }\n  }\n  if (x != 0) return 0;\n  FOR(i, N) A[i] += N -\
+    \ 1 - i;\n  int ev = 0, od = 0;\n  vc<int> P, Q;\n  FOR_R(i, N) {\n    if (A[i]\
+    \ % 2 == 0) { P.eb(A[i] / 2 - ev), ++ev; }\n    if (A[i] % 2 == 1) { Q.eb(A[i]\
+    \ / 2 - od), ++od; }\n  }\n  reverse(all(P)), reverse(all(Q));\n  int b = SUM<int>(P),\
+    \ c = SUM<int>(Q);\n  return C<mint>(b + c, b) * hook_length_formula<mint>(P)\n\
+    \         * hook_length_formula<mint>(Q);\n}\n"
   dependsOn:
   - seq/hook_length_formula.hpp
   - mod/modint.hpp
@@ -133,7 +137,7 @@ data:
   isVerificationFile: false
   path: seq/domino_standard_tableaux.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2149.test.cpp

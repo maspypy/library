@@ -16,32 +16,36 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
-    struct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
-    \u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n \
-    \   u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n\
-    \    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\
-    \u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build\
-    \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
-    \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
-    \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
-    \ key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
-    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
-    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
-    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
-    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
-    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
-    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/shortest_path/bellman_ford.hpp
+  bundledCode: "#line 1 \"graph/shortest_path/bellman_ford.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/shortest_path/bellman_ford.hpp\n\
+    #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -117,7 +121,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 2 \"graph/shortest_path/bellman_ford.hpp\"\n\n// END=true:\
+    \   }\n  }\n};\n#line 3 \"graph/shortest_path/bellman_ford.hpp\"\n\n// END=true:\
     \ \u8CA0\u9589\u8DEF\u304C\u3042\u308C\u3070\u7D42\u4E86\u3057\u3066\u7A7A\u914D\
     \u5217\u3092\u8FD4\u3059.\n// \u305D\u3046\u3067\u306A\u3044\u5834\u5408\u8CA0\
     \u9589\u8DEF\u304C\u3042\u3063\u3066\u3082\u5168\u70B9\u3078\u306E\u8DDD\u96E2\
@@ -135,31 +139,32 @@ data:
     \ (END) {\n              return {{}, {}};\n            }\n            after =\
     \ -infty<T>;\n          }\n          dist[e.to] = after;\n        }\n      }\n\
     \    }\n    if (!upd) break;\n  }\n  return {dist, par};\n}\n"
-  code: "#include \"graph/base.hpp\"\n\n// END=true: \u8CA0\u9589\u8DEF\u304C\u3042\
-    \u308C\u3070\u7D42\u4E86\u3057\u3066\u7A7A\u914D\u5217\u3092\u8FD4\u3059.\n//\
-    \ \u305D\u3046\u3067\u306A\u3044\u5834\u5408\u8CA0\u9589\u8DEF\u304C\u3042\u3063\
-    \u3066\u3082\u5168\u70B9\u3078\u306E\u8DDD\u96E2\u3092\u8A08\u7B97\u3059\u308B\
-    .\n// \u5230\u9054\u4E0D\u53EF\u80FD\uFF1Ainfty<T>\n// \u8CA0\u9589\u8DEF\u3092\
-    \u7D4C\u7531\u3057\u3066\u3044\u304F\u3089\u3067\u3082\u5C0F\u3055\u304F\u3067\
-    \u304D\u308B\uFF1A-infty<T>\ntemplate <typename T, bool END = true, typename GT>\n\
-    pair<vc<T>, vc<int>> bellman_ford(GT &G, int s) {\n  int N = G.N;\n  vc<T> dist(N,\
-    \ infty<T>);\n  vc<int> par(N, -1);\n  dist[s] = 0;\n  int loop = 0;\n  while\
-    \ (1) {\n    ++loop;\n    bool upd = 0;\n    FOR(v, N) {\n      if (dist[v] ==\
-    \ infty<T>) continue;\n      for (auto &&e : G[v]) {\n        T before = dist[e.to];\n\
-    \        T after = dist[v] + e.cost;\n        if (dist[v] == -infty<T>) {\n  \
-    \        after = -infty<T>;\n        }\n        chmax(after, -infty<T>);\n   \
-    \     if (before > after) {\n          par[e.to] = v;\n          upd = 1;\n  \
-    \        if (loop >= N) {\n            if constexpr (END) {\n              return\
-    \ {{}, {}};\n            }\n            after = -infty<T>;\n          }\n    \
-    \      dist[e.to] = after;\n        }\n      }\n    }\n    if (!upd) break;\n\
-    \  }\n  return {dist, par};\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/shortest_path/bellman_ford.hpp\n\
+    #include \"graph/base.hpp\"\n\n// END=true: \u8CA0\u9589\u8DEF\u304C\u3042\u308C\
+    \u3070\u7D42\u4E86\u3057\u3066\u7A7A\u914D\u5217\u3092\u8FD4\u3059.\n// \u305D\
+    \u3046\u3067\u306A\u3044\u5834\u5408\u8CA0\u9589\u8DEF\u304C\u3042\u3063\u3066\
+    \u3082\u5168\u70B9\u3078\u306E\u8DDD\u96E2\u3092\u8A08\u7B97\u3059\u308B.\n//\
+    \ \u5230\u9054\u4E0D\u53EF\u80FD\uFF1Ainfty<T>\n// \u8CA0\u9589\u8DEF\u3092\u7D4C\
+    \u7531\u3057\u3066\u3044\u304F\u3089\u3067\u3082\u5C0F\u3055\u304F\u3067\u304D\
+    \u308B\uFF1A-infty<T>\ntemplate <typename T, bool END = true, typename GT>\npair<vc<T>,\
+    \ vc<int>> bellman_ford(GT &G, int s) {\n  int N = G.N;\n  vc<T> dist(N, infty<T>);\n\
+    \  vc<int> par(N, -1);\n  dist[s] = 0;\n  int loop = 0;\n  while (1) {\n    ++loop;\n\
+    \    bool upd = 0;\n    FOR(v, N) {\n      if (dist[v] == infty<T>) continue;\n\
+    \      for (auto &&e : G[v]) {\n        T before = dist[e.to];\n        T after\
+    \ = dist[v] + e.cost;\n        if (dist[v] == -infty<T>) {\n          after =\
+    \ -infty<T>;\n        }\n        chmax(after, -infty<T>);\n        if (before\
+    \ > after) {\n          par[e.to] = v;\n          upd = 1;\n          if (loop\
+    \ >= N) {\n            if constexpr (END) {\n              return {{}, {}};\n\
+    \            }\n            after = -infty<T>;\n          }\n          dist[e.to]\
+    \ = after;\n        }\n      }\n    }\n    if (!upd) break;\n  }\n  return {dist,\
+    \ par};\n}\n"
   dependsOn:
   - graph/base.hpp
   - ds/hashmap.hpp
   isVerificationFile: false
   path: graph/shortest_path/bellman_ford.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:05:11+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/GRL_1_B.test.cpp

@@ -16,11 +16,14 @@ data:
     links:
     - https://atcoder.jp/contests/stpc2025_1/tasks/stpc2025_1_l
     - https://codeforces.com/contest/87/problem/E
-  bundledCode: "#line 1 \"geo/angle_sort.hpp\"\n\n#line 1 \"geo/base.hpp\"\ntemplate\
-    \ <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template\
-    \ <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename\
-    \ A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  template <typename\
-    \ U>\n  Point(Point<U> p) : x(p.x), y(p.y) {\n    static_assert(!is_integral_v<T>\
+    - https://github.com/maspypy/library/blob/main/geo/minkowski_sum.hpp
+  bundledCode: "#line 1 \"geo/minkowski_sum.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/minkowski_sum.hpp\n\
+    #line 1 \"geo/angle_sort.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/angle_sort.hpp\n\
+    \n#line 1 \"geo/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/base.hpp\n\
+    template <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
+    \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
+    \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
+    \ {}\n\n  template <typename U>\n  Point(Point<U> p) : x(p.x), y(p.y) {\n    static_assert(!is_integral_v<T>\
     \ || is_integral_v<U>);\n  }\n\n  Point operator+=(const Point p) {\n    x +=\
     \ p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const Point p) {\n\
     \    x -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point p) const\
@@ -71,7 +74,7 @@ data:
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
     \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 3 \"geo/angle_sort.hpp\"\n\n// lower: -1, origin: 0, upper: 1, (-pi,pi]\ntemplate\
+    \ 4 \"geo/angle_sort.hpp\"\n\n// lower: -1, origin: 0, upper: 1, (-pi,pi]\ntemplate\
     \ <typename T> int lower_or_upper(const Point<T> &p) {\n  if (p.y != 0)\n    return\
     \ (p.y > 0 ? 1 : -1);\n  if (p.x > 0)\n    return -1;\n  if (p.x < 0)\n    return\
     \ 1;\n  return 0;\n}\n\n// L<R:-1, L==R:0, L>R:1, (-pi,pi]\ntemplate <typename\
@@ -85,7 +88,7 @@ data:
     \  return I;\n}\n\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort,\
     \ (-pi,pi]\ntemplate <typename T> vector<int> angle_sort(vector<pair<T, T>> &P)\
     \ {\n  vc<Point<T>> tmp(len(P));\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\n\
-    \  return angle_sort<T>(tmp);\n}\n#line 2 \"geo/minkowski_sum.hpp\"\n\n// https://codeforces.com/contest/87/problem/E\n\
+    \  return angle_sort<T>(tmp);\n}\n#line 3 \"geo/minkowski_sum.hpp\"\n\n// https://codeforces.com/contest/87/problem/E\n\
     // https://atcoder.jp/contests/stpc2025_1/tasks/stpc2025_1_l\n// \u5165\u529B\u306F\
     \ ccw \u51F8\u591A\u89D2\u5F62\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\
     .\n// return \u306F strict (180\u5EA6\u306A\u3057)\ntemplate <typename T>\nvc<Point<T>>\
@@ -108,7 +111,8 @@ data:
     \    if ((b - a).det(p - a) != 0) break;\n      if ((b - a).dot(p - b) < 0) break;\n\
     \      ANS.pop_back();\n    }\n    ANS.eb(p);\n  }\n  assert(ANS[0] == ANS.back());\n\
     \  ANS.pop_back();\n  return ANS;\n}\n"
-  code: "#include \"geo/angle_sort.hpp\"\n\n// https://codeforces.com/contest/87/problem/E\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/geo/minkowski_sum.hpp\n\
+    #include \"geo/angle_sort.hpp\"\n\n// https://codeforces.com/contest/87/problem/E\n\
     // https://atcoder.jp/contests/stpc2025_1/tasks/stpc2025_1_l\n// \u5165\u529B\u306F\
     \ ccw \u51F8\u591A\u89D2\u5F62\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\
     .\n// return \u306F strict (180\u5EA6\u306A\u3057)\ntemplate <typename T>\nvc<Point<T>>\
@@ -137,7 +141,7 @@ data:
   isVerificationFile: false
   path: geo/minkowski_sum.hpp
   requiredBy: []
-  timestamp: '2026-09-24 22:40:16+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/minkowski_sum.hpp

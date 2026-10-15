@@ -18,31 +18,35 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/1578/problem/K
-  bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
-    struct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
-    \u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n \
-    \   u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n\
-    \    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\
-    \u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build\
-    \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
-    \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
-    \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
-    \ key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
-    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
-    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
-    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
-    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
-    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
-    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    - https://github.com/maspypy/library/blob/main/graph/maximum_independent_set.hpp
+  bundledCode: "#line 1 \"graph/maximum_independent_set.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/maximum_independent_set.hpp\n\
+    #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -118,49 +122,49 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 2 \"graph/maximum_independent_set.hpp\"\n\r\n// worst N*1.381^N\
+    \   }\n  }\n};\n#line 3 \"graph/maximum_independent_set.hpp\"\n\n// worst N*1.381^N\
     \ \u3060\u304C\u3001N=100 \u7A0B\u5EA6\u3067\u3082\u4F7F\u3048\u308B\u53EF\u80FD\
-    \u6027\u304C\u3042\u308B\u3002\r\n// \u7279\u6B8A\u6700\u592780\u9802\u70B9\u7206\
-    \u901F https://codeforces.com/contest/1578/problem/K\r\ntemplate <int MAX_V, typename\
-    \ GT>\r\nvc<int> maximum_independent_set(const GT& G) {\r\n  using BS = bitset<MAX_V>;\r\
-    \n  const int N = G.N;\r\n  assert(N <= MAX_V);\r\n  vc<BS> nbd(N);\r\n  FOR(v,\
-    \ N) for (auto&& e : G[v]) nbd[v][e.to] = 1;\r\n\r\n  int best = 0;\r\n  BS res;\r\
-    \n\r\n  auto dfs = [&](auto& dfs, BS now, BS rest) -> void {\r\n    pair<int,\
-    \ int> p = {-1, -1};  // (v, d)\r\n    while (1) {\r\n      bool upd = 0;\r\n\
-    \      FOR(v, N) if (rest[v]) {\r\n        int d = (nbd[v] & rest).count();\r\n\
-    \        if (chmax(p.se, d)) p.fi = v;\r\n        if (d <= 1) {\r\n          rest[v]\
-    \ = 0, rest &= ~nbd[v], now[v] = 1, upd = 1;\r\n        }\r\n      }\r\n     \
-    \ if (!upd) break;\r\n      p = {-1, -1};\r\n    }\r\n    int a = now.count(),\
-    \ b = rest.count();\r\n    if (chmax(best, a)) res = now;\r\n    if (b == 0 ||\
-    \ a + b <= best) return;\r\n    int v = p.fi;\r\n    rest[v] = 0;\r\n    if (p.se\
-    \ >= 3) dfs(dfs, now, rest);\r\n    now[v] = 1;\r\n    dfs(dfs, now, rest & ~(nbd[v]));\r\
-    \n  };\r\n  BS now, rest;\r\n  FOR(v, N) rest[v] = 1;\r\n  dfs(dfs, now, rest);\r\
-    \n  vc<int> ANS;\r\n  FOR(v, N) if (res[v]) ANS.eb(v);\r\n  return ANS;\r\n}\n"
-  code: "#include \"graph/base.hpp\"\r\n\r\n// worst N*1.381^N \u3060\u304C\u3001\
-    N=100 \u7A0B\u5EA6\u3067\u3082\u4F7F\u3048\u308B\u53EF\u80FD\u6027\u304C\u3042\
-    \u308B\u3002\r\n// \u7279\u6B8A\u6700\u592780\u9802\u70B9\u7206\u901F https://codeforces.com/contest/1578/problem/K\r\
-    \ntemplate <int MAX_V, typename GT>\r\nvc<int> maximum_independent_set(const GT&\
-    \ G) {\r\n  using BS = bitset<MAX_V>;\r\n  const int N = G.N;\r\n  assert(N <=\
-    \ MAX_V);\r\n  vc<BS> nbd(N);\r\n  FOR(v, N) for (auto&& e : G[v]) nbd[v][e.to]\
-    \ = 1;\r\n\r\n  int best = 0;\r\n  BS res;\r\n\r\n  auto dfs = [&](auto& dfs,\
-    \ BS now, BS rest) -> void {\r\n    pair<int, int> p = {-1, -1};  // (v, d)\r\n\
-    \    while (1) {\r\n      bool upd = 0;\r\n      FOR(v, N) if (rest[v]) {\r\n\
-    \        int d = (nbd[v] & rest).count();\r\n        if (chmax(p.se, d)) p.fi\
-    \ = v;\r\n        if (d <= 1) {\r\n          rest[v] = 0, rest &= ~nbd[v], now[v]\
-    \ = 1, upd = 1;\r\n        }\r\n      }\r\n      if (!upd) break;\r\n      p =\
-    \ {-1, -1};\r\n    }\r\n    int a = now.count(), b = rest.count();\r\n    if (chmax(best,\
-    \ a)) res = now;\r\n    if (b == 0 || a + b <= best) return;\r\n    int v = p.fi;\r\
-    \n    rest[v] = 0;\r\n    if (p.se >= 3) dfs(dfs, now, rest);\r\n    now[v] =\
-    \ 1;\r\n    dfs(dfs, now, rest & ~(nbd[v]));\r\n  };\r\n  BS now, rest;\r\n  FOR(v,\
-    \ N) rest[v] = 1;\r\n  dfs(dfs, now, rest);\r\n  vc<int> ANS;\r\n  FOR(v, N) if\
-    \ (res[v]) ANS.eb(v);\r\n  return ANS;\r\n}"
+    \u6027\u304C\u3042\u308B\u3002\n// \u7279\u6B8A\u6700\u592780\u9802\u70B9\u7206\
+    \u901F https://codeforces.com/contest/1578/problem/K\ntemplate <int MAX_V, typename\
+    \ GT>\nvc<int> maximum_independent_set(const GT& G) {\n  using BS = bitset<MAX_V>;\n\
+    \  const int N = G.N;\n  assert(N <= MAX_V);\n  vc<BS> nbd(N);\n  FOR(v, N) for\
+    \ (auto&& e : G[v]) nbd[v][e.to] = 1;\n\n  int best = 0;\n  BS res;\n\n  auto\
+    \ dfs = [&](auto& dfs, BS now, BS rest) -> void {\n    pair<int, int> p = {-1,\
+    \ -1};  // (v, d)\n    while (1) {\n      bool upd = 0;\n      FOR(v, N) if (rest[v])\
+    \ {\n        int d = (nbd[v] & rest).count();\n        if (chmax(p.se, d)) p.fi\
+    \ = v;\n        if (d <= 1) {\n          rest[v] = 0, rest &= ~nbd[v], now[v]\
+    \ = 1, upd = 1;\n        }\n      }\n      if (!upd) break;\n      p = {-1, -1};\n\
+    \    }\n    int a = now.count(), b = rest.count();\n    if (chmax(best, a)) res\
+    \ = now;\n    if (b == 0 || a + b <= best) return;\n    int v = p.fi;\n    rest[v]\
+    \ = 0;\n    if (p.se >= 3) dfs(dfs, now, rest);\n    now[v] = 1;\n    dfs(dfs,\
+    \ now, rest & ~(nbd[v]));\n  };\n  BS now, rest;\n  FOR(v, N) rest[v] = 1;\n \
+    \ dfs(dfs, now, rest);\n  vc<int> ANS;\n  FOR(v, N) if (res[v]) ANS.eb(v);\n \
+    \ return ANS;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/maximum_independent_set.hpp\n\
+    #include \"graph/base.hpp\"\n\n// worst N*1.381^N \u3060\u304C\u3001N=100 \u7A0B\
+    \u5EA6\u3067\u3082\u4F7F\u3048\u308B\u53EF\u80FD\u6027\u304C\u3042\u308B\u3002\
+    \n// \u7279\u6B8A\u6700\u592780\u9802\u70B9\u7206\u901F https://codeforces.com/contest/1578/problem/K\n\
+    template <int MAX_V, typename GT>\nvc<int> maximum_independent_set(const GT& G)\
+    \ {\n  using BS = bitset<MAX_V>;\n  const int N = G.N;\n  assert(N <= MAX_V);\n\
+    \  vc<BS> nbd(N);\n  FOR(v, N) for (auto&& e : G[v]) nbd[v][e.to] = 1;\n\n  int\
+    \ best = 0;\n  BS res;\n\n  auto dfs = [&](auto& dfs, BS now, BS rest) -> void\
+    \ {\n    pair<int, int> p = {-1, -1};  // (v, d)\n    while (1) {\n      bool\
+    \ upd = 0;\n      FOR(v, N) if (rest[v]) {\n        int d = (nbd[v] & rest).count();\n\
+    \        if (chmax(p.se, d)) p.fi = v;\n        if (d <= 1) {\n          rest[v]\
+    \ = 0, rest &= ~nbd[v], now[v] = 1, upd = 1;\n        }\n      }\n      if (!upd)\
+    \ break;\n      p = {-1, -1};\n    }\n    int a = now.count(), b = rest.count();\n\
+    \    if (chmax(best, a)) res = now;\n    if (b == 0 || a + b <= best) return;\n\
+    \    int v = p.fi;\n    rest[v] = 0;\n    if (p.se >= 3) dfs(dfs, now, rest);\n\
+    \    now[v] = 1;\n    dfs(dfs, now, rest & ~(nbd[v]));\n  };\n  BS now, rest;\n\
+    \  FOR(v, N) rest[v] = 1;\n  dfs(dfs, now, rest);\n  vc<int> ANS;\n  FOR(v, N)\
+    \ if (res[v]) ANS.eb(v);\n  return ANS;\n}"
   dependsOn:
   - graph/base.hpp
   - ds/hashmap.hpp
   isVerificationFile: false
   path: graph/maximum_independent_set.hpp
   requiredBy: []
-  timestamp: '2026-09-25 19:09:59+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/graph/maximum_independent_set.test.cpp

@@ -9,18 +9,20 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/1375/problem/I
-  bundledCode: "#line 1 \"nt/hurwitz.hpp\"\n\n/*\nhttps://codeforces.com/contest/1375/problem/I\n\
-    Hurwitz integers\nq=a+bi+cj+dk, a,b,c,d \u306F\u5168\u90E8\u6574\u6570\u307E\u305F\
-    \u306F\u5168\u90E8\u534A\u6574\u6570\n\u5B9F\u88C5\u5185\u90E8\u3067\u306F q=(a+bi+cj+dk)/2\
-    \ \u3068\u3044\u3046 a,b,c,d \u3092\u6301\u3064\n\n\u7ACB\u65B9\u4F53\u683C\u5B50\
-    \u306E\u7279\u5FB4\u3065\u3051\nq: Hurwitz \u3092\u7528\u3044\u3066 q (Zi+Zj+Zk)\
-    \ conjugate(q) \u3068\u66F8\u3051\u308B\n*/\ntemplate <typename T>\nstruct Hurwitz\
-    \ {\n  static_assert(is_same_v<T, ll> || is_same_v<T, i128>);\n  T a, b, c, d;\n\
-    \  Hurwitz(T a, T b, T c, T d) : a(a), b(b), c(c), d(d) { validate(); }\n  Hurwitz(T\
-    \ x = 0) : a(2 * x), b(0), c(0), d(0) {}\n\n  inline void validate() {\n    assert((a\
-    \ + b) % 2 == 0 && (a + c) % 2 == 0 && (a + d) % 2 == 0);\n  }\n\n  Hurwitz conjugate()\
-    \ { return Hurwitz(a, -b, -c, -d); }\n  bool is_real() { return (b == 0 && c ==\
-    \ 0 && d == 0); }\n  bool is_pure_imaginary() { return (a == 0); }\n  bool is_zero()\
+    - https://github.com/maspypy/library/blob/main/nt/hurwitz.hpp
+  bundledCode: "#line 1 \"nt/hurwitz.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/hurwitz.hpp\n\
+    \n/*\nhttps://codeforces.com/contest/1375/problem/I\nHurwitz integers\nq=a+bi+cj+dk,\
+    \ a,b,c,d \u306F\u5168\u90E8\u6574\u6570\u307E\u305F\u306F\u5168\u90E8\u534A\u6574\
+    \u6570\n\u5B9F\u88C5\u5185\u90E8\u3067\u306F q=(a+bi+cj+dk)/2 \u3068\u3044\u3046\
+    \ a,b,c,d \u3092\u6301\u3064\n\n\u7ACB\u65B9\u4F53\u683C\u5B50\u306E\u7279\u5FB4\
+    \u3065\u3051\nq: Hurwitz \u3092\u7528\u3044\u3066 q (Zi+Zj+Zk) conjugate(q) \u3068\
+    \u66F8\u3051\u308B\n*/\ntemplate <typename T>\nstruct Hurwitz {\n  static_assert(is_same_v<T,\
+    \ ll> || is_same_v<T, i128>);\n  T a, b, c, d;\n  Hurwitz(T a, T b, T c, T d)\
+    \ : a(a), b(b), c(c), d(d) { validate(); }\n  Hurwitz(T x = 0) : a(2 * x), b(0),\
+    \ c(0), d(0) {}\n\n  inline void validate() {\n    assert((a + b) % 2 == 0 &&\
+    \ (a + c) % 2 == 0 && (a + d) % 2 == 0);\n  }\n\n  Hurwitz conjugate() { return\
+    \ Hurwitz(a, -b, -c, -d); }\n  bool is_real() { return (b == 0 && c == 0 && d\
+    \ == 0); }\n  bool is_pure_imaginary() { return (a == 0); }\n  bool is_zero()\
     \ { return (a == 0 && b == 0 && c == 0 && d == 0); }\n\n  Hurwitz &operator+=(const\
     \ Hurwitz &p) {\n    a += p.a, b += p.b, c += p.c, d += p.d;\n    return *this;\n\
     \  }\n  Hurwitz &operator-=(const Hurwitz &p) {\n    a -= p.a, b -= p.b, c -=\
@@ -60,7 +62,8 @@ data:
     \  static Hurwitz right_gcd(Hurwitz x, Hurwitz y) {\n    while (!y.is_zero())\
     \ {\n      x = right_division(x, y).se;\n      swap(x, y);\n    }\n    return\
     \ x;\n  }\n};\n"
-  code: "\n/*\nhttps://codeforces.com/contest/1375/problem/I\nHurwitz integers\nq=a+bi+cj+dk,\
+  code: "// Source: https://github.com/maspypy/library/blob/main/nt/hurwitz.hpp\n\n\
+    /*\nhttps://codeforces.com/contest/1375/problem/I\nHurwitz integers\nq=a+bi+cj+dk,\
     \ a,b,c,d \u306F\u5168\u90E8\u6574\u6570\u307E\u305F\u306F\u5168\u90E8\u534A\u6574\
     \u6570\n\u5B9F\u88C5\u5185\u90E8\u3067\u306F q=(a+bi+cj+dk)/2 \u3068\u3044\u3046\
     \ a,b,c,d \u3092\u6301\u3064\n\n\u7ACB\u65B9\u4F53\u683C\u5B50\u306E\u7279\u5FB4\
@@ -115,7 +118,7 @@ data:
   isVerificationFile: false
   path: nt/hurwitz.hpp
   requiredBy: []
-  timestamp: '2026-06-15 22:08:56+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: nt/hurwitz.hpp

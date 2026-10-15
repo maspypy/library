@@ -46,50 +46,53 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"mod/modint_common.hpp\"\n\n\nstruct has_mod_impl {\n  template\
-    \ <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
-    \ {};\n\ntemplate <typename mint>\nmint fact(int n) {\n  static vector<mint> dat\
-    \ = {1, 1};\n  static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod =\
-    \ mint::get_mod();\n    dat = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if\
-    \ (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod, 1 << (topbit(n)\
-    \ + 1));\n    dat.resize(m);\n    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n\
-    \  if (n < 0) return mint(0);\n  static vector<mint> dat = {1, 1};\n  static int\
+    links:
+    - https://github.com/maspypy/library/blob/main/mod/modfast.hpp
+  bundledCode: "#line 1 \"mod/modfast.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modfast.hpp\n\
+    #line 1 \"mod/modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint.hpp\n\
+    #line 1 \"mod/modint_common.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint_common.hpp\n\
+    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
+    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
+    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
+    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
+    \ mint>\nmint fact(int n) {\n  static vector<mint> dat = {1, 1};\n  static int\
     \ mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n    dat\
     \ = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if (len(dat) <= n) {\n    int\
     \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
-    \    dat[m - 1] = fact<mint>(m - 1).inverse();\n    FOR_R(i, now, m - 1) dat[i]\
-    \ = dat[i + 1] * mint::raw(i + 1);\n  }\n  return dat[n];\n}\n\ntemplate <class\
-    \ mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
-    }\n\ntemplate <typename mint>\nmint inv(int n) {\n  return fact<mint>(n - 1) *\
-    \ fact_inv<mint>(n);\n}\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n\
-    \ != 0);\n  return 1.0 / n;\n}\n\ntemplate <typename mint, class Head, class...\
-    \ Tail>\nmint multinomial(Head &&head, Tail &&...tail) {\n  return fact<mint>(head)\
-    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
-    mint C_dense(int n, int k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return\
-    \ 0;\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n  static int mod = 0;\n\
-    \  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n    C.clear();\n\
-    \    H = W = 0;\n  }\n  auto calc = [&](int i, int j) -> mint {\n    if (i ==\
-    \ 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i -\
-    \ 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k\
-    \ + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k +\
-    \ 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n   \
-    \   C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H =\
-    \ n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool large = false,\
-    \ bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 ||\
-    \ n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n, k);\n  if constexpr\
-    \ (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint\
-    \ x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\n\
-    template <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n\
-    \ >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n  }\n  return dat[n];\n\
+    }\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  if (n < 0) return mint(0);\n\
+    \  static vector<mint> dat = {1, 1};\n  static int mod = 0;\n  if (mod != mint::get_mod())\
+    \ {\n    mod = mint::get_mod();\n    dat = {1, 1};\n  }\n  assert(0 <= n && n\
+    \ < mod);\n  if (len(dat) <= n) {\n    int now = len(dat);\n    int m = min(mod,\
+    \ 1 << (topbit(n) + 1));\n    dat.resize(m);\n    dat[m - 1] = fact<mint>(m -\
+    \ 1).inverse();\n    FOR_R(i, now, m - 1) dat[i] = dat[i + 1] * mint::raw(i +\
+    \ 1);\n  }\n  return dat[n];\n}\n\ntemplate <class mint, class... Ts>\nmint fact_invs(Ts...\
+    \ xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename\
+    \ mint>\nmint inv(int n) {\n  return fact<mint>(n - 1) * fact_inv<mint>(n);\n\
+    }\n\ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0\
+    \ / n;\n}\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&...tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  static vvc<mint> C;\n  static int H = 0, W\
+    \ = 0;\n  static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n\
+    \    C.clear();\n    H = W = 0;\n  }\n  auto calc = [&](int i, int j) -> mint\
+    \ {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
+    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
+    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
+    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
+    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
+    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n,\
+    \ k);\n  if constexpr (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k,\
+    \ n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
+    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
+    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
     \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
     }\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint, bool large = false, bool dense\
     \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
     \ mint(0);\n  if (n == 0) {\n    return (d == 0 ? mint(1) : mint(0));\n  }\n \
-    \ return C<mint, large, dense>(n + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\
+    \ return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\
     \ntemplate <int mod>\nstruct modint {\n  static constexpr u32 umod = u32(mod);\n\
     \  static_assert(0 < umod && umod < u32(1) << 31);\n  u32 val;\n\n  static modint\
     \ raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
@@ -129,14 +132,18 @@ data:
     \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
     \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
     }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 1 \"mod/primitive_root.hpp\"\n\n#line 1 \"nt/factor.hpp\"\n\n#line 1 \"\
-    random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    #line 1 \"mod/primitive_root.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/primitive_root.hpp\n\
+    \n#line 1 \"nt/factor.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/factor.hpp\n\
+    \n#line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/montgomery_modint.hpp\"\n\n\
-    // odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"nt/is_prime.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/nt/is_prime.hpp\n#line 1 \"mod/montgomery_modint.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/mod/montgomery_modint.hpp\n\
+    \n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
     \ <int id, typename U1, typename U2>\nstruct Montgomery_modint {\n  using mint\
     \ = Montgomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
     \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
@@ -156,7 +163,7 @@ data:
     \ >= 0);\n    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if\
     \ (n & 1) y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Montgomery_modint_32\
     \ = Montgomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Montgomery_modint_64\
-    \ = Montgomery_modint<id, u64, u128>;\n#line 2 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
+    \ = Montgomery_modint<id, u64, u128>;\n#line 3 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
     \ u64 x) {\n  assert(x < u64(1) << 62);\n  if (x == 2 or x == 3 or x == 5 or x\
     \ == 7) return true;\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 ==\
     \ 0) return false;\n  if (x < 121) return x > 1;\n  const u64 d = (x - 1) >> lowbit(x\
@@ -167,7 +174,7 @@ data:
     \ false;\n    return true;\n  };\n  if (x < (u64(1) << 32)) {\n    for (u64 a\
     \ : {2, 7, 61})\n      if (!ok(a)) return false;\n  } else {\n    for (u64 a :\
     \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\n      if (!ok(a)) return\
-    \ false;\n    }\n  }\n  return true;\n}\n#line 4 \"nt/factor.hpp\"\n\ntemplate\
+    \ false;\n    }\n  }\n  return true;\n}\n#line 5 \"nt/factor.hpp\"\n\ntemplate\
     \ <typename mint>\nll rho(ll n, ll c) {\n  assert(n > 1);\n  const mint cc(c);\n\
     \  auto f = [&](mint x) { return x * x + cc; };\n  mint x = 1, y = 2, z = 1, q\
     \ = 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5);\n  for (ll r = 1; g\
@@ -191,8 +198,9 @@ data:
     \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_spf(ll n, vc<int>& spf) {\n  vc<pair<ll,\
     \ int>> res;\n  while (n > 1) {\n    int p = spf[n];\n    int e = 0;\n    while\
     \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
-    \ return res;\n}\n#line 1 \"mod/mod_pow.hpp\"\n\n#line 1 \"mod/montgomery_modint.hpp\"\
-    \n\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
+    \ return res;\n}\n#line 1 \"mod/mod_pow.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/mod_pow.hpp\n\
+    \n#line 1 \"mod/montgomery_modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/montgomery_modint.hpp\n\
+    \n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
     \ <int id, typename U1, typename U2>\nstruct Montgomery_modint {\n  using mint\
     \ = Montgomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
     \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
@@ -212,7 +220,8 @@ data:
     \ >= 0);\n    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if\
     \ (n & 1) y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Montgomery_modint_32\
     \ = Montgomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Montgomery_modint_64\
-    \ = Montgomery_modint<id, u64, u128>;\n#line 1 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    \ = Montgomery_modint<id, u64, u128>;\n#line 1 \"mod/barrett.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/mod/barrett.hpp\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
     struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
     \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
     \ (m == 1) return 0;\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n\
@@ -228,7 +237,7 @@ data:
     \ const { return mod; }\n\n  u64 modulo(u128 x) {\n    u128 z = (x & u64(-1))\
     \ * ml;\n    z = (x & u64(-1)) * mh + (x >> 64) * ml + (z >> 64);\n    z = (x\
     \ >> 64) * mh + (z >> 64);\n    x -= z * mod;\n    return x < mod ? x : x - mod;\n\
-    \  }\n\n  u64 mul(u64 a, u64 b) { return modulo(u128(a) * b); }\n};\n#line 4 \"\
+    \  }\n\n  u64 mul(u64 a, u64 b) { return modulo(u128(a) * b); }\n};\n#line 5 \"\
     mod/mod_pow.hpp\"\n\nu32 mod_pow(int a, ll n, int mod) {\n  assert(n >= 0);\n\
     \  if (mod == 1) return 0;\n  a = ((a %= mod) < 0 ? a + mod : a);\n  if ((mod\
     \ & 1) && (mod < (1 << 30))) {\n    using mint = Montgomery_modint_32<202311021>;\n\
@@ -240,12 +249,13 @@ data:
     \    mint::set_mod(mod);\n    return mint(a).pow(n).val();\n  }\n  Barrett_64\
     \ bt(mod);\n  ll r = 1;\n  while (n) {\n    if (n & 1) r = bt.mul(r, a);\n   \
     \ a = bt.mul(a, a), n >>= 1;\n  }\n  return r;\n}\n#line 1 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\n\
+    u64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 5 \"mod/primitive_root.hpp\"\n\n//\
+    \  return l + RNG_64() % (r - l);\n}\n#line 6 \"mod/primitive_root.hpp\"\n\n//\
     \ int\nint primitive_root(int p, bool min = true) {\n  auto pf = factor(p - 1);\n\
     \  auto is_ok = [&](int g) -> bool {\n    for (auto&& [q, e] : pf)\n      if (mod_pow(g,\
     \ (p - 1) / q, p) == 1) return false;\n    return true;\n  };\n  if (min) {\n\
@@ -258,24 +268,27 @@ data:
     ll primitive_root_prime_power_64(ll p, ll e) {\n  assert(p >= 3);\n  ll g = primitive_root_64(p);\n\
     \  ll q = p;\n  ll phi = p - 1;\n  FOR(e - 1) {\n    q *= p;\n    phi *= p;\n\
     \    if (mod_pow_64(g, phi / p, q) == 1) g += q / p;\n  }\n  return g;\n}\n#line\
-    \ 1 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T> prime_table(int\
-    \ LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done = 2;\n  static vc<T>\
-    \ primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes\
-    \ = {2}, sieve.assign(S + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM\
-    \ / log(LIM) * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S;\
-    \ i += 2) {\n      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for\
-    \ (int j = i * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int\
-    \ L = 1; L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p,\
-    \ idx] : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L]\
-    \ = 1;\n      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n\
-    \    }\n  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin()\
-    \ + k};\n}\n#line 2 \"nt/spf_table.hpp\"\n\n// [0, LIM], 0, 1 \u306B\u306F -1\
-    \ \u304C\u5165\u308B\u3002\nvc<int> spf_table(int LIM) {\n  auto primes = prime_table(LIM);\n\
+    \ 1 \"nt/spf_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/spf_table.hpp\n\
+    #line 1 \"nt/prime_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/prime_table.hpp\n\
+    \ntemplate <typename T = int>\nvc<T> prime_table(int LIM) {\n  ++LIM;\n  const\
+    \ int S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S\
+    \ + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
+    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
+    \ * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
+    \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
+    \ * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1;\
+    \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]\
+    \ : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
+    \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
+    \  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin() + k};\n\
+    }\n#line 3 \"nt/spf_table.hpp\"\n\n// [0, LIM], 0, 1 \u306B\u306F -1 \u304C\u5165\
+    \u308B\u3002\nvc<int> spf_table(int LIM) {\n  auto primes = prime_table(LIM);\n\
     \  vc<int> spf(LIM + 1, -1);\n  int sq = sqrt(LIM);\n  for (int i = 2; i <= LIM;\
     \ i += 2) spf[i] = 2;\n  FOR_R(i, len(primes)) {\n    auto p = primes[i];\n  \
     \  spf[p] = p;\n    if (sq < p) continue;\n    for (int k = p * p; k <= LIM; k\
-    \ += 2 * p) spf[k] = p;\n  }\n  return spf;\n}\n#line 1 \"ds/hashmap.hpp\"\n\n\
-    // u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\
+    \ += 2 * p) spf[k] = p;\n  }\n  return spf;\n}\n#line 1 \"ds/hashmap.hpp\"\n//\
+    \ Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\n// u64\
+    \ -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\
     \u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
     \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
     \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
@@ -299,7 +312,7 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 5 \"mod/modfast.hpp\"\n\n// prime modint\ntemplate <typename mint>\n\
+    \  }\n};\n#line 6 \"mod/modfast.hpp\"\n\n// prime modint\ntemplate <typename mint>\n\
     struct ModFast {\n  static constexpr int LIM = 1 << 21;\n  static constexpr int\
     \ p = mint::get_mod();\n  static_assert(2 <= p && p < (1 << 30));\n\n  // small\
     \ mod \u3067\u306F\u5168\u975E\u96F6\u5143\u3092\u76F4\u63A5 table \u5316\u3059\
@@ -376,26 +389,27 @@ data:
     \ / (1024 * b);\n      u32 t = (u64(c) * p) / (1024 * d);\n\n      FRAC[s] = {a,\
     \ b};\n      FRAC[t] = {c, d};\n\n      a = min(a, c);\n      b = min(b, d);\n\
     \      FOR(i, s + 1, t) FRAC[i] = {a, b};\n    }\n  }\n};\n"
-  code: "#include \"mod/modint.hpp\"\n#include \"mod/primitive_root.hpp\"\n#include\
-    \ \"nt/spf_table.hpp\"\n#include \"ds/hashmap.hpp\"\n\n// prime modint\ntemplate\
-    \ <typename mint>\nstruct ModFast {\n  static constexpr int LIM = 1 << 21;\n \
-    \ static constexpr int p = mint::get_mod();\n  static_assert(2 <= p && p < (1\
-    \ << 30));\n\n  // small mod \u3067\u306F\u5168\u975E\u96F6\u5143\u3092\u76F4\u63A5\
-    \ table \u5316\u3059\u308B\n  static constexpr bool DIRECT = (p <= LIM);\n  static\
-    \ constexpr int K = (DIRECT ? p - 1 : LIM);\n\n  static constexpr int TABLE_SIZE\
-    \ = (DIRECT ? p : 2 * K + 1);\n  static constexpr int FRAC_SIZE = (DIRECT ? 1\
-    \ : 1 + (1 << 20));\n\n  u32 root;\n  array<u32, 32769> POW[2];\n  array<pair<u16,\
-    \ u16>, FRAC_SIZE> FRAC;\n\n  array<u32, TABLE_SIZE> LOG;\n  array<u32, TABLE_SIZE>\
-    \ INV;\n\n  ModFast() {\n    root = (p == 998244353 ? 3 : primitive_root(p));\n\
-    \    build_pow();\n    build_inv();\n    build_log();\n    if constexpr (!DIRECT)\
-    \ build_frac();\n  }\n\n  // a^exp\n  // a != 0 \u306A\u3089 exp \u306F\u4EFB\u610F\
-    \u306E signed ll.\n  // a == 0 \u306E\u5834\u5408\u306F exp >= 0 \u304C\u5FC5\u8981\
-    .\n  mint pow(mint a, ll exp) const {\n    if (a == 0) {\n      assert(exp >=\
-    \ 0);\n      return mint::raw(exp == 0);\n    }\n\n    u32 lg = log_r(a);\n\n\
-    \    // lg < 2^31 \u306A\u306E\u3067\u7A4D\u306F u64 \u306B\u53CE\u307E\u308B\
-    .\n    if (u64(exp) < (1ULL << 33)) {\n      u32 e = u64(lg) * u64(exp) % (p -\
-    \ 1);\n      return pow_r_32(e);\n    }\n\n    ll e = exp % (p - 1);\n    if (e\
-    \ < 0) e += p - 1;\n    u32 f = u64(lg) * u64(e) % (p - 1);\n    return pow_r_32(f);\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/mod/modfast.hpp\n\
+    #include \"mod/modint.hpp\"\n#include \"mod/primitive_root.hpp\"\n#include \"\
+    nt/spf_table.hpp\"\n#include \"ds/hashmap.hpp\"\n\n// prime modint\ntemplate <typename\
+    \ mint>\nstruct ModFast {\n  static constexpr int LIM = 1 << 21;\n  static constexpr\
+    \ int p = mint::get_mod();\n  static_assert(2 <= p && p < (1 << 30));\n\n  //\
+    \ small mod \u3067\u306F\u5168\u975E\u96F6\u5143\u3092\u76F4\u63A5 table \u5316\
+    \u3059\u308B\n  static constexpr bool DIRECT = (p <= LIM);\n  static constexpr\
+    \ int K = (DIRECT ? p - 1 : LIM);\n\n  static constexpr int TABLE_SIZE = (DIRECT\
+    \ ? p : 2 * K + 1);\n  static constexpr int FRAC_SIZE = (DIRECT ? 1 : 1 + (1 <<\
+    \ 20));\n\n  u32 root;\n  array<u32, 32769> POW[2];\n  array<pair<u16, u16>, FRAC_SIZE>\
+    \ FRAC;\n\n  array<u32, TABLE_SIZE> LOG;\n  array<u32, TABLE_SIZE> INV;\n\n  ModFast()\
+    \ {\n    root = (p == 998244353 ? 3 : primitive_root(p));\n    build_pow();\n\
+    \    build_inv();\n    build_log();\n    if constexpr (!DIRECT) build_frac();\n\
+    \  }\n\n  // a^exp\n  // a != 0 \u306A\u3089 exp \u306F\u4EFB\u610F\u306E signed\
+    \ ll.\n  // a == 0 \u306E\u5834\u5408\u306F exp >= 0 \u304C\u5FC5\u8981.\n  mint\
+    \ pow(mint a, ll exp) const {\n    if (a == 0) {\n      assert(exp >= 0);\n  \
+    \    return mint::raw(exp == 0);\n    }\n\n    u32 lg = log_r(a);\n\n    // lg\
+    \ < 2^31 \u306A\u306E\u3067\u7A4D\u306F u64 \u306B\u53CE\u307E\u308B.\n    if\
+    \ (u64(exp) < (1ULL << 33)) {\n      u32 e = u64(lg) * u64(exp) % (p - 1);\n \
+    \     return pow_r_32(e);\n    }\n\n    ll e = exp % (p - 1);\n    if (e < 0)\
+    \ e += p - 1;\n    u32 f = u64(lg) * u64(e) % (p - 1);\n    return pow_r_32(f);\n\
     \  }\n\n  // primitive root^exp\n  mint pow_r(ll exp) const {\n    exp %= p -\
     \ 1;\n    if (exp < 0) exp += p - 1;\n    return pow_r_32(exp);\n  }\n\n  // 0\
     \ <= exp <= p-1\n  mint pow_r_32(u32 exp) const {\n    assert(exp <= p - 1);\n\
@@ -470,7 +484,7 @@ data:
   isVerificationFile: false
   path: mod/modfast.hpp
   requiredBy: []
-  timestamp: '2026-10-06 15:40:07+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/modfast.test.cpp

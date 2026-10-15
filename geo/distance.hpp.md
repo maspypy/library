@@ -19,12 +19,15 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"geo/cross_point.hpp\"\n\n#line 1 \"geo/base.hpp\"\ntemplate\
-    \ <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template\
-    \ <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename\
-    \ A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  template <typename\
-    \ U>\n  Point(Point<U> p) : x(p.x), y(p.y) {\n    static_assert(!is_integral_v<T>\
+    links:
+    - https://github.com/maspypy/library/blob/main/geo/distance.hpp
+  bundledCode: "#line 1 \"geo/distance.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/distance.hpp\n\
+    #line 1 \"geo/cross_point.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/cross_point.hpp\n\
+    \n#line 1 \"geo/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/base.hpp\n\
+    template <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
+    \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
+    \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
+    \ {}\n\n  template <typename U>\n  Point(Point<U> p) : x(p.x), y(p.y) {\n    static_assert(!is_integral_v<T>\
     \ || is_integral_v<U>);\n  }\n\n  Point operator+=(const Point p) {\n    x +=\
     \ p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const Point p) {\n\
     \    x -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point p) const\
@@ -75,7 +78,7 @@ data:
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
     \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 3 \"geo/cross_point.hpp\"\n\n// \u5E73\u884C\u3067\u306A\u3044\u3053\u3068\u3092\
+    \ 4 \"geo/cross_point.hpp\"\n\n// \u5E73\u884C\u3067\u306A\u3044\u3053\u3068\u3092\
     \u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(const\
     \ Line<T> L1, const Line<T> L2) {\n  T det = L1.a * L2.b - L1.b * L2.a;\n  assert(det\
     \ != 0);\n  REAL x = -REAL(L1.c) * L2.b + REAL(L1.b) * L2.c;\n  REAL y = -REAL(L1.a)\
@@ -122,7 +125,7 @@ data:
     \ < -1 || 1 < cos_val) return {false, O, O};\n  REAL t = acos(cos_val);\n  REAL\
     \ u = (B - A).angle();\n  P X = A + P{C1.r * cos(u + t), C1.r * sin(u + t)};\n\
     \  P Y = A + P{C1.r * cos(u - t), C1.r * sin(u - t)};\n  return {true, X, Y};\n\
-    }\n#line 2 \"geo/distance.hpp\"\n\ntemplate <typename REAL, typename T, typename\
+    }\n#line 3 \"geo/distance.hpp\"\n\ntemplate <typename REAL, typename T, typename\
     \ U>\nREAL distance(Segment<T> S, Point<U> P) {\n  Point<T> A = S.A, B = S.B;\n\
     \  bool b1 = (B - A).dot(P - A) >= 0;\n  bool b2 = (A - B).dot(P - B) >= 0;\n\
     \  if (b1 && !b2) {\n    return distance<REAL, T, T>(B, P);\n  }\n  if (!b1 &&\
@@ -142,12 +145,13 @@ data:
     \ 1};\n  }\n  if (!b1 && b2) {\n    T d = (A - P).dot(A - P);\n    return {d,\
     \ 1};\n  }\n  Line<T> L = S.to_line();\n  T a = L.eval(P);\n  if (a < 0) a = -a;\n\
     \  T b = L.a * L.a + L.b * L.b;\n  return {a * a, b};\n}\n"
-  code: "#include \"geo/cross_point.hpp\"\n\ntemplate <typename REAL, typename T,\
-    \ typename U>\nREAL distance(Segment<T> S, Point<U> P) {\n  Point<T> A = S.A,\
-    \ B = S.B;\n  bool b1 = (B - A).dot(P - A) >= 0;\n  bool b2 = (A - B).dot(P -\
-    \ B) >= 0;\n  if (b1 && !b2) {\n    return distance<REAL, T, T>(B, P);\n  }\n\
-    \  if (!b1 && b2) {\n    return distance<REAL, T, T>(A, P);\n  }\n  Line<T> L\
-    \ = S.to_line();\n  // \u70B9\u3068\u76F4\u7DDA\u306E\u8DDD\u96E2\n  return REAL(abs(L.eval(P)))\
+  code: "// Source: https://github.com/maspypy/library/blob/main/geo/distance.hpp\n\
+    #include \"geo/cross_point.hpp\"\n\ntemplate <typename REAL, typename T, typename\
+    \ U>\nREAL distance(Segment<T> S, Point<U> P) {\n  Point<T> A = S.A, B = S.B;\n\
+    \  bool b1 = (B - A).dot(P - A) >= 0;\n  bool b2 = (A - B).dot(P - B) >= 0;\n\
+    \  if (b1 && !b2) {\n    return distance<REAL, T, T>(B, P);\n  }\n  if (!b1 &&\
+    \ b2) {\n    return distance<REAL, T, T>(A, P);\n  }\n  Line<T> L = S.to_line();\n\
+    \  // \u70B9\u3068\u76F4\u7DDA\u306E\u8DDD\u96E2\n  return REAL(abs(L.eval(P)))\
     \ / sqrt(REAL(L.a) * L.a + REAL(L.b) * L.b);\n}\n\ntemplate <typename REAL, typename\
     \ T>\nREAL distance(Segment<T> S1, Segment<T> S2) {\n  if (count_cross<T>(S1,\
     \ S2, true)) return REAL(0);\n  REAL res = distance<REAL, T, T>(S1, S2.A);\n \
@@ -168,7 +172,7 @@ data:
   isVerificationFile: false
   path: geo/distance.hpp
   requiredBy: []
-  timestamp: '2026-09-25 20:35:24+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/CGL_2_D.test.cpp

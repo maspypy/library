@@ -22,14 +22,16 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"enumerate/product.hpp\"\n\n// [0, A0) x [0, A1) x ...\n\
-    template <typename F>\nvoid enumerate_product(const vc<int>& A, F query) {\n \
-    \ int N = len(A);\n  auto dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int\
-    \ n = len(p);\n    if (n == N) return query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n\
-    \      dfs(dfs, p);\n      p.pop_back();\n    }\n  };\n  vc<int> p;\n  dfs(dfs,\
-    \ p);\n}\n"
-  code: "\n// [0, A0) x [0, A1) x ...\ntemplate <typename F>\nvoid enumerate_product(const\
+    links:
+    - https://github.com/maspypy/library/blob/main/enumerate/product.hpp
+  bundledCode: "#line 1 \"enumerate/product.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/enumerate/product.hpp\n\
+    \n// [0, A0) x [0, A1) x ...\ntemplate <typename F>\nvoid enumerate_product(const\
+    \ vc<int>& A, F query) {\n  int N = len(A);\n  auto dfs = [&](auto& dfs, vc<int>&\
+    \ p) -> void {\n    int n = len(p);\n    if (n == N) return query(p);\n    FOR(x,\
+    \ A[n]) {\n      p.eb(x);\n      dfs(dfs, p);\n      p.pop_back();\n    }\n  };\n\
+    \  vc<int> p;\n  dfs(dfs, p);\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/enumerate/product.hpp\n\
+    \n// [0, A0) x [0, A1) x ...\ntemplate <typename F>\nvoid enumerate_product(const\
     \ vc<int>& A, F query) {\n  int N = len(A);\n  auto dfs = [&](auto& dfs, vc<int>&\
     \ p) -> void {\n    int n = len(p);\n    if (n == N) return query(p);\n    FOR(x,\
     \ A[n]) {\n      p.eb(x);\n      dfs(dfs, p);\n      p.pop_back();\n    }\n  };\n\
@@ -39,7 +41,7 @@ data:
   path: enumerate/product.hpp
   requiredBy:
   - enumerate/labeled_tree.hpp
-  timestamp: '2026-09-24 22:40:16+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/enumerate_products.test.cpp

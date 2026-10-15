@@ -25,33 +25,37 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"string/enumerate_occurrences.hpp\"\n\n#line 1 \"graph/tree.hpp\"\
-    \n\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\nstruct\
-    \ HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\
-    \u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n    u32\
-    \ k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k),\
-    \ val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\
-    \u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\
-    \u3068.\n  void clear() {\n    used.assign(len(used), 0);\n    cap = (mask + 1)\
-    \ / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\n  int index(const\
-    \ u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] && key[i] != k; i =\
-    \ (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const u64&\
-    \ k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap ==\
-    \ 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n\
-    \    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value) {\n   \
-    \ int i = index(k);\n    return (used[i] ? val[i] : default_value);\n  }\n\n \
-    \ bool count(const u64& k) {\n    int i = index(k);\n    return used[i] && key[i]\
-    \ == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/string/enumerate_occurrences.hpp
+  bundledCode: "#line 1 \"string/enumerate_occurrences.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/enumerate_occurrences.hpp\n\
+    \n#line 1 \"graph/tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/tree.hpp\n\
+    \n#line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -127,7 +131,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 3 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
+    \   }\n  }\n};\n#line 4 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
     \u3066\u3044\u308D\u3044\u308D\n// HLD=false: \u5165\u529B\u8FBA\u9806\u3067 preorder\n\
     template <typename GT, bool HLD = true>\nstruct Tree {\n  using Graph_type = GT;\n\
     \  using WT = typename GT::cost_type;\n  int N = 0;\n  vector<int> LID, RID, head,\
@@ -247,65 +251,64 @@ data:
     \ G.csr_edges[i];\n          if (e.to == parent[v] || e.to == max_ch) continue;\n\
     \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
     \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 1 \"\
-    string/trie.hpp\"\n\r\n// sigma \u304C\u5C0F\u3055\u3044\r\n// \u4E00\u822C\u306E\
-    \ n \u9802\u70B9\u306E\u6728\u69CB\u9020\u3067 O(n) \u6642\u9593\u3067\u52D5\u304F\
-    \r\n// https://atcoder.jp/contests/xmascontest2015noon/tasks/xmascontest2015_d\r\
-    \ntemplate <int sigma>\r\nstruct Trie {\r\n  struct Node {\r\n    array<int, sigma>\
-    \ ch;\r\n    array<int, sigma> nxt; // suffix link -> add c\r\n    int parent;\r\
-    \n    int suffix_link;\r\n  };\r\n  int n_node;\r\n  vc<Node> nodes;\r\n  vc<int>\
-    \ words;\r\n  vc<int> BFS; // BFS \u9806\r\n\r\n  Trie() {\r\n    n_node = 0;\r\
-    \n    new_node();\r\n  }\r\n\r\n  Node& operator[](int i) { return nodes[i]; }\r\
-    \n\r\n  template <typename STRING>\r\n  int add(STRING S, int off) {\r\n    int\
-    \ v = 0;\r\n    for (auto&& s: S) { v = add_single(v, s, off); }\r\n    words.eb(v);\r\
-    \n    return v;\r\n  }\r\n\r\n  int add_single(int v, int c, int off) {\r\n  \
-    \  c -= off;\r\n    assert(0 <= c && c < sigma);\r\n    if (nodes[v].ch[c] !=\
-    \ -1) return nodes[v].ch[c];\r\n    nodes[v].ch[c] = new_node();\r\n    nodes.back().parent\
-    \ = v;\r\n    return nodes[v].ch[c];\r\n  }\r\n\r\n  void calc_suffix_link() {\r\
-    \n    BFS.resize(n_node);\r\n    int p = 0, q = 0;\r\n    BFS[q++] = 0;\r\n  \
-    \  fill(all(nodes[0].nxt), 0);\r\n    while (p < q) {\r\n      int v = BFS[p++];\r\
-    \n      if (v) nodes[v].nxt = nodes[nodes[v].suffix_link].nxt;\r\n      FOR(s,\
-    \ sigma) {\r\n        int w = nodes[v].ch[s];\r\n        if (w == -1) continue;\r\
-    \n        nodes[w].suffix_link = nodes[v].nxt[s];\r\n        nodes[v].nxt[s] =\
-    \ w;\r\n        BFS[q++] = w;\r\n      }\r\n    }\r\n  }\r\n\r\n  vc<int> calc_count()\
-    \ {\r\n    vc<int> count(n_node);\r\n    for (auto&& x: words) count[x]++;\r\n\
-    \    for (auto&& v: BFS)\r\n      if (v) { count[v] += count[nodes[v].suffix_link];\
-    \ }\r\n    return count;\r\n  }\r\n\r\nprivate:\r\n  int new_node() {\r\n    Node\
-    \ c;\r\n    fill(all(c.ch), -1);\r\n    fill(all(c.nxt), -1);\r\n    c.parent\
-    \ = -1;\r\n    c.suffix_link = -1;\r\n    nodes.eb(c);\r\n    return n_node++;\r\
-    \n  }\r\n};\r\n#line 1 \"ds/fastset.hpp\"\n// 64-ary tree\n// space: (N/63) *\
-    \ u64\nstruct FastSet {\n  static constexpr u32 B = 64;\n  int n = 0, log = 0;\n\
-    \  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int n) { build(n); }\n\n  int size()\
-    \ { return n; }\n\n  void fill_one() {\n    int cur = n;\n    for (auto& vs :\
-    \ seg) {\n      int p = cur / B, q = cur % B;\n      FOR(i, p) vs[i] = -1ull;\n\
-    \      if (q) vs[p] = full_mask(q);\n      cur = (cur + B - 1) / B;\n    }\n \
-    \ }\n\n  template <typename F>\n  FastSet(int n, F f) {\n    build(n, f);\n  }\n\
-    \n  void build(int m) {\n    seg.clear();\n    n = m;\n    do {\n      seg.push_back(vc<u64>((m\
-    \ + B - 1) / B));\n      m = (m + B - 1) / B;\n    } while (m > 1);\n    log =\
-    \ len(seg);\n  }\n  template <typename F>\n  void build(int n, F f) {\n    build(n);\n\
-    \    FOR(i, n) { seg[0][i / B] |= u64(bool(f(i))) << (i % B); }\n    FOR(h, log\
-    \ - 1) {\n      FOR(i, len(seg[h])) {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i]))\
-    \ << (i % B);\n      }\n    }\n  }\n\n  bool operator[](int i) const {\n    assert(0\
-    \ <= i && i < n);\n    return seg[0][i / B] >> (i % B) & 1;\n  }\n  void insert(int\
-    \ i) {\n    assert(0 <= i && i < n);\n    for (int h = 0; h < log; h++) {\n  \
-    \    u64& x = seg[h][i / B];\n      u64 mask = u64(1) << (i % B);\n      if (x\
-    \ & mask) return;\n      x |= mask;\n      i /= B;\n    }\n  }\n  void add(int\
-    \ i) { insert(i); }\n  void erase(int i) {\n    assert(0 <= i && i < n);\n   \
-    \ for (int h = 0; h < log; h++) {\n      u64& x = seg[h][i / B];\n      u64 mask\
-    \ = u64(1) << (i % B);\n      if (!(x & mask)) return;\n      x ^= mask;\n   \
-    \   if (x) return;\n      i /= B;\n    }\n  }\n  void remove(int i) { erase(i);\
-    \ }\n\n  // min[x,n) or n\n  int next(int i) {\n    assert(i <= n);\n    chmax(i,\
-    \ 0);\n    for (int h = 0; h < log; h++) {\n      if (i / B == seg[h].size())\
-    \ break;\n      u64 d = seg[h][i / B] >> (i % B);\n      if (!d) {\n        i\
-    \ = i / B + 1;\n        continue;\n      }\n      i += lowbit(d);\n      for (int\
-    \ g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i / B]);\n\
-    \      }\n      return i;\n    }\n    return n;\n  }\n\n  // max [0,x], or -1\n\
-    \  int prev(int i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n    for\
-    \ (int h = 0; h < log; h++) {\n      if (i == -1) break;\n      u64 d = seg[h][i\
-    \ / B] << (63 - i % B);\n      if (!d) {\n        i = i / B - 1;\n        continue;\n\
-    \      }\n      i -= __builtin_clzll(d);\n      for (int g = h - 1; g >= 0; g--)\
-    \ {\n        i *= B;\n        i += topbit(seg[g][i / B]);\n      }\n      return\
-    \ i;\n    }\n    return -1;\n  }\n\n  bool any(int l, int r) {\n    assert(0 <=\
-    \ l && l <= r && r <= n);\n    return next(l) < r;\n  }\n\n  // [l, r). erase=true\
+    string/trie.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/trie.hpp\n\
+    \n// sigma \u304C\u5C0F\u3055\u3044\n// \u4E00\u822C\u306E n \u9802\u70B9\u306E\
+    \u6728\u69CB\u9020\u3067 O(n) \u6642\u9593\u3067\u52D5\u304F\n// https://atcoder.jp/contests/xmascontest2015noon/tasks/xmascontest2015_d\n\
+    template <int sigma>\nstruct Trie {\n  struct Node {\n    array<int, sigma> ch;\n\
+    \    array<int, sigma> nxt; // suffix link -> add c\n    int parent;\n    int\
+    \ suffix_link;\n  };\n  int n_node;\n  vc<Node> nodes;\n  vc<int> words;\n  vc<int>\
+    \ BFS; // BFS \u9806\n\n  Trie() {\n    n_node = 0;\n    new_node();\n  }\n\n\
+    \  Node& operator[](int i) { return nodes[i]; }\n\n  template <typename STRING>\n\
+    \  int add(STRING S, int off) {\n    int v = 0;\n    for (auto&& s: S) { v = add_single(v,\
+    \ s, off); }\n    words.eb(v);\n    return v;\n  }\n\n  int add_single(int v,\
+    \ int c, int off) {\n    c -= off;\n    assert(0 <= c && c < sigma);\n    if (nodes[v].ch[c]\
+    \ != -1) return nodes[v].ch[c];\n    nodes[v].ch[c] = new_node();\n    nodes.back().parent\
+    \ = v;\n    return nodes[v].ch[c];\n  }\n\n  void calc_suffix_link() {\n    BFS.resize(n_node);\n\
+    \    int p = 0, q = 0;\n    BFS[q++] = 0;\n    fill(all(nodes[0].nxt), 0);\n \
+    \   while (p < q) {\n      int v = BFS[p++];\n      if (v) nodes[v].nxt = nodes[nodes[v].suffix_link].nxt;\n\
+    \      FOR(s, sigma) {\n        int w = nodes[v].ch[s];\n        if (w == -1)\
+    \ continue;\n        nodes[w].suffix_link = nodes[v].nxt[s];\n        nodes[v].nxt[s]\
+    \ = w;\n        BFS[q++] = w;\n      }\n    }\n  }\n\n  vc<int> calc_count() {\n\
+    \    vc<int> count(n_node);\n    for (auto&& x: words) count[x]++;\n    for (auto&&\
+    \ v: BFS)\n      if (v) { count[v] += count[nodes[v].suffix_link]; }\n    return\
+    \ count;\n  }\n\nprivate:\n  int new_node() {\n    Node c;\n    fill(all(c.ch),\
+    \ -1);\n    fill(all(c.nxt), -1);\n    c.parent = -1;\n    c.suffix_link = -1;\n\
+    \    nodes.eb(c);\n    return n_node++;\n  }\n};\n#line 1 \"ds/fastset.hpp\"\n\
+    // Source: https://github.com/maspypy/library/blob/main/ds/fastset.hpp\n// 64-ary\
+    \ tree\n// space: (N/63) * u64\nstruct FastSet {\n  static constexpr u32 B = 64;\n\
+    \  int n = 0, log = 0;\n  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int n) {\
+    \ build(n); }\n\n  int size() { return n; }\n\n  void fill_one() {\n    int cur\
+    \ = n;\n    for (auto& vs : seg) {\n      int p = cur / B, q = cur % B;\n    \
+    \  FOR(i, p) vs[i] = -1ull;\n      if (q) vs[p] = full_mask(q);\n      cur = (cur\
+    \ + B - 1) / B;\n    }\n  }\n\n  template <typename F>\n  FastSet(int n, F f)\
+    \ {\n    build(n, f);\n  }\n\n  void build(int m) {\n    seg.clear();\n    n =\
+    \ m;\n    do {\n      seg.push_back(vc<u64>((m + B - 1) / B));\n      m = (m +\
+    \ B - 1) / B;\n    } while (m > 1);\n    log = len(seg);\n  }\n  template <typename\
+    \ F>\n  void build(int n, F f) {\n    build(n);\n    FOR(i, n) { seg[0][i / B]\
+    \ |= u64(bool(f(i))) << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h]))\
+    \ {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\n      }\n\
+    \    }\n  }\n\n  bool operator[](int i) const {\n    assert(0 <= i && i < n);\n\
+    \    return seg[0][i / B] >> (i % B) & 1;\n  }\n  void insert(int i) {\n    assert(0\
+    \ <= i && i < n);\n    for (int h = 0; h < log; h++) {\n      u64& x = seg[h][i\
+    \ / B];\n      u64 mask = u64(1) << (i % B);\n      if (x & mask) return;\n  \
+    \    x |= mask;\n      i /= B;\n    }\n  }\n  void add(int i) { insert(i); }\n\
+    \  void erase(int i) {\n    assert(0 <= i && i < n);\n    for (int h = 0; h <\
+    \ log; h++) {\n      u64& x = seg[h][i / B];\n      u64 mask = u64(1) << (i %\
+    \ B);\n      if (!(x & mask)) return;\n      x ^= mask;\n      if (x) return;\n\
+    \      i /= B;\n    }\n  }\n  void remove(int i) { erase(i); }\n\n  // min[x,n)\
+    \ or n\n  int next(int i) {\n    assert(i <= n);\n    chmax(i, 0);\n    for (int\
+    \ h = 0; h < log; h++) {\n      if (i / B == seg[h].size()) break;\n      u64\
+    \ d = seg[h][i / B] >> (i % B);\n      if (!d) {\n        i = i / B + 1;\n   \
+    \     continue;\n      }\n      i += lowbit(d);\n      for (int g = h - 1; g >=\
+    \ 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i / B]);\n      }\n \
+    \     return i;\n    }\n    return n;\n  }\n\n  // max [0,x], or -1\n  int prev(int\
+    \ i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n    for (int h = 0;\
+    \ h < log; h++) {\n      if (i == -1) break;\n      u64 d = seg[h][i / B] << (63\
+    \ - i % B);\n      if (!d) {\n        i = i / B - 1;\n        continue;\n    \
+    \  }\n      i -= __builtin_clzll(d);\n      for (int g = h - 1; g >= 0; g--) {\n\
+    \        i *= B;\n        i += topbit(seg[g][i / B]);\n      }\n      return i;\n\
+    \    }\n    return -1;\n  }\n\n  bool any(int l, int r) {\n    assert(0 <= l &&\
+    \ l <= r && r <= n);\n    return next(l) < r;\n  }\n\n  // [l, r). erase=true\
     \ \u306E\u3068\u304D\u3001callback \u5185\u304B\u3089 this \u3092\u5909\u66F4\u3057\
     \u3066\u306F\u3044\u3051\u306A\u3044\u3002\n  template <typename F>\n  void enumerate(int\
     \ l, int r, F f, bool erase = false) {\n    assert(0 <= l && l <= r && r <= n);\n\
@@ -325,20 +328,21 @@ data:
     \n  void propagate_empty_word(int i) {\n    for (int h = 1; h < log; ++h) {\n\
     \      u64& y = seg[h][i / B];\n      u64 mask = u64(1) << (i % B);\n      y ^=\
     \ mask;\n      if (y) break;\n      i /= B;\n    }\n  }\n};\n#line 1 \"ds/csr.hpp\"\
-    \n\ntemplate <typename T>\nstruct CSR {\n  int n;\n  bool prepared;\n  vc<int>\
-    \ ptr;\n  vc<int> I;\n  vc<T> dat;\n\n  CSR(int n = 0) : n(n), prepared(false)\
-    \ {}\n  void reserve(int n) { dat.reserve(n); }\n\n  void add(int i, const T&\
-    \ x) {\n    assert(0 <= i && i < n && !prepared);\n    I.eb(i), dat.eb(x);\n \
-    \ }\n\n  void build() {\n    assert(!prepared);\n    prepared = 1;\n    ptr.assign(n\
-    \ + 1, 0);\n    for (auto& i : I) ptr[1 + i]++;\n    FOR(i, len(ptr) - 1) ptr[i\
-    \ + 1] += ptr[i];\n    vc<T> tmp(len(dat));\n    FOR(k, len(dat)) {\n      int\
-    \ i = I[k];\n      tmp[ptr[i]++] = dat[k];\n    }\n    swap(dat, tmp);\n    ptr.pop_back();\n\
-    \    ptr.insert(ptr.begin(), 0);\n    I.clear();\n  }\n\n  struct range {\n  \
-    \  T *first, *last;\n    T* begin() const { return first; }\n    T* end() const\
+    \n// Source: https://github.com/maspypy/library/blob/main/ds/csr.hpp\n\ntemplate\
+    \ <typename T>\nstruct CSR {\n  int n;\n  bool prepared;\n  vc<int> ptr;\n  vc<int>\
+    \ I;\n  vc<T> dat;\n\n  CSR(int n = 0) : n(n), prepared(false) {}\n  void reserve(int\
+    \ n) { dat.reserve(n); }\n\n  void add(int i, const T& x) {\n    assert(0 <= i\
+    \ && i < n && !prepared);\n    I.eb(i), dat.eb(x);\n  }\n\n  void build() {\n\
+    \    assert(!prepared);\n    prepared = 1;\n    ptr.assign(n + 1, 0);\n    for\
+    \ (auto& i : I) ptr[1 + i]++;\n    FOR(i, len(ptr) - 1) ptr[i + 1] += ptr[i];\n\
+    \    vc<T> tmp(len(dat));\n    FOR(k, len(dat)) {\n      int i = I[k];\n     \
+    \ tmp[ptr[i]++] = dat[k];\n    }\n    swap(dat, tmp);\n    ptr.pop_back();\n \
+    \   ptr.insert(ptr.begin(), 0);\n    I.clear();\n  }\n\n  struct range {\n   \
+    \ T *first, *last;\n    T* begin() const { return first; }\n    T* end() const\
     \ { return last; }\n    bool empty() const { return first == last; }\n    int\
     \ size() const { return last - first; }\n  };\n\n  range operator[](int i) {\n\
     \    assert(prepared);\n    return range{dat.data() + ptr[i], dat.data() + ptr[i\
-    \ + 1]};\n  }\n};\n#line 6 \"string/enumerate_occurrences.hpp\"\n\n// T[i] distinct\
+    \ + 1]};\n  }\n};\n#line 7 \"string/enumerate_occurrences.hpp\"\n\n// T[i] distinct\
     \ \u304C\u5FC5\u8981\n// T[i] \u304C S \u306B\u73FE\u308C\u308B\u4F4D\u7F6E\u3092\
     \u6607\u9806\u5217\u6319\n// call f(i, vc<int>&pos)\n// O(T + Slog^2S + Ssqrt(T))\n\
     template <typename STRING, int SIGMA = 26, int off = 'a', typename F>\nvoid enumerate_occurrences(STRING\
@@ -362,11 +366,12 @@ data:
     \    for (int i = FS.next(0); i < len(S); i = nxt[i]) {\n          // [i-M+1,i]\n\
     \          pos.eb(i - M + 1);\n        }\n        f(t, pos);\n      }\n    }\n\
     \  };\n  dfs(dfs, 0);\n}\n"
-  code: "\n#include \"graph/tree.hpp\"\n#include \"string/trie.hpp\"\n#include \"\
-    ds/fastset.hpp\"\n#include \"ds/csr.hpp\"\n\n// T[i] distinct \u304C\u5FC5\u8981\
-    \n// T[i] \u304C S \u306B\u73FE\u308C\u308B\u4F4D\u7F6E\u3092\u6607\u9806\u5217\
-    \u6319\n// call f(i, vc<int>&pos)\n// O(T + Slog^2S + Ssqrt(T))\ntemplate <typename\
-    \ STRING, int SIGMA = 26, int off = 'a', typename F>\nvoid enumerate_occurrences(STRING\
+  code: "// Source: https://github.com/maspypy/library/blob/main/string/enumerate_occurrences.hpp\n\
+    \n#include \"graph/tree.hpp\"\n#include \"string/trie.hpp\"\n#include \"ds/fastset.hpp\"\
+    \n#include \"ds/csr.hpp\"\n\n// T[i] distinct \u304C\u5FC5\u8981\n// T[i] \u304C\
+    \ S \u306B\u73FE\u308C\u308B\u4F4D\u7F6E\u3092\u6607\u9806\u5217\u6319\n// call\
+    \ f(i, vc<int>&pos)\n// O(T + Slog^2S + Ssqrt(T))\ntemplate <typename STRING,\
+    \ int SIGMA = 26, int off = 'a', typename F>\nvoid enumerate_occurrences(STRING\
     \ S, vc<STRING> T, F f) {\n  Trie<SIGMA> trie;\n  FOR(i, len(T)) trie.add(T[i],\
     \ off);\n  trie.calc_suffix_link();\n\n  int n = trie.n_node;\n  Graph<int, 1>\
     \ G(n);\n  FOR(i, 1, n) G.add(trie.nodes[i].suffix_link, i);\n  G.build();\n \
@@ -397,7 +402,7 @@ data:
   isVerificationFile: false
   path: string/enumerate_occurrences.hpp
   requiredBy: []
-  timestamp: '2026-10-05 00:23:18+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/enumerate_occurrences.hpp

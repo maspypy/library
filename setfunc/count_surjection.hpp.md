@@ -10,20 +10,21 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"setfunc/count_surjection.hpp\"\ntemplate<typename mint>\r\
-    \nmint count_surjection(ll n, ll m) {\r\n  if (n < m) return 0;\r\n  mint res\
-    \ = 0;\r\n  FOR(i, m + 1) {\r\n    mint sgn = ((m - i) & 1 ? -1 : 1);\r\n    res\
-    \ += mint(i).pow(n) * C<mint>(m, i) * sgn;\r\n  }\r\n  return res;\r\n}\n"
-  code: "template<typename mint>\r\nmint count_surjection(ll n, ll m) {\r\n  if (n\
-    \ < m) return 0;\r\n  mint res = 0;\r\n  FOR(i, m + 1) {\r\n    mint sgn = ((m\
-    \ - i) & 1 ? -1 : 1);\r\n    res += mint(i).pow(n) * C<mint>(m, i) * sgn;\r\n\
-    \  }\r\n  return res;\r\n}"
+    links:
+    - https://github.com/maspypy/library/blob/main/setfunc/count_surjection.hpp
+  bundledCode: "#line 1 \"setfunc/count_surjection.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/setfunc/count_surjection.hpp\n\
+    template<typename mint>\nmint count_surjection(ll n, ll m) {\n  if (n < m) return\
+    \ 0;\n  mint res = 0;\n  FOR(i, m + 1) {\n    mint sgn = ((m - i) & 1 ? -1 : 1);\n\
+    \    res += mint(i).pow(n) * C<mint>(m, i) * sgn;\n  }\n  return res;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/setfunc/count_surjection.hpp\n\
+    template<typename mint>\nmint count_surjection(ll n, ll m) {\n  if (n < m) return\
+    \ 0;\n  mint res = 0;\n  FOR(i, m + 1) {\n    mint sgn = ((m - i) & 1 ? -1 : 1);\n\
+    \    res += mint(i).pow(n) * C<mint>(m, i) * sgn;\n  }\n  return res;\n}"
   dependsOn: []
   isVerificationFile: false
   path: setfunc/count_surjection.hpp
   requiredBy: []
-  timestamp: '2022-04-16 19:49:52+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/DPL_5_C.test.cpp

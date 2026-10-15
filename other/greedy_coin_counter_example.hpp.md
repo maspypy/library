@@ -9,9 +9,11 @@ data:
   attributes:
     links:
     - https://codeforces.com/problemset/problem/10/E
+    - https://github.com/maspypy/library/blob/main/other/greedy_coin_counter_example.hpp
     - https://graal.ens-lyon.fr/~abenoit/algo09/coins2.pdf
-  bundledCode: "#line 1 \"other/greedy_coin_counter_example.hpp\"\n\n// https://codeforces.com/problemset/problem/10/E\n\
-    // \u6700\u5C0F\u53CD\u4F8B or -1 \u3092\u8FD4\u3059.\n// O(N^3)\nint greedy_coin_counter_example(vc<int>\
+  bundledCode: "#line 1 \"other/greedy_coin_counter_example.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/other/greedy_coin_counter_example.hpp\n\
+    \n// https://codeforces.com/problemset/problem/10/E\n// \u6700\u5C0F\u53CD\u4F8B\
+    \ or -1 \u3092\u8FD4\u3059.\n// O(N^3)\nint greedy_coin_counter_example(vc<int>\
     \ A) {\n  int N = len(A);\n  UNIQUE(A);\n  reverse(all(A));\n  assert(A.back()\
     \ == 1);\n  assert(A.back() < (1 << 30));\n  /*\n  https://graal.ens-lyon.fr/~abenoit/algo09/coins2.pdf\n\
     \n  c_i\uFF1A\u964D\u9806, distinct \u3092\u4EEE\u5B9A.\n  \u4E0D\u7B49\u53F7\u306F\
@@ -40,8 +42,9 @@ data:
     \ S[j] = x / A[j], x %= A[j];\n    int sm = 0, M = 0;\n    FOR(j, i, N) {\n  \
     \    sm += A[j] * S[j], M += S[j];\n      if (M + 1 < greedy(sm + A[j])) upd(sm\
     \ + A[j]);\n    }\n  }\n  return ANS;\n}\n"
-  code: "\n// https://codeforces.com/problemset/problem/10/E\n// \u6700\u5C0F\u53CD\
-    \u4F8B or -1 \u3092\u8FD4\u3059.\n// O(N^3)\nint greedy_coin_counter_example(vc<int>\
+  code: "// Source: https://github.com/maspypy/library/blob/main/other/greedy_coin_counter_example.hpp\n\
+    \n// https://codeforces.com/problemset/problem/10/E\n// \u6700\u5C0F\u53CD\u4F8B\
+    \ or -1 \u3092\u8FD4\u3059.\n// O(N^3)\nint greedy_coin_counter_example(vc<int>\
     \ A) {\n  int N = len(A);\n  UNIQUE(A);\n  reverse(all(A));\n  assert(A.back()\
     \ == 1);\n  assert(A.back() < (1 << 30));\n  /*\n  https://graal.ens-lyon.fr/~abenoit/algo09/coins2.pdf\n\
     \n  c_i\uFF1A\u964D\u9806, distinct \u3092\u4EEE\u5B9A.\n  \u4E0D\u7B49\u53F7\u306F\
@@ -74,7 +77,7 @@ data:
   isVerificationFile: false
   path: other/greedy_coin_counter_example.hpp
   requiredBy: []
-  timestamp: '2024-04-02 23:34:08+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: other/greedy_coin_counter_example.hpp

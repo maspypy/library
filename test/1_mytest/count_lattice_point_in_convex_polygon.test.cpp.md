@@ -34,8 +34,9 @@ data:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\
-    \n/*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n\
-    #include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
+    \n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\n\
+    library: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
+    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
     \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
     \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
@@ -148,17 +149,21 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 4 \"test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp\"\
-    \n\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \n\n#line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"convex/line_min_function.hpp\"\
-    \n\n#line 1 \"geo/convex_hull.hpp\"\n\n#line 1 \"geo/base.hpp\"\ntemplate <typename\
-    \ T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename\
-    \ A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A,\
-    \ typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  template <typename\
-    \ U>\n  Point(Point<U> p) : x(p.x), y(p.y) {\n    static_assert(!is_integral_v<T>\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"convex/lattice_point_count.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/convex/lattice_point_count.hpp\n\
+    #line 1 \"convex/line_min_function.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/convex/line_min_function.hpp\n\
+    \n#line 1 \"geo/convex_hull.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/convex_hull.hpp\n\
+    \n#line 1 \"geo/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/base.hpp\n\
+    template <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
+    \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
+    \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
+    \ {}\n\n  template <typename U>\n  Point(Point<U> p) : x(p.x), y(p.y) {\n    static_assert(!is_integral_v<T>\
     \ || is_integral_v<U>);\n  }\n\n  Point operator+=(const Point p) {\n    x +=\
     \ p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const Point p) {\n\
     \    x -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point p) const\
@@ -209,7 +214,7 @@ data:
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
     \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 3 \"geo/convex_hull.hpp\"\n\n// allow_180=true \u3067\u540C\u4E00\u5EA7\u6A19\
+    \ 4 \"geo/convex_hull.hpp\"\n\n// allow_180=true \u3067\u540C\u4E00\u5EA7\u6A19\
     \u70B9\u304C\u3042\u308B\u3068\u3053\u308F\u308C\u308B\n// full \u306A\u3089 I[0]\
     \ \u304C sorted \u3067 min \u306B\u306A\u308B\ntemplate <typename T, bool allow_180\
     \ = false>\nvector<int> convex_hull(vector<Point<T>>& XY, string mode = \"full\"\
@@ -229,7 +234,7 @@ data:
     \ all(Q));\n  }\n  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty())\
     \ P.pop_back();\n    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(),\
     \ all(Q));\n  }\n  if (mode == \"upper\") reverse(all(P));\n  while (len(P) >=\
-    \ 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n  return P;\n}\n#line 3 \"convex/line_min_function.hpp\"\
+    \ 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n  return P;\n}\n#line 4 \"convex/line_min_function.hpp\"\
     \n\n// 1 \u6B21\u95A2\u6570\u306E max \u3092 [L,R,a,b] \u306E\u5217\u3068\u3057\
     \u3066\u51FA\u529B\n// https://qoj.ac/contest/1576/problem/8505\ntemplate <typename\
     \ Re, typename T>\nvc<tuple<Re, Re, Re, Re>> line_min_function_real(vc<pair<T,\
@@ -317,27 +322,27 @@ data:
     \ = 0;\n  while (i < len(A) && j < len(B)) {\n    auto& [l1, r1, a1, b1, c1] =\
     \ A[i];\n    auto& [l2, r2, a2, b2, c2] = B[j];\n    T l = max(l1, l2), r = min(r1,\
     \ r2);\n    if (l < r) f(l, r, a1, b1, c1, a2, b2, c2);\n    (r1 < r2 ? i : j)++;\n\
-    \  }\n}\n#line 1 \"mod/floor_sum_of_linear.hpp\"\n\n// sum_{x in [L,R)} floor(ax\
-    \ + b, mod)\n// I \u306F\u7BC4\u56F2\u5185\u3067 ax+b \u304C\u30AA\u30FC\u30D0\
-    \u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u7A0B\u5EA6\ntemplate <typename O =\
-    \ i128, typename I = long long>\nO floor_sum_of_linear(I L, I R, I a, I b, I mod)\
-    \ {\n  assert(L <= R);\n  O res = 0;\n  b += L * a;\n  I N = R - L;\n\n  if (b\
-    \ < 0) {\n    I k = ceil(-b, mod);\n    b += k * mod;\n    res -= O(N) * O(k);\n\
-    \  }\n\n  while (N) {\n    I q;\n    tie(q, a) = divmod(a, mod);\n    res += (N\
-    \ & 1 ? O(N) * O((N - 1) / 2) * O(q) : O(N / 2) * O(N - 1) * O(q));\n    if (b\
-    \ >= mod) {\n      tie(q, b) = divmod(b, mod);\n      res += O(N) * q;\n    }\n\
-    \    tie(N, b) = divmod(a * N + b, mod);\n    tie(a, mod) = mp(mod, a);\n  }\n\
-    \  return res;\n}\n#line 3 \"convex/lattice_point_count.hpp\"\n\n// ax+by<=c \u3068\
-    \u3044\u3046\u534A\u5E73\u9762\u305F\u3061\n// \u6709\u754C\u3067\u306A\u3044\u3068\
-    \u304D\u306F 0 \u3092\u8FD4\u3059\n// \uFF08\u683C\u5B50\u70B9\u304C 0 \u500B\u3068\
-    \u3044\u3046\u3053\u3068\u306F\u3042\u308B\u306E\u3067\u7B54\u3048\u304C inf \u3068\
-    \u306F\u9650\u3089\u306A\u3044\uFF09\n// \u5165\u529B\u304C pow(10,18) \u4EE5\u4E0B\
-    \u3068\u304B\u3067\u3042\u308C\u3070\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\
-    \u3057\u306A\u3044\u3064\u3082\u308A\ni128 lattice_point_count(vc<tuple<ll, ll,\
-    \ ll>> LINE) {\n  ll L = -infty<ll>, R = infty<ll>;\n  vc<tuple<ll, ll, ll>> LINE1,\
-    \ LINE2;\n  for (auto& [a, b, c]: LINE) {\n    if (b == 0) {\n      assert(a !=\
-    \ 0);\n      if (a > 0) { chmin(R, floor<ll>(c, a) + 1); }\n      elif (a < 0)\
-    \ { chmax(L, ceil<ll>(-c, -a)); }\n    } else {\n      if (b > 0) { LINE2.eb(-a,\
+    \  }\n}\n#line 1 \"mod/floor_sum_of_linear.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/floor_sum_of_linear.hpp\n\
+    \n// sum_{x in [L,R)} floor(ax + b, mod)\n// I \u306F\u7BC4\u56F2\u5185\u3067\
+    \ ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u7A0B\
+    \u5EA6\ntemplate <typename O = i128, typename I = long long>\nO floor_sum_of_linear(I\
+    \ L, I R, I a, I b, I mod) {\n  assert(L <= R);\n  O res = 0;\n  b += L * a;\n\
+    \  I N = R - L;\n\n  if (b < 0) {\n    I k = ceil(-b, mod);\n    b += k * mod;\n\
+    \    res -= O(N) * O(k);\n  }\n\n  while (N) {\n    I q;\n    tie(q, a) = divmod(a,\
+    \ mod);\n    res += (N & 1 ? O(N) * O((N - 1) / 2) * O(q) : O(N / 2) * O(N - 1)\
+    \ * O(q));\n    if (b >= mod) {\n      tie(q, b) = divmod(b, mod);\n      res\
+    \ += O(N) * q;\n    }\n    tie(N, b) = divmod(a * N + b, mod);\n    tie(a, mod)\
+    \ = mp(mod, a);\n  }\n  return res;\n}\n#line 4 \"convex/lattice_point_count.hpp\"\
+    \n\n// ax+by<=c \u3068\u3044\u3046\u534A\u5E73\u9762\u305F\u3061\n// \u6709\u754C\
+    \u3067\u306A\u3044\u3068\u304D\u306F 0 \u3092\u8FD4\u3059\n// \uFF08\u683C\u5B50\
+    \u70B9\u304C 0 \u500B\u3068\u3044\u3046\u3053\u3068\u306F\u3042\u308B\u306E\u3067\
+    \u7B54\u3048\u304C inf \u3068\u306F\u9650\u3089\u306A\u3044\uFF09\n// \u5165\u529B\
+    \u304C pow(10,18) \u4EE5\u4E0B\u3068\u304B\u3067\u3042\u308C\u3070\u30AA\u30FC\
+    \u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u3064\u3082\u308A\ni128 lattice_point_count(vc<tuple<ll,\
+    \ ll, ll>> LINE) {\n  ll L = -infty<ll>, R = infty<ll>;\n  vc<tuple<ll, ll, ll>>\
+    \ LINE1, LINE2;\n  for (auto& [a, b, c]: LINE) {\n    if (b == 0) {\n      assert(a\
+    \ != 0);\n      if (a > 0) { chmin(R, floor<ll>(c, a) + 1); }\n      elif (a <\
+    \ 0) { chmax(L, ceil<ll>(-c, -a)); }\n    } else {\n      if (b > 0) { LINE2.eb(-a,\
     \ c, b); }\n      if (b < 0) { LINE1.eb(a, -c, -b); }\n    }\n  }\n  if (L >=\
     \ R) return 0;\n  if (LINE1.empty() || LINE2.empty()) return 0;\n\n  auto LOWER\
     \ = line_max_function_rational(LINE1, L, R);\n  auto UPPER = line_min_function_rational(LINE2,\
@@ -391,7 +396,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp

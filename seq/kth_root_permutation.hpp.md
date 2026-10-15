@@ -9,9 +9,10 @@ data:
   attributes:
     links:
     - https://atcoder.jp/contests/jag2013summer-warmingup/tasks/icpc2013summer_warmingUp_h
-  bundledCode: "#line 1 \"seq/kth_root_permutation.hpp\"\n\n// (status, perm)\n//\
-    \ 0: no solution\n// 1: unique solution\n// 2: many solution (return one solution)\n\
-    // https://atcoder.jp/contests/jag2013summer-warmingup/tasks/icpc2013summer_warmingUp_h\n\
+    - https://github.com/maspypy/library/blob/main/seq/kth_root_permutation.hpp
+  bundledCode: "#line 1 \"seq/kth_root_permutation.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/seq/kth_root_permutation.hpp\n\
+    \n// (status, perm)\n// 0: no solution\n// 1: unique solution\n// 2: many solution\
+    \ (return one solution)\n// https://atcoder.jp/contests/jag2013summer-warmingup/tasks/icpc2013summer_warmingUp_h\n\
     pair<int, vc<int>> kth_root_permutation(ll k, vc<int>& A) {\n  int N = len(A);\n\
     \  vc<bool> done(N);\n  // \u30B5\u30A4\u30AF\u30EB\u9577 \u2192 \u30B5\u30A4\u30AF\
     \u30EB\n  vvc<int> dat(N + 1);\n  FOR(v, N) if (!done[v]) {\n    vc<int> C = {v};\n\
@@ -26,8 +27,9 @@ data:
     \  }\n      FOR(i, m) {\n        int j = (i == m - 1 ? 0 : i + 1);\n        ANS[C[i]]\
     \ = C[j];\n      }\n    }\n  }\n  if (MIN(ANS) == -1) return {0, {}};\n  return\
     \ {stat, ANS};\n}\n"
-  code: "\n// (status, perm)\n// 0: no solution\n// 1: unique solution\n// 2: many\
-    \ solution (return one solution)\n// https://atcoder.jp/contests/jag2013summer-warmingup/tasks/icpc2013summer_warmingUp_h\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/seq/kth_root_permutation.hpp\n\
+    \n// (status, perm)\n// 0: no solution\n// 1: unique solution\n// 2: many solution\
+    \ (return one solution)\n// https://atcoder.jp/contests/jag2013summer-warmingup/tasks/icpc2013summer_warmingUp_h\n\
     pair<int, vc<int>> kth_root_permutation(ll k, vc<int>& A) {\n  int N = len(A);\n\
     \  vc<bool> done(N);\n  // \u30B5\u30A4\u30AF\u30EB\u9577 \u2192 \u30B5\u30A4\u30AF\
     \u30EB\n  vvc<int> dat(N + 1);\n  FOR(v, N) if (!done[v]) {\n    vc<int> C = {v};\n\
@@ -46,7 +48,7 @@ data:
   isVerificationFile: false
   path: seq/kth_root_permutation.hpp
   requiredBy: []
-  timestamp: '2022-10-21 20:37:52+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: seq/kth_root_permutation.hpp

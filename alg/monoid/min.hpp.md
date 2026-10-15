@@ -132,7 +132,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/string/longest_common_substring.test.cpp
     title: test/2_library_checker/string/longest_common_substring.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/number_of_substrings.test.cpp
     title: test/2_library_checker/string/number_of_substrings.test.cpp
   - icon: ':x:'
@@ -177,7 +177,7 @@ data:
   - icon: ':x:'
     path: test/4_aoj/1508.test.cpp
     title: test/4_aoj/1508.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/1508_2.test.cpp
     title: test/4_aoj/1508_2.test.cpp
   - icon: ':x:'
@@ -193,13 +193,15 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/min.hpp\"\n// require: all values x satisfy x\
-    \ <= infty<E>\ntemplate <typename E>\nstruct Monoid_Min {\n  using X = E;\n  using\
-    \ value_type = X;\n  static constexpr X op(const X &x, const X &y) noexcept {\
-    \ return min(x, y); }\n  static constexpr X id() { return infty<E>; }\n  static\
-    \ constexpr bool commute = true;\n};\n"
-  code: "// require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp
+  bundledCode: "#line 1 \"alg/monoid/min.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n\
+    // require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
+    \ Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
+    \ op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
+    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n\
+    // require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
     \ Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
     \ op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
     \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n"
@@ -228,7 +230,7 @@ data:
   - string/suffix_tree.hpp
   - string/suffix_lcp_change.hpp
   - seq/common_interval_decomposition.hpp
-  timestamp: '2026-08-30 21:27:49+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/min_max.test.cpp

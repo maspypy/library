@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/dirichlet_inv.test.cpp
     title: test/2_library_checker/number_theory/dirichlet_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/kth_root_integer.test.cpp
     title: test/2_library_checker/number_theory/kth_root_integer.test.cpp
   - icon: ':x:'
@@ -28,31 +28,32 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"nt/integer_kth_root.hpp\"\nu64 integer_kth_root(u64 k, u64\
-    \ a) {\r\n  assert(k >= 1);\r\n  if (a == 0 || a == 1 || k == 1) return a;\r\n\
-    \  if (k >= 64) return 1;\r\n  if (k == 2) return sqrtl(a);\r\n  if (a == u64(-1))\
-    \ --a;\r\n  struct S {\r\n    u64 v;\r\n    S& operator*=(const S& o) {\r\n  \
-    \    v = v <= u64(-1) / o.v ? v * o.v : u64(-1);\r\n      return *this;\r\n  \
-    \  }\r\n  };\r\n  auto power = [&](S x, ll n) -> S {\r\n    S v{1};\r\n    while\
-    \ (n) {\r\n      if (n & 1) v *= x;\r\n      x *= x;\r\n      n /= 2;\r\n    }\r\
-    \n    return v;\r\n  };\r\n  u64 res = pow(a, nextafter(1 / double(k), 0));\r\n\
-    \  while (power(S{res + 1}, k).v <= a) ++res;\r\n  return res;\r\n}\r\n"
-  code: "u64 integer_kth_root(u64 k, u64 a) {\r\n  assert(k >= 1);\r\n  if (a == 0\
-    \ || a == 1 || k == 1) return a;\r\n  if (k >= 64) return 1;\r\n  if (k == 2)\
-    \ return sqrtl(a);\r\n  if (a == u64(-1)) --a;\r\n  struct S {\r\n    u64 v;\r\
-    \n    S& operator*=(const S& o) {\r\n      v = v <= u64(-1) / o.v ? v * o.v :\
-    \ u64(-1);\r\n      return *this;\r\n    }\r\n  };\r\n  auto power = [&](S x,\
-    \ ll n) -> S {\r\n    S v{1};\r\n    while (n) {\r\n      if (n & 1) v *= x;\r\
-    \n      x *= x;\r\n      n /= 2;\r\n    }\r\n    return v;\r\n  };\r\n  u64 res\
-    \ = pow(a, nextafter(1 / double(k), 0));\r\n  while (power(S{res + 1}, k).v <=\
-    \ a) ++res;\r\n  return res;\r\n}\r\n"
+    links:
+    - https://github.com/maspypy/library/blob/main/nt/integer_kth_root.hpp
+  bundledCode: "#line 1 \"nt/integer_kth_root.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/integer_kth_root.hpp\n\
+    u64 integer_kth_root(u64 k, u64 a) {\n  assert(k >= 1);\n  if (a == 0 || a ==\
+    \ 1 || k == 1) return a;\n  if (k >= 64) return 1;\n  if (k == 2) return sqrtl(a);\n\
+    \  if (a == u64(-1)) --a;\n  struct S {\n    u64 v;\n    S& operator*=(const S&\
+    \ o) {\n      v = v <= u64(-1) / o.v ? v * o.v : u64(-1);\n      return *this;\n\
+    \    }\n  };\n  auto power = [&](S x, ll n) -> S {\n    S v{1};\n    while (n)\
+    \ {\n      if (n & 1) v *= x;\n      x *= x;\n      n /= 2;\n    }\n    return\
+    \ v;\n  };\n  u64 res = pow(a, nextafter(1 / double(k), 0));\n  while (power(S{res\
+    \ + 1}, k).v <= a) ++res;\n  return res;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/nt/integer_kth_root.hpp\n\
+    u64 integer_kth_root(u64 k, u64 a) {\n  assert(k >= 1);\n  if (a == 0 || a ==\
+    \ 1 || k == 1) return a;\n  if (k >= 64) return 1;\n  if (k == 2) return sqrtl(a);\n\
+    \  if (a == u64(-1)) --a;\n  struct S {\n    u64 v;\n    S& operator*=(const S&\
+    \ o) {\n      v = v <= u64(-1) / o.v ? v * o.v : u64(-1);\n      return *this;\n\
+    \    }\n  };\n  auto power = [&](S x, ll n) -> S {\n    S v{1};\n    while (n)\
+    \ {\n      if (n & 1) v *= x;\n      x *= x;\n      n /= 2;\n    }\n    return\
+    \ v;\n  };\n  u64 res = pow(a, nextafter(1 / double(k), 0));\n  while (power(S{res\
+    \ + 1}, k).v <= a) ++res;\n  return res;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: nt/integer_kth_root.hpp
   requiredBy:
   - nt/dirichlet.hpp
-  timestamp: '2023-11-07 17:48:08+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/dirichlet.test.cpp

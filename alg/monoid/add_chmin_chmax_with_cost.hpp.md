@@ -10,10 +10,11 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/add_chmin_chmax_with_cost.hpp\"\n// (L,R,a,b,c)\n\
-    // position = clamp(x,L,R) + a\n// chmax_cost = b + max(L - x, 0)\n// chmin_cost\
-    \ = c + max(x - R, 0)\ntemplate <typename T>\nstruct Monoid_Add_Chmin_Chmax_with_Cost\
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/monoid/add_chmin_chmax_with_cost.hpp
+  bundledCode: "#line 1 \"alg/monoid/add_chmin_chmax_with_cost.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add_chmin_chmax_with_cost.hpp\n\
+    // (L,R,a,b,c)\n// position = clamp(x,L,R) + a\n// chmax_cost = b + max(L - x,\
+    \ 0)\n// chmin_cost = c + max(x - R, 0)\ntemplate <typename T>\nstruct Monoid_Add_Chmin_Chmax_with_Cost\
     \ {\n  struct S {\n    T L, R, a, b, c;\n  };\n  using value_type = S;\n  using\
     \ X = value_type;\n\n  // Return {position, chmax_cost, chmin_cost}\n  static\
     \ tuple<T, T, T> eval(const X& f, T x) {\n    auto [L, R, a, b, c] = f;\n    T\
@@ -31,8 +32,9 @@ data:
     \   return add_clamp(add, low + add, high + add);\n  }\n  static constexpr X id()\
     \ { return {-infty<T>, infty<T>, 0, 0, 0}; }\n  static constexpr bool commute\
     \ = false;\n};\n"
-  code: "// (L,R,a,b,c)\n// position = clamp(x,L,R) + a\n// chmax_cost = b + max(L\
-    \ - x, 0)\n// chmin_cost = c + max(x - R, 0)\ntemplate <typename T>\nstruct Monoid_Add_Chmin_Chmax_with_Cost\
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add_chmin_chmax_with_cost.hpp\n\
+    // (L,R,a,b,c)\n// position = clamp(x,L,R) + a\n// chmax_cost = b + max(L - x,\
+    \ 0)\n// chmin_cost = c + max(x - R, 0)\ntemplate <typename T>\nstruct Monoid_Add_Chmin_Chmax_with_Cost\
     \ {\n  struct S {\n    T L, R, a, b, c;\n  };\n  using value_type = S;\n  using\
     \ X = value_type;\n\n  // Return {position, chmax_cost, chmin_cost}\n  static\
     \ tuple<T, T, T> eval(const X& f, T x) {\n    auto [L, R, a, b, c] = f;\n    T\
@@ -54,7 +56,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/add_chmin_chmax_with_cost.hpp
   requiredBy: []
-  timestamp: '2026-10-14 16:39:00+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2890.test.cpp

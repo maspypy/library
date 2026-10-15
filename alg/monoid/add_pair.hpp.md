@@ -49,14 +49,16 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/add_pair.hpp\"\n\ntemplate <typename E>\nstruct\
-    \ Monoid_Add_Pair {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
-    \  static constexpr X op(const X &x, const X &y) {\n    return {x.fi + y.fi, x.se\
-    \ + y.se};\n  }\n  static constexpr X inverse(const X &x) { return {-x.fi, -x.se};\
-    \ }\n  static constexpr X id() { return {0, 0}; }\n  static constexpr bool commute\
-    \ = true;\n};\n"
-  code: "\ntemplate <typename E>\nstruct Monoid_Add_Pair {\n  using value_type = pair<E,\
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/monoid/add_pair.hpp
+  bundledCode: "#line 1 \"alg/monoid/add_pair.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add_pair.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add_Pair {\n  using value_type = pair<E,\
+    \ E>;\n  using X = value_type;\n  static constexpr X op(const X &x, const X &y)\
+    \ {\n    return {x.fi + y.fi, x.se + y.se};\n  }\n  static constexpr X inverse(const\
+    \ X &x) { return {-x.fi, -x.se}; }\n  static constexpr X id() { return {0, 0};\
+    \ }\n  static constexpr bool commute = true;\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add_pair.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add_Pair {\n  using value_type = pair<E,\
     \ E>;\n  using X = value_type;\n  static constexpr X op(const X &x, const X &y)\
     \ {\n    return {x.fi + y.fi, x.se + y.se};\n  }\n  static constexpr X inverse(const\
     \ X &x) { return {-x.fi, -x.se}; }\n  static constexpr X id() { return {0, 0};\
@@ -68,7 +70,7 @@ data:
   - convex/slope_trick/slope_trick_super.hpp
   - alg/acted_monoid/cntsum_add.hpp
   - alg/acted_monoid/cntsum_affine.hpp
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/mo_on_tree.test.cpp

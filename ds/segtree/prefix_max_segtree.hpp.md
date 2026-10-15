@@ -11,30 +11,31 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
+    - https://github.com/maspypy/library/blob/main/ds/segtree/prefix_max_segtree.hpp
     - https://qoj.ac/contest/1540/problem/8338
-  bundledCode: "#line 1 \"ds/segtree/prefix_max_segtree.hpp\"\n\n/*\nkey[0],...,key[n-1]\
-    \ \u304C\u3042\u308B\n\u30E2\u30CE\u30A4\u30C9\u306E\u5217 x[0],...,x[n-1] \u304C\
-    \u3042\u308B\nquery(l,r): l \u304B\u3089\u898B\u3048\u308B\u3068\u3053\u308D\u306B\
-    \u5BFE\u3059\u308B monoid product\n\u898B\u3048\u308B: key[i]==max(key[0]...key[i])\n\
-    Qlog^2n\nhttps://qoj.ac/contest/1540/problem/8338\n*/\ntemplate <typename KEY_TYPE,\
-    \ typename Monoid>\nstruct Prefix_Max_SegTree {\n  using MX = Monoid;\n  using\
-    \ KEY = KEY_TYPE;\n  using X = typename MX::value_type;\n  int n, size, log;\n\
-    \  struct Data {\n    KEY max;\n    X prod, rprod;  // rprod \u306F\u3053\u306E\
-    \u533A\u9593\u3060\u3051\u3067\u8A08\u7B97\u3057\u305F\u3068\u304D\u306E\u53F3\
-    \u5074\n  };\n\n  vc<Data> dat;\n\n  Prefix_Max_SegTree() {}\n  Prefix_Max_SegTree(int\
-    \ n) { build(n); }\n  template <typename F>\n  Prefix_Max_SegTree(int n, F f)\
-    \ {\n    build(n, f);\n  }\n  Prefix_Max_SegTree(const vc<X>& v) { build(v); }\n\
-    \n  void build(int m) {\n    build(m, [](int i) -> pair<KEY, X> { return {-infty<int>,\
-    \ MX::id()}; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n \
-    \   n = m, log = 0;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n\
-    \    dat.assign(size << 1, {-infty<int>, MX::id(), MX::id()});\n    FOR(i, n)\
-    \ {\n      auto [k, x] = f(i);\n      dat[size + i] = {k, x, MX::id()};\n    }\n\
-    \    FOR_R(i, 1, size) update(i);\n  }\n\n  void set(int i, pair<KEY, X> p) {\n\
-    \    int k = p.fi;\n    X x = p.se;\n    i += size;\n    dat[i] = {k, x, MX::id()};\n\
-    \    while (i > 1) i /= 2, update(i);\n  }\n\n  X prod_all() { return dat[1].prod;\
-    \ }\n  X prod(int L, int R) {\n    KEY k = -infty<KEY>;\n    vc<int> suff;\n \
-    \   L += size, R += size;\n    X prod = MX::id();\n    while (L < R) {\n     \
-    \ if (L & 1) {\n        prod = MX::op(prod, dfs(L, k)), chmax(k, dat[L].max),\
+  bundledCode: "#line 1 \"ds/segtree/prefix_max_segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/prefix_max_segtree.hpp\n\
+    \n/*\nkey[0],...,key[n-1] \u304C\u3042\u308B\n\u30E2\u30CE\u30A4\u30C9\u306E\u5217\
+    \ x[0],...,x[n-1] \u304C\u3042\u308B\nquery(l,r): l \u304B\u3089\u898B\u3048\u308B\
+    \u3068\u3053\u308D\u306B\u5BFE\u3059\u308B monoid product\n\u898B\u3048\u308B\
+    : key[i]==max(key[0]...key[i])\nQlog^2n\nhttps://qoj.ac/contest/1540/problem/8338\n\
+    */\ntemplate <typename KEY_TYPE, typename Monoid>\nstruct Prefix_Max_SegTree {\n\
+    \  using MX = Monoid;\n  using KEY = KEY_TYPE;\n  using X = typename MX::value_type;\n\
+    \  int n, size, log;\n  struct Data {\n    KEY max;\n    X prod, rprod;  // rprod\
+    \ \u306F\u3053\u306E\u533A\u9593\u3060\u3051\u3067\u8A08\u7B97\u3057\u305F\u3068\
+    \u304D\u306E\u53F3\u5074\n  };\n\n  vc<Data> dat;\n\n  Prefix_Max_SegTree() {}\n\
+    \  Prefix_Max_SegTree(int n) { build(n); }\n  template <typename F>\n  Prefix_Max_SegTree(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  Prefix_Max_SegTree(const vc<X>& v) { build(v);\
+    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> pair<KEY, X> { return\
+    \ {-infty<int>, MX::id()}; });\n  }\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    n = m, log = 0;\n    while ((1 << log) < n) ++log;\n    size\
+    \ = 1 << log;\n    dat.assign(size << 1, {-infty<int>, MX::id(), MX::id()});\n\
+    \    FOR(i, n) {\n      auto [k, x] = f(i);\n      dat[size + i] = {k, x, MX::id()};\n\
+    \    }\n    FOR_R(i, 1, size) update(i);\n  }\n\n  void set(int i, pair<KEY, X>\
+    \ p) {\n    int k = p.fi;\n    X x = p.se;\n    i += size;\n    dat[i] = {k, x,\
+    \ MX::id()};\n    while (i > 1) i /= 2, update(i);\n  }\n\n  X prod_all() { return\
+    \ dat[1].prod; }\n  X prod(int L, int R) {\n    KEY k = -infty<KEY>;\n    vc<int>\
+    \ suff;\n    L += size, R += size;\n    X prod = MX::id();\n    while (L < R)\
+    \ {\n      if (L & 1) {\n        prod = MX::op(prod, dfs(L, k)), chmax(k, dat[L].max),\
     \ ++L;\n      }\n      if (R & 1) {\n        suff.eb(--R);\n      }\n      L /=\
     \ 2, R /= 2;\n    }\n    reverse(all(suff));\n    for (auto& v : suff) {\n   \
     \   prod = MX::op(prod, dfs(v, k)), chmax(k, dat[v].max);\n    }\n    return prod;\n\
@@ -49,9 +50,10 @@ data:
     \n    if (size <= v) {\n      return (k <= dat[v].max ? dat[v].prod : MX::id());\n\
     \    }\n    if (k <= dat[2 * v + 0].max) {\n      return MX::op(dfs(2 * v + 0,\
     \ k), dat[v].rprod);\n    }\n    return dfs(2 * v + 1, k);\n  }\n};\n"
-  code: "\n/*\nkey[0],...,key[n-1] \u304C\u3042\u308B\n\u30E2\u30CE\u30A4\u30C9\u306E\
-    \u5217 x[0],...,x[n-1] \u304C\u3042\u308B\nquery(l,r): l \u304B\u3089\u898B\u3048\
-    \u308B\u3068\u3053\u308D\u306B\u5BFE\u3059\u308B monoid product\n\u898B\u3048\u308B\
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/segtree/prefix_max_segtree.hpp\n\
+    \n/*\nkey[0],...,key[n-1] \u304C\u3042\u308B\n\u30E2\u30CE\u30A4\u30C9\u306E\u5217\
+    \ x[0],...,x[n-1] \u304C\u3042\u308B\nquery(l,r): l \u304B\u3089\u898B\u3048\u308B\
+    \u3068\u3053\u308D\u306B\u5BFE\u3059\u308B monoid product\n\u898B\u3048\u308B\
     : key[i]==max(key[0]...key[i])\nQlog^2n\nhttps://qoj.ac/contest/1540/problem/8338\n\
     */\ntemplate <typename KEY_TYPE, typename Monoid>\nstruct Prefix_Max_SegTree {\n\
     \  using MX = Monoid;\n  using KEY = KEY_TYPE;\n  using X = typename MX::value_type;\n\
@@ -89,7 +91,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/prefix_max_segtree.hpp
   requiredBy: []
-  timestamp: '2026-09-17 11:49:38+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/prefix_max_segtree.test.cpp

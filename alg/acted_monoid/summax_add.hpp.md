@@ -19,24 +19,28 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/summax.hpp\"\n\ntemplate <typename E>\nstruct\
-    \ Monoid_SumMax {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
-    \  static X op(X x, X y) { return {x.fi + y.fi, max(x.se, y.se)}; }\n  static\
-    \ X from_element(E e) { return {e, e}; }\n  static constexpr X id() { return {E(0),\
-    \ -infty<E>}; }\n  static constexpr bool commute = 1;\n};\n#line 1 \"alg/monoid/add.hpp\"\
-    \n\ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/acted_monoid/summax_add.hpp
+  bundledCode: "#line 1 \"alg/acted_monoid/summax_add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/summax_add.hpp\n\
+    #line 1 \"alg/monoid/summax.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/summax.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_SumMax {\n  using value_type = pair<E,\
+    \ E>;\n  using X = value_type;\n  static X op(X x, X y) { return {x.fi + y.fi,\
+    \ max(x.se, y.se)}; }\n  static X from_element(E e) { return {e, e}; }\n  static\
+    \ constexpr X id() { return {E(0), -infty<E>}; }\n  static constexpr bool commute\
+    \ = 1;\n};\n#line 1 \"alg/monoid/add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
     \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
     \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
     \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
     \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
-    };\n#line 3 \"alg/acted_monoid/summax_add.hpp\"\n\ntemplate <typename E>\nstruct\
+    };\n#line 4 \"alg/acted_monoid/summax_add.hpp\"\n\ntemplate <typename E>\nstruct\
     \ ActedMonoid_SumMax_Add {\n  using Monoid_X = Monoid_SumMax<E>;\n  using Monoid_A\
     \ = Monoid_Add<E>;\n  using X = typename Monoid_X::value_type;\n  using A = typename\
     \ Monoid_A::value_type;\n  static constexpr X act(const X& x, const A& a, const\
     \ ll& size) {\n    auto [xs, xm] = x;\n    xm = (xm == -infty<E> ? xm : xm + a);\n\
     \    return {xs + E(size) * a, xm};\n  }\n};\n"
-  code: "#include \"alg/monoid/summax.hpp\"\n#include \"alg/monoid/add.hpp\"\n\ntemplate\
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/summax_add.hpp\n\
+    #include \"alg/monoid/summax.hpp\"\n#include \"alg/monoid/add.hpp\"\n\ntemplate\
     \ <typename E>\nstruct ActedMonoid_SumMax_Add {\n  using Monoid_X = Monoid_SumMax<E>;\n\
     \  using Monoid_A = Monoid_Add<E>;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X&\
@@ -48,7 +52,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/summax_add.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/kdtree_am.test.cpp

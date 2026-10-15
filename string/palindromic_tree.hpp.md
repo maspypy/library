@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/palindrome_decomposition_dp.test.cpp
     title: test/1_mytest/palindrome_decomposition_dp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/eertree.test.cpp
     title: test/2_library_checker/string/eertree.test.cpp
   - icon: ':x:'
@@ -25,22 +25,23 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"string/palindromic_tree.hpp\"\ntemplate <int sigma>\nstruct\
-    \ Palindromic_Tree {\n  struct Node {\n    array<int, sigma> TO;\n    int link;\n\
-    \    int length;\n    int diff;            // link \u3068\u306E\u5DEE\u5206\n\
-    \    int slink;           // series link, diff \u3067\u306A\u308B\u3079\u304F\u305F\
-    \u3069\u3063\u305F\u5148\n    pair<int, int> pos;  // one occurrence [l, r)\n\n\
-    \    Node(int link = -1, int length = 0, int l = 0, int r = 0)\n        : link(link),\
-    \ length(length), diff(0), slink(0), pos({l, r}) {\n      fill(all(TO), -1);\n\
-    \    }\n  };\n\n  vc<Node> nodes;\n  // |path|=|S|+1\n  // path[i]: longest palindromic\
-    \ suffix of S[0, i)\n  vc<int> path;\n\n  Palindromic_Tree() {}\n\n  template\
-    \ <typename STRING>\n  Palindromic_Tree(const STRING& S, char off) {\n    build(S,\
-    \ off);\n  }\n\n  int size() const { return len(nodes); }\n\n  template <typename\
-    \ STRING>\n  void build(const STRING& S, char off) {\n    nodes.clear();\n   \
-    \ path.clear();\n\n    // 0: imaginary root (length = -1)\n    // 1: empty root\
-    \ (length = 0)\n    nodes.eb(Node(-1, -1, 0, -1));\n    nodes.eb(Node(0, 0, 0,\
-    \ 0));\n    nodes[0].diff = nodes[1].diff = 0;\n    nodes[0].slink = nodes[1].slink\
+    links:
+    - https://github.com/maspypy/library/blob/main/string/palindromic_tree.hpp
+  bundledCode: "#line 1 \"string/palindromic_tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/palindromic_tree.hpp\n\
+    template <int sigma>\nstruct Palindromic_Tree {\n  struct Node {\n    array<int,\
+    \ sigma> TO;\n    int link;\n    int length;\n    int diff;            // link\
+    \ \u3068\u306E\u5DEE\u5206\n    int slink;           // series link, diff \u3067\
+    \u306A\u308B\u3079\u304F\u305F\u3069\u3063\u305F\u5148\n    pair<int, int> pos;\
+    \  // one occurrence [l, r)\n\n    Node(int link = -1, int length = 0, int l =\
+    \ 0, int r = 0)\n        : link(link), length(length), diff(0), slink(0), pos({l,\
+    \ r}) {\n      fill(all(TO), -1);\n    }\n  };\n\n  vc<Node> nodes;\n  // |path|=|S|+1\n\
+    \  // path[i]: longest palindromic suffix of S[0, i)\n  vc<int> path;\n\n  Palindromic_Tree()\
+    \ {}\n\n  template <typename STRING>\n  Palindromic_Tree(const STRING& S, char\
+    \ off) {\n    build(S, off);\n  }\n\n  int size() const { return len(nodes); }\n\
+    \n  template <typename STRING>\n  void build(const STRING& S, char off) {\n  \
+    \  nodes.clear();\n    path.clear();\n\n    // 0: imaginary root (length = -1)\n\
+    \    // 1: empty root (length = 0)\n    nodes.eb(Node(-1, -1, 0, -1));\n    nodes.eb(Node(0,\
+    \ 0, 0, 0));\n    nodes[0].diff = nodes[1].diff = 0;\n    nodes[0].slink = nodes[1].slink\
     \ = 0;\n\n    int p = 1;\n    FOR(i, len(S)) {\n      path.eb(p);\n      int x\
     \ = S[i] - off;\n      assert(0 <= x && x < sigma);\n\n      while (p) {\n   \
     \     int j = i - 1 - nodes[p].length;\n        bool can = (j >= 0 && S[j] - off\
@@ -66,7 +67,8 @@ data:
     \ res(len(nodes));\n    for (auto&& p : path) res[p]++;\n    FOR_R(k, 1, len(nodes))\
     \ {\n      int link = nodes[k].link;\n      res[link] += res[k];\n    }\n    res[0]\
     \ = res[1] = 0;\n    return res;\n  }\n};\n"
-  code: "template <int sigma>\nstruct Palindromic_Tree {\n  struct Node {\n    array<int,\
+  code: "// Source: https://github.com/maspypy/library/blob/main/string/palindromic_tree.hpp\n\
+    template <int sigma>\nstruct Palindromic_Tree {\n  struct Node {\n    array<int,\
     \ sigma> TO;\n    int link;\n    int length;\n    int diff;            // link\
     \ \u3068\u306E\u5DEE\u5206\n    int slink;           // series link, diff \u3067\
     \u306A\u308B\u3079\u304F\u305F\u3069\u3063\u305F\u5148\n    pair<int, int> pos;\
@@ -110,7 +112,7 @@ data:
   path: string/palindromic_tree.hpp
   requiredBy:
   - string/palindrome_decomposition_dp.hpp
-  timestamp: '2026-03-14 08:28:15+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/palindrome_decomposition_dp.test.cpp

@@ -32,7 +32,7 @@ data:
   - icon: ':x:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/rolling_hash_2d.hpp
     title: string/rolling_hash_2d.hpp
   _extendedVerifiedWith:
@@ -72,7 +72,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1881.test.cpp
     title: test/3_yukicoder/1881.test.cpp
   - icon: ':x:'
@@ -93,54 +93,57 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/578.test.cpp
     title: test/3_yukicoder/578.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_14_C.test.cpp
     title: test/4_aoj/ALDS1_14_C.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"mod/modint61.hpp\"\n\nstruct modint61 {\n  static constexpr\
-    \ u64 mod = (1ULL << 61) - 1;\n  u64 val;\n  constexpr modint61() : val(0ULL)\
-    \ {}\n  constexpr modint61(u32 x) : val(x) {}\n  constexpr modint61(u64 x) : val(x\
-    \ % mod) {}\n  constexpr modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod))\
-    \ : x) {}\n  constexpr modint61(ll x) : val(((x %= static_cast<ll>(mod)) < 0)\
-    \ ? (x + static_cast<ll>(mod)) : x) {}\n  static constexpr u64 get_mod() { return\
-    \ mod; }\n\n  modint61 &operator+=(const modint61 &a) {\n    val = ((val += a.val)\
-    \ >= mod) ? (val - mod) : val;\n    return *this;\n  }\n  modint61 &operator-=(const\
-    \ modint61 &a) {\n    val = ((val -= a.val) >= mod) ? (val + mod) : val;\n   \
-    \ return *this;\n  }\n  modint61 &operator*=(const modint61 &a) {\n    const unsigned\
-    \ __int128 y = static_cast<unsigned __int128>(val) * a.val;\n    val = (y >> 61)\
-    \ + (y & mod);\n    val = (val >= mod) ? (val - mod) : val;\n    return *this;\n\
-    \  }\n  modint61 operator-() const { return modint61(val ? mod - val : u64(0));\
-    \ }\n  modint61 &operator/=(const modint61 &a) { return (*this *= a.inverse());\
-    \ }\n  modint61 operator+(const modint61 &p) const { return modint61(*this) +=\
-    \ p; }\n  modint61 operator-(const modint61 &p) const { return modint61(*this)\
-    \ -= p; }\n  modint61 operator*(const modint61 &p) const { return modint61(*this)\
-    \ *= p; }\n  modint61 operator/(const modint61 &p) const { return modint61(*this)\
-    \ /= p; }\n  bool operator<(const modint61 &other) const { return val < other.val;\
-    \ }\n  bool operator==(const modint61 &p) const { return val == p.val; }\n  bool\
-    \ operator!=(const modint61 &p) const { return val != p.val; }\n  modint61 inverse()\
-    \ const {\n    ll a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n  \
-    \    t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return\
-    \ modint61(u);\n  }\n  modint61 pow(ll n) const {\n    assert(n >= 0);\n    modint61\
-    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
-    \ mul *= mul, n >>= 1;\n    }\n    return ret;\n  }\n};\n\n#ifdef FASTIO\nvoid\
-    \ rd(modint61 &x) {\n  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < modint61::mod);\n\
-    }\n\nvoid wt(modint61 x) { fastio::wt(x.val); }\n#endif\n"
-  code: "\nstruct modint61 {\n  static constexpr u64 mod = (1ULL << 61) - 1;\n  u64\
-    \ val;\n  constexpr modint61() : val(0ULL) {}\n  constexpr modint61(u32 x) : val(x)\
-    \ {}\n  constexpr modint61(u64 x) : val(x % mod) {}\n  constexpr modint61(int\
-    \ x) : val((x < 0) ? (x + static_cast<ll>(mod)) : x) {}\n  constexpr modint61(ll\
-    \ x) : val(((x %= static_cast<ll>(mod)) < 0) ? (x + static_cast<ll>(mod)) : x)\
-    \ {}\n  static constexpr u64 get_mod() { return mod; }\n\n  modint61 &operator+=(const\
+    links:
+    - https://github.com/maspypy/library/blob/main/mod/modint61.hpp
+  bundledCode: "#line 1 \"mod/modint61.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint61.hpp\n\
+    \nstruct modint61 {\n  static constexpr u64 mod = (1ULL << 61) - 1;\n  u64 val;\n\
+    \  constexpr modint61() : val(0ULL) {}\n  constexpr modint61(u32 x) : val(x) {}\n\
+    \  constexpr modint61(u64 x) : val(x % mod) {}\n  constexpr modint61(int x) :\
+    \ val((x < 0) ? (x + static_cast<ll>(mod)) : x) {}\n  constexpr modint61(ll x)\
+    \ : val(((x %= static_cast<ll>(mod)) < 0) ? (x + static_cast<ll>(mod)) : x) {}\n\
+    \  static constexpr u64 get_mod() { return mod; }\n\n  modint61 &operator+=(const\
+    \ modint61 &a) {\n    val = ((val += a.val) >= mod) ? (val - mod) : val;\n   \
+    \ return *this;\n  }\n  modint61 &operator-=(const modint61 &a) {\n    val = ((val\
+    \ -= a.val) >= mod) ? (val + mod) : val;\n    return *this;\n  }\n  modint61 &operator*=(const\
+    \ modint61 &a) {\n    const unsigned __int128 y = static_cast<unsigned __int128>(val)\
+    \ * a.val;\n    val = (y >> 61) + (y & mod);\n    val = (val >= mod) ? (val -\
+    \ mod) : val;\n    return *this;\n  }\n  modint61 operator-() const { return modint61(val\
+    \ ? mod - val : u64(0)); }\n  modint61 &operator/=(const modint61 &a) { return\
+    \ (*this *= a.inverse()); }\n  modint61 operator+(const modint61 &p) const { return\
+    \ modint61(*this) += p; }\n  modint61 operator-(const modint61 &p) const { return\
+    \ modint61(*this) -= p; }\n  modint61 operator*(const modint61 &p) const { return\
+    \ modint61(*this) *= p; }\n  modint61 operator/(const modint61 &p) const { return\
+    \ modint61(*this) /= p; }\n  bool operator<(const modint61 &other) const { return\
+    \ val < other.val; }\n  bool operator==(const modint61 &p) const { return val\
+    \ == p.val; }\n  bool operator!=(const modint61 &p) const { return val != p.val;\
+    \ }\n  modint61 inverse() const {\n    ll a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint61(u);\n  }\n  modint61 pow(ll n) const {\n\
+    \    assert(n >= 0);\n    modint61 ret(1), mul(val);\n    while (n > 0) {\n  \
+    \    if (n & 1) ret *= mul;\n      mul *= mul, n >>= 1;\n    }\n    return ret;\n\
+    \  }\n};\n\n#ifdef FASTIO\nvoid rd(modint61 &x) {\n  fastio::rd(x.val);\n  assert(0\
+    \ <= x.val && x.val < modint61::mod);\n}\n\nvoid wt(modint61 x) { fastio::wt(x.val);\
+    \ }\n#endif\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/mod/modint61.hpp\n\
+    \nstruct modint61 {\n  static constexpr u64 mod = (1ULL << 61) - 1;\n  u64 val;\n\
+    \  constexpr modint61() : val(0ULL) {}\n  constexpr modint61(u32 x) : val(x) {}\n\
+    \  constexpr modint61(u64 x) : val(x % mod) {}\n  constexpr modint61(int x) :\
+    \ val((x < 0) ? (x + static_cast<ll>(mod)) : x) {}\n  constexpr modint61(ll x)\
+    \ : val(((x %= static_cast<ll>(mod)) < 0) ? (x + static_cast<ll>(mod)) : x) {}\n\
+    \  static constexpr u64 get_mod() { return mod; }\n\n  modint61 &operator+=(const\
     \ modint61 &a) {\n    val = ((val += a.val) >= mod) ? (val - mod) : val;\n   \
     \ return *this;\n  }\n  modint61 &operator-=(const modint61 &a) {\n    val = ((val\
     \ -= a.val) >= mod) ? (val + mod) : val;\n    return *this;\n  }\n  modint61 &operator*=(const\
@@ -178,7 +181,7 @@ data:
   - string/rolling_hash_2d.hpp
   - string/deque_rolling_hash.hpp
   - random/hash_vector.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp

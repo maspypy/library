@@ -13,12 +13,14 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"geo/reflection.hpp\"\n\n#line 1 \"geo/base.hpp\"\ntemplate\
-    \ <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template\
-    \ <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename\
-    \ A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  template <typename\
-    \ U>\n  Point(Point<U> p) : x(p.x), y(p.y) {\n    static_assert(!is_integral_v<T>\
+    links:
+    - https://github.com/maspypy/library/blob/main/geo/reflection.hpp
+  bundledCode: "#line 1 \"geo/reflection.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/reflection.hpp\n\
+    \n#line 1 \"geo/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/base.hpp\n\
+    template <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
+    \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
+    \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
+    \ {}\n\n  template <typename U>\n  Point(Point<U> p) : x(p.x), y(p.y) {\n    static_assert(!is_integral_v<T>\
     \ || is_integral_v<U>);\n  }\n\n  Point operator+=(const Point p) {\n    x +=\
     \ p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const Point p) {\n\
     \    x -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point p) const\
@@ -69,20 +71,21 @@ data:
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
     \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 3 \"geo/reflection.hpp\"\n\ntemplate <typename REAL, typename T, typename U>\n\
+    \ 4 \"geo/reflection.hpp\"\n\ntemplate <typename REAL, typename T, typename U>\n\
     Point<REAL> reflection(Point<T> P, Line<U> L) {\n  REAL t = REAL(L.eval(P)) /\
     \ (L.a * L.a + L.b * L.b);\n  REAL x = P.x - 2 * t * L.a;\n  REAL y = P.y - 2\
     \ * t * L.b;\n  return Point<REAL>(x, y);\n};\n"
-  code: "\n#include \"geo/base.hpp\"\n\ntemplate <typename REAL, typename T, typename\
-    \ U>\nPoint<REAL> reflection(Point<T> P, Line<U> L) {\n  REAL t = REAL(L.eval(P))\
-    \ / (L.a * L.a + L.b * L.b);\n  REAL x = P.x - 2 * t * L.a;\n  REAL y = P.y -\
-    \ 2 * t * L.b;\n  return Point<REAL>(x, y);\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/geo/reflection.hpp\n\
+    \n#include \"geo/base.hpp\"\n\ntemplate <typename REAL, typename T, typename U>\n\
+    Point<REAL> reflection(Point<T> P, Line<U> L) {\n  REAL t = REAL(L.eval(P)) /\
+    \ (L.a * L.a + L.b * L.b);\n  REAL x = P.x - 2 * t * L.a;\n  REAL y = P.y - 2\
+    \ * t * L.b;\n  return Point<REAL>(x, y);\n};\n"
   dependsOn:
   - geo/base.hpp
   isVerificationFile: false
   path: geo/reflection.hpp
   requiredBy: []
-  timestamp: '2026-09-24 22:40:16+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/CGL_1_B.test.cpp

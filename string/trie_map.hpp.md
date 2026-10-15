@@ -7,30 +7,31 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"string/trie_map.hpp\"\ntemplate <typename CHAR>\r\nstruct\
-    \ Trie {\r\n  using MP = map<CHAR, int>;\r\n  int n_node;\r\n  vector<MP> TO;\r\
-    \n  vector<int> PAR;\r\n  vector<int> BFS;\r\n  vector<int> FAIL;\r\n  vc<int>\
-    \ words;\r\n\r\n  Trie() : n_node(1), TO({MP()}), PAR({-1}) {}\r\n\r\n  template\
-    \ <typename STRING>\r\n  int add(STRING S) {\r\n    int v = 0;\r\n    for (auto&&\
-    \ s: S) {\r\n      if (!TO[v].count(s)) {\r\n        TO[v][s] = create_node();\r\
-    \n        PAR[TO[v][s]] = v;\r\n      }\r\n      v = TO[v][s];\r\n    }\r\n  \
-    \  words.eb(v);\r\n    return v;\r\n  }\r\n\r\n  int create_node() {\r\n    TO.eb(MP());\r\
-    \n    PAR.eb(-1);\r\n    return n_node++;\r\n  }\r\n};\n"
-  code: "template <typename CHAR>\r\nstruct Trie {\r\n  using MP = map<CHAR, int>;\r\
-    \n  int n_node;\r\n  vector<MP> TO;\r\n  vector<int> PAR;\r\n  vector<int> BFS;\r\
-    \n  vector<int> FAIL;\r\n  vc<int> words;\r\n\r\n  Trie() : n_node(1), TO({MP()}),\
-    \ PAR({-1}) {}\r\n\r\n  template <typename STRING>\r\n  int add(STRING S) {\r\n\
-    \    int v = 0;\r\n    for (auto&& s: S) {\r\n      if (!TO[v].count(s)) {\r\n\
-    \        TO[v][s] = create_node();\r\n        PAR[TO[v][s]] = v;\r\n      }\r\n\
-    \      v = TO[v][s];\r\n    }\r\n    words.eb(v);\r\n    return v;\r\n  }\r\n\r\
-    \n  int create_node() {\r\n    TO.eb(MP());\r\n    PAR.eb(-1);\r\n    return n_node++;\r\
-    \n  }\r\n};"
+    links:
+    - https://github.com/maspypy/library/blob/main/string/trie_map.hpp
+  bundledCode: "#line 1 \"string/trie_map.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/trie_map.hpp\n\
+    template <typename CHAR>\nstruct Trie {\n  using MP = map<CHAR, int>;\n  int n_node;\n\
+    \  vector<MP> TO;\n  vector<int> PAR;\n  vector<int> BFS;\n  vector<int> FAIL;\n\
+    \  vc<int> words;\n\n  Trie() : n_node(1), TO({MP()}), PAR({-1}) {}\n\n  template\
+    \ <typename STRING>\n  int add(STRING S) {\n    int v = 0;\n    for (auto&& s:\
+    \ S) {\n      if (!TO[v].count(s)) {\n        TO[v][s] = create_node();\n    \
+    \    PAR[TO[v][s]] = v;\n      }\n      v = TO[v][s];\n    }\n    words.eb(v);\n\
+    \    return v;\n  }\n\n  int create_node() {\n    TO.eb(MP());\n    PAR.eb(-1);\n\
+    \    return n_node++;\n  }\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/string/trie_map.hpp\n\
+    template <typename CHAR>\nstruct Trie {\n  using MP = map<CHAR, int>;\n  int n_node;\n\
+    \  vector<MP> TO;\n  vector<int> PAR;\n  vector<int> BFS;\n  vector<int> FAIL;\n\
+    \  vc<int> words;\n\n  Trie() : n_node(1), TO({MP()}), PAR({-1}) {}\n\n  template\
+    \ <typename STRING>\n  int add(STRING S) {\n    int v = 0;\n    for (auto&& s:\
+    \ S) {\n      if (!TO[v].count(s)) {\n        TO[v][s] = create_node();\n    \
+    \    PAR[TO[v][s]] = v;\n      }\n      v = TO[v][s];\n    }\n    words.eb(v);\n\
+    \    return v;\n  }\n\n  int create_node() {\n    TO.eb(MP());\n    PAR.eb(-1);\n\
+    \    return n_node++;\n  }\n};"
   dependsOn: []
   isVerificationFile: false
   path: string/trie_map.hpp
   requiredBy: []
-  timestamp: '2024-12-13 13:55:16+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/trie_map.hpp

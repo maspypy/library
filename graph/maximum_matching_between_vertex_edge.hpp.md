@@ -10,9 +10,11 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"graph/maximum_matching_between_vertex_edge.hpp\"\n// (v_i,\
-    \ e_i)\ntemplate <typename GT>\nvector<pair<int, int>> maximum_matching_between_vertex_edge(GT&\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/maximum_matching_between_vertex_edge.hpp
+  bundledCode: "#line 1 \"graph/maximum_matching_between_vertex_edge.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/graph/maximum_matching_between_vertex_edge.hpp\n\
+    // (v_i, e_i)\ntemplate <typename GT>\nvector<pair<int, int>> maximum_matching_between_vertex_edge(GT&\
     \ G) {\n  static_assert(!GT::is_directed);\n  assert(G.is_prepared());\n  const\
     \ int N = G.N, M = G.M;\n  vc<int> match(M, -1);\n  vc<int> par(N, -1); // eid\n\
     \  vc<bool> used(M);\n  vc<bool> vis(N);\n\n  FOR(root, N) {\n    if (vis[root])\
@@ -27,7 +29,8 @@ data:
     \ G.edges[eid].to - x;\n      match[eid] = x;\n    }\n  }\n  vc<pair<int, int>>\
     \ ANS;\n  FOR(i, M) if (match[i] != -1) ANS.eb(match[i], i);\n  return ANS;\n\
     }\n"
-  code: "// (v_i, e_i)\ntemplate <typename GT>\nvector<pair<int, int>> maximum_matching_between_vertex_edge(GT&\
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/maximum_matching_between_vertex_edge.hpp\n\
+    // (v_i, e_i)\ntemplate <typename GT>\nvector<pair<int, int>> maximum_matching_between_vertex_edge(GT&\
     \ G) {\n  static_assert(!GT::is_directed);\n  assert(G.is_prepared());\n  const\
     \ int N = G.N, M = G.M;\n  vc<int> match(M, -1);\n  vc<int> par(N, -1); // eid\n\
     \  vc<bool> used(M);\n  vc<bool> vis(N);\n\n  FOR(root, N) {\n    if (vis[root])\
@@ -45,7 +48,7 @@ data:
   isVerificationFile: false
   path: graph/maximum_matching_between_vertex_edge.hpp
   requiredBy: []
-  timestamp: '2023-11-03 17:01:54+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/matching_ve.test.cpp

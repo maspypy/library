@@ -18,7 +18,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1260.test.cpp
     title: test/3_yukicoder/1260.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1276.test.cpp
     title: test/3_yukicoder/1276.test.cpp
   - icon: ':x:'
@@ -34,35 +34,35 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"enumerate/floor_range.hpp\"\n// \u5546\u304C q \u306E\u533A\
-    \u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\u9806\r\ntemplate <typename\
-    \ F>\r\nvoid floor_range(u64 N, F f, bool Q_ASC = true, bool INCLUDE_Q_IS_0 =\
-    \ false) {\r\n  u64 sq = sqrtl(N);\r\n  u32 n = (sq * sq + sq <= N ? sq : sq -\
-    \ 1);\r\n  if (Q_ASC) {\r\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\r\n\
-    \    for (u32 q = 1; q <= n; ++q) {\r\n      f(q, N / (q + 1) + 1, N / q + 1);\r\
-    \n    }\r\n    for (u32 l = sq; l >= 1; --l) {\r\n      f(N / l, l, l + 1);\r\n\
-    \    }\r\n  } else {\r\n    for (u32 l = 1; l <= sq; ++l) {\r\n      f(N / l,\
-    \ l, l + 1);\r\n    }\r\n    for (u32 q = n; q >= 1; --q) {\r\n      f(q, N /\
-    \ (q + 1) + 1, N / q + 1);\r\n    }\r\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\r\
-    \n  }\r\n}\r\n"
-  code: "// \u5546\u304C q \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\
-    \u6607\u9806\r\ntemplate <typename F>\r\nvoid floor_range(u64 N, F f, bool Q_ASC\
-    \ = true, bool INCLUDE_Q_IS_0 = false) {\r\n  u64 sq = sqrtl(N);\r\n  u32 n =\
-    \ (sq * sq + sq <= N ? sq : sq - 1);\r\n  if (Q_ASC) {\r\n    if (INCLUDE_Q_IS_0)\
-    \ f(0, N + 1, infty<ll>);\r\n    for (u32 q = 1; q <= n; ++q) {\r\n      f(q,\
-    \ N / (q + 1) + 1, N / q + 1);\r\n    }\r\n    for (u32 l = sq; l >= 1; --l) {\r\
-    \n      f(N / l, l, l + 1);\r\n    }\r\n  } else {\r\n    for (u32 l = 1; l <=\
-    \ sq; ++l) {\r\n      f(N / l, l, l + 1);\r\n    }\r\n    for (u32 q = n; q >=\
-    \ 1; --q) {\r\n      f(q, N / (q + 1) + 1, N / q + 1);\r\n    }\r\n    if (INCLUDE_Q_IS_0)\
-    \ f(0, N + 1, infty<ll>);\r\n  }\r\n}\r\n"
+    links:
+    - https://github.com/maspypy/library/blob/main/enumerate/floor_range.hpp
+  bundledCode: "#line 1 \"enumerate/floor_range.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/enumerate/floor_range.hpp\n\
+    // \u5546\u304C q \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\
+    \u9806\ntemplate <typename F>\nvoid floor_range(u64 N, F f, bool Q_ASC = true,\
+    \ bool INCLUDE_Q_IS_0 = false) {\n  u64 sq = sqrtl(N);\n  u32 n = (sq * sq + sq\
+    \ <= N ? sq : sq - 1);\n  if (Q_ASC) {\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\n\
+    \    for (u32 q = 1; q <= n; ++q) {\n      f(q, N / (q + 1) + 1, N / q + 1);\n\
+    \    }\n    for (u32 l = sq; l >= 1; --l) {\n      f(N / l, l, l + 1);\n    }\n\
+    \  } else {\n    for (u32 l = 1; l <= sq; ++l) {\n      f(N / l, l, l + 1);\n\
+    \    }\n    for (u32 q = n; q >= 1; --q) {\n      f(q, N / (q + 1) + 1, N / q\
+    \ + 1);\n    }\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\n  }\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/enumerate/floor_range.hpp\n\
+    // \u5546\u304C q \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\
+    \u9806\ntemplate <typename F>\nvoid floor_range(u64 N, F f, bool Q_ASC = true,\
+    \ bool INCLUDE_Q_IS_0 = false) {\n  u64 sq = sqrtl(N);\n  u32 n = (sq * sq + sq\
+    \ <= N ? sq : sq - 1);\n  if (Q_ASC) {\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\n\
+    \    for (u32 q = 1; q <= n; ++q) {\n      f(q, N / (q + 1) + 1, N / q + 1);\n\
+    \    }\n    for (u32 l = sq; l >= 1; --l) {\n      f(N / l, l, l + 1);\n    }\n\
+    \  } else {\n    for (u32 l = 1; l <= sq; ++l) {\n      f(N / l, l, l + 1);\n\
+    \    }\n    for (u32 q = n; q >= 1; --q) {\n      f(q, N / (q + 1) + 1, N / q\
+    \ + 1);\n    }\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\n  }\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: enumerate/floor_range.hpp
   requiredBy:
   - nt/range_rational_count.hpp
   - nt/mertens.hpp
-  timestamp: '2026-09-02 05:55:18+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/floor_ceil_ranges.test.cpp

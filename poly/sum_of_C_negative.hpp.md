@@ -13,23 +13,25 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/sliding_window_aggregation.hpp\"\ntemplate <class Monoid>\n\
-    struct Sliding_Window_Aggregation {\n  using X = typename Monoid::value_type;\n\
-    \  using value_type = X;\n  int sz = 0;\n  vc<X> dat;\n  vc<X> cum_l;\n  X cum_r;\n\
-    \n  Sliding_Window_Aggregation()\n      : cum_l({Monoid::id()}), cum_r(Monoid::id())\
-    \ {}\n\n  int size() { return sz; }\n\n  void push(X x) {\n    ++sz;\n    cum_r\
-    \ = Monoid::op(cum_r, x);\n    dat.eb(x);\n  }\n\n  void pop() {\n    --sz;\n\
-    \    cum_l.pop_back();\n    if (len(cum_l) == 0) {\n      cum_l = {Monoid::id()};\n\
-    \      cum_r = Monoid::id();\n      while (len(dat) > 1) {\n        cum_l.eb(Monoid::op(dat.back(),\
-    \ cum_l.back()));\n        dat.pop_back();\n      }\n      dat.pop_back();\n \
-    \   }\n  }\n\n  X lprod() { return cum_l.back(); }\n  X rprod() { return cum_r;\
-    \ }\n\n  X prod() { return Monoid::op(cum_l.back(), cum_r); }\n};\n\n// \u5B9A\
-    \u6570\u500D\u306F\u76EE\u306B\u898B\u3048\u3066\u9045\u304F\u306A\u308B\u306E\
-    \u3067\u3001queue \u3067\u3088\u3044\u3068\u304D\u306F\u4F7F\u308F\u306A\u3044\
-    \ntemplate <class Monoid>\nstruct Sliding_Window_Aggregation_Deque {\n  using\
-    \ X = typename Monoid::value_type;\n  using value_type = X;\n  int sz;\n  vc<X>\
-    \ dat_l, dat_r;\n  vc<X> cum_l, cum_r;\n\n  Sliding_Window_Aggregation_Deque()\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/poly/sum_of_C_negative.hpp
+  bundledCode: "#line 1 \"poly/sum_of_C_negative.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/sum_of_C_negative.hpp\n\
+    #line 1 \"ds/sliding_window_aggregation.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/sliding_window_aggregation.hpp\n\
+    template <class Monoid>\nstruct Sliding_Window_Aggregation {\n  using X = typename\
+    \ Monoid::value_type;\n  using value_type = X;\n  int sz = 0;\n  vc<X> dat;\n\
+    \  vc<X> cum_l;\n  X cum_r;\n\n  Sliding_Window_Aggregation()\n      : cum_l({Monoid::id()}),\
+    \ cum_r(Monoid::id()) {}\n\n  int size() { return sz; }\n\n  void push(X x) {\n\
+    \    ++sz;\n    cum_r = Monoid::op(cum_r, x);\n    dat.eb(x);\n  }\n\n  void pop()\
+    \ {\n    --sz;\n    cum_l.pop_back();\n    if (len(cum_l) == 0) {\n      cum_l\
+    \ = {Monoid::id()};\n      cum_r = Monoid::id();\n      while (len(dat) > 1) {\n\
+    \        cum_l.eb(Monoid::op(dat.back(), cum_l.back()));\n        dat.pop_back();\n\
+    \      }\n      dat.pop_back();\n    }\n  }\n\n  X lprod() { return cum_l.back();\
+    \ }\n  X rprod() { return cum_r; }\n\n  X prod() { return Monoid::op(cum_l.back(),\
+    \ cum_r); }\n};\n\n// \u5B9A\u6570\u500D\u306F\u76EE\u306B\u898B\u3048\u3066\u9045\
+    \u304F\u306A\u308B\u306E\u3067\u3001queue \u3067\u3088\u3044\u3068\u304D\u306F\
+    \u4F7F\u308F\u306A\u3044\ntemplate <class Monoid>\nstruct Sliding_Window_Aggregation_Deque\
+    \ {\n  using X = typename Monoid::value_type;\n  using value_type = X;\n  int\
+    \ sz;\n  vc<X> dat_l, dat_r;\n  vc<X> cum_l, cum_r;\n\n  Sliding_Window_Aggregation_Deque()\n\
     \      : sz(0), cum_l({Monoid::id()}), cum_r({Monoid::id()}) {}\n\n  int size()\
     \ { return sz; }\n\n  void push_back(X x) {\n    ++sz;\n    dat_r.eb(x);\n   \
     \ cum_r.eb(Monoid::op(cum_r.back(), x));\n  }\n\n  void push_front(X x) {\n  \
@@ -47,18 +49,20 @@ data:
     \ X;\n    reverse(all(dat_l));\n    concat(X, dat_l, dat_r);\n    clear();\n \
     \   int m = len(X) / 2;\n    FOR_R(i, m) push_front(X[i]);\n    FOR(i, m, len(X))\
     \ push_back(X[i]);\n    assert(sz == len(X));\n  }\n};\n#line 1 \"alg/monoid/mul.hpp\"\
-    \n\ntemplate <class T>\nstruct Monoid_Mul {\n  using value_type = T;\n  using\
-    \ X = T;\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
-    \ * y; }\n  static constexpr X inverse(const X &x) noexcept { return X(1) / x;\
-    \ }\n  static constexpr X id() { return X(1); }\n  static constexpr bool commute\
-    \ = true;\n};\n#line 3 \"poly/sum_of_C_negative.hpp\"\n\n// calculate [x^N] f(x)(1-x)^{-K}\
+    \n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/mul.hpp\n\
+    \ntemplate <class T>\nstruct Monoid_Mul {\n  using value_type = T;\n  using X\
+    \ = T;\n  static constexpr X op(const X &x, const X &y) noexcept { return x *\
+    \ y; }\n  static constexpr X inverse(const X &x) noexcept { return X(1) / x; }\n\
+    \  static constexpr X id() { return X(1); }\n  static constexpr bool commute =\
+    \ true;\n};\n#line 4 \"poly/sum_of_C_negative.hpp\"\n\n// calculate [x^N] f(x)(1-x)^{-K}\
     \ in O(deg(f)+K).\ntemplate <typename mint>\nmint sum_of_C_negative(ll N, ll K,\
     \ vc<mint>& f) {\n  assert(K >= 0);\n  if (N < 0) return mint(1);\n  if (K ==\
     \ 0) { return (N < len(f) ? f[N] : mint(0)); }\n  K -= 1;\n  Sliding_Window_Aggregation<Monoid_Mul<mint>>\
     \ seg;\n  FOR(i, K) seg.push(N + K - i);\n  mint ANS = 0;\n  FOR(i, len(f)) {\n\
     \    ANS += f[i] * seg.prod();\n    seg.push(N - i);\n    seg.pop();\n  }\n  return\
     \ ANS * fact_inv<mint>(K);\n}\n"
-  code: "#include \"ds/sliding_window_aggregation.hpp\"\n#include \"alg/monoid/mul.hpp\"\
+  code: "// Source: https://github.com/maspypy/library/blob/main/poly/sum_of_C_negative.hpp\n\
+    #include \"ds/sliding_window_aggregation.hpp\"\n#include \"alg/monoid/mul.hpp\"\
     \n\n// calculate [x^N] f(x)(1-x)^{-K} in O(deg(f)+K).\ntemplate <typename mint>\n\
     mint sum_of_C_negative(ll N, ll K, vc<mint>& f) {\n  assert(K >= 0);\n  if (N\
     \ < 0) return mint(1);\n  if (K == 0) { return (N < len(f) ? f[N] : mint(0));\
@@ -72,7 +76,7 @@ data:
   isVerificationFile: false
   path: poly/sum_of_C_negative.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: poly/sum_of_C_negative.hpp

@@ -4,21 +4,23 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/double_ended_queue_const_add.hpp
     title: ds/double_ended_queue_const_add.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1077_2.test.cpp
     title: test/3_yukicoder/1077_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"convex/slope_trick/slope_trick_1.hpp\"\n\n#line 1 \"ds/double_ended_queue_const_add.hpp\"\
-    \n// \u5168\u4F53\u52A0\u7B97\u3082\u3067\u304D\u308B\u3088\u3046\u306B\u3057\u3088\
+    links:
+    - https://github.com/maspypy/library/blob/main/convex/slope_trick/slope_trick_1.hpp
+  bundledCode: "#line 1 \"convex/slope_trick/slope_trick_1.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/convex/slope_trick/slope_trick_1.hpp\n\
+    \n#line 1 \"ds/double_ended_queue_const_add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/double_ended_queue_const_add.hpp\n\
+    // \u5168\u4F53\u52A0\u7B97\u3082\u3067\u304D\u308B\u3088\u3046\u306B\u3057\u3088\
     \u3046\n// Monoid_Add<T> \u3092\u6E21\u3059\u611F\u3058\u3067. T \u306F operator<\
     \ \u304C\u5B9A\u7FA9\u3055\u308C\u3066\u3044\u308B\u5FC5\u8981\u3042\u308A.\n\
     template <typename Monoid>\nstruct Double_Ended_Queue_Const_Add {\n  using MX\
@@ -53,13 +55,14 @@ data:
     \   int p = parent(i);\n        if (!(dat[i] < dat[p])) break;\n        swap(dat[p],\
     \ dat[i]), i = p;\n      }\n      return;\n    }\n    while (i >= 3) {\n     \
     \ int p = parent(i);\n      if (!(dat[p] < dat[i])) break;\n      swap(dat[p],\
-    \ dat[i]), i = p;\n    }\n  }\n};\n#line 1 \"alg/monoid/add.hpp\"\n\ntemplate\
+    \ dat[i]), i = p;\n    }\n  }\n};\n#line 1 \"alg/monoid/add.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\ntemplate\
     \ <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type = X;\n\
     \  static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\n\
     \  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static constexpr\
     \ X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static constexpr\
     \ X id() { return X(0); }\n  static constexpr bool commute = true;\n};\n#line\
-    \ 4 \"convex/slope_trick/slope_trick_1.hpp\"\n\nstruct Slope_Trick_1 {\n  struct\
+    \ 5 \"convex/slope_trick/slope_trick_1.hpp\"\n\nstruct Slope_Trick_1 {\n  struct\
     \ FUNC {\n    // \u5B9A\u7FA9\u57DF\u306E\u4E21\u7AEF\u306F que \u306B\u5165\u308C\
     \u308B\u3053\u3068\u306B\u3057\u3066 que \u304C\u7A7A\u3067\u306A\u3044\u72B6\u614B\
     \u3092\u4FDD\u3064\n    Double_Ended_Queue_Const_Add<Monoid_Add<ll>> que_l, que_r;\n\
@@ -140,7 +143,8 @@ data:
     \ a1}), r); f.x1 += d;\n  //   return f;\n  // }\n\n  // fx,x\n  tuple<i128, ll,\
     \ ll> get_min(FUNC &f) {\n    return {f.min_f, f.que_l.max(), f.que_r.min()};\n\
     \  }\n};\n"
-  code: "\n#include \"ds/double_ended_queue_const_add.hpp\"\n#include \"alg/monoid/add.hpp\"\
+  code: "// Source: https://github.com/maspypy/library/blob/main/convex/slope_trick/slope_trick_1.hpp\n\
+    \n#include \"ds/double_ended_queue_const_add.hpp\"\n#include \"alg/monoid/add.hpp\"\
     \n\nstruct Slope_Trick_1 {\n  struct FUNC {\n    // \u5B9A\u7FA9\u57DF\u306E\u4E21\
     \u7AEF\u306F que \u306B\u5165\u308C\u308B\u3053\u3068\u306B\u3057\u3066 que \u304C\
     \u7A7A\u3067\u306A\u3044\u72B6\u614B\u3092\u4FDD\u3064\n    Double_Ended_Queue_Const_Add<Monoid_Add<ll>>\
@@ -227,8 +231,8 @@ data:
   isVerificationFile: false
   path: convex/slope_trick/slope_trick_1.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-10-15 19:54:56+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1077_2.test.cpp
 documentation_of: convex/slope_trick/slope_trick_1.hpp

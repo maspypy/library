@@ -9,11 +9,12 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/1889/problem/E
-  bundledCode: "#line 1 \"graph/ds/fundamental_cut.hpp\"\n\n// \u6728\u304A\u3088\u3073\
-    , 2 \u70B9\u7D44 M \u500B\u3092\u4E0E\u3048\u308B.\n// set_on, set_off: M \u500B\
-    \u306E\u7D44\u306E\u30AA\u30F3\u30AA\u30D5\u304C\u3067\u304D\u308B.\n// query(v):\
-    \ v, par[v] \u3067\u5206\u96E2\u3055\u308C\u308B\u7D44\u306E\u756A\u53F7\u306E\
-    \u3072\u3068\u3064\u3092\u51FA\u529B\n// https://codeforces.com/contest/1889/problem/E\n\
+    - https://github.com/maspypy/library/blob/main/graph/ds/fundamental_cut.hpp
+  bundledCode: "#line 1 \"graph/ds/fundamental_cut.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/ds/fundamental_cut.hpp\n\
+    \n// \u6728\u304A\u3088\u3073, 2 \u70B9\u7D44 M \u500B\u3092\u4E0E\u3048\u308B\
+    .\n// set_on, set_off: M \u500B\u306E\u7D44\u306E\u30AA\u30F3\u30AA\u30D5\u304C\
+    \u3067\u304D\u308B.\n// query(v): v, par[v] \u3067\u5206\u96E2\u3055\u308C\u308B\
+    \u7D44\u306E\u756A\u53F7\u306E\u3072\u3068\u3064\u3092\u51FA\u529B\n// https://codeforces.com/contest/1889/problem/E\n\
     template <typename TREE>\nstruct Fundamental_Cut {\n  TREE& tree;\n\n  int N,\
     \ M;\n  vc<int> A, B, on;\n  vc<int> IA, IB, rk_A, rk_B, FA, FB;\n  SegTree<Monoid_Max_Idx<int>>\
     \ seg_AB;\n  SegTree<Monoid_Min_Idx<int>> seg_BA;\n\n  // f(i) = a, b, bool(on,off)\n\
@@ -35,7 +36,8 @@ data:
     \    int i = seg_AB.prod(FA[L], FA[R]).se;\n    if (i != -1 && R <= B[i]) return\
     \ i;\n    i = seg_BA.prod(FB[L], FB[R]).se;\n    if (i != -1 && A[i] < L) return\
     \ i;\n    return -1;\n  }\n};\n"
-  code: "\n// \u6728\u304A\u3088\u3073, 2 \u70B9\u7D44 M \u500B\u3092\u4E0E\u3048\u308B\
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/ds/fundamental_cut.hpp\n\
+    \n// \u6728\u304A\u3088\u3073, 2 \u70B9\u7D44 M \u500B\u3092\u4E0E\u3048\u308B\
     .\n// set_on, set_off: M \u500B\u306E\u7D44\u306E\u30AA\u30F3\u30AA\u30D5\u304C\
     \u3067\u304D\u308B.\n// query(v): v, par[v] \u3067\u5206\u96E2\u3055\u308C\u308B\
     \u7D44\u306E\u756A\u53F7\u306E\u3072\u3068\u3064\u3092\u51FA\u529B\n// https://codeforces.com/contest/1889/problem/E\n\
@@ -64,7 +66,7 @@ data:
   isVerificationFile: false
   path: graph/ds/fundamental_cut.hpp
   requiredBy: []
-  timestamp: '2025-07-25 21:12:10+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/ds/fundamental_cut.hpp

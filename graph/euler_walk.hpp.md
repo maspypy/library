@@ -25,22 +25,26 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
-    \ n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n);\
-    \ }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n\
-    \  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x]\
-    \ >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n\
-    \      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n   \
-    \ x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n\
-    \    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x]\
-    \ < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return\
-    \ true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] =\
-    \ (*this)[i];\n    return A;\n  }\n};\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 ->\
-    \ Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\u305F\
-    \u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
-    \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
-    \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/euler_walk.hpp
+  bundledCode: "#line 1 \"graph/euler_walk.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/euler_walk.hpp\n\
+    #line 1 \"ds/unionfind/unionfind.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\n\
+    \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
+    \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
+    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
+    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
+    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
+    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
+    \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
+    \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
+    \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
+    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 1 \"graph/base.hpp\"\n\
+    // Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n#line\
+    \ 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
     \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
     \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
     \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
@@ -61,7 +65,7 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -137,7 +141,8 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 1 \"graph/vs_to_es.hpp\"\n\n#line 1 \"ds/hashmap.hpp\"\n\
+    \   }\n  }\n};\n#line 1 \"graph/vs_to_es.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/vs_to_es.hpp\n\
+    \n#line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
     \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
     \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
     \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
@@ -162,7 +167,7 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 3 \"graph/vs_to_es.hpp\"\n\ntemplate <typename GT>\nvc<int> vs_to_es(GT&\
+    \  }\n};\n#line 4 \"graph/vs_to_es.hpp\"\n\ntemplate <typename GT>\nvc<int> vs_to_es(GT&\
     \ G, vc<int>& vs, bool allow_use_twice = false) {\n  assert(!vs.empty());\n\n\
     \  HashMap<int> MP(G.M);\n  vc<int> nxt(G.M, -1);\n\n  auto get = [&](ll a, ll\
     \ b) -> u64 {\n    if (!GT::is_directed && a > b) swap(a, b);\n    return a *\
@@ -170,87 +175,81 @@ data:
     \    int x = MP.get(k, -1);\n    nxt[eid] = x, MP[k] = eid;\n  }\n  int n = len(vs);\n\
     \  vc<int> es(n - 1);\n  FOR(i, n - 1) {\n    u64 k = get(vs[i], vs[i + 1]);\n\
     \    int eid = MP.get(k, -1);\n    assert(eid != -1);\n    es[i] = eid;\n    if\
-    \ (!allow_use_twice) { MP[k] = nxt[eid]; }\n  }\n  return es;\n}\n#line 4 \"graph/euler_walk.hpp\"\
-    \n\r\n// (vs, es) or empty\r\ntemplate <typename GT>\r\npair<vc<int>, vc<int>>\
-    \ euler_walk(GT& G, int s = -1) {\r\n  const int N = G.N, M = G.M;\r\n  assert(G.is_prepared());\r\
-    \n  assert(N > 0);\r\n  assert((s == -1) || (0 <= s && s < N));\r\n\r\n  if (s\
-    \ == -1) {\r\n    vc<int> deg(N);\r\n    for (auto&& e : G.edges) {\r\n      if\
-    \ constexpr (GT::is_directed) {\r\n        deg[e.frm]++, deg[e.to]--;\r\n    \
-    \  } else {\r\n        deg[e.frm]++, deg[e.to]++;\r\n      }\r\n    }\r\n    if\
-    \ constexpr (GT::is_directed) {\r\n      s = max_element(all(deg)) - deg.begin();\r\
-    \n      if (deg[s] == 0) s = (M == 0 ? 0 : G.edges[0].frm);\r\n    } else {\r\n\
-    \      s = [&]() -> int {\r\n        FOR(v, N) if (deg[v] & 1) return v;\r\n \
-    \       return (M == 0 ? 0 : G.edges[0].frm);\r\n      }();\r\n    }\r\n  }\r\n\
-    \r\n  if (M == 0) return {{s}, {}};\r\n  vc<int> D(N), its(N), eu(M), vs, st =\
-    \ {s};\r\n  FOR(v, N) its[v] = G.indptr[v];\r\n  ++D[s];\r\n  while (!st.empty())\
-    \ {\r\n    int x = st.back(), y, e, &it = its[x], end = G.indptr[x + 1];\r\n \
-    \   if (it == end) {\r\n      vs.eb(x);\r\n      st.pop_back();\r\n      continue;\r\
-    \n    }\r\n    auto& ee = G.csr_edges[it++];\r\n    y = ee.to, e = ee.id;\r\n\
-    \    if (!eu[e]) {\r\n      D[x]--, D[y]++;\r\n      eu[e] = 1;\r\n      st.eb(y);\r\
-    \n    }\r\n  }\r\n  for (auto&& x : D)\r\n    if (x < 0) return {{}, {}};\r\n\
-    \  if (len(vs) != M + 1) return {{}, {}};\r\n  reverse(all(vs));\r\n  auto es\
-    \ = vs_to_es(G, vs, false);\r\n  return {vs, es};\r\n}\r\n\r\ntemplate <typename\
-    \ GT>\r\nbool has_euler_walk(GT& G, int s = -1) {\r\n  int N = G.N, M = G.M;\r\
-    \n  if (M == 0) return true;\r\n  if constexpr (!GT::is_directed) {\r\n    vc<int>\
-    \ odd(N);\r\n    for (auto& e : G.edges) odd[e.frm] ^= 1, odd[e.to] ^= 1;\r\n\
-    \    int n_odd = 0;\r\n    for (auto x : odd) n_odd += x;\r\n\r\n    if (n_odd\
-    \ >= 4) return false;\r\n    if (s != -1 && n_odd == 2 && !odd[s]) return false;\r\
-    \n    UnionFind uf(N);\r\n    for (auto& e : G.edges) uf.merge(e.frm, e.to);\r\
-    \n    vector<int> cnt_edge(N);\r\n    for (auto& e : G.edges) cnt_edge[uf[e.frm]]++;\r\
-    \n    if (s != -1 && cnt_edge[uf[s]] == 0) return false;\r\n    // \u8FBA\u304C\
-    \u3042\u308B\u6210\u5206\u3092\u6570\u3048\u308B\r\n    int nc = 0;\r\n    for\
-    \ (int v = 0; v < N; ++v) {\r\n      if (uf[v] == v && cnt_edge[v] >= 1) ++nc;\r\
-    \n    }\r\n    return nc <= 1;\r\n  } else {\r\n    int N = G.N;\r\n    vc<int>\
-    \ in(N), out(N);\r\n    for (auto& e : G.edges) out[e.frm]++, in[e.to]++;\r\n\r\
-    \n    int ng = 0;\r\n    FOR(v, N) ng += abs(out[v] - in[v]);\r\n    if (ng >=\
-    \ 4) return false;\r\n    if (s != -1 && ng == 2 && out[s] != in[s] + 1) return\
-    \ false;\r\n\r\n    UnionFind uf(N);\r\n    for (auto& e : G.edges) uf.merge(e.frm,\
-    \ e.to);\r\n    vector<int> cnt_edge(N);\r\n    for (auto& e : G.edges) cnt_edge[uf[e.frm]]++;\r\
-    \n    if (s != -1 && cnt_edge[uf[s]] == 0) return false;\r\n    // \u8FBA\u304C\
-    \u3042\u308B\u6210\u5206\u3092\u6570\u3048\u308B\r\n    int nc = 0;\r\n    for\
-    \ (int v = 0; v < N; ++v) {\r\n      if (uf[v] == v && cnt_edge[v] >= 1) ++nc;\r\
-    \n    }\r\n    return nc <= 1;\r\n  }\r\n}\n"
-  code: "#include \"ds/unionfind/unionfind.hpp\"\r\n#include \"graph/base.hpp\"\r\n\
-    #include \"graph/vs_to_es.hpp\"\r\n\r\n// (vs, es) or empty\r\ntemplate <typename\
-    \ GT>\r\npair<vc<int>, vc<int>> euler_walk(GT& G, int s = -1) {\r\n  const int\
-    \ N = G.N, M = G.M;\r\n  assert(G.is_prepared());\r\n  assert(N > 0);\r\n  assert((s\
-    \ == -1) || (0 <= s && s < N));\r\n\r\n  if (s == -1) {\r\n    vc<int> deg(N);\r\
-    \n    for (auto&& e : G.edges) {\r\n      if constexpr (GT::is_directed) {\r\n\
-    \        deg[e.frm]++, deg[e.to]--;\r\n      } else {\r\n        deg[e.frm]++,\
-    \ deg[e.to]++;\r\n      }\r\n    }\r\n    if constexpr (GT::is_directed) {\r\n\
-    \      s = max_element(all(deg)) - deg.begin();\r\n      if (deg[s] == 0) s =\
-    \ (M == 0 ? 0 : G.edges[0].frm);\r\n    } else {\r\n      s = [&]() -> int {\r\
-    \n        FOR(v, N) if (deg[v] & 1) return v;\r\n        return (M == 0 ? 0 :\
-    \ G.edges[0].frm);\r\n      }();\r\n    }\r\n  }\r\n\r\n  if (M == 0) return {{s},\
-    \ {}};\r\n  vc<int> D(N), its(N), eu(M), vs, st = {s};\r\n  FOR(v, N) its[v] =\
-    \ G.indptr[v];\r\n  ++D[s];\r\n  while (!st.empty()) {\r\n    int x = st.back(),\
-    \ y, e, &it = its[x], end = G.indptr[x + 1];\r\n    if (it == end) {\r\n     \
-    \ vs.eb(x);\r\n      st.pop_back();\r\n      continue;\r\n    }\r\n    auto& ee\
-    \ = G.csr_edges[it++];\r\n    y = ee.to, e = ee.id;\r\n    if (!eu[e]) {\r\n \
-    \     D[x]--, D[y]++;\r\n      eu[e] = 1;\r\n      st.eb(y);\r\n    }\r\n  }\r\
-    \n  for (auto&& x : D)\r\n    if (x < 0) return {{}, {}};\r\n  if (len(vs) !=\
-    \ M + 1) return {{}, {}};\r\n  reverse(all(vs));\r\n  auto es = vs_to_es(G, vs,\
-    \ false);\r\n  return {vs, es};\r\n}\r\n\r\ntemplate <typename GT>\r\nbool has_euler_walk(GT&\
-    \ G, int s = -1) {\r\n  int N = G.N, M = G.M;\r\n  if (M == 0) return true;\r\n\
-    \  if constexpr (!GT::is_directed) {\r\n    vc<int> odd(N);\r\n    for (auto&\
-    \ e : G.edges) odd[e.frm] ^= 1, odd[e.to] ^= 1;\r\n    int n_odd = 0;\r\n    for\
-    \ (auto x : odd) n_odd += x;\r\n\r\n    if (n_odd >= 4) return false;\r\n    if\
-    \ (s != -1 && n_odd == 2 && !odd[s]) return false;\r\n    UnionFind uf(N);\r\n\
-    \    for (auto& e : G.edges) uf.merge(e.frm, e.to);\r\n    vector<int> cnt_edge(N);\r\
-    \n    for (auto& e : G.edges) cnt_edge[uf[e.frm]]++;\r\n    if (s != -1 && cnt_edge[uf[s]]\
-    \ == 0) return false;\r\n    // \u8FBA\u304C\u3042\u308B\u6210\u5206\u3092\u6570\
-    \u3048\u308B\r\n    int nc = 0;\r\n    for (int v = 0; v < N; ++v) {\r\n     \
-    \ if (uf[v] == v && cnt_edge[v] >= 1) ++nc;\r\n    }\r\n    return nc <= 1;\r\n\
-    \  } else {\r\n    int N = G.N;\r\n    vc<int> in(N), out(N);\r\n    for (auto&\
-    \ e : G.edges) out[e.frm]++, in[e.to]++;\r\n\r\n    int ng = 0;\r\n    FOR(v,\
-    \ N) ng += abs(out[v] - in[v]);\r\n    if (ng >= 4) return false;\r\n    if (s\
-    \ != -1 && ng == 2 && out[s] != in[s] + 1) return false;\r\n\r\n    UnionFind\
-    \ uf(N);\r\n    for (auto& e : G.edges) uf.merge(e.frm, e.to);\r\n    vector<int>\
-    \ cnt_edge(N);\r\n    for (auto& e : G.edges) cnt_edge[uf[e.frm]]++;\r\n    if\
-    \ (s != -1 && cnt_edge[uf[s]] == 0) return false;\r\n    // \u8FBA\u304C\u3042\
-    \u308B\u6210\u5206\u3092\u6570\u3048\u308B\r\n    int nc = 0;\r\n    for (int\
-    \ v = 0; v < N; ++v) {\r\n      if (uf[v] == v && cnt_edge[v] >= 1) ++nc;\r\n\
-    \    }\r\n    return nc <= 1;\r\n  }\r\n}"
+    \ (!allow_use_twice) { MP[k] = nxt[eid]; }\n  }\n  return es;\n}\n#line 5 \"graph/euler_walk.hpp\"\
+    \n\n// (vs, es) or empty\ntemplate <typename GT>\npair<vc<int>, vc<int>> euler_walk(GT&\
+    \ G, int s = -1) {\n  const int N = G.N, M = G.M;\n  assert(G.is_prepared());\n\
+    \  assert(N > 0);\n  assert((s == -1) || (0 <= s && s < N));\n\n  if (s == -1)\
+    \ {\n    vc<int> deg(N);\n    for (auto&& e : G.edges) {\n      if constexpr (GT::is_directed)\
+    \ {\n        deg[e.frm]++, deg[e.to]--;\n      } else {\n        deg[e.frm]++,\
+    \ deg[e.to]++;\n      }\n    }\n    if constexpr (GT::is_directed) {\n      s\
+    \ = max_element(all(deg)) - deg.begin();\n      if (deg[s] == 0) s = (M == 0 ?\
+    \ 0 : G.edges[0].frm);\n    } else {\n      s = [&]() -> int {\n        FOR(v,\
+    \ N) if (deg[v] & 1) return v;\n        return (M == 0 ? 0 : G.edges[0].frm);\n\
+    \      }();\n    }\n  }\n\n  if (M == 0) return {{s}, {}};\n  vc<int> D(N), its(N),\
+    \ eu(M), vs, st = {s};\n  FOR(v, N) its[v] = G.indptr[v];\n  ++D[s];\n  while\
+    \ (!st.empty()) {\n    int x = st.back(), y, e, &it = its[x], end = G.indptr[x\
+    \ + 1];\n    if (it == end) {\n      vs.eb(x);\n      st.pop_back();\n      continue;\n\
+    \    }\n    auto& ee = G.csr_edges[it++];\n    y = ee.to, e = ee.id;\n    if (!eu[e])\
+    \ {\n      D[x]--, D[y]++;\n      eu[e] = 1;\n      st.eb(y);\n    }\n  }\n  for\
+    \ (auto&& x : D)\n    if (x < 0) return {{}, {}};\n  if (len(vs) != M + 1) return\
+    \ {{}, {}};\n  reverse(all(vs));\n  auto es = vs_to_es(G, vs, false);\n  return\
+    \ {vs, es};\n}\n\ntemplate <typename GT>\nbool has_euler_walk(GT& G, int s = -1)\
+    \ {\n  int N = G.N, M = G.M;\n  if (M == 0) return true;\n  if constexpr (!GT::is_directed)\
+    \ {\n    vc<int> odd(N);\n    for (auto& e : G.edges) odd[e.frm] ^= 1, odd[e.to]\
+    \ ^= 1;\n    int n_odd = 0;\n    for (auto x : odd) n_odd += x;\n\n    if (n_odd\
+    \ >= 4) return false;\n    if (s != -1 && n_odd == 2 && !odd[s]) return false;\n\
+    \    UnionFind uf(N);\n    for (auto& e : G.edges) uf.merge(e.frm, e.to);\n  \
+    \  vector<int> cnt_edge(N);\n    for (auto& e : G.edges) cnt_edge[uf[e.frm]]++;\n\
+    \    if (s != -1 && cnt_edge[uf[s]] == 0) return false;\n    // \u8FBA\u304C\u3042\
+    \u308B\u6210\u5206\u3092\u6570\u3048\u308B\n    int nc = 0;\n    for (int v =\
+    \ 0; v < N; ++v) {\n      if (uf[v] == v && cnt_edge[v] >= 1) ++nc;\n    }\n \
+    \   return nc <= 1;\n  } else {\n    int N = G.N;\n    vc<int> in(N), out(N);\n\
+    \    for (auto& e : G.edges) out[e.frm]++, in[e.to]++;\n\n    int ng = 0;\n  \
+    \  FOR(v, N) ng += abs(out[v] - in[v]);\n    if (ng >= 4) return false;\n    if\
+    \ (s != -1 && ng == 2 && out[s] != in[s] + 1) return false;\n\n    UnionFind uf(N);\n\
+    \    for (auto& e : G.edges) uf.merge(e.frm, e.to);\n    vector<int> cnt_edge(N);\n\
+    \    for (auto& e : G.edges) cnt_edge[uf[e.frm]]++;\n    if (s != -1 && cnt_edge[uf[s]]\
+    \ == 0) return false;\n    // \u8FBA\u304C\u3042\u308B\u6210\u5206\u3092\u6570\
+    \u3048\u308B\n    int nc = 0;\n    for (int v = 0; v < N; ++v) {\n      if (uf[v]\
+    \ == v && cnt_edge[v] >= 1) ++nc;\n    }\n    return nc <= 1;\n  }\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/euler_walk.hpp\n\
+    #include \"ds/unionfind/unionfind.hpp\"\n#include \"graph/base.hpp\"\n#include\
+    \ \"graph/vs_to_es.hpp\"\n\n// (vs, es) or empty\ntemplate <typename GT>\npair<vc<int>,\
+    \ vc<int>> euler_walk(GT& G, int s = -1) {\n  const int N = G.N, M = G.M;\n  assert(G.is_prepared());\n\
+    \  assert(N > 0);\n  assert((s == -1) || (0 <= s && s < N));\n\n  if (s == -1)\
+    \ {\n    vc<int> deg(N);\n    for (auto&& e : G.edges) {\n      if constexpr (GT::is_directed)\
+    \ {\n        deg[e.frm]++, deg[e.to]--;\n      } else {\n        deg[e.frm]++,\
+    \ deg[e.to]++;\n      }\n    }\n    if constexpr (GT::is_directed) {\n      s\
+    \ = max_element(all(deg)) - deg.begin();\n      if (deg[s] == 0) s = (M == 0 ?\
+    \ 0 : G.edges[0].frm);\n    } else {\n      s = [&]() -> int {\n        FOR(v,\
+    \ N) if (deg[v] & 1) return v;\n        return (M == 0 ? 0 : G.edges[0].frm);\n\
+    \      }();\n    }\n  }\n\n  if (M == 0) return {{s}, {}};\n  vc<int> D(N), its(N),\
+    \ eu(M), vs, st = {s};\n  FOR(v, N) its[v] = G.indptr[v];\n  ++D[s];\n  while\
+    \ (!st.empty()) {\n    int x = st.back(), y, e, &it = its[x], end = G.indptr[x\
+    \ + 1];\n    if (it == end) {\n      vs.eb(x);\n      st.pop_back();\n      continue;\n\
+    \    }\n    auto& ee = G.csr_edges[it++];\n    y = ee.to, e = ee.id;\n    if (!eu[e])\
+    \ {\n      D[x]--, D[y]++;\n      eu[e] = 1;\n      st.eb(y);\n    }\n  }\n  for\
+    \ (auto&& x : D)\n    if (x < 0) return {{}, {}};\n  if (len(vs) != M + 1) return\
+    \ {{}, {}};\n  reverse(all(vs));\n  auto es = vs_to_es(G, vs, false);\n  return\
+    \ {vs, es};\n}\n\ntemplate <typename GT>\nbool has_euler_walk(GT& G, int s = -1)\
+    \ {\n  int N = G.N, M = G.M;\n  if (M == 0) return true;\n  if constexpr (!GT::is_directed)\
+    \ {\n    vc<int> odd(N);\n    for (auto& e : G.edges) odd[e.frm] ^= 1, odd[e.to]\
+    \ ^= 1;\n    int n_odd = 0;\n    for (auto x : odd) n_odd += x;\n\n    if (n_odd\
+    \ >= 4) return false;\n    if (s != -1 && n_odd == 2 && !odd[s]) return false;\n\
+    \    UnionFind uf(N);\n    for (auto& e : G.edges) uf.merge(e.frm, e.to);\n  \
+    \  vector<int> cnt_edge(N);\n    for (auto& e : G.edges) cnt_edge[uf[e.frm]]++;\n\
+    \    if (s != -1 && cnt_edge[uf[s]] == 0) return false;\n    // \u8FBA\u304C\u3042\
+    \u308B\u6210\u5206\u3092\u6570\u3048\u308B\n    int nc = 0;\n    for (int v =\
+    \ 0; v < N; ++v) {\n      if (uf[v] == v && cnt_edge[v] >= 1) ++nc;\n    }\n \
+    \   return nc <= 1;\n  } else {\n    int N = G.N;\n    vc<int> in(N), out(N);\n\
+    \    for (auto& e : G.edges) out[e.frm]++, in[e.to]++;\n\n    int ng = 0;\n  \
+    \  FOR(v, N) ng += abs(out[v] - in[v]);\n    if (ng >= 4) return false;\n    if\
+    \ (s != -1 && ng == 2 && out[s] != in[s] + 1) return false;\n\n    UnionFind uf(N);\n\
+    \    for (auto& e : G.edges) uf.merge(e.frm, e.to);\n    vector<int> cnt_edge(N);\n\
+    \    for (auto& e : G.edges) cnt_edge[uf[e.frm]]++;\n    if (s != -1 && cnt_edge[uf[s]]\
+    \ == 0) return false;\n    // \u8FBA\u304C\u3042\u308B\u6210\u5206\u3092\u6570\
+    \u3048\u308B\n    int nc = 0;\n    for (int v = 0; v < N; ++v) {\n      if (uf[v]\
+    \ == v && cnt_edge[v] >= 1) ++nc;\n    }\n    return nc <= 1;\n  }\n}"
   dependsOn:
   - ds/unionfind/unionfind.hpp
   - graph/base.hpp
@@ -259,7 +258,7 @@ data:
   isVerificationFile: false
   path: graph/euler_walk.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:05:11+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/graph/eulerwalk_d.test.cpp

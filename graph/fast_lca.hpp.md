@@ -28,12 +28,16 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"graph/tree.hpp\"\n\n#line 1 \"ds/hashmap.hpp\"\n\n// u64\
-    \ -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\
-    \u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
-    \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
-    \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/fast_lca.hpp
+  bundledCode: "#line 1 \"graph/fast_lca.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/fast_lca.hpp\n\
+    #line 1 \"graph/tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/tree.hpp\n\
+    \n#line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
     \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
     \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
     \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
@@ -54,7 +58,7 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -130,7 +134,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 3 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
+    \   }\n  }\n};\n#line 4 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
     \u3066\u3044\u308D\u3044\u308D\n// HLD=false: \u5165\u529B\u8FBA\u9806\u3067 preorder\n\
     template <typename GT, bool HLD = true>\nstruct Tree {\n  using Graph_type = GT;\n\
     \  using WT = typename GT::cost_type;\n  int N = 0;\n  vector<int> LID, RID, head,\
@@ -250,18 +254,19 @@ data:
     \ G.csr_edges[i];\n          if (e.to == parent[v] || e.to == max_ch) continue;\n\
     \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
     \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 1 \"\
-    alg/monoid/min.hpp\"\n// require: all values x satisfy x <= infty<E>\ntemplate\
-    \ <typename E>\nstruct Monoid_Min {\n  using X = E;\n  using value_type = X;\n\
-    \  static constexpr X op(const X &x, const X &y) noexcept { return min(x, y);\
-    \ }\n  static constexpr X id() { return infty<E>; }\n  static constexpr bool commute\
-    \ = true;\n};\n#line 1 \"ds/sparse_table/sparse_table.hpp\"\n\n// \u51AA\u7B49\
-    \u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\
-    \u3002disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\ntemplate <class\
-    \ Monoid>\nstruct Sparse_Table {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
-    \  int n, log;\n  vvc<X> dat;\n\n  Sparse_Table() {}\n  Sparse_Table(int n) {\
-    \ build(n); }\n  template <typename F>\n  Sparse_Table(int n, F f) {\n    build(n,\
-    \ f);\n  }\n  Sparse_Table(const vc<X>& v) { build(v); }\n\n  void build(int m)\
-    \ {\n    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const\
+    alg/monoid/min.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n\
+    // require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
+    \ Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
+    \ op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
+    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
+    \ 1 \"ds/sparse_table/sparse_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/sparse_table/sparse_table.hpp\n\
+    \n// \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\
+    \u4EEE\u5B9A\u3002disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\ntemplate\
+    \ <class Monoid>\nstruct Sparse_Table {\n  using MX = Monoid;\n  using X = typename\
+    \ MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Sparse_Table() {}\n  Sparse_Table(int\
+    \ n) { build(n); }\n  template <typename F>\n  Sparse_Table(int n, F f) {\n  \
+    \  build(n, f);\n  }\n  Sparse_Table(const vc<X>& v) { build(v); }\n\n  void build(int\
+    \ m) {\n    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const\
     \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
     \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
     \ << log) < n) ++log;\n    dat.resize(log);\n    dat[0].resize(n);\n    FOR(i,\
@@ -279,7 +284,7 @@ data:
     \ check(MX::id()));\n    if (R == 0) return 0;\n    int ok = R, ng = -1;\n   \
     \ while (ng + 1 < ok) {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k,\
     \ R));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n\
-    \  }\n};\n#line 4 \"graph/fast_lca.hpp\"\n\ntemplate <typename TREE>\nstruct Fast_LCA\
+    \  }\n};\n#line 5 \"graph/fast_lca.hpp\"\n\ntemplate <typename TREE>\nstruct Fast_LCA\
     \ {\n  TREE& tree;\n  Sparse_Table<Monoid_Min<int>> seg;\n  vc<int> pos;\n\n \
     \ Fast_LCA(TREE& tree) : tree(tree) {\n    int N = tree.N;\n    pos.resize(N);\n\
     \    vc<int> dat(2 * N);\n    FOR(v, N) {\n      int a = tree.ELID(v);\n     \
@@ -291,19 +296,20 @@ data:
     \ tree.depth_weighted[a] + tree.depth_weighted[b] -\n           2 * tree.depth_weighted[c];\n\
     \  }\n\n  int LCA(int a, int b) const {\n    int p = pos[a], q = pos[b];\n   \
     \ if (p > q) swap(p, q);\n    return tree.V[seg.prod(p, q + 1)];\n  }\n};\n"
-  code: "#include \"graph/tree.hpp\"\n#include \"alg/monoid/min.hpp\"\n#include \"\
-    ds/sparse_table/sparse_table.hpp\"\n\ntemplate <typename TREE>\nstruct Fast_LCA\
-    \ {\n  TREE& tree;\n  Sparse_Table<Monoid_Min<int>> seg;\n  vc<int> pos;\n\n \
-    \ Fast_LCA(TREE& tree) : tree(tree) {\n    int N = tree.N;\n    pos.resize(N);\n\
-    \    vc<int> dat(2 * N);\n    FOR(v, N) {\n      int a = tree.ELID(v);\n     \
-    \ int b = tree.ERID(v);\n      pos[v] = a;\n      dat[a] = tree.LID[v];\n    \
-    \  dat[b] = (v == tree.V[0] ? -1 : tree.LID[tree.parent[v]]);\n    }\n    seg.build(dat);\n\
-    \  }\n\n  int dist(int a, int b) const {\n    int c = LCA(a, b);\n    return tree.depth[a]\
-    \ + tree.depth[b] - 2 * tree.depth[c];\n  }\n\n  using WT = typename TREE::WT;\n\
-    \  WT dist_weighted(int a, int b) const {\n    int c = LCA(a, b);\n    return\
-    \ tree.depth_weighted[a] + tree.depth_weighted[b] -\n           2 * tree.depth_weighted[c];\n\
-    \  }\n\n  int LCA(int a, int b) const {\n    int p = pos[a], q = pos[b];\n   \
-    \ if (p > q) swap(p, q);\n    return tree.V[seg.prod(p, q + 1)];\n  }\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/fast_lca.hpp\n\
+    #include \"graph/tree.hpp\"\n#include \"alg/monoid/min.hpp\"\n#include \"ds/sparse_table/sparse_table.hpp\"\
+    \n\ntemplate <typename TREE>\nstruct Fast_LCA {\n  TREE& tree;\n  Sparse_Table<Monoid_Min<int>>\
+    \ seg;\n  vc<int> pos;\n\n  Fast_LCA(TREE& tree) : tree(tree) {\n    int N = tree.N;\n\
+    \    pos.resize(N);\n    vc<int> dat(2 * N);\n    FOR(v, N) {\n      int a = tree.ELID(v);\n\
+    \      int b = tree.ERID(v);\n      pos[v] = a;\n      dat[a] = tree.LID[v];\n\
+    \      dat[b] = (v == tree.V[0] ? -1 : tree.LID[tree.parent[v]]);\n    }\n   \
+    \ seg.build(dat);\n  }\n\n  int dist(int a, int b) const {\n    int c = LCA(a,\
+    \ b);\n    return tree.depth[a] + tree.depth[b] - 2 * tree.depth[c];\n  }\n\n\
+    \  using WT = typename TREE::WT;\n  WT dist_weighted(int a, int b) const {\n \
+    \   int c = LCA(a, b);\n    return tree.depth_weighted[a] + tree.depth_weighted[b]\
+    \ -\n           2 * tree.depth_weighted[c];\n  }\n\n  int LCA(int a, int b) const\
+    \ {\n    int p = pos[a], q = pos[b];\n    if (p > q) swap(p, q);\n    return tree.V[seg.prod(p,\
+    \ q + 1)];\n  }\n};\n"
   dependsOn:
   - graph/tree.hpp
   - graph/base.hpp
@@ -314,7 +320,7 @@ data:
   path: graph/fast_lca.hpp
   requiredBy:
   - graph/compress_tree.hpp
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/tree/lca_fast.test.cpp

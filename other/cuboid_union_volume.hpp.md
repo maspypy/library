@@ -15,9 +15,12 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/815/problem/D
-  bundledCode: "#line 1 \"ds/incremental_rectangle_union.hpp\"\n\n#line 1 \"ds/fastset.hpp\"\
-    \n// 64-ary tree\n// space: (N/63) * u64\nstruct FastSet {\n  static constexpr\
-    \ u32 B = 64;\n  int n = 0, log = 0;\n  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int\
+    - https://github.com/maspypy/library/blob/main/other/cuboid_union_volume.hpp
+  bundledCode: "#line 1 \"other/cuboid_union_volume.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/other/cuboid_union_volume.hpp\n\
+    #line 1 \"ds/incremental_rectangle_union.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/incremental_rectangle_union.hpp\n\
+    \n#line 1 \"ds/fastset.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/fastset.hpp\n\
+    // 64-ary tree\n// space: (N/63) * u64\nstruct FastSet {\n  static constexpr u32\
+    \ B = 64;\n  int n = 0, log = 0;\n  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int\
     \ n) { build(n); }\n\n  int size() { return n; }\n\n  void fill_one() {\n    int\
     \ cur = n;\n    for (auto& vs : seg) {\n      int p = cur / B, q = cur % B;\n\
     \      FOR(i, p) vs[i] = -1ull;\n      if (q) vs[p] = full_mask(q);\n      cur\
@@ -68,7 +71,7 @@ data:
     \  // seg[0][w] \u304C 0 \u306B\u306A\u3063\u305F\u5F8C\u306B\u547C\u3076\u3002\
     \n  void propagate_empty_word(int i) {\n    for (int h = 1; h < log; ++h) {\n\
     \      u64& y = seg[h][i / B];\n      u64 mask = u64(1) << (i % B);\n      y ^=\
-    \ mask;\n      if (y) break;\n      i /= B;\n    }\n  }\n};\n#line 3 \"ds/incremental_rectangle_union.hpp\"\
+    \ mask;\n      if (y) break;\n      i /= B;\n    }\n  }\n};\n#line 4 \"ds/incremental_rectangle_union.hpp\"\
     \n\n// [0, x] x [0, y] \u3092\u8FFD\u52A0 -> \u548C\u96C6\u5408\u9762\u7A4D\u3092\
     \u53D6\u5F97\ntemplate <typename XY, typename AREA, bool SMALL_XY>\nstruct Incremental_Rectangle_Union\
     \ {\n  FastSet ss;\n  vc<XY> ht;\n  map<XY, XY> MP;  // right end -> height\n\
@@ -95,7 +98,7 @@ data:
     \ ss.erase(x2);\n      int x1 = ss.prev(x2);\n      XY y1 = ht[x1];\n      //\
     \ [x1,x2]: y2 -> 0\n      area -= AREA(x2 - x1) * AREA(y2);\n      x2 = x1;\n\
     \      if (y1 >= y) break;\n    }\n    ss.insert(x), ht[x] = y, area += AREA(x\
-    \ - x2) * AREA(y);\n    return;\n  }\n};\n#line 2 \"other/cuboid_union_volume.hpp\"\
+    \ - x2) * AREA(y);\n    return;\n  }\n};\n#line 3 \"other/cuboid_union_volume.hpp\"\
     \n\n// [0,a] x [0,b] x [0,c] \u306E\u548C\u96C6\u5408\u306E\u4F53\u7A4D\n// https://codeforces.com/contest/815/problem/D\n\
     template <typename XYZ, typename T, bool SMALL_X>\nT cuboid_union_volume(vc<tuple<XYZ,\
     \ XYZ, XYZ>> dat) {\n  if constexpr (SMALL_X) {\n    int mx_x = 0, mx_z = 0;\n\
@@ -110,8 +113,9 @@ data:
     \  T vol = 0, area = 0;\n    Incremental_Rectangle_Union<XYZ, T, false> I;\n \
     \   for (auto& [a, b, c]: dat) {\n      vol += T(z - c) * area, area = I.add(a,\
     \ b), z = c;\n    }\n    vol += z * I.area;\n    return vol;\n  }\n}\n"
-  code: "#include \"ds/incremental_rectangle_union.hpp\"\n\n// [0,a] x [0,b] x [0,c]\
-    \ \u306E\u548C\u96C6\u5408\u306E\u4F53\u7A4D\n// https://codeforces.com/contest/815/problem/D\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/other/cuboid_union_volume.hpp\n\
+    #include \"ds/incremental_rectangle_union.hpp\"\n\n// [0,a] x [0,b] x [0,c] \u306E\
+    \u548C\u96C6\u5408\u306E\u4F53\u7A4D\n// https://codeforces.com/contest/815/problem/D\n\
     template <typename XYZ, typename T, bool SMALL_X>\nT cuboid_union_volume(vc<tuple<XYZ,\
     \ XYZ, XYZ>> dat) {\n  if constexpr (SMALL_X) {\n    int mx_x = 0, mx_z = 0;\n\
     \    for (auto& [x, y, z]: dat) chmax(mx_x, x), chmax(mx_z, z);\n    vc<int> ptr(mx_z\
@@ -131,7 +135,7 @@ data:
   isVerificationFile: false
   path: other/cuboid_union_volume.hpp
   requiredBy: []
-  timestamp: '2026-10-05 00:23:18+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: other/cuboid_union_volume.hpp

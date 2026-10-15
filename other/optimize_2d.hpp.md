@@ -15,36 +15,40 @@ data:
   attributes:
     links:
     - https://atcoder.jp/contests/ajo2025-final/submissions/71727945
-  bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
-    struct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
-    \u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n \
-    \   u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n\
-    \    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\
-    \u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build\
-    \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
-    \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
-    \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
-    \ key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
-    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
-    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
-    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
-    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
-    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
-    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    - https://github.com/maspypy/library/blob/main/other/optimize_2d.hpp
+  bundledCode: "#line 1 \"other/optimize_2d.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/other/optimize_2d.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \  }\n};\n#line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 3 \"other/optimize_2d.hpp\"\n\n//\
+    \  return l + RNG_64() % (r - l);\n}\n#line 4 \"other/optimize_2d.hpp\"\n\n//\
     \ \u3069\u306E\u304F\u3089\u3044\u4F7F\u3048\u308B\u3053\u3068\u304C\u3042\u308B\
     \u306E\u304B\u4E0D\u660E\n// https://atcoder.jp/contests/ajo2025-final/submissions/71727945\n\
     // return: f(x,y),x,y\ntemplate <typename T, bool MINIMIZE, typename F>\ntuple<T,\
@@ -66,10 +70,11 @@ data:
     \ cand.begin() + beam_width, cand.end());\n      cand.resize(beam_width);\n  \
     \  }\n  }\n  auto [v, x, y] = *(min_element(all(cand)));\n  if (!MINIMIZE) v =\
     \ -v;\n  return {v, x1 + x, y1 + y};\n}\n"
-  code: "#include \"ds/hashmap.hpp\"\n#include \"random/base.hpp\"\n\n// \u3069\u306E\
-    \u304F\u3089\u3044\u4F7F\u3048\u308B\u3053\u3068\u304C\u3042\u308B\u306E\u304B\
-    \u4E0D\u660E\n// https://atcoder.jp/contests/ajo2025-final/submissions/71727945\n\
-    // return: f(x,y),x,y\ntemplate <typename T, bool MINIMIZE, typename F>\ntuple<T,\
+  code: "// Source: https://github.com/maspypy/library/blob/main/other/optimize_2d.hpp\n\
+    #include \"ds/hashmap.hpp\"\n#include \"random/base.hpp\"\n\n// \u3069\u306E\u304F\
+    \u3089\u3044\u4F7F\u3048\u308B\u3053\u3068\u304C\u3042\u308B\u306E\u304B\u4E0D\
+    \u660E\n// https://atcoder.jp/contests/ajo2025-final/submissions/71727945\n//\
+    \ return: f(x,y),x,y\ntemplate <typename T, bool MINIMIZE, typename F>\ntuple<T,\
     \ ll, ll> optimize_2d(ll x1, ll x2, ll y1, ll y2, F f, int beam_width) {\n  assert(x1\
     \ < x2 && y1 < y2);\n\n  HashMap<T> MP;\n  u64 rnd = RNG_64();\n  auto eval =\
     \ [&](ll x, ll y) -> T {\n    T ans = f(x1 + x, y1 + y);\n    if (!MINIMIZE) ans\
@@ -94,7 +99,7 @@ data:
   isVerificationFile: false
   path: other/optimize_2d.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: other/optimize_2d.hpp

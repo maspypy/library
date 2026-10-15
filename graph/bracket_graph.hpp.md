@@ -9,7 +9,7 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1778.test.cpp
     title: test/3_yukicoder/1778.test.cpp
   - icon: ':x:'
@@ -17,34 +17,38 @@ data:
     title: test/3_yukicoder/3148.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
-    struct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
-    \u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n \
-    \   u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n\
-    \    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\
-    \u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build\
-    \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
-    \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
-    \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
-    \ key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
-    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
-    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
-    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
-    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
-    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
-    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/bracket_graph.hpp
+  bundledCode: "#line 1 \"graph/bracket_graph.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/bracket_graph.hpp\n\
+    #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -120,44 +124,44 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 2 \"graph/bracket_graph.hpp\"\n\r\n// {G, LR}.\r\n// regular\
+    \   }\n  }\n};\n#line 3 \"graph/bracket_graph.hpp\"\n\n// {G, LR}.\n// regular\
     \ bracket sequence \u3092\u30B0\u30E9\u30D5\u306B\u3059\u308B\u3002\u5404\u9802\
     \u70B9\u306E\u7BC4\u56F2\u3092\u8868\u3059\u914D\u5217 LR \u3082\u4F5C\u308B\u3002\
-    \r\n// \u5168\u4F53\u3092\u8868\u3059\u6839\u30CE\u30FC\u30C9\u3082\u4F5C\u3063\
-    \u3066\u3001N/2+1\u9802\u70B9\u3002\r\n// ()() \u2192 [0,4), [0,2), [2,4)\r\n\
-    // regular bracket sequence \u4EE5\u5916\u304C\u5165\u529B\u306B\u6765\u308B\u3068\
-    \u304D\u306F\u3001\u524D\u5F8C\u306B()\u3092\u88DC\u3048\u3070\u4F7F\u3048\u308B\
-    \u3002\r\npair<Graph<int, 1>, vc<pair<int, int>>> bracket_graph(string& S) {\r\
-    \n  int N = len(S) / 2;\r\n  Graph<int, 1> G(N + 1);\r\n  vc<pair<int, int>> LR(N\
-    \ + 1);\r\n  int now = 0;\r\n  int nxt = 1;\r\n  LR[0] = {0, len(S)};\r\n  vc<int>\
-    \ par(N + 1, -1);\r\n  FOR(i, len(S)) {\r\n    assert(S[i] == '(' || S[i] == ')');\r\
-    \n    if (S[i] == '(') {\r\n      G.add(now, nxt);\r\n      par[nxt] = now;\r\n\
-    \      LR[nxt].fi = i;\r\n      now = nxt;\r\n      nxt++;\r\n    }\r\n    if\
-    \ (S[i] == ')') {\r\n      LR[now].se = i + 1;\r\n      now = par[now];\r\n  \
-    \  }\r\n  }\r\n  assert(now == 0);\r\n  G.build();\r\n  return {G, LR};\r\n}\n"
-  code: "#include \"graph/base.hpp\"\r\n\r\n// {G, LR}.\r\n// regular bracket sequence\
-    \ \u3092\u30B0\u30E9\u30D5\u306B\u3059\u308B\u3002\u5404\u9802\u70B9\u306E\u7BC4\
-    \u56F2\u3092\u8868\u3059\u914D\u5217 LR \u3082\u4F5C\u308B\u3002\r\n// \u5168\u4F53\
-    \u3092\u8868\u3059\u6839\u30CE\u30FC\u30C9\u3082\u4F5C\u3063\u3066\u3001N/2+1\u9802\
-    \u70B9\u3002\r\n// ()() \u2192 [0,4), [0,2), [2,4)\r\n// regular bracket sequence\
-    \ \u4EE5\u5916\u304C\u5165\u529B\u306B\u6765\u308B\u3068\u304D\u306F\u3001\u524D\
-    \u5F8C\u306B()\u3092\u88DC\u3048\u3070\u4F7F\u3048\u308B\u3002\r\npair<Graph<int,\
-    \ 1>, vc<pair<int, int>>> bracket_graph(string& S) {\r\n  int N = len(S) / 2;\r\
-    \n  Graph<int, 1> G(N + 1);\r\n  vc<pair<int, int>> LR(N + 1);\r\n  int now =\
-    \ 0;\r\n  int nxt = 1;\r\n  LR[0] = {0, len(S)};\r\n  vc<int> par(N + 1, -1);\r\
-    \n  FOR(i, len(S)) {\r\n    assert(S[i] == '(' || S[i] == ')');\r\n    if (S[i]\
-    \ == '(') {\r\n      G.add(now, nxt);\r\n      par[nxt] = now;\r\n      LR[nxt].fi\
-    \ = i;\r\n      now = nxt;\r\n      nxt++;\r\n    }\r\n    if (S[i] == ')') {\r\
-    \n      LR[now].se = i + 1;\r\n      now = par[now];\r\n    }\r\n  }\r\n  assert(now\
-    \ == 0);\r\n  G.build();\r\n  return {G, LR};\r\n}"
+    \n// \u5168\u4F53\u3092\u8868\u3059\u6839\u30CE\u30FC\u30C9\u3082\u4F5C\u3063\u3066\
+    \u3001N/2+1\u9802\u70B9\u3002\n// ()() \u2192 [0,4), [0,2), [2,4)\n// regular\
+    \ bracket sequence \u4EE5\u5916\u304C\u5165\u529B\u306B\u6765\u308B\u3068\u304D\
+    \u306F\u3001\u524D\u5F8C\u306B()\u3092\u88DC\u3048\u3070\u4F7F\u3048\u308B\u3002\
+    \npair<Graph<int, 1>, vc<pair<int, int>>> bracket_graph(string& S) {\n  int N\
+    \ = len(S) / 2;\n  Graph<int, 1> G(N + 1);\n  vc<pair<int, int>> LR(N + 1);\n\
+    \  int now = 0;\n  int nxt = 1;\n  LR[0] = {0, len(S)};\n  vc<int> par(N + 1,\
+    \ -1);\n  FOR(i, len(S)) {\n    assert(S[i] == '(' || S[i] == ')');\n    if (S[i]\
+    \ == '(') {\n      G.add(now, nxt);\n      par[nxt] = now;\n      LR[nxt].fi =\
+    \ i;\n      now = nxt;\n      nxt++;\n    }\n    if (S[i] == ')') {\n      LR[now].se\
+    \ = i + 1;\n      now = par[now];\n    }\n  }\n  assert(now == 0);\n  G.build();\n\
+    \  return {G, LR};\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/bracket_graph.hpp\n\
+    #include \"graph/base.hpp\"\n\n// {G, LR}.\n// regular bracket sequence \u3092\
+    \u30B0\u30E9\u30D5\u306B\u3059\u308B\u3002\u5404\u9802\u70B9\u306E\u7BC4\u56F2\
+    \u3092\u8868\u3059\u914D\u5217 LR \u3082\u4F5C\u308B\u3002\n// \u5168\u4F53\u3092\
+    \u8868\u3059\u6839\u30CE\u30FC\u30C9\u3082\u4F5C\u3063\u3066\u3001N/2+1\u9802\u70B9\
+    \u3002\n// ()() \u2192 [0,4), [0,2), [2,4)\n// regular bracket sequence \u4EE5\
+    \u5916\u304C\u5165\u529B\u306B\u6765\u308B\u3068\u304D\u306F\u3001\u524D\u5F8C\
+    \u306B()\u3092\u88DC\u3048\u3070\u4F7F\u3048\u308B\u3002\npair<Graph<int, 1>,\
+    \ vc<pair<int, int>>> bracket_graph(string& S) {\n  int N = len(S) / 2;\n  Graph<int,\
+    \ 1> G(N + 1);\n  vc<pair<int, int>> LR(N + 1);\n  int now = 0;\n  int nxt = 1;\n\
+    \  LR[0] = {0, len(S)};\n  vc<int> par(N + 1, -1);\n  FOR(i, len(S)) {\n    assert(S[i]\
+    \ == '(' || S[i] == ')');\n    if (S[i] == '(') {\n      G.add(now, nxt);\n  \
+    \    par[nxt] = now;\n      LR[nxt].fi = i;\n      now = nxt;\n      nxt++;\n\
+    \    }\n    if (S[i] == ')') {\n      LR[now].se = i + 1;\n      now = par[now];\n\
+    \    }\n  }\n  assert(now == 0);\n  G.build();\n  return {G, LR};\n}"
   dependsOn:
   - graph/base.hpp
   - ds/hashmap.hpp
   isVerificationFile: false
   path: graph/bracket_graph.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:05:11+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2026-10-15 19:54:56+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/3148.test.cpp
   - test/3_yukicoder/1778.test.cpp

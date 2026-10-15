@@ -16,23 +16,24 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"string/run_length.hpp\"\ntemplate <typename STRING = string>\n\
-    vc<pair<typename STRING::value_type, ll>> run_length(const STRING& S) {\n  vc<pair<typename\
-    \ STRING::value_type, ll>> res;\n  for (auto&& x : S) {\n    if (res.empty() ||\
-    \ res.back().fi != x) {\n      res.emplace_back(x, 0);\n    }\n    res.back().se++;\n\
-    \  }\n  return res;\n}\n"
-  code: "template <typename STRING = string>\nvc<pair<typename STRING::value_type,\
-    \ ll>> run_length(const STRING& S) {\n  vc<pair<typename STRING::value_type, ll>>\
-    \ res;\n  for (auto&& x : S) {\n    if (res.empty() || res.back().fi != x) {\n\
-    \      res.emplace_back(x, 0);\n    }\n    res.back().se++;\n  }\n  return res;\n\
-    }\n"
+    links:
+    - https://github.com/maspypy/library/blob/main/string/run_length.hpp
+  bundledCode: "#line 1 \"string/run_length.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/run_length.hpp\n\
+    template <typename STRING = string>\nvc<pair<typename STRING::value_type, ll>>\
+    \ run_length(const STRING& S) {\n  vc<pair<typename STRING::value_type, ll>> res;\n\
+    \  for (auto&& x : S) {\n    if (res.empty() || res.back().fi != x) {\n      res.emplace_back(x,\
+    \ 0);\n    }\n    res.back().se++;\n  }\n  return res;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/string/run_length.hpp\n\
+    template <typename STRING = string>\nvc<pair<typename STRING::value_type, ll>>\
+    \ run_length(const STRING& S) {\n  vc<pair<typename STRING::value_type, ll>> res;\n\
+    \  for (auto&& x : S) {\n    if (res.empty() || res.back().fi != x) {\n      res.emplace_back(x,\
+    \ 0);\n    }\n    res.back().se++;\n  }\n  return res;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: string/run_length.hpp
   requiredBy:
   - string/substring_abundant_string.hpp
-  timestamp: '2026-08-31 13:26:17+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/substring_abundant.test.cpp

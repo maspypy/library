@@ -7,8 +7,11 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
+    links:
+    - https://github.com/maspypy/library/blob/main/template/rerooting_dp.hpp
   bundledCode: '#line 1 "template/rerooting_dp.hpp"
+
+    // Source: https://github.com/maspypy/library/blob/main/template/rerooting_dp.hpp
 
     // template/rerooting_dp.hpp
 
@@ -25,7 +28,9 @@ data:
     Rerooting_DP<decltype(tree), Data> dp(tree, f_ee, f_ev, f_ve, id);
 
     '
-  code: '// template/rerooting_dp.hpp
+  code: '// Source: https://github.com/maspypy/library/blob/main/template/rerooting_dp.hpp
+
+    // template/rerooting_dp.hpp
 
     struct Data {};
 
@@ -44,7 +49,7 @@ data:
   isVerificationFile: false
   path: template/rerooting_dp.hpp
   requiredBy: []
-  timestamp: '2026-09-13 15:10:26+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/rerooting_dp.hpp

@@ -22,25 +22,31 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"linalg/transpose.hpp\"\ntemplate <typename VC>\nvc<VC> transpose(const\
-    \ vc<VC>& A, int H = -1, int W = -1) {\n  if (H == -1) { H = len(A), W = (len(A)\
-    \ == 0 ? 0 : len(A[0])); }\n  vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x]\
-    \ = A[x][y];\n  return B;\n}\n#line 1 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\n\
-    #line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add {\n\
-    \  using X = E;\n  using value_type = X;\n  static constexpr X op(const X &x,\
-    \ const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const X\
-    \ &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n) noexcept\
-    \ { return X(n) * x; }\n  static constexpr X id() { return X(0); }\n  static constexpr\
-    \ bool commute = true;\n};\n#line 2 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate\
-    \ <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using MX = Monoid;\n\
-    \  using E = typename G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\
-    \n  FenwickTree() {}\n  FenwickTree(int n) { build(n); }\n  template <typename\
-    \ F>\n  FenwickTree(int n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const\
-    \ vc<E>& v) { build(v); }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m,\
-    \ G::id());\n    total = G::id();\n  }\n  void build(const vc<E>& v) {\n    build(len(v),\
-    \ [&](int i) -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
-    \ m, F f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::id();\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/other/sliding_puzzle_solver.hpp
+  bundledCode: "#line 1 \"other/sliding_puzzle_solver.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/other/sliding_puzzle_solver.hpp\n\
+    #line 1 \"linalg/transpose.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/linalg/transpose.hpp\n\
+    template <typename VC>\nvc<VC> transpose(const vc<VC>& A, int H = -1, int W =\
+    \ -1) {\n  if (H == -1) { H = len(A), W = (len(A) == 0 ? 0 : len(A[0])); }\n \
+    \ vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x] = A[x][y];\n  return B;\n\
+    }\n#line 1 \"seq/inversion.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/seq/inversion.hpp\n\
+    #line 1 \"ds/fenwicktree/fenwicktree_01.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/fenwicktree/fenwicktree_01.hpp\n\
+    \n#line 1 \"ds/fenwicktree/fenwicktree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/fenwicktree/fenwicktree.hpp\n\
+    #line 1 \"alg/monoid/add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
+    \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
+    \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
+    \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
+    };\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
+    struct FenwickTree {\n  using G = Monoid;\n  using MX = Monoid;\n  using E = typename\
+    \ G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree() {}\n\
+    \  FenwickTree(int n) { build(n); }\n  template <typename F>\n  FenwickTree(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v);\
+    \ }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m, G::id());\n    total\
+    \ = G::id();\n  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int i)\
+    \ -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F\
+    \ f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::id();\n\
     \    FOR(i, n) { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int\
     \ j = i + (i & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j -\
     \ 1]);\n    }\n    total = prefix_sum(m);\n  }\n\n  E prod_all() const { return\
@@ -93,7 +99,7 @@ data:
     \ G::inverse(dat[i + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1\
     \ << k), s = t;\n      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int\
     \ L = 0) const {\n    return max_right([&k](E x) -> bool { return x <= k; }, L);\n\
-    \  }\n};\n#line 3 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\nstruct FenwickTree_01\
+    \  }\n};\n#line 4 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\nstruct FenwickTree_01\
     \ {\n  using MX = Monoid_Add<int>;\n  int N, n;\n  vc<u64> dat;\n  FenwickTree<Monoid_Add<int>>\
     \ bit;\n  FenwickTree_01() {}\n  FenwickTree_01(int n) { build(n); }\n  template\
     \ <typename F>\n  FenwickTree_01(int n, F f) {\n    build(n, f);\n  }\n\n  void\
@@ -136,7 +142,7 @@ data:
     \ e) -> bool { return e <= 0; }, idx) - 1;\n    if (idx == -1) return -1;\n  \
     \  return 64 * idx + topbit(dat[idx]);\n  }\n\n  string to_string() {\n    string\
     \ out;\n    FOR(i, N) out += '0' + (dat[i / 64] >> (i & 63) & 1);\n    return\
-    \ out;\n  }\n};\n#line 2 \"seq/inversion.hpp\"\n\ntemplate <typename T>\nll inversion(const\
+    \ out;\n  }\n};\n#line 3 \"seq/inversion.hpp\"\n\ntemplate <typename T>\nll inversion(const\
     \ vc<T>& A) {\n  int N = len(A);\n  if (A.empty()) return 0;\n  ll ANS = 0;\n\
     \  FenwickTree_01 bit(N);\n  auto I = argsort(A);\n  for (auto& i : I) {\n   \
     \ ANS += bit.sum_all() - bit.sum(i);\n    bit.add(i, 1);\n  }\n  return ANS;\n\
@@ -157,7 +163,7 @@ data:
     \ A, const vc<T>& B) {\n  assert(len(A) == len(B));\n  int N = len(A);\n  map<T,\
     \ vc<int>> MP;\n  FOR(i, N) MP[B[i]].eb(i);\n  vc<int> TO(N);\n  FOR_R(i, N) {\n\
     \    auto& I = MP[A[i]];\n    if (I.empty()) return -1;\n    TO[i] = POP(I);\n\
-    \  }\n  return inversion(TO);\n}\n#line 3 \"other/sliding_puzzle_solver.hpp\"\n\
+    \  }\n  return inversion(TO);\n}\n#line 4 \"other/sliding_puzzle_solver.hpp\"\n\
     \n/*\nO(HW(H+W))\n\u7A7A\u30DE\u30B9\u306F -1 (unique)\n\u540C\u3058\u5024\u304C\
     \u8907\u6570\u3042\u3063\u3066\u3082\u3088\u3044\n\u64CD\u4F5C\u56DE\u6570\u3092\
     \ K \u3068\u3057\u3066\u3001\u9577\u3055 K+1 \u306E\u7A7A\u30DE\u30B9\u306E\u5EA7\
@@ -239,12 +245,13 @@ data:
     \ 1, py), ope(px + 1, py);\n      ope(px, py - 1), ope(px - 1, py);\n    }\n \
     \   FOR(y, W) assert(A[H - 1][y] == (pair<int, int>{H - 1, y}));\n    POP(A);\n\
     \    solve_sort(A, ANS, tr);\n  }\n};\n"
-  code: "#include \"linalg/transpose.hpp\"\n#include \"seq/inversion.hpp\"\n\n/*\n\
-    O(HW(H+W))\n\u7A7A\u30DE\u30B9\u306F -1 (unique)\n\u540C\u3058\u5024\u304C\u8907\
-    \u6570\u3042\u3063\u3066\u3082\u3088\u3044\n\u64CD\u4F5C\u56DE\u6570\u3092 K \u3068\
-    \u3057\u3066\u3001\u9577\u3055 K+1 \u306E\u7A7A\u30DE\u30B9\u306E\u5EA7\u6A19\u5217\
-    \u3092\u304B\u3048\u3059\n*/\nstruct Sliding_Puzzle_Solver {\n  using P = pair<int,\
-    \ int>;\n  vc<P> solve(vvc<int> A, vvc<int> B) {\n    int H = len(A), W = len(A[0]);\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/other/sliding_puzzle_solver.hpp\n\
+    #include \"linalg/transpose.hpp\"\n#include \"seq/inversion.hpp\"\n\n/*\nO(HW(H+W))\n\
+    \u7A7A\u30DE\u30B9\u306F -1 (unique)\n\u540C\u3058\u5024\u304C\u8907\u6570\u3042\
+    \u3063\u3066\u3082\u3088\u3044\n\u64CD\u4F5C\u56DE\u6570\u3092 K \u3068\u3057\u3066\
+    \u3001\u9577\u3055 K+1 \u306E\u7A7A\u30DE\u30B9\u306E\u5EA7\u6A19\u5217\u3092\u304B\
+    \u3048\u3059\n*/\nstruct Sliding_Puzzle_Solver {\n  using P = pair<int, int>;\n\
+    \  vc<P> solve(vvc<int> A, vvc<int> B) {\n    int H = len(A), W = len(A[0]);\n\
     \    auto find = [&](vvc<int>& A, int k) -> P {\n      FOR(x, H) FOR(y, W) if\
     \ (A[x][y] == k) return {x, y};\n      assert(0);\n      return {0, 0};\n    };\n\
     \    auto [ax, ay] = find(A, -1);\n    auto [bx, by] = find(B, -1);\n    vc<P>\
@@ -329,7 +336,7 @@ data:
   isVerificationFile: false
   path: other/sliding_puzzle_solver.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: other/sliding_puzzle_solver.hpp

@@ -36,20 +36,21 @@ data:
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/range_add_range_min.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n/*\n\
-    library: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
-    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
-    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
-    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
-    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
-    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
-    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
-    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
-    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
-    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
-    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n//\
+    \ Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\nlibrary:\
+    \ https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
+    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
+    Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\"\
+    )\n#endif\n#endif\n#include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
+    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
+    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class>\nconstexpr\
+    \ bool dependent_false = false;\n\ntemplate <class T>\nconstexpr T infty = []\
+    \ {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\");\n  return\
+    \ T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
     template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
     \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
     using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
@@ -151,46 +152,46 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/range_add_range_min.test.cpp\"\
-    \n\n#line 1 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
-    struct Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX = typename AM::Monoid_X;\n\
-    \  using MA = typename AM::Monoid_A;\n  using X = typename MX::value_type;\n \
-    \ using A = typename MA::value_type;\n  int n, log, size;\n  vc<X> dat;\n  vc<A>\
-    \ laz;\n  vc<bool> has_laz;\n\n  Lazy_SegTree() {}\n  Lazy_SegTree(int n) { build(n);\
-    \ }\n  template <typename F>\n  Lazy_SegTree(int n, F f) {\n    build(n, f);\n\
-    \  }\n  Lazy_SegTree(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n\
-    \    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const vc<X>&\
-    \ v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 0;\n    while ((1\
-    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::id());\n\
-    \    laz.assign(size, MA::id());\n    has_laz.assign(size, false);\n    FOR(i,\
-    \ n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  void update(int\
-    \ k) { dat[k] = MX::op(dat[2 * k], dat[2 * k + 1]); }\n  void set(int p, X x)\
-    \ {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >=\
-    \ 1; i--) push(p >> i);\n    dat[p] = x;\n    for (int i = 1; i <= log; i++) update(p\
-    \ >> i);\n  }\n  void multiply(int p, const X& x) {\n    assert(0 <= p && p <\
-    \ n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    dat[p]\
-    \ = MX::op(dat[p], x);\n    for (int i = 1; i <= log; i++) update(p >> i);\n \
-    \ }\n\n  X get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for\
-    \ (int i = log; i >= 1; i--) push(p >> i);\n    return dat[p];\n  }\n\n  vc<X>\
-    \ get_all() {\n    FOR(k, 1, size) { push(k); }\n    return {dat.begin() + size,\
-    \ dat.begin() + size + n};\n  }\n\n  X prod(int l, int r) {\n    assert(0 <= l\
-    \ && l <= r && r <= n);\n    if (l == r) return MX::id();\n    l += size, r +=\
-    \ size;\n    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l)\
-    \ push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n\
-    \    X xl = MX::id(), xr = MX::id();\n    while (l < r) {\n      if (l & 1) xl\
-    \ = MX::op(xl, dat[l++]);\n      if (r & 1) xr = MX::op(dat[--r], xr);\n     \
-    \ l >>= 1, r >>= 1;\n    }\n    return MX::op(xl, xr);\n  }\n\n  X prod_all()\
-    \ { return dat[1]; }\n\n  void apply(int l, int r, A a) {\n    assert(0 <= l &&\
-    \ l <= r && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n   \
-    \ for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >>\
-    \ i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n    int l2\
-    \ = l, r2 = r;\n    while (l < r) {\n      if (l & 1) apply_at(l++, a);\n    \
-    \  if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>= 1;\n    }\n    l = l2, r\
-    \ = r2;\n    for (int i = 1; i <= log; i++) {\n      if (((l >> i) << i) != l)\
-    \ update(l >> i);\n      if (((r >> i) << i) != r) update((r - 1) >> i);\n   \
-    \ }\n  }\n\n  template <typename F>\n  int max_right(const F check, int l) {\n\
-    \    assert(0 <= l && l <= n);\n    assert(check(MX::id()));\n    if (l == n)\
-    \ return n;\n    l += size;\n    for (int i = log; i >= 1; i--) push(l >> i);\n\
+    \n\n#line 1 \"ds/segtree/lazy_segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/lazy_segtree.hpp\n\
+    \ntemplate <typename ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n\
+    \  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using\
+    \ X = typename MX::value_type;\n  using A = typename MA::value_type;\n  int n,\
+    \ log, size;\n  vc<X> dat;\n  vc<A> laz;\n  vc<bool> has_laz;\n\n  Lazy_SegTree()\
+    \ {}\n  Lazy_SegTree(int n) { build(n); }\n  template <typename F>\n  Lazy_SegTree(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  Lazy_SegTree(const vc<X>& v) { build(v);\
+    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::id(); });\n\
+    \  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return\
+    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n =\
+    \ m, log = 0;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
+    \ << 1, MX::id());\n    laz.assign(size, MA::id());\n    has_laz.assign(size,\
+    \ false);\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n\
+    \  }\n\n  void update(int k) { dat[k] = MX::op(dat[2 * k], dat[2 * k + 1]); }\n\
+    \  void set(int p, X x) {\n    assert(0 <= p && p < n);\n    p += size;\n    for\
+    \ (int i = log; i >= 1; i--) push(p >> i);\n    dat[p] = x;\n    for (int i =\
+    \ 1; i <= log; i++) update(p >> i);\n  }\n  void multiply(int p, const X& x) {\n\
+    \    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--)\
+    \ push(p >> i);\n    dat[p] = MX::op(dat[p], x);\n    for (int i = 1; i <= log;\
+    \ i++) update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0 <= p && p < n);\n\
+    \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    return\
+    \ dat[p];\n  }\n\n  vc<X> get_all() {\n    FOR(k, 1, size) { push(k); }\n    return\
+    \ {dat.begin() + size, dat.begin() + size + n};\n  }\n\n  X prod(int l, int r)\
+    \ {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return MX::id();\n\
+    \    l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n      if (((l\
+    \ >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1)\
+    \ >> i);\n    }\n    X xl = MX::id(), xr = MX::id();\n    while (l < r) {\n  \
+    \    if (l & 1) xl = MX::op(xl, dat[l++]);\n      if (r & 1) xr = MX::op(dat[--r],\
+    \ xr);\n      l >>= 1, r >>= 1;\n    }\n    return MX::op(xl, xr);\n  }\n\n  X\
+    \ prod_all() { return dat[1]; }\n\n  void apply(int l, int r, A a) {\n    assert(0\
+    \ <= l && l <= r && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n\
+    \    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l\
+    \ >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n    int\
+    \ l2 = l, r2 = r;\n    while (l < r) {\n      if (l & 1) apply_at(l++, a);\n \
+    \     if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>= 1;\n    }\n    l = l2,\
+    \ r = r2;\n    for (int i = 1; i <= log; i++) {\n      if (((l >> i) << i) !=\
+    \ l) update(l >> i);\n      if (((r >> i) << i) != r) update((r - 1) >> i);\n\
+    \    }\n  }\n\n  template <typename F>\n  int max_right(const F check, int l)\
+    \ {\n    assert(0 <= l && l <= n);\n    assert(check(MX::id()));\n    if (l ==\
+    \ n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--) push(l >> i);\n\
     \    X sm = MX::id();\n    do {\n      while (l % 2 == 0) l >>= 1;\n      if (!check(MX::op(sm,\
     \ dat[l]))) {\n        while (l < size) {\n          push(l);\n          l = (2\
     \ * l);\n          if (check(MX::op(sm, dat[l]))) {\n            sm = MX::op(sm,\
@@ -219,62 +220,67 @@ data:
     \ (k < size) has_laz[k] = 1, laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
     \ k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = 0;\n    apply_at(2 * k,\
     \ laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k] = MA::id();\n  }\n};\n#line\
-    \ 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add {\n  using\
-    \ X = E;\n  using value_type = X;\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return x + y; }\n  static constexpr X inverse(const X &x) noexcept\
-    \ { return -x; }\n  static constexpr X power(const X &x, ll n) noexcept { return\
-    \ X(n) * x; }\n  static constexpr X id() { return X(0); }\n  static constexpr\
-    \ bool commute = true;\n};\n#line 1 \"alg/monoid/min.hpp\"\n// require: all values\
-    \ x satisfy x <= infty<E>\ntemplate <typename E>\nstruct Monoid_Min {\n  using\
-    \ X = E;\n  using value_type = X;\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return min(x, y); }\n  static constexpr X id() { return infty<E>;\
-    \ }\n  static constexpr bool commute = true;\n};\n#line 3 \"alg/acted_monoid/min_add.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_Min_Add {\r\n  using Monoid_X\
-    \ = Monoid_Min<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
-    \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
-    \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    if (x == infty<E>)\
-    \ return x;\r\n    return x + a;\r\n  }\r\n};\r\n#line 1 \"random/base.hpp\"\n\
-    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ 1 \"alg/acted_monoid/min_add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/min_add.hpp\n\
+    #line 1 \"alg/monoid/add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
+    \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
+    \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
+    \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
+    };\n#line 1 \"alg/monoid/min.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n\
+    // require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
+    \ Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
+    \ op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
+    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
+    \ 4 \"alg/acted_monoid/min_add.hpp\"\n\ntemplate <typename E>\nstruct ActedMonoid_Min_Add\
+    \ {\n  using Monoid_X = Monoid_Min<E>;\n  using Monoid_A = Monoid_Add<E>;\n  using\
+    \ X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
+    \  static constexpr X act(const X &x, const A &a, const ll &size) {\n    if (x\
+    \ == infty<E>) return x;\n    return x + a;\n  }\n};\n#line 1 \"random/base.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\n\
+    u64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"ds/segtree/segtree.hpp\"\n\ntemplate\
-    \ <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X = typename\
-    \ MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\
-    \n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename F>\n  SegTree(int\
-    \ n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n\
-    \  void build(int m) {\n    build(m, [](int i) -> X { return MX::id(); });\n \
-    \ }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return\
-    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n =\
-    \ m, log = 0;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
-    \ << 1, MX::id());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size)\
-    \ update(i);\n  }\n\n  X get(int i) const { return dat[size + i]; }\n  vc<X> get_all()\
-    \ const { return {dat.begin() + size, dat.begin() + size + n}; }\n\n  void update(int\
-    \ i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n  void set(int i, const\
-    \ X& x) {\n    assert(0 <= i && i < n);\n    dat[i += size] = x;\n    while (i\
-    \ >>= 1) update(i);\n  }\n\n  void multiply(int i, const X& x) {\n    assert(0\
-    \ <= i && i < n);\n    i += size;\n    dat[i] = Monoid::op(dat[i], x);\n    while\
-    \ (i >>= 1) update(i);\n  }\n\n  X prod(int L, int R) const {\n    assert(0 <=\
-    \ L && L <= R && R <= n);\n    X vl = Monoid::id(), vr = Monoid::id();\n    L\
-    \ += size, R += size;\n    while (L < R) {\n      if (L & 1) vl = Monoid::op(vl,\
-    \ dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1,\
-    \ R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n  vc<int> prod_ids(int\
-    \ L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n    vc<int> I, J;\n\
-    \    L += size, R += size;\n    while (L < R) {\n      if (L & 1) I.eb(L++);\n\
-    \      if (R & 1) J.eb(--R);\n      L >>= 1, R >>= 1;\n    }\n    reverse(all(J));\n\
-    \    concat(I, J);\n    return I;\n  }\n\n  X prod_all() const { return dat[1];\
-    \ }\n\n  template <class F>\n  int max_right(F check, int L) const {\n    assert(0\
-    \ <= L && L <= n && check(Monoid::id()));\n    if (L == n) return n;\n    L +=\
-    \ size;\n    X sm = Monoid::id();\n    do {\n      while (L % 2 == 0) L >>= 1;\n\
-    \      if (!check(Monoid::op(sm, dat[L]))) {\n        while (L < size) {\n   \
-    \       L = 2 * L;\n          if (check(Monoid::op(sm, dat[L]))) {\n         \
-    \   sm = Monoid::op(sm, dat[L++]);\n          }\n        }\n        return L -\
-    \ size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n    } while ((L & -L)\
-    \ != L);\n    return n;\n  }\n\n  template <class F>\n  int min_left(F check,\
-    \ int R) const {\n    assert(0 <= R && R <= n && check(Monoid::id()));\n    if\
-    \ (R == 0) return 0;\n    R += size;\n    X sm = Monoid::id();\n    do {\n   \
-    \   --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"ds/rmq/range_add_range_min.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/ds/rmq/range_add_range_min.hpp\n\
+    #line 1 \"ds/segtree/segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/segtree.hpp\n\
+    \ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X =\
+    \ typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log,\
+    \ size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
+    \ F>\n  SegTree(int n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v)\
+    \ { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return\
+    \ MX::id(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int\
+    \ i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
+    \ F f) {\n    n = m, log = 0;\n    while ((1 << log) < n) ++log;\n    size = 1\
+    \ << log;\n    dat.assign(size << 1, MX::id());\n    FOR(i, n) dat[size + i] =\
+    \ f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  X get(int i) const { return\
+    \ dat[size + i]; }\n  vc<X> get_all() const { return {dat.begin() + size, dat.begin()\
+    \ + size + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2\
+    \ * i + 1]); }\n  void set(int i, const X& x) {\n    assert(0 <= i && i < n);\n\
+    \    dat[i += size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int\
+    \ i, const X& x) {\n    assert(0 <= i && i < n);\n    i += size;\n    dat[i] =\
+    \ Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n  X prod(int\
+    \ L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n    X vl = Monoid::id(),\
+    \ vr = Monoid::id();\n    L += size, R += size;\n    while (L < R) {\n      if\
+    \ (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R],\
+    \ vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n\
+    \  vc<int> prod_ids(int L, int R) const {\n    assert(0 <= L && L <= R && R <=\
+    \ n);\n    vc<int> I, J;\n    L += size, R += size;\n    while (L < R) {\n   \
+    \   if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n      L >>= 1, R >>= 1;\n\
+    \    }\n    reverse(all(J));\n    concat(I, J);\n    return I;\n  }\n\n  X prod_all()\
+    \ const { return dat[1]; }\n\n  template <class F>\n  int max_right(F check, int\
+    \ L) const {\n    assert(0 <= L && L <= n && check(Monoid::id()));\n    if (L\
+    \ == n) return n;\n    L += size;\n    X sm = Monoid::id();\n    do {\n      while\
+    \ (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L]))) {\n       \
+    \ while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
+    \ dat[L]))) {\n            sm = Monoid::op(sm, dat[L++]);\n          }\n     \
+    \   }\n        return L - size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n\
+    \    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class F>\n  int\
+    \ min_left(F check, int R) const {\n    assert(0 <= R && R <= n && check(Monoid::id()));\n\
+    \    if (R == 0) return 0;\n    R += size;\n    X sm = Monoid::id();\n    do {\n\
+    \      --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
     \ sm))) {\n        while (R < size) {\n          R = 2 * R + 1;\n          if\
     \ (check(Monoid::op(dat[R], sm))) {\n            sm = Monoid::op(dat[R--], sm);\n\
     \          }\n        }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R],\
@@ -294,7 +300,7 @@ data:
     \    }\n\n    int m = len(I);\n    while (I[0] > 1) {\n      int nxt = 0;\n  \
     \    int last = -1;\n      FOR(k, m) {\n        int p = I[k] >> 1;\n        if\
     \ (p == last) continue;\n        update(p);\n        I[nxt++] = p;\n        last\
-    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 2 \"ds/rmq/range_add_range_min.hpp\"\
+    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 3 \"ds/rmq/range_add_range_min.hpp\"\
     \n\n// INF+x==INF \u307F\u305F\u3044\u306A\u51E6\u7406\u306F\u5165\u308C\u3066\
     \u3044\u306A\u3044\n// N=Q=10^6 \u3067 lazysegtree \u3088\u308A 20,30% \u7A0B\u5EA6\
     \u9AD8\u901F\u306A\u5834\u5408\u304C\u3042\u308B\ntemplate <typename T>\nstruct\
@@ -398,7 +404,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_add_range_min.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/range_add_range_min.test.cpp

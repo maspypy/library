@@ -15,11 +15,14 @@ data:
   attributes:
     links:
     - https://codeforces.com/problemset/problem/1662/K
-  bundledCode: "#line 1 \"geo/cross_point.hpp\"\n\n#line 1 \"geo/base.hpp\"\ntemplate\
-    \ <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template\
-    \ <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename\
-    \ A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  template <typename\
-    \ U>\n  Point(Point<U> p) : x(p.x), y(p.y) {\n    static_assert(!is_integral_v<T>\
+    - https://github.com/maspypy/library/blob/main/geo/minimum_three_distance_sum.hpp
+  bundledCode: "#line 1 \"geo/minimum_three_distance_sum.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/minimum_three_distance_sum.hpp\n\
+    #line 1 \"geo/cross_point.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/cross_point.hpp\n\
+    \n#line 1 \"geo/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/base.hpp\n\
+    template <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
+    \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
+    \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
+    \ {}\n\n  template <typename U>\n  Point(Point<U> p) : x(p.x), y(p.y) {\n    static_assert(!is_integral_v<T>\
     \ || is_integral_v<U>);\n  }\n\n  Point operator+=(const Point p) {\n    x +=\
     \ p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const Point p) {\n\
     \    x -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point p) const\
@@ -70,7 +73,7 @@ data:
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
     \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 3 \"geo/cross_point.hpp\"\n\n// \u5E73\u884C\u3067\u306A\u3044\u3053\u3068\u3092\
+    \ 4 \"geo/cross_point.hpp\"\n\n// \u5E73\u884C\u3067\u306A\u3044\u3053\u3068\u3092\
     \u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(const\
     \ Line<T> L1, const Line<T> L2) {\n  T det = L1.a * L2.b - L1.b * L2.a;\n  assert(det\
     \ != 0);\n  REAL x = -REAL(L1.c) * L2.b + REAL(L1.b) * L2.c;\n  REAL y = -REAL(L1.a)\
@@ -117,7 +120,7 @@ data:
     \ < -1 || 1 < cos_val) return {false, O, O};\n  REAL t = acos(cos_val);\n  REAL\
     \ u = (B - A).angle();\n  P X = A + P{C1.r * cos(u + t), C1.r * sin(u + t)};\n\
     \  P Y = A + P{C1.r * cos(u - t), C1.r * sin(u - t)};\n  return {true, X, Y};\n\
-    }\n#line 2 \"geo/minimum_three_distance_sum.hpp\"\n\n// Fermat point OR vertex\n\
+    }\n#line 3 \"geo/minimum_three_distance_sum.hpp\"\n\n// Fermat point OR vertex\n\
     // https://codeforces.com/problemset/problem/1662/K\ntemplate <typename Re>\n\
     Re minimum_three_distance_sum(Point<Re> A, Point<Re> B, Point<Re> C) {\n  using\
     \ P = Point<Re>;\n  const Re PI = acos(-1);\n  if (ccw(A, B, C) == -1) {\n   \
@@ -129,7 +132,8 @@ data:
     \ C1 = get(A, B), C2 = get(B, C);\n  auto [ok, p1, p2] = cross_point_circle<Re,\
     \ Re>(C1, C2);\n  for (auto& p : {p1, p2}) {\n    Re d = 0;\n    for (P q : {A,\
     \ B, C}) d += distance<Re>(p, q);\n    chmin(ANS, d);\n  }\n  return ANS;\n}\n"
-  code: "#include \"geo/cross_point.hpp\"\n\n// Fermat point OR vertex\n// https://codeforces.com/problemset/problem/1662/K\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/geo/minimum_three_distance_sum.hpp\n\
+    #include \"geo/cross_point.hpp\"\n\n// Fermat point OR vertex\n// https://codeforces.com/problemset/problem/1662/K\n\
     template <typename Re>\nRe minimum_three_distance_sum(Point<Re> A, Point<Re> B,\
     \ Point<Re> C) {\n  using P = Point<Re>;\n  const Re PI = acos(-1);\n  if (ccw(A,\
     \ B, C) == -1) {\n    swap(B, C);\n  }\n  Re ANS = infty<Re>;\n  Re AB = distance<Re>(A,\
@@ -147,7 +151,7 @@ data:
   isVerificationFile: false
   path: geo/minimum_three_distance_sum.hpp
   requiredBy: []
-  timestamp: '2026-09-25 18:55:10+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/minimum_three_distance_sum.hpp

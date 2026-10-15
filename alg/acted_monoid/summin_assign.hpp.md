@@ -16,36 +16,38 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/summin.hpp\"\n\ntemplate <typename E>\nstruct\
-    \ Monoid_SumMin {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
-    \  static X op(X x, X y) { return {x.fi + y.fi, min(x.se, y.se)}; }\n  static\
-    \ X from_element(E x) { return {x, x}; }\n  static constexpr X id() { return {E(0),\
-    \ infty<E>}; }\n  static constexpr bool commute = true;\n};\n#line 1 \"alg/monoid/assign.hpp\"\
-    \n\ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/acted_monoid/summin_assign.hpp
+  bundledCode: "#line 1 \"alg/acted_monoid/summin_assign.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/summin_assign.hpp\n\
+    #line 1 \"alg/monoid/summin.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/summin.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_SumMin {\n  using value_type = pair<E,\
+    \ E>;\n  using X = value_type;\n  static X op(X x, X y) { return {x.fi + y.fi,\
+    \ min(x.se, y.se)}; }\n  static X from_element(E x) { return {x, x}; }\n  static\
+    \ constexpr X id() { return {E(0), infty<E>}; }\n  static constexpr bool commute\
+    \ = true;\n};\n#line 1 \"alg/monoid/assign.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
+    \ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
     \ = X;\n  static X op(X x, X y) { return (y == X(none_val) ? x : y); }\n  static\
     \ constexpr X id() { return X(none_val); }\n  static constexpr bool commute =\
-    \ false;\n};\n#line 3 \"alg/acted_monoid/summin_assign.hpp\"\n\r\ntemplate <typename\
-    \ E, ll none_val>\r\nstruct ActedMonoid_SumMin_Assign {\r\n  using Monoid_X =\
-    \ Monoid_SumMin<E>;\r\n  using Monoid_A = Monoid_Assign<ll, none_val>;\r\n  using\
-    \ X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
-    \n  static constexpr X act(const X& x, const A& a, const ll& size) {\r\n    if\
-    \ (a == Monoid_A::id()) return x;\r\n    return {E(size) * a, a};\r\n  }\r\n};\r\
-    \n"
-  code: "#include \"alg/monoid/summin.hpp\"\r\n#include \"alg/monoid/assign.hpp\"\r\
-    \n\r\ntemplate <typename E, ll none_val>\r\nstruct ActedMonoid_SumMin_Assign {\r\
-    \n  using Monoid_X = Monoid_SumMin<E>;\r\n  using Monoid_A = Monoid_Assign<ll,\
-    \ none_val>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A = typename\
-    \ Monoid_A::value_type;\r\n  static constexpr X act(const X& x, const A& a, const\
-    \ ll& size) {\r\n    if (a == Monoid_A::id()) return x;\r\n    return {E(size)\
-    \ * a, a};\r\n  }\r\n};\r\n"
+    \ false;\n};\n#line 4 \"alg/acted_monoid/summin_assign.hpp\"\n\ntemplate <typename\
+    \ E, ll none_val>\nstruct ActedMonoid_SumMin_Assign {\n  using Monoid_X = Monoid_SumMin<E>;\n\
+    \  using Monoid_A = Monoid_Assign<ll, none_val>;\n  using X = typename Monoid_X::value_type;\n\
+    \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X&\
+    \ x, const A& a, const ll& size) {\n    if (a == Monoid_A::id()) return x;\n \
+    \   return {E(size) * a, a};\n  }\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/summin_assign.hpp\n\
+    #include \"alg/monoid/summin.hpp\"\n#include \"alg/monoid/assign.hpp\"\n\ntemplate\
+    \ <typename E, ll none_val>\nstruct ActedMonoid_SumMin_Assign {\n  using Monoid_X\
+    \ = Monoid_SumMin<E>;\n  using Monoid_A = Monoid_Assign<ll, none_val>;\n  using\
+    \ X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
+    \  static constexpr X act(const X& x, const A& a, const ll& size) {\n    if (a\
+    \ == Monoid_A::id()) return x;\n    return {E(size) * a, a};\n  }\n};\n"
   dependsOn:
   - alg/monoid/summin.hpp
   - alg/monoid/assign.hpp
   isVerificationFile: false
   path: alg/acted_monoid/summin_assign.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/summin_assign.test.cpp

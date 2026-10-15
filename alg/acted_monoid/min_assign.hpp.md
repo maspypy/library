@@ -22,34 +22,38 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/min.hpp\"\n// require: all values x satisfy x\
-    \ <= infty<E>\ntemplate <typename E>\nstruct Monoid_Min {\n  using X = E;\n  using\
-    \ value_type = X;\n  static constexpr X op(const X &x, const X &y) noexcept {\
-    \ return min(x, y); }\n  static constexpr X id() { return infty<E>; }\n  static\
-    \ constexpr bool commute = true;\n};\n#line 1 \"alg/monoid/assign.hpp\"\n\ntemplate\
-    \ <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type = X;\n\
-    \  static X op(X x, X y) { return (y == X(none_val) ? x : y); }\n  static constexpr\
-    \ X id() { return X(none_val); }\n  static constexpr bool commute = false;\n};\n\
-    #line 3 \"alg/acted_monoid/min_assign.hpp\"\n\r\ntemplate <typename E, E none_val>\r\
-    \nstruct ActedMonoid_Min_Assign {\r\n  using Monoid_X = Monoid_Min<E>;\r\n  using\
-    \ Monoid_A = Monoid_Assign<E, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
-    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
-    \ X &x, const A &a, const ll &size) {\r\n    return (a == none_val ? x : a);\r\
-    \n  }\r\n};\r\n"
-  code: "#include \"alg/monoid/min.hpp\"\r\n#include \"alg/monoid/assign.hpp\"\r\n\
-    \r\ntemplate <typename E, E none_val>\r\nstruct ActedMonoid_Min_Assign {\r\n \
-    \ using Monoid_X = Monoid_Min<E>;\r\n  using Monoid_A = Monoid_Assign<E, none_val>;\r\
-    \n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
-    \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    return\
-    \ (a == none_val ? x : a);\r\n  }\r\n};\r\n"
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/acted_monoid/min_assign.hpp
+  bundledCode: "#line 1 \"alg/acted_monoid/min_assign.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/min_assign.hpp\n\
+    #line 1 \"alg/monoid/min.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n\
+    // require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
+    \ Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
+    \ op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
+    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
+    \ 1 \"alg/monoid/assign.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
+    \ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
+    \ = X;\n  static X op(X x, X y) { return (y == X(none_val) ? x : y); }\n  static\
+    \ constexpr X id() { return X(none_val); }\n  static constexpr bool commute =\
+    \ false;\n};\n#line 4 \"alg/acted_monoid/min_assign.hpp\"\n\ntemplate <typename\
+    \ E, E none_val>\nstruct ActedMonoid_Min_Assign {\n  using Monoid_X = Monoid_Min<E>;\n\
+    \  using Monoid_A = Monoid_Assign<E, none_val>;\n  using X = typename Monoid_X::value_type;\n\
+    \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X\
+    \ &x, const A &a, const ll &size) {\n    return (a == none_val ? x : a);\n  }\n\
+    };\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/min_assign.hpp\n\
+    #include \"alg/monoid/min.hpp\"\n#include \"alg/monoid/assign.hpp\"\n\ntemplate\
+    \ <typename E, E none_val>\nstruct ActedMonoid_Min_Assign {\n  using Monoid_X\
+    \ = Monoid_Min<E>;\n  using Monoid_A = Monoid_Assign<E, none_val>;\n  using X\
+    \ = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
+    \  static constexpr X act(const X &x, const A &a, const ll &size) {\n    return\
+    \ (a == none_val ? x : a);\n  }\n};\n"
   dependsOn:
   - alg/monoid/min.hpp
   - alg/monoid/assign.hpp
   isVerificationFile: false
   path: alg/acted_monoid/min_assign.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:27:49+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/rbst_am.test.cpp

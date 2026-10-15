@@ -24,11 +24,15 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/852/problem/I
-  bundledCode: "#line 1 \"graph/tree.hpp\"\n\n#line 1 \"ds/hashmap.hpp\"\n\n// u64\
-    \ -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\
-    \u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
-    \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
-    \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    - https://github.com/maspypy/library/blob/main/graph/ds/mo_on_tree.hpp
+  bundledCode: "#line 1 \"graph/ds/mo_on_tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/ds/mo_on_tree.hpp\n\
+    #line 1 \"graph/tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/tree.hpp\n\
+    \n#line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
     \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
     \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
     \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
@@ -49,7 +53,7 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -125,7 +129,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 3 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
+    \   }\n  }\n};\n#line 4 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
     \u3066\u3044\u308D\u3044\u308D\n// HLD=false: \u5165\u529B\u8FBA\u9806\u3067 preorder\n\
     template <typename GT, bool HLD = true>\nstruct Tree {\n  using Graph_type = GT;\n\
     \  using WT = typename GT::cost_type;\n  int N = 0;\n  vector<int> LID, RID, head,\
@@ -245,44 +249,43 @@ data:
     \ G.csr_edges[i];\n          if (e.to == parent[v] || e.to == max_ch) continue;\n\
     \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
     \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 1 \"\
-    ds/offline_query/mo.hpp\"\n// Nsqrt(Q)\r\nstruct Mo {\r\n  vc<pair<int, int>>\
-    \ LR;\r\n  void add(int L, int R) { LR.emplace_back(L, R); }\r\n\r\n  static vc<int>\
-    \ get_mo_order(vc<pair<int, int>> LR) {\r\n    int N = 1;\r\n    for (auto &&[l,\
-    \ r] : LR) chmax(N, l), chmax(N, r);\r\n    int Q = len(LR);\r\n    if (Q == 0)\
-    \ return {};\r\n    int bs = sqrt(3) * N / sqrt(2 * Q);\r\n    chmax(bs, 1);\r\
-    \n    vc<int> I(Q);\r\n    iota(all(I), 0);\r\n    sort(all(I), [&](int a, int\
-    \ b) {\r\n      int aa = LR[a].fi / bs, bb = LR[b].fi / bs;\r\n      if (aa !=\
-    \ bb) return aa < bb;\r\n      return (aa & 1) ? LR[a].se > LR[b].se : LR[a].se\
-    \ < LR[b].se;\r\n    });\r\n\r\n    auto cost = [&](int a, int b) -> int {\r\n\
-    \      return abs(LR[I[a]].fi - LR[I[b]].fi) + abs(LR[I[a]].se - LR[I[b]].se);\r\
-    \n    };\r\n\r\n    // \u30E9\u30F3\u30C0\u30E0\u30B1\u30FC\u30B9\u30676%\u7A0B\
-    \u5EA6\u6539\u5584\r\n    auto work = [&](int k) -> void {\r\n      if (cost(k,\
-    \ k + 2) + cost(k + 1, k + 3) <\r\n          cost(k, k + 1) + cost(k + 2, k +\
-    \ 3)) {\r\n        swap(I[k + 1], I[k + 2]);\r\n      }\r\n      if (cost(k, k\
-    \ + 3) + cost(k + 1, k + 4) <\r\n          cost(k, k + 1) + cost(k + 3, k + 4))\
-    \ {\r\n        swap(I[k + 1], I[k + 3]);\r\n      }\r\n    };\r\n    FOR(k, Q\
-    \ - 5) work(k);\r\n    FOR_R(k, Q - 5) work(k);\r\n    return I;\r\n  }\r\n\r\n\
-    \  template <typename F1, typename F2, typename F3, typename F4, typename F5>\r\
-    \n  void calc(F1 add_l, F2 add_r, F3 rm_l, F4 rm_r, F5 query) {\r\n    auto I\
-    \ = get_mo_order(LR);\r\n    int l = 0, r = 0;\r\n    for (auto idx : I) {\r\n\
-    \      while (l > LR[idx].fi) add_l(--l);\r\n      while (r < LR[idx].se) add_r(r++);\r\
-    \n      while (l < LR[idx].fi) rm_l(l++);\r\n      while (r > LR[idx].se) rm_r(--r);\r\
-    \n      query(idx);\r\n    }\r\n  }\r\n};\r\n#line 3 \"graph/ds/mo_on_tree.hpp\"\
-    \n\n// https://codeforces.com/contest/852/problem/I\ntemplate <typename TREE,\
-    \ bool ORIENTED = false>\nstruct Mo_on_Tree {\n  TREE& tree;\n  vc<pair<int, int>>\
-    \ LR;\n\n  Mo mo;\n  Mo_on_Tree(TREE& tree) : tree(tree) {}\n  void add(int u,\
-    \ int v) {\n    if constexpr (!ORIENTED) {\n      if (tree.LID[u] > tree.LID[v])\
-    \ swap(u, v);\n    }\n    LR.eb(tree.ELID(u) + 1, tree.ELID(v) + 1);\n  }\n\n\
-    \  // init_root_path(): root \u3060\u3051\u304B\u3089\u306A\u308B path\n  // add_l(v),\
-    \ add_r(v)\uFF1A\u30D1\u30B9\u306E\u5148\u982D / \u672B\u5C3E\u306B v \u3092\u8FFD\
-    \u52A0\n  // rm_l(v), rm_r(v)\uFF1A\u30D1\u30B9\u306E\u5148\u982D / \u672B\u5C3E\
-    \u304B\u3089 v \u3092\u524A\u9664\n  // query(qid)\n  template <typename F1, typename\
-    \ F2, typename F3, typename F4, typename F5,\n      typename F6>\n  void calc_vertex(\n\
-    \      F1 init_root_path, F2 add_l, F3 add_r, F4 rm_l, F5 rm_r, F6 query) {\n\
-    \    const int N = tree.N;\n    auto I = Mo::get_mo_order(LR);\n\n    vc<int>\
-    \ FRM(2 * N), TO(2 * N), idx(2 * N);\n    vc<int> cnt(N);\n    deque<int> path\
-    \ = {0};\n    FOR(v, N) {\n      int a = tree.ELID(v), b = tree.ERID(v);\n   \
-    \   FRM[a] = tree.parent[v], TO[a] = v;\n      FRM[b] = v, TO[b] = tree.parent[v];\n\
+    ds/offline_query/mo.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/mo.hpp\n\
+    // Nsqrt(Q)\nstruct Mo {\n  vc<pair<int, int>> LR;\n  void add(int L, int R) {\
+    \ LR.emplace_back(L, R); }\n\n  static vc<int> get_mo_order(vc<pair<int, int>>\
+    \ LR) {\n    int N = 1;\n    for (auto &&[l, r] : LR) chmax(N, l), chmax(N, r);\n\
+    \    int Q = len(LR);\n    if (Q == 0) return {};\n    int bs = sqrt(3) * N /\
+    \ sqrt(2 * Q);\n    chmax(bs, 1);\n    vc<int> I(Q);\n    iota(all(I), 0);\n \
+    \   sort(all(I), [&](int a, int b) {\n      int aa = LR[a].fi / bs, bb = LR[b].fi\
+    \ / bs;\n      if (aa != bb) return aa < bb;\n      return (aa & 1) ? LR[a].se\
+    \ > LR[b].se : LR[a].se < LR[b].se;\n    });\n\n    auto cost = [&](int a, int\
+    \ b) -> int {\n      return abs(LR[I[a]].fi - LR[I[b]].fi) + abs(LR[I[a]].se -\
+    \ LR[I[b]].se);\n    };\n\n    // \u30E9\u30F3\u30C0\u30E0\u30B1\u30FC\u30B9\u3067\
+    6%\u7A0B\u5EA6\u6539\u5584\n    auto work = [&](int k) -> void {\n      if (cost(k,\
+    \ k + 2) + cost(k + 1, k + 3) <\n          cost(k, k + 1) + cost(k + 2, k + 3))\
+    \ {\n        swap(I[k + 1], I[k + 2]);\n      }\n      if (cost(k, k + 3) + cost(k\
+    \ + 1, k + 4) <\n          cost(k, k + 1) + cost(k + 3, k + 4)) {\n        swap(I[k\
+    \ + 1], I[k + 3]);\n      }\n    };\n    FOR(k, Q - 5) work(k);\n    FOR_R(k,\
+    \ Q - 5) work(k);\n    return I;\n  }\n\n  template <typename F1, typename F2,\
+    \ typename F3, typename F4, typename F5>\n  void calc(F1 add_l, F2 add_r, F3 rm_l,\
+    \ F4 rm_r, F5 query) {\n    auto I = get_mo_order(LR);\n    int l = 0, r = 0;\n\
+    \    for (auto idx : I) {\n      while (l > LR[idx].fi) add_l(--l);\n      while\
+    \ (r < LR[idx].se) add_r(r++);\n      while (l < LR[idx].fi) rm_l(l++);\n    \
+    \  while (r > LR[idx].se) rm_r(--r);\n      query(idx);\n    }\n  }\n};\n#line\
+    \ 4 \"graph/ds/mo_on_tree.hpp\"\n\n// https://codeforces.com/contest/852/problem/I\n\
+    template <typename TREE, bool ORIENTED = false>\nstruct Mo_on_Tree {\n  TREE&\
+    \ tree;\n  vc<pair<int, int>> LR;\n\n  Mo mo;\n  Mo_on_Tree(TREE& tree) : tree(tree)\
+    \ {}\n  void add(int u, int v) {\n    if constexpr (!ORIENTED) {\n      if (tree.LID[u]\
+    \ > tree.LID[v]) swap(u, v);\n    }\n    LR.eb(tree.ELID(u) + 1, tree.ELID(v)\
+    \ + 1);\n  }\n\n  // init_root_path(): root \u3060\u3051\u304B\u3089\u306A\u308B\
+    \ path\n  // add_l(v), add_r(v)\uFF1A\u30D1\u30B9\u306E\u5148\u982D / \u672B\u5C3E\
+    \u306B v \u3092\u8FFD\u52A0\n  // rm_l(v), rm_r(v)\uFF1A\u30D1\u30B9\u306E\u5148\
+    \u982D / \u672B\u5C3E\u304B\u3089 v \u3092\u524A\u9664\n  // query(qid)\n  template\
+    \ <typename F1, typename F2, typename F3, typename F4, typename F5,\n      typename\
+    \ F6>\n  void calc_vertex(\n      F1 init_root_path, F2 add_l, F3 add_r, F4 rm_l,\
+    \ F5 rm_r, F6 query) {\n    const int N = tree.N;\n    auto I = Mo::get_mo_order(LR);\n\
+    \n    vc<int> FRM(2 * N), TO(2 * N), idx(2 * N);\n    vc<int> cnt(N);\n    deque<int>\
+    \ path = {0};\n    FOR(v, N) {\n      int a = tree.ELID(v), b = tree.ERID(v);\n\
+    \      FRM[a] = tree.parent[v], TO[a] = v;\n      FRM[b] = v, TO[b] = tree.parent[v];\n\
     \      idx[a] = idx[b] = v;\n    }\n\n    auto flip_left = [&](int i) -> void\
     \ {\n      const int a = FRM[i], b = TO[i], c = idx[i];\n      if (cnt[c] == 0)\
     \ {\n        int v = path.front() ^ a ^ b;\n        path.emplace_front(v), add_l(v);\n\
@@ -321,7 +324,8 @@ data:
     \      }\n      while (r < R) {\n        flip_right(r++);\n      }\n      while\
     \ (l < L) {\n        flip_left(l++);\n      }\n      while (r > R) {\n       \
     \ flip_right(--r);\n      }\n      query(idx);\n    }\n  }\n};\n"
-  code: "#include \"graph/tree.hpp\"\n#include \"ds/offline_query/mo.hpp\"\n\n// https://codeforces.com/contest/852/problem/I\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/ds/mo_on_tree.hpp\n\
+    #include \"graph/tree.hpp\"\n#include \"ds/offline_query/mo.hpp\"\n\n// https://codeforces.com/contest/852/problem/I\n\
     template <typename TREE, bool ORIENTED = false>\nstruct Mo_on_Tree {\n  TREE&\
     \ tree;\n  vc<pair<int, int>> LR;\n\n  Mo mo;\n  Mo_on_Tree(TREE& tree) : tree(tree)\
     \ {}\n  void add(int u, int v) {\n    if constexpr (!ORIENTED) {\n      if (tree.LID[u]\
@@ -382,7 +386,7 @@ data:
   isVerificationFile: false
   path: graph/ds/mo_on_tree.hpp
   requiredBy: []
-  timestamp: '2026-10-06 19:21:51+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/mo_on_tree.test.cpp

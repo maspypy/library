@@ -9,39 +9,43 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/899.test.cpp
     title: test/3_yukicoder/899.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
-    struct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
-    \u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n \
-    \   u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n\
-    \    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\
-    \u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build\
-    \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
-    \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
-    \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
-    \ key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
-    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
-    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
-    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
-    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
-    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
-    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/ds/bfs_numbering.hpp
+  bundledCode: "#line 1 \"graph/ds/bfs_numbering.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/ds/bfs_numbering.hpp\n\
+    #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -117,84 +121,80 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 2 \"graph/ds/bfs_numbering.hpp\"\n\r\n// ID[v]\uFF1A\u9802\
-    \u70B9\u306E\u65B0\u3057\u3044\u756A\u53F7\r\n// calc_range(v, dep)\uFF1Av \u306E\
+    \   }\n  }\n};\n#line 3 \"graph/ds/bfs_numbering.hpp\"\n\n// ID[v]\uFF1A\u9802\
+    \u70B9\u306E\u65B0\u3057\u3044\u756A\u53F7\n// calc_range(v, dep)\uFF1Av \u306E\
     \u90E8\u5206\u6728\u3067\u3001\u6DF1\u3055 dep \u306E\u3082\u306E\u305F\u3061\u306E\
-    \u7BC4\u56F2\r\n// \u6DF1\u3055\u306F\u7D76\u5BFE\u7684\u306A\u3082\u306E\u3067\
-    \u3042\u308B\u3053\u3068\u306B\u6CE8\u610F\u305B\u3088\r\ntemplate <typename Graph>\r\
-    \nstruct BFS_Numbering {\r\n  Graph& G;\r\n  int root;\r\n  vector<int> V;\r\n\
-    \  vector<int> ID;\r\n  vector<int> depth;\r\n  vector<int> parent;\r\n  vector<int>\
-    \ LID, RID;\r\n  vector<int> LID_seq;\r\n  vector<int> dep_ids;\r\n  int cnt;\r\
-    \n\r\n  BFS_Numbering(Graph& G, int root = 0) : G(G), root(root), cnt(0) { build();\
-    \ }\r\n\r\n  void bfs() {\r\n    deque<int> que = {root};\r\n    while (!que.empty())\
-    \ {\r\n      int v = POP(que);\r\n      ID[v] = V.size();\r\n      V.eb(v);\r\n\
-    \      for (auto&& [frm, to, cost, id]: G[v]) {\r\n        if (to == parent[v])\
-    \ continue;\r\n        que.eb(to), parent[to] = v, depth[to] = depth[v] + 1;\r\
-    \n      }\r\n    }\r\n  }\r\n\r\n  void dfs(int v) {\r\n    LID[v] = cnt++;\r\n\
-    \    for (auto&& [frm, to, cost, id]: G[v]) {\r\n      if (to == parent[v]) continue;\r\
-    \n      dfs(to);\r\n    }\r\n    RID[v] = cnt;\r\n  }\r\n\r\n  void build() {\r\
-    \n    int N = G.N;\r\n    V.reserve(N);\r\n    parent.assign(N, -1);\r\n    ID.assign(N,\
-    \ 0), LID.assign(N, 0), RID.assign(N, 0), depth.assign(N, 0);\r\n    bfs();\r\n\
-    \    dfs(root);\r\n    int D = MAX(depth);\r\n    dep_ids.resize(D + 2);\r\n \
-    \   FOR(v, N) dep_ids[depth[v] + 1]++;\r\n    FOR(d, D + 1) dep_ids[d + 1] +=\
-    \ dep_ids[d];\r\n    LID_seq.reserve(N);\r\n    FOR(i, N) LID_seq.eb(LID[V[i]]);\r\
-    \n  }\r\n\r\n  // dep \u306F\u7D76\u5BFE\u7684\u306A\u6DF1\u3055\r\n  pair<int,\
-    \ int> calc_range(int v, int dep) {\r\n    assert(dep >= depth[v]);\r\n    if\
-    \ (dep >= len(dep_ids) - 1) return {0, 0};\r\n    int l = LID[v], r = RID[v];\r\
-    \n    int L = dep_ids[dep], R = dep_ids[dep + 1];\r\n    int a = bs(L - 1, R,\
-    \ l);\r\n    int b = bs(L - 1, R, r);\r\n    return {a, b};\r\n  }\r\n\r\n  //\
-    \ dist(p,v)<=r\r\n  vc<pair<int, int>> disk_range(int v, int r) {\r\n    if (r\
-    \ < 0) return {};\r\n    vc<pair<int, int>> res;\r\n    int d = depth[v];\r\n\
-    \    FOR(k, r + 1) {\r\n      if (v == -1) break;\r\n      int hi = d + r - k;\r\
-    \n      int lo = hi - 1;\r\n      chmax(lo, d);\r\n      if (parent[v] == -1)\
-    \ lo = 0;\r\n      FOR(i, lo, hi + 1) { res.eb(calc_range(v, i)); }\r\n      v\
-    \ = parent[v], d = d - 1;\r\n    }\r\n    return res;\r\n  }\r\n\r\nprivate:\r\
-    \n  int bs(int L, int R, int x) {\r\n    while (L + 1 < R) {\r\n      int M =\
-    \ (L + R) / 2;\r\n      if (LID_seq[M] >= x)\r\n        R = M;\r\n      else\r\
-    \n        L = M;\r\n    }\r\n    return R;\r\n  }\r\n};\r\n"
-  code: "#include \"graph/base.hpp\"\r\n\r\n// ID[v]\uFF1A\u9802\u70B9\u306E\u65B0\
-    \u3057\u3044\u756A\u53F7\r\n// calc_range(v, dep)\uFF1Av \u306E\u90E8\u5206\u6728\
-    \u3067\u3001\u6DF1\u3055 dep \u306E\u3082\u306E\u305F\u3061\u306E\u7BC4\u56F2\r\
-    \n// \u6DF1\u3055\u306F\u7D76\u5BFE\u7684\u306A\u3082\u306E\u3067\u3042\u308B\u3053\
-    \u3068\u306B\u6CE8\u610F\u305B\u3088\r\ntemplate <typename Graph>\r\nstruct BFS_Numbering\
-    \ {\r\n  Graph& G;\r\n  int root;\r\n  vector<int> V;\r\n  vector<int> ID;\r\n\
-    \  vector<int> depth;\r\n  vector<int> parent;\r\n  vector<int> LID, RID;\r\n\
-    \  vector<int> LID_seq;\r\n  vector<int> dep_ids;\r\n  int cnt;\r\n\r\n  BFS_Numbering(Graph&\
-    \ G, int root = 0) : G(G), root(root), cnt(0) { build(); }\r\n\r\n  void bfs()\
-    \ {\r\n    deque<int> que = {root};\r\n    while (!que.empty()) {\r\n      int\
-    \ v = POP(que);\r\n      ID[v] = V.size();\r\n      V.eb(v);\r\n      for (auto&&\
-    \ [frm, to, cost, id]: G[v]) {\r\n        if (to == parent[v]) continue;\r\n \
-    \       que.eb(to), parent[to] = v, depth[to] = depth[v] + 1;\r\n      }\r\n \
-    \   }\r\n  }\r\n\r\n  void dfs(int v) {\r\n    LID[v] = cnt++;\r\n    for (auto&&\
-    \ [frm, to, cost, id]: G[v]) {\r\n      if (to == parent[v]) continue;\r\n   \
-    \   dfs(to);\r\n    }\r\n    RID[v] = cnt;\r\n  }\r\n\r\n  void build() {\r\n\
-    \    int N = G.N;\r\n    V.reserve(N);\r\n    parent.assign(N, -1);\r\n    ID.assign(N,\
-    \ 0), LID.assign(N, 0), RID.assign(N, 0), depth.assign(N, 0);\r\n    bfs();\r\n\
-    \    dfs(root);\r\n    int D = MAX(depth);\r\n    dep_ids.resize(D + 2);\r\n \
-    \   FOR(v, N) dep_ids[depth[v] + 1]++;\r\n    FOR(d, D + 1) dep_ids[d + 1] +=\
-    \ dep_ids[d];\r\n    LID_seq.reserve(N);\r\n    FOR(i, N) LID_seq.eb(LID[V[i]]);\r\
-    \n  }\r\n\r\n  // dep \u306F\u7D76\u5BFE\u7684\u306A\u6DF1\u3055\r\n  pair<int,\
-    \ int> calc_range(int v, int dep) {\r\n    assert(dep >= depth[v]);\r\n    if\
-    \ (dep >= len(dep_ids) - 1) return {0, 0};\r\n    int l = LID[v], r = RID[v];\r\
-    \n    int L = dep_ids[dep], R = dep_ids[dep + 1];\r\n    int a = bs(L - 1, R,\
-    \ l);\r\n    int b = bs(L - 1, R, r);\r\n    return {a, b};\r\n  }\r\n\r\n  //\
-    \ dist(p,v)<=r\r\n  vc<pair<int, int>> disk_range(int v, int r) {\r\n    if (r\
-    \ < 0) return {};\r\n    vc<pair<int, int>> res;\r\n    int d = depth[v];\r\n\
-    \    FOR(k, r + 1) {\r\n      if (v == -1) break;\r\n      int hi = d + r - k;\r\
-    \n      int lo = hi - 1;\r\n      chmax(lo, d);\r\n      if (parent[v] == -1)\
-    \ lo = 0;\r\n      FOR(i, lo, hi + 1) { res.eb(calc_range(v, i)); }\r\n      v\
-    \ = parent[v], d = d - 1;\r\n    }\r\n    return res;\r\n  }\r\n\r\nprivate:\r\
-    \n  int bs(int L, int R, int x) {\r\n    while (L + 1 < R) {\r\n      int M =\
-    \ (L + R) / 2;\r\n      if (LID_seq[M] >= x)\r\n        R = M;\r\n      else\r\
-    \n        L = M;\r\n    }\r\n    return R;\r\n  }\r\n};\r\n"
+    \u7BC4\u56F2\n// \u6DF1\u3055\u306F\u7D76\u5BFE\u7684\u306A\u3082\u306E\u3067\u3042\
+    \u308B\u3053\u3068\u306B\u6CE8\u610F\u305B\u3088\ntemplate <typename Graph>\n\
+    struct BFS_Numbering {\n  Graph& G;\n  int root;\n  vector<int> V;\n  vector<int>\
+    \ ID;\n  vector<int> depth;\n  vector<int> parent;\n  vector<int> LID, RID;\n\
+    \  vector<int> LID_seq;\n  vector<int> dep_ids;\n  int cnt;\n\n  BFS_Numbering(Graph&\
+    \ G, int root = 0) : G(G), root(root), cnt(0) { build(); }\n\n  void bfs() {\n\
+    \    deque<int> que = {root};\n    while (!que.empty()) {\n      int v = POP(que);\n\
+    \      ID[v] = V.size();\n      V.eb(v);\n      for (auto&& [frm, to, cost, id]:\
+    \ G[v]) {\n        if (to == parent[v]) continue;\n        que.eb(to), parent[to]\
+    \ = v, depth[to] = depth[v] + 1;\n      }\n    }\n  }\n\n  void dfs(int v) {\n\
+    \    LID[v] = cnt++;\n    for (auto&& [frm, to, cost, id]: G[v]) {\n      if (to\
+    \ == parent[v]) continue;\n      dfs(to);\n    }\n    RID[v] = cnt;\n  }\n\n \
+    \ void build() {\n    int N = G.N;\n    V.reserve(N);\n    parent.assign(N, -1);\n\
+    \    ID.assign(N, 0), LID.assign(N, 0), RID.assign(N, 0), depth.assign(N, 0);\n\
+    \    bfs();\n    dfs(root);\n    int D = MAX(depth);\n    dep_ids.resize(D + 2);\n\
+    \    FOR(v, N) dep_ids[depth[v] + 1]++;\n    FOR(d, D + 1) dep_ids[d + 1] += dep_ids[d];\n\
+    \    LID_seq.reserve(N);\n    FOR(i, N) LID_seq.eb(LID[V[i]]);\n  }\n\n  // dep\
+    \ \u306F\u7D76\u5BFE\u7684\u306A\u6DF1\u3055\n  pair<int, int> calc_range(int\
+    \ v, int dep) {\n    assert(dep >= depth[v]);\n    if (dep >= len(dep_ids) - 1)\
+    \ return {0, 0};\n    int l = LID[v], r = RID[v];\n    int L = dep_ids[dep], R\
+    \ = dep_ids[dep + 1];\n    int a = bs(L - 1, R, l);\n    int b = bs(L - 1, R,\
+    \ r);\n    return {a, b};\n  }\n\n  // dist(p,v)<=r\n  vc<pair<int, int>> disk_range(int\
+    \ v, int r) {\n    if (r < 0) return {};\n    vc<pair<int, int>> res;\n    int\
+    \ d = depth[v];\n    FOR(k, r + 1) {\n      if (v == -1) break;\n      int hi\
+    \ = d + r - k;\n      int lo = hi - 1;\n      chmax(lo, d);\n      if (parent[v]\
+    \ == -1) lo = 0;\n      FOR(i, lo, hi + 1) { res.eb(calc_range(v, i)); }\n   \
+    \   v = parent[v], d = d - 1;\n    }\n    return res;\n  }\n\nprivate:\n  int\
+    \ bs(int L, int R, int x) {\n    while (L + 1 < R) {\n      int M = (L + R) /\
+    \ 2;\n      if (LID_seq[M] >= x)\n        R = M;\n      else\n        L = M;\n\
+    \    }\n    return R;\n  }\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/ds/bfs_numbering.hpp\n\
+    #include \"graph/base.hpp\"\n\n// ID[v]\uFF1A\u9802\u70B9\u306E\u65B0\u3057\u3044\
+    \u756A\u53F7\n// calc_range(v, dep)\uFF1Av \u306E\u90E8\u5206\u6728\u3067\u3001\
+    \u6DF1\u3055 dep \u306E\u3082\u306E\u305F\u3061\u306E\u7BC4\u56F2\n// \u6DF1\u3055\
+    \u306F\u7D76\u5BFE\u7684\u306A\u3082\u306E\u3067\u3042\u308B\u3053\u3068\u306B\
+    \u6CE8\u610F\u305B\u3088\ntemplate <typename Graph>\nstruct BFS_Numbering {\n\
+    \  Graph& G;\n  int root;\n  vector<int> V;\n  vector<int> ID;\n  vector<int>\
+    \ depth;\n  vector<int> parent;\n  vector<int> LID, RID;\n  vector<int> LID_seq;\n\
+    \  vector<int> dep_ids;\n  int cnt;\n\n  BFS_Numbering(Graph& G, int root = 0)\
+    \ : G(G), root(root), cnt(0) { build(); }\n\n  void bfs() {\n    deque<int> que\
+    \ = {root};\n    while (!que.empty()) {\n      int v = POP(que);\n      ID[v]\
+    \ = V.size();\n      V.eb(v);\n      for (auto&& [frm, to, cost, id]: G[v]) {\n\
+    \        if (to == parent[v]) continue;\n        que.eb(to), parent[to] = v, depth[to]\
+    \ = depth[v] + 1;\n      }\n    }\n  }\n\n  void dfs(int v) {\n    LID[v] = cnt++;\n\
+    \    for (auto&& [frm, to, cost, id]: G[v]) {\n      if (to == parent[v]) continue;\n\
+    \      dfs(to);\n    }\n    RID[v] = cnt;\n  }\n\n  void build() {\n    int N\
+    \ = G.N;\n    V.reserve(N);\n    parent.assign(N, -1);\n    ID.assign(N, 0), LID.assign(N,\
+    \ 0), RID.assign(N, 0), depth.assign(N, 0);\n    bfs();\n    dfs(root);\n    int\
+    \ D = MAX(depth);\n    dep_ids.resize(D + 2);\n    FOR(v, N) dep_ids[depth[v]\
+    \ + 1]++;\n    FOR(d, D + 1) dep_ids[d + 1] += dep_ids[d];\n    LID_seq.reserve(N);\n\
+    \    FOR(i, N) LID_seq.eb(LID[V[i]]);\n  }\n\n  // dep \u306F\u7D76\u5BFE\u7684\
+    \u306A\u6DF1\u3055\n  pair<int, int> calc_range(int v, int dep) {\n    assert(dep\
+    \ >= depth[v]);\n    if (dep >= len(dep_ids) - 1) return {0, 0};\n    int l =\
+    \ LID[v], r = RID[v];\n    int L = dep_ids[dep], R = dep_ids[dep + 1];\n    int\
+    \ a = bs(L - 1, R, l);\n    int b = bs(L - 1, R, r);\n    return {a, b};\n  }\n\
+    \n  // dist(p,v)<=r\n  vc<pair<int, int>> disk_range(int v, int r) {\n    if (r\
+    \ < 0) return {};\n    vc<pair<int, int>> res;\n    int d = depth[v];\n    FOR(k,\
+    \ r + 1) {\n      if (v == -1) break;\n      int hi = d + r - k;\n      int lo\
+    \ = hi - 1;\n      chmax(lo, d);\n      if (parent[v] == -1) lo = 0;\n      FOR(i,\
+    \ lo, hi + 1) { res.eb(calc_range(v, i)); }\n      v = parent[v], d = d - 1;\n\
+    \    }\n    return res;\n  }\n\nprivate:\n  int bs(int L, int R, int x) {\n  \
+    \  while (L + 1 < R) {\n      int M = (L + R) / 2;\n      if (LID_seq[M] >= x)\n\
+    \        R = M;\n      else\n        L = M;\n    }\n    return R;\n  }\n};\n"
   dependsOn:
   - graph/base.hpp
   - ds/hashmap.hpp
   isVerificationFile: false
   path: graph/ds/bfs_numbering.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:05:11+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-10-15 19:54:56+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/899.test.cpp
 documentation_of: graph/ds/bfs_numbering.hpp

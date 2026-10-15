@@ -36,20 +36,21 @@ data:
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/count_by_factor_type.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n/*\n\
-    library: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
-    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
-    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
-    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
-    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
-    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
-    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
-    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
-    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
-    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
-    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n//\
+    \ Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\nlibrary:\
+    \ https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
+    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
+    Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\"\
+    )\n#endif\n#endif\n#include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
+    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
+    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class>\nconstexpr\
+    \ bool dependent_false = false;\n\ntemplate <class T>\nconstexpr T infty = []\
+    \ {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\");\n  return\
+    \ T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
     template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
     \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
     using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
@@ -151,75 +152,82 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/count_by_factor_type.test.cpp\"\
-    \n\n#line 1 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T> prime_table(int\
-    \ LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done = 2;\n  static vc<T>\
-    \ primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes\
-    \ = {2}, sieve.assign(S + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM\
-    \ / log(LIM) * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S;\
-    \ i += 2) {\n      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for\
-    \ (int j = i * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int\
-    \ L = 1; L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p,\
-    \ idx] : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L]\
-    \ = 1;\n      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n\
-    \    }\n  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin()\
-    \ + k};\n}\n#line 1 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
-    \ prime_table(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done\
-    \ = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n  \
-    \  done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n    const int R =\
-    \ LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n    vc<pair<int, int>>\
-    \ cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i]) {\n       \
-    \ cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2 * i) sieve[j]\
-    \ = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n      array<bool,\
-    \ S> block{};\n      for (auto& [p, idx] : cp)\n        for (int i = idx; i <\
-    \ S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R - L)) if (!block[i])\
-    \ primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes, LIM);\n  return\
-    \ {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/prime_sum.hpp\"\n\n/*\n\
-    N \u3068\u5B8C\u5168\u4E57\u6CD5\u7684\u95A2\u6570 f \u306E prefix sum \u95A2\u6570\
-    \ F \u3092\u4E0E\u3048\u308B\u3002\nn = floor(N/d) \u3068\u306A\u308B n \u306B\
-    \u5BFE\u3059\u308B sum_{p <= n} f(p) \u3092\u8A08\u7B97\u3059\u308B\u3002\n\u7279\
-    \u306B\u3001\u7D20\u6570\u306E k \u4E57\u548C\u3084\u3001mod m \u3054\u3068\u3067\
-    \u306E\u7D20\u6570\u306E k \u4E57\u548C\u304C\u8A08\u7B97\u3067\u304D\u308B\u3002\
-    \nComplexity: O(N^{3/4}/logN) time, O(N^{1/2}) space.\n*/\ntemplate <typename\
-    \ T>\nstruct Prime_Sum {\n  ll N;\n  ll sqN;\n  vc<T> sum_lo, sum_hi;\n  bool\
-    \ calculated;\n\n  Prime_Sum(ll N) : N(N), sqN(sqrtl(N)), calculated(0) {}\n\n\
-    \  // [1, x] \u305F\u3060\u3057\u3001x = floor(N, i) \u306E\u5F62\n  T operator[](ll\
-    \ x) {\n    assert(calculated);\n    return (x <= sqN ? sum_lo[x] : sum_hi[double(N)\
-    \ / x]);\n  }\n\n  template <typename F>\n  void calc(const F f) {\n    auto primes\
-    \ = prime_table<int>(sqN);\n    sum_lo.resize(sqN + 1);\n    sum_hi.resize(sqN\
-    \ + 1);\n    FOR(i, 1, sqN + 1) sum_lo[i] = f(i) - 1;\n    FOR(i, 1, sqN + 1)\
-    \ sum_hi[i] = f(double(N) / i) - 1;\n    for (int p : primes) {\n      ll pp =\
-    \ ll(p) * p;\n      if (pp > N) break;\n      int R = min(sqN, N / pp);\n    \
-    \  int M = sqN / p;\n      T x = sum_lo[p - 1];\n      T fp = sum_lo[p] - sum_lo[p\
-    \ - 1];\n      for (int i = 1; i <= M; ++i) sum_hi[i] -= fp * (sum_hi[i * p] -\
-    \ x);\n      for (int i = M + 1; i <= R; ++i)\n        sum_hi[i] -= fp * (sum_lo[N\
-    \ / (double(i) * p)] - x);\n      for (int n = sqN; n >= pp; --n) sum_lo[n] -=\
-    \ fp * (sum_lo[n / p] - x);\n    }\n    calculated = 1;\n  }\n\n  void calc_count()\
-    \ {\n    calc([](ll x) -> T { return x; });\n  }\n\n  void calc_sum() {\n    calc([](ll\
-    \ x) -> T {\n      ll a = x, b = x + 1;\n      if (!(x & 1)) a /= 2;\n      if\
-    \ (x & 1) b /= 2;\n      return T(a) * T(b);\n    });\n  }\n};\n#line 3 \"nt/count_by_factor_type.hpp\"\
-    \n\n// factor type: \u964D\u9806 270 -> (3,1,1)\n// N=10^9: 1324 \u7A2E\u985E\
-    , 0.4sec\n// https://atcoder.jp/contests/xmascon20/tasks/xmascon20_d\nmap<vc<int>,\
-    \ ll> count_by_factor_type(ll N) {\n  ll sqN = sqrtl(N);\n  auto P = prime_table<int>(sqN);\n\
-    \  Prime_Sum<ll> X(N);\n  X.calc_count();\n\n  // 1 and prime\n  map<vc<int>,\
-    \ ll> ANS;\n  ANS[vc<int>()] = 1;\n  if (X[N] > 0) ANS[vc<int>({1})] = X[N];\n\
-    \n  auto add = [&](vc<int> F, int k) -> vc<int> {\n    int p = len(F);\n    F.eb(k);\n\
-    \    while (0 < p && F[p - 1] < F[p]) {\n      swap(F[p - 1], F[p]), --p;\n  \
-    \  }\n    return F;\n  };\n\n  // t = up_i^k \u306E\u3068\u304D\u306B\n  auto\
-    \ dfs = [&](auto& dfs, ll t, ll i, ll k, vc<int> U) -> void {\n    // U * primes\
-    \ \u3092\u8FFD\u52A0\u3059\u308B\n    vc<int> nxt1 = add(U, k + 1);\n    ANS[nxt1]++;\n\
-    \    vc<int> Uk = add(U, k);\n    vc<int> nxt2 = add(Uk, 1);\n    ll cnt = X[N\
-    \ / t] - X[P[i]];\n    if (cnt > 0) ANS[nxt2] += X[N / t] - X[P[i]];\n    ll lim\
-    \ = sqrtl(double(N) / t);\n    if (P[i] <= lim) {\n      dfs(dfs, t * P[i], i,\
-    \ k + 1, U);\n    }\n    FOR(j, i + 1, len(P)) {\n      if (P[j] > lim) break;\n\
-    \      dfs(dfs, t * P[j], j, 1, Uk);\n    }\n  };\n  FOR(i, len(P)) if (P[i] <=\
-    \ sqN) dfs(dfs, P[i], i, 1, {});\n  return ANS;\n}\n#line 1 \"nt/factor.hpp\"\n\
-    \n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \n\n#line 1 \"nt/count_by_factor_type.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/count_by_factor_type.hpp\n\
+    #line 1 \"nt/prime_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/prime_table.hpp\n\
+    \ntemplate <typename T = int>\nvc<T> prime_table(int LIM) {\n  ++LIM;\n  const\
+    \ int S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S\
+    \ + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
+    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
+    \ * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
+    \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
+    \ * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1;\
+    \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]\
+    \ : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
+    \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
+    \  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin() + k};\n\
+    }\n#line 1 \"nt/prime_sum.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/prime_sum.hpp\n\
+    #line 1 \"nt/prime_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/prime_table.hpp\n\
+    \ntemplate <typename T = int>\nvc<T> prime_table(int LIM) {\n  ++LIM;\n  const\
+    \ int S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S\
+    \ + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
+    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
+    \ * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
+    \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
+    \ * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1;\
+    \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]\
+    \ : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
+    \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
+    \  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin() + k};\n\
+    }\n#line 3 \"nt/prime_sum.hpp\"\n\n/*\nN \u3068\u5B8C\u5168\u4E57\u6CD5\u7684\u95A2\
+    \u6570 f \u306E prefix sum \u95A2\u6570 F \u3092\u4E0E\u3048\u308B\u3002\nn =\
+    \ floor(N/d) \u3068\u306A\u308B n \u306B\u5BFE\u3059\u308B sum_{p <= n} f(p) \u3092\
+    \u8A08\u7B97\u3059\u308B\u3002\n\u7279\u306B\u3001\u7D20\u6570\u306E k \u4E57\u548C\
+    \u3084\u3001mod m \u3054\u3068\u3067\u306E\u7D20\u6570\u306E k \u4E57\u548C\u304C\
+    \u8A08\u7B97\u3067\u304D\u308B\u3002\nComplexity: O(N^{3/4}/logN) time, O(N^{1/2})\
+    \ space.\n*/\ntemplate <typename T>\nstruct Prime_Sum {\n  ll N;\n  ll sqN;\n\
+    \  vc<T> sum_lo, sum_hi;\n  bool calculated;\n\n  Prime_Sum(ll N) : N(N), sqN(sqrtl(N)),\
+    \ calculated(0) {}\n\n  // [1, x] \u305F\u3060\u3057\u3001x = floor(N, i) \u306E\
+    \u5F62\n  T operator[](ll x) {\n    assert(calculated);\n    return (x <= sqN\
+    \ ? sum_lo[x] : sum_hi[double(N) / x]);\n  }\n\n  template <typename F>\n  void\
+    \ calc(const F f) {\n    auto primes = prime_table<int>(sqN);\n    sum_lo.resize(sqN\
+    \ + 1);\n    sum_hi.resize(sqN + 1);\n    FOR(i, 1, sqN + 1) sum_lo[i] = f(i)\
+    \ - 1;\n    FOR(i, 1, sqN + 1) sum_hi[i] = f(double(N) / i) - 1;\n    for (int\
+    \ p : primes) {\n      ll pp = ll(p) * p;\n      if (pp > N) break;\n      int\
+    \ R = min(sqN, N / pp);\n      int M = sqN / p;\n      T x = sum_lo[p - 1];\n\
+    \      T fp = sum_lo[p] - sum_lo[p - 1];\n      for (int i = 1; i <= M; ++i) sum_hi[i]\
+    \ -= fp * (sum_hi[i * p] - x);\n      for (int i = M + 1; i <= R; ++i)\n     \
+    \   sum_hi[i] -= fp * (sum_lo[N / (double(i) * p)] - x);\n      for (int n = sqN;\
+    \ n >= pp; --n) sum_lo[n] -= fp * (sum_lo[n / p] - x);\n    }\n    calculated\
+    \ = 1;\n  }\n\n  void calc_count() {\n    calc([](ll x) -> T { return x; });\n\
+    \  }\n\n  void calc_sum() {\n    calc([](ll x) -> T {\n      ll a = x, b = x +\
+    \ 1;\n      if (!(x & 1)) a /= 2;\n      if (x & 1) b /= 2;\n      return T(a)\
+    \ * T(b);\n    });\n  }\n};\n#line 4 \"nt/count_by_factor_type.hpp\"\n\n// factor\
+    \ type: \u964D\u9806 270 -> (3,1,1)\n// N=10^9: 1324 \u7A2E\u985E, 0.4sec\n//\
+    \ https://atcoder.jp/contests/xmascon20/tasks/xmascon20_d\nmap<vc<int>, ll> count_by_factor_type(ll\
+    \ N) {\n  ll sqN = sqrtl(N);\n  auto P = prime_table<int>(sqN);\n  Prime_Sum<ll>\
+    \ X(N);\n  X.calc_count();\n\n  // 1 and prime\n  map<vc<int>, ll> ANS;\n  ANS[vc<int>()]\
+    \ = 1;\n  if (X[N] > 0) ANS[vc<int>({1})] = X[N];\n\n  auto add = [&](vc<int>\
+    \ F, int k) -> vc<int> {\n    int p = len(F);\n    F.eb(k);\n    while (0 < p\
+    \ && F[p - 1] < F[p]) {\n      swap(F[p - 1], F[p]), --p;\n    }\n    return F;\n\
+    \  };\n\n  // t = up_i^k \u306E\u3068\u304D\u306B\n  auto dfs = [&](auto& dfs,\
+    \ ll t, ll i, ll k, vc<int> U) -> void {\n    // U * primes \u3092\u8FFD\u52A0\
+    \u3059\u308B\n    vc<int> nxt1 = add(U, k + 1);\n    ANS[nxt1]++;\n    vc<int>\
+    \ Uk = add(U, k);\n    vc<int> nxt2 = add(Uk, 1);\n    ll cnt = X[N / t] - X[P[i]];\n\
+    \    if (cnt > 0) ANS[nxt2] += X[N / t] - X[P[i]];\n    ll lim = sqrtl(double(N)\
+    \ / t);\n    if (P[i] <= lim) {\n      dfs(dfs, t * P[i], i, k + 1, U);\n    }\n\
+    \    FOR(j, i + 1, len(P)) {\n      if (P[j] > lim) break;\n      dfs(dfs, t *\
+    \ P[j], j, 1, Uk);\n    }\n  };\n  FOR(i, len(P)) if (P[i] <= sqN) dfs(dfs, P[i],\
+    \ i, 1, {});\n  return ANS;\n}\n#line 1 \"nt/factor.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/factor.hpp\n\
+    \n#line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/montgomery_modint.hpp\"\n\n\
-    // odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"nt/is_prime.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/nt/is_prime.hpp\n#line 1 \"mod/montgomery_modint.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/mod/montgomery_modint.hpp\n\
+    \n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
     \ <int id, typename U1, typename U2>\nstruct Montgomery_modint {\n  using mint\
     \ = Montgomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
     \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
@@ -239,7 +247,7 @@ data:
     \ >= 0);\n    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if\
     \ (n & 1) y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Montgomery_modint_32\
     \ = Montgomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Montgomery_modint_64\
-    \ = Montgomery_modint<id, u64, u128>;\n#line 2 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
+    \ = Montgomery_modint<id, u64, u128>;\n#line 3 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
     \ u64 x) {\n  assert(x < u64(1) << 62);\n  if (x == 2 or x == 3 or x == 5 or x\
     \ == 7) return true;\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 ==\
     \ 0) return false;\n  if (x < 121) return x > 1;\n  const u64 d = (x - 1) >> lowbit(x\
@@ -250,7 +258,7 @@ data:
     \ false;\n    return true;\n  };\n  if (x < (u64(1) << 32)) {\n    for (u64 a\
     \ : {2, 7, 61})\n      if (!ok(a)) return false;\n  } else {\n    for (u64 a :\
     \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\n      if (!ok(a)) return\
-    \ false;\n    }\n  }\n  return true;\n}\n#line 4 \"nt/factor.hpp\"\n\ntemplate\
+    \ false;\n    }\n  }\n  return true;\n}\n#line 5 \"nt/factor.hpp\"\n\ntemplate\
     \ <typename mint>\nll rho(ll n, ll c) {\n  assert(n > 1);\n  const mint cc(c);\n\
     \  auto f = [&](mint x) { return x * x + cc; };\n  mint x = 1, y = 2, z = 1, q\
     \ = 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5);\n  for (ll r = 1; g\
@@ -301,7 +309,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/count_by_factor_type.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/count_by_factor_type.test.cpp

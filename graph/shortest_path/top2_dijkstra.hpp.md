@@ -16,32 +16,36 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
-    struct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
-    \u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n \
-    \   u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n\
-    \    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\
-    \u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build\
-    \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
-    \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
-    \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
-    \ key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
-    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
-    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
-    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
-    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
-    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
-    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/shortest_path/top2_dijkstra.hpp
+  bundledCode: "#line 1 \"graph/shortest_path/top2_dijkstra.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/shortest_path/top2_dijkstra.hpp\n\
+    #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -117,35 +121,36 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 1 \"alg/monoid/min2.hpp\"\n\ntemplate <typename T, typename\
-    \ KEY>\nstruct Monoid_Min2 {\n  struct Data {\n    T min1, min2;\n    KEY key1,\
-    \ key2;\n    bool add_element(KEY key, T x) {\n      if (key1 == key) { return\
-    \ chmin(min1, x); }\n      if (key2 == key) {\n        bool upd = chmin(min2,\
-    \ x);\n        if (min1 > min2) swap(min1, min2), swap(key1, key2);\n        return\
-    \ upd;\n      }\n      if (min1 > x) {\n        min2 = min1, key2 = key1, min1\
-    \ = x, key1 = key;\n        return 1;\n      }\n      elif (min2 > x) {\n    \
-    \    min2 = x, key2 = key;\n        return 1;\n      }\n      return 0;\n    }\n\
-    \  };\n  using value_type = Data;\n  using X = value_type;\n\n  static X op(X\
-    \ x, X y) {\n    x.add_element(y.key1, y.min1);\n    x.add_element(y.key2, y.min2);\n\
-    \    return x;\n  }\n  static constexpr X id() { return {infty<T>, infty<T>, -1,\
-    \ -1}; }\n  static constexpr bool commute = true;\n};\n#line 3 \"graph/shortest_path/top2_dijkstra.hpp\"\
-    \n\n// \u7D4C\u8DEF\u5FA9\u5143\u306F\u306A\u3057\u3067\u8DDD\u96E2\u3068\u7A2E\
-    \u985E\u3060\u3051\u306B\u306A\u3063\u3066\u3044\u308B\ntemplate <typename T,\
-    \ typename GT>\nvc<typename Monoid_Min2<T, int>::Data> top2_dijkstra(GT& G, vc<int>\
-    \ vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  using Mono = Monoid_Min2<T,\
-    \ int>;\n  using Data = typename Mono::Data;\n  vc<Data> dist(N, Mono::id());\n\
-    \  pq_min<tuple<T, int, int>> que;  // \u8DDD\u96E2\u3001\u753A\u3001\u8272\n\n\
-    \  auto upd = [&](int v, int c, T x) -> void {\n    if (dist[v].add_element(x,\
-    \ c)) que.emplace(x, v, c);\n  };\n\n  for (auto& v : vs) {\n    upd(v, v, 0);\n\
-    \  }\n\n  while (len(que)) {\n    auto [dv, v, c] = POP(que);\n    bool ok = 0;\n\
-    \    auto& e = dist[v];\n    if (e.min1 == dv && e.key1 == c) ok = 1;\n    if\
-    \ (e.min2 == dv && e.key2 == c) ok = 1;\n    if (!ok) continue;\n    for (auto&&\
-    \ e : G[v]) {\n      upd(e.to, c, dv + e.cost);\n    }\n  }\n  return dist;\n\
-    }\n"
-  code: "#include \"graph/base.hpp\"\n#include \"alg/monoid/min2.hpp\"\n\n// \u7D4C\
-    \u8DEF\u5FA9\u5143\u306F\u306A\u3057\u3067\u8DDD\u96E2\u3068\u7A2E\u985E\u3060\
-    \u3051\u306B\u306A\u3063\u3066\u3044\u308B\ntemplate <typename T, typename GT>\n\
-    vc<typename Monoid_Min2<T, int>::Data> top2_dijkstra(GT& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
+    \   }\n  }\n};\n#line 1 \"alg/monoid/min2.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min2.hpp\n\
+    \ntemplate <typename T, typename KEY>\nstruct Monoid_Min2 {\n  struct Data {\n\
+    \    T min1, min2;\n    KEY key1, key2;\n    bool add_element(KEY key, T x) {\n\
+    \      if (key1 == key) { return chmin(min1, x); }\n      if (key2 == key) {\n\
+    \        bool upd = chmin(min2, x);\n        if (min1 > min2) swap(min1, min2),\
+    \ swap(key1, key2);\n        return upd;\n      }\n      if (min1 > x) {\n   \
+    \     min2 = min1, key2 = key1, min1 = x, key1 = key;\n        return 1;\n   \
+    \   }\n      elif (min2 > x) {\n        min2 = x, key2 = key;\n        return\
+    \ 1;\n      }\n      return 0;\n    }\n  };\n  using value_type = Data;\n  using\
+    \ X = value_type;\n\n  static X op(X x, X y) {\n    x.add_element(y.key1, y.min1);\n\
+    \    x.add_element(y.key2, y.min2);\n    return x;\n  }\n  static constexpr X\
+    \ id() { return {infty<T>, infty<T>, -1, -1}; }\n  static constexpr bool commute\
+    \ = true;\n};\n#line 4 \"graph/shortest_path/top2_dijkstra.hpp\"\n\n// \u7D4C\u8DEF\
+    \u5FA9\u5143\u306F\u306A\u3057\u3067\u8DDD\u96E2\u3068\u7A2E\u985E\u3060\u3051\
+    \u306B\u306A\u3063\u3066\u3044\u308B\ntemplate <typename T, typename GT>\nvc<typename\
+    \ Monoid_Min2<T, int>::Data> top2_dijkstra(GT& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
+    \  int N = G.N;\n  using Mono = Monoid_Min2<T, int>;\n  using Data = typename\
+    \ Mono::Data;\n  vc<Data> dist(N, Mono::id());\n  pq_min<tuple<T, int, int>> que;\
+    \  // \u8DDD\u96E2\u3001\u753A\u3001\u8272\n\n  auto upd = [&](int v, int c, T\
+    \ x) -> void {\n    if (dist[v].add_element(x, c)) que.emplace(x, v, c);\n  };\n\
+    \n  for (auto& v : vs) {\n    upd(v, v, 0);\n  }\n\n  while (len(que)) {\n   \
+    \ auto [dv, v, c] = POP(que);\n    bool ok = 0;\n    auto& e = dist[v];\n    if\
+    \ (e.min1 == dv && e.key1 == c) ok = 1;\n    if (e.min2 == dv && e.key2 == c)\
+    \ ok = 1;\n    if (!ok) continue;\n    for (auto&& e : G[v]) {\n      upd(e.to,\
+    \ c, dv + e.cost);\n    }\n  }\n  return dist;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/shortest_path/top2_dijkstra.hpp\n\
+    #include \"graph/base.hpp\"\n#include \"alg/monoid/min2.hpp\"\n\n// \u7D4C\u8DEF\
+    \u5FA9\u5143\u306F\u306A\u3057\u3067\u8DDD\u96E2\u3068\u7A2E\u985E\u3060\u3051\
+    \u306B\u306A\u3063\u3066\u3044\u308B\ntemplate <typename T, typename GT>\nvc<typename\
+    \ Monoid_Min2<T, int>::Data> top2_dijkstra(GT& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
     \  int N = G.N;\n  using Mono = Monoid_Min2<T, int>;\n  using Data = typename\
     \ Mono::Data;\n  vc<Data> dist(N, Mono::id());\n  pq_min<tuple<T, int, int>> que;\
     \  // \u8DDD\u96E2\u3001\u753A\u3001\u8272\n\n  auto upd = [&](int v, int c, T\
@@ -162,7 +167,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/top2_dijkstra.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:05:11+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/shortest_path/top2_dijkstra.hpp

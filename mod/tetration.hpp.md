@@ -34,8 +34,11 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/mod/tetration.hpp
+  bundledCode: "#line 1 \"mod/tetration.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/tetration.hpp\n\
+    #line 1 \"mod/barrett.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/barrett.hpp\n\
+    \n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
     struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
     \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
     \ (m == 1) return 0;\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n\
@@ -52,18 +55,21 @@ data:
     \ * ml;\n    z = (x & u64(-1)) * mh + (x >> 64) * ml + (z >> 64);\n    z = (x\
     \ >> 64) * mh + (z >> 64);\n    x -= z * mod;\n    return x < mod ? x : x - mod;\n\
     \  }\n\n  u64 mul(u64 a, u64 b) { return modulo(u128(a) * b); }\n};\n#line 1 \"\
-    nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T> prime_table(int LIM)\
-    \ {\n  ++LIM;\n  const int S = 32768;\n  static int done = 2;\n  static vc<T>\
-    \ primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes\
-    \ = {2}, sieve.assign(S + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM\
-    \ / log(LIM) * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S;\
-    \ i += 2) {\n      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for\
-    \ (int j = i * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int\
-    \ L = 1; L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p,\
-    \ idx] : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L]\
-    \ = 1;\n      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n\
-    \    }\n  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin()\
-    \ + k};\n}\n#line 2 \"nt/zeta.hpp\"\n\ntemplate <typename T>\nvoid divisor_zeta(vc<T>&\
+    nt/euler_phi.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/euler_phi.hpp\n\
+    #line 1 \"nt/zeta.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/zeta.hpp\n\
+    #line 1 \"nt/prime_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/prime_table.hpp\n\
+    \ntemplate <typename T = int>\nvc<T> prime_table(int LIM) {\n  ++LIM;\n  const\
+    \ int S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S\
+    \ + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
+    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
+    \ * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
+    \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
+    \ * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1;\
+    \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]\
+    \ : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
+    \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
+    \  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin() + k};\n\
+    }\n#line 3 \"nt/zeta.hpp\"\n\ntemplate <typename T>\nvoid divisor_zeta(vc<T>&\
     \ A) {\n  assert(A[0] == 0);\n  int N = len(A) - 1;\n  auto P = prime_table(N);\n\
     \  for (auto&& p : P) {\n    FOR3(x, 1, N / p + 1) A[p * x] += A[x];\n  }\n}\n\
     \ntemplate <typename T>\nvoid divisor_mobius(vc<T>& A) {\n  assert(A[0] == 0);\n\
@@ -74,14 +80,17 @@ data:
     \ 1) A[x] += A[p * x];\n  }\n}\n\ntemplate <typename T>\nvoid multiple_mobius(vc<T>&\
     \ A) {\n  assert(A[0] == 0);\n  int N = len(A) - 1;\n  auto P = prime_table(N);\n\
     \  for (auto&& p : P) {\n    FOR3(x, 1, N / p + 1) A[x] -= A[p * x];\n  }\n}\n\
-    #line 1 \"nt/factor.hpp\"\n\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n \
-    \ static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n          \
-    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
-    \                    .count()) *\n                  10150724397891781847ULL;\n\
+    #line 1 \"nt/factor.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/factor.hpp\n\
+    \n#line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/montgomery_modint.hpp\"\n\n\
-    // odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"nt/is_prime.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/nt/is_prime.hpp\n#line 1 \"mod/montgomery_modint.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/mod/montgomery_modint.hpp\n\
+    \n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
     \ <int id, typename U1, typename U2>\nstruct Montgomery_modint {\n  using mint\
     \ = Montgomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
     \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
@@ -101,7 +110,7 @@ data:
     \ >= 0);\n    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if\
     \ (n & 1) y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Montgomery_modint_32\
     \ = Montgomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Montgomery_modint_64\
-    \ = Montgomery_modint<id, u64, u128>;\n#line 2 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
+    \ = Montgomery_modint<id, u64, u128>;\n#line 3 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
     \ u64 x) {\n  assert(x < u64(1) << 62);\n  if (x == 2 or x == 3 or x == 5 or x\
     \ == 7) return true;\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 ==\
     \ 0) return false;\n  if (x < 121) return x > 1;\n  const u64 d = (x - 1) >> lowbit(x\
@@ -112,7 +121,7 @@ data:
     \ false;\n    return true;\n  };\n  if (x < (u64(1) << 32)) {\n    for (u64 a\
     \ : {2, 7, 61})\n      if (!ok(a)) return false;\n  } else {\n    for (u64 a :\
     \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\n      if (!ok(a)) return\
-    \ false;\n    }\n  }\n  return true;\n}\n#line 4 \"nt/factor.hpp\"\n\ntemplate\
+    \ false;\n    }\n  }\n  return true;\n}\n#line 5 \"nt/factor.hpp\"\n\ntemplate\
     \ <typename mint>\nll rho(ll n, ll c) {\n  assert(n > 1);\n  const mint cc(c);\n\
     \  auto f = [&](mint x) { return x * x + cc; };\n  mint x = 1, y = 2, z = 1, q\
     \ = 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5);\n  for (ll r = 1; g\
@@ -136,33 +145,31 @@ data:
     \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_spf(ll n, vc<int>& spf) {\n  vc<pair<ll,\
     \ int>> res;\n  while (n > 1) {\n    int p = spf[n];\n    int e = 0;\n    while\
     \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
-    \ return res;\n}\n#line 3 \"nt/euler_phi.hpp\"\n\r\nll euler_phi(ll n) {\r\n \
-    \ auto pf = factor(n);\r\n  for (auto&& [p, e]: pf) n -= n / p;\r\n  return n;\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nvc<T> euler_phi_table(ll n) {\r\n  vc<T> A(n\
-    \ + 1);\r\n  FOR(i, 1, n + 1) A[i] = T(i);\r\n  divisor_mobius(A);\r\n  return\
-    \ A;\r\n}\r\n#line 3 \"mod/tetration.hpp\"\n\r\nint tetration(vc<ll> a, int mod)\
-    \ {\r\n  for (auto&& x: a) assert(x > 0);\r\n\r\n  // a[0]^(a[1]^(a[2]^...))\r\
-    \n  vc<int> mod_chain = {mod};\r\n  while (mod_chain.back() > 1) mod_chain.eb(euler_phi(mod_chain.back()));\r\
-    \n  while (len(a) > len(mod_chain)) a.pop_back();\r\n  while (len(mod_chain) >\
-    \ len(a)) mod_chain.pop_back();\r\n\r\n  auto pow = [&](ll x, int n, int mod)\
-    \ -> int {\r\n    Barrett bt(mod);\r\n    if (x >= mod) x = bt.modulo(x) + mod;\r\
-    \n    ll v = 1;\r\n    do {\r\n      if (n & 1) {\r\n        v *= x;\r\n     \
-    \   if (v >= mod) v = bt.modulo(v) + mod;\r\n      }\r\n      x *= x;\r\n    \
-    \  if (x >= mod) x = bt.modulo(x) + mod;\r\n      n /= 2;\r\n    } while (n);\r\
-    \n    return v;\r\n  };\r\n\r\n  int v = 1;\r\n  FOR_R(i, len(a)) v = pow(a[i],\
-    \ v, mod_chain[i]);\r\n  return v % mod;\r\n}\r\n"
-  code: "#include \"mod/barrett.hpp\"\r\n#include \"nt/euler_phi.hpp\"\r\n\r\nint\
-    \ tetration(vc<ll> a, int mod) {\r\n  for (auto&& x: a) assert(x > 0);\r\n\r\n\
-    \  // a[0]^(a[1]^(a[2]^...))\r\n  vc<int> mod_chain = {mod};\r\n  while (mod_chain.back()\
-    \ > 1) mod_chain.eb(euler_phi(mod_chain.back()));\r\n  while (len(a) > len(mod_chain))\
-    \ a.pop_back();\r\n  while (len(mod_chain) > len(a)) mod_chain.pop_back();\r\n\
-    \r\n  auto pow = [&](ll x, int n, int mod) -> int {\r\n    Barrett bt(mod);\r\n\
-    \    if (x >= mod) x = bt.modulo(x) + mod;\r\n    ll v = 1;\r\n    do {\r\n  \
-    \    if (n & 1) {\r\n        v *= x;\r\n        if (v >= mod) v = bt.modulo(v)\
-    \ + mod;\r\n      }\r\n      x *= x;\r\n      if (x >= mod) x = bt.modulo(x) +\
-    \ mod;\r\n      n /= 2;\r\n    } while (n);\r\n    return v;\r\n  };\r\n\r\n \
-    \ int v = 1;\r\n  FOR_R(i, len(a)) v = pow(a[i], v, mod_chain[i]);\r\n  return\
-    \ v % mod;\r\n}\r\n"
+    \ return res;\n}\n#line 4 \"nt/euler_phi.hpp\"\n\nll euler_phi(ll n) {\n  auto\
+    \ pf = factor(n);\n  for (auto&& [p, e]: pf) n -= n / p;\n  return n;\n}\n\ntemplate\
+    \ <typename T>\nvc<T> euler_phi_table(ll n) {\n  vc<T> A(n + 1);\n  FOR(i, 1,\
+    \ n + 1) A[i] = T(i);\n  divisor_mobius(A);\n  return A;\n}\n#line 4 \"mod/tetration.hpp\"\
+    \n\nint tetration(vc<ll> a, int mod) {\n  for (auto&& x: a) assert(x > 0);\n\n\
+    \  // a[0]^(a[1]^(a[2]^...))\n  vc<int> mod_chain = {mod};\n  while (mod_chain.back()\
+    \ > 1) mod_chain.eb(euler_phi(mod_chain.back()));\n  while (len(a) > len(mod_chain))\
+    \ a.pop_back();\n  while (len(mod_chain) > len(a)) mod_chain.pop_back();\n\n \
+    \ auto pow = [&](ll x, int n, int mod) -> int {\n    Barrett bt(mod);\n    if\
+    \ (x >= mod) x = bt.modulo(x) + mod;\n    ll v = 1;\n    do {\n      if (n & 1)\
+    \ {\n        v *= x;\n        if (v >= mod) v = bt.modulo(v) + mod;\n      }\n\
+    \      x *= x;\n      if (x >= mod) x = bt.modulo(x) + mod;\n      n /= 2;\n \
+    \   } while (n);\n    return v;\n  };\n\n  int v = 1;\n  FOR_R(i, len(a)) v =\
+    \ pow(a[i], v, mod_chain[i]);\n  return v % mod;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/mod/tetration.hpp\n\
+    #include \"mod/barrett.hpp\"\n#include \"nt/euler_phi.hpp\"\n\nint tetration(vc<ll>\
+    \ a, int mod) {\n  for (auto&& x: a) assert(x > 0);\n\n  // a[0]^(a[1]^(a[2]^...))\n\
+    \  vc<int> mod_chain = {mod};\n  while (mod_chain.back() > 1) mod_chain.eb(euler_phi(mod_chain.back()));\n\
+    \  while (len(a) > len(mod_chain)) a.pop_back();\n  while (len(mod_chain) > len(a))\
+    \ mod_chain.pop_back();\n\n  auto pow = [&](ll x, int n, int mod) -> int {\n \
+    \   Barrett bt(mod);\n    if (x >= mod) x = bt.modulo(x) + mod;\n    ll v = 1;\n\
+    \    do {\n      if (n & 1) {\n        v *= x;\n        if (v >= mod) v = bt.modulo(v)\
+    \ + mod;\n      }\n      x *= x;\n      if (x >= mod) x = bt.modulo(x) + mod;\n\
+    \      n /= 2;\n    } while (n);\n    return v;\n  };\n\n  int v = 1;\n  FOR_R(i,\
+    \ len(a)) v = pow(a[i], v, mod_chain[i]);\n  return v % mod;\n}\n"
   dependsOn:
   - mod/barrett.hpp
   - nt/euler_phi.hpp
@@ -175,7 +182,7 @@ data:
   isVerificationFile: false
   path: mod/tetration.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/number_theory/tetration.test.cpp

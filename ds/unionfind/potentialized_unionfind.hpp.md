@@ -12,7 +12,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1502.test.cpp
     title: test/3_yukicoder/1502.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2294.test.cpp
     title: test/3_yukicoder/2294.test.cpp
   - icon: ':x:'
@@ -22,51 +22,51 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/unionfind/potentialized_unionfind.hpp\"\ntemplate <typename\
-    \ Group>\r\nstruct Potentialized_UnionFind {\r\n  using E = typename Group::value_type;\r\
-    \n  int N;\r\n  int n_comp;\r\n  vc<E> vals;\r\n  vc<int> par;\r\n  vc<int> size;\r\
-    \n\r\n  Potentialized_UnionFind(int N) : N(N), n_comp(N), vals(N, Group::id()),\
-    \ size(N, 1) {\r\n    par.resize(N);\r\n    iota(all(par), 0);\r\n  }\r\n\r\n\
-    \  // (root, P[root]^{-1}P[v])\r\n  pair<int, E> get(int v) {\r\n    E res = Group::id();\r\
-    \n    while (v != par[v]) {\r\n      res = Group::op(vals[v], res);\r\n      res\
-    \ = Group::op(vals[par[v]], res);\r\n      vals[v] = Group::op(vals[par[v]], vals[v]);\r\
-    \n      v = par[v] = par[par[v]];\r\n    }\r\n    return {v, res};\r\n  }\r\n\r\
-    \n  pair<int, E> operator[](int v) { return get(v); }\r\n\r\n  // is_same / path\
-    \ value\r\n  pair<bool, E> get_path(int u, int v) {\r\n    auto [ru, xu] = get(u);\r\
-    \n    auto [rv, xv] = get(v);\r\n    if (ru != rv) return {false, Group::id()};\r\
-    \n    return {true, Group::op(Group::inverse(xu), xv)};\r\n  }\r\n\r\n  // if\
-    \ same : do nothing.\r\n  // P[to]==P[frm]x\r\n  bool merge(int frm, int to, E\
-    \ x) {\r\n    auto [v1, x1] = get(frm);\r\n    auto [v2, x2] = get(to);\r\n  \
-    \  if (v1 == v2) return false; // same\r\n    if (size[v1] < size[v2]) {\r\n \
-    \     swap(v1, v2);\r\n      swap(x1, x2);\r\n      x = Group::inverse(x);\r\n\
-    \    }\r\n    x = Group::op(x1, x);\r\n    x = Group::op(x, Group::inverse(x2));\r\
-    \n    vals[v2] = x;\r\n    par[v2] = v1;\r\n    size[v1] += size[v2];\r\n    --n_comp;\r\
-    \n    return true;\r\n  }\r\n};\n"
-  code: "template <typename Group>\r\nstruct Potentialized_UnionFind {\r\n  using\
-    \ E = typename Group::value_type;\r\n  int N;\r\n  int n_comp;\r\n  vc<E> vals;\r\
-    \n  vc<int> par;\r\n  vc<int> size;\r\n\r\n  Potentialized_UnionFind(int N) :\
-    \ N(N), n_comp(N), vals(N, Group::id()), size(N, 1) {\r\n    par.resize(N);\r\n\
-    \    iota(all(par), 0);\r\n  }\r\n\r\n  // (root, P[root]^{-1}P[v])\r\n  pair<int,\
-    \ E> get(int v) {\r\n    E res = Group::id();\r\n    while (v != par[v]) {\r\n\
-    \      res = Group::op(vals[v], res);\r\n      res = Group::op(vals[par[v]], res);\r\
-    \n      vals[v] = Group::op(vals[par[v]], vals[v]);\r\n      v = par[v] = par[par[v]];\r\
-    \n    }\r\n    return {v, res};\r\n  }\r\n\r\n  pair<int, E> operator[](int v)\
-    \ { return get(v); }\r\n\r\n  // is_same / path value\r\n  pair<bool, E> get_path(int\
-    \ u, int v) {\r\n    auto [ru, xu] = get(u);\r\n    auto [rv, xv] = get(v);\r\n\
-    \    if (ru != rv) return {false, Group::id()};\r\n    return {true, Group::op(Group::inverse(xu),\
-    \ xv)};\r\n  }\r\n\r\n  // if same : do nothing.\r\n  // P[to]==P[frm]x\r\n  bool\
-    \ merge(int frm, int to, E x) {\r\n    auto [v1, x1] = get(frm);\r\n    auto [v2,\
-    \ x2] = get(to);\r\n    if (v1 == v2) return false; // same\r\n    if (size[v1]\
-    \ < size[v2]) {\r\n      swap(v1, v2);\r\n      swap(x1, x2);\r\n      x = Group::inverse(x);\r\
-    \n    }\r\n    x = Group::op(x1, x);\r\n    x = Group::op(x, Group::inverse(x2));\r\
-    \n    vals[v2] = x;\r\n    par[v2] = v1;\r\n    size[v1] += size[v2];\r\n    --n_comp;\r\
-    \n    return true;\r\n  }\r\n};"
+    links:
+    - https://github.com/maspypy/library/blob/main/ds/unionfind/potentialized_unionfind.hpp
+  bundledCode: "#line 1 \"ds/unionfind/potentialized_unionfind.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/potentialized_unionfind.hpp\n\
+    template <typename Group>\nstruct Potentialized_UnionFind {\n  using E = typename\
+    \ Group::value_type;\n  int N;\n  int n_comp;\n  vc<E> vals;\n  vc<int> par;\n\
+    \  vc<int> size;\n\n  Potentialized_UnionFind(int N) : N(N), n_comp(N), vals(N,\
+    \ Group::id()), size(N, 1) {\n    par.resize(N);\n    iota(all(par), 0);\n  }\n\
+    \n  // (root, P[root]^{-1}P[v])\n  pair<int, E> get(int v) {\n    E res = Group::id();\n\
+    \    while (v != par[v]) {\n      res = Group::op(vals[v], res);\n      res =\
+    \ Group::op(vals[par[v]], res);\n      vals[v] = Group::op(vals[par[v]], vals[v]);\n\
+    \      v = par[v] = par[par[v]];\n    }\n    return {v, res};\n  }\n\n  pair<int,\
+    \ E> operator[](int v) { return get(v); }\n\n  // is_same / path value\n  pair<bool,\
+    \ E> get_path(int u, int v) {\n    auto [ru, xu] = get(u);\n    auto [rv, xv]\
+    \ = get(v);\n    if (ru != rv) return {false, Group::id()};\n    return {true,\
+    \ Group::op(Group::inverse(xu), xv)};\n  }\n\n  // if same : do nothing.\n  //\
+    \ P[to]==P[frm]x\n  bool merge(int frm, int to, E x) {\n    auto [v1, x1] = get(frm);\n\
+    \    auto [v2, x2] = get(to);\n    if (v1 == v2) return false; // same\n    if\
+    \ (size[v1] < size[v2]) {\n      swap(v1, v2);\n      swap(x1, x2);\n      x =\
+    \ Group::inverse(x);\n    }\n    x = Group::op(x1, x);\n    x = Group::op(x, Group::inverse(x2));\n\
+    \    vals[v2] = x;\n    par[v2] = v1;\n    size[v1] += size[v2];\n    --n_comp;\n\
+    \    return true;\n  }\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/potentialized_unionfind.hpp\n\
+    template <typename Group>\nstruct Potentialized_UnionFind {\n  using E = typename\
+    \ Group::value_type;\n  int N;\n  int n_comp;\n  vc<E> vals;\n  vc<int> par;\n\
+    \  vc<int> size;\n\n  Potentialized_UnionFind(int N) : N(N), n_comp(N), vals(N,\
+    \ Group::id()), size(N, 1) {\n    par.resize(N);\n    iota(all(par), 0);\n  }\n\
+    \n  // (root, P[root]^{-1}P[v])\n  pair<int, E> get(int v) {\n    E res = Group::id();\n\
+    \    while (v != par[v]) {\n      res = Group::op(vals[v], res);\n      res =\
+    \ Group::op(vals[par[v]], res);\n      vals[v] = Group::op(vals[par[v]], vals[v]);\n\
+    \      v = par[v] = par[par[v]];\n    }\n    return {v, res};\n  }\n\n  pair<int,\
+    \ E> operator[](int v) { return get(v); }\n\n  // is_same / path value\n  pair<bool,\
+    \ E> get_path(int u, int v) {\n    auto [ru, xu] = get(u);\n    auto [rv, xv]\
+    \ = get(v);\n    if (ru != rv) return {false, Group::id()};\n    return {true,\
+    \ Group::op(Group::inverse(xu), xv)};\n  }\n\n  // if same : do nothing.\n  //\
+    \ P[to]==P[frm]x\n  bool merge(int frm, int to, E x) {\n    auto [v1, x1] = get(frm);\n\
+    \    auto [v2, x2] = get(to);\n    if (v1 == v2) return false; // same\n    if\
+    \ (size[v1] < size[v2]) {\n      swap(v1, v2);\n      swap(x1, x2);\n      x =\
+    \ Group::inverse(x);\n    }\n    x = Group::op(x1, x);\n    x = Group::op(x, Group::inverse(x2));\n\
+    \    vals[v2] = x;\n    par[v2] = v1;\n    size[v1] += size[v2];\n    --n_comp;\n\
+    \    return true;\n  }\n};"
   dependsOn: []
   isVerificationFile: false
   path: ds/unionfind/potentialized_unionfind.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2294.test.cpp

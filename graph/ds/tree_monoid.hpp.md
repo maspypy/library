@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
     title: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
   - icon: ':heavy_check_mark:'
@@ -49,11 +49,13 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"graph/ds/tree_monoid.hpp\"\n\n#line 1 \"ds/segtree/segtree.hpp\"\
-    \n\ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X\
-    \ = typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n,\
-    \ log, size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/ds/tree_monoid.hpp
+  bundledCode: "#line 1 \"graph/ds/tree_monoid.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/ds/tree_monoid.hpp\n\
+    \n#line 1 \"ds/segtree/segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/segtree.hpp\n\
+    \ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X =\
+    \ typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log,\
+    \ size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
     \ F>\n  SegTree(int n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v)\
     \ { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return\
     \ MX::id(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int\
@@ -105,32 +107,35 @@ data:
     \    }\n\n    int m = len(I);\n    while (I[0] > 1) {\n      int nxt = 0;\n  \
     \    int last = -1;\n      FOR(k, m) {\n        int p = I[k] >> 1;\n        if\
     \ (p == last) continue;\n        update(p);\n        I[nxt++] = p;\n        last\
-    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 1 \"graph/tree.hpp\"\n\n\
-    #line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap\
-    \ {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067\
-    \ ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n\
-    \    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k),\
-    \ val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\
-    \u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\
-    \u3068.\n  void clear() {\n    used.assign(len(used), 0);\n    cap = (mask + 1)\
-    \ / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\n  int index(const\
-    \ u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] && key[i] != k; i =\
-    \ (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const u64&\
-    \ k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap ==\
-    \ 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n\
-    \    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value) {\n   \
-    \ int i = index(k);\n    return (used[i] ? val[i] : default_value);\n  }\n\n \
-    \ bool count(const u64& k) {\n    int i = index(k);\n    return used[i] && key[i]\
-    \ == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 1 \"graph/tree.hpp\"\n\
+    // Source: https://github.com/maspypy/library/blob/main/graph/tree.hpp\n\n#line\
+    \ 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -206,7 +211,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 3 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
+    \   }\n  }\n};\n#line 4 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
     \u3066\u3044\u308D\u3044\u308D\n// HLD=false: \u5165\u529B\u8FBA\u9806\u3067 preorder\n\
     template <typename GT, bool HLD = true>\nstruct Tree {\n  using Graph_type = GT;\n\
     \  using WT = typename GT::cost_type;\n  int N = 0;\n  vector<int> LID, RID, head,\
@@ -326,72 +331,12 @@ data:
     \ G.csr_edges[i];\n          if (e.to == parent[v] || e.to == max_ch) continue;\n\
     \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
     \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 1 \"\
-    alg/monoid/monoid_reverse.hpp\"\n\ntemplate <class Monoid>\nstruct Monoid_Reverse\
-    \ {\n  using value_type = typename Monoid::value_type;\n  using X = value_type;\n\
-    \  static constexpr X op(const X &x, const X &y) { return Monoid::op(y, x); }\n\
-    \  static constexpr X id() { return Monoid::id(); }\n  static const bool commute\
-    \ = Monoid::commute;\n};\n#line 5 \"graph/ds/tree_monoid.hpp\"\n\ntemplate <typename\
-    \ TREE, typename Monoid, bool edge>\nstruct Tree_Monoid {\n  using MX = Monoid;\n\
-    \  using X = typename MX::value_type;\n  TREE &tree;\n  int N;\n  SegTree<MX>\
-    \ seg;\n  SegTree<Monoid_Reverse<MX>> seg_r;\n\n  Tree_Monoid(TREE &tree) : tree(tree),\
-    \ N(tree.N) {\n    build([](int i) -> X { return MX::id(); });\n  }\n\n  Tree_Monoid(TREE\
-    \ &tree, vc<X> &dat) : tree(tree), N(tree.N) {\n    build([&](int i) -> X { return\
-    \ dat[i]; });\n  }\n\n  template <typename F>\n  Tree_Monoid(TREE &tree, F f)\
-    \ : tree(tree), N(tree.N) {\n    build(f);\n  }\n\n  template <typename F>\n \
-    \ void build(F f) {\n    if (!edge) {\n      auto f_v = [&](int i) -> X { return\
-    \ f(tree.V[i]); };\n      seg.build(N, f_v);\n      if constexpr (!MX::commute)\
-    \ {\n        seg_r.build(N, f_v);\n      }\n    } else {\n      auto f_e = [&](int\
-    \ i) -> X {\n        return (i == 0 ? MX::id() : f(tree.v_to_e(tree.V[i])));\n\
-    \      };\n      seg.build(N, f_e);\n      if constexpr (!MX::commute) {\n   \
-    \     seg_r.build(N, f_e);\n      }\n    }\n  }\n\n  void set(int i, X x) {\n\
-    \    if constexpr (edge) i = tree.e_to_v(i);\n    i = tree.LID[i];\n    seg.set(i,\
-    \ x);\n    if constexpr (!MX::commute) seg_r.set(i, x);\n  }\n\n  void multiply(int\
-    \ i, X x) {\n    if constexpr (edge) i = tree.e_to_v(i);\n    i = tree.LID[i];\n\
-    \    seg.multiply(i, x);\n    if constexpr (!MX::commute) seg_r.set(i, seg.get(i));\n\
-    \  }\n\n  X prod_path(int u, int v) {\n    auto pd = tree.get_path_decomposition(u,\
-    \ v, edge);\n    X val = MX::id();\n    for (auto &&[a, b] : pd) {\n      val\
-    \ = MX::op(val, _get_prod(a, b));\n    }\n    return val;\n  }\n\n  // uv path\
-    \ \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\u6E80\u305F\u3059\u6700\u5F8C\
-    \u306E x\n  // \u306A\u3051\u308C\u3070 \uFF08\u3064\u307E\u308A path(u,u) \u304C\
-    \ ng \uFF09-1\n  template <class F>\n  int max_path(F check, int u, int v) {\n\
-    \    if constexpr (edge) return max_path_edge(check, u, v);\n    if (!check(prod_path(u,\
-    \ u))) return -1;\n    auto pd = tree.get_path_decomposition(u, v, edge);\n  \
-    \  X val = MX::id();\n    for (auto &&[a, b] : pd) {\n      X x = _get_prod(a,\
-    \ b);\n      if (check(MX::op(val, x))) {\n        val = MX::op(val, x);\n   \
-    \     u = (tree.V[b]);\n        continue;\n      }\n      auto check_tmp = [&](X\
-    \ x) -> bool { return check(MX::op(val, x)); };\n      if (a <= b) {\n       \
-    \ // \u4E0B\u308A\n        auto i = seg.max_right(check_tmp, a);\n        return\
-    \ (i == a ? u : tree.V[i - 1]);\n      } else {\n        // \u4E0A\u308A\n   \
-    \     int i = 0;\n        if constexpr (MX::commute) i = seg.min_left(check_tmp,\
-    \ a + 1);\n        if constexpr (!MX::commute) i = seg_r.min_left(check_tmp, a\
-    \ + 1);\n        if (i == a + 1) return u;\n        return tree.V[i];\n      }\n\
-    \    }\n    return v;\n  }\n\n  X prod_subtree(int u, int root = -1) {\n    if\
-    \ (root == u) return prod_all();\n    if (root == -1 || !tree.in_subtree(root,\
-    \ u)) {\n      int l = tree.LID[u], r = tree.RID[u];\n      return seg.prod(l\
-    \ + edge, r);\n    }\n    assert(!edge);  // \u3055\u307C\u308A\n    u = tree.jump(u,\
-    \ root, 1);\n    int L = tree.LID[u], R = tree.RID[u];\n    return MX::op(seg.prod(0,\
-    \ L), seg.prod(R, N));\n  }\n\n  X prod_all() { return prod_subtree(tree.V[0]);\
-    \ }\n\n  inline X _get_prod(int a, int b) {\n    if constexpr (MX::commute) {\n\
-    \      return (a <= b) ? seg.prod(a, b + 1) : seg.prod(b, a + 1);\n    }\n   \
-    \ return (a <= b) ? seg.prod(a, b + 1) : seg_r.prod(b, a + 1);\n  }\n\n private:\n\
-    \  template <class F>\n  int max_path_edge(F check, int u, int v) {\n    static_assert(edge);\n\
-    \    if (!check(MX::id())) return -1;\n    int lca = tree.lca(u, v);\n    auto\
-    \ pd = tree.get_path_decomposition(u, lca, edge);\n    X val = MX::id();\n\n \
-    \   // climb\n    for (auto &&[a, b] : pd) {\n      assert(a >= b);\n      X x\
-    \ = _get_prod(a, b);\n      if (check(MX::op(val, x))) {\n        val = MX::op(val,\
-    \ x);\n        u = (tree.parent[tree.V[b]]);\n        continue;\n      }\n   \
-    \   auto check_tmp = [&](X x) -> bool { return check(MX::op(val, x)); };\n   \
-    \   int i = 0;\n      if constexpr (MX::commute) i = seg.min_left(check_tmp, a\
-    \ + 1);\n      if constexpr (!MX::commute) i = seg_r.min_left(check_tmp, a + 1);\n\
-    \      if (i == a + 1) return u;\n      return tree.parent[tree.V[i]];\n    }\n\
-    \    // down\n    pd = tree.get_path_decomposition(lca, v, edge);\n    for (auto\
-    \ &&[a, b] : pd) {\n      assert(a <= b);\n      X x = _get_prod(a, b);\n    \
-    \  if (check(MX::op(val, x))) {\n        val = MX::op(val, x);\n        u = (tree.V[b]);\n\
-    \        continue;\n      }\n      auto check_tmp = [&](X x) -> bool { return\
-    \ check(MX::op(val, x)); };\n      auto i = seg.max_right(check_tmp, a);\n   \
-    \   return (i == a ? u : tree.V[i - 1]);\n    }\n    return v;\n  }\n};\n"
-  code: "\n#include \"ds/segtree/segtree.hpp\"\n#include \"graph/tree.hpp\"\n#include\
-    \ \"alg/monoid/monoid_reverse.hpp\"\n\ntemplate <typename TREE, typename Monoid,\
+    alg/monoid/monoid_reverse.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/monoid_reverse.hpp\n\
+    \ntemplate <class Monoid>\nstruct Monoid_Reverse {\n  using value_type = typename\
+    \ Monoid::value_type;\n  using X = value_type;\n  static constexpr X op(const\
+    \ X &x, const X &y) { return Monoid::op(y, x); }\n  static constexpr X id() {\
+    \ return Monoid::id(); }\n  static const bool commute = Monoid::commute;\n};\n\
+    #line 6 \"graph/ds/tree_monoid.hpp\"\n\ntemplate <typename TREE, typename Monoid,\
     \ bool edge>\nstruct Tree_Monoid {\n  using MX = Monoid;\n  using X = typename\
     \ MX::value_type;\n  TREE &tree;\n  int N;\n  SegTree<MX> seg;\n  SegTree<Monoid_Reverse<MX>>\
     \ seg_r;\n\n  Tree_Monoid(TREE &tree) : tree(tree), N(tree.N) {\n    build([](int\
@@ -450,6 +395,67 @@ data:
     \        continue;\n      }\n      auto check_tmp = [&](X x) -> bool { return\
     \ check(MX::op(val, x)); };\n      auto i = seg.max_right(check_tmp, a);\n   \
     \   return (i == a ? u : tree.V[i - 1]);\n    }\n    return v;\n  }\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/ds/tree_monoid.hpp\n\
+    \n#include \"ds/segtree/segtree.hpp\"\n#include \"graph/tree.hpp\"\n#include \"\
+    alg/monoid/monoid_reverse.hpp\"\n\ntemplate <typename TREE, typename Monoid, bool\
+    \ edge>\nstruct Tree_Monoid {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
+    \  TREE &tree;\n  int N;\n  SegTree<MX> seg;\n  SegTree<Monoid_Reverse<MX>> seg_r;\n\
+    \n  Tree_Monoid(TREE &tree) : tree(tree), N(tree.N) {\n    build([](int i) ->\
+    \ X { return MX::id(); });\n  }\n\n  Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree),\
+    \ N(tree.N) {\n    build([&](int i) -> X { return dat[i]; });\n  }\n\n  template\
+    \ <typename F>\n  Tree_Monoid(TREE &tree, F f) : tree(tree), N(tree.N) {\n   \
+    \ build(f);\n  }\n\n  template <typename F>\n  void build(F f) {\n    if (!edge)\
+    \ {\n      auto f_v = [&](int i) -> X { return f(tree.V[i]); };\n      seg.build(N,\
+    \ f_v);\n      if constexpr (!MX::commute) {\n        seg_r.build(N, f_v);\n \
+    \     }\n    } else {\n      auto f_e = [&](int i) -> X {\n        return (i ==\
+    \ 0 ? MX::id() : f(tree.v_to_e(tree.V[i])));\n      };\n      seg.build(N, f_e);\n\
+    \      if constexpr (!MX::commute) {\n        seg_r.build(N, f_e);\n      }\n\
+    \    }\n  }\n\n  void set(int i, X x) {\n    if constexpr (edge) i = tree.e_to_v(i);\n\
+    \    i = tree.LID[i];\n    seg.set(i, x);\n    if constexpr (!MX::commute) seg_r.set(i,\
+    \ x);\n  }\n\n  void multiply(int i, X x) {\n    if constexpr (edge) i = tree.e_to_v(i);\n\
+    \    i = tree.LID[i];\n    seg.multiply(i, x);\n    if constexpr (!MX::commute)\
+    \ seg_r.set(i, seg.get(i));\n  }\n\n  X prod_path(int u, int v) {\n    auto pd\
+    \ = tree.get_path_decomposition(u, v, edge);\n    X val = MX::id();\n    for (auto\
+    \ &&[a, b] : pd) {\n      val = MX::op(val, _get_prod(a, b));\n    }\n    return\
+    \ val;\n  }\n\n  // uv path \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\u6E80\
+    \u305F\u3059\u6700\u5F8C\u306E x\n  // \u306A\u3051\u308C\u3070 \uFF08\u3064\u307E\
+    \u308A path(u,u) \u304C ng \uFF09-1\n  template <class F>\n  int max_path(F check,\
+    \ int u, int v) {\n    if constexpr (edge) return max_path_edge(check, u, v);\n\
+    \    if (!check(prod_path(u, u))) return -1;\n    auto pd = tree.get_path_decomposition(u,\
+    \ v, edge);\n    X val = MX::id();\n    for (auto &&[a, b] : pd) {\n      X x\
+    \ = _get_prod(a, b);\n      if (check(MX::op(val, x))) {\n        val = MX::op(val,\
+    \ x);\n        u = (tree.V[b]);\n        continue;\n      }\n      auto check_tmp\
+    \ = [&](X x) -> bool { return check(MX::op(val, x)); };\n      if (a <= b) {\n\
+    \        // \u4E0B\u308A\n        auto i = seg.max_right(check_tmp, a);\n    \
+    \    return (i == a ? u : tree.V[i - 1]);\n      } else {\n        // \u4E0A\u308A\
+    \n        int i = 0;\n        if constexpr (MX::commute) i = seg.min_left(check_tmp,\
+    \ a + 1);\n        if constexpr (!MX::commute) i = seg_r.min_left(check_tmp, a\
+    \ + 1);\n        if (i == a + 1) return u;\n        return tree.V[i];\n      }\n\
+    \    }\n    return v;\n  }\n\n  X prod_subtree(int u, int root = -1) {\n    if\
+    \ (root == u) return prod_all();\n    if (root == -1 || !tree.in_subtree(root,\
+    \ u)) {\n      int l = tree.LID[u], r = tree.RID[u];\n      return seg.prod(l\
+    \ + edge, r);\n    }\n    assert(!edge);  // \u3055\u307C\u308A\n    u = tree.jump(u,\
+    \ root, 1);\n    int L = tree.LID[u], R = tree.RID[u];\n    return MX::op(seg.prod(0,\
+    \ L), seg.prod(R, N));\n  }\n\n  X prod_all() { return prod_subtree(tree.V[0]);\
+    \ }\n\n  inline X _get_prod(int a, int b) {\n    if constexpr (MX::commute) {\n\
+    \      return (a <= b) ? seg.prod(a, b + 1) : seg.prod(b, a + 1);\n    }\n   \
+    \ return (a <= b) ? seg.prod(a, b + 1) : seg_r.prod(b, a + 1);\n  }\n\n private:\n\
+    \  template <class F>\n  int max_path_edge(F check, int u, int v) {\n    static_assert(edge);\n\
+    \    if (!check(MX::id())) return -1;\n    int lca = tree.lca(u, v);\n    auto\
+    \ pd = tree.get_path_decomposition(u, lca, edge);\n    X val = MX::id();\n\n \
+    \   // climb\n    for (auto &&[a, b] : pd) {\n      assert(a >= b);\n      X x\
+    \ = _get_prod(a, b);\n      if (check(MX::op(val, x))) {\n        val = MX::op(val,\
+    \ x);\n        u = (tree.parent[tree.V[b]]);\n        continue;\n      }\n   \
+    \   auto check_tmp = [&](X x) -> bool { return check(MX::op(val, x)); };\n   \
+    \   int i = 0;\n      if constexpr (MX::commute) i = seg.min_left(check_tmp, a\
+    \ + 1);\n      if constexpr (!MX::commute) i = seg_r.min_left(check_tmp, a + 1);\n\
+    \      if (i == a + 1) return u;\n      return tree.parent[tree.V[i]];\n    }\n\
+    \    // down\n    pd = tree.get_path_decomposition(lca, v, edge);\n    for (auto\
+    \ &&[a, b] : pd) {\n      assert(a <= b);\n      X x = _get_prod(a, b);\n    \
+    \  if (check(MX::op(val, x))) {\n        val = MX::op(val, x);\n        u = (tree.V[b]);\n\
+    \        continue;\n      }\n      auto check_tmp = [&](X x) -> bool { return\
+    \ check(MX::op(val, x)); };\n      auto i = seg.max_right(check_tmp, a);\n   \
+    \   return (i == a ? u : tree.V[i - 1]);\n    }\n    return v;\n  }\n};\n"
   dependsOn:
   - ds/segtree/segtree.hpp
   - graph/tree.hpp
@@ -460,7 +466,7 @@ data:
   path: graph/ds/tree_monoid.hpp
   requiredBy:
   - graph/minimum_spanning_tree.hpp
-  timestamp: '2026-10-13 08:18:55+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/mo_on_tree.test.cpp

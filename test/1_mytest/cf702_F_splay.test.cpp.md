@@ -27,20 +27,21 @@ data:
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/cf702_F_splay.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n/*\n\
-    library: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
-    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
-    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
-    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
-    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
-    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
-    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
-    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
-    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
-    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
-    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n//\
+    \ Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\nlibrary:\
+    \ https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
+    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
+    Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\"\
+    )\n#endif\n#endif\n#include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
+    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
+    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class>\nconstexpr\
+    \ bool dependent_false = false;\n\ntemplate <class T>\nconstexpr T infty = []\
+    \ {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\");\n  return\
+    \ T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
     template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
     \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
     using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
@@ -142,12 +143,16 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 1 \"alg/monoid/add_pair.hpp\"\
-    \n\ntemplate <typename E>\nstruct Monoid_Add_Pair {\n  using value_type = pair<E,\
+    \n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add_pair.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add_Pair {\n  using value_type = pair<E,\
     \ E>;\n  using X = value_type;\n  static constexpr X op(const X &x, const X &y)\
     \ {\n    return {x.fi + y.fi, x.se + y.se};\n  }\n  static constexpr X inverse(const\
     \ X &x) { return {-x.fi, -x.se}; }\n  static constexpr X id() { return {0, 0};\
-    \ }\n  static constexpr bool commute = true;\n};\n#line 1 \"ds/node_pool.hpp\"\
-    \n// \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\
+    \ }\n  static constexpr bool commute = true;\n};\n#line 1 \"ds/splaytree/splaytree_acted_set.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/ds/splaytree/splaytree_acted_set.hpp\n\
+    #line 1 \"ds/splaytree/splaytree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/splaytree/splaytree.hpp\n\
+    #line 1 \"ds/node_pool.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/node_pool.hpp\n\
+    // \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\
     \u6E08\u307F chunk \u3092\u518D\u5229\u7528\u3059\u308B\ntemplate <class Node>\n\
     struct Node_Pool {\n  union Slot {\n    Node node;\n    Slot* next;\n\n    Slot()\
     \ {}\n    ~Slot() {}\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE\
@@ -173,7 +178,7 @@ data:
     \ {\n      Slot* s = free_head;\n      free_head = free_head->next;\n      return\
     \ s;\n    }\n\n    if (chunk_id == len(chunks)) alloc_chunk();\n\n    Slot* s\
     \ = &chunks[chunk_id][pos++];\n    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n\
-    \      pos = 0;\n    }\n    return s;\n  }\n};\n#line 2 \"ds/splaytree/splaytree.hpp\"\
+    \      pos = 0;\n    }\n    return s;\n  }\n};\n#line 3 \"ds/splaytree/splaytree.hpp\"\
     \n\n// Node \u578B\u3092\u5225\u306B\u5B9A\u7FA9\u3057\u3066\u4F7F\u3046\ntemplate\
     \ <typename Node>\nstruct SplayTree {\n  Node_Pool<Node> pool;\n  using np = Node\
     \ *;\n  using X = typename Node::value_type;\n  using A = typename Node::operator_type;\n\
@@ -308,7 +313,7 @@ data:
     \    X lprod = Mono::op(prod, root->prod);\n      root->r = tmp;\n      root->update();\n\
     \      if (check(lprod)) {\n        prod = lprod;\n        last_ok = root;\n \
     \       root = root->r;\n      } else {\n        root = root->l;\n      }\n  \
-    \  }\n    splay(last, true);\n    return last_ok;\n  }\n};\n#line 2 \"ds/splaytree/splaytree_acted_set.hpp\"\
+    \  }\n    splay(last, true);\n    return last_ok;\n  }\n};\n#line 3 \"ds/splaytree/splaytree_acted_set.hpp\"\
     \n\nnamespace SplayTreeNodes {\ntemplate <typename ActedSet>\nstruct Node_AS {\n\
     \  using Monoid_A = typename ActedSet::Monoid_A;\n  using A = typename ActedSet::A;\n\
     \  using S = typename ActedSet::S;\n  using value_type = S;\n  using operator_type\
@@ -397,7 +402,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/cf702_F_splay.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/cf702_F_splay.test.cpp

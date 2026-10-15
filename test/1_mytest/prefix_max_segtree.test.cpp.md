@@ -31,7 +31,8 @@ data:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/prefix_max_segtree.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\n\
-    /*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
+    // Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\n\
+    library: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
     \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
     \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
@@ -145,29 +146,29 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 4 \"test/1_mytest/prefix_max_segtree.test.cpp\"\
-    \n\n#line 1 \"ds/segtree/prefix_max_segtree.hpp\"\n\n/*\nkey[0],...,key[n-1] \u304C\
-    \u3042\u308B\n\u30E2\u30CE\u30A4\u30C9\u306E\u5217 x[0],...,x[n-1] \u304C\u3042\
-    \u308B\nquery(l,r): l \u304B\u3089\u898B\u3048\u308B\u3068\u3053\u308D\u306B\u5BFE\
-    \u3059\u308B monoid product\n\u898B\u3048\u308B: key[i]==max(key[0]...key[i])\n\
-    Qlog^2n\nhttps://qoj.ac/contest/1540/problem/8338\n*/\ntemplate <typename KEY_TYPE,\
-    \ typename Monoid>\nstruct Prefix_Max_SegTree {\n  using MX = Monoid;\n  using\
-    \ KEY = KEY_TYPE;\n  using X = typename MX::value_type;\n  int n, size, log;\n\
-    \  struct Data {\n    KEY max;\n    X prod, rprod;  // rprod \u306F\u3053\u306E\
-    \u533A\u9593\u3060\u3051\u3067\u8A08\u7B97\u3057\u305F\u3068\u304D\u306E\u53F3\
-    \u5074\n  };\n\n  vc<Data> dat;\n\n  Prefix_Max_SegTree() {}\n  Prefix_Max_SegTree(int\
-    \ n) { build(n); }\n  template <typename F>\n  Prefix_Max_SegTree(int n, F f)\
-    \ {\n    build(n, f);\n  }\n  Prefix_Max_SegTree(const vc<X>& v) { build(v); }\n\
-    \n  void build(int m) {\n    build(m, [](int i) -> pair<KEY, X> { return {-infty<int>,\
-    \ MX::id()}; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n \
-    \   n = m, log = 0;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n\
-    \    dat.assign(size << 1, {-infty<int>, MX::id(), MX::id()});\n    FOR(i, n)\
-    \ {\n      auto [k, x] = f(i);\n      dat[size + i] = {k, x, MX::id()};\n    }\n\
-    \    FOR_R(i, 1, size) update(i);\n  }\n\n  void set(int i, pair<KEY, X> p) {\n\
-    \    int k = p.fi;\n    X x = p.se;\n    i += size;\n    dat[i] = {k, x, MX::id()};\n\
-    \    while (i > 1) i /= 2, update(i);\n  }\n\n  X prod_all() { return dat[1].prod;\
-    \ }\n  X prod(int L, int R) {\n    KEY k = -infty<KEY>;\n    vc<int> suff;\n \
-    \   L += size, R += size;\n    X prod = MX::id();\n    while (L < R) {\n     \
-    \ if (L & 1) {\n        prod = MX::op(prod, dfs(L, k)), chmax(k, dat[L].max),\
+    \n\n#line 1 \"ds/segtree/prefix_max_segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/prefix_max_segtree.hpp\n\
+    \n/*\nkey[0],...,key[n-1] \u304C\u3042\u308B\n\u30E2\u30CE\u30A4\u30C9\u306E\u5217\
+    \ x[0],...,x[n-1] \u304C\u3042\u308B\nquery(l,r): l \u304B\u3089\u898B\u3048\u308B\
+    \u3068\u3053\u308D\u306B\u5BFE\u3059\u308B monoid product\n\u898B\u3048\u308B\
+    : key[i]==max(key[0]...key[i])\nQlog^2n\nhttps://qoj.ac/contest/1540/problem/8338\n\
+    */\ntemplate <typename KEY_TYPE, typename Monoid>\nstruct Prefix_Max_SegTree {\n\
+    \  using MX = Monoid;\n  using KEY = KEY_TYPE;\n  using X = typename MX::value_type;\n\
+    \  int n, size, log;\n  struct Data {\n    KEY max;\n    X prod, rprod;  // rprod\
+    \ \u306F\u3053\u306E\u533A\u9593\u3060\u3051\u3067\u8A08\u7B97\u3057\u305F\u3068\
+    \u304D\u306E\u53F3\u5074\n  };\n\n  vc<Data> dat;\n\n  Prefix_Max_SegTree() {}\n\
+    \  Prefix_Max_SegTree(int n) { build(n); }\n  template <typename F>\n  Prefix_Max_SegTree(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  Prefix_Max_SegTree(const vc<X>& v) { build(v);\
+    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> pair<KEY, X> { return\
+    \ {-infty<int>, MX::id()}; });\n  }\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    n = m, log = 0;\n    while ((1 << log) < n) ++log;\n    size\
+    \ = 1 << log;\n    dat.assign(size << 1, {-infty<int>, MX::id(), MX::id()});\n\
+    \    FOR(i, n) {\n      auto [k, x] = f(i);\n      dat[size + i] = {k, x, MX::id()};\n\
+    \    }\n    FOR_R(i, 1, size) update(i);\n  }\n\n  void set(int i, pair<KEY, X>\
+    \ p) {\n    int k = p.fi;\n    X x = p.se;\n    i += size;\n    dat[i] = {k, x,\
+    \ MX::id()};\n    while (i > 1) i /= 2, update(i);\n  }\n\n  X prod_all() { return\
+    \ dat[1].prod; }\n  X prod(int L, int R) {\n    KEY k = -infty<KEY>;\n    vc<int>\
+    \ suff;\n    L += size, R += size;\n    X prod = MX::id();\n    while (L < R)\
+    \ {\n      if (L & 1) {\n        prod = MX::op(prod, dfs(L, k)), chmax(k, dat[L].max),\
     \ ++L;\n      }\n      if (R & 1) {\n        suff.eb(--R);\n      }\n      L /=\
     \ 2, R /= 2;\n    }\n    reverse(all(suff));\n    for (auto& v : suff) {\n   \
     \   prod = MX::op(prod, dfs(v, k)), chmax(k, dat[v].max);\n    }\n    return prod;\n\
@@ -182,28 +183,32 @@ data:
     \n    if (size <= v) {\n      return (k <= dat[v].max ? dat[v].prod : MX::id());\n\
     \    }\n    if (k <= dat[2 * v + 0].max) {\n      return MX::op(dfs(2 * v + 0,\
     \ k), dat[v].rprod);\n    }\n    return dfs(2 * v + 1, k);\n  }\n};\n#line 1 \"\
-    random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"alg/monoid/affine.hpp\"\n\n//\
-    \ op(F, G) = comp(G,F), F \u306E\u3042\u3068\u3067 G\ntemplate <typename K>\n\
-    struct Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n  using\
-    \ X = value_type;\n  static constexpr F op(const F &x, const F &y) noexcept {\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"alg/monoid/affine.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/alg/monoid/affine.hpp\n\n// op(F,\
+    \ G) = comp(G,F), F \u306E\u3042\u3068\u3067 G\ntemplate <typename K>\nstruct\
+    \ Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n  using X\
+    \ = value_type;\n  static constexpr F op(const F &x, const F &y) noexcept {\n\
     \    return F({x.first * y.first, x.second * y.first + y.second});\n  }\n  static\
     \ constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n\
     \    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f, K x) noexcept\
     \ {\n    return f.first * x + f.second;\n  }\n  static constexpr F id() { return\
-    \ {K(1), K(0)}; }\n  static constexpr bool commute = false;\n};\n#line 1 \"mod/modint_common.hpp\"\
-    \n\n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x)\
-    \ -> decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static\
-    \ auto check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod\
-    \ : public decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate\
-    \ <typename mint>\nmint fact(int n) {\n  static vector<mint> dat = {1, 1};\n \
-    \ static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n\
-    \    dat = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if (len(dat) <= n) {\n\
-    \    int now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
+    \ {K(1), K(0)}; }\n  static constexpr bool commute = false;\n};\n#line 1 \"mod/modint.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/mod/modint.hpp\n#line\
+    \ 1 \"mod/modint_common.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint_common.hpp\n\
+    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
+    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
+    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
+    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
+    \ mint>\nmint fact(int n) {\n  static vector<mint> dat = {1, 1};\n  static int\
+    \ mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n    dat\
+    \ = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if (len(dat) <= n) {\n    int\
+    \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
     \    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n  }\n  return dat[n];\n\
     }\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  if (n < 0) return mint(0);\n\
     \  static vector<mint> dat = {1, 1};\n  static int mod = 0;\n  if (mod != mint::get_mod())\
@@ -237,7 +242,7 @@ data:
     }\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint, bool large = false, bool dense\
     \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
     \ mint(0);\n  if (n == 0) {\n    return (d == 0 ? mint(1) : mint(0));\n  }\n \
-    \ return C<mint, large, dense>(n + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\
+    \ return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\
     \ntemplate <int mod>\nstruct modint {\n  static constexpr u32 umod = u32(mod);\n\
     \  static_assert(0 < umod && umod < u32(1) << 31);\n  u32 val;\n\n  static modint\
     \ raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
@@ -332,7 +337,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/prefix_max_segtree.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/prefix_max_segtree.test.cpp

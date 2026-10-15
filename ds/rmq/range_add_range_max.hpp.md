@@ -18,17 +18,19 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/542/problem/B
-  bundledCode: "#line 1 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\n// \u5E38\u306B\
-    \u307B\u3068\u3093\u3069\u306E\u8981\u7D20\u304C id \u3067\u3042\u308B\u3053\u3068\
-    \u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\u52D5\u7684\u30BB\u30B0\
-    \u6728\n// \u3057\u305F\u304C\u3063\u3066\u3001default_prod \u306E\u985E\u306F\
-    \u6301\u305F\u305B\u3089\u308C\u305A\u3001acted monoid \u3082\u4E00\u822C\u306B\
-    \u306F\u6271\u3048\u306A\u3044\n// \u8FFD\u52A0 N \u56DE\u306E\u3068\u304D\u30CE\
-    \u30FC\u30C9\u6570 N \u4EE5\u4E0B\u304C\u4FDD\u8A3C\u3055\u308C\u308B\ntemplate\
-    \ <typename Monoid, bool PERSISTENT>\nstruct Dynamic_SegTree_Sparse {\n  using\
-    \ MX = Monoid;\n  using X = typename MX::value_type;\n\n  struct Node {\n    int\
-    \ ch[2];\n    ll idx;\n    X prod, x;\n  };\n  const ll L0, R0;\n  static constexpr\
-    \ int NIL = 0;\n  vc<Node> node;\n  vc<int> FREE;\n\n  Dynamic_SegTree_Sparse(ll\
+    - https://github.com/maspypy/library/blob/main/ds/rmq/range_add_range_max.hpp
+  bundledCode: "#line 1 \"ds/rmq/range_add_range_max.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/rmq/range_add_range_max.hpp\n\
+    #line 1 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/dynamic_segtree_sparse.hpp\n\
+    \n// \u5E38\u306B\u307B\u3068\u3093\u3069\u306E\u8981\u7D20\u304C id \u3067\u3042\
+    \u308B\u3053\u3068\u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\u52D5\
+    \u7684\u30BB\u30B0\u6728\n// \u3057\u305F\u304C\u3063\u3066\u3001default_prod\
+    \ \u306E\u985E\u306F\u6301\u305F\u305B\u3089\u308C\u305A\u3001acted monoid \u3082\
+    \u4E00\u822C\u306B\u306F\u6271\u3048\u306A\u3044\n// \u8FFD\u52A0 N \u56DE\u306E\
+    \u3068\u304D\u30CE\u30FC\u30C9\u6570 N \u4EE5\u4E0B\u304C\u4FDD\u8A3C\u3055\u308C\
+    \u308B\ntemplate <typename Monoid, bool PERSISTENT>\nstruct Dynamic_SegTree_Sparse\
+    \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\n  struct Node\
+    \ {\n    int ch[2];\n    ll idx;\n    X prod, x;\n  };\n  const ll L0, R0;\n \
+    \ static constexpr int NIL = 0;\n  vc<Node> node;\n  vc<int> FREE;\n\n  Dynamic_SegTree_Sparse(ll\
     \ L0, ll R0) : L0(L0), R0(R0) { reset(); }\n  void reserve(int n) { node.reserve(n\
     \ + 1); }\n  void reset() {\n    node.clear(), FREE.clear();\n    node.eb(Node{{NIL,\
     \ NIL}, 0, MX::id(), MX::id()});  // NIL\n  }\n\n  // \u6728 dp \u306E\u30DE\u30FC\
@@ -100,7 +102,8 @@ data:
     \ m = (l + r) / 2;\n    ll k = min_left_rec(node[c].ch[1], check, m, r, qr, x);\n\
     \    if (k != L0) return k;\n    if (node[c].idx < qr) {\n      x = MX::op(node[c].x,\
     \ x);\n      if (!check(x)) return node[c].idx + 1;\n    }\n    return min_left_rec(node[c].ch[0],\
-    \ check, l, m, qr, x);\n  }\n};\n#line 1 \"ds/segtree/segtree.hpp\"\n\ntemplate\
+    \ check, l, m, qr, x);\n  }\n};\n#line 1 \"ds/segtree/segtree.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/ds/segtree/segtree.hpp\n\ntemplate\
     \ <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X = typename\
     \ MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\
     \n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename F>\n  SegTree(int\
@@ -155,7 +158,7 @@ data:
     \    }\n\n    int m = len(I);\n    while (I[0] > 1) {\n      int nxt = 0;\n  \
     \    int last = -1;\n      FOR(k, m) {\n        int p = I[k] >> 1;\n        if\
     \ (p == last) continue;\n        update(p);\n        I[nxt++] = p;\n        last\
-    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 3 \"ds/rmq/range_add_range_max.hpp\"\
+    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 4 \"ds/rmq/range_add_range_max.hpp\"\
     \n\n// INF+x==INF \u307F\u305F\u3044\u306A\u51E6\u7406\u306F\u5165\u308C\u3066\
     \u3044\u306A\u3044\n// N=Q=10^6 \u3067 lazysegtree \u3088\u308A 40% \u7A0B\u5EA6\
     \u9AD8\u901F\ntemplate <typename T>\nstruct Range_Add_Range_Max {\n  struct Mono\
@@ -200,7 +203,8 @@ data:
     \ -x); }\n\n  // [i,n)\n  void apply_suffix(ll i, T x) {\n    if (i == seg.R0)\
     \ return;\n    T t = seg.get(root, i).fi + x;\n    root = seg.set(root, i, {t,\
     \ t});\n  }\n  void apply_all(T x) { lazy += x; }\n};\n"
-  code: "#include \"ds/segtree/dynamic_segtree_sparse.hpp\"\n#include \"ds/segtree/segtree.hpp\"\
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/rmq/range_add_range_max.hpp\n\
+    #include \"ds/segtree/dynamic_segtree_sparse.hpp\"\n#include \"ds/segtree/segtree.hpp\"\
     \n\n// INF+x==INF \u307F\u305F\u3044\u306A\u51E6\u7406\u306F\u5165\u308C\u3066\
     \u3044\u306A\u3044\n// N=Q=10^6 \u3067 lazysegtree \u3088\u308A 40% \u7A0B\u5EA6\
     \u9AD8\u901F\ntemplate <typename T>\nstruct Range_Add_Range_Max {\n  struct Mono\
@@ -251,7 +255,7 @@ data:
   isVerificationFile: false
   path: ds/rmq/range_add_range_max.hpp
   requiredBy: []
-  timestamp: '2026-10-13 08:18:55+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/range_add_range_max.test.cpp

@@ -18,20 +18,21 @@ data:
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/enumerate_multisets.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n/*\n\
-    library: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
-    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
-    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
-    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
-    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
-    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
-    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
-    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
-    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
-    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
-    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n//\
+    \ Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\nlibrary:\
+    \ https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
+    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
+    Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\"\
+    )\n#endif\n#endif\n#include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
+    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
+    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class>\nconstexpr\
+    \ bool dependent_false = false;\n\ntemplate <class T>\nconstexpr T infty = []\
+    \ {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\");\n  return\
+    \ T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
     template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
     \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
     using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
@@ -133,13 +134,13 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/enumerate_multisets.test.cpp\"\
-    \n\n#line 1 \"enumerate/multiset.hpp\"\n// N \u5143 K \u7A2E\u985E\u306E\u591A\
-    \u91CD\u96C6\u5408\u306E\u983B\u5EA6\u5217\u3064\u307E\u308A\r\n// a[0]+...+a[K-1]==N\r\
-    \ntemplate <typename F>\r\nvoid enumerate_multiset(int N, int K, F query) {\r\n\
-    \  vc<int> A(K);\r\n  auto dfs = [&](auto& dfs, int p, int s) -> void {\r\n  \
-    \  if (p == K) {\r\n      if (s == 0) query(A);\r\n      return;\r\n    }\r\n\
-    \    FOR(x, s + 1) {\r\n      A[p] = x;\r\n      dfs(dfs, p + 1, s - x);\r\n \
-    \   }\r\n  };\r\n  dfs(dfs, 0, N);\r\n}\r\n#line 5 \"test/1_mytest/enumerate_multisets.test.cpp\"\
+    \n\n#line 1 \"enumerate/multiset.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/enumerate/multiset.hpp\n\
+    // N \u5143 K \u7A2E\u985E\u306E\u591A\u91CD\u96C6\u5408\u306E\u983B\u5EA6\u5217\
+    \u3064\u307E\u308A\n// a[0]+...+a[K-1]==N\ntemplate <typename F>\nvoid enumerate_multiset(int\
+    \ N, int K, F query) {\n  vc<int> A(K);\n  auto dfs = [&](auto& dfs, int p, int\
+    \ s) -> void {\n    if (p == K) {\n      if (s == 0) query(A);\n      return;\n\
+    \    }\n    FOR(x, s + 1) {\n      A[p] = x;\n      dfs(dfs, p + 1, s - x);\n\
+    \    }\n  };\n  dfs(dfs, 0, N);\n}\n#line 5 \"test/1_mytest/enumerate_multisets.test.cpp\"\
     \n\nvoid test() {\n  {\n    vvc<int> res;\n    auto f = [&](vc<int> A) -> void\
     \ { res.eb(A); };\n    enumerate_multiset(2, 3, f);\n    assert(len(res) == 6);\n\
     \    assert(res[0] == vc<int>({0, 0, 2}));\n    assert(res[1] == vc<int>({0, 1,\
@@ -166,7 +167,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enumerate_multisets.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/enumerate_multisets.test.cpp

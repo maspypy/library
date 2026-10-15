@@ -19,7 +19,8 @@ data:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/pythagorean_triples.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\n\
-    /*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
+    // Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\n\
+    library: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
     \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
     \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
@@ -133,20 +134,20 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 4 \"test/1_mytest/pythagorean_triples.test.cpp\"\
-    \n\n#line 1 \"nt/pythagorean_triple.hpp\"\n\n/*\nc <= LIM, (a,b,c) \u3068 (b,a,c)\
-    \ \u306F\u540C\u4E00\u8996, O(LIM) \u6642\u9593\n\u30FBLIM = 10^8\uFF1A\u4E92\u3044\
-    \u306B\u7D20 1.59*10^7 \u500B, 0.13sec\n\u30FBLIM = 10^8\uFF1A\u5168\u90E8 2.71*10^8\
-    \ \u500B, 0.53sec\nhttps://codeforces.com/contest/60/problem/D\n*/\ntemplate <bool\
-    \ coprime_only, typename F>\nvoid enumerate_pythagorean_triple(int LIM, F f) {\n\
-    \  vc<tuple<int, int, int>> que;\n  auto add = [&](int a, int b, int c) -> void\
-    \ {\n    if (c <= LIM) que.eb(a, b, c);\n  };\n  add(3, 4, 5);\n  while (len(que))\
-    \ {\n    auto [a, b, c] = POP(que);\n    add(a - 2 * b + 2 * c, 2 * a - b + 2\
-    \ * c, 2 * a - 2 * b + 3 * c);\n    add(a + 2 * b + 2 * c, 2 * a + b + 2 * c,\
-    \ 2 * a + 2 * b + 3 * c);\n    add(-a + 2 * b + 2 * c, -2 * a + b + 2 * c, -2\
-    \ * a + 2 * b + 3 * c);\n    if constexpr (coprime_only) {\n      f(min(a, b),\
-    \ max(a, b), c);\n    } else {\n      int x = min(a, b), y = max(a, b), z = c;\n\
-    \      while (z <= LIM) {\n        f(x, y, z);\n        x += min(a, b), y += max(a,\
-    \ b), z += c;\n      }\n    }\n  }\n}\n#line 6 \"test/1_mytest/pythagorean_triples.test.cpp\"\
+    \n\n#line 1 \"nt/pythagorean_triple.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/pythagorean_triple.hpp\n\
+    \n/*\nc <= LIM, (a,b,c) \u3068 (b,a,c) \u306F\u540C\u4E00\u8996, O(LIM) \u6642\
+    \u9593\n\u30FBLIM = 10^8\uFF1A\u4E92\u3044\u306B\u7D20 1.59*10^7 \u500B, 0.13sec\n\
+    \u30FBLIM = 10^8\uFF1A\u5168\u90E8 2.71*10^8 \u500B, 0.53sec\nhttps://codeforces.com/contest/60/problem/D\n\
+    */\ntemplate <bool coprime_only, typename F>\nvoid enumerate_pythagorean_triple(int\
+    \ LIM, F f) {\n  vc<tuple<int, int, int>> que;\n  auto add = [&](int a, int b,\
+    \ int c) -> void {\n    if (c <= LIM) que.eb(a, b, c);\n  };\n  add(3, 4, 5);\n\
+    \  while (len(que)) {\n    auto [a, b, c] = POP(que);\n    add(a - 2 * b + 2 *\
+    \ c, 2 * a - b + 2 * c, 2 * a - 2 * b + 3 * c);\n    add(a + 2 * b + 2 * c, 2\
+    \ * a + b + 2 * c, 2 * a + 2 * b + 3 * c);\n    add(-a + 2 * b + 2 * c, -2 * a\
+    \ + b + 2 * c, -2 * a + 2 * b + 3 * c);\n    if constexpr (coprime_only) {\n \
+    \     f(min(a, b), max(a, b), c);\n    } else {\n      int x = min(a, b), y =\
+    \ max(a, b), z = c;\n      while (z <= LIM) {\n        f(x, y, z);\n        x\
+    \ += min(a, b), y += max(a, b), z += c;\n      }\n    }\n  }\n}\n#line 6 \"test/1_mytest/pythagorean_triples.test.cpp\"\
     \n\nvoid test() {\n  int LIM = 10000;\n  int A = 0, B = 0;\n  FOR(y, 1, LIM) {\n\
     \    FOR(x, 1, y) {\n      int z = sqrtl(x * x + y * y);\n      if (z > LIM) break;\n\
     \      if (x * x + y * y != z * z) continue;\n      A += 1;\n      B += gcd(x,\
@@ -177,7 +178,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/pythagorean_triples.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/pythagorean_triples.test.cpp

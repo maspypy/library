@@ -25,15 +25,20 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"nt/factor.hpp\"\n\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64()\
-    \ {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n     \
-    \                 chrono::high_resolution_clock::now().time_since_epoch())\n \
-    \                         .count()) *\n                  10150724397891781847ULL;\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/nt/divisors.hpp
+  bundledCode: "#line 1 \"nt/divisors.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/divisors.hpp\n\
+    #line 1 \"nt/factor.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/factor.hpp\n\
+    \n#line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/montgomery_modint.hpp\"\n\n\
-    // odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"nt/is_prime.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/nt/is_prime.hpp\n#line 1 \"mod/montgomery_modint.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/mod/montgomery_modint.hpp\n\
+    \n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
     \ <int id, typename U1, typename U2>\nstruct Montgomery_modint {\n  using mint\
     \ = Montgomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
     \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
@@ -53,7 +58,7 @@ data:
     \ >= 0);\n    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if\
     \ (n & 1) y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Montgomery_modint_32\
     \ = Montgomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Montgomery_modint_64\
-    \ = Montgomery_modint<id, u64, u128>;\n#line 2 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
+    \ = Montgomery_modint<id, u64, u128>;\n#line 3 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
     \ u64 x) {\n  assert(x < u64(1) << 62);\n  if (x == 2 or x == 3 or x == 5 or x\
     \ == 7) return true;\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 ==\
     \ 0) return false;\n  if (x < 121) return x > 1;\n  const u64 d = (x - 1) >> lowbit(x\
@@ -64,7 +69,7 @@ data:
     \ false;\n    return true;\n  };\n  if (x < (u64(1) << 32)) {\n    for (u64 a\
     \ : {2, 7, 61})\n      if (!ok(a)) return false;\n  } else {\n    for (u64 a :\
     \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\n      if (!ok(a)) return\
-    \ false;\n    }\n  }\n  return true;\n}\n#line 4 \"nt/factor.hpp\"\n\ntemplate\
+    \ false;\n    }\n  }\n  return true;\n}\n#line 5 \"nt/factor.hpp\"\n\ntemplate\
     \ <typename mint>\nll rho(ll n, ll c) {\n  assert(n > 1);\n  const mint cc(c);\n\
     \  auto f = [&](mint x) { return x * x + cc; };\n  mint x = 1, y = 2, z = 1, q\
     \ = 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5);\n  for (ll r = 1; g\
@@ -88,23 +93,23 @@ data:
     \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_spf(ll n, vc<int>& spf) {\n  vc<pair<ll,\
     \ int>> res;\n  while (n > 1) {\n    int p = spf[n];\n    int e = 0;\n    while\
     \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
-    \ return res;\n}\n#line 2 \"nt/divisors.hpp\"\n\r\n// sort \u306F\u3057\u306A\u3044\
-    \r\nvc<ll> divisors_by_pf(const vc<pair<ll, int>>& pf) {\r\n  vi div = {1};\r\n\
-    \  for (auto&& [p, e]: pf) {\r\n    ll n = len(div);\r\n    ll pp = 1;\r\n   \
-    \ FOR3(i, 1, e + 1) {\r\n      pp *= p;\r\n      FOR(j, n) div.eb(div[j] * pp);\r\
-    \n    }\r\n  }\r\n  return div;\r\n}\r\n\r\n// sort \u306F\u3057\u306A\u3044\r\
-    \nvc<ll> divisors(ll N) {\r\n  auto pf = factor(N);\r\n  return divisors_by_pf(pf);\r\
-    \n}\r\n\r\n// sort \u306F\u3057\u306A\u3044\r\nvc<ll> divisors_by_spf(ll N, vc<int>&\
-    \ spf) {\r\n  auto pf = factor_by_spf(N, spf);\r\n  return divisors_by_pf(pf);\r\
-    \n}\n"
-  code: "#include \"nt/factor.hpp\"\r\n\r\n// sort \u306F\u3057\u306A\u3044\r\nvc<ll>\
-    \ divisors_by_pf(const vc<pair<ll, int>>& pf) {\r\n  vi div = {1};\r\n  for (auto&&\
-    \ [p, e]: pf) {\r\n    ll n = len(div);\r\n    ll pp = 1;\r\n    FOR3(i, 1, e\
-    \ + 1) {\r\n      pp *= p;\r\n      FOR(j, n) div.eb(div[j] * pp);\r\n    }\r\n\
-    \  }\r\n  return div;\r\n}\r\n\r\n// sort \u306F\u3057\u306A\u3044\r\nvc<ll> divisors(ll\
-    \ N) {\r\n  auto pf = factor(N);\r\n  return divisors_by_pf(pf);\r\n}\r\n\r\n\
-    // sort \u306F\u3057\u306A\u3044\r\nvc<ll> divisors_by_spf(ll N, vc<int>& spf)\
-    \ {\r\n  auto pf = factor_by_spf(N, spf);\r\n  return divisors_by_pf(pf);\r\n}"
+    \ return res;\n}\n#line 3 \"nt/divisors.hpp\"\n\n// sort \u306F\u3057\u306A\u3044\
+    \nvc<ll> divisors_by_pf(const vc<pair<ll, int>>& pf) {\n  vi div = {1};\n  for\
+    \ (auto&& [p, e]: pf) {\n    ll n = len(div);\n    ll pp = 1;\n    FOR3(i, 1,\
+    \ e + 1) {\n      pp *= p;\n      FOR(j, n) div.eb(div[j] * pp);\n    }\n  }\n\
+    \  return div;\n}\n\n// sort \u306F\u3057\u306A\u3044\nvc<ll> divisors(ll N) {\n\
+    \  auto pf = factor(N);\n  return divisors_by_pf(pf);\n}\n\n// sort \u306F\u3057\
+    \u306A\u3044\nvc<ll> divisors_by_spf(ll N, vc<int>& spf) {\n  auto pf = factor_by_spf(N,\
+    \ spf);\n  return divisors_by_pf(pf);\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/nt/divisors.hpp\n\
+    #include \"nt/factor.hpp\"\n\n// sort \u306F\u3057\u306A\u3044\nvc<ll> divisors_by_pf(const\
+    \ vc<pair<ll, int>>& pf) {\n  vi div = {1};\n  for (auto&& [p, e]: pf) {\n   \
+    \ ll n = len(div);\n    ll pp = 1;\n    FOR3(i, 1, e + 1) {\n      pp *= p;\n\
+    \      FOR(j, n) div.eb(div[j] * pp);\n    }\n  }\n  return div;\n}\n\n// sort\
+    \ \u306F\u3057\u306A\u3044\nvc<ll> divisors(ll N) {\n  auto pf = factor(N);\n\
+    \  return divisors_by_pf(pf);\n}\n\n// sort \u306F\u3057\u306A\u3044\nvc<ll> divisors_by_spf(ll\
+    \ N, vc<int>& spf) {\n  auto pf = factor_by_spf(N, spf);\n  return divisors_by_pf(pf);\n\
+    }"
   dependsOn:
   - nt/factor.hpp
   - random/base.hpp
@@ -113,7 +118,7 @@ data:
   isVerificationFile: false
   path: nt/divisors.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1575.test.cpp

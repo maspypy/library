@@ -28,65 +28,70 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"nt/array_on_floor.hpp\"\n// N=10 \u3060\u3068 dat = {dp[1],\
-    \ dp[2], dp[3], dp[5], dp[10]} \u307F\u305F\u3044\u306B\u306A\u308B\n// hashmap\
-    \ \u3088\u308A\u6570\u500D\u9AD8\u901F\ntemplate <typename T>\nstruct Array_on_Floor\
-    \ {\n  u64 N;\n  u32 t, sq;\n  vc<T> dat;\n  Array_on_Floor() {}\n  Array_on_Floor(u64\
-    \ N, T default_value = T{}) : N(N) {\n    assert(N <= u64(1) << 50);\n    sq =\
-    \ sqrtl(N);\n    t = (u64(sq) * sq + sq <= N ? sq : sq - 1);\n    dat.resize(t\
-    \ + sq, default_value);\n  }\n\n  u32 size() { return dat.size(); }\n\n  T& operator[](u64\
-    \ d) {\n    int i = get_index(d);\n    return dat[i];\n  }\n\n  inline u32 get_index(u64\
-    \ d) {\n    assert(d > 0);\n    if (d <= t) return d - 1;\n    return dat.size()\
-    \ - u32(double(N) / d);\n  }\n\n  // dat[i] \u306B\u5BFE\u5FDC\u3059\u308B floor\n\
-    \  u64 get_floor(u32 i) { return (i < t ? 1 + i : double(N) / (t + sq - i)); }\n\
-    \n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(dat)) {\
-    \ f(get_floor(i), dat[i]); }\n  }\n};\n#line 1 \"nt/prime_table.hpp\"\n\ntemplate\
-    \ <typename T = int>\nvc<T> prime_table(int LIM) {\n  ++LIM;\n  const int S =\
-    \ 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\
-    \n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1,\
-    \ 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n\
-    \    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i])\
-    \ {\n        cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2\
-    \ * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n\
-    \      array<bool, S> block{};\n      for (auto& [p, idx] : cp)\n        for (int\
-    \ i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R\
-    \ - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
-    \ LIM);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/zeta.hpp\"\
-    \n\ntemplate <typename T>\nvoid divisor_zeta(vc<T>& A) {\n  assert(A[0] == 0);\n\
-    \  int N = len(A) - 1;\n  auto P = prime_table(N);\n  for (auto&& p : P) {\n \
-    \   FOR3(x, 1, N / p + 1) A[p * x] += A[x];\n  }\n}\n\ntemplate <typename T>\n\
-    void divisor_mobius(vc<T>& A) {\n  assert(A[0] == 0);\n  int N = len(A) - 1;\n\
-    \  auto P = prime_table(N);\n  for (auto&& p : P) {\n    FOR3_R(x, 1, N / p +\
-    \ 1) A[p * x] -= A[x];\n  }\n}\n\ntemplate <typename T>\nvoid multiple_zeta(vc<T>&\
+    links:
+    - https://github.com/maspypy/library/blob/main/nt/mertens.hpp
+  bundledCode: "#line 1 \"nt/mertens.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/mertens.hpp\n\
+    #line 1 \"nt/array_on_floor.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/array_on_floor.hpp\n\
+    // N=10 \u3060\u3068 dat = {dp[1], dp[2], dp[3], dp[5], dp[10]} \u307F\u305F\u3044\
+    \u306B\u306A\u308B\n// hashmap \u3088\u308A\u6570\u500D\u9AD8\u901F\ntemplate\
+    \ <typename T>\nstruct Array_on_Floor {\n  u64 N;\n  u32 t, sq;\n  vc<T> dat;\n\
+    \  Array_on_Floor() {}\n  Array_on_Floor(u64 N, T default_value = T{}) : N(N)\
+    \ {\n    assert(N <= u64(1) << 50);\n    sq = sqrtl(N);\n    t = (u64(sq) * sq\
+    \ + sq <= N ? sq : sq - 1);\n    dat.resize(t + sq, default_value);\n  }\n\n \
+    \ u32 size() { return dat.size(); }\n\n  T& operator[](u64 d) {\n    int i = get_index(d);\n\
+    \    return dat[i];\n  }\n\n  inline u32 get_index(u64 d) {\n    assert(d > 0);\n\
+    \    if (d <= t) return d - 1;\n    return dat.size() - u32(double(N) / d);\n\
+    \  }\n\n  // dat[i] \u306B\u5BFE\u5FDC\u3059\u308B floor\n  u64 get_floor(u32\
+    \ i) { return (i < t ? 1 + i : double(N) / (t + sq - i)); }\n\n  template <typename\
+    \ F>\n  void enumerate_all(F f) {\n    FOR(i, len(dat)) { f(get_floor(i), dat[i]);\
+    \ }\n  }\n};\n#line 1 \"nt/mobius_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/mobius_table.hpp\n\
+    #line 1 \"nt/zeta.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/zeta.hpp\n\
+    #line 1 \"nt/prime_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/prime_table.hpp\n\
+    \ntemplate <typename T = int>\nvc<T> prime_table(int LIM) {\n  ++LIM;\n  const\
+    \ int S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S\
+    \ + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
+    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
+    \ * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
+    \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
+    \ * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1;\
+    \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]\
+    \ : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
+    \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
+    \  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin() + k};\n\
+    }\n#line 3 \"nt/zeta.hpp\"\n\ntemplate <typename T>\nvoid divisor_zeta(vc<T>&\
     \ A) {\n  assert(A[0] == 0);\n  int N = len(A) - 1;\n  auto P = prime_table(N);\n\
-    \  for (auto&& p : P) {\n    FOR3_R(x, 1, N / p + 1) A[x] += A[p * x];\n  }\n\
-    }\n\ntemplate <typename T>\nvoid multiple_mobius(vc<T>& A) {\n  assert(A[0] ==\
-    \ 0);\n  int N = len(A) - 1;\n  auto P = prime_table(N);\n  for (auto&& p : P)\
-    \ {\n    FOR3(x, 1, N / p + 1) A[x] -= A[p * x];\n  }\n}\n#line 2 \"nt/mobius_table.hpp\"\
-    \n\r\ntemplate <typename T>\r\nvc<T> mobius_table(int N) {\r\n  vc<T> mu(N + 1);\r\
-    \n  if (1 <= N) mu[1] = T(1);\r\n  divisor_mobius(mu);\r\n  return mu;\r\n}\n\
-    #line 1 \"enumerate/floor_range.hpp\"\n// \u5546\u304C q \u306E\u533A\u9593 [l,r)\
-    \ \u3092 q \u306B\u3064\u3044\u3066\u6607\u9806\r\ntemplate <typename F>\r\nvoid\
-    \ floor_range(u64 N, F f, bool Q_ASC = true, bool INCLUDE_Q_IS_0 = false) {\r\n\
-    \  u64 sq = sqrtl(N);\r\n  u32 n = (sq * sq + sq <= N ? sq : sq - 1);\r\n  if\
-    \ (Q_ASC) {\r\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\r\n    for (u32\
-    \ q = 1; q <= n; ++q) {\r\n      f(q, N / (q + 1) + 1, N / q + 1);\r\n    }\r\n\
-    \    for (u32 l = sq; l >= 1; --l) {\r\n      f(N / l, l, l + 1);\r\n    }\r\n\
-    \  } else {\r\n    for (u32 l = 1; l <= sq; ++l) {\r\n      f(N / l, l, l + 1);\r\
-    \n    }\r\n    for (u32 q = n; q >= 1; --q) {\r\n      f(q, N / (q + 1) + 1, N\
-    \ / q + 1);\r\n    }\r\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\r\n  }\r\
-    \n}\r\n#line 4 \"nt/mertens.hpp\"\n\ntemplate <typename T>\nstruct Mertens {\n\
-    \  Array_on_Floor<T> sum;\n  Mertens() {}\n  Mertens(u64 N, u64 K = -1) { build(N,\
-    \ K); }\n  void build(u64 N, u64 K = -1) {\n    sum = Array_on_Floor<T>(N);\n\
-    \    if (K == u64(-1)) { K = pow(N, 0.67); }\n    vc<T> A = mobius_table<T>(K);\n\
-    \    FOR(k, 1, K) A[k + 1] += A[k];\n    FOR(i, len(sum)) {\n      u64 n = sum.get_floor(i);\n\
-    \      if (n <= K) {\n        sum.dat[i] = A[n];\n        continue;\n      }\n\
-    \      T ans = 1;\n      floor_range(n, [&](u64 q, u64 l, u64 r) -> void {\n \
-    \       if (q == n) return;\n        ans -= sum[q] * T(r - l);\n      });\n  \
-    \    sum.dat[i] = ans;\n    }\n  }\n  T operator[](u64 n) { return sum[n]; }\n\
-    };\n"
-  code: "#include \"nt/array_on_floor.hpp\"\n#include \"nt/mobius_table.hpp\"\n#include\
+    \  for (auto&& p : P) {\n    FOR3(x, 1, N / p + 1) A[p * x] += A[x];\n  }\n}\n\
+    \ntemplate <typename T>\nvoid divisor_mobius(vc<T>& A) {\n  assert(A[0] == 0);\n\
+    \  int N = len(A) - 1;\n  auto P = prime_table(N);\n  for (auto&& p : P) {\n \
+    \   FOR3_R(x, 1, N / p + 1) A[p * x] -= A[x];\n  }\n}\n\ntemplate <typename T>\n\
+    void multiple_zeta(vc<T>& A) {\n  assert(A[0] == 0);\n  int N = len(A) - 1;\n\
+    \  auto P = prime_table(N);\n  for (auto&& p : P) {\n    FOR3_R(x, 1, N / p +\
+    \ 1) A[x] += A[p * x];\n  }\n}\n\ntemplate <typename T>\nvoid multiple_mobius(vc<T>&\
+    \ A) {\n  assert(A[0] == 0);\n  int N = len(A) - 1;\n  auto P = prime_table(N);\n\
+    \  for (auto&& p : P) {\n    FOR3(x, 1, N / p + 1) A[x] -= A[p * x];\n  }\n}\n\
+    #line 3 \"nt/mobius_table.hpp\"\n\ntemplate <typename T>\nvc<T> mobius_table(int\
+    \ N) {\n  vc<T> mu(N + 1);\n  if (1 <= N) mu[1] = T(1);\n  divisor_mobius(mu);\n\
+    \  return mu;\n}\n#line 1 \"enumerate/floor_range.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/enumerate/floor_range.hpp\n\
+    // \u5546\u304C q \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\
+    \u9806\ntemplate <typename F>\nvoid floor_range(u64 N, F f, bool Q_ASC = true,\
+    \ bool INCLUDE_Q_IS_0 = false) {\n  u64 sq = sqrtl(N);\n  u32 n = (sq * sq + sq\
+    \ <= N ? sq : sq - 1);\n  if (Q_ASC) {\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\n\
+    \    for (u32 q = 1; q <= n; ++q) {\n      f(q, N / (q + 1) + 1, N / q + 1);\n\
+    \    }\n    for (u32 l = sq; l >= 1; --l) {\n      f(N / l, l, l + 1);\n    }\n\
+    \  } else {\n    for (u32 l = 1; l <= sq; ++l) {\n      f(N / l, l, l + 1);\n\
+    \    }\n    for (u32 q = n; q >= 1; --q) {\n      f(q, N / (q + 1) + 1, N / q\
+    \ + 1);\n    }\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\n  }\n}\n#line\
+    \ 5 \"nt/mertens.hpp\"\n\ntemplate <typename T>\nstruct Mertens {\n  Array_on_Floor<T>\
+    \ sum;\n  Mertens() {}\n  Mertens(u64 N, u64 K = -1) { build(N, K); }\n  void\
+    \ build(u64 N, u64 K = -1) {\n    sum = Array_on_Floor<T>(N);\n    if (K == u64(-1))\
+    \ { K = pow(N, 0.67); }\n    vc<T> A = mobius_table<T>(K);\n    FOR(k, 1, K) A[k\
+    \ + 1] += A[k];\n    FOR(i, len(sum)) {\n      u64 n = sum.get_floor(i);\n   \
+    \   if (n <= K) {\n        sum.dat[i] = A[n];\n        continue;\n      }\n  \
+    \    T ans = 1;\n      floor_range(n, [&](u64 q, u64 l, u64 r) -> void {\n   \
+    \     if (q == n) return;\n        ans -= sum[q] * T(r - l);\n      });\n    \
+    \  sum.dat[i] = ans;\n    }\n  }\n  T operator[](u64 n) { return sum[n]; }\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/nt/mertens.hpp\n\
+    #include \"nt/array_on_floor.hpp\"\n#include \"nt/mobius_table.hpp\"\n#include\
     \ \"enumerate/floor_range.hpp\"\n\ntemplate <typename T>\nstruct Mertens {\n \
     \ Array_on_Floor<T> sum;\n  Mertens() {}\n  Mertens(u64 N, u64 K = -1) { build(N,\
     \ K); }\n  void build(u64 N, u64 K = -1) {\n    sum = Array_on_Floor<T>(N);\n\
@@ -107,7 +112,7 @@ data:
   path: nt/mertens.hpp
   requiredBy:
   - nt/range_rational_count.hpp
-  timestamp: '2026-10-13 08:18:55+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2266.test.cpp

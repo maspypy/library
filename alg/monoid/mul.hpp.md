@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_mul.hpp
     title: alg/acted_monoid/sum_mul.hpp
   - icon: ':heavy_check_mark:'
@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':x:'
@@ -32,7 +32,7 @@ data:
   - icon: ':warning:'
     path: poly/sum_of_C_negative.hpp
     title: poly/sum_of_C_negative.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
   - icon: ':x:'
@@ -54,7 +54,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
     title: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
     title: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
   - icon: ':x:'
@@ -63,7 +63,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1080_2.test.cpp
     title: test/3_yukicoder/1080_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1339.test.cpp
     title: test/3_yukicoder/1339.test.cpp
   - icon: ':x:'
@@ -78,24 +78,27 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/502_2.test.cpp
     title: test/3_yukicoder/502_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/899.test.cpp
     title: test/3_yukicoder/899.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/mul.hpp\"\n\ntemplate <class T>\nstruct Monoid_Mul\
-    \ {\n  using value_type = T;\n  using X = T;\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return x * y; }\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return X(1) / x; }\n  static constexpr X id() { return X(1);\
-    \ }\n  static constexpr bool commute = true;\n};\n"
-  code: "\ntemplate <class T>\nstruct Monoid_Mul {\n  using value_type = T;\n  using\
-    \ X = T;\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
-    \ * y; }\n  static constexpr X inverse(const X &x) noexcept { return X(1) / x;\
-    \ }\n  static constexpr X id() { return X(1); }\n  static constexpr bool commute\
-    \ = true;\n};\n"
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/monoid/mul.hpp
+  bundledCode: "#line 1 \"alg/monoid/mul.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/mul.hpp\n\
+    \ntemplate <class T>\nstruct Monoid_Mul {\n  using value_type = T;\n  using X\
+    \ = T;\n  static constexpr X op(const X &x, const X &y) noexcept { return x *\
+    \ y; }\n  static constexpr X inverse(const X &x) noexcept { return X(1) / x; }\n\
+    \  static constexpr X id() { return X(1); }\n  static constexpr bool commute =\
+    \ true;\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/monoid/mul.hpp\n\
+    \ntemplate <class T>\nstruct Monoid_Mul {\n  using value_type = T;\n  using X\
+    \ = T;\n  static constexpr X op(const X &x, const X &y) noexcept { return x *\
+    \ y; }\n  static constexpr X inverse(const X &x) noexcept { return X(1) / x; }\n\
+    \  static constexpr X id() { return X(1); }\n  static constexpr bool commute =\
+    \ true;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/mul.hpp
@@ -112,7 +115,7 @@ data:
   - mod/mod_log.hpp
   - seq/p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/count_bipartite.test.cpp

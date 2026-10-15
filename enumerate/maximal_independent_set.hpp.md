@@ -9,8 +9,9 @@ data:
   attributes:
     links:
     - https://atcoder.jp/contests/jag2014autumn/tasks/icpc2014autumn_i
-  bundledCode: "#line 1 \"enumerate/maximal_independent_set.hpp\"\n\n// 3^(N/3). \u6975\
-    \u5927.\n// https://atcoder.jp/contests/jag2014autumn/tasks/icpc2014autumn_i\n\
+    - https://github.com/maspypy/library/blob/main/enumerate/maximal_independent_set.hpp
+  bundledCode: "#line 1 \"enumerate/maximal_independent_set.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/enumerate/maximal_independent_set.hpp\n\
+    \n// 3^(N/3). \u6975\u5927.\n// https://atcoder.jp/contests/jag2014autumn/tasks/icpc2014autumn_i\n\
     template <typename GT, typename F>\nvoid enumerate_maximal_independent_set(const\
     \ GT& G, F f) {\n  assert(G.N < 64);\n  int N = G.N;\n  vc<u64> adj(N);\n  for\
     \ (auto& e : G.edges) {\n    adj[e.frm] |= u64(1) << e.to;\n    adj[e.to] |= u64(1)\
@@ -22,7 +23,8 @@ data:
     \ {\n      dfs(dfs, I | u64(1) << v, V & (~(u64(1) << v)) & ~(adj[v]));\n    });\n\
     \  };\n  u64 FULL = 0;\n  FOR(i, N) FULL |= u64(1) << i;\n  dfs(dfs, 0, FULL);\n\
     }\n"
-  code: "\n// 3^(N/3). \u6975\u5927.\n// https://atcoder.jp/contests/jag2014autumn/tasks/icpc2014autumn_i\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/enumerate/maximal_independent_set.hpp\n\
+    \n// 3^(N/3). \u6975\u5927.\n// https://atcoder.jp/contests/jag2014autumn/tasks/icpc2014autumn_i\n\
     template <typename GT, typename F>\nvoid enumerate_maximal_independent_set(const\
     \ GT& G, F f) {\n  assert(G.N < 64);\n  int N = G.N;\n  vc<u64> adj(N);\n  for\
     \ (auto& e : G.edges) {\n    adj[e.frm] |= u64(1) << e.to;\n    adj[e.to] |= u64(1)\
@@ -38,7 +40,7 @@ data:
   isVerificationFile: false
   path: enumerate/maximal_independent_set.hpp
   requiredBy: []
-  timestamp: '2026-09-25 19:09:59+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: enumerate/maximal_independent_set.hpp

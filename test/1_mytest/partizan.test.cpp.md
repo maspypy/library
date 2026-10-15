@@ -27,31 +27,31 @@ data:
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/partizan.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
-    \n\n#line 1 \"my_template.hpp\"\n/*\nlibrary: https://github.com/maspypy/library\n\
-    */\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
-    #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#if\
-    \ !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#endif\n\
-    #include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace std;\n\nusing\
-    \ ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\n\
-    using u64 = uint64_t;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
-    using f128 = __float128;\n\ntemplate <class>\nconstexpr bool dependent_false =\
-    \ false;\n\ntemplate <class T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>,\
-    \ \"infty<T> is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int\
-    \ infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
-    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
-    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
-    \ infty<i128>;\ntemplate <>\nconstexpr long double infty<long double> = infty<i128>;\n\
-    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing pq_max = priority_queue<T>;\ntemplate <class T>\nusing\
-    \ pq_min = priority_queue<T, vector<T>, greater<T>>;\n\n#define vv(type, name,\
-    \ h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n#define\
-    \ vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name( \\\n \
-    \     h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \n\n#line 1 \"my_template.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n\
+    /*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
+    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
+    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
+    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
+    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
+    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
+    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
+    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
+    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
+    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
+    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
+    \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
+    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq_max = priority_queue<T>;\ntemplate <class T>\nusing pq_min = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR1_R(a)\
@@ -142,8 +142,10 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 4 \"test/1_mytest/partizan.test.cpp\"\
-    \n\n#line 1 \"game/solve_partizan_game.hpp\"\n\n#line 1 \"game/dyadic_rational.hpp\"\
-    \n\n// a+b/2^M \u306E\u5F62\u3067\u6301\u3064\ntemplate <typename INTEGER>\nstruct\
+    \n\n#line 1 \"game/solve_partizan_game.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/game/solve_partizan_game.hpp\n\
+    \n#line 1 \"game/number_and_star.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/game/number_and_star.hpp\n\
+    #line 1 \"game/dyadic_rational.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/game/dyadic_rational.hpp\n\
+    \n// a+b/2^M \u306E\u5F62\u3067\u6301\u3064\ntemplate <typename INTEGER>\nstruct\
     \ Dyadic_Rational {\n  using X = Dyadic_Rational;\n  INTEGER a, b;\n  static constexpr\
     \ int M = std::numeric_limits<INTEGER>::digits - 2;\n\n  Dyadic_Rational(INTEGER\
     \ a = 0) : a(a), b(0) {}\n\n  // x + y / z\n  Dyadic_Rational(INTEGER x, INTEGER\
@@ -183,42 +185,43 @@ data:
     \  string to_string() {\n    ll x = a, y = b, z = INTEGER(1) << M;\n    while\
     \ (y % 2 == 0 && z % 2 == 0) {\n      y /= 2, z /= 2;\n    }\n    y += x * z;\n\
     \    return std::to_string(y) + \"/\" + std::to_string(z);\n  }\n};\n#line 1 \"\
-    other/mex.hpp\"\nint mex(const vc<int>& A) {\n  int n = len(A);\n  vc<bool> aru(n\
-    \ + 1);\n  for (auto& x: A)\n    if (x < n) aru[x] = 1;\n  int mex = 0;\n  while\
-    \ (aru[mex]) ++mex;\n  return mex;\n}\n#line 3 \"game/number_and_star.hpp\"\n\n\
-    struct Number_And_Star {\n  using A = Dyadic_Rational<ll>;\n  // a + *b\n  A a;\n\
-    \  int b;\n  using T = Number_And_Star;\n\n  Number_And_Star(A a = 0, ll b = 0)\
-    \ : a(a), b(b) {}\n  T& operator+=(const T& p) {\n    a += p.a, b ^= p.b;\n  \
-    \  return *this;\n  }\n  T& operator-=(const T& p) {\n    a -= p.a, b ^= p.b;\n\
-    \    return *this;\n  }\n  T operator-() const { return T(-a, b); }\n  bool operator==(const\
-    \ T& p) const { return (a == p.a && b == p.b); }\n\n  // {\u8A08\u7B97\u3067\u304D\
-    \u305F\u304B, \u5024}\n  static pair<bool, T> from_options(vc<T> left_ops, vc<T>\
-    \ right_ops) {\n    A xl = -A::infinity(), xr = A::infinity();\n    vc<int> Lb,\
-    \ Rb;\n    for (auto&& t: left_ops) {\n      if (chmax(xl, t.a)) Lb.clear();\n\
-    \      if (xl == t.a) Lb.eb(t.b);\n    }\n    for (auto&& t: right_ops) {\n  \
-    \    if (chmin(xr, t.a)) Rb.clear();\n      if (xr == t.a) Rb.eb(t.b);\n    }\n\
-    \    int Lm = mex(Lb), Rm = mex(Rb);\n    if (xl < xr) {\n      A a = A::simplest(xl,\
-    \ xr, Lm == 0, Rm == 0);\n      return {true, T(a, 0)};\n    }\n    if (xl ==\
-    \ xr) {\n      if (Lm == Rm) return {true, T(xl, Lm)};\n    }\n    return {false,\
-    \ T(0, 0)};\n  }\n\n  string to_string() {\n    string x = a.to_string();\n  \
-    \  x += \" + *\";\n    x += ::to_string(b);\n    return x;\n  }\n\n  // L, R \u306F\
-    \u305D\u308C\u305E\u308C\u81EA\u5206\u624B\u756A\u306E\u3068\u304D\u306B\u52DD\
-    \u3066\u308B\u304B\uFF1F\n  pair<bool, bool> outcome() {\n    if (a > 0) return\
-    \ {1, 0};\n    if (a < 0) return {0, 1};\n    if (b == 0) return {0, 0};\n   \
-    \ return {1, 1};\n  }\n};\n#line 3 \"game/solve_partizan_game.hpp\"\n\n// number,\
-    \ star \u3067\u3044\u3044\u611F\u3058\u306B\u8A08\u7B97\u3067\u304D\u305F\u3068\
-    \u304D\u3060\u3051\u6210\u529F\n// \u5931\u6557\u3057\u305F\u3068\u304D\u306F\u3001\
-    empty map \u304C\u8FD4\u308B\n// \u30FBstates\uFF1A\u8208\u5473\u306E\u3042\u308B\
-    \ state \u5168\u4F53\n// \u30FBget_options\uFF1Apair<vc<STATE>, vc<STATE>>(STATE),\
-    \ left ops / right ops\n// https://qoj.ac/contest/1828/problem/9567\ntemplate\
-    \ <typename STATE, typename F>\nmap<STATE, Number_And_Star> solve_partizan_game(const\
-    \ vector<STATE>& states, F get_options) {\n  using X = Number_And_Star;\n  map<STATE,\
-    \ X> MP;\n\n  bool success = 1;\n\n  auto dfs = [&](auto& dfs, const STATE& s)\
-    \ -> X {\n    if (!success) return X();\n    if (MP.count(s)) return MP[s];\n\
-    \    vc<X> left, right;\n    auto [lop, rop] = get_options(s);\n    for (auto&&\
-    \ t: lop) left.eb(dfs(dfs, t));\n    for (auto&& t: rop) right.eb(dfs(dfs, t));\n\
-    \    auto [ok, t] = X::from_options(left, right);\n    if (!success) return X{};\n\
-    \    if (!ok) {\n      // print(\"FAILED\");\n      // print(s);\n      // print(\"\
+    other/mex.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/other/mex.hpp\n\
+    int mex(const vc<int>& A) {\n  int n = len(A);\n  vc<bool> aru(n + 1);\n  for\
+    \ (auto& x: A)\n    if (x < n) aru[x] = 1;\n  int mex = 0;\n  while (aru[mex])\
+    \ ++mex;\n  return mex;\n}\n#line 4 \"game/number_and_star.hpp\"\n\nstruct Number_And_Star\
+    \ {\n  using A = Dyadic_Rational<ll>;\n  // a + *b\n  A a;\n  int b;\n  using\
+    \ T = Number_And_Star;\n\n  Number_And_Star(A a = 0, ll b = 0) : a(a), b(b) {}\n\
+    \  T& operator+=(const T& p) {\n    a += p.a, b ^= p.b;\n    return *this;\n \
+    \ }\n  T& operator-=(const T& p) {\n    a -= p.a, b ^= p.b;\n    return *this;\n\
+    \  }\n  T operator-() const { return T(-a, b); }\n  bool operator==(const T& p)\
+    \ const { return (a == p.a && b == p.b); }\n\n  // {\u8A08\u7B97\u3067\u304D\u305F\
+    \u304B, \u5024}\n  static pair<bool, T> from_options(vc<T> left_ops, vc<T> right_ops)\
+    \ {\n    A xl = -A::infinity(), xr = A::infinity();\n    vc<int> Lb, Rb;\n   \
+    \ for (auto&& t: left_ops) {\n      if (chmax(xl, t.a)) Lb.clear();\n      if\
+    \ (xl == t.a) Lb.eb(t.b);\n    }\n    for (auto&& t: right_ops) {\n      if (chmin(xr,\
+    \ t.a)) Rb.clear();\n      if (xr == t.a) Rb.eb(t.b);\n    }\n    int Lm = mex(Lb),\
+    \ Rm = mex(Rb);\n    if (xl < xr) {\n      A a = A::simplest(xl, xr, Lm == 0,\
+    \ Rm == 0);\n      return {true, T(a, 0)};\n    }\n    if (xl == xr) {\n     \
+    \ if (Lm == Rm) return {true, T(xl, Lm)};\n    }\n    return {false, T(0, 0)};\n\
+    \  }\n\n  string to_string() {\n    string x = a.to_string();\n    x += \" + *\"\
+    ;\n    x += ::to_string(b);\n    return x;\n  }\n\n  // L, R \u306F\u305D\u308C\
+    \u305E\u308C\u81EA\u5206\u624B\u756A\u306E\u3068\u304D\u306B\u52DD\u3066\u308B\
+    \u304B\uFF1F\n  pair<bool, bool> outcome() {\n    if (a > 0) return {1, 0};\n\
+    \    if (a < 0) return {0, 1};\n    if (b == 0) return {0, 0};\n    return {1,\
+    \ 1};\n  }\n};\n#line 4 \"game/solve_partizan_game.hpp\"\n\n// number, star \u3067\
+    \u3044\u3044\u611F\u3058\u306B\u8A08\u7B97\u3067\u304D\u305F\u3068\u304D\u3060\
+    \u3051\u6210\u529F\n// \u5931\u6557\u3057\u305F\u3068\u304D\u306F\u3001empty map\
+    \ \u304C\u8FD4\u308B\n// \u30FBstates\uFF1A\u8208\u5473\u306E\u3042\u308B state\
+    \ \u5168\u4F53\n// \u30FBget_options\uFF1Apair<vc<STATE>, vc<STATE>>(STATE), left\
+    \ ops / right ops\n// https://qoj.ac/contest/1828/problem/9567\ntemplate <typename\
+    \ STATE, typename F>\nmap<STATE, Number_And_Star> solve_partizan_game(const vector<STATE>&\
+    \ states, F get_options) {\n  using X = Number_And_Star;\n  map<STATE, X> MP;\n\
+    \n  bool success = 1;\n\n  auto dfs = [&](auto& dfs, const STATE& s) -> X {\n\
+    \    if (!success) return X();\n    if (MP.count(s)) return MP[s];\n    vc<X>\
+    \ left, right;\n    auto [lop, rop] = get_options(s);\n    for (auto&& t: lop)\
+    \ left.eb(dfs(dfs, t));\n    for (auto&& t: rop) right.eb(dfs(dfs, t));\n    auto\
+    \ [ok, t] = X::from_options(left, right);\n    if (!success) return X{};\n   \
+    \ if (!ok) {\n      // print(\"FAILED\");\n      // print(s);\n      // print(\"\
     LEFT\");\n      // for (auto& t: lop) {\n      //   X x = dfs(dfs, t);\n     \
     \ //   print(t, x.to_string());\n      // }\n      // print(\"RIGHT\");\n    \
     \  // for (auto& t: rop) {\n      //   X x = dfs(dfs, t);\n      //   print(t,\
@@ -337,7 +340,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/partizan.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/partizan.test.cpp

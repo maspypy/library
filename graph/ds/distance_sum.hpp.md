@@ -21,11 +21,16 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/1458/problem/F
-  bundledCode: "#line 1 \"graph/tree.hpp\"\n\n#line 1 \"ds/hashmap.hpp\"\n\n// u64\
-    \ -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\
-    \u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
-    \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
-    \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    - https://github.com/maspypy/library/blob/main/graph/ds/distance_sum.hpp
+  bundledCode: "#line 1 \"graph/ds/distance_sum.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/ds/distance_sum.hpp\n\
+    #line 1 \"graph/ds/static_toptree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/ds/static_toptree.hpp\n\
+    #line 1 \"graph/tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/tree.hpp\n\
+    \n#line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
     \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
     \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
     \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
@@ -46,7 +51,7 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -122,7 +127,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 3 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
+    \   }\n  }\n};\n#line 4 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
     \u3066\u3044\u308D\u3044\u308D\n// HLD=false: \u5165\u529B\u8FBA\u9806\u3067 preorder\n\
     template <typename GT, bool HLD = true>\nstruct Tree {\n  using Graph_type = GT;\n\
     \  using WT = typename GT::cost_type;\n  int N = 0;\n  vector<int> LID, RID, head,\
@@ -241,7 +246,7 @@ data:
     \ (int i = G.indptr[v + 1] - 1; i >= G.indptr[v]; --i) {\n          auto &e =\
     \ G.csr_edges[i];\n          if (e.to == parent[v] || e.to == max_ch) continue;\n\
     \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
-    \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 2 \"\
+    \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 3 \"\
     graph/ds/static_toptree.hpp\"\n\n/*\n\u53C2\u8003 joitour tatyam\n\u30AF\u30E9\
     \u30B9\u30BF\u306F\u6839\u304C virtual \u306A\u3082\u306E\u306E\u307F\u3067\u3042\
     \u308B\u3088\u3046\u306A\u7C21\u6613\u7248\nN \u500B\u306E (\u9802+\u8FBA) \u3092\
@@ -288,7 +293,7 @@ data:
     \ stack.eb(h3, k3);\n        }\n        elif (n >= 2 && stack[n - 2].fi <= stack[n\
     \ - 1].fi) {\n          merge_last_two();\n        }\n        else break;\n  \
     \    }\n    }\n    while (len(stack) >= 2) {\n      merge_last_two();\n    }\n\
-    \    return POP(stack);\n  }\n};\n#line 2 \"graph/ds/distance_sum.hpp\"\n\n//\
+    \    return POP(stack);\n  }\n};\n#line 3 \"graph/ds/distance_sum.hpp\"\n\n//\
     \ \u6728\u306E\u9802\u70B9\u306E\u91CD\u307F\u4ED8\u304D\u96C6\u5408\u3092\u7BA1\
     \u7406.\n// \u5168\u5BFE\u306E\u8DDD\u96E2\u306E\u548C, v \u304B\u3089\u306E\u8DDD\
     \u96E2\u306E\u548C\u304C\u3068\u308C\u308B.\n// O(logN). \u81EA\u5206\u306E\u5B9F\
@@ -317,11 +322,12 @@ data:
     \ v ? x : dp[STT.lch[p]]);\n      Data& R = (STT.rch[p] == v ? x : dp[STT.rch[p]]);\n\
     \      x = (STT.is_compress[p] ? compress(L, R) : rake(L, R)), v = p;\n    }\n\
     \    return x.ans - now;\n  }\n};\n"
-  code: "#include \"graph/ds/static_toptree.hpp\"\n\n// \u6728\u306E\u9802\u70B9\u306E\
-    \u91CD\u307F\u4ED8\u304D\u96C6\u5408\u3092\u7BA1\u7406.\n// \u5168\u5BFE\u306E\
-    \u8DDD\u96E2\u306E\u548C, v \u304B\u3089\u306E\u8DDD\u96E2\u306E\u548C\u304C\u3068\
-    \u308C\u308B.\n// O(logN). \u81EA\u5206\u306E\u5B9F\u88C5\u3060\u3068\u96D1\u306A\
-    \u91CD\u5FC3\u5206\u89E3\u3088\u308A\u901F\u304B\u3063\u305F.\n// https://codeforces.com/contest/1458/problem/F\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/ds/distance_sum.hpp\n\
+    #include \"graph/ds/static_toptree.hpp\"\n\n// \u6728\u306E\u9802\u70B9\u306E\u91CD\
+    \u307F\u4ED8\u304D\u96C6\u5408\u3092\u7BA1\u7406.\n// \u5168\u5BFE\u306E\u8DDD\
+    \u96E2\u306E\u548C, v \u304B\u3089\u306E\u8DDD\u96E2\u306E\u548C\u304C\u3068\u308C\
+    \u308B.\n// O(logN). \u81EA\u5206\u306E\u5B9F\u88C5\u3060\u3068\u96D1\u306A\u91CD\
+    \u5FC3\u5206\u89E3\u3088\u308A\u901F\u304B\u3063\u305F.\n// https://codeforces.com/contest/1458/problem/F\n\
     template <typename TREE, typename T>\nstruct Distance_Sum {\n  struct Data {\n\
     \    T ans, cnt, a, b, c;\n  };\n  static Data rake(Data& L, Data& R) {\n    return\
     \ {L.ans + R.ans + L.cnt * R.a + R.cnt * L.a, L.cnt + R.cnt, L.a + R.a,\n    \
@@ -354,7 +360,7 @@ data:
   isVerificationFile: false
   path: graph/ds/distance_sum.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:24:01+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/ds/distance_sum.hpp

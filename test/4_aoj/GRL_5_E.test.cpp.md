@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
   - icon: ':question:'
@@ -43,8 +43,9 @@ data:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E
   bundledCode: "#line 1 \"test/4_aoj/GRL_5_E.test.cpp\"\n#define PROBLEM \\\n  \"\
     https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E\"\n#line 1 \"\
-    my_template.hpp\"\n/*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n\
-    #include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
+    my_template.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n\
+    /*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
+    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
     \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
     \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
@@ -157,152 +158,146 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 1 \"other/io.hpp\"\
-    \n#define FASTIO\r\n\r\n// https://judge.yosupo.jp/submission/21623\r\nnamespace\
-    \ fastio {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\nchar\
-    \ obuf[SZ];\r\nchar out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil = 0,\
-    \ pir = 0, por = 0;\r\nbool input_eof = false;\r\n\r\ntemplate <class T>\r\nconstexpr\
-    \ bool is_signed_integer_v = is_signed_v<T> || is_same_v<T, i128>;\r\n\r\ntemplate\
-    \ <class T>\r\nstruct unsigned_integer {\r\n  using type = make_unsigned_t<T>;\r\
-    \n};\r\ntemplate <>\r\nstruct unsigned_integer<i128> {\r\n  using type = u128;\r\
-    \n};\r\ntemplate <>\r\nstruct unsigned_integer<u128> {\r\n  using type = u128;\r\
-    \n};\r\ntemplate <class T>\r\nusing unsigned_integer_t = typename unsigned_integer<T>::type;\r\
-    \n\r\n[[noreturn]] inline void input_error(const char *message) {\r\n  fputs(message,\
-    \ stderr);\r\n  fputc('\\n', stderr);\r\n  exit(EXIT_FAILURE);\r\n}\r\n\r\nstruct\
-    \ Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num() {\r\n    for (int\
-    \ i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for (int j = 3; j >= 0;\
-    \ j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n /= 10;\r\n      }\r\
-    \n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline void load() {\r\n  uint32_t n\
-    \ = pir - pil;\r\n  memmove(ibuf, ibuf + pil, n);\r\n  pil = 0;\r\n  pir = n;\r\
-    \n  if (input_eof) return;\r\n\r\n  pir += fread(ibuf + pir, 1, SZ - pir, stdin);\r\
-    \n  if (ferror(stdin)) input_error(\"fastio: input error\");\r\n  if (feof(stdin))\
-    \ {\r\n    input_eof = true;\r\n    // Allows the last token to end exactly at\
-    \ EOF without a trailing\r\n    // whitespace.\r\n    if (pir < SZ) ibuf[pir++]\
-    \ = '\\n';\r\n  }\r\n}\r\n\r\ninline char get_char() {\r\n  if (pil == pir) {\r\
-    \n    load();\r\n    if (pil == pir) input_error(\"fastio: unexpected EOF\");\r\
-    \n  }\r\n  return ibuf[pil++];\r\n}\r\n\r\ninline void flush() {\r\n  fwrite(obuf,\
-    \ 1, por, stdout);\r\n  por = 0;\r\n}\r\n\r\nvoid rd(char &c) {\r\n  do c = get_char();\r\
-    \n  while (isspace(static_cast<unsigned char>(c)));\r\n}\r\n\r\nvoid rd(string\
-    \ &x) {\r\n  x.clear();\r\n  char c;\r\n  do c = get_char();\r\n  while (isspace(static_cast<unsigned\
-    \ char>(c)));\r\n  do {\r\n    x += c;\r\n    c = get_char();\r\n  } while (!isspace(static_cast<unsigned\
-    \ char>(c)));\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T &x) {\r\n  string\
-    \ s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_integer_slow(T\
-    \ &x) {\r\n  char c;\r\n  do c = get_char();\r\n  while (c < '-');\r\n  bool minus\
-    \ = 0;\r\n  if constexpr (is_signed_integer_v<T>) {\r\n    if (c == '-') {\r\n\
-    \      minus = 1, c = get_char();\r\n    }\r\n  }\r\n  x = 0;\r\n  assert('0'\
-    \ <= c && c <= '9');\r\n  while ('0' <= c && c <= '9') {\r\n    x = x * 10 + (c\
-    \ & 15), c = get_char();\r\n  }\r\n  assert(isspace(static_cast<unsigned char>(c)));\r\
-    \n  if constexpr (is_signed_integer_v<T>) {\r\n    if (minus) x = -x;\r\n  }\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nvoid rd_integer(T &x) {\r\n  if (pil + 100\
-    \ > pir) {\r\n    load();\r\n    if (pil + 100 > pir) {\r\n      rd_integer_slow(x);\r\
-    \n      return;\r\n    }\r\n  }\r\n  char c;\r\n  do c = ibuf[pil++];\r\n  while\
-    \ (c < '-');\r\n  bool minus = 0;\r\n  if constexpr (is_signed_integer_v<T>) {\r\
-    \n    if (c == '-') {\r\n      minus = 1, c = ibuf[pil++];\r\n    }\r\n  }\r\n\
-    \  x = 0;\r\n  assert('0' <= c && c <= '9');\r\n  while ('0' <= c && c <= '9')\
-    \ {\r\n    x = x * 10 + (c & 15), c = ibuf[pil++];\r\n  }\r\n  assert(isspace(static_cast<unsigned\
-    \ char>(c)));\r\n  if constexpr (is_signed_integer_v<T>) {\r\n    if (minus) x\
-    \ = -x;\r\n  }\r\n}\r\n\r\ntemplate <class T>\r\nenable_if_t<is_integral_v<T>\
-    \ || is_same_v<T, i128> || is_same_v<T, u128>> rd(\r\n    T &x) {\r\n  rd_integer(x);\r\
-    \n}\r\n\r\ntemplate <class T>\r\nenable_if_t<is_floating_point_v<T> || is_same_v<T,\
-    \ f128>> rd(T &x) {\r\n  rd_real(x);\r\n}\r\n\r\ntemplate <class T, class U>\r\
-    \nvoid rd(pair<T, U> &p) {\r\n  rd(p.first), rd(p.second);\r\n}\r\ntemplate <size_t\
-    \ N = 0, typename T>\r\nvoid rd_tuple(T &t) {\r\n  if constexpr (N < tuple_size<T>::value)\
-    \ {\r\n    auto &x = get<N>(t);\r\n    rd(x);\r\n    rd_tuple<N + 1>(t);\r\n \
-    \ }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...> &tpl) {\r\n  rd_tuple(tpl);\r\
-    \n}\r\n\r\ntemplate <class T, size_t N>\r\nvoid rd(array<T, N> &x) {\r\n  for\
-    \ (auto &d : x) rd(d);\r\n}\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\n \
-    \ for (auto &d : x) rd(d);\r\n}\r\n\r\ntemplate <class... T>\r\nvoid read(T &...x)\
-    \ {\r\n  (rd(x), ...);\r\n}\r\n\r\ninline void wt_range(const char *s, size_t\
-    \ n) {\r\n  size_t i = 0;\r\n  while (i < n) {\r\n    if (por == SZ) flush();\r\
-    \n    size_t chunk = min(n - i, (size_t)(SZ - por));\r\n    memcpy(obuf + por,\
-    \ s + i, chunk);\r\n    por += chunk;\r\n    i += chunk;\r\n  }\r\n}\r\n\r\nvoid\
-    \ wt(const char c) {\r\n  if (por == SZ) flush();\r\n  obuf[por++] = c;\r\n}\r\
-    \nvoid wt(const char *s) { wt_range(s, strlen(s)); }\r\nvoid wt(const string &s)\
-    \ { wt_range(s.data(), s.size()); }\r\n\r\ntemplate <typename T>\r\nvoid wt_integer(T\
-    \ x) {\r\n  if (por > SZ - 100) flush();\r\n  using U = unsigned_integer_t<T>;\r\
-    \n  U y = static_cast<U>(x);\r\n  if constexpr (is_signed_integer_v<T>) {\r\n\
-    \    if (x < 0) {\r\n      obuf[por++] = '-';\r\n      y = U(0) - y;\r\n    }\r\
-    \n  }\r\n  int outi;\r\n  for (outi = 96; y >= 10000; outi -= 4) {\r\n    memcpy(out\
-    \ + outi, pre.num[y % 10000], 4);\r\n    y /= 10000;\r\n  }\r\n  if (y >= 1000)\
-    \ {\r\n    memcpy(obuf + por, pre.num[y], 4);\r\n    por += 4;\r\n  } else if\
-    \ (y >= 100) {\r\n    memcpy(obuf + por, pre.num[y] + 1, 3);\r\n    por += 3;\r\
-    \n  } else if (y >= 10) {\r\n    int q = (y * 103) >> 10;\r\n    obuf[por] = q\
-    \ | '0';\r\n    obuf[por + 1] = (y - q * 10) | '0';\r\n    por += 2;\r\n  } else\r\
-    \n    obuf[por++] = y | '0';\r\n  memcpy(obuf + por, out + outi + 4, 96 - outi);\r\
-    \n  por += 96 - outi;\r\n}\r\n\r\ntemplate <typename T>\r\ninline void wt_real(T\
-    \ x) {\r\n  static char buf[1000];\r\n  int n = std::snprintf(buf, sizeof(buf),\
-    \ \"%.15f\", (double)x);\r\n  wt_range(buf, (size_t)n);\r\n}\r\n\r\ntemplate <class\
-    \ T>\r\nenable_if_t<is_integral_v<T> || is_same_v<T, i128> || is_same_v<T, u128>>\
-    \ wt(\r\n    T x) {\r\n  wt_integer(x);\r\n}\r\n\r\ntemplate <class T>\r\nenable_if_t<is_floating_point_v<T>\
-    \ || is_same_v<T, f128>> wt(T x) {\r\n  wt_real(x);\r\n}\r\n\r\ninline void wt(bool\
-    \ b) { wt(static_cast<char>('0' + (b ? 1 : 0))); }\r\n\r\ntemplate <class T, class\
-    \ U>\r\nvoid wt(const pair<T, U> &val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n\
-    \  wt(val.second);\r\n}\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const\
-    \ T &t) {\r\n  if constexpr (N < tuple_size<T>::value) {\r\n    if constexpr (N\
-    \ > 0) wt(' ');\r\n    wt(get<N>(t));\r\n    wt_tuple<N + 1>(t);\r\n  }\r\n}\r\
-    \ntemplate <class... T>\r\nvoid wt(const tuple<T...> &tpl) {\r\n  wt_tuple(tpl);\r\
-    \n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T, S> &val) {\r\n \
-    \ auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n    if (i) wt('\
-    \ ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\nvoid wt(const vector<T>\
-    \ &val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n\
-    \    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\nvoid print() { wt('\\\
-    n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
-    \ &&...tail) {\r\n  wt(forward<Head>(head));\r\n  ((wt(' '), wt(forward<Tail>(tail))),\
-    \ ...);\r\n  wt('\\n');\r\n}\r\n\r\n// gcc expansion. called automaticall after\
-    \ main.\r\nvoid __attribute__((destructor)) _d() { flush(); }\r\n}  // namespace\
-    \ fastio\r\nusing fastio::flush;\r\nusing fastio::print;\r\nusing fastio::read;\r\
-    \n\r\n#if defined(LOCAL)\r\n#define HDR \"[DEBUG:\", __func__, __LINE__, \"]\"\
-    \r\n#define SHOW(...)                                                        \
-    \ \\\r\n  SHOW_IMPL(__VA_ARGS__, SHOW8, SHOW7, SHOW6, SHOW5, SHOW4, SHOW3, SHOW2,\
-    \ \\\r\n            SHOW1)                                                   \
-    \     \\\r\n  (__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2, _3, _4, _5, _6, _7, _8,\
-    \ NAME, ...) NAME\r\n#define SHOW1(x) print(HDR, #x, \"=\", (x)), flush()\r\n\
-    #define SHOW2(x, y) print(HDR, #x, \"=\", (x), #y, \"=\", (y)), flush()\r\n#define\
-    \ SHOW3(x, y, z) \\\r\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\"\
-    , (z)), flush()\r\n#define SHOW4(x, y, z, w) \\\r\n  print(HDR, #x, \"=\", (x),\
-    \ #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w)), flush()\r\n#define SHOW5(x,\
-    \ y, z, w, v)                                                  \\\r\n  print(HDR,\
-    \ #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\
-    \r\n        (v)),                                                            \
-    \     \\\r\n      flush()\r\n#define SHOW6(x, y, z, w, v, u)                 \
-    \                              \\\r\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y),\
-    \ #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\r\n        (v), #u, \"=\", (u)),\
-    \                                                   \\\r\n      flush()\r\n#define\
-    \ SHOW7(x, y, z, w, v, u, t)                                            \\\r\n\
-    \  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w),\
-    \ #v, \"=\", \\\r\n        (v), #u, \"=\", (u), #t, \"=\", (t)),             \
-    \                        \\\r\n      flush()\r\n#define SHOW8(x, y, z, w, v, u,\
-    \ t, s)                                         \\\r\n  print(HDR, #x, \"=\",\
-    \ (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\r\n     \
-    \   (v), #u, \"=\", (u), #t, \"=\", (t), #s, \"=\", (s)),                    \
-    \   \\\r\n      flush()\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define\
-    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
-    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U32(...)   \\\
-    \r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)   \\\r\n\
-    \  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
-    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n\
-    \  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
-    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
-    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
-    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
-    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
-    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
-    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
-    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\nvoid\
-    \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid TIDAK(bool t = 1)\
-    \ { YA(!t); }\r\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\r\n\
-    void Bob(bool t = 1) { Alice(!t); }\n#line 1 \"alg/monoid/add.hpp\"\n\ntemplate\
-    \ <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type = X;\n\
-    \  static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\n\
-    \  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static constexpr\
-    \ X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static constexpr\
-    \ X id() { return X(0); }\n  static constexpr bool commute = true;\n};\n#line\
-    \ 1 \"alg/monoid/monoid_reverse.hpp\"\n\ntemplate <class Monoid>\nstruct Monoid_Reverse\
-    \ {\n  using value_type = typename Monoid::value_type;\n  using X = value_type;\n\
-    \  static constexpr X op(const X &x, const X &y) { return Monoid::op(y, x); }\n\
-    \  static constexpr X id() { return Monoid::id(); }\n  static const bool commute\
-    \ = Monoid::commute;\n};\n#line 1 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate\
-    \ <typename ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n \
-    \ using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using\
+    \n// Source: https://github.com/maspypy/library/blob/main/other/io.hpp\n#define\
+    \ FASTIO\n\n// https://judge.yosupo.jp/submission/21623\nnamespace fastio {\n\
+    static constexpr uint32_t SZ = 1 << 17;\nchar ibuf[SZ];\nchar obuf[SZ];\nchar\
+    \ out[100];\n// pointer of ibuf, obuf\nuint32_t pil = 0, pir = 0, por = 0;\nbool\
+    \ input_eof = false;\n\ntemplate <class T>\nconstexpr bool is_signed_integer_v\
+    \ = is_signed_v<T> || is_same_v<T, i128>;\n\ntemplate <class T>\nstruct unsigned_integer\
+    \ {\n  using type = make_unsigned_t<T>;\n};\ntemplate <>\nstruct unsigned_integer<i128>\
+    \ {\n  using type = u128;\n};\ntemplate <>\nstruct unsigned_integer<u128> {\n\
+    \  using type = u128;\n};\ntemplate <class T>\nusing unsigned_integer_t = typename\
+    \ unsigned_integer<T>::type;\n\n[[noreturn]] inline void input_error(const char\
+    \ *message) {\n  fputs(message, stderr);\n  fputc('\\n', stderr);\n  exit(EXIT_FAILURE);\n\
+    }\n\nstruct Pre {\n  char num[10000][4];\n  constexpr Pre() : num() {\n    for\
+    \ (int i = 0; i < 10000; i++) {\n      int n = i;\n      for (int j = 3; j >=\
+    \ 0; j--) {\n        num[i][j] = n % 10 | '0';\n        n /= 10;\n      }\n  \
+    \  }\n  }\n} constexpr pre;\n\ninline void load() {\n  uint32_t n = pir - pil;\n\
+    \  memmove(ibuf, ibuf + pil, n);\n  pil = 0;\n  pir = n;\n  if (input_eof) return;\n\
+    \n  pir += fread(ibuf + pir, 1, SZ - pir, stdin);\n  if (ferror(stdin)) input_error(\"\
+    fastio: input error\");\n  if (feof(stdin)) {\n    input_eof = true;\n    // Allows\
+    \ the last token to end exactly at EOF without a trailing\n    // whitespace.\n\
+    \    if (pir < SZ) ibuf[pir++] = '\\n';\n  }\n}\n\ninline char get_char() {\n\
+    \  if (pil == pir) {\n    load();\n    if (pil == pir) input_error(\"fastio: unexpected\
+    \ EOF\");\n  }\n  return ibuf[pil++];\n}\n\ninline void flush() {\n  fwrite(obuf,\
+    \ 1, por, stdout);\n  por = 0;\n}\n\nvoid rd(char &c) {\n  do c = get_char();\n\
+    \  while (isspace(static_cast<unsigned char>(c)));\n}\n\nvoid rd(string &x) {\n\
+    \  x.clear();\n  char c;\n  do c = get_char();\n  while (isspace(static_cast<unsigned\
+    \ char>(c)));\n  do {\n    x += c;\n    c = get_char();\n  } while (!isspace(static_cast<unsigned\
+    \ char>(c)));\n}\n\ntemplate <typename T>\nvoid rd_real(T &x) {\n  string s;\n\
+    \  rd(s);\n  x = stod(s);\n}\n\ntemplate <typename T>\nvoid rd_integer_slow(T\
+    \ &x) {\n  char c;\n  do c = get_char();\n  while (c < '-');\n  bool minus = 0;\n\
+    \  if constexpr (is_signed_integer_v<T>) {\n    if (c == '-') {\n      minus =\
+    \ 1, c = get_char();\n    }\n  }\n  x = 0;\n  assert('0' <= c && c <= '9');\n\
+    \  while ('0' <= c && c <= '9') {\n    x = x * 10 + (c & 15), c = get_char();\n\
+    \  }\n  assert(isspace(static_cast<unsigned char>(c)));\n  if constexpr (is_signed_integer_v<T>)\
+    \ {\n    if (minus) x = -x;\n  }\n}\n\ntemplate <typename T>\nvoid rd_integer(T\
+    \ &x) {\n  if (pil + 100 > pir) {\n    load();\n    if (pil + 100 > pir) {\n \
+    \     rd_integer_slow(x);\n      return;\n    }\n  }\n  char c;\n  do c = ibuf[pil++];\n\
+    \  while (c < '-');\n  bool minus = 0;\n  if constexpr (is_signed_integer_v<T>)\
+    \ {\n    if (c == '-') {\n      minus = 1, c = ibuf[pil++];\n    }\n  }\n  x =\
+    \ 0;\n  assert('0' <= c && c <= '9');\n  while ('0' <= c && c <= '9') {\n    x\
+    \ = x * 10 + (c & 15), c = ibuf[pil++];\n  }\n  assert(isspace(static_cast<unsigned\
+    \ char>(c)));\n  if constexpr (is_signed_integer_v<T>) {\n    if (minus) x = -x;\n\
+    \  }\n}\n\ntemplate <class T>\nenable_if_t<is_integral_v<T> || is_same_v<T, i128>\
+    \ || is_same_v<T, u128>> rd(\n    T &x) {\n  rd_integer(x);\n}\n\ntemplate <class\
+    \ T>\nenable_if_t<is_floating_point_v<T> || is_same_v<T, f128>> rd(T &x) {\n \
+    \ rd_real(x);\n}\n\ntemplate <class T, class U>\nvoid rd(pair<T, U> &p) {\n  rd(p.first),\
+    \ rd(p.second);\n}\ntemplate <size_t N = 0, typename T>\nvoid rd_tuple(T &t) {\n\
+    \  if constexpr (N < tuple_size<T>::value) {\n    auto &x = get<N>(t);\n    rd(x);\n\
+    \    rd_tuple<N + 1>(t);\n  }\n}\ntemplate <class... T>\nvoid rd(tuple<T...> &tpl)\
+    \ {\n  rd_tuple(tpl);\n}\n\ntemplate <class T, size_t N>\nvoid rd(array<T, N>\
+    \ &x) {\n  for (auto &d : x) rd(d);\n}\ntemplate <class T>\nvoid rd(vc<T> &x)\
+    \ {\n  for (auto &d : x) rd(d);\n}\n\ntemplate <class... T>\nvoid read(T &...x)\
+    \ {\n  (rd(x), ...);\n}\n\ninline void wt_range(const char *s, size_t n) {\n \
+    \ size_t i = 0;\n  while (i < n) {\n    if (por == SZ) flush();\n    size_t chunk\
+    \ = min(n - i, (size_t)(SZ - por));\n    memcpy(obuf + por, s + i, chunk);\n \
+    \   por += chunk;\n    i += chunk;\n  }\n}\n\nvoid wt(const char c) {\n  if (por\
+    \ == SZ) flush();\n  obuf[por++] = c;\n}\nvoid wt(const char *s) { wt_range(s,\
+    \ strlen(s)); }\nvoid wt(const string &s) { wt_range(s.data(), s.size()); }\n\n\
+    template <typename T>\nvoid wt_integer(T x) {\n  if (por > SZ - 100) flush();\n\
+    \  using U = unsigned_integer_t<T>;\n  U y = static_cast<U>(x);\n  if constexpr\
+    \ (is_signed_integer_v<T>) {\n    if (x < 0) {\n      obuf[por++] = '-';\n   \
+    \   y = U(0) - y;\n    }\n  }\n  int outi;\n  for (outi = 96; y >= 10000; outi\
+    \ -= 4) {\n    memcpy(out + outi, pre.num[y % 10000], 4);\n    y /= 10000;\n \
+    \ }\n  if (y >= 1000) {\n    memcpy(obuf + por, pre.num[y], 4);\n    por += 4;\n\
+    \  } else if (y >= 100) {\n    memcpy(obuf + por, pre.num[y] + 1, 3);\n    por\
+    \ += 3;\n  } else if (y >= 10) {\n    int q = (y * 103) >> 10;\n    obuf[por]\
+    \ = q | '0';\n    obuf[por + 1] = (y - q * 10) | '0';\n    por += 2;\n  } else\n\
+    \    obuf[por++] = y | '0';\n  memcpy(obuf + por, out + outi + 4, 96 - outi);\n\
+    \  por += 96 - outi;\n}\n\ntemplate <typename T>\ninline void wt_real(T x) {\n\
+    \  static char buf[1000];\n  int n = std::snprintf(buf, sizeof(buf), \"%.15f\"\
+    , (double)x);\n  wt_range(buf, (size_t)n);\n}\n\ntemplate <class T>\nenable_if_t<is_integral_v<T>\
+    \ || is_same_v<T, i128> || is_same_v<T, u128>> wt(\n    T x) {\n  wt_integer(x);\n\
+    }\n\ntemplate <class T>\nenable_if_t<is_floating_point_v<T> || is_same_v<T, f128>>\
+    \ wt(T x) {\n  wt_real(x);\n}\n\ninline void wt(bool b) { wt(static_cast<char>('0'\
+    \ + (b ? 1 : 0))); }\n\ntemplate <class T, class U>\nvoid wt(const pair<T, U>\
+    \ &val) {\n  wt(val.first);\n  wt(' ');\n  wt(val.second);\n}\ntemplate <size_t\
+    \ N = 0, typename T>\nvoid wt_tuple(const T &t) {\n  if constexpr (N < tuple_size<T>::value)\
+    \ {\n    if constexpr (N > 0) wt(' ');\n    wt(get<N>(t));\n    wt_tuple<N + 1>(t);\n\
+    \  }\n}\ntemplate <class... T>\nvoid wt(const tuple<T...> &tpl) {\n  wt_tuple(tpl);\n\
+    }\ntemplate <class T, size_t S>\nvoid wt(const array<T, S> &val) {\n  auto n =\
+    \ val.size();\n  for (size_t i = 0; i < n; i++) {\n    if (i) wt(' ');\n    wt(val[i]);\n\
+    \  }\n}\ntemplate <class T>\nvoid wt(const vector<T> &val) {\n  auto n = val.size();\n\
+    \  for (size_t i = 0; i < n; i++) {\n    if (i) wt(' ');\n    wt(val[i]);\n  }\n\
+    }\n\nvoid print() { wt('\\n'); }\ntemplate <class Head, class... Tail>\nvoid print(Head\
+    \ &&head, Tail &&...tail) {\n  wt(forward<Head>(head));\n  ((wt(' '), wt(forward<Tail>(tail))),\
+    \ ...);\n  wt('\\n');\n}\n\n// gcc expansion. called automaticall after main.\n\
+    void __attribute__((destructor)) _d() { flush(); }\n}  // namespace fastio\nusing\
+    \ fastio::flush;\nusing fastio::print;\nusing fastio::read;\n\n#if defined(LOCAL)\n\
+    #define HDR \"[DEBUG:\", __func__, __LINE__, \"]\"\n#define SHOW(...)        \
+    \                                                 \\\n  SHOW_IMPL(__VA_ARGS__,\
+    \ SHOW8, SHOW7, SHOW6, SHOW5, SHOW4, SHOW3, SHOW2, \\\n            SHOW1)    \
+    \                                                    \\\n  (__VA_ARGS__)\n#define\
+    \ SHOW_IMPL(_1, _2, _3, _4, _5, _6, _7, _8, NAME, ...) NAME\n#define SHOW1(x)\
+    \ print(HDR, #x, \"=\", (x)), flush()\n#define SHOW2(x, y) print(HDR, #x, \"=\"\
+    , (x), #y, \"=\", (y)), flush()\n#define SHOW3(x, y, z) \\\n  print(HDR, #x, \"\
+    =\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\n#define SHOW4(x, y, z, w)\
+    \ \\\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\",\
+    \ (w)), flush()\n#define SHOW5(x, y, z, w, v)                                \
+    \                  \\\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\"\
+    , (z), #w, \"=\", (w), #v, \"=\", \\\n        (v)),                          \
+    \                                       \\\n      flush()\n#define SHOW6(x, y,\
+    \ z, w, v, u)                                               \\\n  print(HDR, #x,\
+    \ \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\n\
+    \        (v), #u, \"=\", (u)),                                               \
+    \    \\\n      flush()\n#define SHOW7(x, y, z, w, v, u, t)                   \
+    \                         \\\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z,\
+    \ \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\n        (v), #u, \"=\", (u), #t,\
+    \ \"=\", (t)),                                     \\\n      flush()\n#define\
+    \ SHOW8(x, y, z, w, v, u, t, s)                                         \\\n \
+    \ print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v,\
+    \ \"=\", \\\n        (v), #u, \"=\", (u), #t, \"=\", (t), #s, \"=\", (s)),   \
+    \                    \\\n      flush()\n#else\n#define SHOW(...)\n#endif\n\n#define\
+    \ INT(...)   \\\n  int __VA_ARGS__; \\\n  read(__VA_ARGS__)\n#define LL(...) \
+    \  \\\n  ll __VA_ARGS__; \\\n  read(__VA_ARGS__)\n#define U32(...)   \\\n  u32\
+    \ __VA_ARGS__; \\\n  read(__VA_ARGS__)\n#define U64(...)   \\\n  u64 __VA_ARGS__;\
+    \ \\\n  read(__VA_ARGS__)\n#define STR(...)      \\\n  string __VA_ARGS__; \\\n\
+    \  read(__VA_ARGS__)\n#define CHAR(...)   \\\n  char __VA_ARGS__; \\\n  read(__VA_ARGS__)\n\
+    #define DBL(...)      \\\n  double __VA_ARGS__; \\\n  read(__VA_ARGS__)\n\n#define\
+    \ VEC(type, name, size) \\\n  vector<type> name(size);    \\\n  read(name)\n#define\
+    \ VV(type, name, h, w)                     \\\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\n  read(name)\n\nvoid YES(bool t = 1) { print(t ? \"YES\"\
+    \ : \"NO\"); }\nvoid NO(bool t = 1) { YES(!t); }\nvoid Yes(bool t = 1) { print(t\
+    \ ? \"Yes\" : \"No\"); }\nvoid No(bool t = 1) { Yes(!t); }\nvoid yes(bool t =\
+    \ 1) { print(t ? \"yes\" : \"no\"); }\nvoid no(bool t = 1) { yes(!t); }\nvoid\
+    \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\nvoid TIDAK(bool t = 1) {\
+    \ YA(!t); }\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\nvoid\
+    \ Bob(bool t = 1) { Alice(!t); }\n#line 1 \"alg/monoid/add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
+    \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
+    \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
+    \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
+    };\n#line 1 \"graph/ds/lazy_tree_monoid.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/ds/lazy_tree_monoid.hpp\n\
+    #line 1 \"alg/monoid/monoid_reverse.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/monoid_reverse.hpp\n\
+    \ntemplate <class Monoid>\nstruct Monoid_Reverse {\n  using value_type = typename\
+    \ Monoid::value_type;\n  using X = value_type;\n  static constexpr X op(const\
+    \ X &x, const X &y) { return Monoid::op(y, x); }\n  static constexpr X id() {\
+    \ return Monoid::id(); }\n  static const bool commute = Monoid::commute;\n};\n\
+    #line 1 \"ds/segtree/lazy_segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/lazy_segtree.hpp\n\
+    \ntemplate <typename ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n\
+    \  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using\
     \ X = typename MX::value_type;\n  using A = typename MA::value_type;\n  int n,\
     \ log, size;\n  vc<X> dat;\n  vc<A> laz;\n  vc<bool> has_laz;\n\n  Lazy_SegTree()\
     \ {}\n  Lazy_SegTree(int n) { build(n); }\n  template <typename F>\n  Lazy_SegTree(int\
@@ -368,31 +363,34 @@ data:
     \ (k < size) has_laz[k] = 1, laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
     \ k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = 0;\n    apply_at(2 * k,\
     \ laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k] = MA::id();\n  }\n};\n#line\
-    \ 1 \"graph/tree.hpp\"\n\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate\
-    \ <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\
-    \u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void\
-    \ build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k /\
-    \ 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\
-    \n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\
-    \u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used),\
-    \ 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap;\
-    \ }\n\n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i]\
-    \ && key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
-    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
-    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
-    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
-    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
-    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
-    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \ 1 \"graph/tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/tree.hpp\n\
+    \n#line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -468,7 +466,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 3 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
+    \   }\n  }\n};\n#line 4 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
     \u3066\u3044\u308D\u3044\u308D\n// HLD=false: \u5165\u529B\u8FBA\u9806\u3067 preorder\n\
     template <typename GT, bool HLD = true>\nstruct Tree {\n  using Graph_type = GT;\n\
     \  using WT = typename GT::cost_type;\n  int N = 0;\n  vector<int> LID, RID, head,\
@@ -587,107 +585,103 @@ data:
     \ (int i = G.indptr[v + 1] - 1; i >= G.indptr[v]; --i) {\n          auto &e =\
     \ G.csr_edges[i];\n          if (e.to == parent[v] || e.to == max_ch) continue;\n\
     \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
-    \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 4 \"\
-    graph/ds/lazy_tree_monoid.hpp\"\n\r\ntemplate <typename TREE, typename ActedMonoid,\
-    \ bool edge>\r\nstruct Lazy_Tree_Monoid {\r\n  using MX = typename ActedMonoid::Monoid_X;\r\
-    \n  using MA = typename ActedMonoid::Monoid_A;\r\n  using X = typename MX::value_type;\r\
-    \n  using A = typename MA::value_type;\r\n  struct RevAM {\r\n    using Monoid_X\
-    \ = Monoid_Reverse<MX>;\r\n    using Monoid_A = MA;\r\n    using X = typename\
-    \ Monoid_X::value_type;\r\n    using A = typename Monoid_A::value_type;\r\n  \
-    \  static X act(const X &x, const A &a, const ll &size) {\r\n      return ActedMonoid::act(x,\
-    \ a, size);\r\n    }\r\n  };\r\n\r\n  TREE &tree;\r\n  int N;\r\n  Lazy_SegTree<ActedMonoid>\
-    \ seg;\r\n  Lazy_SegTree<RevAM> seg_r;\r\n\r\n  Lazy_Tree_Monoid(TREE &tree) :\
-    \ tree(tree), N(tree.N) {\r\n    build([](int i) -> X { return MX::id(); });\r\
-    \n  }\r\n\r\n  Lazy_Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N)\
-    \ {\r\n    build([&](int i) -> X { return dat[i]; });\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  Lazy_Tree_Monoid(TREE &tree, F f) : tree(tree), N(tree.N)\
-    \ {\r\n    build(f);\r\n  }\r\n\r\n  template <typename F>\r\n  void build(F f)\
-    \ {\r\n    if (!edge) {\r\n      auto f_v = [&](int i) -> X { return f(tree.V[i]);\
-    \ };\r\n      seg.build(N, f_v);\r\n      if constexpr (!MX::commute) {\r\n  \
-    \      seg_r.build(N, f_v);\r\n      }\r\n    } else {\r\n      auto f_e = [&](int\
-    \ i) -> X {\r\n        return (i == 0 ? MX::id() : f(tree.v_to_e(tree.V[i])));\r\
-    \n      };\r\n      seg.build(N, f_e);\r\n      if constexpr (!MX::commute) {\r\
-    \n        seg_r.build(N, f_e);\r\n      }\r\n    }\r\n  }\r\n\r\n  void set(int\
-    \ i, X x) {\r\n    if constexpr (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\
-    \n    seg.set(i, x);\r\n    if constexpr (!MX::commute) {\r\n      seg_r.set(i,\
-    \ x);\r\n    }\r\n  }\r\n\r\n  X get(int v) { return seg.get(tree.LID[v]); }\r\
-    \n  vc<X> get_all() {\r\n    vc<X> dat = seg.get_all();\r\n    if (!edge) {\r\n\
-    \      vc<X> res(N);\r\n      FOR(v, N) res[v] = dat[tree.LID[v]];\r\n      return\
-    \ res;\r\n    } else {\r\n      vc<X> res(N - 1);\r\n      FOR(i, N - 1) { res[i]\
-    \ = dat[tree.LID[tree.e_to_v(i)]]; }\r\n      return res;\r\n    }\r\n  }\r\n\r\
-    \n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ v, edge);\r\n    X val = MX::id();\r\n    for (auto &&[a, b] : pd) {\r\n   \
-    \   val = MX::op(val, get_prod(a, b));\r\n    }\r\n    return val;\r\n  }\r\n\r\
-    \n  X prod_subtree(int u, int root = -1) {\r\n    if (root == u) return prod_all();\r\
-    \n    if (root == -1 || !tree.in_subtree(root, u)) {\r\n      int l = tree.LID[u],\
-    \ r = tree.RID[u];\r\n      return seg.prod(l + edge, r);\r\n    }\r\n    assert(!edge);\
-    \  // \u3055\u307C\u308A\r\n    u = tree.jump(u, root, 1);\r\n    int L = tree.LID[u],\
-    \ R = tree.RID[u];\r\n    return MX::op(seg.prod(0, L), seg.prod(R, N));\r\n \
-    \ }\r\n\r\n  X prod_all() {\r\n    static_assert(MX::commute);\r\n    return seg.prod_all();\r\
-    \n  }\r\n\r\n  void apply_path(int u, int v, A a) {\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ v, edge);\r\n    for (auto &&[x, y] : pd) {\r\n      int l = min(x, y), r =\
-    \ max(x, y);\r\n      seg.apply(l, r + 1, a);\r\n      if constexpr (!MX::commute)\
-    \ {\r\n        seg_r.apply(l, r + 1, a);\r\n      }\r\n    }\r\n  }\r\n\r\n  void\
-    \ apply_subtree(int u, A a) {\r\n    int l = tree.LID[u], r = tree.RID[u];\r\n\
-    \    seg.apply(l + edge, r, a);\r\n    if constexpr (!MX::commute) {\r\n     \
-    \ seg_r.apply(l + edge, r, a);\r\n    }\r\n  }\r\n\r\n  void apply_outtree(int\
-    \ u, A a) {\r\n    int l = tree.LID[u], r = tree.RID[u];\r\n    seg.apply(0 +\
-    \ edge, l + edge, a);\r\n    seg.apply(r, N, a);\r\n    if constexpr (!MX::commute)\
-    \ {\r\n      seg_r.apply(0 + edge, l + edge, a);\r\n      seg_r.apply(r, N, a);\r\
-    \n    }\r\n  }\r\n\r\n  template <class F>\r\n  int max_path(F check, int u, int\
-    \ v) {\r\n    if constexpr (edge) return max_path_edge(check, u, v);\r\n    if\
-    \ (!check(prod_path(u, u))) return -1;\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ v, edge);\r\n    X val = MX::id();\r\n    for (auto &&[a, b] : pd) {\r\n   \
-    \   X x = get_prod(a, b);\r\n      if (check(MX::op(val, x))) {\r\n        val\
-    \ = MX::op(val, x);\r\n        u = (tree.V[b]);\r\n        continue;\r\n     \
-    \ }\r\n      auto check_tmp = [&](X x) -> bool { return check(MX::op(val, x));\
-    \ };\r\n      if (a <= b) {\r\n        // \u4E0B\u308A\r\n        auto i = seg.max_right(check_tmp,\
-    \ a);\r\n        return (i == a ? u : tree.V[i - 1]);\r\n      } else {\r\n  \
-    \      // \u4E0A\u308A\r\n        int i = 0;\r\n        if constexpr (MX::commute)\
-    \ i = seg.min_left(check_tmp, a + 1);\r\n        if constexpr (!MX::commute) i\
-    \ = seg_r.min_left(check_tmp, a + 1);\r\n        if (i == a + 1) return u;\r\n\
-    \        return tree.V[i];\r\n      }\r\n    }\r\n    return v;\r\n  }\r\n\r\n\
-    \  // closed range [a,b] \u3092 heavy path \u306E\u5F62\u5F0F\u306B\u5FDC\u3058\
-    \u3066\r\n  inline X get_prod(int a, int b) {\r\n    if constexpr (MX::commute)\r\
-    \n      return (a <= b ? seg.prod(a, b + 1) : seg.prod(b, a + 1));\r\n    return\
-    \ (a <= b ? seg.prod(a, b + 1) : seg_r.prod(b, a + 1));\r\n  }\r\n\r\n private:\r\
-    \n  template <class F>\r\n  int max_path_edge(F check, int u, int v) {\r\n   \
-    \ static_assert(edge);\r\n    if (!check(MX::id())) return -1;\r\n    int lca\
-    \ = tree.LCA(u, v);\r\n    auto pd = tree.get_path_decomposition(u, lca, edge);\r\
-    \n    X val = MX::id();\r\n\r\n    // climb\r\n    for (auto &&[a, b] : pd) {\r\
-    \n      assert(a >= b);\r\n      X x = get_prod(a, b);\r\n      if (check(MX::op(val,\
-    \ x))) {\r\n        val = MX::op(val, x);\r\n        u = (tree.parent[tree.V[b]]);\r\
-    \n        continue;\r\n      }\r\n      auto check_tmp = [&](X x) -> bool { return\
-    \ check(MX::op(val, x)); };\r\n      int i = 0;\r\n      if constexpr (MX::commute)\
-    \ i = seg.min_left(check_tmp, a + 1);\r\n      if constexpr (!MX::commute) i =\
-    \ seg_r.min_left(check_tmp, a + 1);\r\n      if (i == a + 1) return u;\r\n   \
-    \   return tree.parent[tree.V[i]];\r\n    }\r\n    // down\r\n    pd = tree.get_path_decomposition(lca,\
-    \ v, edge);\r\n    for (auto &&[a, b] : pd) {\r\n      assert(a <= b);\r\n   \
-    \   X x = get_prod(a, b);\r\n      if (check(MX::op(val, x))) {\r\n        val\
-    \ = MX::op(val, x);\r\n        u = (tree.V[b]);\r\n        continue;\r\n     \
-    \ }\r\n      auto check_tmp = [&](X x) -> bool { return check(MX::op(val, x));\
-    \ };\r\n      auto i = seg.max_right(check_tmp, a);\r\n      return (i == a ?\
-    \ u : tree.V[i - 1]);\r\n    }\r\n    return v;\r\n  }\r\n};\r\n#line 1 \"alg/monoid/add.hpp\"\
-    \n\ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
+    \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 5 \"\
+    graph/ds/lazy_tree_monoid.hpp\"\n\ntemplate <typename TREE, typename ActedMonoid,\
+    \ bool edge>\nstruct Lazy_Tree_Monoid {\n  using MX = typename ActedMonoid::Monoid_X;\n\
+    \  using MA = typename ActedMonoid::Monoid_A;\n  using X = typename MX::value_type;\n\
+    \  using A = typename MA::value_type;\n  struct RevAM {\n    using Monoid_X =\
+    \ Monoid_Reverse<MX>;\n    using Monoid_A = MA;\n    using X = typename Monoid_X::value_type;\n\
+    \    using A = typename Monoid_A::value_type;\n    static X act(const X &x, const\
+    \ A &a, const ll &size) {\n      return ActedMonoid::act(x, a, size);\n    }\n\
+    \  };\n\n  TREE &tree;\n  int N;\n  Lazy_SegTree<ActedMonoid> seg;\n  Lazy_SegTree<RevAM>\
+    \ seg_r;\n\n  Lazy_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N) {\n    build([](int\
+    \ i) -> X { return MX::id(); });\n  }\n\n  Lazy_Tree_Monoid(TREE &tree, vc<X>\
+    \ &dat) : tree(tree), N(tree.N) {\n    build([&](int i) -> X { return dat[i];\
+    \ });\n  }\n\n  template <typename F>\n  Lazy_Tree_Monoid(TREE &tree, F f) : tree(tree),\
+    \ N(tree.N) {\n    build(f);\n  }\n\n  template <typename F>\n  void build(F f)\
+    \ {\n    if (!edge) {\n      auto f_v = [&](int i) -> X { return f(tree.V[i]);\
+    \ };\n      seg.build(N, f_v);\n      if constexpr (!MX::commute) {\n        seg_r.build(N,\
+    \ f_v);\n      }\n    } else {\n      auto f_e = [&](int i) -> X {\n        return\
+    \ (i == 0 ? MX::id() : f(tree.v_to_e(tree.V[i])));\n      };\n      seg.build(N,\
+    \ f_e);\n      if constexpr (!MX::commute) {\n        seg_r.build(N, f_e);\n \
+    \     }\n    }\n  }\n\n  void set(int i, X x) {\n    if constexpr (edge) i = tree.e_to_v(i);\n\
+    \    i = tree.LID[i];\n    seg.set(i, x);\n    if constexpr (!MX::commute) {\n\
+    \      seg_r.set(i, x);\n    }\n  }\n\n  X get(int v) { return seg.get(tree.LID[v]);\
+    \ }\n  vc<X> get_all() {\n    vc<X> dat = seg.get_all();\n    if (!edge) {\n \
+    \     vc<X> res(N);\n      FOR(v, N) res[v] = dat[tree.LID[v]];\n      return\
+    \ res;\n    } else {\n      vc<X> res(N - 1);\n      FOR(i, N - 1) { res[i] =\
+    \ dat[tree.LID[tree.e_to_v(i)]]; }\n      return res;\n    }\n  }\n\n  X prod_path(int\
+    \ u, int v) {\n    auto pd = tree.get_path_decomposition(u, v, edge);\n    X val\
+    \ = MX::id();\n    for (auto &&[a, b] : pd) {\n      val = MX::op(val, get_prod(a,\
+    \ b));\n    }\n    return val;\n  }\n\n  X prod_subtree(int u, int root = -1)\
+    \ {\n    if (root == u) return prod_all();\n    if (root == -1 || !tree.in_subtree(root,\
+    \ u)) {\n      int l = tree.LID[u], r = tree.RID[u];\n      return seg.prod(l\
+    \ + edge, r);\n    }\n    assert(!edge);  // \u3055\u307C\u308A\n    u = tree.jump(u,\
+    \ root, 1);\n    int L = tree.LID[u], R = tree.RID[u];\n    return MX::op(seg.prod(0,\
+    \ L), seg.prod(R, N));\n  }\n\n  X prod_all() {\n    static_assert(MX::commute);\n\
+    \    return seg.prod_all();\n  }\n\n  void apply_path(int u, int v, A a) {\n \
+    \   auto pd = tree.get_path_decomposition(u, v, edge);\n    for (auto &&[x, y]\
+    \ : pd) {\n      int l = min(x, y), r = max(x, y);\n      seg.apply(l, r + 1,\
+    \ a);\n      if constexpr (!MX::commute) {\n        seg_r.apply(l, r + 1, a);\n\
+    \      }\n    }\n  }\n\n  void apply_subtree(int u, A a) {\n    int l = tree.LID[u],\
+    \ r = tree.RID[u];\n    seg.apply(l + edge, r, a);\n    if constexpr (!MX::commute)\
+    \ {\n      seg_r.apply(l + edge, r, a);\n    }\n  }\n\n  void apply_outtree(int\
+    \ u, A a) {\n    int l = tree.LID[u], r = tree.RID[u];\n    seg.apply(0 + edge,\
+    \ l + edge, a);\n    seg.apply(r, N, a);\n    if constexpr (!MX::commute) {\n\
+    \      seg_r.apply(0 + edge, l + edge, a);\n      seg_r.apply(r, N, a);\n    }\n\
+    \  }\n\n  template <class F>\n  int max_path(F check, int u, int v) {\n    if\
+    \ constexpr (edge) return max_path_edge(check, u, v);\n    if (!check(prod_path(u,\
+    \ u))) return -1;\n    auto pd = tree.get_path_decomposition(u, v, edge);\n  \
+    \  X val = MX::id();\n    for (auto &&[a, b] : pd) {\n      X x = get_prod(a,\
+    \ b);\n      if (check(MX::op(val, x))) {\n        val = MX::op(val, x);\n   \
+    \     u = (tree.V[b]);\n        continue;\n      }\n      auto check_tmp = [&](X\
+    \ x) -> bool { return check(MX::op(val, x)); };\n      if (a <= b) {\n       \
+    \ // \u4E0B\u308A\n        auto i = seg.max_right(check_tmp, a);\n        return\
+    \ (i == a ? u : tree.V[i - 1]);\n      } else {\n        // \u4E0A\u308A\n   \
+    \     int i = 0;\n        if constexpr (MX::commute) i = seg.min_left(check_tmp,\
+    \ a + 1);\n        if constexpr (!MX::commute) i = seg_r.min_left(check_tmp, a\
+    \ + 1);\n        if (i == a + 1) return u;\n        return tree.V[i];\n      }\n\
+    \    }\n    return v;\n  }\n\n  // closed range [a,b] \u3092 heavy path \u306E\
+    \u5F62\u5F0F\u306B\u5FDC\u3058\u3066\n  inline X get_prod(int a, int b) {\n  \
+    \  if constexpr (MX::commute)\n      return (a <= b ? seg.prod(a, b + 1) : seg.prod(b,\
+    \ a + 1));\n    return (a <= b ? seg.prod(a, b + 1) : seg_r.prod(b, a + 1));\n\
+    \  }\n\n private:\n  template <class F>\n  int max_path_edge(F check, int u, int\
+    \ v) {\n    static_assert(edge);\n    if (!check(MX::id())) return -1;\n    int\
+    \ lca = tree.LCA(u, v);\n    auto pd = tree.get_path_decomposition(u, lca, edge);\n\
+    \    X val = MX::id();\n\n    // climb\n    for (auto &&[a, b] : pd) {\n     \
+    \ assert(a >= b);\n      X x = get_prod(a, b);\n      if (check(MX::op(val, x)))\
+    \ {\n        val = MX::op(val, x);\n        u = (tree.parent[tree.V[b]]);\n  \
+    \      continue;\n      }\n      auto check_tmp = [&](X x) -> bool { return check(MX::op(val,\
+    \ x)); };\n      int i = 0;\n      if constexpr (MX::commute) i = seg.min_left(check_tmp,\
+    \ a + 1);\n      if constexpr (!MX::commute) i = seg_r.min_left(check_tmp, a +\
+    \ 1);\n      if (i == a + 1) return u;\n      return tree.parent[tree.V[i]];\n\
+    \    }\n    // down\n    pd = tree.get_path_decomposition(lca, v, edge);\n   \
+    \ for (auto &&[a, b] : pd) {\n      assert(a <= b);\n      X x = get_prod(a, b);\n\
+    \      if (check(MX::op(val, x))) {\n        val = MX::op(val, x);\n        u\
+    \ = (tree.V[b]);\n        continue;\n      }\n      auto check_tmp = [&](X x)\
+    \ -> bool { return check(MX::op(val, x)); };\n      auto i = seg.max_right(check_tmp,\
+    \ a);\n      return (i == a ? u : tree.V[i - 1]);\n    }\n    return v;\n  }\n\
+    };\n#line 1 \"alg/acted_monoid/sum_add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/sum_add.hpp\n\
+    #line 1 \"alg/monoid/add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
     \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
     \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
     \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
     \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
-    };\n#line 2 \"alg/acted_monoid/sum_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ ActedMonoid_Sum_Add {\r\n  using Monoid_X = Monoid_Add<E>;\r\n  using Monoid_A\
-    \ = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A\
-    \ = typename Monoid_A::value_type;\r\n  static constexpr X act(const X &x, const\
-    \ A &a, const ll &size) {\r\n    return x + a * E(size);\r\n  }\r\n};\r\n#line\
-    \ 8 \"test/4_aoj/GRL_5_E.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  Graph<int,\
-    \ 0> G(N);\n  FOR(v, N) {\n    LL(k);\n    FOR(k) {\n      LL(to);\n      G.add(v,\
-    \ to);\n    }\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n  vi seg_raw(N);\n\
-    \  using AM = ActedMonoid_Sum_Add<ll>;\n  Lazy_Tree_Monoid<decltype(tree), AM,\
-    \ 1> TM(tree, seg_raw);\n  LL(Q);\n  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n\
-    \      LL(v, x);\n      TM.apply_path(0, v, x);\n      // TM.apply_path(tree.parent[v],\
-    \ v, x);\n    } else {\n      LL(v);\n      print(TM.prod_path(0, v));\n    }\n\
-    \  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
+    };\n#line 3 \"alg/acted_monoid/sum_add.hpp\"\n\ntemplate <typename E>\nstruct\
+    \ ActedMonoid_Sum_Add {\n  using Monoid_X = Monoid_Add<E>;\n  using Monoid_A =\
+    \ Monoid_Add<E>;\n  using X = typename Monoid_X::value_type;\n  using A = typename\
+    \ Monoid_A::value_type;\n  static constexpr X act(const X &x, const A &a, const\
+    \ ll &size) {\n    return x + a * E(size);\n  }\n};\n#line 8 \"test/4_aoj/GRL_5_E.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  FOR(v, N) {\n    LL(k);\n\
+    \    FOR(k) {\n      LL(to);\n      G.add(v, to);\n    }\n  }\n  G.build();\n\
+    \  Tree<decltype(G)> tree(G);\n  vi seg_raw(N);\n  using AM = ActedMonoid_Sum_Add<ll>;\n\
+    \  Lazy_Tree_Monoid<decltype(tree), AM, 1> TM(tree, seg_raw);\n  LL(Q);\n  FOR(Q)\
+    \ {\n    LL(t);\n    if (t == 0) {\n      LL(v, x);\n      TM.apply_path(0, v,\
+    \ x);\n      // TM.apply_path(tree.parent[v], v, x);\n    } else {\n      LL(v);\n\
+    \      print(TM.prod_path(0, v));\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_5_E\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/monoid/add.hpp\"\
     \n#include \"graph/ds/lazy_tree_monoid.hpp\"\n#include \"alg/acted_monoid/sum_add.hpp\"\
@@ -714,7 +708,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/GRL_5_E.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/GRL_5_E.test.cpp

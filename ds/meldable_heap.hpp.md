@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/K_shortest_walk.test.cpp
     title: test/2_library_checker/graph/K_shortest_walk.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1154.test.cpp
     title: test/3_yukicoder/1154.test.cpp
   - icon: ':x:'
@@ -23,8 +23,10 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links:
+    - https://github.com/maspypy/library/blob/main/ds/meldable_heap.hpp
     - https://qoj.ac/contest/1699/problem/8518
-  bundledCode: "#line 1 \"ds/meldable_heap.hpp\"\n\n#line 1 \"ds/node_pool.hpp\"\n\
+  bundledCode: "#line 1 \"ds/meldable_heap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/meldable_heap.hpp\n\
+    \n#line 1 \"ds/node_pool.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/node_pool.hpp\n\
     // \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\
     \u6E08\u307F chunk \u3092\u518D\u5229\u7528\u3059\u308B\ntemplate <class Node>\n\
     struct Node_Pool {\n  union Slot {\n    Node node;\n    Slot* next;\n\n    Slot()\
@@ -51,7 +53,7 @@ data:
     \ {\n      Slot* s = free_head;\n      free_head = free_head->next;\n      return\
     \ s;\n    }\n\n    if (chunk_id == len(chunks)) alloc_chunk();\n\n    Slot* s\
     \ = &chunks[chunk_id][pos++];\n    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n\
-    \      pos = 0;\n    }\n    return s;\n  }\n};\n#line 3 \"ds/meldable_heap.hpp\"\
+    \      pos = 0;\n    }\n    return s;\n  }\n};\n#line 4 \"ds/meldable_heap.hpp\"\
     \n\ntemplate <typename VAL, bool PERSISTENT, bool TOP_IS_MIN>\nstruct Meldable_Heap\
     \ {\n  struct Node {\n    Node *l, *r;\n    VAL x;\n    u32 size, dist;  // dist:\
     \ leaf \u307E\u3067\u306E\u8DDD\u96E2\n  };\n  Node_Pool<Node> pool;\n  int pid;\n\
@@ -98,10 +100,11 @@ data:
     \      A.eb(a->x + lazy);\n      lazy += a->x;\n      dfs(dfs, a->l, lazy), dfs(dfs,\
     \ a->r, lazy);\n    };\n    dfs(dfs, a, 0);\n    sort(all(A));\n    if (!TOP_IS_MIN)\
     \ reverse(all(A));\n    return A;\n  }\n};\n"
-  code: "\n#include \"ds/node_pool.hpp\"\n\ntemplate <typename VAL, bool PERSISTENT,\
-    \ bool TOP_IS_MIN>\nstruct Meldable_Heap {\n  struct Node {\n    Node *l, *r;\n\
-    \    VAL x;\n    u32 size, dist;  // dist: leaf \u307E\u3067\u306E\u8DDD\u96E2\
-    \n  };\n  Node_Pool<Node> pool;\n  int pid;\n  using np = Node *;\n\n  np new_root()\
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/meldable_heap.hpp\n\
+    \n#include \"ds/node_pool.hpp\"\n\ntemplate <typename VAL, bool PERSISTENT, bool\
+    \ TOP_IS_MIN>\nstruct Meldable_Heap {\n  struct Node {\n    Node *l, *r;\n   \
+    \ VAL x;\n    u32 size, dist;  // dist: leaf \u307E\u3067\u306E\u8DDD\u96E2\n\
+    \  };\n  Node_Pool<Node> pool;\n  int pid;\n  using np = Node *;\n\n  np new_root()\
     \ { return nullptr; }\n  np new_node(const VAL &x) {\n    np c = pool.create();\n\
     \    c->l = c->r = nullptr;\n    c->x = x, c->size = 1, c->dist = 1;\n    return\
     \ c;\n  }\n  np clone(np a) {\n    if (!a || !PERSISTENT) return a;\n    return\
@@ -151,7 +154,7 @@ data:
   path: ds/meldable_heap.hpp
   requiredBy:
   - graph/shortest_path/K_shortest_walk.hpp
-  timestamp: '2026-10-13 07:15:02+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1154.test.cpp

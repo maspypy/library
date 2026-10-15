@@ -31,13 +31,17 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/string/rolling_hash.hpp
+  bundledCode: "#line 1 \"string/rolling_hash.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/rolling_hash.hpp\n\
+    #line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/modint61.hpp\"\n\nstruct modint61\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/modint61.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/mod/modint61.hpp\n\nstruct modint61\
     \ {\n  static constexpr u64 mod = (1ULL << 61) - 1;\n  u64 val;\n  constexpr modint61()\
     \ : val(0ULL) {}\n  constexpr modint61(u32 x) : val(x) {}\n  constexpr modint61(u64\
     \ x) : val(x % mod) {}\n  constexpr modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod))\
@@ -64,7 +68,7 @@ data:
     \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
     \ mul *= mul, n >>= 1;\n    }\n    return ret;\n  }\n};\n\n#ifdef FASTIO\nvoid\
     \ rd(modint61 &x) {\n  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < modint61::mod);\n\
-    }\n\nvoid wt(modint61 x) { fastio::wt(x.val); }\n#endif\n#line 3 \"string/rolling_hash.hpp\"\
+    }\n\nvoid wt(modint61 x) { fastio::wt(x.val); }\n#endif\n#line 4 \"string/rolling_hash.hpp\"\
     \n\nstruct Rolling_Hash {\n  using mint = modint61;\n  static constexpr u64 mod\
     \ = mint::get_mod();\n  const mint base;\n  vc<mint> power;\n\n  static inline\
     \ mint generate_base() { return RNG(mod); }\n\n  inline void expand(size_t sz)\
@@ -86,7 +90,8 @@ data:
     \ {\n      int mid = (low + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b,\
     \ l2, l2 + mid))\n        low = mid;\n      else\n        high = mid;\n    }\n\
     \    return low;\n  }\n};\n"
-  code: "#include \"random/base.hpp\"\n#include \"mod/modint61.hpp\"\n\nstruct Rolling_Hash\
+  code: "// Source: https://github.com/maspypy/library/blob/main/string/rolling_hash.hpp\n\
+    #include \"random/base.hpp\"\n#include \"mod/modint61.hpp\"\n\nstruct Rolling_Hash\
     \ {\n  using mint = modint61;\n  static constexpr u64 mod = mint::get_mod();\n\
     \  const mint base;\n  vc<mint> power;\n\n  static inline mint generate_base()\
     \ { return RNG(mod); }\n\n  inline void expand(size_t sz) {\n    if (power.size()\
@@ -115,7 +120,7 @@ data:
   path: string/rolling_hash.hpp
   requiredBy:
   - string/basic_substring_structure.hpp
-  timestamp: '2026-08-30 21:41:42+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/263.test.cpp

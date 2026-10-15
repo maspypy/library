@@ -48,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
     title: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1211.test.cpp
     title: test/3_yukicoder/1211.test.cpp
   - icon: ':heavy_check_mark:'
@@ -64,37 +64,40 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid_pow.hpp\"\n\n// chat gpt\ntemplate <typename\
-    \ U, typename Arg1, typename Arg2>\nstruct has_power_method {\n private:\n  //\
-    \ \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n  template <typename\
-    \ V, typename A1, typename A2>\n  static auto check(int)\n      -> decltype(std::declval<V>().power(std::declval<A1>(),\n\
-    \                                          std::declval<A2>()),\n            \
-    \      std::true_type{});\n  template <typename, typename, typename>\n  static\
-    \ auto check(...) -> std::false_type;\n\n public:\n  // \u30E1\u30BD\u30C3\u30C9\
-    \u306E\u6709\u7121\u3092\u8868\u3059\u578B\n  static constexpr bool value = decltype(check<U,\
-    \ Arg1, Arg2>(0))::value;\n};\n\ntemplate <typename Monoid>\ntypename Monoid::X\
-    \ monoid_pow(typename Monoid::X x, ll exp) {\n  using X = typename Monoid::X;\n\
-    \  if constexpr (has_power_method<Monoid, X, ll>::value) {\n    return Monoid::power(x,\
-    \ exp);\n  } else {\n    assert(exp >= 0);\n    if (exp == 0) return Monoid::id();\n\
-    \    if (exp == 1) return x;\n    X res = Monoid::id();\n    while (exp) {\n \
-    \     if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n  \
-    \    exp >>= 1;\n    }\n    return res;\n  }\n}\n"
-  code: "\n// chat gpt\ntemplate <typename U, typename Arg1, typename Arg2>\nstruct\
-    \ has_power_method {\n private:\n  // \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\
-    \u5B9F\u88C5\n  template <typename V, typename A1, typename A2>\n  static auto\
-    \ check(int)\n      -> decltype(std::declval<V>().power(std::declval<A1>(),\n\
-    \                                          std::declval<A2>()),\n            \
-    \      std::true_type{});\n  template <typename, typename, typename>\n  static\
-    \ auto check(...) -> std::false_type;\n\n public:\n  // \u30E1\u30BD\u30C3\u30C9\
-    \u306E\u6709\u7121\u3092\u8868\u3059\u578B\n  static constexpr bool value = decltype(check<U,\
-    \ Arg1, Arg2>(0))::value;\n};\n\ntemplate <typename Monoid>\ntypename Monoid::X\
-    \ monoid_pow(typename Monoid::X x, ll exp) {\n  using X = typename Monoid::X;\n\
-    \  if constexpr (has_power_method<Monoid, X, ll>::value) {\n    return Monoid::power(x,\
-    \ exp);\n  } else {\n    assert(exp >= 0);\n    if (exp == 0) return Monoid::id();\n\
-    \    if (exp == 1) return x;\n    X res = Monoid::id();\n    while (exp) {\n \
-    \     if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n  \
-    \    exp >>= 1;\n    }\n    return res;\n  }\n}"
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/monoid_pow.hpp
+  bundledCode: "#line 1 \"alg/monoid_pow.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid_pow.hpp\n\
+    \n// chat gpt\ntemplate <typename U, typename Arg1, typename Arg2>\nstruct has_power_method\
+    \ {\n private:\n  // \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n\
+    \  template <typename V, typename A1, typename A2>\n  static auto check(int)\n\
+    \      -> decltype(std::declval<V>().power(std::declval<A1>(),\n             \
+    \                             std::declval<A2>()),\n                  std::true_type{});\n\
+    \  template <typename, typename, typename>\n  static auto check(...) -> std::false_type;\n\
+    \n public:\n  // \u30E1\u30BD\u30C3\u30C9\u306E\u6709\u7121\u3092\u8868\u3059\u578B\
+    \n  static constexpr bool value = decltype(check<U, Arg1, Arg2>(0))::value;\n\
+    };\n\ntemplate <typename Monoid>\ntypename Monoid::X monoid_pow(typename Monoid::X\
+    \ x, ll exp) {\n  using X = typename Monoid::X;\n  if constexpr (has_power_method<Monoid,\
+    \ X, ll>::value) {\n    return Monoid::power(x, exp);\n  } else {\n    assert(exp\
+    \ >= 0);\n    if (exp == 0) return Monoid::id();\n    if (exp == 1) return x;\n\
+    \    X res = Monoid::id();\n    while (exp) {\n      if (exp & 1) res = Monoid::op(res,\
+    \ x);\n      x = Monoid::op(x, x);\n      exp >>= 1;\n    }\n    return res;\n\
+    \  }\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/monoid_pow.hpp\n\
+    \n// chat gpt\ntemplate <typename U, typename Arg1, typename Arg2>\nstruct has_power_method\
+    \ {\n private:\n  // \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n\
+    \  template <typename V, typename A1, typename A2>\n  static auto check(int)\n\
+    \      -> decltype(std::declval<V>().power(std::declval<A1>(),\n             \
+    \                             std::declval<A2>()),\n                  std::true_type{});\n\
+    \  template <typename, typename, typename>\n  static auto check(...) -> std::false_type;\n\
+    \n public:\n  // \u30E1\u30BD\u30C3\u30C9\u306E\u6709\u7121\u3092\u8868\u3059\u578B\
+    \n  static constexpr bool value = decltype(check<U, Arg1, Arg2>(0))::value;\n\
+    };\n\ntemplate <typename Monoid>\ntypename Monoid::X monoid_pow(typename Monoid::X\
+    \ x, ll exp) {\n  using X = typename Monoid::X;\n  if constexpr (has_power_method<Monoid,\
+    \ X, ll>::value) {\n    return Monoid::power(x, exp);\n  } else {\n    assert(exp\
+    \ >= 0);\n    if (exp == 0) return Monoid::id();\n    if (exp == 1) return x;\n\
+    \    X res = Monoid::id();\n    while (exp) {\n      if (exp & 1) res = Monoid::op(res,\
+    \ x);\n      x = Monoid::op(x, x);\n      exp >>= 1;\n    }\n    return res;\n\
+    \  }\n}"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid_pow.hpp
@@ -107,7 +110,7 @@ data:
   - mod/floor_monoid_product.hpp
   - mod/floor_sum_of_linear_polynomial.hpp
   - mod/floor_sum_of_linear_polynomial_pq.hpp
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/floor_sum_of_polynomial_pq.test.cpp

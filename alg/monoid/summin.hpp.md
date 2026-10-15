@@ -19,13 +19,16 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/summin.hpp\"\n\ntemplate <typename E>\nstruct\
-    \ Monoid_SumMin {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
-    \  static X op(X x, X y) { return {x.fi + y.fi, min(x.se, y.se)}; }\n  static\
-    \ X from_element(E x) { return {x, x}; }\n  static constexpr X id() { return {E(0),\
-    \ infty<E>}; }\n  static constexpr bool commute = true;\n};\n"
-  code: "\ntemplate <typename E>\nstruct Monoid_SumMin {\n  using value_type = pair<E,\
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/monoid/summin.hpp
+  bundledCode: "#line 1 \"alg/monoid/summin.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/summin.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_SumMin {\n  using value_type = pair<E,\
+    \ E>;\n  using X = value_type;\n  static X op(X x, X y) { return {x.fi + y.fi,\
+    \ min(x.se, y.se)}; }\n  static X from_element(E x) { return {x, x}; }\n  static\
+    \ constexpr X id() { return {E(0), infty<E>}; }\n  static constexpr bool commute\
+    \ = true;\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/monoid/summin.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_SumMin {\n  using value_type = pair<E,\
     \ E>;\n  using X = value_type;\n  static X op(X x, X y) { return {x.fi + y.fi,\
     \ min(x.se, y.se)}; }\n  static X from_element(E x) { return {x, x}; }\n  static\
     \ constexpr X id() { return {E(0), infty<E>}; }\n  static constexpr bool commute\
@@ -36,7 +39,7 @@ data:
   requiredBy:
   - alg/acted_monoid/summin_add.hpp
   - alg/acted_monoid/summin_assign.hpp
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/summin_add.test.cpp

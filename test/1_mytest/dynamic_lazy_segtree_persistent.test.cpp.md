@@ -34,8 +34,9 @@ data:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\
-    \n/*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n\
-    #include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
+    \n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\n\
+    library: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
+    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
     \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
     \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
@@ -147,27 +148,31 @@ data:
     \ others.end()), ...);\n}\n\n// i128\ntemplate <class T, enable_if_t<is_same_v<T,\
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
-    \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 1 \"alg/monoid/summax.hpp\"\
-    \n\ntemplate <typename E>\nstruct Monoid_SumMax {\n  using value_type = pair<E,\
+    \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 1 \"alg/acted_monoid/summax_assign.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/summax_assign.hpp\n\
+    #line 1 \"alg/monoid/summax.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/summax.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_SumMax {\n  using value_type = pair<E,\
     \ E>;\n  using X = value_type;\n  static X op(X x, X y) { return {x.fi + y.fi,\
     \ max(x.se, y.se)}; }\n  static X from_element(E e) { return {e, e}; }\n  static\
     \ constexpr X id() { return {E(0), -infty<E>}; }\n  static constexpr bool commute\
-    \ = 1;\n};\n#line 1 \"alg/monoid/assign.hpp\"\n\ntemplate <typename X, int none_val>\n\
-    struct Monoid_Assign {\n  using value_type = X;\n  static X op(X x, X y) { return\
-    \ (y == X(none_val) ? x : y); }\n  static constexpr X id() { return X(none_val);\
-    \ }\n  static constexpr bool commute = false;\n};\n#line 3 \"alg/acted_monoid/summax_assign.hpp\"\
-    \n\r\ntemplate <typename E, E none_val>\r\nstruct ActedMonoid_SumMax_Assign {\r\
-    \n  using Monoid_X = Monoid_SumMax<E>;\r\n  using Monoid_A = Monoid_Assign<E,\
-    \ none_val>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A = typename\
-    \ Monoid_A::value_type;\r\n  static constexpr X act(const X& x, const A& a, const\
-    \ ll& size) {\r\n    if (a == Monoid_A::id()) return x;\r\n    return {E(size)\
-    \ * a, a};\r\n  }\r\n};\r\n#line 1 \"ds/node_pool.hpp\"\n// \u30DE\u30EB\u30C1\
-    \u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\u6E08\u307F chunk\
-    \ \u3092\u518D\u5229\u7528\u3059\u308B\ntemplate <class Node>\nstruct Node_Pool\
-    \ {\n  union Slot {\n    Node node;\n    Slot* next;\n\n    Slot() {}\n    ~Slot()\
-    \ {}\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE = 1 << 12;\n\
-    \n  vc<unique_ptr<Slot[]>> chunks;\n  int chunk_id = 0;\n  int pos = 0;\n  Slot*\
-    \ free_head = nullptr;\n\n  ~Node_Pool() {\n    auto& cache = chunk_cache();\n\
+    \ = 1;\n};\n#line 1 \"alg/monoid/assign.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
+    \ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
+    \ = X;\n  static X op(X x, X y) { return (y == X(none_val) ? x : y); }\n  static\
+    \ constexpr X id() { return X(none_val); }\n  static constexpr bool commute =\
+    \ false;\n};\n#line 4 \"alg/acted_monoid/summax_assign.hpp\"\n\ntemplate <typename\
+    \ E, E none_val>\nstruct ActedMonoid_SumMax_Assign {\n  using Monoid_X = Monoid_SumMax<E>;\n\
+    \  using Monoid_A = Monoid_Assign<E, none_val>;\n  using X = typename Monoid_X::value_type;\n\
+    \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X&\
+    \ x, const A& a, const ll& size) {\n    if (a == Monoid_A::id()) return x;\n \
+    \   return {E(size) * a, a};\n  }\n};\n#line 1 \"ds/segtree/dynamic_lazy_segtree.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/dynamic_lazy_segtree.hpp\n\
+    #line 1 \"ds/node_pool.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/node_pool.hpp\n\
+    // \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\
+    \u6E08\u307F chunk \u3092\u518D\u5229\u7528\u3059\u308B\ntemplate <class Node>\n\
+    struct Node_Pool {\n  union Slot {\n    Node node;\n    Slot* next;\n\n    Slot()\
+    \ {}\n    ~Slot() {}\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE\
+    \ = 1 << 12;\n\n  vc<unique_ptr<Slot[]>> chunks;\n  int chunk_id = 0;\n  int pos\
+    \ = 0;\n  Slot* free_head = nullptr;\n\n  ~Node_Pool() {\n    auto& cache = chunk_cache();\n\
     \    for (auto& p : chunks) cache.eb(std::move(p));\n  }\n\n  template <class...\
     \ Args>\n  np create(Args&&... args) {\n    Slot* s = new_slot();\n    return\
     \ ::new (&s->node) Node(forward<Args>(args)...);\n  }\n\n  np clone(const np x)\
@@ -188,7 +193,7 @@ data:
     \ {\n      Slot* s = free_head;\n      free_head = free_head->next;\n      return\
     \ s;\n    }\n\n    if (chunk_id == len(chunks)) alloc_chunk();\n\n    Slot* s\
     \ = &chunks[chunk_id][pos++];\n    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n\
-    \      pos = 0;\n    }\n    return s;\n  }\n};\n#line 2 \"ds/segtree/dynamic_lazy_segtree.hpp\"\
+    \      pos = 0;\n    }\n    return s;\n  }\n};\n#line 3 \"ds/segtree/dynamic_lazy_segtree.hpp\"\
     \n\n// Q*4logN \u7A0B\u5EA6\u5FC5\u8981? apply \u3067 4logN \u30CE\u30FC\u30C9\
     \u4F5C\u3063\u3066\u3044\u308B\u3068\u601D\u3046\ntemplate <typename ActedMonoid,\
     \ bool PERSISTENT>\nstruct Dynamic_Lazy_SegTree {\n  using AM = ActedMonoid;\n\
@@ -292,7 +297,8 @@ data:
     \ x);\n      return l;\n    }\n    if (r == l + 1) return r;\n    push(c, l, r);\n\
     \    ll m = (l + r) / 2;\n    ll k = min_left_rec(c->r, check, m, r, qr, x);\n\
     \    if (m < k) return k;\n    return min_left_rec(c->l, check, l, m, qr, x);\n\
-    \  }\n};\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \  }\n};\n#line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
@@ -357,7 +363,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp

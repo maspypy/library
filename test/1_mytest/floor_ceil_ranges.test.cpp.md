@@ -21,20 +21,21 @@ data:
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/floor_ceil_ranges.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n/*\n\
-    library: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
-    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
-    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
-    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
-    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
-    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
-    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
-    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
-    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
-    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
-    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n//\
+    \ Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\nlibrary:\
+    \ https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
+    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
+    Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\"\
+    )\n#endif\n#endif\n#include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
+    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
+    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class>\nconstexpr\
+    \ bool dependent_false = false;\n\ntemplate <class T>\nconstexpr T infty = []\
+    \ {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\");\n  return\
+    \ T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
     template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
     \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
     using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
@@ -136,41 +137,42 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 1 \"enumerate/ceil_range.hpp\"\
-    \n// \u5546\u304C q \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\
-    \u6607\u9806\ntemplate <typename F>\nvoid ceil_range(ll N, F f) {\n  assert(N\
-    \ <= (1LL << 50));\n  ll sq = sqrtl(N);\n  ll prev = infty<ll>;\n  for (int q\
-    \ = 1; q <= sq; ++q) {\n    ll x = (N + q - 1) / q;\n    f(q, x, prev), prev =\
-    \ x;\n  }\n  int n = (N <= sq * sq + sq ? sq : sq + 1);\n  if (N == sq * sq) --n;\n\
-    \  for (int l = n; l >= 1; --l) {\n    f((N + l - 1) / l, l, l + 1);\n  }\n}\n\
-    #line 1 \"enumerate/floor_range.hpp\"\n// \u5546\u304C q \u306E\u533A\u9593 [l,r)\
-    \ \u3092 q \u306B\u3064\u3044\u3066\u6607\u9806\r\ntemplate <typename F>\r\nvoid\
-    \ floor_range(u64 N, F f, bool Q_ASC = true, bool INCLUDE_Q_IS_0 = false) {\r\n\
-    \  u64 sq = sqrtl(N);\r\n  u32 n = (sq * sq + sq <= N ? sq : sq - 1);\r\n  if\
-    \ (Q_ASC) {\r\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\r\n    for (u32\
-    \ q = 1; q <= n; ++q) {\r\n      f(q, N / (q + 1) + 1, N / q + 1);\r\n    }\r\n\
-    \    for (u32 l = sq; l >= 1; --l) {\r\n      f(N / l, l, l + 1);\r\n    }\r\n\
-    \  } else {\r\n    for (u32 l = 1; l <= sq; ++l) {\r\n      f(N / l, l, l + 1);\r\
-    \n    }\r\n    for (u32 q = n; q >= 1; --q) {\r\n      f(q, N / (q + 1) + 1, N\
-    \ / q + 1);\r\n    }\r\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\r\n  }\r\
-    \n}\r\n#line 5 \"test/1_mytest/floor_ceil_ranges.test.cpp\"\n\nvoid test_floor()\
+    \n// Source: https://github.com/maspypy/library/blob/main/enumerate/ceil_range.hpp\n\
+    // \u5546\u304C q \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\
+    \u9806\ntemplate <typename F>\nvoid ceil_range(ll N, F f) {\n  assert(N <= (1LL\
+    \ << 50));\n  ll sq = sqrtl(N);\n  ll prev = infty<ll>;\n  for (int q = 1; q <=\
+    \ sq; ++q) {\n    ll x = (N + q - 1) / q;\n    f(q, x, prev), prev = x;\n  }\n\
+    \  int n = (N <= sq * sq + sq ? sq : sq + 1);\n  if (N == sq * sq) --n;\n  for\
+    \ (int l = n; l >= 1; --l) {\n    f((N + l - 1) / l, l, l + 1);\n  }\n}\n#line\
+    \ 1 \"enumerate/floor_range.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/enumerate/floor_range.hpp\n\
+    // \u5546\u304C q \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\
+    \u9806\ntemplate <typename F>\nvoid floor_range(u64 N, F f, bool Q_ASC = true,\
+    \ bool INCLUDE_Q_IS_0 = false) {\n  u64 sq = sqrtl(N);\n  u32 n = (sq * sq + sq\
+    \ <= N ? sq : sq - 1);\n  if (Q_ASC) {\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\n\
+    \    for (u32 q = 1; q <= n; ++q) {\n      f(q, N / (q + 1) + 1, N / q + 1);\n\
+    \    }\n    for (u32 l = sq; l >= 1; --l) {\n      f(N / l, l, l + 1);\n    }\n\
+    \  } else {\n    for (u32 l = 1; l <= sq; ++l) {\n      f(N / l, l, l + 1);\n\
+    \    }\n    for (u32 q = n; q >= 1; --q) {\n      f(q, N / (q + 1) + 1, N / q\
+    \ + 1);\n    }\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\n  }\n}\n#line\
+    \ 5 \"test/1_mytest/floor_ceil_ranges.test.cpp\"\n\nvoid test_floor() {\n  using\
+    \ T = tuple<ll, ll, ll>;\n  auto F = [&](ll N) -> vc<T> {\n    vc<T> dat;\n  \
+    \  auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q, l, r); };\n    floor_range(N,\
+    \ f);\n    return dat;\n  };\n  auto G = [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N\
+    \ + 1);\n    FOR(x, 1, N + 1) tmp[floor(N, x)].eb(x);\n    vc<T> dat;\n    FOR(x,\
+    \ 1, N + 1) {\n      if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n        ll\
+    \ hi = tmp[x].back();\n        dat.eb(x, lo, hi + 1);\n      }\n    }\n    return\
+    \ dat;\n  };\n  FOR(N, 1, 100) { assert(F(N) == G(N)); }\n}\n\nvoid test_ceil()\
     \ {\n  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N) -> vc<T> {\n    vc<T>\
     \ dat;\n    auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q, l, r); };\n   \
-    \ floor_range(N, f);\n    return dat;\n  };\n  auto G = [&](ll N) -> vc<T> {\n\
-    \    vvc<ll> tmp(N + 1);\n    FOR(x, 1, N + 1) tmp[floor(N, x)].eb(x);\n    vc<T>\
-    \ dat;\n    FOR(x, 1, N + 1) {\n      if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n\
+    \ ceil_range(N, f);\n    return dat;\n  };\n  auto G = [&](ll N) -> vc<T> {\n\
+    \    vvc<ll> tmp(N + 1);\n    FOR(x, 1, N + 1) tmp[ceil(N, x)].eb(x);\n    vc<T>\
+    \ dat;\n    FOR(x, 1, N + 1) {\n      if (x == 1) {\n        dat.eb(x, N, infty<ll>);\n\
+    \        continue;\n      }\n      if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n\
     \        ll hi = tmp[x].back();\n        dat.eb(x, lo, hi + 1);\n      }\n   \
     \ }\n    return dat;\n  };\n  FOR(N, 1, 100) { assert(F(N) == G(N)); }\n}\n\n\
-    void test_ceil() {\n  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N) -> vc<T>\
-    \ {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q, l,\
-    \ r); };\n    ceil_range(N, f);\n    return dat;\n  };\n  auto G = [&](ll N) ->\
-    \ vc<T> {\n    vvc<ll> tmp(N + 1);\n    FOR(x, 1, N + 1) tmp[ceil(N, x)].eb(x);\n\
-    \    vc<T> dat;\n    FOR(x, 1, N + 1) {\n      if (x == 1) {\n        dat.eb(x,\
-    \ N, infty<ll>);\n        continue;\n      }\n      if (len(tmp[x])) {\n     \
-    \   ll lo = tmp[x][0];\n        ll hi = tmp[x].back();\n        dat.eb(x, lo,\
-    \ hi + 1);\n      }\n    }\n    return dat;\n  };\n  FOR(N, 1, 100) { assert(F(N)\
-    \ == G(N)); }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a\
-    \ + b << \"\\n\";\n}\n\nsigned main() {\n  test_floor();\n  test_ceil();\n  solve();\n\
-    \n  return 0;\n}\n"
+    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
+    \nsigned main() {\n  test_floor();\n  test_ceil();\n  solve();\n\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"enumerate/ceil_range.hpp\"\n#include \"enumerate/floor_range.hpp\"\
     \n\nvoid test_floor() {\n  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N)\
@@ -198,7 +200,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/floor_ceil_ranges.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/floor_ceil_ranges.test.cpp

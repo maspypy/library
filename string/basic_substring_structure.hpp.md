@@ -45,9 +45,11 @@ data:
   attributes:
     links:
     - https://arxiv.org/pdf/2312.11873
+    - https://github.com/maspypy/library/blob/main/string/basic_substring_structure.hpp
     - https://uoj.ac/problem/697
-  bundledCode: "#line 1 \"string/basic_substring_structure.hpp\"\n\n#line 1 \"ds/hashmap.hpp\"\
-    \n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+  bundledCode: "#line 1 \"string/basic_substring_structure.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/basic_substring_structure.hpp\n\
+    \n#line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
     \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
     \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
     \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
@@ -71,38 +73,42 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 1 \"seq/cartesian_tree.hpp\"\n/*\n\u8F9E\u66F8\u9806\u3067\u9AD8\
-    \u3055\u3092 unique \u3057\u3066\u3001\u6728\u306B\u3057\u3066\u3044\u308B\u3002\
-    \n\u6975\u5927\u9577\u65B9\u5F62\u30A2\u30EB\u30B4\u30EA\u30BA\u30E0\u3067\u7DDA\
-    \u5F62\u6642\u9593\u69CB\u7BC9\u3002\n*/\ntemplate <typename T, bool IS_MIN>\n\
-    struct CartesianTree {\n  int n;\n  vc<T>& A;\n  vc<pair<int, int>> range;\n \
-    \ vc<int> lch, rch, par;\n  int root;\n\n  CartesianTree(vc<T>& A) : n(len(A)),\
-    \ A(A) {\n    assert(n > 0);\n    range.assign(n, {-1, -1});\n    lch.assign(n,\
-    \ -1);\n    rch.assign(n, -1);\n    par.assign(n, -1);\n    if (n == 1) {\n  \
-    \    range[0] = {0, 1};\n      root = 0;\n      return;\n    }\n    auto is_sm\
-    \ = [&](int i, int j) -> bool {\n      if (IS_MIN) return (A[i] < A[j]) || (A[i]\
-    \ == A[j] && i < j);\n      return (A[i] > A[j]) || (A[i] == A[j] && i < j);\n\
-    \    };\n    vc<int> st;\n    FOR(i, n) {\n      while (!st.empty() && is_sm(i,\
-    \ st.back())) {\n        lch[i] = st.back();\n        st.pop_back();\n      }\n\
-    \      range[i].fi = (st.empty() ? 0 : st.back() + 1);\n      st.eb(i);\n    }\n\
-    \    st.clear();\n    FOR_R(i, n) {\n      while (!st.empty() && is_sm(i, st.back()))\
-    \ {\n        rch[i] = st.back();\n        st.pop_back();\n      }\n      range[i].se\
-    \ = (st.empty() ? n : st.back());\n      st.eb(i);\n    }\n    FOR(i, n) if (lch[i]\
-    \ != -1) par[lch[i]] = i;\n    FOR(i, n) if (rch[i] != -1) par[rch[i]] = i;\n\
-    \    FOR(i, n) if (par[i] == -1) root = i;\n  }\n\n  // (l, r, h)\n  tuple<int,\
-    \ int, T> maximum_rectangle(int i) {\n    auto [l, r] = range[i];\n    return\
-    \ {l, r, A[i]};\n  }\n\n  // (l, r, h)\n  T max_rectangle_area() {\n    assert(IS_MIN);\n\
-    \    T res = 0;\n    FOR(i, n) {\n      auto [l, r, h] = maximum_rectangle(i);\n\
-    \      chmax(res, (r - l) * h);\n    }\n    return res;\n  }\n\n  ll count_subrectangle(bool\
-    \ baseline) {\n    assert(IS_MIN);\n    ll res = 0;\n    FOR(i, n) {\n      auto\
-    \ [l, r, h] = maximum_rectangle(i);\n      ll x = (baseline ? h : ll(h) * (h +\
-    \ 1) / 2);\n      res += x * (i - l + 1) * (r - i);\n    }\n    return res;\n\
-    \  }\n};\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \  }\n};\n#line 1 \"seq/cartesian_tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/seq/cartesian_tree.hpp\n\
+    /*\n\u8F9E\u66F8\u9806\u3067\u9AD8\u3055\u3092 unique \u3057\u3066\u3001\u6728\
+    \u306B\u3057\u3066\u3044\u308B\u3002\n\u6975\u5927\u9577\u65B9\u5F62\u30A2\u30EB\
+    \u30B4\u30EA\u30BA\u30E0\u3067\u7DDA\u5F62\u6642\u9593\u69CB\u7BC9\u3002\n*/\n\
+    template <typename T, bool IS_MIN>\nstruct CartesianTree {\n  int n;\n  vc<T>&\
+    \ A;\n  vc<pair<int, int>> range;\n  vc<int> lch, rch, par;\n  int root;\n\n \
+    \ CartesianTree(vc<T>& A) : n(len(A)), A(A) {\n    assert(n > 0);\n    range.assign(n,\
+    \ {-1, -1});\n    lch.assign(n, -1);\n    rch.assign(n, -1);\n    par.assign(n,\
+    \ -1);\n    if (n == 1) {\n      range[0] = {0, 1};\n      root = 0;\n      return;\n\
+    \    }\n    auto is_sm = [&](int i, int j) -> bool {\n      if (IS_MIN) return\
+    \ (A[i] < A[j]) || (A[i] == A[j] && i < j);\n      return (A[i] > A[j]) || (A[i]\
+    \ == A[j] && i < j);\n    };\n    vc<int> st;\n    FOR(i, n) {\n      while (!st.empty()\
+    \ && is_sm(i, st.back())) {\n        lch[i] = st.back();\n        st.pop_back();\n\
+    \      }\n      range[i].fi = (st.empty() ? 0 : st.back() + 1);\n      st.eb(i);\n\
+    \    }\n    st.clear();\n    FOR_R(i, n) {\n      while (!st.empty() && is_sm(i,\
+    \ st.back())) {\n        rch[i] = st.back();\n        st.pop_back();\n      }\n\
+    \      range[i].se = (st.empty() ? n : st.back());\n      st.eb(i);\n    }\n \
+    \   FOR(i, n) if (lch[i] != -1) par[lch[i]] = i;\n    FOR(i, n) if (rch[i] !=\
+    \ -1) par[rch[i]] = i;\n    FOR(i, n) if (par[i] == -1) root = i;\n  }\n\n  //\
+    \ (l, r, h)\n  tuple<int, int, T> maximum_rectangle(int i) {\n    auto [l, r]\
+    \ = range[i];\n    return {l, r, A[i]};\n  }\n\n  // (l, r, h)\n  T max_rectangle_area()\
+    \ {\n    assert(IS_MIN);\n    T res = 0;\n    FOR(i, n) {\n      auto [l, r, h]\
+    \ = maximum_rectangle(i);\n      chmax(res, (r - l) * h);\n    }\n    return res;\n\
+    \  }\n\n  ll count_subrectangle(bool baseline) {\n    assert(IS_MIN);\n    ll\
+    \ res = 0;\n    FOR(i, n) {\n      auto [l, r, h] = maximum_rectangle(i);\n  \
+    \    ll x = (baseline ? h : ll(h) * (h + 1) / 2);\n      res += x * (i - l + 1)\
+    \ * (r - i);\n    }\n    return res;\n  }\n};\n#line 1 \"string/rolling_hash.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/string/rolling_hash.hpp\n\
+    #line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/modint61.hpp\"\n\nstruct modint61\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/modint61.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/mod/modint61.hpp\n\nstruct modint61\
     \ {\n  static constexpr u64 mod = (1ULL << 61) - 1;\n  u64 val;\n  constexpr modint61()\
     \ : val(0ULL) {}\n  constexpr modint61(u32 x) : val(x) {}\n  constexpr modint61(u64\
     \ x) : val(x % mod) {}\n  constexpr modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod))\
@@ -129,7 +135,7 @@ data:
     \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
     \ mul *= mul, n >>= 1;\n    }\n    return ret;\n  }\n};\n\n#ifdef FASTIO\nvoid\
     \ rd(modint61 &x) {\n  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < modint61::mod);\n\
-    }\n\nvoid wt(modint61 x) { fastio::wt(x.val); }\n#endif\n#line 3 \"string/rolling_hash.hpp\"\
+    }\n\nvoid wt(modint61 x) { fastio::wt(x.val); }\n#endif\n#line 4 \"string/rolling_hash.hpp\"\
     \n\nstruct Rolling_Hash {\n  using mint = modint61;\n  static constexpr u64 mod\
     \ = mint::get_mod();\n  const mint base;\n  vc<mint> power;\n\n  static inline\
     \ mint generate_base() { return RNG(mod); }\n\n  inline void expand(size_t sz)\
@@ -150,61 +156,64 @@ data:
     \ - l1, r2 - l2);\n    int low = 0, high = len + 1;\n    while (high - low > 1)\
     \ {\n      int mid = (low + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b,\
     \ l2, l2 + mid))\n        low = mid;\n      else\n        high = mid;\n    }\n\
-    \    return low;\n  }\n};\n#line 1 \"ds/index_compression.hpp\"\ntemplate <typename\
-    \ T>\nstruct Index_Compression_DISTINCT_SMALL {\n  int mi, ma;\n  vc<T> dat;\n\
-    \  vc<T> build(vc<int> X) {\n    mi = 0, ma = -1;\n    if (!X.empty()) mi = MIN(X),\
-    \ ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x : X) dat[x -\
-    \ mi + 1]++;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n    for (auto& x\
-    \ : X) {\n      x = dat[x - mi]++;\n    }\n    FOR_R(i, 1, len(dat)) dat[i] =\
-    \ dat[i - 1];\n    dat[0] = 0;\n    return X;\n  }\n  int size() const { return\
-    \ len(dat); }\n  int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma\
-    \ - mi + 1)]; }\n  int idx_to_val(int i) const { return dat[i]; }\n};\n\ntemplate\
-    \ <typename T>\nstruct Index_Compression_SAME_SMALL {\n  int mi, ma;\n  vc<T>\
-    \ dat;\n  vc<T> build(vc<T> X) {\n    mi = 0, ma = -1;\n    if (!X.empty()) mi\
-    \ = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x :\
-    \ X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n  \
-    \  for (auto& x : X) {\n      x = dat[x - mi];\n    }\n    return X;\n  }\n  int\
-    \ size() const { return len(dat); }\n  int val_to_idx(T x) const { return dat[clamp<ll>(x\
-    \ - mi, 0, ma - mi + 1)]; }\n  int idx_to_val(int i) const { return dat[i]; }\n\
-    };\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE {\n  vc<T> dat;\n\
-    \  vc<int> build(const vc<T>& X) {\n    dat.reserve(len(X));\n    vc<pair<T, int>>\
-    \ tmp(len(X));\n    FOR(i, len(X)) tmp[i] = {X[i], i};\n    sort(all(tmp));\n\
-    \    vc<int> ANS(len(X));\n    for (auto [x, j] : tmp) {\n      if (dat.empty()\
-    \ || dat.back() != x) dat.eb(x);\n      ANS[j] = len(dat) - 1;\n    }\n    return\
-    \ ANS;\n  }\n  int size() const { return len(dat); }\n  int val_to_idx(T x) const\
-    \ { return LB(dat, x); }\n  int idx_to_val(int i) const { return dat[i]; }\n};\n\
-    \ntemplate <typename T>\nstruct Index_Compression_DISTINCT_LARGE {\n  vc<T> dat;\n\
-    \  vc<int> build(vc<T> X) {\n    dat.reserve(len(X));\n    vc<pair<T, int>> tmp(len(X));\n\
-    \    FOR(i, len(X)) tmp[i] = {X[i], i};\n    sort(all(tmp));\n    vc<int> ANS(len(X));\n\
-    \    for (auto [x, j] : tmp) {\n      dat.eb(x);\n      ANS[j] = len(dat) - 1;\n\
-    \    }\n    return ANS;\n  }\n  int size() const { return len(dat); }\n  int val_to_idx(T\
-    \ x) const { return LB(dat, x); }\n  int idx_to_val(int i) const { return dat[i];\
-    \ }\n};\n\ntemplate <typename T, bool SMALL>\nusing Index_Compression_DISTINCT\
-    \ =\n    typename std::conditional<SMALL, Index_Compression_DISTINCT_SMALL<T>,\n\
-    \                              Index_Compression_DISTINCT_LARGE<T>>::type;\ntemplate\
-    \ <typename T, bool SMALL>\nusing Index_Compression_SAME =\n    typename std::conditional<SMALL,\
-    \ Index_Compression_SAME_SMALL<T>,\n                              Index_Compression_SAME_LARGE<T>>::type;\n\
-    \n// SAME: [2,3,2] -> [0,1,0]\n// DISTINCT: [2,2,3] -> [0,2,1]\n// build \u3067\
-    \u5217\u3092\u5727\u7E2E\u3057\u3066\u304F\u308C\u308B. \u305D\u306E\u3042\u3068\
-    \n// (x): lower_bound(X,x) \u3092\u304B\u3048\u3059\ntemplate <typename T, bool\
-    \ SAME, bool SMALL>\nusing Index_Compression =\n    typename std::conditional<SAME,\
-    \ Index_Compression_SAME<T, SMALL>,\n                              Index_Compression_DISTINCT<T,\
-    \ SMALL>>::type;\n#line 1 \"alg/monoid/min.hpp\"\n// require: all values x satisfy\
-    \ x <= infty<E>\ntemplate <typename E>\nstruct Monoid_Min {\n  using X = E;\n\
-    \  using value_type = X;\n  static constexpr X op(const X &x, const X &y) noexcept\
-    \ { return min(x, y); }\n  static constexpr X id() { return infty<E>; }\n  static\
-    \ constexpr bool commute = true;\n};\n#line 1 \"ds/sparse_table/sparse_table.hpp\"\
-    \n\n// \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\
-    \u3092\u4EEE\u5B9A\u3002disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\
-    \ntemplate <class Monoid>\nstruct Sparse_Table {\n  using MX = Monoid;\n  using\
-    \ X = typename MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Sparse_Table()\
-    \ {}\n  Sparse_Table(int n) { build(n); }\n  template <typename F>\n  Sparse_Table(int\
-    \ n, F f) {\n    build(n, f);\n  }\n  Sparse_Table(const vc<X>& v) { build(v);\
-    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::id(); });\n\
-    \  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return\
-    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n =\
-    \ m, log = 1;\n    while ((1 << log) < n) ++log;\n    dat.resize(log);\n    dat[0].resize(n);\n\
-    \    FOR(i, n) dat[0][i] = f(i);\n\n    FOR(i, log - 1) {\n      dat[i + 1].resize(len(dat[i])\
+    \    return low;\n  }\n};\n#line 1 \"string/suffix_array.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/suffix_array.hpp\n\
+    #line 1 \"ds/index_compression.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/index_compression.hpp\n\
+    template <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  int mi, ma;\n\
+    \  vc<T> dat;\n  vc<T> build(vc<int> X) {\n    mi = 0, ma = -1;\n    if (!X.empty())\
+    \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
+    \ : X) dat[x - mi + 1]++;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n  \
+    \  for (auto& x : X) {\n      x = dat[x - mi]++;\n    }\n    FOR_R(i, 1, len(dat))\
+    \ dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return X;\n  }\n  int size() const\
+    \ { return len(dat); }\n  int val_to_idx(T x) const { return dat[clamp<ll>(x -\
+    \ mi, 0, ma - mi + 1)]; }\n  int idx_to_val(int i) const { return dat[i]; }\n\
+    };\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL {\n  int mi,\
+    \ ma;\n  vc<T> dat;\n  vc<T> build(vc<T> X) {\n    mi = 0, ma = -1;\n    if (!X.empty())\
+    \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
+    \ : X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n\
+    \    for (auto& x : X) {\n      x = dat[x - mi];\n    }\n    return X;\n  }\n\
+    \  int size() const { return len(dat); }\n  int val_to_idx(T x) const { return\
+    \ dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }\n  int idx_to_val(int i) const { return\
+    \ dat[i]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE\
+    \ {\n  vc<T> dat;\n  vc<int> build(const vc<T>& X) {\n    dat.reserve(len(X));\n\
+    \    vc<pair<T, int>> tmp(len(X));\n    FOR(i, len(X)) tmp[i] = {X[i], i};\n \
+    \   sort(all(tmp));\n    vc<int> ANS(len(X));\n    for (auto [x, j] : tmp) {\n\
+    \      if (dat.empty() || dat.back() != x) dat.eb(x);\n      ANS[j] = len(dat)\
+    \ - 1;\n    }\n    return ANS;\n  }\n  int size() const { return len(dat); }\n\
+    \  int val_to_idx(T x) const { return LB(dat, x); }\n  int idx_to_val(int i) const\
+    \ { return dat[i]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_DISTINCT_LARGE\
+    \ {\n  vc<T> dat;\n  vc<int> build(vc<T> X) {\n    dat.reserve(len(X));\n    vc<pair<T,\
+    \ int>> tmp(len(X));\n    FOR(i, len(X)) tmp[i] = {X[i], i};\n    sort(all(tmp));\n\
+    \    vc<int> ANS(len(X));\n    for (auto [x, j] : tmp) {\n      dat.eb(x);\n \
+    \     ANS[j] = len(dat) - 1;\n    }\n    return ANS;\n  }\n  int size() const\
+    \ { return len(dat); }\n  int val_to_idx(T x) const { return LB(dat, x); }\n \
+    \ int idx_to_val(int i) const { return dat[i]; }\n};\n\ntemplate <typename T,\
+    \ bool SMALL>\nusing Index_Compression_DISTINCT =\n    typename std::conditional<SMALL,\
+    \ Index_Compression_DISTINCT_SMALL<T>,\n                              Index_Compression_DISTINCT_LARGE<T>>::type;\n\
+    template <typename T, bool SMALL>\nusing Index_Compression_SAME =\n    typename\
+    \ std::conditional<SMALL, Index_Compression_SAME_SMALL<T>,\n                 \
+    \             Index_Compression_SAME_LARGE<T>>::type;\n\n// SAME: [2,3,2] -> [0,1,0]\n\
+    // DISTINCT: [2,2,3] -> [0,2,1]\n// build \u3067\u5217\u3092\u5727\u7E2E\u3057\
+    \u3066\u304F\u308C\u308B. \u305D\u306E\u3042\u3068\n// (x): lower_bound(X,x) \u3092\
+    \u304B\u3048\u3059\ntemplate <typename T, bool SAME, bool SMALL>\nusing Index_Compression\
+    \ =\n    typename std::conditional<SAME, Index_Compression_SAME<T, SMALL>,\n \
+    \                             Index_Compression_DISTINCT<T, SMALL>>::type;\n#line\
+    \ 1 \"alg/monoid/min.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n\
+    // require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
+    \ Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
+    \ op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
+    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
+    \ 1 \"ds/sparse_table/sparse_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/sparse_table/sparse_table.hpp\n\
+    \n// \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\
+    \u4EEE\u5B9A\u3002disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\ntemplate\
+    \ <class Monoid>\nstruct Sparse_Table {\n  using MX = Monoid;\n  using X = typename\
+    \ MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Sparse_Table() {}\n  Sparse_Table(int\
+    \ n) { build(n); }\n  template <typename F>\n  Sparse_Table(int n, F f) {\n  \
+    \  build(n, f);\n  }\n  Sparse_Table(const vc<X>& v) { build(v); }\n\n  void build(int\
+    \ m) {\n    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const\
+    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
+    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
+    \ << log) < n) ++log;\n    dat.resize(log);\n    dat[0].resize(n);\n    FOR(i,\
+    \ n) dat[0][i] = f(i);\n\n    FOR(i, log - 1) {\n      dat[i + 1].resize(len(dat[i])\
     \ - (1 << i));\n      FOR(j, len(dat[i]) - (1 << i)) {\n        dat[i + 1][j]\
     \ = MX::op(dat[i][j], dat[i][j + (1 << i)]);\n      }\n    }\n  }\n\n  X prod(int\
     \ L, int R) const {\n    if (L == R) return MX::id();\n    if (R == L + 1) return\
@@ -218,35 +227,36 @@ data:
     \ check(MX::id()));\n    if (R == 0) return 0;\n    int ok = R, ng = -1;\n   \
     \ while (ng + 1 < ok) {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k,\
     \ R));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n\
-    \  }\n};\n#line 1 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
-    \ SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using\
-    \ value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int\
-    \ n) { build(n); }\n  template <typename F>\n  SegTree(int n, F f) {\n    build(n,\
-    \ f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n\
-    \    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const vc<X>&\
-    \ v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 0;\n    while ((1\
-    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::id());\n\
-    \    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n\
-    \  X get(int i) const { return dat[size + i]; }\n  vc<X> get_all() const { return\
-    \ {dat.begin() + size, dat.begin() + size + n}; }\n\n  void update(int i) { dat[i]\
-    \ = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n  void set(int i, const X& x) {\n\
-    \    assert(0 <= i && i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n\
-    \  }\n\n  void multiply(int i, const X& x) {\n    assert(0 <= i && i < n);\n \
-    \   i += size;\n    dat[i] = Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n\
-    \  }\n\n  X prod(int L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n\
-    \    X vl = Monoid::id(), vr = Monoid::id();\n    L += size, R += size;\n    while\
-    \ (L < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1)\
-    \ vr = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl,\
-    \ vr);\n  }\n\n  vc<int> prod_ids(int L, int R) const {\n    assert(0 <= L &&\
-    \ L <= R && R <= n);\n    vc<int> I, J;\n    L += size, R += size;\n    while\
-    \ (L < R) {\n      if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n      L\
-    \ >>= 1, R >>= 1;\n    }\n    reverse(all(J));\n    concat(I, J);\n    return\
-    \ I;\n  }\n\n  X prod_all() const { return dat[1]; }\n\n  template <class F>\n\
-    \  int max_right(F check, int L) const {\n    assert(0 <= L && L <= n && check(Monoid::id()));\n\
-    \    if (L == n) return n;\n    L += size;\n    X sm = Monoid::id();\n    do {\n\
-    \      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
-    \ {\n        while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
+    \  }\n};\n#line 1 \"ds/segtree/segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/segtree.hpp\n\
+    \ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X =\
+    \ typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log,\
+    \ size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
+    \ F>\n  SegTree(int n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v)\
+    \ { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return\
+    \ MX::id(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int\
+    \ i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
+    \ F f) {\n    n = m, log = 0;\n    while ((1 << log) < n) ++log;\n    size = 1\
+    \ << log;\n    dat.assign(size << 1, MX::id());\n    FOR(i, n) dat[size + i] =\
+    \ f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  X get(int i) const { return\
+    \ dat[size + i]; }\n  vc<X> get_all() const { return {dat.begin() + size, dat.begin()\
+    \ + size + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2\
+    \ * i + 1]); }\n  void set(int i, const X& x) {\n    assert(0 <= i && i < n);\n\
+    \    dat[i += size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int\
+    \ i, const X& x) {\n    assert(0 <= i && i < n);\n    i += size;\n    dat[i] =\
+    \ Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n  X prod(int\
+    \ L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n    X vl = Monoid::id(),\
+    \ vr = Monoid::id();\n    L += size, R += size;\n    while (L < R) {\n      if\
+    \ (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R],\
+    \ vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n\
+    \  vc<int> prod_ids(int L, int R) const {\n    assert(0 <= L && L <= R && R <=\
+    \ n);\n    vc<int> I, J;\n    L += size, R += size;\n    while (L < R) {\n   \
+    \   if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n      L >>= 1, R >>= 1;\n\
+    \    }\n    reverse(all(J));\n    concat(I, J);\n    return I;\n  }\n\n  X prod_all()\
+    \ const { return dat[1]; }\n\n  template <class F>\n  int max_right(F check, int\
+    \ L) const {\n    assert(0 <= L && L <= n && check(Monoid::id()));\n    if (L\
+    \ == n) return n;\n    L += size;\n    X sm = Monoid::id();\n    do {\n      while\
+    \ (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L]))) {\n       \
+    \ while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
     \ dat[L]))) {\n            sm = Monoid::op(sm, dat[L++]);\n          }\n     \
     \   }\n        return L - size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n\
     \    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class F>\n  int\
@@ -272,18 +282,20 @@ data:
     \    }\n\n    int m = len(I);\n    while (I[0] > 1) {\n      int nxt = 0;\n  \
     \    int last = -1;\n      FOR(k, m) {\n        int p = I[k] >> 1;\n        if\
     \ (p == last) continue;\n        update(p);\n        I[nxt++] = p;\n        last\
-    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 1 \"ds/sparse_table/sparse_table.hpp\"\
-    \n\n// \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\
-    \u3092\u4EEE\u5B9A\u3002disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\
-    \ntemplate <class Monoid>\nstruct Sparse_Table {\n  using MX = Monoid;\n  using\
-    \ X = typename MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Sparse_Table()\
-    \ {}\n  Sparse_Table(int n) { build(n); }\n  template <typename F>\n  Sparse_Table(int\
-    \ n, F f) {\n    build(n, f);\n  }\n  Sparse_Table(const vc<X>& v) { build(v);\
-    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::id(); });\n\
-    \  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return\
-    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n =\
-    \ m, log = 1;\n    while ((1 << log) < n) ++log;\n    dat.resize(log);\n    dat[0].resize(n);\n\
-    \    FOR(i, n) dat[0][i] = f(i);\n\n    FOR(i, log - 1) {\n      dat[i + 1].resize(len(dat[i])\
+    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 1 \"ds/static_range_product.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/ds/static_range_product.hpp\n\
+    #line 1 \"ds/sparse_table/sparse_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/sparse_table/sparse_table.hpp\n\
+    \n// \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\
+    \u4EEE\u5B9A\u3002disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\ntemplate\
+    \ <class Monoid>\nstruct Sparse_Table {\n  using MX = Monoid;\n  using X = typename\
+    \ MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Sparse_Table() {}\n  Sparse_Table(int\
+    \ n) { build(n); }\n  template <typename F>\n  Sparse_Table(int n, F f) {\n  \
+    \  build(n, f);\n  }\n  Sparse_Table(const vc<X>& v) { build(v); }\n\n  void build(int\
+    \ m) {\n    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const\
+    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
+    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
+    \ << log) < n) ++log;\n    dat.resize(log);\n    dat[0].resize(n);\n    FOR(i,\
+    \ n) dat[0][i] = f(i);\n\n    FOR(i, log - 1) {\n      dat[i + 1].resize(len(dat[i])\
     \ - (1 << i));\n      FOR(j, len(dat[i]) - (1 << i)) {\n        dat[i + 1][j]\
     \ = MX::op(dat[i][j], dat[i][j + (1 << i)]);\n      }\n    }\n  }\n\n  X prod(int\
     \ L, int R) const {\n    if (L == R) return MX::id();\n    if (R == L + 1) return\
@@ -297,15 +309,15 @@ data:
     \ check(MX::id()));\n    if (R == 0) return 0;\n    int ok = R, ng = -1;\n   \
     \ while (ng + 1 < ok) {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k,\
     \ R));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n\
-    \  }\n};\n#line 1 \"ds/sparse_table/disjoint_sparse_table.hpp\"\n\ntemplate <class\
-    \ Monoid>\nstruct Disjoint_Sparse_Table {\n  using MX = Monoid;\n  using X = typename\
-    \ MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Disjoint_Sparse_Table() {}\n\
-    \  Disjoint_Sparse_Table(int n) { build(n); }\n  template <typename F>\n  Disjoint_Sparse_Table(int\
-    \ n, F f) {\n    build(n, f);\n  }\n  Disjoint_Sparse_Table(const vc<X>& v) {\
-    \ build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::id();\
-    \ });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X\
-    \ { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
-    \    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    dat.resize(log);\n\
+    \  }\n};\n#line 1 \"ds/sparse_table/disjoint_sparse_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/sparse_table/disjoint_sparse_table.hpp\n\
+    \ntemplate <class Monoid>\nstruct Disjoint_Sparse_Table {\n  using MX = Monoid;\n\
+    \  using X = typename MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Disjoint_Sparse_Table()\
+    \ {}\n  Disjoint_Sparse_Table(int n) { build(n); }\n  template <typename F>\n\
+    \  Disjoint_Sparse_Table(int n, F f) {\n    build(n, f);\n  }\n  Disjoint_Sparse_Table(const\
+    \ vc<X>& v) { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) ->\
+    \ X { return MX::id(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v),\
+    \ [&](int i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    dat.resize(log);\n\
     \    dat[0].reserve(n);\n    FOR(i, n) dat[0].eb(f(i));\n    FOR(i, 1, log) {\n\
     \      auto& v = dat[i];\n      v = dat[0];\n      int b = 1 << i;\n      for\
     \ (int m = b; m <= n; m += 2 * b) {\n        int L = m - b, R = min(n, m + b);\n\
@@ -322,7 +334,7 @@ data:
     \ check(MX::id()));\n    if (R == 0) return 0;\n    int ok = R, ng = -1;\n   \
     \ while (ng + 1 < ok) {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k,\
     \ R));\n      if (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n\
-    \  }\n};\n#line 3 \"ds/static_range_product.hpp\"\n\n/*\n\u53C2\u8003\uFF1Ahttps://judge.yosupo.jp/submission/106668\n\
+    \  }\n};\n#line 4 \"ds/static_range_product.hpp\"\n\n/*\n\u53C2\u8003\uFF1Ahttps://judge.yosupo.jp/submission/106668\n\
     \u9577\u3055 2^LOG \u306E\u30D6\u30ED\u30C3\u30AF\u306B\u5206\u3051\u308B\uFF0E\
     \u30D6\u30ED\u30C3\u30AF\u5185\u306E prefix, suffix \u3092\u6301\u3064\uFF0E\n\
     \u30D6\u30ED\u30C3\u30AF\u7A4D\u306E\u5217\u3092 ST(DST) \u3067\u6301\u3064\uFF0E\
@@ -355,7 +367,7 @@ data:
     \    if (R == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok)\
     \ {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if\
     \ (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n#line\
-    \ 6 \"string/suffix_array.hpp\"\n\n// \u8F9E\u66F8\u9806 i \u756A\u76EE\u306E\
+    \ 7 \"string/suffix_array.hpp\"\n\n// \u8F9E\u66F8\u9806 i \u756A\u76EE\u306E\
     \ suffix \u304C j \u6587\u5B57\u76EE\u59CB\u307E\u308A\u3067\u3042\u308B\u3068\
     \u304D\u3001\n// SA[i] = j, ISA[j] = i\n// |S|>0 \u3092\u524D\u63D0\uFF08\u305D\
     \u3046\u3067\u306A\u3044\u5834\u5408 dummy \u6587\u5B57\u3092\u8FFD\u52A0\u3057\
@@ -425,7 +437,7 @@ data:
     \  for (int i = 0; i < n; i++, k ? k-- : 0) {\n      if (ISA[i] == n - 1) {\n\
     \        k = 0;\n        continue;\n      }\n      int j = SA[ISA[i] + 1];\n \
     \     while (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]]\
-    \ = k;\n    }\n    LCP.resize(n - 1);\n  }\n};\n#line 6 \"string/basic_substring_structure.hpp\"\
+    \ = k;\n    }\n    LCP.resize(n - 1);\n  }\n};\n#line 7 \"string/basic_substring_structure.hpp\"\
     \n\n// https://arxiv.org/pdf/2312.11873\n// https://uoj.ac/problem/697\nstruct\
     \ Basic_Substring_Structure {\n  using SA_t = Suffix_Array<false>;\n  int N;\n\
     \  string S, T;  // T = rev(S)\n  Rolling_Hash RH;\n  vc<decltype(RH)::mint> SH;\n\
@@ -514,8 +526,9 @@ data:
     \  int k = X_to_block[x];\n      FOR(y, Y[k], Y[k] + width[x]) tmp[y] = '#';\n\
     \      print(tmp);\n    }\n    SHOW(S);\n    SHOW(raw_index);\n    SHOW(width);\n\
     \    SHOW(height);\n    SHOW(right);\n    SHOW(down);\n    print();\n  }\n};\n"
-  code: "\n#include \"ds/hashmap.hpp\"\n#include \"seq/cartesian_tree.hpp\"\n#include\
-    \ \"string/rolling_hash.hpp\"\n#include \"string/suffix_array.hpp\"\n\n// https://arxiv.org/pdf/2312.11873\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/string/basic_substring_structure.hpp\n\
+    \n#include \"ds/hashmap.hpp\"\n#include \"seq/cartesian_tree.hpp\"\n#include \"\
+    string/rolling_hash.hpp\"\n#include \"string/suffix_array.hpp\"\n\n// https://arxiv.org/pdf/2312.11873\n\
     // https://uoj.ac/problem/697\nstruct Basic_Substring_Structure {\n  using SA_t\
     \ = Suffix_Array<false>;\n  int N;\n  string S, T;  // T = rev(S)\n  Rolling_Hash\
     \ RH;\n  vc<decltype(RH)::mint> SH;\n  SA_t S_SA, T_SA;\n  HashMap<int> hash_to_col;\n\
@@ -619,7 +632,7 @@ data:
   isVerificationFile: false
   path: string/basic_substring_structure.hpp
   requiredBy: []
-  timestamp: '2026-10-13 08:18:55+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/basic_substring_structure.hpp

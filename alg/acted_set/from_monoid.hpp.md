@@ -5,27 +5,29 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
     title: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1339.test.cpp
     title: test/3_yukicoder/1339.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/acted_set/from_monoid.hpp\"\ntemplate <typename Monoid>\n\
-    struct ActedSet_from_Monoid {\n  using Monoid_A = Monoid;\n  using A = typename\
-    \ Monoid::value_type;\n  using S = A;\n  static S act(const S &x, const A &g)\
-    \ { return Monoid::op(x, g); }\n};\n"
-  code: "template <typename Monoid>\nstruct ActedSet_from_Monoid {\n  using Monoid_A\
-    \ = Monoid;\n  using A = typename Monoid::value_type;\n  using S = A;\n  static\
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/acted_set/from_monoid.hpp
+  bundledCode: "#line 1 \"alg/acted_set/from_monoid.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/acted_set/from_monoid.hpp\n\
+    template <typename Monoid>\nstruct ActedSet_from_Monoid {\n  using Monoid_A =\
+    \ Monoid;\n  using A = typename Monoid::value_type;\n  using S = A;\n  static\
+    \ S act(const S &x, const A &g) { return Monoid::op(x, g); }\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/acted_set/from_monoid.hpp\n\
+    template <typename Monoid>\nstruct ActedSet_from_Monoid {\n  using Monoid_A =\
+    \ Monoid;\n  using A = typename Monoid::value_type;\n  using S = A;\n  static\
     \ S act(const S &x, const A &g) { return Monoid::op(x, g); }\n};\n"
   dependsOn: []
   isVerificationFile: false
@@ -33,8 +35,8 @@ data:
   requiredBy:
   - nt/discrete_log.hpp
   - mod/mod_log.hpp
-  timestamp: '2026-08-17 16:26:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-15 19:54:56+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1339.test.cpp
   - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp

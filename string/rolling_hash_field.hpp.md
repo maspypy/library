@@ -7,15 +7,16 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"string/rolling_hash_field.hpp\"\n// +, -, * \u304C\u5B9A\
-    \u7FA9\u3055\u308C\u305F\u69CB\u9020\u4F53\u3092\u6E21\u3059\ntemplate <typename\
-    \ Field>\nstruct Rolling_Hash_Field {\n  using F = Field;\n  const F base;\n \
-    \ vector<F> power;\n\n  static inline F generate_base() { return RNG(1LL << 60);\
-    \ }\n\n  inline void expand(int sz) {\n    if (int(power.size()) < sz + 1) {\n\
-    \      int pre_sz = (int)power.size();\n      power.resize(sz + 1);\n      for\
-    \ (int i = pre_sz - 1; i < sz; i++) {\n        power[i + 1] = power[i] * base;\n\
-    \      }\n    }\n  }\n\n  explicit Rolling_Hash_Field(F base = generate_base())\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/string/rolling_hash_field.hpp
+  bundledCode: "#line 1 \"string/rolling_hash_field.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/rolling_hash_field.hpp\n\
+    // +, -, * \u304C\u5B9A\u7FA9\u3055\u308C\u305F\u69CB\u9020\u4F53\u3092\u6E21\u3059\
+    \ntemplate <typename Field>\nstruct Rolling_Hash_Field {\n  using F = Field;\n\
+    \  const F base;\n  vector<F> power;\n\n  static inline F generate_base() { return\
+    \ RNG(1LL << 60); }\n\n  inline void expand(int sz) {\n    if (int(power.size())\
+    \ < sz + 1) {\n      int pre_sz = (int)power.size();\n      power.resize(sz +\
+    \ 1);\n      for (int i = pre_sz - 1; i < sz; i++) {\n        power[i + 1] = power[i]\
+    \ * base;\n      }\n    }\n  }\n\n  explicit Rolling_Hash_Field(F base = generate_base())\n\
     \      : base(base), power{1} {}\n\n  template <typename STRING>\n  vector<F>\
     \ build(const STRING &s) const {\n    int sz = s.size();\n    vector<F> hashed(sz\
     \ + 1);\n    for (int i = 0; i < sz; i++) {\n      hashed[i + 1] = (hashed[i]\
@@ -28,8 +29,9 @@ data:
     \ {\n      int mid = (low + high) / 2;\n      if (query(a, l1, l1 + mid) == query(b,\
     \ l2, l2 + mid))\n        low = mid;\n      else\n        high = mid;\n    }\n\
     \    return low;\n  }\n};\n"
-  code: "// +, -, * \u304C\u5B9A\u7FA9\u3055\u308C\u305F\u69CB\u9020\u4F53\u3092\u6E21\
-    \u3059\ntemplate <typename Field>\nstruct Rolling_Hash_Field {\n  using F = Field;\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/string/rolling_hash_field.hpp\n\
+    // +, -, * \u304C\u5B9A\u7FA9\u3055\u308C\u305F\u69CB\u9020\u4F53\u3092\u6E21\u3059\
+    \ntemplate <typename Field>\nstruct Rolling_Hash_Field {\n  using F = Field;\n\
     \  const F base;\n  vector<F> power;\n\n  static inline F generate_base() { return\
     \ RNG(1LL << 60); }\n\n  inline void expand(int sz) {\n    if (int(power.size())\
     \ < sz + 1) {\n      int pre_sz = (int)power.size();\n      power.resize(sz +\
@@ -51,7 +53,7 @@ data:
   isVerificationFile: false
   path: string/rolling_hash_field.hpp
   requiredBy: []
-  timestamp: '2026-09-13 12:09:15+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/rolling_hash_field.hpp

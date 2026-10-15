@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: flow/min_cost_b_flow.hpp
     title: flow/min_cost_b_flow.hpp
   _extendedRequiredBy: []
@@ -10,24 +10,26 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"flow/min_cost_b_flow.hpp\"\n\n// \u8CA0\u8FBA\u304C\u3042\
-    \u3063\u3066\u3082\u52D5\u4F5C\u3059\u308B\u3088\n// INF \u8FBA\u304C\u5927\u304D\
-    \u3059\u304E\u308B\u3068\u58CA\u308C\u305F\u308A\u3059\u308B\u307F\u305F\u3044\
-    \u306A\u306E\u3067\u306E\u3067\u6CE8\u610F\ntemplate <class Flow = ll, class Cost\
-    \ = ll>\nstruct Min_Cost_B_Flow {\n private:\n  static constexpr int SCALING_FACTOR\
-    \ = 2;\n  using V_id = uint32_t;\n  using E_id = uint32_t;\n\n  struct Edge {\n\
-    \    friend struct Min_Cost_B_Flow;\n\n   private:\n    V_id frm, to;\n    Flow\
-    \ flow, cap;\n    Cost cost;\n    E_id rev;\n\n   public:\n    Edge() = default;\n\
-    \n    Edge(const V_id frm, const V_id to, const Flow cap, const Cost cost,\n \
-    \        const E_id rev)\n        : frm(frm), to(to), flow(0), cap(cap), cost(cost),\
-    \ rev(rev) {}\n\n    [[nodiscard]] Flow residual_cap() const { return cap - flow;\
-    \ }\n  };\n\n public:\n  struct EdgePtr {\n    friend struct Min_Cost_B_Flow;\n\
-    \n   private:\n    const Min_Cost_B_Flow *instance;\n    const V_id v;\n    const\
-    \ E_id e;\n\n    EdgePtr(const Min_Cost_B_Flow *instance, const V_id v, const\
-    \ E_id e)\n        : instance(instance), v(v), e(e) {}\n\n    [[nodiscard]] const\
-    \ Edge &edge() const { return instance->g[v][e]; }\n    [[nodiscard]] const Edge\
-    \ &rev() const {\n      const Edge &e = edge();\n      return instance->g[e.to][e.rev];\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/flow/dual_mcf.hpp
+  bundledCode: "#line 1 \"flow/dual_mcf.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/flow/dual_mcf.hpp\n\
+    #line 1 \"flow/min_cost_b_flow.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/flow/min_cost_b_flow.hpp\n\
+    \n// \u8CA0\u8FBA\u304C\u3042\u3063\u3066\u3082\u52D5\u4F5C\u3059\u308B\u3088\n\
+    // INF \u8FBA\u304C\u5927\u304D\u3059\u304E\u308B\u3068\u58CA\u308C\u305F\u308A\
+    \u3059\u308B\u307F\u305F\u3044\u306A\u306E\u3067\u306E\u3067\u6CE8\u610F\ntemplate\
+    \ <class Flow = ll, class Cost = ll>\nstruct Min_Cost_B_Flow {\n private:\n  static\
+    \ constexpr int SCALING_FACTOR = 2;\n  using V_id = uint32_t;\n  using E_id =\
+    \ uint32_t;\n\n  struct Edge {\n    friend struct Min_Cost_B_Flow;\n\n   private:\n\
+    \    V_id frm, to;\n    Flow flow, cap;\n    Cost cost;\n    E_id rev;\n\n   public:\n\
+    \    Edge() = default;\n\n    Edge(const V_id frm, const V_id to, const Flow cap,\
+    \ const Cost cost,\n         const E_id rev)\n        : frm(frm), to(to), flow(0),\
+    \ cap(cap), cost(cost), rev(rev) {}\n\n    [[nodiscard]] Flow residual_cap() const\
+    \ { return cap - flow; }\n  };\n\n public:\n  struct EdgePtr {\n    friend struct\
+    \ Min_Cost_B_Flow;\n\n   private:\n    const Min_Cost_B_Flow *instance;\n    const\
+    \ V_id v;\n    const E_id e;\n\n    EdgePtr(const Min_Cost_B_Flow *instance, const\
+    \ V_id v, const E_id e)\n        : instance(instance), v(v), e(e) {}\n\n    [[nodiscard]]\
+    \ const Edge &edge() const { return instance->g[v][e]; }\n    [[nodiscard]] const\
+    \ Edge &rev() const {\n      const Edge &e = edge();\n      return instance->g[e.to][e.rev];\n\
     \    }\n\n   public:\n    [[nodiscard]] V_id frm() const { return rev().to; }\n\
     \    [[nodiscard]] V_id to() const { return edge().to; }\n    [[nodiscard]] Flow\
     \ flow() const { return edge().flow; }\n    [[nodiscard]] Flow lower() const {\
@@ -101,7 +103,7 @@ data:
     \ auto &es : g)\n        for (const auto &e : es)\n          if (e.residual_cap()\
     \ > 0)\n            potential[e.to] =\n                std::min(potential[e.to],\
     \ potential[e.frm] + e.cost);\n    return potential;\n  }\n\n  std::vector<EdgePtr>\
-    \ get_edges() { return edges; }\n};\n#line 2 \"flow/dual_mcf.hpp\"\n\n// INF \u8FBA\
+    \ get_edges() { return edges; }\n};\n#line 3 \"flow/dual_mcf.hpp\"\n\n// INF \u8FBA\
     \u306E\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u95A2\u9023\u304C\u672A\u8003\
     \u5BDF\n// minimize sum b[v]p[v] + sum_{uv}c[uv]max(0, -p[u]+p[v]-w[uv]))\n//\
     \ sum_v b[v] = 0, c[uv] >= 0\nstruct Dual_MCF {\n  Min_Cost_B_Flow<ll, ll> G;\n\
@@ -112,7 +114,8 @@ data:
     \ // min_val, p\n  // if ng: {infty<i128>, {}}\n  pair<i128, vc<ll>> solve() {\n\
     \    auto [ok, val] = G.solve();\n    if (!ok) return {infty<i128>, {}};\n   \
     \ auto P = G.get_potential();\n    return {-val, P};\n  }\n};\n"
-  code: "#include \"flow/min_cost_b_flow.hpp\"\n\n// INF \u8FBA\u306E\u30AA\u30FC\u30D0\
+  code: "// Source: https://github.com/maspypy/library/blob/main/flow/dual_mcf.hpp\n\
+    #include \"flow/min_cost_b_flow.hpp\"\n\n// INF \u8FBA\u306E\u30AA\u30FC\u30D0\
     \u30FC\u30D5\u30ED\u30FC\u95A2\u9023\u304C\u672A\u8003\u5BDF\n// minimize sum\
     \ b[v]p[v] + sum_{uv}c[uv]max(0, -p[u]+p[v]-w[uv]))\n// sum_v b[v] = 0, c[uv]\
     \ >= 0\nstruct Dual_MCF {\n  Min_Cost_B_Flow<ll, ll> G;\n  Dual_MCF(int N) : G(N)\
@@ -128,7 +131,7 @@ data:
   isVerificationFile: false
   path: flow/dual_mcf.hpp
   requiredBy: []
-  timestamp: '2026-08-17 11:40:35+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: flow/dual_mcf.hpp

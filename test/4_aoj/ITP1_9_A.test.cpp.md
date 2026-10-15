@@ -22,31 +22,31 @@ data:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_9_A
   bundledCode: "#line 1 \"test/4_aoj/ITP1_9_A.test.cpp\"\n#define PROBLEM \\\n  \"\
     https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_9_A\"\n#line 1\
-    \ \"my_template.hpp\"\n/*\nlibrary: https://github.com/maspypy/library\n*/\n#if\
-    \ defined(USE_PCH)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
-    #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#if\
-    \ !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#endif\n\
-    #include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace std;\n\nusing\
-    \ ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\n\
-    using u64 = uint64_t;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
-    using f128 = __float128;\n\ntemplate <class>\nconstexpr bool dependent_false =\
-    \ false;\n\ntemplate <class T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>,\
-    \ \"infty<T> is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int\
-    \ infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
-    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
-    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
-    \ infty<i128>;\ntemplate <>\nconstexpr long double infty<long double> = infty<i128>;\n\
-    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing pq_max = priority_queue<T>;\ntemplate <class T>\nusing\
-    \ pq_min = priority_queue<T, vector<T>, greater<T>>;\n\n#define vv(type, name,\
-    \ h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n#define\
-    \ vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name( \\\n \
-    \     h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \ \"my_template.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n\
+    /*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
+    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
+    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
+    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
+    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
+    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
+    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
+    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
+    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
+    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
+    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
+    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
+    \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
+    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
+    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
+    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq_max = priority_queue<T>;\ntemplate <class T>\nusing pq_min = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR1_R(a)\
@@ -137,56 +137,54 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 1 \"other/io2.hpp\"\
-    \n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define\
-    \ LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define STR(...)\
-    \      \\\r\n  string __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define CHR(...)\
-    \    \\\r\n  char __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define DBL(...)   \
-    \        \\\r\n  long double __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n\r\n#define\
-    \ VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\
-    \n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
-    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid read(int &a) { cin\
-    \ >> a; }\r\nvoid read(long long &a) { cin >> a; }\r\nvoid read(char &a) { cin\
-    \ >> a; }\r\nvoid read(double &a) { cin >> a; }\r\nvoid read(long double &a) {\
-    \ cin >> a; }\r\nvoid read(string &a) { cin >> a; }\r\ntemplate <class T, class\
-    \ S>\r\nvoid read(pair<T, S> &p) {\r\n  read(p.first), read(p.second);\r\n}\r\n\
-    template <class T>\r\nvoid read(vector<T> &a) {\r\n  for (auto &i : a) read(i);\r\
-    \n}\r\ntemplate <class T>\r\nvoid read(T &a) {\r\n  cin >> a;\r\n}\r\nvoid IN()\
-    \ {}\r\ntemplate <class Head, class... Tail>\r\nvoid IN(Head &head, Tail &...tail)\
-    \ {\r\n  read(head);\r\n  IN(tail...);\r\n}\r\n\r\ntemplate <typename T, typename\
-    \ U>\r\nostream &operator<<(ostream &os, const pair<T, U> &A) {\r\n  os << A.fi\
-    \ << \" \" << A.se;\r\n  return os;\r\n}\r\n\r\ntemplate <typename T>\r\nostream\
-    \ &operator<<(ostream &os, const vector<T> &A) {\r\n  for (size_t i = 0; i < A.size();\
-    \ i++) {\r\n    if (i) os << \" \";\r\n    os << A[i];\r\n  }\r\n  return os;\r\
-    \n}\r\n\r\nclass CoutInitializer {\r\n public:\r\n  CoutInitializer() { std::cout\
-    \ << std::fixed << std::setprecision(15); }\r\n};\r\nstatic CoutInitializer cout_initializer;\r\
-    \n\r\nvoid print() {\r\n  cout << \"\\n\";\r\n  cout.flush();\r\n}\r\n\r\ntemplate\
-    \ <class Head, class... Tail>\r\nvoid print(Head &&head, Tail &&...tail) {\r\n\
-    \  cout << head;\r\n  if (sizeof...(Tail)) cout << \" \";\r\n  print(forward<Tail>(tail)...);\r\
-    \n}\r\n\r\n#if defined(LOCAL)\r\ntemplate <class... Ts>\r\ninline void _show_pack(const\
-    \ char *func, int line, const char *names,\r\n                       Ts &&...args)\
-    \ {\r\n  // [DEBUG] solve:123 \u306E\u3088\u3046\u306B\u5148\u982D\u306B\u51FA\
-    \u3059\r\n  cout << \"[DEBUG \" << func << ':' << line << \"] \";\r\n\r\n  const\
-    \ char *p = names;\r\n  bool first = true;\r\n\r\n  auto next_token = [&]() ->\
-    \ std::pair<const char *, const char *> {\r\n    while (*p == ' ' || *p == ',')\
-    \ ++p;\r\n    const char *l = p;\r\n    while (*p && *p != ',') ++p;\r\n    const\
-    \ char *r = p;\r\n    return {l, r};\r\n  };\r\n\r\n  (\r\n      [&] {\r\n   \
-    \     auto [l, r] = next_token();\r\n        while (r > l && r[-1] == ' ') --r;\r\
-    \n        if (!first) cout << ' ';\r\n        first = false;\r\n        std::string\
-    \ name(l, r);\r\n        cout << name << \" = \" << args;\r\n      }(),\r\n  \
-    \    ...);\r\n  print();\r\n}\r\n\r\n#define SHOW(...) _show_pack(__func__, __LINE__,\
-    \ #__VA_ARGS__, __VA_ARGS__)\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\nvoid\
-    \ YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t);\
-    \ }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t\
-    \ = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\
-    \nvoid no(bool t = 1) { yes(!t); }\r\n#line 1 \"string/split.hpp\"\nvc<string>\
-    \ split(string S, string seps = \" ,\") {\r\n  vc<string> res = {\"\"};\r\n  for\
-    \ (auto&& s : S) {\r\n    if (count(all(seps), s))\r\n      res.eb(\"\");\r\n\
-    \    else\r\n      res.back() += s;\r\n  }\r\n  return res;\r\n}\r\n#line 6 \"\
-    test/4_aoj/ITP1_9_A.test.cpp\"\n\nvoid solve() {\n  STR(T);\n  string S;\n  ll\
-    \ ANS = 0;\n  while (getline(cin, S)) {\n    for (auto&& token : split(S, \" \"\
-    )) {\n      for (auto&& t : token)\n        if (isupper(t)) t = tolower(t);\n\
-    \      ANS += token == T;\n    }\n  }\n  print(ANS);\n}\n\nsigned main() {\n \
-    \ solve();\n  return 0;\n}\n"
+    \n// Source: https://github.com/maspypy/library/blob/main/other/io2.hpp\n#define\
+    \ INT(...)   \\\n  int __VA_ARGS__; \\\n  IN(__VA_ARGS__)\n#define LL(...)   \\\
+    \n  ll __VA_ARGS__; \\\n  IN(__VA_ARGS__)\n#define STR(...)      \\\n  string\
+    \ __VA_ARGS__; \\\n  IN(__VA_ARGS__)\n#define CHR(...)    \\\n  char __VA_ARGS__;\
+    \ \\\n  IN(__VA_ARGS__)\n#define DBL(...)           \\\n  long double __VA_ARGS__;\
+    \ \\\n  IN(__VA_ARGS__)\n\n#define VEC(type, name, size) \\\n  vector<type> name(size);\
+    \    \\\n  read(name)\n#define VV(type, name, h, w)                     \\\n \
+    \ vector<vector<type>> name(h, vector<type>(w)); \\\n  read(name)\n\nvoid read(int\
+    \ &a) { cin >> a; }\nvoid read(long long &a) { cin >> a; }\nvoid read(char &a)\
+    \ { cin >> a; }\nvoid read(double &a) { cin >> a; }\nvoid read(long double &a)\
+    \ { cin >> a; }\nvoid read(string &a) { cin >> a; }\ntemplate <class T, class\
+    \ S>\nvoid read(pair<T, S> &p) {\n  read(p.first), read(p.second);\n}\ntemplate\
+    \ <class T>\nvoid read(vector<T> &a) {\n  for (auto &i : a) read(i);\n}\ntemplate\
+    \ <class T>\nvoid read(T &a) {\n  cin >> a;\n}\nvoid IN() {}\ntemplate <class\
+    \ Head, class... Tail>\nvoid IN(Head &head, Tail &...tail) {\n  read(head);\n\
+    \  IN(tail...);\n}\n\ntemplate <typename T, typename U>\nostream &operator<<(ostream\
+    \ &os, const pair<T, U> &A) {\n  os << A.fi << \" \" << A.se;\n  return os;\n\
+    }\n\ntemplate <typename T>\nostream &operator<<(ostream &os, const vector<T> &A)\
+    \ {\n  for (size_t i = 0; i < A.size(); i++) {\n    if (i) os << \" \";\n    os\
+    \ << A[i];\n  }\n  return os;\n}\n\nclass CoutInitializer {\n public:\n  CoutInitializer()\
+    \ { std::cout << std::fixed << std::setprecision(15); }\n};\nstatic CoutInitializer\
+    \ cout_initializer;\n\nvoid print() {\n  cout << \"\\n\";\n  cout.flush();\n}\n\
+    \ntemplate <class Head, class... Tail>\nvoid print(Head &&head, Tail &&...tail)\
+    \ {\n  cout << head;\n  if (sizeof...(Tail)) cout << \" \";\n  print(forward<Tail>(tail)...);\n\
+    }\n\n#if defined(LOCAL)\ntemplate <class... Ts>\ninline void _show_pack(const\
+    \ char *func, int line, const char *names,\n                       Ts &&...args)\
+    \ {\n  // [DEBUG] solve:123 \u306E\u3088\u3046\u306B\u5148\u982D\u306B\u51FA\u3059\
+    \n  cout << \"[DEBUG \" << func << ':' << line << \"] \";\n\n  const char *p =\
+    \ names;\n  bool first = true;\n\n  auto next_token = [&]() -> std::pair<const\
+    \ char *, const char *> {\n    while (*p == ' ' || *p == ',') ++p;\n    const\
+    \ char *l = p;\n    while (*p && *p != ',') ++p;\n    const char *r = p;\n   \
+    \ return {l, r};\n  };\n\n  (\n      [&] {\n        auto [l, r] = next_token();\n\
+    \        while (r > l && r[-1] == ' ') --r;\n        if (!first) cout << ' ';\n\
+    \        first = false;\n        std::string name(l, r);\n        cout << name\
+    \ << \" = \" << args;\n      }(),\n      ...);\n  print();\n}\n\n#define SHOW(...)\
+    \ _show_pack(__func__, __LINE__, #__VA_ARGS__, __VA_ARGS__)\n#else\n#define SHOW(...)\n\
+    #endif\n\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\nvoid NO(bool\
+    \ t = 1) { YES(!t); }\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\n\
+    void No(bool t = 1) { Yes(!t); }\nvoid yes(bool t = 1) { print(t ? \"yes\" : \"\
+    no\"); }\nvoid no(bool t = 1) { yes(!t); }\n#line 1 \"string/split.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/string/split.hpp\nvc<string> split(string\
+    \ S, string seps = \" ,\") {\n  vc<string> res = {\"\"};\n  for (auto&& s : S)\
+    \ {\n    if (count(all(seps), s))\n      res.eb(\"\");\n    else\n      res.back()\
+    \ += s;\n  }\n  return res;\n}\n#line 6 \"test/4_aoj/ITP1_9_A.test.cpp\"\n\nvoid\
+    \ solve() {\n  STR(T);\n  string S;\n  ll ANS = 0;\n  while (getline(cin, S))\
+    \ {\n    for (auto&& token : split(S, \" \")) {\n      for (auto&& t : token)\n\
+    \        if (isupper(t)) t = tolower(t);\n      ANS += token == T;\n    }\n  }\n\
+    \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_9_A\"\
     \n#include \"my_template.hpp\"\n#include \"other/io2.hpp\"\n#include \"string/split.hpp\"\
     \n\nvoid solve() {\n  STR(T);\n  string S;\n  ll ANS = 0;\n  while (getline(cin,\
@@ -200,7 +198,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/ITP1_9_A.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/ITP1_9_A.test.cpp

@@ -13,49 +13,50 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/offline_query/parallel_binary_search.hpp\"\n/*\r\n\u4E26\
-    \u5217\u4E8C\u5206\u63A2\u7D22\u3002(Q, ok, ng, init, upd, check)\u3002\r\ncheck\
-    \ \u304C\u6210\u308A\u7ACB\u3064\u304E\u308A\u304E\u308A\u306E upd\u56DE\u6570\
-    \u3092\u8FD4\u3059\u3002\r\n\u30FBvoid upd(t)\uFF1At \u56DE\u76EE\u306E update\r\
-    \n\u30FBbool check(q)\uFF1A\u30AF\u30A8\u30EA q \u306E\u5224\u5B9A\r\n*/\r\ntemplate\
-    \ <typename F1, typename F2, typename F3>\r\nvc<int> parallel_binary_search(int\
-    \ Q, int ok, int ng, F1 init, F2 upd,\r\n                               F3 check)\
-    \ {\r\n  int T = max(ok, ng);\r\n  vc<int> OK(Q, ok), NG(Q, ng);\r\n  while (1)\
-    \ {\r\n    vc<int> check_t(Q, -1);\r\n    FOR(q, Q) {\r\n      int& t = check_t[q];\r\
-    \n      if (abs(OK[q] - NG[q]) > 1) { t = (OK[q] + NG[q]) / 2; }\r\n    }\r\n\
-    \    vc<int> indptr(T + 1);\r\n    FOR(q, Q) {\r\n      int& t = check_t[q];\r\
-    \n      if (t != -1) indptr[t + 1]++;\r\n    }\r\n    FOR(t, T) indptr[t + 1]\
-    \ += indptr[t];\r\n    int total = indptr.back();\r\n    if (total == 0) break;\r\
-    \n    auto counter = indptr;\r\n    vc<int> csr(total);\r\n    FOR(q, Q) {\r\n\
-    \      int& t = check_t[q];\r\n      if (t != -1) { csr[counter[t]++] = q; }\r\
-    \n    }\r\n\r\n    init();\r\n    int t = 0;\r\n    for (auto&& q: csr) {\r\n\
-    \      while (t < check_t[q]) { upd(t++); }\r\n      if (check(q))\r\n       \
-    \ OK[q] = t;\r\n      else\r\n        NG[q] = t;\r\n    }\r\n  }\r\n  return OK;\r\
-    \n}\n"
-  code: "/*\r\n\u4E26\u5217\u4E8C\u5206\u63A2\u7D22\u3002(Q, ok, ng, init, upd, check)\u3002\
-    \r\ncheck \u304C\u6210\u308A\u7ACB\u3064\u304E\u308A\u304E\u308A\u306E upd\u56DE\
-    \u6570\u3092\u8FD4\u3059\u3002\r\n\u30FBvoid upd(t)\uFF1At \u56DE\u76EE\u306E\
-    \ update\r\n\u30FBbool check(q)\uFF1A\u30AF\u30A8\u30EA q \u306E\u5224\u5B9A\r\
-    \n*/\r\ntemplate <typename F1, typename F2, typename F3>\r\nvc<int> parallel_binary_search(int\
-    \ Q, int ok, int ng, F1 init, F2 upd,\r\n                               F3 check)\
-    \ {\r\n  int T = max(ok, ng);\r\n  vc<int> OK(Q, ok), NG(Q, ng);\r\n  while (1)\
-    \ {\r\n    vc<int> check_t(Q, -1);\r\n    FOR(q, Q) {\r\n      int& t = check_t[q];\r\
-    \n      if (abs(OK[q] - NG[q]) > 1) { t = (OK[q] + NG[q]) / 2; }\r\n    }\r\n\
-    \    vc<int> indptr(T + 1);\r\n    FOR(q, Q) {\r\n      int& t = check_t[q];\r\
-    \n      if (t != -1) indptr[t + 1]++;\r\n    }\r\n    FOR(t, T) indptr[t + 1]\
-    \ += indptr[t];\r\n    int total = indptr.back();\r\n    if (total == 0) break;\r\
-    \n    auto counter = indptr;\r\n    vc<int> csr(total);\r\n    FOR(q, Q) {\r\n\
-    \      int& t = check_t[q];\r\n      if (t != -1) { csr[counter[t]++] = q; }\r\
-    \n    }\r\n\r\n    init();\r\n    int t = 0;\r\n    for (auto&& q: csr) {\r\n\
-    \      while (t < check_t[q]) { upd(t++); }\r\n      if (check(q))\r\n       \
-    \ OK[q] = t;\r\n      else\r\n        NG[q] = t;\r\n    }\r\n  }\r\n  return OK;\r\
-    \n}"
+    links:
+    - https://github.com/maspypy/library/blob/main/ds/offline_query/parallel_binary_search.hpp
+  bundledCode: "#line 1 \"ds/offline_query/parallel_binary_search.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/ds/offline_query/parallel_binary_search.hpp\n\
+    /*\n\u4E26\u5217\u4E8C\u5206\u63A2\u7D22\u3002(Q, ok, ng, init, upd, check)\u3002\
+    \ncheck \u304C\u6210\u308A\u7ACB\u3064\u304E\u308A\u304E\u308A\u306E upd\u56DE\
+    \u6570\u3092\u8FD4\u3059\u3002\n\u30FBvoid upd(t)\uFF1At \u56DE\u76EE\u306E update\n\
+    \u30FBbool check(q)\uFF1A\u30AF\u30A8\u30EA q \u306E\u5224\u5B9A\n*/\ntemplate\
+    \ <typename F1, typename F2, typename F3>\nvc<int> parallel_binary_search(int\
+    \ Q, int ok, int ng, F1 init, F2 upd,\n                               F3 check)\
+    \ {\n  int T = max(ok, ng);\n  vc<int> OK(Q, ok), NG(Q, ng);\n  while (1) {\n\
+    \    vc<int> check_t(Q, -1);\n    FOR(q, Q) {\n      int& t = check_t[q];\n  \
+    \    if (abs(OK[q] - NG[q]) > 1) { t = (OK[q] + NG[q]) / 2; }\n    }\n    vc<int>\
+    \ indptr(T + 1);\n    FOR(q, Q) {\n      int& t = check_t[q];\n      if (t !=\
+    \ -1) indptr[t + 1]++;\n    }\n    FOR(t, T) indptr[t + 1] += indptr[t];\n   \
+    \ int total = indptr.back();\n    if (total == 0) break;\n    auto counter = indptr;\n\
+    \    vc<int> csr(total);\n    FOR(q, Q) {\n      int& t = check_t[q];\n      if\
+    \ (t != -1) { csr[counter[t]++] = q; }\n    }\n\n    init();\n    int t = 0;\n\
+    \    for (auto&& q: csr) {\n      while (t < check_t[q]) { upd(t++); }\n     \
+    \ if (check(q))\n        OK[q] = t;\n      else\n        NG[q] = t;\n    }\n \
+    \ }\n  return OK;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/parallel_binary_search.hpp\n\
+    /*\n\u4E26\u5217\u4E8C\u5206\u63A2\u7D22\u3002(Q, ok, ng, init, upd, check)\u3002\
+    \ncheck \u304C\u6210\u308A\u7ACB\u3064\u304E\u308A\u304E\u308A\u306E upd\u56DE\
+    \u6570\u3092\u8FD4\u3059\u3002\n\u30FBvoid upd(t)\uFF1At \u56DE\u76EE\u306E update\n\
+    \u30FBbool check(q)\uFF1A\u30AF\u30A8\u30EA q \u306E\u5224\u5B9A\n*/\ntemplate\
+    \ <typename F1, typename F2, typename F3>\nvc<int> parallel_binary_search(int\
+    \ Q, int ok, int ng, F1 init, F2 upd,\n                               F3 check)\
+    \ {\n  int T = max(ok, ng);\n  vc<int> OK(Q, ok), NG(Q, ng);\n  while (1) {\n\
+    \    vc<int> check_t(Q, -1);\n    FOR(q, Q) {\n      int& t = check_t[q];\n  \
+    \    if (abs(OK[q] - NG[q]) > 1) { t = (OK[q] + NG[q]) / 2; }\n    }\n    vc<int>\
+    \ indptr(T + 1);\n    FOR(q, Q) {\n      int& t = check_t[q];\n      if (t !=\
+    \ -1) indptr[t + 1]++;\n    }\n    FOR(t, T) indptr[t + 1] += indptr[t];\n   \
+    \ int total = indptr.back();\n    if (total == 0) break;\n    auto counter = indptr;\n\
+    \    vc<int> csr(total);\n    FOR(q, Q) {\n      int& t = check_t[q];\n      if\
+    \ (t != -1) { csr[counter[t]++] = q; }\n    }\n\n    init();\n    int t = 0;\n\
+    \    for (auto&& q: csr) {\n      while (t < check_t[q]) { upd(t++); }\n     \
+    \ if (check(q))\n        OK[q] = t;\n      else\n        NG[q] = t;\n    }\n \
+    \ }\n  return OK;\n}"
   dependsOn: []
   isVerificationFile: false
   path: ds/offline_query/parallel_binary_search.hpp
   requiredBy: []
-  timestamp: '2022-12-01 18:20:22+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/3314.test.cpp

@@ -19,75 +19,74 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add\
-    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\n  static constexpr X id() { return X(0); }\n\
-    \  static constexpr bool commute = true;\n};\n#line 2 \"ds/doubling.hpp\"\n\r\n\
-    // \u72B6\u614B a \u304B\u3089 1 \u56DE\u64CD\u4F5C\u3059\u308B\u3068\u3001\u72B6\
-    \u614B b \u306B\u9077\u79FB\u3057\u3001\u30E2\u30CE\u30A4\u30C9\u306E\u5143 x\
-    \ \u3092\u52A0\u3048\u308B\u3002\r\n// \u884C\u304D\u5148\u304C\u306A\u3044\u5834\
-    \u5408\uFF1A-1 \uFF08add \u4E0D\u8981\uFF09\r\ntemplate <typename Monoid, int\
-    \ LOG>\r\nstruct Doubling {\r\n  using X = typename Monoid::value_type;\r\n  int\
-    \ N;\r\n  bool is_prepared;\r\n  vvc<int> TO;\r\n  vvc<X> DP;\r\n\r\n  Doubling(int\
-    \ N) : N(N), is_prepared(0) {\r\n    TO.assign(LOG, vc<int>(N, -1));\r\n    DP.assign(LOG,\
-    \ vc<X>(N, Monoid::id()));\r\n  }\r\n\r\n  void add(int i, int to, X x) {\r\n\
-    \    assert(!is_prepared);\r\n    assert(-1 <= to && to < N);\r\n    TO[0][i]\
-    \ = to;\r\n    DP[0][i] = x;\r\n  }\r\n\r\n  void build() {\r\n    assert(!is_prepared);\r\
-    \n    is_prepared = 1;\r\n    FOR(k, LOG - 1) {\r\n      FOR(v, N) {\r\n     \
-    \   int w = TO[k][v];\r\n        if (w == -1) {\r\n          TO[k + 1][v] = -1;\r\
-    \n          DP[k + 1][v] = DP[k][v];\r\n          continue;\r\n        }\r\n \
-    \       TO[k + 1][v] = TO[k][w];\r\n        DP[k + 1][v] = Monoid::op(DP[k][v],\
-    \ DP[k][w]);\r\n      }\r\n    }\r\n  }\r\n\r\n  // (to, val)\r\n  pair<int, X>\
-    \ calc(int i, ll step) {\r\n    assert(is_prepared);\r\n    assert(0 <= step &&\
-    \ step < (1LL << LOG));\r\n    X x = Monoid::id();\r\n    while (step && i !=\
-    \ -1) {\r\n      int k = topbit(step);\r\n      step ^= 1LL << k;\r\n      x =\
-    \ Monoid::op(x, DP[k][i]);\r\n      i = TO[k][i];\r\n    }\r\n    return {i, x};\r\
-    \n  }\r\n\r\n  // check(to, monoid_sum)\r\n  template <typename F>\r\n  ll max_step(F\
-    \ check, int i) {\r\n    assert(is_prepared);\r\n    X x = Monoid::id();\r\n \
-    \   ll step = 0;\r\n    assert(check(i, x));\r\n    FOR_R(k, LOG) {\r\n      int\
-    \ j = TO[k][i];\r\n      if (j == -1) continue;\r\n      X y = Monoid::op(x, DP[k][i]);\r\
-    \n      if (check(j, y)) {\r\n        step |= 1LL << k;\r\n        i = j;\r\n\
-    \        x = y;\r\n        assert(i != -1);\r\n      }\r\n    }\r\n    return\
-    \ step;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"TO\");\r\n    FOR(k, LOG)\
-    \ print(TO[k]);\r\n    print(\"DP\");\r\n    FOR(k, LOG) print(DP[k]);\r\n  }\r\
-    \n};\r\n"
-  code: "#include \"alg/monoid/add.hpp\"\r\n\r\n// \u72B6\u614B a \u304B\u3089 1 \u56DE\
-    \u64CD\u4F5C\u3059\u308B\u3068\u3001\u72B6\u614B b \u306B\u9077\u79FB\u3057\u3001\
-    \u30E2\u30CE\u30A4\u30C9\u306E\u5143 x \u3092\u52A0\u3048\u308B\u3002\r\n// \u884C\
-    \u304D\u5148\u304C\u306A\u3044\u5834\u5408\uFF1A-1 \uFF08add \u4E0D\u8981\uFF09\
-    \r\ntemplate <typename Monoid, int LOG>\r\nstruct Doubling {\r\n  using X = typename\
-    \ Monoid::value_type;\r\n  int N;\r\n  bool is_prepared;\r\n  vvc<int> TO;\r\n\
-    \  vvc<X> DP;\r\n\r\n  Doubling(int N) : N(N), is_prepared(0) {\r\n    TO.assign(LOG,\
-    \ vc<int>(N, -1));\r\n    DP.assign(LOG, vc<X>(N, Monoid::id()));\r\n  }\r\n\r\
-    \n  void add(int i, int to, X x) {\r\n    assert(!is_prepared);\r\n    assert(-1\
-    \ <= to && to < N);\r\n    TO[0][i] = to;\r\n    DP[0][i] = x;\r\n  }\r\n\r\n\
-    \  void build() {\r\n    assert(!is_prepared);\r\n    is_prepared = 1;\r\n   \
-    \ FOR(k, LOG - 1) {\r\n      FOR(v, N) {\r\n        int w = TO[k][v];\r\n    \
-    \    if (w == -1) {\r\n          TO[k + 1][v] = -1;\r\n          DP[k + 1][v]\
-    \ = DP[k][v];\r\n          continue;\r\n        }\r\n        TO[k + 1][v] = TO[k][w];\r\
-    \n        DP[k + 1][v] = Monoid::op(DP[k][v], DP[k][w]);\r\n      }\r\n    }\r\
-    \n  }\r\n\r\n  // (to, val)\r\n  pair<int, X> calc(int i, ll step) {\r\n    assert(is_prepared);\r\
-    \n    assert(0 <= step && step < (1LL << LOG));\r\n    X x = Monoid::id();\r\n\
-    \    while (step && i != -1) {\r\n      int k = topbit(step);\r\n      step ^=\
-    \ 1LL << k;\r\n      x = Monoid::op(x, DP[k][i]);\r\n      i = TO[k][i];\r\n \
-    \   }\r\n    return {i, x};\r\n  }\r\n\r\n  // check(to, monoid_sum)\r\n  template\
-    \ <typename F>\r\n  ll max_step(F check, int i) {\r\n    assert(is_prepared);\r\
-    \n    X x = Monoid::id();\r\n    ll step = 0;\r\n    assert(check(i, x));\r\n\
-    \    FOR_R(k, LOG) {\r\n      int j = TO[k][i];\r\n      if (j == -1) continue;\r\
-    \n      X y = Monoid::op(x, DP[k][i]);\r\n      if (check(j, y)) {\r\n       \
-    \ step |= 1LL << k;\r\n        i = j;\r\n        x = y;\r\n        assert(i !=\
-    \ -1);\r\n      }\r\n    }\r\n    return step;\r\n  }\r\n\r\n  void debug() {\r\
-    \n    print(\"TO\");\r\n    FOR(k, LOG) print(TO[k]);\r\n    print(\"DP\");\r\n\
-    \    FOR(k, LOG) print(DP[k]);\r\n  }\r\n};\r\n"
+    links:
+    - https://github.com/maspypy/library/blob/main/ds/doubling.hpp
+  bundledCode: "#line 1 \"ds/doubling.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/doubling.hpp\n\
+    #line 1 \"alg/monoid/add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
+    \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
+    \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
+    \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
+    };\n#line 3 \"ds/doubling.hpp\"\n\n// \u72B6\u614B a \u304B\u3089 1 \u56DE\u64CD\
+    \u4F5C\u3059\u308B\u3068\u3001\u72B6\u614B b \u306B\u9077\u79FB\u3057\u3001\u30E2\
+    \u30CE\u30A4\u30C9\u306E\u5143 x \u3092\u52A0\u3048\u308B\u3002\n// \u884C\u304D\
+    \u5148\u304C\u306A\u3044\u5834\u5408\uFF1A-1 \uFF08add \u4E0D\u8981\uFF09\ntemplate\
+    \ <typename Monoid, int LOG>\nstruct Doubling {\n  using X = typename Monoid::value_type;\n\
+    \  int N;\n  bool is_prepared;\n  vvc<int> TO;\n  vvc<X> DP;\n\n  Doubling(int\
+    \ N) : N(N), is_prepared(0) {\n    TO.assign(LOG, vc<int>(N, -1));\n    DP.assign(LOG,\
+    \ vc<X>(N, Monoid::id()));\n  }\n\n  void add(int i, int to, X x) {\n    assert(!is_prepared);\n\
+    \    assert(-1 <= to && to < N);\n    TO[0][i] = to;\n    DP[0][i] = x;\n  }\n\
+    \n  void build() {\n    assert(!is_prepared);\n    is_prepared = 1;\n    FOR(k,\
+    \ LOG - 1) {\n      FOR(v, N) {\n        int w = TO[k][v];\n        if (w == -1)\
+    \ {\n          TO[k + 1][v] = -1;\n          DP[k + 1][v] = DP[k][v];\n      \
+    \    continue;\n        }\n        TO[k + 1][v] = TO[k][w];\n        DP[k + 1][v]\
+    \ = Monoid::op(DP[k][v], DP[k][w]);\n      }\n    }\n  }\n\n  // (to, val)\n \
+    \ pair<int, X> calc(int i, ll step) {\n    assert(is_prepared);\n    assert(0\
+    \ <= step && step < (1LL << LOG));\n    X x = Monoid::id();\n    while (step &&\
+    \ i != -1) {\n      int k = topbit(step);\n      step ^= 1LL << k;\n      x =\
+    \ Monoid::op(x, DP[k][i]);\n      i = TO[k][i];\n    }\n    return {i, x};\n \
+    \ }\n\n  // check(to, monoid_sum)\n  template <typename F>\n  ll max_step(F check,\
+    \ int i) {\n    assert(is_prepared);\n    X x = Monoid::id();\n    ll step = 0;\n\
+    \    assert(check(i, x));\n    FOR_R(k, LOG) {\n      int j = TO[k][i];\n    \
+    \  if (j == -1) continue;\n      X y = Monoid::op(x, DP[k][i]);\n      if (check(j,\
+    \ y)) {\n        step |= 1LL << k;\n        i = j;\n        x = y;\n        assert(i\
+    \ != -1);\n      }\n    }\n    return step;\n  }\n\n  void debug() {\n    print(\"\
+    TO\");\n    FOR(k, LOG) print(TO[k]);\n    print(\"DP\");\n    FOR(k, LOG) print(DP[k]);\n\
+    \  }\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/doubling.hpp\n\
+    #include \"alg/monoid/add.hpp\"\n\n// \u72B6\u614B a \u304B\u3089 1 \u56DE\u64CD\
+    \u4F5C\u3059\u308B\u3068\u3001\u72B6\u614B b \u306B\u9077\u79FB\u3057\u3001\u30E2\
+    \u30CE\u30A4\u30C9\u306E\u5143 x \u3092\u52A0\u3048\u308B\u3002\n// \u884C\u304D\
+    \u5148\u304C\u306A\u3044\u5834\u5408\uFF1A-1 \uFF08add \u4E0D\u8981\uFF09\ntemplate\
+    \ <typename Monoid, int LOG>\nstruct Doubling {\n  using X = typename Monoid::value_type;\n\
+    \  int N;\n  bool is_prepared;\n  vvc<int> TO;\n  vvc<X> DP;\n\n  Doubling(int\
+    \ N) : N(N), is_prepared(0) {\n    TO.assign(LOG, vc<int>(N, -1));\n    DP.assign(LOG,\
+    \ vc<X>(N, Monoid::id()));\n  }\n\n  void add(int i, int to, X x) {\n    assert(!is_prepared);\n\
+    \    assert(-1 <= to && to < N);\n    TO[0][i] = to;\n    DP[0][i] = x;\n  }\n\
+    \n  void build() {\n    assert(!is_prepared);\n    is_prepared = 1;\n    FOR(k,\
+    \ LOG - 1) {\n      FOR(v, N) {\n        int w = TO[k][v];\n        if (w == -1)\
+    \ {\n          TO[k + 1][v] = -1;\n          DP[k + 1][v] = DP[k][v];\n      \
+    \    continue;\n        }\n        TO[k + 1][v] = TO[k][w];\n        DP[k + 1][v]\
+    \ = Monoid::op(DP[k][v], DP[k][w]);\n      }\n    }\n  }\n\n  // (to, val)\n \
+    \ pair<int, X> calc(int i, ll step) {\n    assert(is_prepared);\n    assert(0\
+    \ <= step && step < (1LL << LOG));\n    X x = Monoid::id();\n    while (step &&\
+    \ i != -1) {\n      int k = topbit(step);\n      step ^= 1LL << k;\n      x =\
+    \ Monoid::op(x, DP[k][i]);\n      i = TO[k][i];\n    }\n    return {i, x};\n \
+    \ }\n\n  // check(to, monoid_sum)\n  template <typename F>\n  ll max_step(F check,\
+    \ int i) {\n    assert(is_prepared);\n    X x = Monoid::id();\n    ll step = 0;\n\
+    \    assert(check(i, x));\n    FOR_R(k, LOG) {\n      int j = TO[k][i];\n    \
+    \  if (j == -1) continue;\n      X y = Monoid::op(x, DP[k][i]);\n      if (check(j,\
+    \ y)) {\n        step |= 1LL << k;\n        i = j;\n        x = y;\n        assert(i\
+    \ != -1);\n      }\n    }\n    return step;\n  }\n\n  void debug() {\n    print(\"\
+    TO\");\n    FOR(k, LOG) print(TO[k]);\n    print(\"DP\");\n    FOR(k, LOG) print(DP[k]);\n\
+    \  }\n};\n"
   dependsOn:
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: ds/doubling.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1977.test.cpp

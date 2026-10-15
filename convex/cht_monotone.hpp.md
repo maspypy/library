@@ -13,81 +13,79 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"convex/cht_monotone.hpp\"\ntemplate <typename T, bool isMin>\r\
-    \nstruct CHT_Monotone {\r\n  static_assert(is_same_v<T, ll> || std::is_floating_point_v<T>);\r\
-    \n  struct Line {\r\n    T a, b;\r\n    int idx;\r\n  };\r\n  deque<Line> H;\r\
-    \n  int nxt_idx = 0;\r\n\r\n  CHT_Monotone() = default;\r\n\r\n  bool empty()\
-    \ const { return H.empty(); }\r\n  void clear() { H.clear(); }\r\n\r\n  inline\
-    \ int sgn(T x) { return x == 0 ? 0 : (x < 0 ? -1 : 1); }\r\n  using D = long double;\r\
-    \n  inline bool check(const Line &a, const Line &b, const Line &c) {\r\n    if\
-    \ (b.b == a.b || c.b == b.b)\r\n      return sgn(b.a - a.a) * sgn(c.b - b.b) >=\
-    \ sgn(c.a - b.a) * sgn(b.b - a.b);\r\n    // return (b.a-a.a)*(c.b-b.b) >= (b.b-a.b)*(c.a-b.a);\r\
-    \n    return D(b.a - a.a) * sgn(c.b - b.b) / D(abs(b.b - a.b)) >=\r\n        \
-    \   D(c.a - b.a) * sgn(b.b - a.b) / D(abs(c.b - b.b));\r\n  }\r\n\r\n  void add(T\
-    \ a, T b, int idx = -1) {\r\n    if (idx == -1) {\r\n      idx = nxt_idx++;\r\n\
-    \    }\r\n    if (!isMin) a *= -1, b *= -1;\r\n    Line L{a, b, idx};\r\n    if\
-    \ (empty()) {\r\n      H.emplace_front(L);\r\n      return;\r\n    }\r\n    if\
-    \ (H.front().a <= a) {\r\n      if (H.front().a == a) {\r\n        if (H.front().b\
-    \ <= b) return;\r\n        H.pop_front();\r\n      }\r\n      while (H.size()\
-    \ >= 2 && check(L, H.front(), H[1])) {\r\n        H.pop_front();\r\n      }\r\n\
-    \      H.emplace_front(L);\r\n    } else {\r\n      assert(a <= H.back().a);\r\
-    \n      if (H.back().a == a) {\r\n        if (H.back().b <= b) return;\r\n   \
-    \     H.pop_back();\r\n      }\r\n      while (H.size() >= 2 && check(H[H.size()\
-    \ - 2], H.back(), L)) H.pop_back();\r\n      H.emplace_back(L);\r\n    }\r\n \
-    \ }\r\n\r\n  inline T get_y(const Line &a, const T &x) { return a.a * x + a.b;\
-    \ }\r\n\r\n  pair<T, int> query(T x) {\r\n    assert(!empty());\r\n    int l =\
-    \ -1, r = H.size() - 1;\r\n    while (l + 1 < r) {\r\n      int m = (l + r) >>\
-    \ 1;\r\n      if (get_y(H[m], x) >= get_y(H[m + 1], x))\r\n        l = m;\r\n\
-    \      else\r\n        r = m;\r\n    }\r\n    if (isMin) return {get_y(H[r], x),\
-    \ H[r].idx};\r\n    return {-get_y(H[r], x), H[r].idx};\r\n  }\r\n\r\n  pair<T,\
-    \ int> query_monotone_inc(T x) {\r\n    assert(!empty());\r\n    while (H.size()\
-    \ >= 2 && get_y(H.front(), x) >= get_y(H[1], x))\r\n      H.pop_front();\r\n \
-    \   if (isMin) return {get_y(H.front(), x), H.front().idx};\r\n    return {-get_y(H.front(),\
-    \ x), H.front().idx};\r\n  }\r\n\r\n  pair<T, int> query_monotone_dec(T x) {\r\
-    \n    assert(!empty());\r\n    while (H.size() >= 2 && get_y(H.back(), x) >= get_y(H[H.size()\
-    \ - 2], x))\r\n      H.pop_back();\r\n    if (isMin) return {get_y(H.back(), x),\
-    \ H.back().idx};\r\n    return {-get_y(H.back(), x), H.back().idx};\r\n  }\r\n\
-    };\n"
-  code: "template <typename T, bool isMin>\r\nstruct CHT_Monotone {\r\n  static_assert(is_same_v<T,\
-    \ ll> || std::is_floating_point_v<T>);\r\n  struct Line {\r\n    T a, b;\r\n \
-    \   int idx;\r\n  };\r\n  deque<Line> H;\r\n  int nxt_idx = 0;\r\n\r\n  CHT_Monotone()\
-    \ = default;\r\n\r\n  bool empty() const { return H.empty(); }\r\n  void clear()\
-    \ { H.clear(); }\r\n\r\n  inline int sgn(T x) { return x == 0 ? 0 : (x < 0 ? -1\
-    \ : 1); }\r\n  using D = long double;\r\n  inline bool check(const Line &a, const\
-    \ Line &b, const Line &c) {\r\n    if (b.b == a.b || c.b == b.b)\r\n      return\
-    \ sgn(b.a - a.a) * sgn(c.b - b.b) >= sgn(c.a - b.a) * sgn(b.b - a.b);\r\n    //\
-    \ return (b.a-a.a)*(c.b-b.b) >= (b.b-a.b)*(c.a-b.a);\r\n    return D(b.a - a.a)\
-    \ * sgn(c.b - b.b) / D(abs(b.b - a.b)) >=\r\n           D(c.a - b.a) * sgn(b.b\
-    \ - a.b) / D(abs(c.b - b.b));\r\n  }\r\n\r\n  void add(T a, T b, int idx = -1)\
-    \ {\r\n    if (idx == -1) {\r\n      idx = nxt_idx++;\r\n    }\r\n    if (!isMin)\
-    \ a *= -1, b *= -1;\r\n    Line L{a, b, idx};\r\n    if (empty()) {\r\n      H.emplace_front(L);\r\
-    \n      return;\r\n    }\r\n    if (H.front().a <= a) {\r\n      if (H.front().a\
-    \ == a) {\r\n        if (H.front().b <= b) return;\r\n        H.pop_front();\r\
-    \n      }\r\n      while (H.size() >= 2 && check(L, H.front(), H[1])) {\r\n  \
-    \      H.pop_front();\r\n      }\r\n      H.emplace_front(L);\r\n    } else {\r\
-    \n      assert(a <= H.back().a);\r\n      if (H.back().a == a) {\r\n        if\
-    \ (H.back().b <= b) return;\r\n        H.pop_back();\r\n      }\r\n      while\
-    \ (H.size() >= 2 && check(H[H.size() - 2], H.back(), L)) H.pop_back();\r\n   \
-    \   H.emplace_back(L);\r\n    }\r\n  }\r\n\r\n  inline T get_y(const Line &a,\
-    \ const T &x) { return a.a * x + a.b; }\r\n\r\n  pair<T, int> query(T x) {\r\n\
-    \    assert(!empty());\r\n    int l = -1, r = H.size() - 1;\r\n    while (l +\
-    \ 1 < r) {\r\n      int m = (l + r) >> 1;\r\n      if (get_y(H[m], x) >= get_y(H[m\
-    \ + 1], x))\r\n        l = m;\r\n      else\r\n        r = m;\r\n    }\r\n   \
-    \ if (isMin) return {get_y(H[r], x), H[r].idx};\r\n    return {-get_y(H[r], x),\
-    \ H[r].idx};\r\n  }\r\n\r\n  pair<T, int> query_monotone_inc(T x) {\r\n    assert(!empty());\r\
-    \n    while (H.size() >= 2 && get_y(H.front(), x) >= get_y(H[1], x))\r\n     \
-    \ H.pop_front();\r\n    if (isMin) return {get_y(H.front(), x), H.front().idx};\r\
-    \n    return {-get_y(H.front(), x), H.front().idx};\r\n  }\r\n\r\n  pair<T, int>\
-    \ query_monotone_dec(T x) {\r\n    assert(!empty());\r\n    while (H.size() >=\
-    \ 2 && get_y(H.back(), x) >= get_y(H[H.size() - 2], x))\r\n      H.pop_back();\r\
-    \n    if (isMin) return {get_y(H.back(), x), H.back().idx};\r\n    return {-get_y(H.back(),\
-    \ x), H.back().idx};\r\n  }\r\n};"
+    links:
+    - https://github.com/maspypy/library/blob/main/convex/cht_monotone.hpp
+  bundledCode: "#line 1 \"convex/cht_monotone.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/convex/cht_monotone.hpp\n\
+    template <typename T, bool isMin>\nstruct CHT_Monotone {\n  static_assert(is_same_v<T,\
+    \ ll> || std::is_floating_point_v<T>);\n  struct Line {\n    T a, b;\n    int\
+    \ idx;\n  };\n  deque<Line> H;\n  int nxt_idx = 0;\n\n  CHT_Monotone() = default;\n\
+    \n  bool empty() const { return H.empty(); }\n  void clear() { H.clear(); }\n\n\
+    \  inline int sgn(T x) { return x == 0 ? 0 : (x < 0 ? -1 : 1); }\n  using D =\
+    \ long double;\n  inline bool check(const Line &a, const Line &b, const Line &c)\
+    \ {\n    if (b.b == a.b || c.b == b.b)\n      return sgn(b.a - a.a) * sgn(c.b\
+    \ - b.b) >= sgn(c.a - b.a) * sgn(b.b - a.b);\n    // return (b.a-a.a)*(c.b-b.b)\
+    \ >= (b.b-a.b)*(c.a-b.a);\n    return D(b.a - a.a) * sgn(c.b - b.b) / D(abs(b.b\
+    \ - a.b)) >=\n           D(c.a - b.a) * sgn(b.b - a.b) / D(abs(c.b - b.b));\n\
+    \  }\n\n  void add(T a, T b, int idx = -1) {\n    if (idx == -1) {\n      idx\
+    \ = nxt_idx++;\n    }\n    if (!isMin) a *= -1, b *= -1;\n    Line L{a, b, idx};\n\
+    \    if (empty()) {\n      H.emplace_front(L);\n      return;\n    }\n    if (H.front().a\
+    \ <= a) {\n      if (H.front().a == a) {\n        if (H.front().b <= b) return;\n\
+    \        H.pop_front();\n      }\n      while (H.size() >= 2 && check(L, H.front(),\
+    \ H[1])) {\n        H.pop_front();\n      }\n      H.emplace_front(L);\n    }\
+    \ else {\n      assert(a <= H.back().a);\n      if (H.back().a == a) {\n     \
+    \   if (H.back().b <= b) return;\n        H.pop_back();\n      }\n      while\
+    \ (H.size() >= 2 && check(H[H.size() - 2], H.back(), L)) H.pop_back();\n     \
+    \ H.emplace_back(L);\n    }\n  }\n\n  inline T get_y(const Line &a, const T &x)\
+    \ { return a.a * x + a.b; }\n\n  pair<T, int> query(T x) {\n    assert(!empty());\n\
+    \    int l = -1, r = H.size() - 1;\n    while (l + 1 < r) {\n      int m = (l\
+    \ + r) >> 1;\n      if (get_y(H[m], x) >= get_y(H[m + 1], x))\n        l = m;\n\
+    \      else\n        r = m;\n    }\n    if (isMin) return {get_y(H[r], x), H[r].idx};\n\
+    \    return {-get_y(H[r], x), H[r].idx};\n  }\n\n  pair<T, int> query_monotone_inc(T\
+    \ x) {\n    assert(!empty());\n    while (H.size() >= 2 && get_y(H.front(), x)\
+    \ >= get_y(H[1], x))\n      H.pop_front();\n    if (isMin) return {get_y(H.front(),\
+    \ x), H.front().idx};\n    return {-get_y(H.front(), x), H.front().idx};\n  }\n\
+    \n  pair<T, int> query_monotone_dec(T x) {\n    assert(!empty());\n    while (H.size()\
+    \ >= 2 && get_y(H.back(), x) >= get_y(H[H.size() - 2], x))\n      H.pop_back();\n\
+    \    if (isMin) return {get_y(H.back(), x), H.back().idx};\n    return {-get_y(H.back(),\
+    \ x), H.back().idx};\n  }\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/convex/cht_monotone.hpp\n\
+    template <typename T, bool isMin>\nstruct CHT_Monotone {\n  static_assert(is_same_v<T,\
+    \ ll> || std::is_floating_point_v<T>);\n  struct Line {\n    T a, b;\n    int\
+    \ idx;\n  };\n  deque<Line> H;\n  int nxt_idx = 0;\n\n  CHT_Monotone() = default;\n\
+    \n  bool empty() const { return H.empty(); }\n  void clear() { H.clear(); }\n\n\
+    \  inline int sgn(T x) { return x == 0 ? 0 : (x < 0 ? -1 : 1); }\n  using D =\
+    \ long double;\n  inline bool check(const Line &a, const Line &b, const Line &c)\
+    \ {\n    if (b.b == a.b || c.b == b.b)\n      return sgn(b.a - a.a) * sgn(c.b\
+    \ - b.b) >= sgn(c.a - b.a) * sgn(b.b - a.b);\n    // return (b.a-a.a)*(c.b-b.b)\
+    \ >= (b.b-a.b)*(c.a-b.a);\n    return D(b.a - a.a) * sgn(c.b - b.b) / D(abs(b.b\
+    \ - a.b)) >=\n           D(c.a - b.a) * sgn(b.b - a.b) / D(abs(c.b - b.b));\n\
+    \  }\n\n  void add(T a, T b, int idx = -1) {\n    if (idx == -1) {\n      idx\
+    \ = nxt_idx++;\n    }\n    if (!isMin) a *= -1, b *= -1;\n    Line L{a, b, idx};\n\
+    \    if (empty()) {\n      H.emplace_front(L);\n      return;\n    }\n    if (H.front().a\
+    \ <= a) {\n      if (H.front().a == a) {\n        if (H.front().b <= b) return;\n\
+    \        H.pop_front();\n      }\n      while (H.size() >= 2 && check(L, H.front(),\
+    \ H[1])) {\n        H.pop_front();\n      }\n      H.emplace_front(L);\n    }\
+    \ else {\n      assert(a <= H.back().a);\n      if (H.back().a == a) {\n     \
+    \   if (H.back().b <= b) return;\n        H.pop_back();\n      }\n      while\
+    \ (H.size() >= 2 && check(H[H.size() - 2], H.back(), L)) H.pop_back();\n     \
+    \ H.emplace_back(L);\n    }\n  }\n\n  inline T get_y(const Line &a, const T &x)\
+    \ { return a.a * x + a.b; }\n\n  pair<T, int> query(T x) {\n    assert(!empty());\n\
+    \    int l = -1, r = H.size() - 1;\n    while (l + 1 < r) {\n      int m = (l\
+    \ + r) >> 1;\n      if (get_y(H[m], x) >= get_y(H[m + 1], x))\n        l = m;\n\
+    \      else\n        r = m;\n    }\n    if (isMin) return {get_y(H[r], x), H[r].idx};\n\
+    \    return {-get_y(H[r], x), H[r].idx};\n  }\n\n  pair<T, int> query_monotone_inc(T\
+    \ x) {\n    assert(!empty());\n    while (H.size() >= 2 && get_y(H.front(), x)\
+    \ >= get_y(H[1], x))\n      H.pop_front();\n    if (isMin) return {get_y(H.front(),\
+    \ x), H.front().idx};\n    return {-get_y(H.front(), x), H.front().idx};\n  }\n\
+    \n  pair<T, int> query_monotone_dec(T x) {\n    assert(!empty());\n    while (H.size()\
+    \ >= 2 && get_y(H.back(), x) >= get_y(H[H.size() - 2], x))\n      H.pop_back();\n\
+    \    if (isMin) return {get_y(H.back(), x), H.back().idx};\n    return {-get_y(H.back(),\
+    \ x), H.back().idx};\n  }\n};"
   dependsOn: []
   isVerificationFile: false
   path: convex/cht_monotone.hpp
   requiredBy: []
-  timestamp: '2026-08-17 12:11:00+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/913.test.cpp

@@ -4,38 +4,41 @@ data:
   - icon: ':question:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1774.test.cpp
     title: test/3_yukicoder/1774.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://en.wikipedia.org/wiki/Woodbury_matrix_identity
-  bundledCode: "#line 1 \"linalg/matrix_inv.hpp\"\n\n// (det, invA) \u3092\u304B\u3048\
-    \u3059\ntemplate <typename T>\npair<T, vc<vc<T>>> matrix_inv(vc<vc<T>> A) {\n\
-    \  T det = 1;\n  int N = len(A);\n  vv(T, B, N, N);\n  FOR(n, N) B[n][n] = 1;\n\
-    \  FOR(i, N) {\n    FOR(k, i, N) if (A[k][i] != 0) {\n      if (k != i) {\n  \
-    \      swap(A[i], A[k]), swap(B[i], B[k]);\n        det = -det;\n      }\n   \
-    \   break;\n    }\n    if (A[i][i] == 0) return {T(0), {}};\n    T c = T(1) /\
-    \ A[i][i];\n    det *= A[i][i];\n    FOR(j, i, N) A[i][j] *= c;\n    FOR(j, N)\
-    \ B[i][j] *= c;\n    FOR(k, N) if (i != k) {\n      T c = A[k][i];\n      FOR(j,\
-    \ i, N) A[k][j] -= A[i][j] * c;\n      FOR(j, N) B[k][j] -= B[i][j] * c;\n   \
-    \ }\n  }\n  return {det, B};\n}\n#line 1 \"linalg/matrix_rank.hpp\"\ntemplate\
-    \ <typename T>\nint matrix_rank(vc<vc<T>> a, int n = -1, int m = -1) {\n  if (n\
-    \ == 0) return 0;\n  if (n == -1) { n = len(a), m = len(a[0]); }\n  assert(n ==\
-    \ len(a) && m == len(a[0]));\n  int rk = 0;\n  FOR(j, m) {\n    if (rk == n) break;\n\
-    \    if (a[rk][j] == 0) {\n      FOR(i, rk + 1, n) if (a[i][j] != T(0)) {\n  \
-    \      swap(a[rk], a[i]);\n        break;\n      }\n    }\n    if (a[rk][j] ==\
-    \ 0) continue;\n    T c = T(1) / a[rk][j];\n    FOR(k, j, m) a[rk][k] *= c;\n\
+    - https://github.com/maspypy/library/blob/main/linalg/matrix_lowrank_update.hpp
+  bundledCode: "#line 1 \"linalg/matrix_lowrank_update.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/linalg/matrix_lowrank_update.hpp\n\
+    #line 1 \"linalg/matrix_inv.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/linalg/matrix_inv.hpp\n\
+    \n// (det, invA) \u3092\u304B\u3048\u3059\ntemplate <typename T>\npair<T, vc<vc<T>>>\
+    \ matrix_inv(vc<vc<T>> A) {\n  T det = 1;\n  int N = len(A);\n  vv(T, B, N, N);\n\
+    \  FOR(n, N) B[n][n] = 1;\n  FOR(i, N) {\n    FOR(k, i, N) if (A[k][i] != 0) {\n\
+    \      if (k != i) {\n        swap(A[i], A[k]), swap(B[i], B[k]);\n        det\
+    \ = -det;\n      }\n      break;\n    }\n    if (A[i][i] == 0) return {T(0), {}};\n\
+    \    T c = T(1) / A[i][i];\n    det *= A[i][i];\n    FOR(j, i, N) A[i][j] *= c;\n\
+    \    FOR(j, N) B[i][j] *= c;\n    FOR(k, N) if (i != k) {\n      T c = A[k][i];\n\
+    \      FOR(j, i, N) A[k][j] -= A[i][j] * c;\n      FOR(j, N) B[k][j] -= B[i][j]\
+    \ * c;\n    }\n  }\n  return {det, B};\n}\n#line 1 \"linalg/matrix_rank.hpp\"\n\
+    // Source: https://github.com/maspypy/library/blob/main/linalg/matrix_rank.hpp\n\
+    template <typename T>\nint matrix_rank(vc<vc<T>> a, int n = -1, int m = -1) {\n\
+    \  if (n == 0) return 0;\n  if (n == -1) { n = len(a), m = len(a[0]); }\n  assert(n\
+    \ == len(a) && m == len(a[0]));\n  int rk = 0;\n  FOR(j, m) {\n    if (rk == n)\
+    \ break;\n    if (a[rk][j] == 0) {\n      FOR(i, rk + 1, n) if (a[i][j] != T(0))\
+    \ {\n        swap(a[rk], a[i]);\n        break;\n      }\n    }\n    if (a[rk][j]\
+    \ == 0) continue;\n    T c = T(1) / a[rk][j];\n    FOR(k, j, m) a[rk][k] *= c;\n\
     \    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n      FOR3(k, j, m) { a[i][k]\
-    \ -= a[rk][k] * c; }\n    }\n    ++rk;\n  }\n  return rk;\n}\n#line 3 \"linalg/matrix_lowrank_update.hpp\"\
+    \ -= a[rk][k] * c; }\n    }\n    ++rk;\n  }\n  return rk;\n}\n#line 4 \"linalg/matrix_lowrank_update.hpp\"\
     \n\n// https://en.wikipedia.org/wiki/Woodbury_matrix_identity\ntemplate <typename\
     \ T>\nstruct Lowrank_Update {\n  int n;\n  vvc<T> A, IA;\n  Lowrank_Update() {}\n\
     \  Lowrank_Update(vvc<T> A) : A(A) {\n    n = len(A);\n    T det;\n    tie(det,\
@@ -74,29 +77,30 @@ data:
     \      FOR(i, n) x[i] = RNG(0, mint::get_mod());\n      FOR(i, n) y[i] = RNG(0,\
     \ mint::get_mod());\n      dat.eb(x, y);\n      X.rank_one_update(1, x, y, false);\n\
     \    }\n  }\n};\n"
-  code: "#include \"linalg/matrix_inv.hpp\"\n#include \"linalg/matrix_rank.hpp\"\n\
-    \n// https://en.wikipedia.org/wiki/Woodbury_matrix_identity\ntemplate <typename\
-    \ T>\nstruct Lowrank_Update {\n  int n;\n  vvc<T> A, IA;\n  Lowrank_Update() {}\n\
-    \  Lowrank_Update(vvc<T> A) : A(A) {\n    n = len(A);\n    T det;\n    tie(det,\
-    \ IA) = matrix_inv(A);\n    assert(det != T(0));\n  }\n\n  // A + UV \u304C\u53EF\
-    \u9006\u306A\u3089\u8DB3\u3057\u3066 true, \u305D\u3046\u3067\u306A\u3044\u306A\
-    \u3089\u4F55\u3082\u305B\u305A false.\n  bool update(vvc<T> &U, vvc<T> &V, bool\
-    \ update_A) {\n    int r = len(V);\n    assert(len(U) == n && len(U[0]) == r);\n\
-    \    assert(len(V) == r && len(V[0]) == n);\n    vc<T> X(n), Y(n);\n    FOR(k,\
-    \ r) {\n      FOR(i, n) X[i] = U[i][k], Y[i] = V[k][i];\n      rank_one_update(X,\
-    \ Y, update_A);\n    }\n  }\n\n  // A + c U transepose(V) \u304C\u53EF\u9006\u306A\
-    \u3089\u8DB3\u3057\u3066 true, \u305D\u3046\u3067\u306A\u3044\u306A\u3089\u4F55\
-    \u3082\u305B\u305A false.\n  // O(n^2)\n  bool rank_one_update(T c, vc<T> &U,\
-    \ vc<T> &V, bool update_A) {\n    vc<int> I, J;\n    FOR(i, n) if (U[i] != T(0))\
-    \ I.eb(i);\n    FOR(i, n) if (V[i] != T(0)) J.eb(i);\n    T x = 0;\n    for (auto\
-    \ &j: J) {\n      for (auto &i: I) { x += V[j] * IA[j][i] * U[i]; }\n    }\n \
-    \   x = T(1) + c * x;\n    if (x == T(0)) return false;\n    if (update_A) {\n\
-    \      for (auto &i: I) {\n        T t = c * U[i];\n        for (auto &j: J) {\
-    \ A[i][j] += t * V[j]; }\n      }\n    }\n    x = c / x;\n    vc<T> L(n), R(n);\n\
-    \    for (auto &i: I) {\n      T u = U[i] * x;\n      FOR(j, n) L[j] += IA[j][i]\
-    \ * u;\n    }\n    for (auto &j: J) { FOR(i, n) R[i] += V[j] * IA[j][i]; }\n \
-    \   FOR(i, n) FOR(j, n) IA[i][j] -= L[i] * R[j];\n    return true;\n  }\n};\n\n\
-    // lowrank update / rank query\ntemplate <typename mint>\nstruct Matrix_Rank_Lowrank_Update\
+  code: "// Source: https://github.com/maspypy/library/blob/main/linalg/matrix_lowrank_update.hpp\n\
+    #include \"linalg/matrix_inv.hpp\"\n#include \"linalg/matrix_rank.hpp\"\n\n//\
+    \ https://en.wikipedia.org/wiki/Woodbury_matrix_identity\ntemplate <typename T>\n\
+    struct Lowrank_Update {\n  int n;\n  vvc<T> A, IA;\n  Lowrank_Update() {}\n  Lowrank_Update(vvc<T>\
+    \ A) : A(A) {\n    n = len(A);\n    T det;\n    tie(det, IA) = matrix_inv(A);\n\
+    \    assert(det != T(0));\n  }\n\n  // A + UV \u304C\u53EF\u9006\u306A\u3089\u8DB3\
+    \u3057\u3066 true, \u305D\u3046\u3067\u306A\u3044\u306A\u3089\u4F55\u3082\u305B\
+    \u305A false.\n  bool update(vvc<T> &U, vvc<T> &V, bool update_A) {\n    int r\
+    \ = len(V);\n    assert(len(U) == n && len(U[0]) == r);\n    assert(len(V) ==\
+    \ r && len(V[0]) == n);\n    vc<T> X(n), Y(n);\n    FOR(k, r) {\n      FOR(i,\
+    \ n) X[i] = U[i][k], Y[i] = V[k][i];\n      rank_one_update(X, Y, update_A);\n\
+    \    }\n  }\n\n  // A + c U transepose(V) \u304C\u53EF\u9006\u306A\u3089\u8DB3\
+    \u3057\u3066 true, \u305D\u3046\u3067\u306A\u3044\u306A\u3089\u4F55\u3082\u305B\
+    \u305A false.\n  // O(n^2)\n  bool rank_one_update(T c, vc<T> &U, vc<T> &V, bool\
+    \ update_A) {\n    vc<int> I, J;\n    FOR(i, n) if (U[i] != T(0)) I.eb(i);\n \
+    \   FOR(i, n) if (V[i] != T(0)) J.eb(i);\n    T x = 0;\n    for (auto &j: J) {\n\
+    \      for (auto &i: I) { x += V[j] * IA[j][i] * U[i]; }\n    }\n    x = T(1)\
+    \ + c * x;\n    if (x == T(0)) return false;\n    if (update_A) {\n      for (auto\
+    \ &i: I) {\n        T t = c * U[i];\n        for (auto &j: J) { A[i][j] += t *\
+    \ V[j]; }\n      }\n    }\n    x = c / x;\n    vc<T> L(n), R(n);\n    for (auto\
+    \ &i: I) {\n      T u = U[i] * x;\n      FOR(j, n) L[j] += IA[j][i] * u;\n   \
+    \ }\n    for (auto &j: J) { FOR(i, n) R[i] += V[j] * IA[j][i]; }\n    FOR(i, n)\
+    \ FOR(j, n) IA[i][j] -= L[i] * R[j];\n    return true;\n  }\n};\n\n// lowrank\
+    \ update / rank query\ntemplate <typename mint>\nstruct Matrix_Rank_Lowrank_Update\
     \ {\n  int n;\n  bool is_prepared;\n  Lowrank_Update<mint> X;\n  vc<pair<vc<mint>,\
     \ vc<mint>>> dat;\n\n  Matrix_Rank_Lowrank_Update(int n) : n(n) {\n    vv(mint,\
     \ A, n, n, mint(0));\n    build(A, 0);\n  }\n  Matrix_Rank_Lowrank_Update(vvc<mint>\
@@ -119,8 +123,8 @@ data:
   isVerificationFile: false
   path: linalg/matrix_lowrank_update.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-10-15 19:54:56+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1774.test.cpp
 documentation_of: linalg/matrix_lowrank_update.hpp

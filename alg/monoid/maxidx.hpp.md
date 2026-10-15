@@ -16,25 +16,28 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/maxidx.hpp\"\n\ntemplate <typename T, bool tie_is_left\
-    \ = true>\nstruct Monoid_MaxIdx {\n  using value_type = pair<T, int>;\n  using\
-    \ X = value_type;\n  static X op(X x, X y) {\n    if (x.fi > y.fi) return x;\n\
-    \    if (x.fi < y.fi) return y;\n    if (x.se > y.se) swap(x, y);\n    return\
-    \ (tie_is_left ? x : y);\n  }\n  static constexpr X id() { return {-infty<T>,\
-    \ -1}; }\n  static constexpr bool commute = true;\n};\n"
-  code: "\ntemplate <typename T, bool tie_is_left = true>\nstruct Monoid_MaxIdx {\n\
-    \  using value_type = pair<T, int>;\n  using X = value_type;\n  static X op(X\
-    \ x, X y) {\n    if (x.fi > y.fi) return x;\n    if (x.fi < y.fi) return y;\n\
-    \    if (x.se > y.se) swap(x, y);\n    return (tie_is_left ? x : y);\n  }\n  static\
-    \ constexpr X id() { return {-infty<T>, -1}; }\n  static constexpr bool commute\
-    \ = true;\n};\n"
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/monoid/maxidx.hpp
+  bundledCode: "#line 1 \"alg/monoid/maxidx.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/maxidx.hpp\n\
+    \ntemplate <typename T, bool tie_is_left = true>\nstruct Monoid_MaxIdx {\n  using\
+    \ value_type = pair<T, int>;\n  using X = value_type;\n  static X op(X x, X y)\
+    \ {\n    if (x.fi > y.fi) return x;\n    if (x.fi < y.fi) return y;\n    if (x.se\
+    \ > y.se) swap(x, y);\n    return (tie_is_left ? x : y);\n  }\n  static constexpr\
+    \ X id() { return {-infty<T>, -1}; }\n  static constexpr bool commute = true;\n\
+    };\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/monoid/maxidx.hpp\n\
+    \ntemplate <typename T, bool tie_is_left = true>\nstruct Monoid_MaxIdx {\n  using\
+    \ value_type = pair<T, int>;\n  using X = value_type;\n  static X op(X x, X y)\
+    \ {\n    if (x.fi > y.fi) return x;\n    if (x.fi < y.fi) return y;\n    if (x.se\
+    \ > y.se) swap(x, y);\n    return (tie_is_left ? x : y);\n  }\n  static constexpr\
+    \ X id() { return {-infty<T>, -1}; }\n  static constexpr bool commute = true;\n\
+    };\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/maxidx.hpp
   requiredBy:
   - alg/acted_monoid/maxidx_add.hpp
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/maxidx_add.test.cpp

@@ -10,20 +10,23 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"string/is_subsequence.hpp\"\ntemplate <typename STRING>\r\
-    \nbool is_subsequence(const STRING& S, const STRING& T) {\r\n  ll p = 0;\r\n \
-    \ for (auto&& s : S) {\r\n    while (p < len(T) && T[p] != s) ++p;\r\n    if (p\
-    \ == len(T)) return false;\r\n    ++p;\r\n  }\r\n  return true;\r\n}\n"
-  code: "template <typename STRING>\r\nbool is_subsequence(const STRING& S, const\
-    \ STRING& T) {\r\n  ll p = 0;\r\n  for (auto&& s : S) {\r\n    while (p < len(T)\
-    \ && T[p] != s) ++p;\r\n    if (p == len(T)) return false;\r\n    ++p;\r\n  }\r\
-    \n  return true;\r\n}"
+    links:
+    - https://github.com/maspypy/library/blob/main/string/is_subsequence.hpp
+  bundledCode: "#line 1 \"string/is_subsequence.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/is_subsequence.hpp\n\
+    template <typename STRING>\nbool is_subsequence(const STRING& S, const STRING&\
+    \ T) {\n  ll p = 0;\n  for (auto&& s : S) {\n    while (p < len(T) && T[p] !=\
+    \ s) ++p;\n    if (p == len(T)) return false;\n    ++p;\n  }\n  return true;\n\
+    }\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/string/is_subsequence.hpp\n\
+    template <typename STRING>\nbool is_subsequence(const STRING& S, const STRING&\
+    \ T) {\n  ll p = 0;\n  for (auto&& s : S) {\n    while (p < len(T) && T[p] !=\
+    \ s) ++p;\n    if (p == len(T)) return false;\n    ++p;\n  }\n  return true;\n\
+    }"
   dependsOn: []
   isVerificationFile: false
   path: string/is_subsequence.hpp
   requiredBy: []
-  timestamp: '2026-10-04 20:03:31+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1643.test.cpp

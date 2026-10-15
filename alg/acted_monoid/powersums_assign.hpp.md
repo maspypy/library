@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add_array.hpp
     title: alg/monoid/add_array.hpp
   - icon: ':question:'
@@ -9,34 +9,37 @@ data:
     title: alg/monoid/assign.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1548.test.cpp
     title: test/3_yukicoder/1548.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/acted_monoid/powersums_assign.hpp\"\n\n#line 1 \"alg/monoid/assign.hpp\"\
-    \n\ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/acted_monoid/powersums_assign.hpp
+  bundledCode: "#line 1 \"alg/acted_monoid/powersums_assign.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/powersums_assign.hpp\n\
+    \n#line 1 \"alg/monoid/assign.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
+    \ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
     \ = X;\n  static X op(X x, X y) { return (y == X(none_val) ? x : y); }\n  static\
     \ constexpr X id() { return X(none_val); }\n  static constexpr bool commute =\
-    \ false;\n};\n#line 1 \"alg/monoid/add_array.hpp\"\n\ntemplate <typename E, int\
-    \ K>\nstruct Monoid_Add_Array {\n  using value_type = array<E, K>;\n  using X\
-    \ = value_type;\n  static X op(const X& x, const X& y) {\n    X z;\n    FOR(i,\
-    \ K) z[i] = x[i] + y[i];\n    return z;\n  }\n  static constexpr X id() { return\
-    \ X{}; }\n  static constexpr X inverse(X x) {\n    for (auto& v : x) v = -v;\n\
-    \    return x;\n  }\n  static constexpr X power(X x, ll n) {\n    for (auto& v\
-    \ : x) v *= E(n);\n    return x;\n  }\n  static constexpr bool commute = 1;\n\
-    };\n#line 4 \"alg/acted_monoid/powersums_assign.hpp\"\n\n// 0, 1, ..., K \u4E57\
-    \u548C\ntemplate <typename T, int K>\nstruct ActedMonoid_Power_Sums_Assign {\n\
-    \  using Monoid_X = Monoid_Add_Array<T, K + 1>;\n  using Monoid_A = Monoid_Assign<T,\
+    \ false;\n};\n#line 1 \"alg/monoid/add_array.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add_array.hpp\n\
+    \ntemplate <typename E, int K>\nstruct Monoid_Add_Array {\n  using value_type\
+    \ = array<E, K>;\n  using X = value_type;\n  static X op(const X& x, const X&\
+    \ y) {\n    X z;\n    FOR(i, K) z[i] = x[i] + y[i];\n    return z;\n  }\n  static\
+    \ constexpr X id() { return X{}; }\n  static constexpr X inverse(X x) {\n    for\
+    \ (auto& v : x) v = -v;\n    return x;\n  }\n  static constexpr X power(X x, ll\
+    \ n) {\n    for (auto& v : x) v *= E(n);\n    return x;\n  }\n  static constexpr\
+    \ bool commute = 1;\n};\n#line 5 \"alg/acted_monoid/powersums_assign.hpp\"\n\n\
+    // 0, 1, ..., K \u4E57\u548C\ntemplate <typename T, int K>\nstruct ActedMonoid_Power_Sums_Assign\
+    \ {\n  using Monoid_X = Monoid_Add_Array<T, K + 1>;\n  using Monoid_A = Monoid_Assign<T,\
     \ -1>;\n  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
     \  static constexpr X act(const X &x, const A &a, const ll &size) {\n    if (a\
     \ == Monoid_A::id()) return x;\n    X y;\n    T pow = 1;\n    FOR(i, K + 1) {\
     \ y[i] = x[0] * pow, pow *= a; }\n    return y;\n  }\n};\n"
-  code: "\n#include \"alg/monoid/assign.hpp\"\n#include \"alg/monoid/add_array.hpp\"\
-    \n\n// 0, 1, ..., K \u4E57\u548C\ntemplate <typename T, int K>\nstruct ActedMonoid_Power_Sums_Assign\
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/powersums_assign.hpp\n\
+    \n#include \"alg/monoid/assign.hpp\"\n#include \"alg/monoid/add_array.hpp\"\n\n\
+    // 0, 1, ..., K \u4E57\u548C\ntemplate <typename T, int K>\nstruct ActedMonoid_Power_Sums_Assign\
     \ {\n  using Monoid_X = Monoid_Add_Array<T, K + 1>;\n  using Monoid_A = Monoid_Assign<T,\
     \ -1>;\n  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
     \  static constexpr X act(const X &x, const A &a, const ll &size) {\n    if (a\
@@ -48,8 +51,8 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/powersums_assign.hpp
   requiredBy: []
-  timestamp: '2026-09-05 04:01:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-10-15 19:54:56+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1548.test.cpp
 documentation_of: alg/acted_monoid/powersums_assign.hpp

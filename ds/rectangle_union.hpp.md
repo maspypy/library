@@ -25,47 +25,49 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
-    struct Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX = typename AM::Monoid_X;\n\
-    \  using MA = typename AM::Monoid_A;\n  using X = typename MX::value_type;\n \
-    \ using A = typename MA::value_type;\n  int n, log, size;\n  vc<X> dat;\n  vc<A>\
-    \ laz;\n  vc<bool> has_laz;\n\n  Lazy_SegTree() {}\n  Lazy_SegTree(int n) { build(n);\
-    \ }\n  template <typename F>\n  Lazy_SegTree(int n, F f) {\n    build(n, f);\n\
-    \  }\n  Lazy_SegTree(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n\
-    \    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const vc<X>&\
-    \ v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 0;\n    while ((1\
-    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::id());\n\
-    \    laz.assign(size, MA::id());\n    has_laz.assign(size, false);\n    FOR(i,\
-    \ n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  void update(int\
-    \ k) { dat[k] = MX::op(dat[2 * k], dat[2 * k + 1]); }\n  void set(int p, X x)\
-    \ {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >=\
-    \ 1; i--) push(p >> i);\n    dat[p] = x;\n    for (int i = 1; i <= log; i++) update(p\
-    \ >> i);\n  }\n  void multiply(int p, const X& x) {\n    assert(0 <= p && p <\
-    \ n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    dat[p]\
-    \ = MX::op(dat[p], x);\n    for (int i = 1; i <= log; i++) update(p >> i);\n \
-    \ }\n\n  X get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for\
-    \ (int i = log; i >= 1; i--) push(p >> i);\n    return dat[p];\n  }\n\n  vc<X>\
-    \ get_all() {\n    FOR(k, 1, size) { push(k); }\n    return {dat.begin() + size,\
-    \ dat.begin() + size + n};\n  }\n\n  X prod(int l, int r) {\n    assert(0 <= l\
-    \ && l <= r && r <= n);\n    if (l == r) return MX::id();\n    l += size, r +=\
-    \ size;\n    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l)\
-    \ push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n\
-    \    X xl = MX::id(), xr = MX::id();\n    while (l < r) {\n      if (l & 1) xl\
-    \ = MX::op(xl, dat[l++]);\n      if (r & 1) xr = MX::op(dat[--r], xr);\n     \
-    \ l >>= 1, r >>= 1;\n    }\n    return MX::op(xl, xr);\n  }\n\n  X prod_all()\
-    \ { return dat[1]; }\n\n  void apply(int l, int r, A a) {\n    assert(0 <= l &&\
-    \ l <= r && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n   \
-    \ for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l >>\
-    \ i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n    int l2\
-    \ = l, r2 = r;\n    while (l < r) {\n      if (l & 1) apply_at(l++, a);\n    \
-    \  if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>= 1;\n    }\n    l = l2, r\
-    \ = r2;\n    for (int i = 1; i <= log; i++) {\n      if (((l >> i) << i) != l)\
-    \ update(l >> i);\n      if (((r >> i) << i) != r) update((r - 1) >> i);\n   \
-    \ }\n  }\n\n  template <typename F>\n  int max_right(const F check, int l) {\n\
-    \    assert(0 <= l && l <= n);\n    assert(check(MX::id()));\n    if (l == n)\
-    \ return n;\n    l += size;\n    for (int i = log; i >= 1; i--) push(l >> i);\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/ds/rectangle_union.hpp
+  bundledCode: "#line 1 \"ds/rectangle_union.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/rectangle_union.hpp\n\
+    #line 1 \"ds/segtree/lazy_segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/lazy_segtree.hpp\n\
+    \ntemplate <typename ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n\
+    \  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using\
+    \ X = typename MX::value_type;\n  using A = typename MA::value_type;\n  int n,\
+    \ log, size;\n  vc<X> dat;\n  vc<A> laz;\n  vc<bool> has_laz;\n\n  Lazy_SegTree()\
+    \ {}\n  Lazy_SegTree(int n) { build(n); }\n  template <typename F>\n  Lazy_SegTree(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  Lazy_SegTree(const vc<X>& v) { build(v);\
+    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::id(); });\n\
+    \  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return\
+    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n =\
+    \ m, log = 0;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
+    \ << 1, MX::id());\n    laz.assign(size, MA::id());\n    has_laz.assign(size,\
+    \ false);\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n\
+    \  }\n\n  void update(int k) { dat[k] = MX::op(dat[2 * k], dat[2 * k + 1]); }\n\
+    \  void set(int p, X x) {\n    assert(0 <= p && p < n);\n    p += size;\n    for\
+    \ (int i = log; i >= 1; i--) push(p >> i);\n    dat[p] = x;\n    for (int i =\
+    \ 1; i <= log; i++) update(p >> i);\n  }\n  void multiply(int p, const X& x) {\n\
+    \    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--)\
+    \ push(p >> i);\n    dat[p] = MX::op(dat[p], x);\n    for (int i = 1; i <= log;\
+    \ i++) update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0 <= p && p < n);\n\
+    \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    return\
+    \ dat[p];\n  }\n\n  vc<X> get_all() {\n    FOR(k, 1, size) { push(k); }\n    return\
+    \ {dat.begin() + size, dat.begin() + size + n};\n  }\n\n  X prod(int l, int r)\
+    \ {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return MX::id();\n\
+    \    l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n      if (((l\
+    \ >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1)\
+    \ >> i);\n    }\n    X xl = MX::id(), xr = MX::id();\n    while (l < r) {\n  \
+    \    if (l & 1) xl = MX::op(xl, dat[l++]);\n      if (r & 1) xr = MX::op(dat[--r],\
+    \ xr);\n      l >>= 1, r >>= 1;\n    }\n    return MX::op(xl, xr);\n  }\n\n  X\
+    \ prod_all() { return dat[1]; }\n\n  void apply(int l, int r, A a) {\n    assert(0\
+    \ <= l && l <= r && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n\
+    \    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l\
+    \ >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n    int\
+    \ l2 = l, r2 = r;\n    while (l < r) {\n      if (l & 1) apply_at(l++, a);\n \
+    \     if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>= 1;\n    }\n    l = l2,\
+    \ r = r2;\n    for (int i = 1; i <= log; i++) {\n      if (((l >> i) << i) !=\
+    \ l) update(l >> i);\n      if (((r >> i) << i) != r) update((r - 1) >> i);\n\
+    \    }\n  }\n\n  template <typename F>\n  int max_right(const F check, int l)\
+    \ {\n    assert(0 <= l && l <= n);\n    assert(check(MX::id()));\n    if (l ==\
+    \ n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--) push(l >> i);\n\
     \    X sm = MX::id();\n    do {\n      while (l % 2 == 0) l >>= 1;\n      if (!check(MX::op(sm,\
     \ dat[l]))) {\n        while (l < size) {\n          push(l);\n          l = (2\
     \ * l);\n          if (check(MX::op(sm, dat[l]))) {\n            sm = MX::op(sm,\
@@ -94,58 +96,58 @@ data:
     \ (k < size) has_laz[k] = 1, laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
     \ k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = 0;\n    apply_at(2 * k,\
     \ laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k] = MA::id();\n  }\n};\n#line\
-    \ 1 \"alg/monoid/minmincnt.hpp\"\n\n// \u6700\u5C0F\u5024\u3001\u6700\u5C0F\u5024\
-    \u306E\u500B\u6570\ntemplate <typename E>\nstruct Monoid_MinMincnt {\n  using\
-    \ value_type = pair<E, E>;\n  using X = value_type;\n  static X op(X x, X y) {\n\
-    \    auto [xmin, xmincnt] = x;\n    auto [ymin, ymincnt] = y;\n    if (xmin >\
-    \ ymin) return y;\n    if (xmin < ymin) return x;\n    return {xmin, xmincnt +\
-    \ ymincnt};\n  }\n  static constexpr X id() { return {infty<E>, 0}; }\n  static\
-    \ constexpr bool commute = true;\n};\n#line 1 \"alg/monoid/add.hpp\"\n\ntemplate\
-    \ <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type = X;\n\
-    \  static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\n\
-    \  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static constexpr\
-    \ X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static constexpr\
-    \ X id() { return X(0); }\n  static constexpr bool commute = true;\n};\n#line\
-    \ 3 \"alg/acted_monoid/minmincnt_add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ ActedMonoid_MinMincnt_Add {\r\n  using Monoid_X = Monoid_MinMincnt<E>;\r\n \
-    \ using Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\
-    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
-    \ X &x, const A &a, const ll &size) {\r\n    auto [xmin, xmincnt] = x;\r\n   \
-    \ if (xmin == infty<E>) return x;\r\n    return {xmin + a, xmincnt};\r\n  }\r\n\
-    };\r\n#line 3 \"ds/rectangle_union.hpp\"\n\r\ntemplate <typename XY = int>\r\n\
-    struct Rectangle_Union {\r\n  using RECT = tuple<XY, XY, XY, XY>;\r\n  vc<RECT>\
-    \ rectangles;\r\n  vc<XY> X, Y;\r\n\r\n  void add_rect(XY xl, XY xr, XY yl, XY\
-    \ yr) {\r\n    assert(xl < xr && yl < yr);\r\n    X.eb(xl), X.eb(xr), Y.eb(yl),\
-    \ Y.eb(yr);\r\n    rectangles.eb(xl, xr, yl, yr);\r\n  }\r\n\r\n  template <typename\
-    \ ANS_TYPE = ll>\r\n  ANS_TYPE calc() {\r\n    if (rectangles.empty()) return\
-    \ 0;\r\n    int N = len(X);\r\n    vc<int> ord_x = argsort(X);\r\n    vc<int>\
-    \ ord_y = argsort(Y);\r\n    vc<int> rk_y(N);\r\n    FOR(i, N) rk_y[ord_y[i]]\
-    \ = i;\r\n    X = rearrange(X, ord_x);\r\n    Y = rearrange(Y, ord_y);\r\n\r\n\
-    \    using AM = ActedMonoid_MinMincnt_Add<XY>;\r\n    Lazy_SegTree<AM> seg(N -\
-    \ 1, [&](int i) -> pair<XY, XY> { return {0, Y[i + 1] - Y[i]}; });\r\n\r\n   \
-    \ ANS_TYPE ANS = 0;\r\n    XY total = Y.back() - Y[0];\r\n    FOR(i, N - 1) {\r\
-    \n      int k = ord_x[i] / 2;\r\n      int a = (ord_x[i] & 1 ? -1 : 1);\r\n  \
-    \    seg.apply(rk_y[2 * k], rk_y[2 * k + 1], a);\r\n      auto [min, mincnt] =\
-    \ seg.prod_all();\r\n      ANS_TYPE dy = total - (min == 0 ? mincnt : 0);\r\n\
-    \      ANS_TYPE dx = X[i + 1] - X[i];\r\n      ANS += dx * dy;\r\n    }\r\n  \
-    \  return ANS;\r\n  }\r\n};\r\n"
-  code: "#include \"ds/segtree/lazy_segtree.hpp\"\r\n#include \"alg/acted_monoid/minmincnt_add.hpp\"\
-    \r\n\r\ntemplate <typename XY = int>\r\nstruct Rectangle_Union {\r\n  using RECT\
-    \ = tuple<XY, XY, XY, XY>;\r\n  vc<RECT> rectangles;\r\n  vc<XY> X, Y;\r\n\r\n\
-    \  void add_rect(XY xl, XY xr, XY yl, XY yr) {\r\n    assert(xl < xr && yl < yr);\r\
-    \n    X.eb(xl), X.eb(xr), Y.eb(yl), Y.eb(yr);\r\n    rectangles.eb(xl, xr, yl,\
-    \ yr);\r\n  }\r\n\r\n  template <typename ANS_TYPE = ll>\r\n  ANS_TYPE calc()\
-    \ {\r\n    if (rectangles.empty()) return 0;\r\n    int N = len(X);\r\n    vc<int>\
-    \ ord_x = argsort(X);\r\n    vc<int> ord_y = argsort(Y);\r\n    vc<int> rk_y(N);\r\
-    \n    FOR(i, N) rk_y[ord_y[i]] = i;\r\n    X = rearrange(X, ord_x);\r\n    Y =\
-    \ rearrange(Y, ord_y);\r\n\r\n    using AM = ActedMonoid_MinMincnt_Add<XY>;\r\n\
+    \ 1 \"alg/acted_monoid/minmincnt_add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/minmincnt_add.hpp\n\
+    #line 1 \"alg/monoid/minmincnt.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/minmincnt.hpp\n\
+    \n// \u6700\u5C0F\u5024\u3001\u6700\u5C0F\u5024\u306E\u500B\u6570\ntemplate <typename\
+    \ E>\nstruct Monoid_MinMincnt {\n  using value_type = pair<E, E>;\n  using X =\
+    \ value_type;\n  static X op(X x, X y) {\n    auto [xmin, xmincnt] = x;\n    auto\
+    \ [ymin, ymincnt] = y;\n    if (xmin > ymin) return y;\n    if (xmin < ymin) return\
+    \ x;\n    return {xmin, xmincnt + ymincnt};\n  }\n  static constexpr X id() {\
+    \ return {infty<E>, 0}; }\n  static constexpr bool commute = true;\n};\n#line\
+    \ 1 \"alg/monoid/add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
+    \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
+    \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
+    \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
+    };\n#line 4 \"alg/acted_monoid/minmincnt_add.hpp\"\n\ntemplate <typename E>\n\
+    struct ActedMonoid_MinMincnt_Add {\n  using Monoid_X = Monoid_MinMincnt<E>;\n\
+    \  using Monoid_A = Monoid_Add<E>;\n  using X = typename Monoid_X::value_type;\n\
+    \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X\
+    \ &x, const A &a, const ll &size) {\n    auto [xmin, xmincnt] = x;\n    if (xmin\
+    \ == infty<E>) return x;\n    return {xmin + a, xmincnt};\n  }\n};\n#line 4 \"\
+    ds/rectangle_union.hpp\"\n\ntemplate <typename XY = int>\nstruct Rectangle_Union\
+    \ {\n  using RECT = tuple<XY, XY, XY, XY>;\n  vc<RECT> rectangles;\n  vc<XY> X,\
+    \ Y;\n\n  void add_rect(XY xl, XY xr, XY yl, XY yr) {\n    assert(xl < xr && yl\
+    \ < yr);\n    X.eb(xl), X.eb(xr), Y.eb(yl), Y.eb(yr);\n    rectangles.eb(xl, xr,\
+    \ yl, yr);\n  }\n\n  template <typename ANS_TYPE = ll>\n  ANS_TYPE calc() {\n\
+    \    if (rectangles.empty()) return 0;\n    int N = len(X);\n    vc<int> ord_x\
+    \ = argsort(X);\n    vc<int> ord_y = argsort(Y);\n    vc<int> rk_y(N);\n    FOR(i,\
+    \ N) rk_y[ord_y[i]] = i;\n    X = rearrange(X, ord_x);\n    Y = rearrange(Y, ord_y);\n\
+    \n    using AM = ActedMonoid_MinMincnt_Add<XY>;\n    Lazy_SegTree<AM> seg(N -\
+    \ 1, [&](int i) -> pair<XY, XY> { return {0, Y[i + 1] - Y[i]}; });\n\n    ANS_TYPE\
+    \ ANS = 0;\n    XY total = Y.back() - Y[0];\n    FOR(i, N - 1) {\n      int k\
+    \ = ord_x[i] / 2;\n      int a = (ord_x[i] & 1 ? -1 : 1);\n      seg.apply(rk_y[2\
+    \ * k], rk_y[2 * k + 1], a);\n      auto [min, mincnt] = seg.prod_all();\n   \
+    \   ANS_TYPE dy = total - (min == 0 ? mincnt : 0);\n      ANS_TYPE dx = X[i +\
+    \ 1] - X[i];\n      ANS += dx * dy;\n    }\n    return ANS;\n  }\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/rectangle_union.hpp\n\
+    #include \"ds/segtree/lazy_segtree.hpp\"\n#include \"alg/acted_monoid/minmincnt_add.hpp\"\
+    \n\ntemplate <typename XY = int>\nstruct Rectangle_Union {\n  using RECT = tuple<XY,\
+    \ XY, XY, XY>;\n  vc<RECT> rectangles;\n  vc<XY> X, Y;\n\n  void add_rect(XY xl,\
+    \ XY xr, XY yl, XY yr) {\n    assert(xl < xr && yl < yr);\n    X.eb(xl), X.eb(xr),\
+    \ Y.eb(yl), Y.eb(yr);\n    rectangles.eb(xl, xr, yl, yr);\n  }\n\n  template <typename\
+    \ ANS_TYPE = ll>\n  ANS_TYPE calc() {\n    if (rectangles.empty()) return 0;\n\
+    \    int N = len(X);\n    vc<int> ord_x = argsort(X);\n    vc<int> ord_y = argsort(Y);\n\
+    \    vc<int> rk_y(N);\n    FOR(i, N) rk_y[ord_y[i]] = i;\n    X = rearrange(X,\
+    \ ord_x);\n    Y = rearrange(Y, ord_y);\n\n    using AM = ActedMonoid_MinMincnt_Add<XY>;\n\
     \    Lazy_SegTree<AM> seg(N - 1, [&](int i) -> pair<XY, XY> { return {0, Y[i +\
-    \ 1] - Y[i]}; });\r\n\r\n    ANS_TYPE ANS = 0;\r\n    XY total = Y.back() - Y[0];\r\
-    \n    FOR(i, N - 1) {\r\n      int k = ord_x[i] / 2;\r\n      int a = (ord_x[i]\
-    \ & 1 ? -1 : 1);\r\n      seg.apply(rk_y[2 * k], rk_y[2 * k + 1], a);\r\n    \
-    \  auto [min, mincnt] = seg.prod_all();\r\n      ANS_TYPE dy = total - (min ==\
-    \ 0 ? mincnt : 0);\r\n      ANS_TYPE dx = X[i + 1] - X[i];\r\n      ANS += dx\
-    \ * dy;\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n"
+    \ 1] - Y[i]}; });\n\n    ANS_TYPE ANS = 0;\n    XY total = Y.back() - Y[0];\n\
+    \    FOR(i, N - 1) {\n      int k = ord_x[i] / 2;\n      int a = (ord_x[i] & 1\
+    \ ? -1 : 1);\n      seg.apply(rk_y[2 * k], rk_y[2 * k + 1], a);\n      auto [min,\
+    \ mincnt] = seg.prod_all();\n      ANS_TYPE dy = total - (min == 0 ? mincnt :\
+    \ 0);\n      ANS_TYPE dx = X[i + 1] - X[i];\n      ANS += dx * dy;\n    }\n  \
+    \  return ANS;\n  }\n};\n"
   dependsOn:
   - ds/segtree/lazy_segtree.hpp
   - alg/acted_monoid/minmincnt_add.hpp
@@ -154,7 +156,7 @@ data:
   isVerificationFile: false
   path: ds/rectangle_union.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp

@@ -25,15 +25,20 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"nt/factor.hpp\"\n\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64()\
-    \ {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n     \
-    \                 chrono::high_resolution_clock::now().time_since_epoch())\n \
-    \                         .count()) *\n                  10150724397891781847ULL;\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/nt/all_lcm.hpp
+  bundledCode: "#line 1 \"nt/all_lcm.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/all_lcm.hpp\n\
+    #line 1 \"nt/factor.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/factor.hpp\n\
+    \n#line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/montgomery_modint.hpp\"\n\n\
-    // odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"nt/is_prime.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/nt/is_prime.hpp\n#line 1 \"mod/montgomery_modint.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/mod/montgomery_modint.hpp\n\
+    \n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
     \ <int id, typename U1, typename U2>\nstruct Montgomery_modint {\n  using mint\
     \ = Montgomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
     \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
@@ -53,7 +58,7 @@ data:
     \ >= 0);\n    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if\
     \ (n & 1) y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Montgomery_modint_32\
     \ = Montgomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Montgomery_modint_64\
-    \ = Montgomery_modint<id, u64, u128>;\n#line 2 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
+    \ = Montgomery_modint<id, u64, u128>;\n#line 3 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
     \ u64 x) {\n  assert(x < u64(1) << 62);\n  if (x == 2 or x == 3 or x == 5 or x\
     \ == 7) return true;\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 ==\
     \ 0) return false;\n  if (x < 121) return x > 1;\n  const u64 d = (x - 1) >> lowbit(x\
@@ -64,7 +69,7 @@ data:
     \ false;\n    return true;\n  };\n  if (x < (u64(1) << 32)) {\n    for (u64 a\
     \ : {2, 7, 61})\n      if (!ok(a)) return false;\n  } else {\n    for (u64 a :\
     \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\n      if (!ok(a)) return\
-    \ false;\n    }\n  }\n  return true;\n}\n#line 4 \"nt/factor.hpp\"\n\ntemplate\
+    \ false;\n    }\n  }\n  return true;\n}\n#line 5 \"nt/factor.hpp\"\n\ntemplate\
     \ <typename mint>\nll rho(ll n, ll c) {\n  assert(n > 1);\n  const mint cc(c);\n\
     \  auto f = [&](mint x) { return x * x + cc; };\n  mint x = 1, y = 2, z = 1, q\
     \ = 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5);\n  for (ll r = 1; g\
@@ -88,30 +93,32 @@ data:
     \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_spf(ll n, vc<int>& spf) {\n  vc<pair<ll,\
     \ int>> res;\n  while (n > 1) {\n    int p = spf[n];\n    int e = 0;\n    while\
     \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
-    \ return res;\n}\n#line 1 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\n\
-    vc<T> prime_table(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done\
-    \ = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n  \
-    \  done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n    const int R =\
-    \ LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n    vc<pair<int, int>>\
-    \ cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i]) {\n       \
-    \ cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2 * i) sieve[j]\
-    \ = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n      array<bool,\
-    \ S> block{};\n      for (auto& [p, idx] : cp)\n        for (int i = idx; i <\
-    \ S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R - L)) if (!block[i])\
-    \ primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes, LIM);\n  return\
-    \ {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/spf_table.hpp\"\n\n//\
-    \ [0, LIM], 0, 1 \u306B\u306F -1 \u304C\u5165\u308B\u3002\nvc<int> spf_table(int\
-    \ LIM) {\n  auto primes = prime_table(LIM);\n  vc<int> spf(LIM + 1, -1);\n  int\
-    \ sq = sqrt(LIM);\n  for (int i = 2; i <= LIM; i += 2) spf[i] = 2;\n  FOR_R(i,\
-    \ len(primes)) {\n    auto p = primes[i];\n    spf[p] = p;\n    if (sq < p) continue;\n\
-    \    for (int k = p * p; k <= LIM; k += 2 * p) spf[k] = p;\n  }\n  return spf;\n\
-    }\n#line 3 \"nt/all_lcm.hpp\"\n\ntemplate <typename mint>\nmint all_lcm(vc<int>\
-    \ A, bool use_spf) {\n  if (A.empty()) return 1;\n  map<int, int> MP;\n  int mx\
-    \ = MAX(A);\n  vc<int> spf;\n  if (use_spf) spf = spf_table(mx);\n  for (auto&&\
-    \ n: A) {\n    auto pfs = (use_spf ? factor_by_spf(n, spf) : factor(n));\n   \
-    \ for (auto&& [p, e]: pfs) chmax(MP[p], e);\n  }\n  mint x = 1;\n  for (auto&&\
-    \ [p, e]: MP) { x *= mint(p).pow(e); }\n  return x;\n}\n"
-  code: "#include \"nt/factor.hpp\"\n#include \"nt/spf_table.hpp\"\n\ntemplate <typename\
+    \ return res;\n}\n#line 1 \"nt/spf_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/spf_table.hpp\n\
+    #line 1 \"nt/prime_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/prime_table.hpp\n\
+    \ntemplate <typename T = int>\nvc<T> prime_table(int LIM) {\n  ++LIM;\n  const\
+    \ int S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S\
+    \ + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
+    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
+    \ * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
+    \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
+    \ * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1;\
+    \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]\
+    \ : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
+    \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
+    \  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin() + k};\n\
+    }\n#line 3 \"nt/spf_table.hpp\"\n\n// [0, LIM], 0, 1 \u306B\u306F -1 \u304C\u5165\
+    \u308B\u3002\nvc<int> spf_table(int LIM) {\n  auto primes = prime_table(LIM);\n\
+    \  vc<int> spf(LIM + 1, -1);\n  int sq = sqrt(LIM);\n  for (int i = 2; i <= LIM;\
+    \ i += 2) spf[i] = 2;\n  FOR_R(i, len(primes)) {\n    auto p = primes[i];\n  \
+    \  spf[p] = p;\n    if (sq < p) continue;\n    for (int k = p * p; k <= LIM; k\
+    \ += 2 * p) spf[k] = p;\n  }\n  return spf;\n}\n#line 4 \"nt/all_lcm.hpp\"\n\n\
+    template <typename mint>\nmint all_lcm(vc<int> A, bool use_spf) {\n  if (A.empty())\
+    \ return 1;\n  map<int, int> MP;\n  int mx = MAX(A);\n  vc<int> spf;\n  if (use_spf)\
+    \ spf = spf_table(mx);\n  for (auto&& n: A) {\n    auto pfs = (use_spf ? factor_by_spf(n,\
+    \ spf) : factor(n));\n    for (auto&& [p, e]: pfs) chmax(MP[p], e);\n  }\n  mint\
+    \ x = 1;\n  for (auto&& [p, e]: MP) { x *= mint(p).pow(e); }\n  return x;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/nt/all_lcm.hpp\n\
+    #include \"nt/factor.hpp\"\n#include \"nt/spf_table.hpp\"\n\ntemplate <typename\
     \ mint>\nmint all_lcm(vc<int> A, bool use_spf) {\n  if (A.empty()) return 1;\n\
     \  map<int, int> MP;\n  int mx = MAX(A);\n  vc<int> spf;\n  if (use_spf) spf =\
     \ spf_table(mx);\n  for (auto&& n: A) {\n    auto pfs = (use_spf ? factor_by_spf(n,\
@@ -127,7 +134,7 @@ data:
   isVerificationFile: false
   path: nt/all_lcm.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: nt/all_lcm.hpp

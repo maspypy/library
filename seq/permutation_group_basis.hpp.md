@@ -14,11 +14,13 @@ data:
     - https://atcoder.jp/contests/npcapc_2024/tasks/npcapc_2024_j
     - https://codeforces.com/blog/entry/111290
     - https://codeforces.com/gym/421334/problem/A
-  bundledCode: "#line 1 \"seq/permutation_group_basis.hpp\"\n\n// https://codeforces.com/blog/entry/111290\n\
-    // https://codeforces.com/gym/421334/problem/A\n// https://atcoder.jp/contests/npcapc_2024/tasks/npcapc_2024_j\n\
-    template <int NMAX>\nstruct Permutation_Group_Basis {\n  using A = array<u8, NMAX>;\n\
-    \  int n;\n  // Basis[i]: i \u672A\u6E80\u306F\u56FA\u5B9A\u3057\u3066 i \u3092\
-    \u52D5\u304B\u3059\u90E8\u5206\n  // \u4F5C\u308C\u308B\u7FA4\uFF1Ag=g[0]g[1]...g[n-1]\n\
+    - https://github.com/maspypy/library/blob/main/seq/permutation_group_basis.hpp
+  bundledCode: "#line 1 \"seq/permutation_group_basis.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/seq/permutation_group_basis.hpp\n\
+    \n// https://codeforces.com/blog/entry/111290\n// https://codeforces.com/gym/421334/problem/A\n\
+    // https://atcoder.jp/contests/npcapc_2024/tasks/npcapc_2024_j\ntemplate <int\
+    \ NMAX>\nstruct Permutation_Group_Basis {\n  using A = array<u8, NMAX>;\n  int\
+    \ n;\n  // Basis[i]: i \u672A\u6E80\u306F\u56FA\u5B9A\u3057\u3066 i \u3092\u52D5\
+    \u304B\u3059\u90E8\u5206\n  // \u4F5C\u308C\u308B\u7FA4\uFF1Ag=g[0]g[1]...g[n-1]\n\
     \  // g[i]: i \u672A\u6E80\u3092\u56FA\u5B9A\u3057\u3066 i \u3092\u52D5\u304B\u3059\
     \u5199\u50CF\n  // g \u304B\u3089 g[i] \u3092\u5FA9\u5143\u3059\u308B\u306B\u306F\
     \uFF0C\u5C0F\u3055\u3044 i \u304B\u3089\u9806\u306B\u6C7A\u3081\u308B\n  vvc<A>\
@@ -55,7 +57,8 @@ data:
     \ {\n        assert(vis[s[u]]);\n        op(lv, ibasis[s[u]], s, tmp);\n     \
     \   op(lv, tmp, basis[u], tmp2);\n        assert(tmp2[lv] == lv);\n        nxtgen.add(tmp2);\n\
     \      }\n    }\n    return nxtgen;\n  }\n};\n"
-  code: "\n// https://codeforces.com/blog/entry/111290\n// https://codeforces.com/gym/421334/problem/A\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/seq/permutation_group_basis.hpp\n\
+    \n// https://codeforces.com/blog/entry/111290\n// https://codeforces.com/gym/421334/problem/A\n\
     // https://atcoder.jp/contests/npcapc_2024/tasks/npcapc_2024_j\ntemplate <int\
     \ NMAX>\nstruct Permutation_Group_Basis {\n  using A = array<u8, NMAX>;\n  int\
     \ n;\n  // Basis[i]: i \u672A\u6E80\u306F\u56FA\u5B9A\u3057\u3066 i \u3092\u52D5\
@@ -100,7 +103,7 @@ data:
   isVerificationFile: false
   path: seq/permutation_group_basis.hpp
   requiredBy: []
-  timestamp: '2024-10-07 20:17:30+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp

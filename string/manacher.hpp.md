@@ -3,62 +3,63 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/enumerate_palindromes.test.cpp
     title: test/2_library_checker/string/enumerate_palindromes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2858.test.cpp
     title: test/3_yukicoder/2858.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://atcoder.jp/contests/xmascontest2015noon/tasks/xmascontest2015_c
-  bundledCode: "#line 1 \"string/manacher.hpp\"\n\r\n// i<=j \u306B\u5BFE\u3057\u3066\
-    \ match(i,j) \u304C\u5B9A\u7FA9\u3055\u308C\u3066\u3044\u308B\u3068\u304D\u6975\
-    \u5927\u56DE\u6587 [L,R) \u3092\u5217\u6319\u3059\u308B\r\n// https://atcoder.jp/contests/xmascontest2015noon/tasks/xmascontest2015_c\r\
-    \ntemplate <typename F>\r\nvc<pair<int, int>> manacher(int n, F match) {\r\n \
-    \ if (n == 0) return {};\r\n  assert(n > 0);\r\n  auto f = [&](int i, int j) ->\
-    \ bool {\r\n    if (i > j) return 0;\r\n    assert((i + j) % 2 == 0);\r\n    if\
-    \ (i & 1) return 1;\r\n    return match(i / 2, j / 2);\r\n  };\r\n  vector<int>\
-    \ dp(2 * n - 1);\r\n  int i = 0, j = 0;\r\n  while (i < 2 * n - 1) {\r\n    while\
-    \ (i - j >= 0 && i + j < 2 * n - 1 && f(i - j, i + j)) ++j;\r\n    dp[i] = j;\r\
-    \n    int k = 1;\r\n    while (i - k >= 0 && i + k < 2 * n - 1 && k < j && dp[i\
-    \ - k] != j - k) {\r\n      dp[i + k] = min(j - k, dp[i - k]), ++k;\r\n    }\r\
-    \n    i += k, j = max(j - k, 0);\r\n  }\r\n  vc<pair<int, int>> res;\r\n  FOR(i,\
-    \ len(dp)) {\r\n    if (dp[i] == 0) continue;\r\n    int l = ceil<int>(i - dp[i]\
-    \ + 1, 2);\r\n    int r = floor<int>(i + dp[i] - 1, 2);\r\n    if (l <= r) res.eb(l,\
-    \ r + 1);\r\n  }\r\n  return res;\r\n}\r\n\r\n// \u6975\u5927\u56DE\u6587 [L,\
-    \ R) \u3092\u5217\u6319\u3059\u308B\r\ntemplate <typename STRING>\r\nvc<pair<int,\
-    \ int>> manacher(STRING s) {\r\n  int n = len(s);\r\n  if (n == 0) return {};\r\
-    \n  return manacher(n, [&](int i, int j) -> bool { return s[i] == s[j]; });\r\n\
-    }\r\n"
-  code: "\r\n// i<=j \u306B\u5BFE\u3057\u3066 match(i,j) \u304C\u5B9A\u7FA9\u3055\u308C\
-    \u3066\u3044\u308B\u3068\u304D\u6975\u5927\u56DE\u6587 [L,R) \u3092\u5217\u6319\
-    \u3059\u308B\r\n// https://atcoder.jp/contests/xmascontest2015noon/tasks/xmascontest2015_c\r\
-    \ntemplate <typename F>\r\nvc<pair<int, int>> manacher(int n, F match) {\r\n \
-    \ if (n == 0) return {};\r\n  assert(n > 0);\r\n  auto f = [&](int i, int j) ->\
-    \ bool {\r\n    if (i > j) return 0;\r\n    assert((i + j) % 2 == 0);\r\n    if\
-    \ (i & 1) return 1;\r\n    return match(i / 2, j / 2);\r\n  };\r\n  vector<int>\
-    \ dp(2 * n - 1);\r\n  int i = 0, j = 0;\r\n  while (i < 2 * n - 1) {\r\n    while\
-    \ (i - j >= 0 && i + j < 2 * n - 1 && f(i - j, i + j)) ++j;\r\n    dp[i] = j;\r\
-    \n    int k = 1;\r\n    while (i - k >= 0 && i + k < 2 * n - 1 && k < j && dp[i\
-    \ - k] != j - k) {\r\n      dp[i + k] = min(j - k, dp[i - k]), ++k;\r\n    }\r\
-    \n    i += k, j = max(j - k, 0);\r\n  }\r\n  vc<pair<int, int>> res;\r\n  FOR(i,\
-    \ len(dp)) {\r\n    if (dp[i] == 0) continue;\r\n    int l = ceil<int>(i - dp[i]\
-    \ + 1, 2);\r\n    int r = floor<int>(i + dp[i] - 1, 2);\r\n    if (l <= r) res.eb(l,\
-    \ r + 1);\r\n  }\r\n  return res;\r\n}\r\n\r\n// \u6975\u5927\u56DE\u6587 [L,\
-    \ R) \u3092\u5217\u6319\u3059\u308B\r\ntemplate <typename STRING>\r\nvc<pair<int,\
-    \ int>> manacher(STRING s) {\r\n  int n = len(s);\r\n  if (n == 0) return {};\r\
-    \n  return manacher(n, [&](int i, int j) -> bool { return s[i] == s[j]; });\r\n\
-    }\r\n"
+    - https://github.com/maspypy/library/blob/main/string/manacher.hpp
+  bundledCode: "#line 1 \"string/manacher.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/manacher.hpp\n\
+    \n// i<=j \u306B\u5BFE\u3057\u3066 match(i,j) \u304C\u5B9A\u7FA9\u3055\u308C\u3066\
+    \u3044\u308B\u3068\u304D\u6975\u5927\u56DE\u6587 [L,R) \u3092\u5217\u6319\u3059\
+    \u308B\n// https://atcoder.jp/contests/xmascontest2015noon/tasks/xmascontest2015_c\n\
+    template <typename F>\nvc<pair<int, int>> manacher(int n, F match) {\n  if (n\
+    \ == 0) return {};\n  assert(n > 0);\n  auto f = [&](int i, int j) -> bool {\n\
+    \    if (i > j) return 0;\n    assert((i + j) % 2 == 0);\n    if (i & 1) return\
+    \ 1;\n    return match(i / 2, j / 2);\n  };\n  vector<int> dp(2 * n - 1);\n  int\
+    \ i = 0, j = 0;\n  while (i < 2 * n - 1) {\n    while (i - j >= 0 && i + j < 2\
+    \ * n - 1 && f(i - j, i + j)) ++j;\n    dp[i] = j;\n    int k = 1;\n    while\
+    \ (i - k >= 0 && i + k < 2 * n - 1 && k < j && dp[i - k] != j - k) {\n      dp[i\
+    \ + k] = min(j - k, dp[i - k]), ++k;\n    }\n    i += k, j = max(j - k, 0);\n\
+    \  }\n  vc<pair<int, int>> res;\n  FOR(i, len(dp)) {\n    if (dp[i] == 0) continue;\n\
+    \    int l = ceil<int>(i - dp[i] + 1, 2);\n    int r = floor<int>(i + dp[i] -\
+    \ 1, 2);\n    if (l <= r) res.eb(l, r + 1);\n  }\n  return res;\n}\n\n// \u6975\
+    \u5927\u56DE\u6587 [L, R) \u3092\u5217\u6319\u3059\u308B\ntemplate <typename STRING>\n\
+    vc<pair<int, int>> manacher(STRING s) {\n  int n = len(s);\n  if (n == 0) return\
+    \ {};\n  return manacher(n, [&](int i, int j) -> bool { return s[i] == s[j]; });\n\
+    }\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/string/manacher.hpp\n\
+    \n// i<=j \u306B\u5BFE\u3057\u3066 match(i,j) \u304C\u5B9A\u7FA9\u3055\u308C\u3066\
+    \u3044\u308B\u3068\u304D\u6975\u5927\u56DE\u6587 [L,R) \u3092\u5217\u6319\u3059\
+    \u308B\n// https://atcoder.jp/contests/xmascontest2015noon/tasks/xmascontest2015_c\n\
+    template <typename F>\nvc<pair<int, int>> manacher(int n, F match) {\n  if (n\
+    \ == 0) return {};\n  assert(n > 0);\n  auto f = [&](int i, int j) -> bool {\n\
+    \    if (i > j) return 0;\n    assert((i + j) % 2 == 0);\n    if (i & 1) return\
+    \ 1;\n    return match(i / 2, j / 2);\n  };\n  vector<int> dp(2 * n - 1);\n  int\
+    \ i = 0, j = 0;\n  while (i < 2 * n - 1) {\n    while (i - j >= 0 && i + j < 2\
+    \ * n - 1 && f(i - j, i + j)) ++j;\n    dp[i] = j;\n    int k = 1;\n    while\
+    \ (i - k >= 0 && i + k < 2 * n - 1 && k < j && dp[i - k] != j - k) {\n      dp[i\
+    \ + k] = min(j - k, dp[i - k]), ++k;\n    }\n    i += k, j = max(j - k, 0);\n\
+    \  }\n  vc<pair<int, int>> res;\n  FOR(i, len(dp)) {\n    if (dp[i] == 0) continue;\n\
+    \    int l = ceil<int>(i - dp[i] + 1, 2);\n    int r = floor<int>(i + dp[i] -\
+    \ 1, 2);\n    if (l <= r) res.eb(l, r + 1);\n  }\n  return res;\n}\n\n// \u6975\
+    \u5927\u56DE\u6587 [L, R) \u3092\u5217\u6319\u3059\u308B\ntemplate <typename STRING>\n\
+    vc<pair<int, int>> manacher(STRING s) {\n  int n = len(s);\n  if (n == 0) return\
+    \ {};\n  return manacher(n, [&](int i, int j) -> bool { return s[i] == s[j]; });\n\
+    }\n"
   dependsOn: []
   isVerificationFile: false
   path: string/manacher.hpp
   requiredBy: []
-  timestamp: '2026-08-06 23:33:10+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-10-15 19:54:56+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2858.test.cpp
   - test/2_library_checker/string/enumerate_palindromes.test.cpp

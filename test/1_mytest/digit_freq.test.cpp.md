@@ -18,31 +18,32 @@ data:
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/digit_freq.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\n/*\n\
-    library: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
-    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
-    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
-    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
-    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
-    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
-    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
-    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
-    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
-    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
-    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
-    template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
-    \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
-    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
-    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
-    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq_max = priority_queue<T>;\ntemplate <class T>\nusing pq_min = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
-    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
-    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
-    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
-    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\nlibrary: https://github.com/maspypy/library\n\
+    */\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
+    #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#if\
+    \ !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#endif\n\
+    #include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace std;\n\nusing\
+    \ ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\n\
+    using u64 = uint64_t;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
+    using f128 = __float128;\n\ntemplate <class>\nconstexpr bool dependent_false =\
+    \ false;\n\ntemplate <class T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>,\
+    \ \"infty<T> is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int\
+    \ infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
+    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
+    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
+    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
+    \ infty<i128>;\ntemplate <>\nconstexpr long double infty<long double> = infty<i128>;\n\
+    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
+    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing pq_max = priority_queue<T>;\ntemplate <class T>\nusing\
+    \ pq_min = priority_queue<T, vector<T>, greater<T>>;\n\n#define vv(type, name,\
+    \ h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n#define\
+    \ vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name( \\\n \
+    \     h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR1_R(a)\
@@ -133,26 +134,27 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 4 \"test/1_mytest/digit_freq.test.cpp\"\
-    \n\n#line 1 \"nt/digit_frequency.hpp\"\ntemplate <typename T = ll, int K = 10>\n\
-    array<T, K> digit_frequency_vector(vc<int> A, bool include_N) {\n  assert(len(A)\
-    \ > 0 && A[0] != '0');\n  ll n = len(A);\n  vc<T> pw(n + 1, T(1));\n  FOR(i, n)\
-    \ pw[i + 1] = pw[i] * K;\n  using ARR = array<T, K>;\n  ARR dp{}, same{};\n  same[A[0]]\
-    \ = 1;\n  FOR(i, 1, A[0]) dp[i] = 1;\n  T lo_cnt = SUM<T>(dp);\n  FOR(i, 1, len(A))\
-    \ {\n    int a = A[i];\n    ARR newdp{};\n    FOR(k, K) newdp[k] = dp[k] * K +\
-    \ lo_cnt + same[k] * a + (k < a) + (k > 0);\n    lo_cnt = lo_cnt * K + a + (K\
-    \ - 1);\n    swap(dp, newdp);\n    same[a] += 1;\n  }\n  if (include_N) {\n  \
-    \  FOR(k, K) dp[k] += same[k];\n  }\n  return dp;\n}\n\n// [L,R) \u3092\u3059\u3079\
-    \u3066 10 \u9032\u8868\u8A18\u3057\u305F\u3068\u304D\u306B\u5404 digit \u304C\u73FE\
-    \u308C\u308B\u56DE\u6570\ntemplate <typename T = ll, int K = 10>\narray<T, K>\
-    \ digit_frequency(u64 L, u64 R) {\n  auto F = [&](u64 N) -> array<T, K> {\n  \
-    \  vc<int> A;\n    while (N) {\n      A.eb(N % K), N /= K;\n    }\n    reverse(all(A));\n\
-    \    return digit_frequency_vector<T, K>(A, false);\n  };\n  array<T, K> A = F(R);\n\
-    \  array<T, K> B = F(L);\n  FOR(k, K) A[k] -= B[k];\n  return A;\n}\n#line 6 \"\
-    test/1_mytest/digit_freq.test.cpp\"\n\nvoid test() {\n  array<ll, 10> X{};\n \
-    \ FOR(N, 1, 1 << 24) {\n    auto ANS = digit_frequency(1, N);\n    assert(X ==\
-    \ ANS);\n    string S = to_string(N);\n    for (auto& ch : S) X[ch - '0']++;\n\
-    \  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
-    \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n}\n"
+    \n\n#line 1 \"nt/digit_frequency.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/digit_frequency.hpp\n\
+    template <typename T = ll, int K = 10>\narray<T, K> digit_frequency_vector(vc<int>\
+    \ A, bool include_N) {\n  assert(len(A) > 0 && A[0] != '0');\n  ll n = len(A);\n\
+    \  vc<T> pw(n + 1, T(1));\n  FOR(i, n) pw[i + 1] = pw[i] * K;\n  using ARR = array<T,\
+    \ K>;\n  ARR dp{}, same{};\n  same[A[0]] = 1;\n  FOR(i, 1, A[0]) dp[i] = 1;\n\
+    \  T lo_cnt = SUM<T>(dp);\n  FOR(i, 1, len(A)) {\n    int a = A[i];\n    ARR newdp{};\n\
+    \    FOR(k, K) newdp[k] = dp[k] * K + lo_cnt + same[k] * a + (k < a) + (k > 0);\n\
+    \    lo_cnt = lo_cnt * K + a + (K - 1);\n    swap(dp, newdp);\n    same[a] +=\
+    \ 1;\n  }\n  if (include_N) {\n    FOR(k, K) dp[k] += same[k];\n  }\n  return\
+    \ dp;\n}\n\n// [L,R) \u3092\u3059\u3079\u3066 10 \u9032\u8868\u8A18\u3057\u305F\
+    \u3068\u304D\u306B\u5404 digit \u304C\u73FE\u308C\u308B\u56DE\u6570\ntemplate\
+    \ <typename T = ll, int K = 10>\narray<T, K> digit_frequency(u64 L, u64 R) {\n\
+    \  auto F = [&](u64 N) -> array<T, K> {\n    vc<int> A;\n    while (N) {\n   \
+    \   A.eb(N % K), N /= K;\n    }\n    reverse(all(A));\n    return digit_frequency_vector<T,\
+    \ K>(A, false);\n  };\n  array<T, K> A = F(R);\n  array<T, K> B = F(L);\n  FOR(k,\
+    \ K) A[k] -= B[k];\n  return A;\n}\n#line 6 \"test/1_mytest/digit_freq.test.cpp\"\
+    \n\nvoid test() {\n  array<ll, 10> X{};\n  FOR(N, 1, 1 << 24) {\n    auto ANS\
+    \ = digit_frequency(1, N);\n    assert(X == ANS);\n    string S = to_string(N);\n\
+    \    for (auto& ch : S) X[ch - '0']++;\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
+    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n\n#include \"nt/digit_frequency.hpp\"\n\nvoid test() {\n  array<ll,\
     \ 10> X{};\n  FOR(N, 1, 1 << 24) {\n    auto ANS = digit_frequency(1, N);\n  \
@@ -165,7 +167,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/digit_freq.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/digit_freq.test.cpp

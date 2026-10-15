@@ -10,17 +10,20 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/bitwise_function.hpp\"\n\n// composition of bitwise\
-    \ operation\n// 0 -> a, -1 -> b\ntemplate <typename UINT>\nstruct Bitwise_Function\
-    \ {\n  static_assert(is_same_v<UINT, u32> || is_same_v<UINT, u64>);\n  using value_type\
-    \ = pair<UINT, UINT>;\n  using X = value_type;\n  static X op(X x, X y) { return\
-    \ {eval(y, x.fi), eval(y, x.se)}; }\n  static UINT eval(X f, UINT x) { return\
-    \ (f.fi & (~x)) | (f.se & x); }\n  static X func_or(UINT x) { return {x, UINT(-1)};\
-    \ }\n  static X func_and(UINT x) { return {0, x}; }\n  static X func_xor(UINT\
-    \ x) { return {x, UINT(-1) ^ x}; }\n  static constexpr X id() { return {UINT(0),\
-    \ UINT(-1)}; }\n  static constexpr bool commute = 0;\n};\n"
-  code: "\n// composition of bitwise operation\n// 0 -> a, -1 -> b\ntemplate <typename\
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/monoid/bitwise_function.hpp
+  bundledCode: "#line 1 \"alg/monoid/bitwise_function.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/bitwise_function.hpp\n\
+    \n// composition of bitwise operation\n// 0 -> a, -1 -> b\ntemplate <typename\
+    \ UINT>\nstruct Bitwise_Function {\n  static_assert(is_same_v<UINT, u32> || is_same_v<UINT,\
+    \ u64>);\n  using value_type = pair<UINT, UINT>;\n  using X = value_type;\n  static\
+    \ X op(X x, X y) { return {eval(y, x.fi), eval(y, x.se)}; }\n  static UINT eval(X\
+    \ f, UINT x) { return (f.fi & (~x)) | (f.se & x); }\n  static X func_or(UINT x)\
+    \ { return {x, UINT(-1)}; }\n  static X func_and(UINT x) { return {0, x}; }\n\
+    \  static X func_xor(UINT x) { return {x, UINT(-1) ^ x}; }\n  static constexpr\
+    \ X id() { return {UINT(0), UINT(-1)}; }\n  static constexpr bool commute = 0;\n\
+    };\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/monoid/bitwise_function.hpp\n\
+    \n// composition of bitwise operation\n// 0 -> a, -1 -> b\ntemplate <typename\
     \ UINT>\nstruct Bitwise_Function {\n  static_assert(is_same_v<UINT, u32> || is_same_v<UINT,\
     \ u64>);\n  using value_type = pair<UINT, UINT>;\n  using X = value_type;\n  static\
     \ X op(X x, X y) { return {eval(y, x.fi), eval(y, x.se)}; }\n  static UINT eval(X\
@@ -33,7 +36,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/bitwise_function.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2498.test.cpp

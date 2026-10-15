@@ -16,28 +16,31 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/csr.hpp\"\n\ntemplate <typename T>\nstruct CSR {\n  int\
-    \ n;\n  bool prepared;\n  vc<int> ptr;\n  vc<int> I;\n  vc<T> dat;\n\n  CSR(int\
-    \ n = 0) : n(n), prepared(false) {}\n  void reserve(int n) { dat.reserve(n); }\n\
-    \n  void add(int i, const T& x) {\n    assert(0 <= i && i < n && !prepared);\n\
-    \    I.eb(i), dat.eb(x);\n  }\n\n  void build() {\n    assert(!prepared);\n  \
-    \  prepared = 1;\n    ptr.assign(n + 1, 0);\n    for (auto& i : I) ptr[1 + i]++;\n\
-    \    FOR(i, len(ptr) - 1) ptr[i + 1] += ptr[i];\n    vc<T> tmp(len(dat));\n  \
-    \  FOR(k, len(dat)) {\n      int i = I[k];\n      tmp[ptr[i]++] = dat[k];\n  \
-    \  }\n    swap(dat, tmp);\n    ptr.pop_back();\n    ptr.insert(ptr.begin(), 0);\n\
-    \    I.clear();\n  }\n\n  struct range {\n    T *first, *last;\n    T* begin()\
-    \ const { return first; }\n    T* end() const { return last; }\n    bool empty()\
-    \ const { return first == last; }\n    int size() const { return last - first;\
-    \ }\n  };\n\n  range operator[](int i) {\n    assert(prepared);\n    return range{dat.data()\
-    \ + ptr[i], dat.data() + ptr[i + 1]};\n  }\n};\n#line 1 \"mod/mod_inv.hpp\"\n\n\
-    // long \u3067\u3082\u5927\u4E08\u592B\n// (val * x - 1) \u304C mod \u306E\u500D\
+    links:
+    - https://github.com/maspypy/library/blob/main/nt/EGZ.hpp
+  bundledCode: "#line 1 \"nt/EGZ.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/EGZ.hpp\n\
+    #line 1 \"ds/csr.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/csr.hpp\n\
+    \ntemplate <typename T>\nstruct CSR {\n  int n;\n  bool prepared;\n  vc<int> ptr;\n\
+    \  vc<int> I;\n  vc<T> dat;\n\n  CSR(int n = 0) : n(n), prepared(false) {}\n \
+    \ void reserve(int n) { dat.reserve(n); }\n\n  void add(int i, const T& x) {\n\
+    \    assert(0 <= i && i < n && !prepared);\n    I.eb(i), dat.eb(x);\n  }\n\n \
+    \ void build() {\n    assert(!prepared);\n    prepared = 1;\n    ptr.assign(n\
+    \ + 1, 0);\n    for (auto& i : I) ptr[1 + i]++;\n    FOR(i, len(ptr) - 1) ptr[i\
+    \ + 1] += ptr[i];\n    vc<T> tmp(len(dat));\n    FOR(k, len(dat)) {\n      int\
+    \ i = I[k];\n      tmp[ptr[i]++] = dat[k];\n    }\n    swap(dat, tmp);\n    ptr.pop_back();\n\
+    \    ptr.insert(ptr.begin(), 0);\n    I.clear();\n  }\n\n  struct range {\n  \
+    \  T *first, *last;\n    T* begin() const { return first; }\n    T* end() const\
+    \ { return last; }\n    bool empty() const { return first == last; }\n    int\
+    \ size() const { return last - first; }\n  };\n\n  range operator[](int i) {\n\
+    \    assert(prepared);\n    return range{dat.data() + ptr[i], dat.data() + ptr[i\
+    \ + 1]};\n  }\n};\n#line 1 \"mod/mod_inv.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/mod_inv.hpp\n\
+    \n// long \u3067\u3082\u5927\u4E08\u592B\n// (val * x - 1) \u304C mod \u306E\u500D\
     \u6570\u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n// \u7279\u306B mod=0\
     \ \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\nll mod_inv(ll val, ll mod) {\n  if\
     \ (mod == 0) return 0;\n  mod = abs(mod);\n  val %= mod;\n  if (val < 0) val +=\
     \ mod;\n  ll a = val, b = mod, u = 1, v = 0, t;\n  while (b > 0) {\n    t = a\
     \ / b;\n    swap(a -= t * b, b), swap(u -= t * v, v);\n  }\n  if (u < 0) u +=\
-    \ mod;\n  return u;\n}\n#line 3 \"nt/EGZ.hpp\"\n\n// p-subset \u3067\u7DCF\u548C\
+    \ mod;\n  return u;\n}\n#line 4 \"nt/EGZ.hpp\"\n\n// p-subset \u3067\u7DCF\u548C\
     \u304C 0 mod p \u306E\u3082\u306E\u3092\u4F5C\u308B\n// return: indices\nvc<int>\
     \ EGZ_prime(int p, vc<ll> A) {\n  assert(len(A) == p + p - 1);\n  for (auto& x\
     \ : A) x = bmod<ll>(x, p);\n  CSR<int> ids(p);\n  FOR(i, len(A)) { ids.add(A[i],\
@@ -68,10 +71,11 @@ data:
     \   }\n    swap(yet, nxt);\n    assert(x % p == 0);\n    nxt_val.eb(x / p);\n\
     \  }\n  vc<int> I = EGZ(M, nxt_val);\n  vc<int> res;\n  for (int i : I) {\n  \
     \  FOR(j, p * i, p * i + p) res.eb(ids[j]);\n  }\n  return res;\n}\n"
-  code: "#include \"ds/csr.hpp\"\n#include \"mod/mod_inv.hpp\"\n\n// p-subset \u3067\
-    \u7DCF\u548C\u304C 0 mod p \u306E\u3082\u306E\u3092\u4F5C\u308B\n// return: indices\n\
-    vc<int> EGZ_prime(int p, vc<ll> A) {\n  assert(len(A) == p + p - 1);\n  for (auto&\
-    \ x : A) x = bmod<ll>(x, p);\n  CSR<int> ids(p);\n  FOR(i, len(A)) { ids.add(A[i],\
+  code: "// Source: https://github.com/maspypy/library/blob/main/nt/EGZ.hpp\n#include\
+    \ \"ds/csr.hpp\"\n#include \"mod/mod_inv.hpp\"\n\n// p-subset \u3067\u7DCF\u548C\
+    \u304C 0 mod p \u306E\u3082\u306E\u3092\u4F5C\u308B\n// return: indices\nvc<int>\
+    \ EGZ_prime(int p, vc<ll> A) {\n  assert(len(A) == p + p - 1);\n  for (auto& x\
+    \ : A) x = bmod<ll>(x, p);\n  CSR<int> ids(p);\n  FOR(i, len(A)) { ids.add(A[i],\
     \ i); }\n  ids.build();\n\n  A.clear();\n  FOR(x, p) FOR(len(ids[x])) A.eb(x);\n\
     \n  [&]() -> void {\n    FOR(i, p) {\n      if (A[i] == A[i + p - 1]) {\n    \
     \    A = {A.begin() + i, A.begin() + i + p};\n        return;\n      }\n    }\n\
@@ -105,7 +109,7 @@ data:
   isVerificationFile: false
   path: nt/EGZ.hpp
   requiredBy: []
-  timestamp: '2026-08-31 22:36:55+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/EGZ.test.cpp

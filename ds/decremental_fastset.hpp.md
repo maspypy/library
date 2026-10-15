@@ -16,20 +16,22 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
-    \ n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n);\
-    \ }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n\
-    \  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x]\
-    \ >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n\
-    \      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n   \
-    \ x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n\
-    \    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x]\
-    \ < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return\
-    \ true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] =\
-    \ (*this)[i];\n    return A;\n  }\n};\n#line 2 \"ds/decremental_fastset.hpp\"\n\
-    \n// amortized linear\n// MoFR \u306A\u3057\u3060\u3068 FastSet \u3088\u308A\u9045\
-    \u304B\u3063\u305F\nstruct Decremental_FastSet {\n  struct Decremental_Neighbor_UF\
+    links:
+    - https://github.com/maspypy/library/blob/main/ds/decremental_fastset.hpp
+  bundledCode: "#line 1 \"ds/decremental_fastset.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/decremental_fastset.hpp\n\
+    #line 1 \"ds/unionfind/unionfind.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\n\
+    \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
+    \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
+    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
+    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
+    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
+    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
+    \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
+    \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
+    \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
+    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 3 \"ds/decremental_fastset.hpp\"\
+    \n\n// amortized linear\n// MoFR \u306A\u3057\u3060\u3068 FastSet \u3088\u308A\
+    \u9045\u304B\u3063\u305F\nstruct Decremental_FastSet {\n  struct Decremental_Neighbor_UF\
     \ {\n    int n;\n    UnionFind uf;\n    vc<int> L, R;\n    Decremental_Neighbor_UF(int\
     \ n) : n(n), uf(n + 2), L(n + 2), R(n + 2) {\n      FOR(i, n + 2) L[i] = i, R[i]\
     \ = i;\n    }\n    void erase(int i) {\n      assert(0 <= i && i < n);\n     \
@@ -54,7 +56,8 @@ data:
     \ f) {\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n  }\n\n  string\
     \ to_string() {\n    string S(N, '.');\n    FOR(i, N) S[i] = '0' + (dat[i / 64]\
     \ >> (i & 63) & 1);\n    return S;\n  }\n};\n"
-  code: "#include \"ds/unionfind/unionfind.hpp\"\n\n// amortized linear\n// MoFR \u306A\
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/decremental_fastset.hpp\n\
+    #include \"ds/unionfind/unionfind.hpp\"\n\n// amortized linear\n// MoFR \u306A\
     \u3057\u3060\u3068 FastSet \u3088\u308A\u9045\u304B\u3063\u305F\nstruct Decremental_FastSet\
     \ {\n  struct Decremental_Neighbor_UF {\n    int n;\n    UnionFind uf;\n    vc<int>\
     \ L, R;\n    Decremental_Neighbor_UF(int n) : n(n), uf(n + 2), L(n + 2), R(n +\
@@ -87,7 +90,7 @@ data:
   path: ds/decremental_fastset.hpp
   requiredBy:
   - graph/restore_euler_tour.hpp
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/decremental_fastset.test.cpp

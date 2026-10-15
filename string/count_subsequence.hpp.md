@@ -14,21 +14,23 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links:
+    - https://github.com/maspypy/library/blob/main/string/count_subsequence.hpp
     - https://noshi91.hatenablog.com/entry/2023/02/26/135340
     - https://yukicoder.me/problems/no/2762
-  bundledCode: "#line 1 \"string/count_subsequence.hpp\"\n// https://noshi91.hatenablog.com/entry/2023/02/26/135340\n\
-    // \u884C\u5217\u306B\u3059\u308B\u3068\u304D\u306F\u3001(mp[x]+1) \u306E\u5217\
-    \u3092\u6301\u3064\u3068\u5C0F\u3055\u3044\u884C\u5217\u306B\u306A\u308B\u3053\
-    \u3068\u304C\u3042\u308B.\n// https://yukicoder.me/problems/no/2762\ntemplate\
-    \ <typename mint, typename STRING>\nmint count_subsequence(STRING& S) {\n  map<int,\
-    \ mint> dp;\n  mint sm = 1;\n  for (auto&& x : S) {\n    auto it = dp.find(x);\n\
-    \    if (it == dp.end()) {\n      dp[x] = sm;\n      sm += sm;\n    } else {\n\
-    \      mint d = (*it).se;\n      (*it).se = sm;\n      sm += sm - d;\n    }\n\
-    \  }\n  return sm;\n}\n"
-  code: "// https://noshi91.hatenablog.com/entry/2023/02/26/135340\n// \u884C\u5217\
-    \u306B\u3059\u308B\u3068\u304D\u306F\u3001(mp[x]+1) \u306E\u5217\u3092\u6301\u3064\
-    \u3068\u5C0F\u3055\u3044\u884C\u5217\u306B\u306A\u308B\u3053\u3068\u304C\u3042\
-    \u308B.\n// https://yukicoder.me/problems/no/2762\ntemplate <typename mint, typename\
+  bundledCode: "#line 1 \"string/count_subsequence.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/count_subsequence.hpp\n\
+    // https://noshi91.hatenablog.com/entry/2023/02/26/135340\n// \u884C\u5217\u306B\
+    \u3059\u308B\u3068\u304D\u306F\u3001(mp[x]+1) \u306E\u5217\u3092\u6301\u3064\u3068\
+    \u5C0F\u3055\u3044\u884C\u5217\u306B\u306A\u308B\u3053\u3068\u304C\u3042\u308B\
+    .\n// https://yukicoder.me/problems/no/2762\ntemplate <typename mint, typename\
+    \ STRING>\nmint count_subsequence(STRING& S) {\n  map<int, mint> dp;\n  mint sm\
+    \ = 1;\n  for (auto&& x : S) {\n    auto it = dp.find(x);\n    if (it == dp.end())\
+    \ {\n      dp[x] = sm;\n      sm += sm;\n    } else {\n      mint d = (*it).se;\n\
+    \      (*it).se = sm;\n      sm += sm - d;\n    }\n  }\n  return sm;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/string/count_subsequence.hpp\n\
+    // https://noshi91.hatenablog.com/entry/2023/02/26/135340\n// \u884C\u5217\u306B\
+    \u3059\u308B\u3068\u304D\u306F\u3001(mp[x]+1) \u306E\u5217\u3092\u6301\u3064\u3068\
+    \u5C0F\u3055\u3044\u884C\u5217\u306B\u306A\u308B\u3053\u3068\u304C\u3042\u308B\
+    .\n// https://yukicoder.me/problems/no/2762\ntemplate <typename mint, typename\
     \ STRING>\nmint count_subsequence(STRING& S) {\n  map<int, mint> dp;\n  mint sm\
     \ = 1;\n  for (auto&& x : S) {\n    auto it = dp.find(x);\n    if (it == dp.end())\
     \ {\n      dp[x] = sm;\n      sm += sm;\n    } else {\n      mint d = (*it).se;\n\
@@ -37,7 +39,7 @@ data:
   isVerificationFile: false
   path: string/count_subsequence.hpp
   requiredBy: []
-  timestamp: '2026-08-17 12:32:26+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1493.test.cpp

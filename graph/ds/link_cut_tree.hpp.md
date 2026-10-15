@@ -18,7 +18,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2295.test.cpp
     title: test/3_yukicoder/2295.test.cpp
   - icon: ':x:'
@@ -32,43 +32,44 @@ data:
     title: test/3_yukicoder/902.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/1039/submission/320681517
     - https://codesprintla25.kattis.com/contests/cxeqb3/submissions/17431394
-  bundledCode: "#line 1 \"graph/ds/link_cut_tree.hpp\"\n/*\n\u5404 heavy path \u3092\
-    \ head \u304C\u5DE6, tail \u304C\u53F3\u3068\u306A\u308B\u3088\u3046\u306B splay\
-    \ tree \u3067\u6301\u3064.\n\u30E6\u30FC\u30B6\u30FC\u304C\u76F4\u63A5\u547C\u3076\
-    \u53EF\u80FD\u6027\u304C\u3042\u308B\u3082\u306E\u3060\u3051 int \u3067\u3082\u5B9F\
-    \u88C5.\nLCT \u5916\u3067\u63A2\u7D22\u3059\u308B\u3068\u304D\u306A\u3069\uFF0C\
-    push \u3092\u5FD8\u308C\u306A\u3044\u3088\u3046\u306B\u6CE8\u610F.\n*/\n\ntemplate\
-    \ <typename Node>\nstruct Link_Cut_Tree {\n  using np = Node *;\n  int n;\n  vc<Node>\
-    \ nodes;\n\n  Link_Cut_Tree(int n = 0) : n(n), nodes(n) { FOR(i, n) nodes[i] =\
-    \ Node(i); }\n\n  Node *operator[](int v) { return &nodes[v]; }\n\n  // underlying\
-    \ tree \u306E\u6839\n  Node *get_root(Node *c) {\n    expose(c);\n    c->push();\n\
-    \    while (c->l) {\n      c = c->l;\n      c->push();\n    }\n    splay(c);\n\
-    \    return c;\n  }\n\n  // underlying tree \u306E\u6839\n  int get_root(int c)\
-    \ { return get_root(&nodes[c])->idx; }\n\n  // parent(c)==p \u3068\u306A\u308B\
-    \u3088\u3046\u306B link. p \u306E\u6839\u306F\u5909\u308F\u3089\u306A\u3044.\n\
-    \  void link(Node *p, Node *c) {\n    evert(c);\n    expose(p);\n    p->push();\n\
-    \    // no edge -> heavy edge\n    assert(!(c->p));\n    assert(!(p->r));\n  \
-    \  c->p = p;\n    p->r = c;\n    p->update();\n  }\n\n  // parent(c)==p \u3068\
-    \u306A\u308B\u3088\u3046\u306B link. p \u306E\u6839\u306F\u5909\u308F\u3089\u306A\
-    \u3044.\n  void link(int p, int c) { return link(&nodes[p], &nodes[c]); }\n\n\
-    \  // a,b \u304C\u6839\u306B\u5909\u66F4\u3055\u308C\u308B\n  void cut(Node *a,\
-    \ Node *b) {\n    evert(a);\n    expose(b);\n    assert(!b->p);\n    assert((b->l)\
-    \ == a);\n    // heavy edge -> no edge\n    b->l->p = nullptr;\n    b->l = nullptr;\n\
-    \    b->update();\n  }\n\n  // a,b \u304C\u6839\u306B\u5909\u66F4\u3055\u308C\u308B\
-    \n  void cut(int a, int b) { return cut(&nodes[a], &nodes[b]); }\n\n  // c \u3092\
-    \ underlying tree \u306E\u6839\u3068\u3059\u308B.\n  // c \u306F splay tree \u306E\
-    \u6839\u306B\u3082\u306A\u308B.\n  // c \u306F push \u6E08\u306B\u306A\u308B\n\
-    \  void evert(Node *c) {\n    expose(c);\n    c->reverse();\n    c->push();\n\
-    \  }\n\n  // c \u3092 underlying tree \u306E\u6839\u3068\u3059\u308B.\n  // c\
-    \ \u306F splay tree \u306E\u6839\u306B\u3082\u306A\u308B.\n  void evert(int c)\
-    \ { evert(&nodes[c]); }\n\n  // \u6839\u306F\u5909\u3048\u306A\u3044\n  Node *LCA(Node\
-    \ *u, Node *v) {\n    assert(get_root(u) == get_root(v));\n    expose(u);\n  \
-    \  return expose(v);\n  }\n\n  // \u6839\u306F\u5909\u3048\u306A\u3044\n  int\
+    - https://github.com/maspypy/library/blob/main/graph/ds/link_cut_tree.hpp
+  bundledCode: "#line 1 \"graph/ds/link_cut_tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/ds/link_cut_tree.hpp\n\
+    /*\n\u5404 heavy path \u3092 head \u304C\u5DE6, tail \u304C\u53F3\u3068\u306A\u308B\
+    \u3088\u3046\u306B splay tree \u3067\u6301\u3064.\n\u30E6\u30FC\u30B6\u30FC\u304C\
+    \u76F4\u63A5\u547C\u3076\u53EF\u80FD\u6027\u304C\u3042\u308B\u3082\u306E\u3060\
+    \u3051 int \u3067\u3082\u5B9F\u88C5.\nLCT \u5916\u3067\u63A2\u7D22\u3059\u308B\
+    \u3068\u304D\u306A\u3069\uFF0Cpush \u3092\u5FD8\u308C\u306A\u3044\u3088\u3046\u306B\
+    \u6CE8\u610F.\n*/\n\ntemplate <typename Node>\nstruct Link_Cut_Tree {\n  using\
+    \ np = Node *;\n  int n;\n  vc<Node> nodes;\n\n  Link_Cut_Tree(int n = 0) : n(n),\
+    \ nodes(n) { FOR(i, n) nodes[i] = Node(i); }\n\n  Node *operator[](int v) { return\
+    \ &nodes[v]; }\n\n  // underlying tree \u306E\u6839\n  Node *get_root(Node *c)\
+    \ {\n    expose(c);\n    c->push();\n    while (c->l) {\n      c = c->l;\n   \
+    \   c->push();\n    }\n    splay(c);\n    return c;\n  }\n\n  // underlying tree\
+    \ \u306E\u6839\n  int get_root(int c) { return get_root(&nodes[c])->idx; }\n\n\
+    \  // parent(c)==p \u3068\u306A\u308B\u3088\u3046\u306B link. p \u306E\u6839\u306F\
+    \u5909\u308F\u3089\u306A\u3044.\n  void link(Node *p, Node *c) {\n    evert(c);\n\
+    \    expose(p);\n    p->push();\n    // no edge -> heavy edge\n    assert(!(c->p));\n\
+    \    assert(!(p->r));\n    c->p = p;\n    p->r = c;\n    p->update();\n  }\n\n\
+    \  // parent(c)==p \u3068\u306A\u308B\u3088\u3046\u306B link. p \u306E\u6839\u306F\
+    \u5909\u308F\u3089\u306A\u3044.\n  void link(int p, int c) { return link(&nodes[p],\
+    \ &nodes[c]); }\n\n  // a,b \u304C\u6839\u306B\u5909\u66F4\u3055\u308C\u308B\n\
+    \  void cut(Node *a, Node *b) {\n    evert(a);\n    expose(b);\n    assert(!b->p);\n\
+    \    assert((b->l) == a);\n    // heavy edge -> no edge\n    b->l->p = nullptr;\n\
+    \    b->l = nullptr;\n    b->update();\n  }\n\n  // a,b \u304C\u6839\u306B\u5909\
+    \u66F4\u3055\u308C\u308B\n  void cut(int a, int b) { return cut(&nodes[a], &nodes[b]);\
+    \ }\n\n  // c \u3092 underlying tree \u306E\u6839\u3068\u3059\u308B.\n  // c \u306F\
+    \ splay tree \u306E\u6839\u306B\u3082\u306A\u308B.\n  // c \u306F push \u6E08\u306B\
+    \u306A\u308B\n  void evert(Node *c) {\n    expose(c);\n    c->reverse();\n   \
+    \ c->push();\n  }\n\n  // c \u3092 underlying tree \u306E\u6839\u3068\u3059\u308B\
+    .\n  // c \u306F splay tree \u306E\u6839\u306B\u3082\u306A\u308B.\n  void evert(int\
+    \ c) { evert(&nodes[c]); }\n\n  // \u6839\u306F\u5909\u3048\u306A\u3044\n  Node\
+    \ *LCA(Node *u, Node *v) {\n    assert(get_root(u) == get_root(v));\n    expose(u);\n\
+    \    return expose(v);\n  }\n\n  // \u6839\u306F\u5909\u3048\u306A\u3044\n  int\
     \ LCA(int u, int v) { return LCA(&nodes[u], &nodes[v])->idx; }\n\n  // \u8FBA\u306E\
     \u500B\u6570. \u6839\u306F\u5909\u3048\u306A\u3044.\n  int dist(int u, int v)\
     \ {\n    int w = LCA(u, v);\n    return depth(u) + depth(v) - 2 * depth(w);\n\
@@ -159,20 +160,21 @@ data:
     \    if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n    if (!n->p) return\
     \ 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r == n) return -1;\n    return\
     \ 0;\n  }\n};\n"
-  code: "/*\n\u5404 heavy path \u3092 head \u304C\u5DE6, tail \u304C\u53F3\u3068\u306A\
-    \u308B\u3088\u3046\u306B splay tree \u3067\u6301\u3064.\n\u30E6\u30FC\u30B6\u30FC\
-    \u304C\u76F4\u63A5\u547C\u3076\u53EF\u80FD\u6027\u304C\u3042\u308B\u3082\u306E\
-    \u3060\u3051 int \u3067\u3082\u5B9F\u88C5.\nLCT \u5916\u3067\u63A2\u7D22\u3059\
-    \u308B\u3068\u304D\u306A\u3069\uFF0Cpush \u3092\u5FD8\u308C\u306A\u3044\u3088\u3046\
-    \u306B\u6CE8\u610F.\n*/\n\ntemplate <typename Node>\nstruct Link_Cut_Tree {\n\
-    \  using np = Node *;\n  int n;\n  vc<Node> nodes;\n\n  Link_Cut_Tree(int n =\
-    \ 0) : n(n), nodes(n) { FOR(i, n) nodes[i] = Node(i); }\n\n  Node *operator[](int\
-    \ v) { return &nodes[v]; }\n\n  // underlying tree \u306E\u6839\n  Node *get_root(Node\
-    \ *c) {\n    expose(c);\n    c->push();\n    while (c->l) {\n      c = c->l;\n\
-    \      c->push();\n    }\n    splay(c);\n    return c;\n  }\n\n  // underlying\
-    \ tree \u306E\u6839\n  int get_root(int c) { return get_root(&nodes[c])->idx;\
-    \ }\n\n  // parent(c)==p \u3068\u306A\u308B\u3088\u3046\u306B link. p \u306E\u6839\
-    \u306F\u5909\u308F\u3089\u306A\u3044.\n  void link(Node *p, Node *c) {\n    evert(c);\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/ds/link_cut_tree.hpp\n\
+    /*\n\u5404 heavy path \u3092 head \u304C\u5DE6, tail \u304C\u53F3\u3068\u306A\u308B\
+    \u3088\u3046\u306B splay tree \u3067\u6301\u3064.\n\u30E6\u30FC\u30B6\u30FC\u304C\
+    \u76F4\u63A5\u547C\u3076\u53EF\u80FD\u6027\u304C\u3042\u308B\u3082\u306E\u3060\
+    \u3051 int \u3067\u3082\u5B9F\u88C5.\nLCT \u5916\u3067\u63A2\u7D22\u3059\u308B\
+    \u3068\u304D\u306A\u3069\uFF0Cpush \u3092\u5FD8\u308C\u306A\u3044\u3088\u3046\u306B\
+    \u6CE8\u610F.\n*/\n\ntemplate <typename Node>\nstruct Link_Cut_Tree {\n  using\
+    \ np = Node *;\n  int n;\n  vc<Node> nodes;\n\n  Link_Cut_Tree(int n = 0) : n(n),\
+    \ nodes(n) { FOR(i, n) nodes[i] = Node(i); }\n\n  Node *operator[](int v) { return\
+    \ &nodes[v]; }\n\n  // underlying tree \u306E\u6839\n  Node *get_root(Node *c)\
+    \ {\n    expose(c);\n    c->push();\n    while (c->l) {\n      c = c->l;\n   \
+    \   c->push();\n    }\n    splay(c);\n    return c;\n  }\n\n  // underlying tree\
+    \ \u306E\u6839\n  int get_root(int c) { return get_root(&nodes[c])->idx; }\n\n\
+    \  // parent(c)==p \u3068\u306A\u308B\u3088\u3046\u306B link. p \u306E\u6839\u306F\
+    \u5909\u308F\u3089\u306A\u3044.\n  void link(Node *p, Node *c) {\n    evert(c);\n\
     \    expose(p);\n    p->push();\n    // no edge -> heavy edge\n    assert(!(c->p));\n\
     \    assert(!(p->r));\n    c->p = p;\n    p->r = c;\n    p->update();\n  }\n\n\
     \  // parent(c)==p \u3068\u306A\u308B\u3088\u3046\u306B link. p \u306E\u6839\u306F\
@@ -285,8 +287,8 @@ data:
   path: graph/ds/link_cut_tree.hpp
   requiredBy:
   - graph/ds/range_edge_connected_component_query.hpp
-  timestamp: '2026-10-06 15:40:07+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-10-15 19:54:56+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/902.test.cpp
   - test/3_yukicoder/2296.test.cpp

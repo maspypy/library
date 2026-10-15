@@ -35,12 +35,14 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
+    - https://github.com/maspypy/library/blob/main/graph/count/count_labeled_undirected.hpp
     - https://oeis.org/A006125
-  bundledCode: "#line 1 \"graph/count/count_labeled_undirected.hpp\"\n// https://oeis.org/A006125\n\
-    template <typename mint>\nvc<mint> count_labeled_undirected(int N) {\n  vc<mint>\
-    \ F(N + 1);\n  mint pow2 = 1;\n  F[0] = 1;\n  FOR(i, 1, N + 1) F[i] = F[i - 1]\
-    \ * pow2, pow2 += pow2;\n  return F;\n}\n"
-  code: "// https://oeis.org/A006125\ntemplate <typename mint>\nvc<mint> count_labeled_undirected(int\
+  bundledCode: "#line 1 \"graph/count/count_labeled_undirected.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/count/count_labeled_undirected.hpp\n\
+    // https://oeis.org/A006125\ntemplate <typename mint>\nvc<mint> count_labeled_undirected(int\
+    \ N) {\n  vc<mint> F(N + 1);\n  mint pow2 = 1;\n  F[0] = 1;\n  FOR(i, 1, N + 1)\
+    \ F[i] = F[i - 1] * pow2, pow2 += pow2;\n  return F;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/count/count_labeled_undirected.hpp\n\
+    // https://oeis.org/A006125\ntemplate <typename mint>\nvc<mint> count_labeled_undirected(int\
     \ N) {\n  vc<mint> F(N + 1);\n  mint pow2 = 1;\n  F[0] = 1;\n  FOR(i, 1, N + 1)\
     \ F[i] = F[i - 1] * pow2, pow2 += pow2;\n  return F;\n}\n"
   dependsOn: []
@@ -51,7 +53,7 @@ data:
   - graph/count/count_labeled_connected.hpp
   - graph/count/count_labeled_eulerian.hpp
   - graph/count/count_labeled_bridgeless.hpp
-  timestamp: '2024-01-29 21:47:23+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/count_labeled_undirected.test.cpp

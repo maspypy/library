@@ -21,7 +21,7 @@ data:
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1211.test.cpp
     title: test/3_yukicoder/1211.test.cpp
   - icon: ':heavy_check_mark:'
@@ -34,13 +34,16 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add\
-    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\n  static constexpr X id() { return X(0); }\n\
-    \  static constexpr bool commute = true;\n};\n#line 1 \"alg/monoid_pow.hpp\"\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/functional_graph.hpp
+  bundledCode: "#line 1 \"graph/functional_graph.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/functional_graph.hpp\n\
+    #line 1 \"alg/monoid/add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
+    \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
+    \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
+    \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
+    };\n#line 1 \"alg/monoid_pow.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid_pow.hpp\n\
     \n// chat gpt\ntemplate <typename U, typename Arg1, typename Arg2>\nstruct has_power_method\
     \ {\n private:\n  // \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n\
     \  template <typename V, typename A1, typename A2>\n  static auto check(int)\n\
@@ -55,11 +58,13 @@ data:
     \ >= 0);\n    if (exp == 0) return Monoid::id();\n    if (exp == 1) return x;\n\
     \    X res = Monoid::id();\n    while (exp) {\n      if (exp & 1) res = Monoid::op(res,\
     \ x);\n      x = Monoid::op(x, x);\n      exp >>= 1;\n    }\n    return res;\n\
-    \  }\n}\n#line 1 \"graph/tree.hpp\"\n\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 ->\
-    \ Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\u305F\
-    \u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
-    \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
-    \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \  }\n}\n#line 1 \"graph/tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/tree.hpp\n\
+    \n#line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
     \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
     \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
     \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
@@ -80,7 +85,7 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -156,7 +161,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 3 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
+    \   }\n  }\n};\n#line 4 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
     \u3066\u3044\u308D\u3044\u308D\n// HLD=false: \u5165\u529B\u8FBA\u9806\u3067 preorder\n\
     template <typename GT, bool HLD = true>\nstruct Tree {\n  using Graph_type = GT;\n\
     \  using WT = typename GT::cost_type;\n  int N = 0;\n  vector<int> LID, RID, head,\
@@ -276,195 +281,184 @@ data:
     \ G.csr_edges[i];\n          if (e.to == parent[v] || e.to == max_ch) continue;\n\
     \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
     \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 1 \"\
-    ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n  vc<int>\
-    \ dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void build(int\
-    \ m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void reset()\
-    \ { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0) {\n    \
-    \  int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n      x = dat[x]\
-    \ = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
-    \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
-    \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
-    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
-    \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
-    \    return A;\n  }\n};\n#line 5 \"graph/functional_graph.hpp\"\n\r\n// \u5185\
-    \u90E8\u5B9F\u88C5\u306F N \u304C\u6839\u3068\u306A\u308B\u6728\u3092\u65B0\u305F\
-    \u306B\u4F5C\u308B\r\n// functional graph \u306E\u8FBA\u306B static \u306A\u7FA4\
-    \u306E\u8981\u7D20\u304C\u3042\u308B\u3068\u3059\u308B\r\n// \uFF08\u30E2\u30CE\
-    \u30A4\u30C9\u306B\u3082\u3067\u304D\u308B\u304C\u305D\u308C\u306F doubling \u3057\
-    \u3066\u3082\u3089\u3046\u3068\u3044\u3046\u3053\u3068\u3067\u3055\u307C\u308A\
-    . \uFF09\r\ntemplate <typename Monoid>\r\nstruct Functional_Graph {\r\n  using\
-    \ MX = Monoid;\r\n  using X = typename MX::value_type;\r\n  int N, M;\r\n  vc<int>\
-    \ TO;\r\n  vc<X> wt, dp;\r\n  vc<int> root;\r\n  Graph<int, 1> G;\r\n\r\n  Functional_Graph()\
-    \ {}\r\n  Functional_Graph(int N)\r\n      : N(N), M(0), TO(N, -1), wt(N, MX::id()),\
-    \ root(N, -1) {}\r\n\r\n  void add(int a, int b, X c = MX::id()) {\r\n    assert(0\
-    \ <= a && a < N);\r\n    assert(TO[a] == -1);\r\n    ++M;\r\n    TO[a] = b;\r\n\
-    \    wt[a] = c;\r\n  }\r\n\r\n  pair<Graph<int, 1>, Tree<Graph<int, 1>>> build()\
-    \ {\r\n    assert(N == M);\r\n    UnionFind uf(N);\r\n    FOR(v, N) if (!uf.merge(v,\
-    \ TO[v])) { root[v] = v; }\r\n    FOR(v, N) if (root[v] == v) root[uf[v]] = v;\r\
-    \n    FOR(v, N) root[v] = root[uf[v]];\r\n\r\n    G.build(N + 1);\r\n    FOR(v,\
-    \ N) {\r\n      if (root[v] == v)\r\n        G.add(N, v);\r\n      else\r\n  \
-    \      G.add(TO[v], v);\r\n    }\r\n    G.build();\r\n    Tree<Graph<int, 1>>\
-    \ tree(G, N);\r\n    dp.assign(N, MX::id());\r\n    FOR(i, 1, N + 1) {\r\n   \
-    \   int v = tree.V[i];\r\n      int p = tree.parent[v];\r\n      if (p == N) {\r\
-    \n        continue;\r\n      }\r\n      dp[v] = MX::op(wt[v], dp[p]);\r\n    }\r\
-    \n    return {G, tree};\r\n  }\r\n\r\n  // a -> b \u306B\u304B\u304B\u308B\u56DE\
-    \u6570. \u4E0D\u53EF\u80FD\u306A\u3089 infty<int>. O(1).\r\n  template <typename\
-    \ TREE>\r\n  int dist(TREE& tree, int a, int b) {\r\n    if (tree.in_subtree(a,\
-    \ b)) return tree.depth[a] - tree.depth[b];\r\n    int r = root[a];\r\n    int\
-    \ btm = TO[r];\r\n    // a -> r -> btm -> b\r\n    if (tree.in_subtree(btm, b))\
-    \ {\r\n      int x = tree.depth[a] - tree.depth[r];\r\n      x += 1;\r\n     \
-    \ x += tree.depth[btm] - tree.depth[b];\r\n      return x;\r\n    }\r\n    return\
-    \ infty<int>;\r\n  }\r\n\r\n  // functional graph \u306B\u5411\u304B\u3063\u3066\
-    \u9032\u3080\r\n  // return: \u7D42\u70B9, \u7FA4\u306E\u7A4D\r\n  template <typename\
-    \ TREE>\r\n  pair<int, X> jump(TREE& tree, int v, ll step) {\r\n    int d = tree.depth[v];\r\
-    \n    if (step <= d - 1) {\r\n      int w = tree.jump(v, N, step);\r\n      return\
-    \ {w, MX::op(dp[v], MX::inverse(dp[w]))};\r\n    }\r\n    X x = dp[v];\r\n   \
-    \ v = root[v];\r\n    step -= d - 1;\r\n    int bottom = TO[v];\r\n    int c =\
-    \ tree.depth[bottom];\r\n    x = MX::op(x, monoid_pow<MX>(MX::op(wt[v], dp[bottom]),\
-    \ step / c));\r\n    step %= c;\r\n    if (step == 0) return {v, x};\r\n    int\
-    \ w = tree.jump(bottom, N, step - 1);\r\n    x = MX::op(x, wt[v]);\r\n    x =\
-    \ MX::op(x, dp[bottom]);\r\n    x = MX::op(x, MX::inverse(dp[w]));\r\n    return\
-    \ {w, x};\r\n  }\r\n\r\n  // check(to, prod). infty<ll> \u4EE5\u4E0B. step \u3092\
-    \u304B\u3048\u3059\r\n  template <typename TREE, typename F>\r\n  ll max_jump(TREE&\
-    \ tree, F check, int v) {\r\n    X prod = MX::id();\r\n    assert(check(v, prod));\r\
-    \n    ll ans = 0;\r\n    if (check(root[v], dp[v])) {\r\n      ans += tree.depth[v]\
-    \ - 1, prod = dp[v], v = root[v];\r\n      int bottom = TO[v];\r\n      ll c =\
-    \ tree.depth[bottom];\r\n      vc<X> pw;\r\n      pw.eb(MX::op(wt[v], dp[bottom]));\r\
-    \n      FOR(k, 63) {\r\n        if (!check(root[v], MX::op(prod, pw[k]))) {\r\n\
-    \          break;\r\n        }\r\n        if (ans + (c << k) >= infty<ll>) return\
-    \ infty<ll>;\r\n        pw.eb(MX::op(pw.back(), pw.back()));\r\n      }\r\n  \
-    \    FOR_R(k, len(pw)) {\r\n        if (check(root[v], MX::op(prod, pw[k]))) {\r\
-    \n          ans = min(ans + (c << k), infty<ll>);\r\n          prod = MX::op(prod,\
-    \ pw[k]);\r\n        }\r\n      }\r\n      if (!check(bottom, MX::op(prod, wt[v])))\
-    \ return ans;\r\n      v = bottom, prod = MX::op(prod, wt[v]);\r\n    }\r\n  \
-    \  auto pd = tree.get_path_decomposition(v, root[v], false);\r\n    auto mycheck\
-    \ = [&](int w) -> bool {\r\n      X x = MX::op(prod, MX::op(dp[v], MX::inverse(dp[w])));\r\
-    \n      return check(w, x);\r\n    };\r\n    int last = v;\r\n    for (auto [a,\
-    \ b] : pd) {\r\n      swap(a, b);\r\n      assert(a <= b);\r\n      if (mycheck(tree.V[a]))\
-    \ {\r\n        last = tree.V[a];\r\n        continue;\r\n      }\r\n      if (!mycheck(tree.V[b]))\
-    \ {\r\n        break;\r\n      }\r\n      int k = binary_search([&](int i) ->\
-    \ bool { return mycheck(tree.V[i]); },\r\n                            b, a, 0);\r\
-    \n      last = tree.V[k];\r\n      break;\r\n    }\r\n    ans += tree.depth[v]\
-    \ - tree.depth[last];\r\n    return min(ans, infty<ll>);\r\n  }\r\n\r\n  // functional\
-    \ graph \u306B step \u56DE\u9032\u3080\r\n  template <typename TREE>\r\n  vc<int>\
-    \ jump_all(TREE& tree, ll step) {\r\n    vc<int> res(N, -1);\r\n    // v \u306E\
-    \ k \u500B\u5148\u3092 res[w] \u306B\u5165\u308C\u308B\r\n    vvc<pair<int, int>>\
-    \ query(N);\r\n    FOR(v, N) {\r\n      int d = tree.depth[v];\r\n      int r\
-    \ = root[v];\r\n      if (d - 1 > step) {\r\n        query[v].eb(v, step);\r\n\
-    \      }\r\n      if (d - 1 <= step) {\r\n        ll k = step - (d - 1);\r\n \
-    \       int bottom = TO[r];\r\n        int c = tree.depth[bottom];\r\n       \
-    \ k %= c;\r\n        if (k == 0) {\r\n          res[v] = r;\r\n          continue;\r\
-    \n        }\r\n        query[bottom].eb(v, k - 1);\r\n      }\r\n    }\r\n\r\n\
-    \    vc<int> path;\r\n    auto dfs = [&](auto& dfs, int v) -> void {\r\n     \
-    \ path.eb(v);\r\n      for (auto&& [w, k] : query[v]) {\r\n        res[w] = path[len(path)\
-    \ - 1 - k];\r\n      }\r\n      for (auto&& e : G[v]) dfs(dfs, e.to);\r\n    \
-    \  path.pop_back();\r\n    };\r\n    for (auto&& e : G[N]) {\r\n      dfs(dfs,\
-    \ e.to);\r\n    }\r\n    return res;\r\n  }\r\n\r\n  template <typename TREE>\r\
-    \n  bool in_cycle(TREE& tree, int v) {\r\n    int r = root[v];\r\n    int bottom\
-    \ = TO[r];\r\n    return tree.in_subtree(bottom, v);\r\n  }\r\n\r\n  // \u8449\
-    \u5074\u304B\u3089\u9806\u306B\u306A\u3089\u3093\u3060\u3082\u306E\u3092\u51FA\
-    \u529B\r\n  vc<int> collect_cycle(int r) {\r\n    assert(r == root[r]);\r\n  \
-    \  vc<int> cyc = {TO[r]};\r\n    while (cyc.back() != r) cyc.eb(TO[cyc.back()]);\r\
-    \n    return cyc;\r\n  }\r\n\r\n  // F^k(i)==F^k(j) \u3068\u306A\u308B\u6700\u5C0F\
-    \u306E k OR -1\r\n  template <typename TREE>\r\n  int meet_time(TREE& tree, int\
-    \ i, int j) {\r\n    if (i == j) return 0;\r\n    if (root[i] != root[j]) return\
-    \ -1;\r\n    int r = root[i];\r\n    int b = TO[r];\r\n    int n = tree.depth[b]\
-    \ - tree.depth[r] + 1;  // cyc len\r\n    if ((tree.depth[i] - tree.depth[j])\
-    \ % n != 0) return -1;\r\n\r\n    if (tree.depth[i] == tree.depth[j]) {\r\n  \
-    \    int lca = tree.LCA(i, j);\r\n      return tree.depth[i] - tree.depth[lca];\r\
-    \n    }\r\n    int ti = tree.depth[i] - tree.depth[tree.LCA(b, i)];\r\n    int\
-    \ tj = tree.depth[j] - tree.depth[tree.LCA(b, j)];\r\n    return max(ti, tj);\r\
-    \n  }\r\n};\r\n"
-  code: "#include \"alg/monoid/add.hpp\"\r\n#include \"alg/monoid_pow.hpp\"\r\n#include\
-    \ \"graph/tree.hpp\"\r\n#include \"ds/unionfind/unionfind.hpp\"\r\n\r\n// \u5185\
-    \u90E8\u5B9F\u88C5\u306F N \u304C\u6839\u3068\u306A\u308B\u6728\u3092\u65B0\u305F\
-    \u306B\u4F5C\u308B\r\n// functional graph \u306E\u8FBA\u306B static \u306A\u7FA4\
-    \u306E\u8981\u7D20\u304C\u3042\u308B\u3068\u3059\u308B\r\n// \uFF08\u30E2\u30CE\
-    \u30A4\u30C9\u306B\u3082\u3067\u304D\u308B\u304C\u305D\u308C\u306F doubling \u3057\
-    \u3066\u3082\u3089\u3046\u3068\u3044\u3046\u3053\u3068\u3067\u3055\u307C\u308A\
-    . \uFF09\r\ntemplate <typename Monoid>\r\nstruct Functional_Graph {\r\n  using\
-    \ MX = Monoid;\r\n  using X = typename MX::value_type;\r\n  int N, M;\r\n  vc<int>\
-    \ TO;\r\n  vc<X> wt, dp;\r\n  vc<int> root;\r\n  Graph<int, 1> G;\r\n\r\n  Functional_Graph()\
-    \ {}\r\n  Functional_Graph(int N)\r\n      : N(N), M(0), TO(N, -1), wt(N, MX::id()),\
-    \ root(N, -1) {}\r\n\r\n  void add(int a, int b, X c = MX::id()) {\r\n    assert(0\
-    \ <= a && a < N);\r\n    assert(TO[a] == -1);\r\n    ++M;\r\n    TO[a] = b;\r\n\
-    \    wt[a] = c;\r\n  }\r\n\r\n  pair<Graph<int, 1>, Tree<Graph<int, 1>>> build()\
-    \ {\r\n    assert(N == M);\r\n    UnionFind uf(N);\r\n    FOR(v, N) if (!uf.merge(v,\
-    \ TO[v])) { root[v] = v; }\r\n    FOR(v, N) if (root[v] == v) root[uf[v]] = v;\r\
-    \n    FOR(v, N) root[v] = root[uf[v]];\r\n\r\n    G.build(N + 1);\r\n    FOR(v,\
-    \ N) {\r\n      if (root[v] == v)\r\n        G.add(N, v);\r\n      else\r\n  \
-    \      G.add(TO[v], v);\r\n    }\r\n    G.build();\r\n    Tree<Graph<int, 1>>\
-    \ tree(G, N);\r\n    dp.assign(N, MX::id());\r\n    FOR(i, 1, N + 1) {\r\n   \
-    \   int v = tree.V[i];\r\n      int p = tree.parent[v];\r\n      if (p == N) {\r\
-    \n        continue;\r\n      }\r\n      dp[v] = MX::op(wt[v], dp[p]);\r\n    }\r\
-    \n    return {G, tree};\r\n  }\r\n\r\n  // a -> b \u306B\u304B\u304B\u308B\u56DE\
-    \u6570. \u4E0D\u53EF\u80FD\u306A\u3089 infty<int>. O(1).\r\n  template <typename\
-    \ TREE>\r\n  int dist(TREE& tree, int a, int b) {\r\n    if (tree.in_subtree(a,\
-    \ b)) return tree.depth[a] - tree.depth[b];\r\n    int r = root[a];\r\n    int\
-    \ btm = TO[r];\r\n    // a -> r -> btm -> b\r\n    if (tree.in_subtree(btm, b))\
-    \ {\r\n      int x = tree.depth[a] - tree.depth[r];\r\n      x += 1;\r\n     \
-    \ x += tree.depth[btm] - tree.depth[b];\r\n      return x;\r\n    }\r\n    return\
-    \ infty<int>;\r\n  }\r\n\r\n  // functional graph \u306B\u5411\u304B\u3063\u3066\
-    \u9032\u3080\r\n  // return: \u7D42\u70B9, \u7FA4\u306E\u7A4D\r\n  template <typename\
-    \ TREE>\r\n  pair<int, X> jump(TREE& tree, int v, ll step) {\r\n    int d = tree.depth[v];\r\
-    \n    if (step <= d - 1) {\r\n      int w = tree.jump(v, N, step);\r\n      return\
-    \ {w, MX::op(dp[v], MX::inverse(dp[w]))};\r\n    }\r\n    X x = dp[v];\r\n   \
-    \ v = root[v];\r\n    step -= d - 1;\r\n    int bottom = TO[v];\r\n    int c =\
-    \ tree.depth[bottom];\r\n    x = MX::op(x, monoid_pow<MX>(MX::op(wt[v], dp[bottom]),\
-    \ step / c));\r\n    step %= c;\r\n    if (step == 0) return {v, x};\r\n    int\
-    \ w = tree.jump(bottom, N, step - 1);\r\n    x = MX::op(x, wt[v]);\r\n    x =\
-    \ MX::op(x, dp[bottom]);\r\n    x = MX::op(x, MX::inverse(dp[w]));\r\n    return\
-    \ {w, x};\r\n  }\r\n\r\n  // check(to, prod). infty<ll> \u4EE5\u4E0B. step \u3092\
-    \u304B\u3048\u3059\r\n  template <typename TREE, typename F>\r\n  ll max_jump(TREE&\
-    \ tree, F check, int v) {\r\n    X prod = MX::id();\r\n    assert(check(v, prod));\r\
-    \n    ll ans = 0;\r\n    if (check(root[v], dp[v])) {\r\n      ans += tree.depth[v]\
-    \ - 1, prod = dp[v], v = root[v];\r\n      int bottom = TO[v];\r\n      ll c =\
-    \ tree.depth[bottom];\r\n      vc<X> pw;\r\n      pw.eb(MX::op(wt[v], dp[bottom]));\r\
-    \n      FOR(k, 63) {\r\n        if (!check(root[v], MX::op(prod, pw[k]))) {\r\n\
-    \          break;\r\n        }\r\n        if (ans + (c << k) >= infty<ll>) return\
-    \ infty<ll>;\r\n        pw.eb(MX::op(pw.back(), pw.back()));\r\n      }\r\n  \
-    \    FOR_R(k, len(pw)) {\r\n        if (check(root[v], MX::op(prod, pw[k]))) {\r\
-    \n          ans = min(ans + (c << k), infty<ll>);\r\n          prod = MX::op(prod,\
-    \ pw[k]);\r\n        }\r\n      }\r\n      if (!check(bottom, MX::op(prod, wt[v])))\
-    \ return ans;\r\n      v = bottom, prod = MX::op(prod, wt[v]);\r\n    }\r\n  \
-    \  auto pd = tree.get_path_decomposition(v, root[v], false);\r\n    auto mycheck\
-    \ = [&](int w) -> bool {\r\n      X x = MX::op(prod, MX::op(dp[v], MX::inverse(dp[w])));\r\
-    \n      return check(w, x);\r\n    };\r\n    int last = v;\r\n    for (auto [a,\
-    \ b] : pd) {\r\n      swap(a, b);\r\n      assert(a <= b);\r\n      if (mycheck(tree.V[a]))\
-    \ {\r\n        last = tree.V[a];\r\n        continue;\r\n      }\r\n      if (!mycheck(tree.V[b]))\
-    \ {\r\n        break;\r\n      }\r\n      int k = binary_search([&](int i) ->\
-    \ bool { return mycheck(tree.V[i]); },\r\n                            b, a, 0);\r\
-    \n      last = tree.V[k];\r\n      break;\r\n    }\r\n    ans += tree.depth[v]\
-    \ - tree.depth[last];\r\n    return min(ans, infty<ll>);\r\n  }\r\n\r\n  // functional\
-    \ graph \u306B step \u56DE\u9032\u3080\r\n  template <typename TREE>\r\n  vc<int>\
-    \ jump_all(TREE& tree, ll step) {\r\n    vc<int> res(N, -1);\r\n    // v \u306E\
-    \ k \u500B\u5148\u3092 res[w] \u306B\u5165\u308C\u308B\r\n    vvc<pair<int, int>>\
-    \ query(N);\r\n    FOR(v, N) {\r\n      int d = tree.depth[v];\r\n      int r\
-    \ = root[v];\r\n      if (d - 1 > step) {\r\n        query[v].eb(v, step);\r\n\
-    \      }\r\n      if (d - 1 <= step) {\r\n        ll k = step - (d - 1);\r\n \
-    \       int bottom = TO[r];\r\n        int c = tree.depth[bottom];\r\n       \
-    \ k %= c;\r\n        if (k == 0) {\r\n          res[v] = r;\r\n          continue;\r\
-    \n        }\r\n        query[bottom].eb(v, k - 1);\r\n      }\r\n    }\r\n\r\n\
-    \    vc<int> path;\r\n    auto dfs = [&](auto& dfs, int v) -> void {\r\n     \
-    \ path.eb(v);\r\n      for (auto&& [w, k] : query[v]) {\r\n        res[w] = path[len(path)\
-    \ - 1 - k];\r\n      }\r\n      for (auto&& e : G[v]) dfs(dfs, e.to);\r\n    \
-    \  path.pop_back();\r\n    };\r\n    for (auto&& e : G[N]) {\r\n      dfs(dfs,\
-    \ e.to);\r\n    }\r\n    return res;\r\n  }\r\n\r\n  template <typename TREE>\r\
-    \n  bool in_cycle(TREE& tree, int v) {\r\n    int r = root[v];\r\n    int bottom\
-    \ = TO[r];\r\n    return tree.in_subtree(bottom, v);\r\n  }\r\n\r\n  // \u8449\
-    \u5074\u304B\u3089\u9806\u306B\u306A\u3089\u3093\u3060\u3082\u306E\u3092\u51FA\
-    \u529B\r\n  vc<int> collect_cycle(int r) {\r\n    assert(r == root[r]);\r\n  \
-    \  vc<int> cyc = {TO[r]};\r\n    while (cyc.back() != r) cyc.eb(TO[cyc.back()]);\r\
-    \n    return cyc;\r\n  }\r\n\r\n  // F^k(i)==F^k(j) \u3068\u306A\u308B\u6700\u5C0F\
-    \u306E k OR -1\r\n  template <typename TREE>\r\n  int meet_time(TREE& tree, int\
-    \ i, int j) {\r\n    if (i == j) return 0;\r\n    if (root[i] != root[j]) return\
-    \ -1;\r\n    int r = root[i];\r\n    int b = TO[r];\r\n    int n = tree.depth[b]\
-    \ - tree.depth[r] + 1;  // cyc len\r\n    if ((tree.depth[i] - tree.depth[j])\
-    \ % n != 0) return -1;\r\n\r\n    if (tree.depth[i] == tree.depth[j]) {\r\n  \
-    \    int lca = tree.LCA(i, j);\r\n      return tree.depth[i] - tree.depth[lca];\r\
-    \n    }\r\n    int ti = tree.depth[i] - tree.depth[tree.LCA(b, i)];\r\n    int\
-    \ tj = tree.depth[j] - tree.depth[tree.LCA(b, j)];\r\n    return max(ti, tj);\r\
-    \n  }\r\n};\r\n"
+    ds/unionfind/unionfind.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\n\
+    \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
+    \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
+    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
+    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
+    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
+    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
+    \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
+    \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
+    \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
+    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 6 \"graph/functional_graph.hpp\"\
+    \n\n// \u5185\u90E8\u5B9F\u88C5\u306F N \u304C\u6839\u3068\u306A\u308B\u6728\u3092\
+    \u65B0\u305F\u306B\u4F5C\u308B\n// functional graph \u306E\u8FBA\u306B static\
+    \ \u306A\u7FA4\u306E\u8981\u7D20\u304C\u3042\u308B\u3068\u3059\u308B\n// \uFF08\
+    \u30E2\u30CE\u30A4\u30C9\u306B\u3082\u3067\u304D\u308B\u304C\u305D\u308C\u306F\
+    \ doubling \u3057\u3066\u3082\u3089\u3046\u3068\u3044\u3046\u3053\u3068\u3067\u3055\
+    \u307C\u308A. \uFF09\ntemplate <typename Monoid>\nstruct Functional_Graph {\n\
+    \  using MX = Monoid;\n  using X = typename MX::value_type;\n  int N, M;\n  vc<int>\
+    \ TO;\n  vc<X> wt, dp;\n  vc<int> root;\n  Graph<int, 1> G;\n\n  Functional_Graph()\
+    \ {}\n  Functional_Graph(int N)\n      : N(N), M(0), TO(N, -1), wt(N, MX::id()),\
+    \ root(N, -1) {}\n\n  void add(int a, int b, X c = MX::id()) {\n    assert(0 <=\
+    \ a && a < N);\n    assert(TO[a] == -1);\n    ++M;\n    TO[a] = b;\n    wt[a]\
+    \ = c;\n  }\n\n  pair<Graph<int, 1>, Tree<Graph<int, 1>>> build() {\n    assert(N\
+    \ == M);\n    UnionFind uf(N);\n    FOR(v, N) if (!uf.merge(v, TO[v])) { root[v]\
+    \ = v; }\n    FOR(v, N) if (root[v] == v) root[uf[v]] = v;\n    FOR(v, N) root[v]\
+    \ = root[uf[v]];\n\n    G.build(N + 1);\n    FOR(v, N) {\n      if (root[v] ==\
+    \ v)\n        G.add(N, v);\n      else\n        G.add(TO[v], v);\n    }\n    G.build();\n\
+    \    Tree<Graph<int, 1>> tree(G, N);\n    dp.assign(N, MX::id());\n    FOR(i,\
+    \ 1, N + 1) {\n      int v = tree.V[i];\n      int p = tree.parent[v];\n     \
+    \ if (p == N) {\n        continue;\n      }\n      dp[v] = MX::op(wt[v], dp[p]);\n\
+    \    }\n    return {G, tree};\n  }\n\n  // a -> b \u306B\u304B\u304B\u308B\u56DE\
+    \u6570. \u4E0D\u53EF\u80FD\u306A\u3089 infty<int>. O(1).\n  template <typename\
+    \ TREE>\n  int dist(TREE& tree, int a, int b) {\n    if (tree.in_subtree(a, b))\
+    \ return tree.depth[a] - tree.depth[b];\n    int r = root[a];\n    int btm = TO[r];\n\
+    \    // a -> r -> btm -> b\n    if (tree.in_subtree(btm, b)) {\n      int x =\
+    \ tree.depth[a] - tree.depth[r];\n      x += 1;\n      x += tree.depth[btm] -\
+    \ tree.depth[b];\n      return x;\n    }\n    return infty<int>;\n  }\n\n  //\
+    \ functional graph \u306B\u5411\u304B\u3063\u3066\u9032\u3080\n  // return: \u7D42\
+    \u70B9, \u7FA4\u306E\u7A4D\n  template <typename TREE>\n  pair<int, X> jump(TREE&\
+    \ tree, int v, ll step) {\n    int d = tree.depth[v];\n    if (step <= d - 1)\
+    \ {\n      int w = tree.jump(v, N, step);\n      return {w, MX::op(dp[v], MX::inverse(dp[w]))};\n\
+    \    }\n    X x = dp[v];\n    v = root[v];\n    step -= d - 1;\n    int bottom\
+    \ = TO[v];\n    int c = tree.depth[bottom];\n    x = MX::op(x, monoid_pow<MX>(MX::op(wt[v],\
+    \ dp[bottom]), step / c));\n    step %= c;\n    if (step == 0) return {v, x};\n\
+    \    int w = tree.jump(bottom, N, step - 1);\n    x = MX::op(x, wt[v]);\n    x\
+    \ = MX::op(x, dp[bottom]);\n    x = MX::op(x, MX::inverse(dp[w]));\n    return\
+    \ {w, x};\n  }\n\n  // check(to, prod). infty<ll> \u4EE5\u4E0B. step \u3092\u304B\
+    \u3048\u3059\n  template <typename TREE, typename F>\n  ll max_jump(TREE& tree,\
+    \ F check, int v) {\n    X prod = MX::id();\n    assert(check(v, prod));\n   \
+    \ ll ans = 0;\n    if (check(root[v], dp[v])) {\n      ans += tree.depth[v] -\
+    \ 1, prod = dp[v], v = root[v];\n      int bottom = TO[v];\n      ll c = tree.depth[bottom];\n\
+    \      vc<X> pw;\n      pw.eb(MX::op(wt[v], dp[bottom]));\n      FOR(k, 63) {\n\
+    \        if (!check(root[v], MX::op(prod, pw[k]))) {\n          break;\n     \
+    \   }\n        if (ans + (c << k) >= infty<ll>) return infty<ll>;\n        pw.eb(MX::op(pw.back(),\
+    \ pw.back()));\n      }\n      FOR_R(k, len(pw)) {\n        if (check(root[v],\
+    \ MX::op(prod, pw[k]))) {\n          ans = min(ans + (c << k), infty<ll>);\n \
+    \         prod = MX::op(prod, pw[k]);\n        }\n      }\n      if (!check(bottom,\
+    \ MX::op(prod, wt[v]))) return ans;\n      v = bottom, prod = MX::op(prod, wt[v]);\n\
+    \    }\n    auto pd = tree.get_path_decomposition(v, root[v], false);\n    auto\
+    \ mycheck = [&](int w) -> bool {\n      X x = MX::op(prod, MX::op(dp[v], MX::inverse(dp[w])));\n\
+    \      return check(w, x);\n    };\n    int last = v;\n    for (auto [a, b] :\
+    \ pd) {\n      swap(a, b);\n      assert(a <= b);\n      if (mycheck(tree.V[a]))\
+    \ {\n        last = tree.V[a];\n        continue;\n      }\n      if (!mycheck(tree.V[b]))\
+    \ {\n        break;\n      }\n      int k = binary_search([&](int i) -> bool {\
+    \ return mycheck(tree.V[i]); },\n                            b, a, 0);\n     \
+    \ last = tree.V[k];\n      break;\n    }\n    ans += tree.depth[v] - tree.depth[last];\n\
+    \    return min(ans, infty<ll>);\n  }\n\n  // functional graph \u306B step \u56DE\
+    \u9032\u3080\n  template <typename TREE>\n  vc<int> jump_all(TREE& tree, ll step)\
+    \ {\n    vc<int> res(N, -1);\n    // v \u306E k \u500B\u5148\u3092 res[w] \u306B\
+    \u5165\u308C\u308B\n    vvc<pair<int, int>> query(N);\n    FOR(v, N) {\n     \
+    \ int d = tree.depth[v];\n      int r = root[v];\n      if (d - 1 > step) {\n\
+    \        query[v].eb(v, step);\n      }\n      if (d - 1 <= step) {\n        ll\
+    \ k = step - (d - 1);\n        int bottom = TO[r];\n        int c = tree.depth[bottom];\n\
+    \        k %= c;\n        if (k == 0) {\n          res[v] = r;\n          continue;\n\
+    \        }\n        query[bottom].eb(v, k - 1);\n      }\n    }\n\n    vc<int>\
+    \ path;\n    auto dfs = [&](auto& dfs, int v) -> void {\n      path.eb(v);\n \
+    \     for (auto&& [w, k] : query[v]) {\n        res[w] = path[len(path) - 1 -\
+    \ k];\n      }\n      for (auto&& e : G[v]) dfs(dfs, e.to);\n      path.pop_back();\n\
+    \    };\n    for (auto&& e : G[N]) {\n      dfs(dfs, e.to);\n    }\n    return\
+    \ res;\n  }\n\n  template <typename TREE>\n  bool in_cycle(TREE& tree, int v)\
+    \ {\n    int r = root[v];\n    int bottom = TO[r];\n    return tree.in_subtree(bottom,\
+    \ v);\n  }\n\n  // \u8449\u5074\u304B\u3089\u9806\u306B\u306A\u3089\u3093\u3060\
+    \u3082\u306E\u3092\u51FA\u529B\n  vc<int> collect_cycle(int r) {\n    assert(r\
+    \ == root[r]);\n    vc<int> cyc = {TO[r]};\n    while (cyc.back() != r) cyc.eb(TO[cyc.back()]);\n\
+    \    return cyc;\n  }\n\n  // F^k(i)==F^k(j) \u3068\u306A\u308B\u6700\u5C0F\u306E\
+    \ k OR -1\n  template <typename TREE>\n  int meet_time(TREE& tree, int i, int\
+    \ j) {\n    if (i == j) return 0;\n    if (root[i] != root[j]) return -1;\n  \
+    \  int r = root[i];\n    int b = TO[r];\n    int n = tree.depth[b] - tree.depth[r]\
+    \ + 1;  // cyc len\n    if ((tree.depth[i] - tree.depth[j]) % n != 0) return -1;\n\
+    \n    if (tree.depth[i] == tree.depth[j]) {\n      int lca = tree.LCA(i, j);\n\
+    \      return tree.depth[i] - tree.depth[lca];\n    }\n    int ti = tree.depth[i]\
+    \ - tree.depth[tree.LCA(b, i)];\n    int tj = tree.depth[j] - tree.depth[tree.LCA(b,\
+    \ j)];\n    return max(ti, tj);\n  }\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/functional_graph.hpp\n\
+    #include \"alg/monoid/add.hpp\"\n#include \"alg/monoid_pow.hpp\"\n#include \"\
+    graph/tree.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\n\n// \u5185\u90E8\u5B9F\
+    \u88C5\u306F N \u304C\u6839\u3068\u306A\u308B\u6728\u3092\u65B0\u305F\u306B\u4F5C\
+    \u308B\n// functional graph \u306E\u8FBA\u306B static \u306A\u7FA4\u306E\u8981\
+    \u7D20\u304C\u3042\u308B\u3068\u3059\u308B\n// \uFF08\u30E2\u30CE\u30A4\u30C9\u306B\
+    \u3082\u3067\u304D\u308B\u304C\u305D\u308C\u306F doubling \u3057\u3066\u3082\u3089\
+    \u3046\u3068\u3044\u3046\u3053\u3068\u3067\u3055\u307C\u308A. \uFF09\ntemplate\
+    \ <typename Monoid>\nstruct Functional_Graph {\n  using MX = Monoid;\n  using\
+    \ X = typename MX::value_type;\n  int N, M;\n  vc<int> TO;\n  vc<X> wt, dp;\n\
+    \  vc<int> root;\n  Graph<int, 1> G;\n\n  Functional_Graph() {}\n  Functional_Graph(int\
+    \ N)\n      : N(N), M(0), TO(N, -1), wt(N, MX::id()), root(N, -1) {}\n\n  void\
+    \ add(int a, int b, X c = MX::id()) {\n    assert(0 <= a && a < N);\n    assert(TO[a]\
+    \ == -1);\n    ++M;\n    TO[a] = b;\n    wt[a] = c;\n  }\n\n  pair<Graph<int,\
+    \ 1>, Tree<Graph<int, 1>>> build() {\n    assert(N == M);\n    UnionFind uf(N);\n\
+    \    FOR(v, N) if (!uf.merge(v, TO[v])) { root[v] = v; }\n    FOR(v, N) if (root[v]\
+    \ == v) root[uf[v]] = v;\n    FOR(v, N) root[v] = root[uf[v]];\n\n    G.build(N\
+    \ + 1);\n    FOR(v, N) {\n      if (root[v] == v)\n        G.add(N, v);\n    \
+    \  else\n        G.add(TO[v], v);\n    }\n    G.build();\n    Tree<Graph<int,\
+    \ 1>> tree(G, N);\n    dp.assign(N, MX::id());\n    FOR(i, 1, N + 1) {\n     \
+    \ int v = tree.V[i];\n      int p = tree.parent[v];\n      if (p == N) {\n   \
+    \     continue;\n      }\n      dp[v] = MX::op(wt[v], dp[p]);\n    }\n    return\
+    \ {G, tree};\n  }\n\n  // a -> b \u306B\u304B\u304B\u308B\u56DE\u6570. \u4E0D\u53EF\
+    \u80FD\u306A\u3089 infty<int>. O(1).\n  template <typename TREE>\n  int dist(TREE&\
+    \ tree, int a, int b) {\n    if (tree.in_subtree(a, b)) return tree.depth[a] -\
+    \ tree.depth[b];\n    int r = root[a];\n    int btm = TO[r];\n    // a -> r ->\
+    \ btm -> b\n    if (tree.in_subtree(btm, b)) {\n      int x = tree.depth[a] -\
+    \ tree.depth[r];\n      x += 1;\n      x += tree.depth[btm] - tree.depth[b];\n\
+    \      return x;\n    }\n    return infty<int>;\n  }\n\n  // functional graph\
+    \ \u306B\u5411\u304B\u3063\u3066\u9032\u3080\n  // return: \u7D42\u70B9, \u7FA4\
+    \u306E\u7A4D\n  template <typename TREE>\n  pair<int, X> jump(TREE& tree, int\
+    \ v, ll step) {\n    int d = tree.depth[v];\n    if (step <= d - 1) {\n      int\
+    \ w = tree.jump(v, N, step);\n      return {w, MX::op(dp[v], MX::inverse(dp[w]))};\n\
+    \    }\n    X x = dp[v];\n    v = root[v];\n    step -= d - 1;\n    int bottom\
+    \ = TO[v];\n    int c = tree.depth[bottom];\n    x = MX::op(x, monoid_pow<MX>(MX::op(wt[v],\
+    \ dp[bottom]), step / c));\n    step %= c;\n    if (step == 0) return {v, x};\n\
+    \    int w = tree.jump(bottom, N, step - 1);\n    x = MX::op(x, wt[v]);\n    x\
+    \ = MX::op(x, dp[bottom]);\n    x = MX::op(x, MX::inverse(dp[w]));\n    return\
+    \ {w, x};\n  }\n\n  // check(to, prod). infty<ll> \u4EE5\u4E0B. step \u3092\u304B\
+    \u3048\u3059\n  template <typename TREE, typename F>\n  ll max_jump(TREE& tree,\
+    \ F check, int v) {\n    X prod = MX::id();\n    assert(check(v, prod));\n   \
+    \ ll ans = 0;\n    if (check(root[v], dp[v])) {\n      ans += tree.depth[v] -\
+    \ 1, prod = dp[v], v = root[v];\n      int bottom = TO[v];\n      ll c = tree.depth[bottom];\n\
+    \      vc<X> pw;\n      pw.eb(MX::op(wt[v], dp[bottom]));\n      FOR(k, 63) {\n\
+    \        if (!check(root[v], MX::op(prod, pw[k]))) {\n          break;\n     \
+    \   }\n        if (ans + (c << k) >= infty<ll>) return infty<ll>;\n        pw.eb(MX::op(pw.back(),\
+    \ pw.back()));\n      }\n      FOR_R(k, len(pw)) {\n        if (check(root[v],\
+    \ MX::op(prod, pw[k]))) {\n          ans = min(ans + (c << k), infty<ll>);\n \
+    \         prod = MX::op(prod, pw[k]);\n        }\n      }\n      if (!check(bottom,\
+    \ MX::op(prod, wt[v]))) return ans;\n      v = bottom, prod = MX::op(prod, wt[v]);\n\
+    \    }\n    auto pd = tree.get_path_decomposition(v, root[v], false);\n    auto\
+    \ mycheck = [&](int w) -> bool {\n      X x = MX::op(prod, MX::op(dp[v], MX::inverse(dp[w])));\n\
+    \      return check(w, x);\n    };\n    int last = v;\n    for (auto [a, b] :\
+    \ pd) {\n      swap(a, b);\n      assert(a <= b);\n      if (mycheck(tree.V[a]))\
+    \ {\n        last = tree.V[a];\n        continue;\n      }\n      if (!mycheck(tree.V[b]))\
+    \ {\n        break;\n      }\n      int k = binary_search([&](int i) -> bool {\
+    \ return mycheck(tree.V[i]); },\n                            b, a, 0);\n     \
+    \ last = tree.V[k];\n      break;\n    }\n    ans += tree.depth[v] - tree.depth[last];\n\
+    \    return min(ans, infty<ll>);\n  }\n\n  // functional graph \u306B step \u56DE\
+    \u9032\u3080\n  template <typename TREE>\n  vc<int> jump_all(TREE& tree, ll step)\
+    \ {\n    vc<int> res(N, -1);\n    // v \u306E k \u500B\u5148\u3092 res[w] \u306B\
+    \u5165\u308C\u308B\n    vvc<pair<int, int>> query(N);\n    FOR(v, N) {\n     \
+    \ int d = tree.depth[v];\n      int r = root[v];\n      if (d - 1 > step) {\n\
+    \        query[v].eb(v, step);\n      }\n      if (d - 1 <= step) {\n        ll\
+    \ k = step - (d - 1);\n        int bottom = TO[r];\n        int c = tree.depth[bottom];\n\
+    \        k %= c;\n        if (k == 0) {\n          res[v] = r;\n          continue;\n\
+    \        }\n        query[bottom].eb(v, k - 1);\n      }\n    }\n\n    vc<int>\
+    \ path;\n    auto dfs = [&](auto& dfs, int v) -> void {\n      path.eb(v);\n \
+    \     for (auto&& [w, k] : query[v]) {\n        res[w] = path[len(path) - 1 -\
+    \ k];\n      }\n      for (auto&& e : G[v]) dfs(dfs, e.to);\n      path.pop_back();\n\
+    \    };\n    for (auto&& e : G[N]) {\n      dfs(dfs, e.to);\n    }\n    return\
+    \ res;\n  }\n\n  template <typename TREE>\n  bool in_cycle(TREE& tree, int v)\
+    \ {\n    int r = root[v];\n    int bottom = TO[r];\n    return tree.in_subtree(bottom,\
+    \ v);\n  }\n\n  // \u8449\u5074\u304B\u3089\u9806\u306B\u306A\u3089\u3093\u3060\
+    \u3082\u306E\u3092\u51FA\u529B\n  vc<int> collect_cycle(int r) {\n    assert(r\
+    \ == root[r]);\n    vc<int> cyc = {TO[r]};\n    while (cyc.back() != r) cyc.eb(TO[cyc.back()]);\n\
+    \    return cyc;\n  }\n\n  // F^k(i)==F^k(j) \u3068\u306A\u308B\u6700\u5C0F\u306E\
+    \ k OR -1\n  template <typename TREE>\n  int meet_time(TREE& tree, int i, int\
+    \ j) {\n    if (i == j) return 0;\n    if (root[i] != root[j]) return -1;\n  \
+    \  int r = root[i];\n    int b = TO[r];\n    int n = tree.depth[b] - tree.depth[r]\
+    \ + 1;  // cyc len\n    if ((tree.depth[i] - tree.depth[j]) % n != 0) return -1;\n\
+    \n    if (tree.depth[i] == tree.depth[j]) {\n      int lca = tree.LCA(i, j);\n\
+    \      return tree.depth[i] - tree.depth[lca];\n    }\n    int ti = tree.depth[i]\
+    \ - tree.depth[tree.LCA(b, i)];\n    int tj = tree.depth[j] - tree.depth[tree.LCA(b,\
+    \ j)];\n    return max(ti, tj);\n  }\n};\n"
   dependsOn:
   - alg/monoid/add.hpp
   - alg/monoid_pow.hpp
@@ -475,7 +469,7 @@ data:
   isVerificationFile: false
   path: graph/functional_graph.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:24:01+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1211.test.cpp

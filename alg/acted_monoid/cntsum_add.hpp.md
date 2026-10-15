@@ -16,25 +16,29 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/add_pair.hpp\"\n\ntemplate <typename E>\nstruct\
-    \ Monoid_Add_Pair {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
-    \  static constexpr X op(const X &x, const X &y) {\n    return {x.fi + y.fi, x.se\
-    \ + y.se};\n  }\n  static constexpr X inverse(const X &x) { return {-x.fi, -x.se};\
-    \ }\n  static constexpr X id() { return {0, 0}; }\n  static constexpr bool commute\
-    \ = true;\n};\n#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct\
-    \ Monoid_Add {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
-    \ op(const X &x, const X &y) noexcept { return x + y; }\n  static constexpr X\
-    \ inverse(const X &x) noexcept { return -x; }\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\n  static constexpr X id() { return\
-    \ X(0); }\n  static constexpr bool commute = true;\n};\n#line 3 \"alg/acted_monoid/cntsum_add.hpp\"\
-    \n\ntemplate <typename E>\nstruct ActedMonoid_CntSum_Add {\n  using Monoid_X =\
-    \ Monoid_Add_Pair<E>;\n  using Monoid_A = Monoid_Add<E>;\n  using X = typename\
-    \ Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n  static\
-    \ constexpr X act(const X &x, const A &a, const ll &size) {\n    return {x.fi,\
-    \ x.se + x.fi * a};\n  }\n};\n"
-  code: "#include \"alg/monoid/add_pair.hpp\"\n#include \"alg/monoid/add.hpp\"\n\n\
-    template <typename E>\nstruct ActedMonoid_CntSum_Add {\n  using Monoid_X = Monoid_Add_Pair<E>;\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/acted_monoid/cntsum_add.hpp
+  bundledCode: "#line 1 \"alg/acted_monoid/cntsum_add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/cntsum_add.hpp\n\
+    #line 1 \"alg/monoid/add_pair.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add_pair.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add_Pair {\n  using value_type = pair<E,\
+    \ E>;\n  using X = value_type;\n  static constexpr X op(const X &x, const X &y)\
+    \ {\n    return {x.fi + y.fi, x.se + y.se};\n  }\n  static constexpr X inverse(const\
+    \ X &x) { return {-x.fi, -x.se}; }\n  static constexpr X id() { return {0, 0};\
+    \ }\n  static constexpr bool commute = true;\n};\n#line 1 \"alg/monoid/add.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
+    \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
+    \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
+    \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
+    };\n#line 4 \"alg/acted_monoid/cntsum_add.hpp\"\n\ntemplate <typename E>\nstruct\
+    \ ActedMonoid_CntSum_Add {\n  using Monoid_X = Monoid_Add_Pair<E>;\n  using Monoid_A\
+    \ = Monoid_Add<E>;\n  using X = typename Monoid_X::value_type;\n  using A = typename\
+    \ Monoid_A::value_type;\n  static constexpr X act(const X &x, const A &a, const\
+    \ ll &size) {\n    return {x.fi, x.se + x.fi * a};\n  }\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/cntsum_add.hpp\n\
+    #include \"alg/monoid/add_pair.hpp\"\n#include \"alg/monoid/add.hpp\"\n\ntemplate\
+    \ <typename E>\nstruct ActedMonoid_CntSum_Add {\n  using Monoid_X = Monoid_Add_Pair<E>;\n\
     \  using Monoid_A = Monoid_Add<E>;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X\
     \ &x, const A &a, const ll &size) {\n    return {x.fi, x.se + x.fi * a};\n  }\n\
@@ -45,7 +49,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/cntsum_add.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/235.test.cpp

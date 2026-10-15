@@ -68,10 +68,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
   _extendedVerifiedWith:
@@ -129,7 +129,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/bernoulli.test.cpp
     title: test/2_library_checker/number_theory/bernoulli.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
     title: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
   - icon: ':heavy_check_mark:'
@@ -147,7 +147,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1303.test.cpp
     title: test/3_yukicoder/1303.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1321.test.cpp
     title: test/3_yukicoder/1321.test.cpp
   - icon: ':x:'
@@ -159,7 +159,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1760.test.cpp
     title: test/3_yukicoder/1760.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1821.test.cpp
     title: test/3_yukicoder/1821.test.cpp
   - icon: ':x:'
@@ -171,7 +171,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/2005.test.cpp
     title: test/3_yukicoder/2005.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2206.test.cpp
     title: test/3_yukicoder/2206.test.cpp
   - icon: ':x:'
@@ -199,28 +199,32 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"nt/prime_table.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
-    \ prime_table(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done\
-    \ = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n  \
-    \  done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n    const int R =\
-    \ LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n    vc<pair<int, int>>\
-    \ cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i]) {\n       \
-    \ cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2 * i) sieve[j]\
-    \ = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n      array<bool,\
-    \ S> block{};\n      for (auto& [p, idx] : cp)\n        for (int i = idx; i <\
-    \ S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R - L)) if (!block[i])\
-    \ primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes, LIM);\n  return\
-    \ {primes.begin(), primes.begin() + k};\n}\n#line 2 \"mod/power_table.hpp\"\n\n\
-    // a^0, ..., a^N\ntemplate <typename mint>\nvc<mint> power_table_1(mint a, ll\
-    \ N) {\n  // table of a^i\n  vc<mint> f(N + 1, 1);\n  FOR(i, N) f[i + 1] = a *\
-    \ f[i];\n  return f;\n}\n\n// 0^e, ..., N^e\ntemplate <typename mint>\nvc<mint>\
-    \ power_table_2(ll e, ll N) {\n  auto primes = prime_table(N);\n  vc<mint> f(N\
-    \ + 1, 1);\n  f[0] = mint(0).pow(e);\n  for (auto&& p : primes) {\n    if (p >\
-    \ N) break;\n    mint xp = mint(p).pow(e);\n    ll pp = p;\n    while (pp <= N)\
-    \ {\n      ll i = pp;\n      while (i <= N) {\n        f[i] *= xp;\n        i\
-    \ += pp;\n      }\n      pp *= p;\n    }\n  }\n  return f;\n}\n"
-  code: "#include \"nt/prime_table.hpp\"\n\n// a^0, ..., a^N\ntemplate <typename mint>\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/mod/power_table.hpp
+  bundledCode: "#line 1 \"mod/power_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/power_table.hpp\n\
+    #line 1 \"nt/prime_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/prime_table.hpp\n\
+    \ntemplate <typename T = int>\nvc<T> prime_table(int LIM) {\n  ++LIM;\n  const\
+    \ int S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S\
+    \ + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
+    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
+    \ * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
+    \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
+    \ * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1;\
+    \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]\
+    \ : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
+    \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
+    \  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin() + k};\n\
+    }\n#line 3 \"mod/power_table.hpp\"\n\n// a^0, ..., a^N\ntemplate <typename mint>\n\
+    vc<mint> power_table_1(mint a, ll N) {\n  // table of a^i\n  vc<mint> f(N + 1,\
+    \ 1);\n  FOR(i, N) f[i + 1] = a * f[i];\n  return f;\n}\n\n// 0^e, ..., N^e\n\
+    template <typename mint>\nvc<mint> power_table_2(ll e, ll N) {\n  auto primes\
+    \ = prime_table(N);\n  vc<mint> f(N + 1, 1);\n  f[0] = mint(0).pow(e);\n  for\
+    \ (auto&& p : primes) {\n    if (p > N) break;\n    mint xp = mint(p).pow(e);\n\
+    \    ll pp = p;\n    while (pp <= N) {\n      ll i = pp;\n      while (i <= N)\
+    \ {\n        f[i] *= xp;\n        i += pp;\n      }\n      pp *= p;\n    }\n \
+    \ }\n  return f;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/mod/power_table.hpp\n\
+    #include \"nt/prime_table.hpp\"\n\n// a^0, ..., a^N\ntemplate <typename mint>\n\
     vc<mint> power_table_1(mint a, ll N) {\n  // table of a^i\n  vc<mint> f(N + 1,\
     \ 1);\n  FOR(i, N) f[i + 1] = a * f[i];\n  return f;\n}\n\n// 0^e, ..., N^e\n\
     template <typename mint>\nvc<mint> power_table_2(ll e, ll N) {\n  auto primes\
@@ -257,7 +261,7 @@ data:
   - seq/famous/stirling_number_2.hpp
   - seq/famous/bernoulli.hpp
   - seq/famous/stirling_number_1.hpp
-  timestamp: '2026-08-31 13:26:17+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/composition_ex_minus_1.test.cpp

@@ -27,7 +27,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/187.test.cpp
     title: test/3_yukicoder/187.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1956.test.cpp
     title: test/3_yukicoder/1956.test.cpp
   - icon: ':x:'
@@ -38,18 +38,21 @@ data:
     title: test/3_yukicoder/590.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"mod/mod_inv.hpp\"\n\n// long \u3067\u3082\u5927\u4E08\u592B\
-    \n// (val * x - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\
-    \u306B\u3059\u308B\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\
-    \nll mod_inv(ll val, ll mod) {\n  if (mod == 0) return 0;\n  mod = abs(mod);\n\
-    \  val %= mod;\n  if (val < 0) val += mod;\n  ll a = val, b = mod, u = 1, v =\
-    \ 0, t;\n  while (b > 0) {\n    t = a / b;\n    swap(a -= t * b, b), swap(u -=\
-    \ t * v, v);\n  }\n  if (u < 0) u += mod;\n  return u;\n}\n#line 1 \"nt/coprime_factorization.hpp\"\
-    \n\n/*\n\u4E92\u3044\u306B\u7D20\u306A\u6574\u6570 p1, p2, ..., pk \u3092\u7528\
-    \u3044\u3066 n_i = prod p_i^e_i \u3068\u8868\u3059.\ninput: [21,60,140,400], output:\
+    links:
+    - https://github.com/maspypy/library/blob/main/nt/crt.hpp
+  bundledCode: "#line 1 \"nt/crt.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/crt.hpp\n\
+    #line 1 \"mod/mod_inv.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/mod_inv.hpp\n\
+    \n// long \u3067\u3082\u5927\u4E08\u592B\n// (val * x - 1) \u304C mod \u306E\u500D\
+    \u6570\u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n// \u7279\u306B mod=0\
+    \ \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\nll mod_inv(ll val, ll mod) {\n  if\
+    \ (mod == 0) return 0;\n  mod = abs(mod);\n  val %= mod;\n  if (val < 0) val +=\
+    \ mod;\n  ll a = val, b = mod, u = 1, v = 0, t;\n  while (b > 0) {\n    t = a\
+    \ / b;\n    swap(a -= t * b, b), swap(u -= t * v, v);\n  }\n  if (u < 0) u +=\
+    \ mod;\n  return u;\n}\n#line 1 \"nt/coprime_factorization.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/coprime_factorization.hpp\n\
+    \n/*\n\u4E92\u3044\u306B\u7D20\u306A\u6574\u6570 p1, p2, ..., pk \u3092\u7528\u3044\
+    \u3066 n_i = prod p_i^e_i \u3068\u8868\u3059.\ninput: [21,60,140,400], output:\
     \ [3,7,20], [[(0,1),(1,1)],[(0,1),(2,1)],[(1,1),(2,1)],[(2,2)]]\nO(N^2\\log A)\
     \ \u7A0B\u5EA6. https://codeforces.com/blog/entry/108053\n*/\ntemplate <typename\
     \ T>\npair<vc<T>, vvc<pair<int, int>>> coprime_factorization(vc<T> nums) {\n \
@@ -66,14 +69,17 @@ data:
     \n  sort(all(basis));\n\n  vvc<pair<int, int>> res(len(nums));\n  FOR(i, len(nums))\
     \ {\n    T x = nums[i];\n    FOR(j, len(basis)) {\n      int e = 0;\n      while\
     \ (x % basis[j] == 0) x /= basis[j], ++e;\n      if (e) res[i].eb(j, e);\n   \
-    \ }\n  }\n  return {basis, res};\n}\n#line 1 \"nt/factor.hpp\"\n\n#line 1 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ }\n  }\n  return {basis, res};\n}\n#line 1 \"nt/factor.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/factor.hpp\n\
+    \n#line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/montgomery_modint.hpp\"\n\n\
-    // odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"nt/is_prime.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/nt/is_prime.hpp\n#line 1 \"mod/montgomery_modint.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/mod/montgomery_modint.hpp\n\
+    \n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
     \ <int id, typename U1, typename U2>\nstruct Montgomery_modint {\n  using mint\
     \ = Montgomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
     \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
@@ -93,7 +99,7 @@ data:
     \ >= 0);\n    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if\
     \ (n & 1) y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Montgomery_modint_32\
     \ = Montgomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Montgomery_modint_64\
-    \ = Montgomery_modint<id, u64, u128>;\n#line 2 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
+    \ = Montgomery_modint<id, u64, u128>;\n#line 3 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
     \ u64 x) {\n  assert(x < u64(1) << 62);\n  if (x == 2 or x == 3 or x == 5 or x\
     \ == 7) return true;\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 ==\
     \ 0) return false;\n  if (x < 121) return x > 1;\n  const u64 d = (x - 1) >> lowbit(x\
@@ -104,7 +110,7 @@ data:
     \ false;\n    return true;\n  };\n  if (x < (u64(1) << 32)) {\n    for (u64 a\
     \ : {2, 7, 61})\n      if (!ok(a)) return false;\n  } else {\n    for (u64 a :\
     \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\n      if (!ok(a)) return\
-    \ false;\n    }\n  }\n  return true;\n}\n#line 4 \"nt/factor.hpp\"\n\ntemplate\
+    \ false;\n    }\n  }\n  return true;\n}\n#line 5 \"nt/factor.hpp\"\n\ntemplate\
     \ <typename mint>\nll rho(ll n, ll c) {\n  assert(n > 1);\n  const mint cc(c);\n\
     \  auto f = [&](mint x) { return x * x + cc; };\n  mint x = 1, y = 2, z = 1, q\
     \ = 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5);\n  for (ll r = 1; g\
@@ -128,7 +134,8 @@ data:
     \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_spf(ll n, vc<int>& spf) {\n  vc<pair<ll,\
     \ int>> res;\n  while (n > 1) {\n    int p = spf[n];\n    int e = 0;\n    while\
     \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
-    \ return res;\n}\n#line 1 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    \ return res;\n}\n#line 1 \"mod/barrett.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/barrett.hpp\n\
+    \n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
     struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
     \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
     \ (m == 1) return 0;\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n\
@@ -144,7 +151,7 @@ data:
     \ const { return mod; }\n\n  u64 modulo(u128 x) {\n    u128 z = (x & u64(-1))\
     \ * ml;\n    z = (x & u64(-1)) * mh + (x >> 64) * ml + (z >> 64);\n    z = (x\
     \ >> 64) * mh + (z >> 64);\n    x -= z * mod;\n    return x < mod ? x : x - mod;\n\
-    \  }\n\n  u64 mul(u64 a, u64 b) { return modulo(u128(a) * b); }\n};\n#line 5 \"\
+    \  }\n\n  u64 mul(u64 a, u64 b) { return modulo(u128(a) * b); }\n};\n#line 6 \"\
     nt/crt.hpp\"\n\n// \u975E\u8CA0\u6700\u5C0F\u89E3\u3092 mod new_mod \u3067\u8FD4\
     \u3059 (garner), \u306A\u3051\u308C\u3070 -1.\ntemplate <typename T>\ni128 CRT(vc<T>\
     \ vals, vc<T> mods, ll new_mod = -1, bool coprime = false) {\n  int n = len(vals);\n\
@@ -177,40 +184,41 @@ data:
     \ = mod_inv(prod, mods[i]) * i128(a) % mods[i];\n    }\n  }\n  i128 ret = 0, prod\
     \ = 1;\n  FOR(i, n) {\n    ret += prod * cfs[i], prod *= mods[i];\n    if (new_mod\
     \ != -1) { ret %= new_mod, prod %= new_mod; }\n  }\n  return ret;\n}\n"
-  code: "#include \"mod/mod_inv.hpp\"\n#include \"nt/coprime_factorization.hpp\"\n\
-    #include \"nt/factor.hpp\"\n#include \"mod/barrett.hpp\"\n\n// \u975E\u8CA0\u6700\
-    \u5C0F\u89E3\u3092 mod new_mod \u3067\u8FD4\u3059 (garner), \u306A\u3051\u308C\
-    \u3070 -1.\ntemplate <typename T>\ni128 CRT(vc<T> vals, vc<T> mods, ll new_mod\
-    \ = -1, bool coprime = false) {\n  int n = len(vals);\n  FOR(i, n) { vals[i] =\
-    \ ((vals[i] %= mods[i]) >= 0 ? vals[i] : vals[i] + mods[i]); }\n\n  bool ng =\
-    \ 0;\n  auto reduction_by_factor = [&]() -> void {\n    unordered_map<T, pair<T,\
-    \ T>> MP;\n    FOR(i, n) {\n      for (auto&& [p, e]: factor(mods[i])) {\n   \
-    \     T mod = 1;\n        FOR(e) mod *= p;\n        T val = vals[i] % mod;\n \
-    \       if (!MP.count(p)) {\n          MP[p] = {mod, val % mod};\n          continue;\n\
-    \        }\n        auto& [mod1, val1] = MP[p];\n        if (mod > mod1) swap(mod,\
-    \ mod1), swap(val, val1);\n        if (val1 % mod != val) {\n          ng = 1;\n\
-    \          return;\n        }\n      }\n    }\n    mods.clear(), vals.clear();\n\
-    \    for (auto&& [p, x]: MP) {\n      auto [mod, val] = x;\n      mods.eb(mod),\
-    \ vals.eb(val);\n    }\n    n = len(vals);\n  };\n  auto reduction_by_coprime_factor\
-    \ = [&]() -> void {\n    auto [basis, pfs] = coprime_factorization<T>(mods);\n\
-    \    int k = len(basis);\n    vc<pair<T, T>> dat(k, {1, 0});\n    FOR(i, n) {\n\
-    \      for (auto&& [pid, exp]: pfs[i]) {\n        T mod = 1;\n        FOR(exp)\
-    \ mod *= basis[pid];\n        T val = vals[i] % mod;\n        auto& [mod1, val1]\
-    \ = dat[pid];\n        if (mod > mod1) swap(mod, mod1), swap(val, val1);\n   \
-    \     if (val1 % mod != val) {\n          ng = 1;\n          return;\n       \
-    \ }\n      }\n    }\n    mods.clear(), vals.clear();\n    for (auto&& [mod, val]:\
-    \ dat) { mods.eb(mod), vals.eb(val); }\n    n = len(vals);\n  };\n  if (!coprime)\
-    \ { (n <= 10 ? reduction_by_coprime_factor() : reduction_by_factor()); }\n\n \
-    \ if (ng) return -1;\n  if (n == 0) return 0;\n\n  vc<ll> cfs(n);\n  if (MAX(mods)\
-    \ < (1LL << 31)) {\n    FOR(i, n) {\n      Barrett bt(mods[i]);\n      ll a =\
-    \ vals[i], prod = 1;\n      FOR(j, i) {\n        a = bt.modulo(a + cfs[j] * (mods[i]\
-    \ - prod));\n        prod = bt.mul(prod, mods[j]);\n      }\n      cfs[i] = bt.mul(mod_inv(prod,\
-    \ mods[i]), a);\n    }\n  } else {\n    FOR(i, n) {\n      ll a = vals[i], prod\
-    \ = 1;\n      FOR(j, i) {\n        a = (a + i128(cfs[j]) * (mods[i] - prod)) %\
-    \ mods[i];\n        prod = i128(prod) * mods[j] % mods[i];\n      }\n      cfs[i]\
-    \ = mod_inv(prod, mods[i]) * i128(a) % mods[i];\n    }\n  }\n  i128 ret = 0, prod\
-    \ = 1;\n  FOR(i, n) {\n    ret += prod * cfs[i], prod *= mods[i];\n    if (new_mod\
-    \ != -1) { ret %= new_mod, prod %= new_mod; }\n  }\n  return ret;\n}"
+  code: "// Source: https://github.com/maspypy/library/blob/main/nt/crt.hpp\n#include\
+    \ \"mod/mod_inv.hpp\"\n#include \"nt/coprime_factorization.hpp\"\n#include \"\
+    nt/factor.hpp\"\n#include \"mod/barrett.hpp\"\n\n// \u975E\u8CA0\u6700\u5C0F\u89E3\
+    \u3092 mod new_mod \u3067\u8FD4\u3059 (garner), \u306A\u3051\u308C\u3070 -1.\n\
+    template <typename T>\ni128 CRT(vc<T> vals, vc<T> mods, ll new_mod = -1, bool\
+    \ coprime = false) {\n  int n = len(vals);\n  FOR(i, n) { vals[i] = ((vals[i]\
+    \ %= mods[i]) >= 0 ? vals[i] : vals[i] + mods[i]); }\n\n  bool ng = 0;\n  auto\
+    \ reduction_by_factor = [&]() -> void {\n    unordered_map<T, pair<T, T>> MP;\n\
+    \    FOR(i, n) {\n      for (auto&& [p, e]: factor(mods[i])) {\n        T mod\
+    \ = 1;\n        FOR(e) mod *= p;\n        T val = vals[i] % mod;\n        if (!MP.count(p))\
+    \ {\n          MP[p] = {mod, val % mod};\n          continue;\n        }\n   \
+    \     auto& [mod1, val1] = MP[p];\n        if (mod > mod1) swap(mod, mod1), swap(val,\
+    \ val1);\n        if (val1 % mod != val) {\n          ng = 1;\n          return;\n\
+    \        }\n      }\n    }\n    mods.clear(), vals.clear();\n    for (auto&& [p,\
+    \ x]: MP) {\n      auto [mod, val] = x;\n      mods.eb(mod), vals.eb(val);\n \
+    \   }\n    n = len(vals);\n  };\n  auto reduction_by_coprime_factor = [&]() ->\
+    \ void {\n    auto [basis, pfs] = coprime_factorization<T>(mods);\n    int k =\
+    \ len(basis);\n    vc<pair<T, T>> dat(k, {1, 0});\n    FOR(i, n) {\n      for\
+    \ (auto&& [pid, exp]: pfs[i]) {\n        T mod = 1;\n        FOR(exp) mod *= basis[pid];\n\
+    \        T val = vals[i] % mod;\n        auto& [mod1, val1] = dat[pid];\n    \
+    \    if (mod > mod1) swap(mod, mod1), swap(val, val1);\n        if (val1 % mod\
+    \ != val) {\n          ng = 1;\n          return;\n        }\n      }\n    }\n\
+    \    mods.clear(), vals.clear();\n    for (auto&& [mod, val]: dat) { mods.eb(mod),\
+    \ vals.eb(val); }\n    n = len(vals);\n  };\n  if (!coprime) { (n <= 10 ? reduction_by_coprime_factor()\
+    \ : reduction_by_factor()); }\n\n  if (ng) return -1;\n  if (n == 0) return 0;\n\
+    \n  vc<ll> cfs(n);\n  if (MAX(mods) < (1LL << 31)) {\n    FOR(i, n) {\n      Barrett\
+    \ bt(mods[i]);\n      ll a = vals[i], prod = 1;\n      FOR(j, i) {\n        a\
+    \ = bt.modulo(a + cfs[j] * (mods[i] - prod));\n        prod = bt.mul(prod, mods[j]);\n\
+    \      }\n      cfs[i] = bt.mul(mod_inv(prod, mods[i]), a);\n    }\n  } else {\n\
+    \    FOR(i, n) {\n      ll a = vals[i], prod = 1;\n      FOR(j, i) {\n       \
+    \ a = (a + i128(cfs[j]) * (mods[i] - prod)) % mods[i];\n        prod = i128(prod)\
+    \ * mods[j] % mods[i];\n      }\n      cfs[i] = mod_inv(prod, mods[i]) * i128(a)\
+    \ % mods[i];\n    }\n  }\n  i128 ret = 0, prod = 1;\n  FOR(i, n) {\n    ret +=\
+    \ prod * cfs[i], prod *= mods[i];\n    if (new_mod != -1) { ret %= new_mod, prod\
+    \ %= new_mod; }\n  }\n  return ret;\n}"
   dependsOn:
   - mod/mod_inv.hpp
   - nt/coprime_factorization.hpp
@@ -222,8 +230,8 @@ data:
   isVerificationFile: false
   path: nt/crt.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-10-15 19:54:56+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2119.test.cpp
   - test/3_yukicoder/187.test.cpp

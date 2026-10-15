@@ -22,12 +22,17 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"graph/tree.hpp\"\n\n#line 1 \"ds/hashmap.hpp\"\n\n// u64\
-    \ -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\
-    \u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
-    \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
-    \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/ds/dynamic_rerooting_tree_dp.hpp
+  bundledCode: "#line 1 \"graph/ds/dynamic_rerooting_tree_dp.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/ds/dynamic_rerooting_tree_dp.hpp\n\
+    #line 1 \"graph/ds/static_toptree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/ds/static_toptree.hpp\n\
+    #line 1 \"graph/tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/tree.hpp\n\
+    \n#line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
     \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
     \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
     \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
@@ -48,7 +53,7 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -124,7 +129,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 3 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
+    \   }\n  }\n};\n#line 4 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
     \u3066\u3044\u308D\u3044\u308D\n// HLD=false: \u5165\u529B\u8FBA\u9806\u3067 preorder\n\
     template <typename GT, bool HLD = true>\nstruct Tree {\n  using Graph_type = GT;\n\
     \  using WT = typename GT::cost_type;\n  int N = 0;\n  vector<int> LID, RID, head,\
@@ -243,7 +248,7 @@ data:
     \ (int i = G.indptr[v + 1] - 1; i >= G.indptr[v]; --i) {\n          auto &e =\
     \ G.csr_edges[i];\n          if (e.to == parent[v] || e.to == max_ch) continue;\n\
     \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
-    \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 2 \"\
+    \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 3 \"\
     graph/ds/static_toptree.hpp\"\n\n/*\n\u53C2\u8003 joitour tatyam\n\u30AF\u30E9\
     \u30B9\u30BF\u306F\u6839\u304C virtual \u306A\u3082\u306E\u306E\u307F\u3067\u3042\
     \u308B\u3088\u3046\u306A\u7C21\u6613\u7248\nN \u500B\u306E (\u9802+\u8FBA) \u3092\
@@ -290,7 +295,7 @@ data:
     \ stack.eb(h3, k3);\n        }\n        elif (n >= 2 && stack[n - 2].fi <= stack[n\
     \ - 1].fi) {\n          merge_last_two();\n        }\n        else break;\n  \
     \    }\n    }\n    while (len(stack) >= 2) {\n      merge_last_two();\n    }\n\
-    \    return POP(stack);\n  }\n};\n#line 2 \"graph/ds/dynamic_rerooting_tree_dp.hpp\"\
+    \    return POP(stack);\n  }\n};\n#line 3 \"graph/ds/dynamic_rerooting_tree_dp.hpp\"\
     \n\n/*\nstruct Data {\n  // type, s, t \u306F\u5FC5\u305A\u5B9A\u7FA9\u3059\u308B\
     . \uFF08\u7D4C\u9A13\u4E0A\u3069\u3046\u305B\u30C7\u30D0\u30C3\u30B0\u3067\u5FC5\
     \u8981\u306B\u306A\u308B\uFF09. s \u304C\u6839.\n  // type==0: s\u304C virtual.\
@@ -336,34 +341,35 @@ data:
     \    if (STT.is_compress[i]) {\n      dp[i] = {TREE_DP::compress(L1, R1), TREE_DP::compress2(R2,\
     \ L2)};\n    } else {\n      dp[i] = {TREE_DP::rake(L1, R1), TREE_DP::compress3(L2,\
     \ R1)};\n    }\n  }\n};\n"
-  code: "#include \"graph/ds/static_toptree.hpp\"\n\n/*\nstruct Data {\n  // type,\
-    \ s, t \u306F\u5FC5\u305A\u5B9A\u7FA9\u3059\u308B. \uFF08\u7D4C\u9A13\u4E0A\u3069\
-    \u3046\u305B\u30C7\u30D0\u30C3\u30B0\u3067\u5FC5\u8981\u306B\u306A\u308B\uFF09\
-    . s \u304C\u6839.\n  // type==0: s\u304C virtual. type==1: t \u304C virtual.\n\
-    \  int type, s, t;\n};\n\nstruct TREE_DP {\n  using value_type = Data;\n  using\
-    \ X = value_type;\n\n  static X rake(const X& L, const X& R) {\n    assert(L.type\
-    \ == 0 && R.type == 0 && L.s == R.s);\n    X ANS = {0, L.s, L.t};\n  }\n  static\
-    \ X rake2(const X& L, const X& R) {\n    assert(L.type == 1 && R.type == 0 &&\
-    \ L.s == R.s);\n    X ANS = {1, L.s, L.t};\n  }\n  static X compress(const X&\
-    \ L, const X& R) {\n    assert(L.type == 0 && R.type == 0 && L.t == R.s);\n  \
-    \  X ANS = {0, L.s, R.t};\n  }\n  static X compress2(const X& L, const X& R) {\n\
-    \    assert(L.type == 1 && R.type == 1 && L.t == R.s);\n    X ANS = {1, L.s, R.t};\n\
-    \  }\n  static X compress3(const X& L, const X& R) {\n    assert(L.type == 1 &&\
-    \ R.type == 0 && L.t == R.s);\n    X ANS = {1, L.s, L.t};\n  }\n};\n*/\n\ntemplate\
-    \ <typename TREE, typename TREE_DP>\nstruct Dynamic_Rerooting_Tree_DP {\n  using\
-    \ X = typename TREE_DP::value_type;\n  Static_TopTree<TREE> STT;\n  vc<pair<X,\
-    \ X>> dp;\n\n  template <typename F>\n  Dynamic_Rerooting_Tree_DP(TREE& tree,\
-    \ F f) : STT(tree) {\n    assert(tree.V[0] == 0);  // \u3055\u307C\u308A\n   \
-    \ int N = tree.N;\n    dp.resize(2 * N - 1);\n    FOR(v, N) {\n      dp[v] = f(v);\n\
-    \      assert(dp[v].fi.type == 0 && dp[v].se.type == 1);\n      assert(dp[v].fi.s\
-    \ == STT.tree.parent[v] && dp[v].fi.t == v);\n      assert(dp[v].se.t == STT.tree.parent[v]\
-    \ && dp[v].se.s == v);\n    }\n    FOR(i, N, 2 * N - 1) update(i);\n  }\n\n  //\
-    \ v \u3068\u89AA\u3092\u7D50\u3076\u8FBA. \u89AA\u304C virtual / \u5B50\u304C\
-    \ virtual\n  void set(int v, pair<X, X> x) {\n    dp[v] = x;\n    assert(dp[v].fi.type\
-    \ == 0 && dp[v].se.type == 1);\n    assert(dp[v].fi.s == STT.tree.parent[v] &&\
-    \ dp[v].fi.t == v);\n    assert(dp[v].se.t == STT.tree.parent[v] && dp[v].se.s\
-    \ == v);\n    for (int i = STT.par[v]; i != -1; i = STT.par[i]) {\n      update(i);\n\
-    \    }\n  }\n\n  X prod_all(int v) {\n    int i = v;\n    X a = dp[i].se, b, c;\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/ds/dynamic_rerooting_tree_dp.hpp\n\
+    #include \"graph/ds/static_toptree.hpp\"\n\n/*\nstruct Data {\n  // type, s, t\
+    \ \u306F\u5FC5\u305A\u5B9A\u7FA9\u3059\u308B. \uFF08\u7D4C\u9A13\u4E0A\u3069\u3046\
+    \u305B\u30C7\u30D0\u30C3\u30B0\u3067\u5FC5\u8981\u306B\u306A\u308B\uFF09. s \u304C\
+    \u6839.\n  // type==0: s\u304C virtual. type==1: t \u304C virtual.\n  int type,\
+    \ s, t;\n};\n\nstruct TREE_DP {\n  using value_type = Data;\n  using X = value_type;\n\
+    \n  static X rake(const X& L, const X& R) {\n    assert(L.type == 0 && R.type\
+    \ == 0 && L.s == R.s);\n    X ANS = {0, L.s, L.t};\n  }\n  static X rake2(const\
+    \ X& L, const X& R) {\n    assert(L.type == 1 && R.type == 0 && L.s == R.s);\n\
+    \    X ANS = {1, L.s, L.t};\n  }\n  static X compress(const X& L, const X& R)\
+    \ {\n    assert(L.type == 0 && R.type == 0 && L.t == R.s);\n    X ANS = {0, L.s,\
+    \ R.t};\n  }\n  static X compress2(const X& L, const X& R) {\n    assert(L.type\
+    \ == 1 && R.type == 1 && L.t == R.s);\n    X ANS = {1, L.s, R.t};\n  }\n  static\
+    \ X compress3(const X& L, const X& R) {\n    assert(L.type == 1 && R.type == 0\
+    \ && L.t == R.s);\n    X ANS = {1, L.s, L.t};\n  }\n};\n*/\n\ntemplate <typename\
+    \ TREE, typename TREE_DP>\nstruct Dynamic_Rerooting_Tree_DP {\n  using X = typename\
+    \ TREE_DP::value_type;\n  Static_TopTree<TREE> STT;\n  vc<pair<X, X>> dp;\n\n\
+    \  template <typename F>\n  Dynamic_Rerooting_Tree_DP(TREE& tree, F f) : STT(tree)\
+    \ {\n    assert(tree.V[0] == 0);  // \u3055\u307C\u308A\n    int N = tree.N;\n\
+    \    dp.resize(2 * N - 1);\n    FOR(v, N) {\n      dp[v] = f(v);\n      assert(dp[v].fi.type\
+    \ == 0 && dp[v].se.type == 1);\n      assert(dp[v].fi.s == STT.tree.parent[v]\
+    \ && dp[v].fi.t == v);\n      assert(dp[v].se.t == STT.tree.parent[v] && dp[v].se.s\
+    \ == v);\n    }\n    FOR(i, N, 2 * N - 1) update(i);\n  }\n\n  // v \u3068\u89AA\
+    \u3092\u7D50\u3076\u8FBA. \u89AA\u304C virtual / \u5B50\u304C virtual\n  void\
+    \ set(int v, pair<X, X> x) {\n    dp[v] = x;\n    assert(dp[v].fi.type == 0 &&\
+    \ dp[v].se.type == 1);\n    assert(dp[v].fi.s == STT.tree.parent[v] && dp[v].fi.t\
+    \ == v);\n    assert(dp[v].se.t == STT.tree.parent[v] && dp[v].se.s == v);\n \
+    \   for (int i = STT.par[v]; i != -1; i = STT.par[i]) {\n      update(i);\n  \
+    \  }\n  }\n\n  X prod_all(int v) {\n    int i = v;\n    X a = dp[i].se, b, c;\n\
     \    b.type = c.type = -1;\n    while (1) {\n      int p = STT.par[i];\n     \
     \ if (p == -1) break;\n      int l = STT.lch[p], r = STT.rch[p];\n      if (STT.is_compress[p])\
     \ {\n        if (l == i) {\n          b = (b.type == -1 ? dp[r].fi : TREE_DP::compress(b,\
@@ -390,7 +396,7 @@ data:
   isVerificationFile: false
   path: graph/ds/dynamic_rerooting_tree_dp.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:24:01+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp

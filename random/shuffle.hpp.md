@@ -112,17 +112,21 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/random/shuffle.hpp
+  bundledCode: "#line 1 \"random/shuffle.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/shuffle.hpp\n\
+    #line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 2 \"random/shuffle.hpp\"\n\ntemplate\
+    \  return l + RNG_64() % (r - l);\n}\n#line 3 \"random/shuffle.hpp\"\n\ntemplate\
     \ <typename T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) {\n    int j = RNG(0,\
     \ i + 1);\n    if (i != j) swap(A[i], A[j]);\n  }\n}\n"
-  code: "#include \"random/base.hpp\"\n\ntemplate <typename T>\nvoid shuffle(vc<T>&\
-    \ A) {\n  FOR(i, len(A)) {\n    int j = RNG(0, i + 1);\n    if (i != j) swap(A[i],\
+  code: "// Source: https://github.com/maspypy/library/blob/main/random/shuffle.hpp\n\
+    #include \"random/base.hpp\"\n\ntemplate <typename T>\nvoid shuffle(vc<T>& A)\
+    \ {\n  FOR(i, len(A)) {\n    int j = RNG(0, i + 1);\n    if (i != j) swap(A[i],\
     \ A[j]);\n  }\n}"
   dependsOn:
   - random/base.hpp
@@ -135,7 +139,7 @@ data:
   - setfunc/boolean_range_add_point_get.hpp
   - random/random_graph.hpp
   - random/random_bracket.hpp
-  timestamp: '2026-08-30 21:41:42+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/extended_lichao.test.cpp

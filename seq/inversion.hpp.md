@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1838.test.cpp
     title: test/3_yukicoder/1838.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/694.test.cpp
     title: test/3_yukicoder/694.test.cpp
   - icon: ':x:'
@@ -31,14 +31,18 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\n#line 1 \"alg/monoid/add.hpp\"\
-    \n\ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
+    links:
+    - https://github.com/maspypy/library/blob/main/seq/inversion.hpp
+  bundledCode: "#line 1 \"seq/inversion.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/seq/inversion.hpp\n\
+    #line 1 \"ds/fenwicktree/fenwicktree_01.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/fenwicktree/fenwicktree_01.hpp\n\
+    \n#line 1 \"ds/fenwicktree/fenwicktree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/fenwicktree/fenwicktree.hpp\n\
+    #line 1 \"alg/monoid/add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
     \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
     \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
     \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
     \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
-    };\n#line 2 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
+    };\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
     struct FenwickTree {\n  using G = Monoid;\n  using MX = Monoid;\n  using E = typename\
     \ G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree() {}\n\
     \  FenwickTree(int n) { build(n); }\n  template <typename F>\n  FenwickTree(int\
@@ -99,7 +103,7 @@ data:
     \ G::inverse(dat[i + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1\
     \ << k), s = t;\n      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int\
     \ L = 0) const {\n    return max_right([&k](E x) -> bool { return x <= k; }, L);\n\
-    \  }\n};\n#line 3 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\nstruct FenwickTree_01\
+    \  }\n};\n#line 4 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\nstruct FenwickTree_01\
     \ {\n  using MX = Monoid_Add<int>;\n  int N, n;\n  vc<u64> dat;\n  FenwickTree<Monoid_Add<int>>\
     \ bit;\n  FenwickTree_01() {}\n  FenwickTree_01(int n) { build(n); }\n  template\
     \ <typename F>\n  FenwickTree_01(int n, F f) {\n    build(n, f);\n  }\n\n  void\
@@ -142,7 +146,7 @@ data:
     \ e) -> bool { return e <= 0; }, idx) - 1;\n    if (idx == -1) return -1;\n  \
     \  return 64 * idx + topbit(dat[idx]);\n  }\n\n  string to_string() {\n    string\
     \ out;\n    FOR(i, N) out += '0' + (dat[i / 64] >> (i & 63) & 1);\n    return\
-    \ out;\n  }\n};\n#line 2 \"seq/inversion.hpp\"\n\ntemplate <typename T>\nll inversion(const\
+    \ out;\n  }\n};\n#line 3 \"seq/inversion.hpp\"\n\ntemplate <typename T>\nll inversion(const\
     \ vc<T>& A) {\n  int N = len(A);\n  if (A.empty()) return 0;\n  ll ANS = 0;\n\
     \  FenwickTree_01 bit(N);\n  auto I = argsort(A);\n  for (auto& i : I) {\n   \
     \ ANS += bit.sum_all() - bit.sum(i);\n    bit.add(i, 1);\n  }\n  return ANS;\n\
@@ -164,28 +168,29 @@ data:
     \ vc<int>> MP;\n  FOR(i, N) MP[B[i]].eb(i);\n  vc<int> TO(N);\n  FOR_R(i, N) {\n\
     \    auto& I = MP[A[i]];\n    if (I.empty()) return -1;\n    TO[i] = POP(I);\n\
     \  }\n  return inversion(TO);\n}\n"
-  code: "#include \"ds/fenwicktree/fenwicktree_01.hpp\"\n\ntemplate <typename T>\n\
-    ll inversion(const vc<T>& A) {\n  int N = len(A);\n  if (A.empty()) return 0;\n\
-    \  ll ANS = 0;\n  FenwickTree_01 bit(N);\n  auto I = argsort(A);\n  for (auto&\
-    \ i : I) {\n    ANS += bit.sum_all() - bit.sum(i);\n    bit.add(i, 1);\n  }\n\
-    \  return ANS;\n}\n\n// i \u756A\u76EE\uFF1AA_i \u304C\u5148\u982D\u306B\u306A\
-    \u308B\u3088\u3046\u306B rotate \u3057\u305F\u3068\u304D\u306E\u8EE2\u5012\u6570\
-    \ntemplate <typename T, bool SMALL = false>\nvi inversion_rotate(vc<T>& A) {\n\
-    \  if (A.empty()) return {};\n  const int N = len(A);\n  if (!SMALL) {\n    auto\
-    \ key = A;\n    UNIQUE(key);\n    for (auto&& x : A) x = LB(key, x);\n  }\n  ll\
-    \ K = MAX(A) + 1;\n  ll ANS = 0;\n  FenwickTree<Monoid_Add<int>> bit(K);\n  for\
-    \ (auto&& x : A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n \
-    \ vi res(N);\n  FOR(i, N) {\n    res[i] = ANS;\n    ll x = A[i];\n    ANS = ANS\
-    \ + bit.sum(x + 1, K) - bit.prefix_sum(x);\n  }\n  return res;\n}\n\n// inv[i][j]\
-    \ = inversion A[i:j) \u3067\u3042\u308B\u3088\u3046\u306A (N+1, N+1) \u30C6\u30FC\
-    \u30D6\u30EB\ntemplate <typename T>\nvvc<int> all_range_inversion(const vc<T>&\
-    \ A) {\n  int N = len(A);\n  vv(int, dp, N + 1, N + 1);\n  FOR_R(L, N + 1) FOR(R,\
-    \ L + 2, N + 1) {\n    dp[L][R] = dp[L][R - 1] + dp[L + 1][R] - dp[L + 1][R -\
-    \ 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n  }\n  return dp;\n}\n\ntemplate\
-    \ <typename T>\nll inversion_between(const vc<T>& A, const vc<T>& B) {\n  assert(len(A)\
-    \ == len(B));\n  int N = len(A);\n  map<T, vc<int>> MP;\n  FOR(i, N) MP[B[i]].eb(i);\n\
-    \  vc<int> TO(N);\n  FOR_R(i, N) {\n    auto& I = MP[A[i]];\n    if (I.empty())\
-    \ return -1;\n    TO[i] = POP(I);\n  }\n  return inversion(TO);\n}"
+  code: "// Source: https://github.com/maspypy/library/blob/main/seq/inversion.hpp\n\
+    #include \"ds/fenwicktree/fenwicktree_01.hpp\"\n\ntemplate <typename T>\nll inversion(const\
+    \ vc<T>& A) {\n  int N = len(A);\n  if (A.empty()) return 0;\n  ll ANS = 0;\n\
+    \  FenwickTree_01 bit(N);\n  auto I = argsort(A);\n  for (auto& i : I) {\n   \
+    \ ANS += bit.sum_all() - bit.sum(i);\n    bit.add(i, 1);\n  }\n  return ANS;\n\
+    }\n\n// i \u756A\u76EE\uFF1AA_i \u304C\u5148\u982D\u306B\u306A\u308B\u3088\u3046\
+    \u306B rotate \u3057\u305F\u3068\u304D\u306E\u8EE2\u5012\u6570\ntemplate <typename\
+    \ T, bool SMALL = false>\nvi inversion_rotate(vc<T>& A) {\n  if (A.empty()) return\
+    \ {};\n  const int N = len(A);\n  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n\
+    \    for (auto&& x : A) x = LB(key, x);\n  }\n  ll K = MAX(A) + 1;\n  ll ANS =\
+    \ 0;\n  FenwickTree<Monoid_Add<int>> bit(K);\n  for (auto&& x : A) {\n    ANS\
+    \ += bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n  vi res(N);\n  FOR(i, N) {\n\
+    \    res[i] = ANS;\n    ll x = A[i];\n    ANS = ANS + bit.sum(x + 1, K) - bit.prefix_sum(x);\n\
+    \  }\n  return res;\n}\n\n// inv[i][j] = inversion A[i:j) \u3067\u3042\u308B\u3088\
+    \u3046\u306A (N+1, N+1) \u30C6\u30FC\u30D6\u30EB\ntemplate <typename T>\nvvc<int>\
+    \ all_range_inversion(const vc<T>& A) {\n  int N = len(A);\n  vv(int, dp, N +\
+    \ 1, N + 1);\n  FOR_R(L, N + 1) FOR(R, L + 2, N + 1) {\n    dp[L][R] = dp[L][R\
+    \ - 1] + dp[L + 1][R] - dp[L + 1][R - 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n\
+    \  }\n  return dp;\n}\n\ntemplate <typename T>\nll inversion_between(const vc<T>&\
+    \ A, const vc<T>& B) {\n  assert(len(A) == len(B));\n  int N = len(A);\n  map<T,\
+    \ vc<int>> MP;\n  FOR(i, N) MP[B[i]].eb(i);\n  vc<int> TO(N);\n  FOR_R(i, N) {\n\
+    \    auto& I = MP[A[i]];\n    if (I.empty()) return -1;\n    TO[i] = POP(I);\n\
+    \  }\n  return inversion(TO);\n}"
   dependsOn:
   - ds/fenwicktree/fenwicktree_01.hpp
   - ds/fenwicktree/fenwicktree.hpp
@@ -194,7 +199,7 @@ data:
   path: seq/inversion.hpp
   requiredBy:
   - other/sliding_puzzle_solver.hpp
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1838.test.cpp

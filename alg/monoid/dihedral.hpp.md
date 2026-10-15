@@ -8,13 +8,14 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links:
+    - https://github.com/maspypy/library/blob/main/alg/monoid/dihedral.hpp
     - https://qoj.ac/contest/1576/problem/8512
-  bundledCode: "#line 1 \"alg/monoid/dihedral.hpp\"\n\n/*\n2 \u9762\u4F53\u7FA4. \u9577\
-    \u3055 n \u306E\u6587\u5B57\u5217\u306B\u4F5C\u7528\u3059\u308B.\n(+1,k): i \u6587\
-    \u5B57\u76EE\u304C +i+k \u6587\u5B57\u76EE\u306B\u79FB\u52D5. S \u306F S[-k:N-k)\
-    \ \u306B\u5909\u5316.\n(-1,k): i \u6587\u5B57\u76EE\u304C -i+k \u6587\u5B57\u76EE\
-    \u306B\u79FB\u52D5. S \u306F S[k:k-N).\n\u3053\u308C\u306F revS[N-1-k:N-1-k+N]\
-    \ \u3068\u3082\u8A00\u3048\u308B.\nhttps://qoj.ac/contest/1576/problem/8512\n\
+  bundledCode: "#line 1 \"alg/monoid/dihedral.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/dihedral.hpp\n\
+    \n/*\n2 \u9762\u4F53\u7FA4. \u9577\u3055 n \u306E\u6587\u5B57\u5217\u306B\u4F5C\
+    \u7528\u3059\u308B.\n(+1,k): i \u6587\u5B57\u76EE\u304C +i+k \u6587\u5B57\u76EE\
+    \u306B\u79FB\u52D5. S \u306F S[-k:N-k) \u306B\u5909\u5316.\n(-1,k): i \u6587\u5B57\
+    \u76EE\u304C -i+k \u6587\u5B57\u76EE\u306B\u79FB\u52D5. S \u306F S[k:k-N).\n\u3053\
+    \u308C\u306F revS[N-1-k:N-1-k+N] \u3068\u3082\u8A00\u3048\u308B.\nhttps://qoj.ac/contest/1576/problem/8512\n\
     */\ntemplate <int id_>\nstruct Dihedral {\n  using value_type = pair<int, int>;\n\
     \  using X = value_type;\n\n  static inline int n = 0;\n  static void set_n(int\
     \ m) {\n    assert(m > 0);\n    n = m;\n  }\n\n  static X op(X x, X y) {\n   \
@@ -31,11 +32,12 @@ data:
     \  if (t == 1) {\n      rotate(A.begin(), A.begin() + n - x, A.end());\n     \
     \ return A;\n    }\n    std::reverse(all(A));\n    rotate(A.begin(), A.begin()\
     \ + (n - 1 - x), A.end());\n    return A;\n  }\n};\n"
-  code: "\n/*\n2 \u9762\u4F53\u7FA4. \u9577\u3055 n \u306E\u6587\u5B57\u5217\u306B\
-    \u4F5C\u7528\u3059\u308B.\n(+1,k): i \u6587\u5B57\u76EE\u304C +i+k \u6587\u5B57\
-    \u76EE\u306B\u79FB\u52D5. S \u306F S[-k:N-k) \u306B\u5909\u5316.\n(-1,k): i \u6587\
-    \u5B57\u76EE\u304C -i+k \u6587\u5B57\u76EE\u306B\u79FB\u52D5. S \u306F S[k:k-N).\n\
-    \u3053\u308C\u306F revS[N-1-k:N-1-k+N] \u3068\u3082\u8A00\u3048\u308B.\nhttps://qoj.ac/contest/1576/problem/8512\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/monoid/dihedral.hpp\n\
+    \n/*\n2 \u9762\u4F53\u7FA4. \u9577\u3055 n \u306E\u6587\u5B57\u5217\u306B\u4F5C\
+    \u7528\u3059\u308B.\n(+1,k): i \u6587\u5B57\u76EE\u304C +i+k \u6587\u5B57\u76EE\
+    \u306B\u79FB\u52D5. S \u306F S[-k:N-k) \u306B\u5909\u5316.\n(-1,k): i \u6587\u5B57\
+    \u76EE\u304C -i+k \u6587\u5B57\u76EE\u306B\u79FB\u52D5. S \u306F S[k:k-N).\n\u3053\
+    \u308C\u306F revS[N-1-k:N-1-k+N] \u3068\u3082\u8A00\u3048\u308B.\nhttps://qoj.ac/contest/1576/problem/8512\n\
     */\ntemplate <int id_>\nstruct Dihedral {\n  using value_type = pair<int, int>;\n\
     \  using X = value_type;\n\n  static inline int n = 0;\n  static void set_n(int\
     \ m) {\n    assert(m > 0);\n    n = m;\n  }\n\n  static X op(X x, X y) {\n   \
@@ -56,7 +58,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/dihedral.hpp
   requiredBy: []
-  timestamp: '2026-09-24 22:29:43+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/monoid/dihedral.hpp

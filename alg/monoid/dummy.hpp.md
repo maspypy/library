@@ -14,7 +14,7 @@ data:
   - icon: ':warning:'
     path: graph/ds/tree_wavelet_matrix.hpp
     title: graph/ds/tree_wavelet_matrix.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/prefix_substring_LCS.hpp
     title: string/prefix_substring_LCS.hpp
   _extendedVerifiedWith:
@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/prefix_substring_lcs.test.cpp
     title: test/2_library_checker/string/prefix_substring_lcs.test.cpp
   - icon: ':x:'
@@ -64,13 +64,16 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/dummy.hpp\"\nstruct Monoid_Dummy {\n  using value_type\
-    \ = char;\n  static constexpr bool commute = true;\n  static value_type op(value_type,\
-    \ value_type) { return 0; }\n  static value_type id() { return 0; }\n};\n"
-  code: "struct Monoid_Dummy {\n  using value_type = char;\n  static constexpr bool\
-    \ commute = true;\n  static value_type op(value_type, value_type) { return 0;\
-    \ }\n  static value_type id() { return 0; }\n};\n"
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/monoid/dummy.hpp
+  bundledCode: "#line 1 \"alg/monoid/dummy.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/dummy.hpp\n\
+    struct Monoid_Dummy {\n  using value_type = char;\n  static constexpr bool commute\
+    \ = true;\n  static value_type op(value_type, value_type) { return 0; }\n  static\
+    \ value_type id() { return 0; }\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/monoid/dummy.hpp\n\
+    struct Monoid_Dummy {\n  using value_type = char;\n  static constexpr bool commute\
+    \ = true;\n  static value_type op(value_type, value_type) { return 0; }\n  static\
+    \ value_type id() { return 0; }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/dummy.hpp
@@ -80,7 +83,7 @@ data:
   - ds/wavelet_matrix/wavelet_matrix.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - string/prefix_substring_LCS.hpp
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1332.test.cpp

@@ -48,7 +48,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1263.test.cpp
     title: test/3_yukicoder/1263.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1881.test.cpp
     title: test/3_yukicoder/1881.test.cpp
   - icon: ':x:'
@@ -64,18 +64,20 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"enumerate/bits.hpp\"\ntemplate <typename BS, typename F>\n\
-    void enumerate_bits_bitset(BS& b, int L, int R, F&& f) {\n  if (L >= len(b)) return;\n\
-    \  int p = (b[L] ? L : b._Find_next(L));\n  while (p < R) {\n    f(p);\n    p\
-    \ = b._Find_next(p);\n  }\n}\n\ntemplate <typename UINT, typename F>\ninline void\
-    \ enumerate_all_bit(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/enumerate/bits.hpp
+  bundledCode: "#line 1 \"enumerate/bits.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/enumerate/bits.hpp\n\
+    template <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L, int\
+    \ R, F&& f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L : b._Find_next(L));\n\
+    \  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n\ntemplate <typename\
+    \ UINT, typename F>\ninline void enumerate_all_bit(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
     \  while (s) {\n    f(lowbit(s));\n    s &= s - 1;\n  }\n}\n\ntemplate <typename\
     \ UINT, bool inc_empty, typename F>\ninline void enumerate_all_subset(UINT s,\
     \ F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n  for (UINT t = s; t;\
     \ t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n}\n"
-  code: "template <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int\
-    \ L, int R, F&& f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L : b._Find_next(L));\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/enumerate/bits.hpp\n\
+    template <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L, int\
+    \ R, F&& f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L : b._Find_next(L));\n\
     \  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n\ntemplate <typename\
     \ UINT, typename F>\ninline void enumerate_all_bit(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
     \  while (s) {\n    f(lowbit(s));\n    s &= s - 1;\n  }\n}\n\ntemplate <typename\
@@ -96,7 +98,7 @@ data:
   - setfunc/boolean_range_add_point_get.hpp
   - knapsack/subset_sum.hpp
   - enumerate/partition.hpp
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/enum_partitions.test.cpp

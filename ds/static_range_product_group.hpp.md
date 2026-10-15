@@ -28,24 +28,28 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add\
-    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\n  static constexpr X id() { return X(0); }\n\
-    \  static constexpr bool commute = true;\n};\n#line 2 \"ds/static_range_product_group.hpp\"\
-    \n\ntemplate <typename Monoid>\nstruct Static_Range_Product_Group {\n  using MX\
-    \ = Monoid;\n  using X = typename MX::value_type;\n  int n;\n  vc<X> dat;\n  Static_Range_Product_Group()\
-    \ {}\n  template <typename F>\n  Static_Range_Product_Group(int m, F f) {\n  \
-    \  build(m, f);\n  }\n  Static_Range_Product_Group(vc<X>& A) {\n    build(len(A),\
-    \ [&](int i) -> X { return A[i]; });\n  }\n  template <typename F>\n  void build(int\
-    \ m, F f) {\n    n = m;\n    dat.assign(n + 1, MX::id());\n    for (int i = 0;\
-    \ i < n; ++i) dat[i + 1] = MX::op(dat[i], f(i));\n  }\n  void build(vc<X>& A)\
-    \ {\n    n = len(A);\n    dat.assign(n + 1, MX::id());\n    for (int i = 0; i\
-    \ < n; ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X prod(int l, int r) const\
-    \ { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n"
-  code: "#include \"alg/monoid/add.hpp\"\n\ntemplate <typename Monoid>\nstruct Static_Range_Product_Group\
+    links:
+    - https://github.com/maspypy/library/blob/main/ds/static_range_product_group.hpp
+  bundledCode: "#line 1 \"ds/static_range_product_group.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/static_range_product_group.hpp\n\
+    #line 1 \"alg/monoid/add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
+    \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
+    \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
+    \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
+    };\n#line 3 \"ds/static_range_product_group.hpp\"\n\ntemplate <typename Monoid>\n\
+    struct Static_Range_Product_Group {\n  using MX = Monoid;\n  using X = typename\
+    \ MX::value_type;\n  int n;\n  vc<X> dat;\n  Static_Range_Product_Group() {}\n\
+    \  template <typename F>\n  Static_Range_Product_Group(int m, F f) {\n    build(m,\
+    \ f);\n  }\n  Static_Range_Product_Group(vc<X>& A) {\n    build(len(A), [&](int\
+    \ i) -> X { return A[i]; });\n  }\n  template <typename F>\n  void build(int m,\
+    \ F f) {\n    n = m;\n    dat.assign(n + 1, MX::id());\n    for (int i = 0; i\
+    \ < n; ++i) dat[i + 1] = MX::op(dat[i], f(i));\n  }\n  void build(vc<X>& A) {\n\
+    \    n = len(A);\n    dat.assign(n + 1, MX::id());\n    for (int i = 0; i < n;\
+    \ ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X prod(int l, int r) const {\
+    \ return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/static_range_product_group.hpp\n\
+    #include \"alg/monoid/add.hpp\"\n\ntemplate <typename Monoid>\nstruct Static_Range_Product_Group\
     \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  int n;\n  vc<X>\
     \ dat;\n  Static_Range_Product_Group() {}\n  template <typename F>\n  Static_Range_Product_Group(int\
     \ m, F f) {\n    build(m, f);\n  }\n  Static_Range_Product_Group(vc<X>& A) {\n\
@@ -61,7 +65,7 @@ data:
   path: ds/static_range_product_group.hpp
   requiredBy:
   - ds/prefix_sum.hpp
-  timestamp: '2026-08-31 20:38:07+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/924.test.cpp

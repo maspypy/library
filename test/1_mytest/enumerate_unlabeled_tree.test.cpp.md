@@ -44,8 +44,9 @@ data:
     - https://oeis.org/A000055
   bundledCode: "#line 1 \"test/1_mytest/enumerate_unlabeled_tree.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\
-    \n/*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n\
-    #include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
+    \n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\n\
+    library: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
+    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
     \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
     \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
@@ -158,45 +159,49 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/enumerate_unlabeled_tree.test.cpp\"\
-    \n\n#line 1 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n\
-    \  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void\
-    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void\
-    \ reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
-    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
-    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
-    \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
-    \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
-    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
-    \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
-    \    return A;\n  }\n};\n#line 1 \"mod/modint61.hpp\"\n\nstruct modint61 {\n \
-    \ static constexpr u64 mod = (1ULL << 61) - 1;\n  u64 val;\n  constexpr modint61()\
-    \ : val(0ULL) {}\n  constexpr modint61(u32 x) : val(x) {}\n  constexpr modint61(u64\
-    \ x) : val(x % mod) {}\n  constexpr modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod))\
-    \ : x) {}\n  constexpr modint61(ll x) : val(((x %= static_cast<ll>(mod)) < 0)\
-    \ ? (x + static_cast<ll>(mod)) : x) {}\n  static constexpr u64 get_mod() { return\
-    \ mod; }\n\n  modint61 &operator+=(const modint61 &a) {\n    val = ((val += a.val)\
-    \ >= mod) ? (val - mod) : val;\n    return *this;\n  }\n  modint61 &operator-=(const\
-    \ modint61 &a) {\n    val = ((val -= a.val) >= mod) ? (val + mod) : val;\n   \
-    \ return *this;\n  }\n  modint61 &operator*=(const modint61 &a) {\n    const unsigned\
-    \ __int128 y = static_cast<unsigned __int128>(val) * a.val;\n    val = (y >> 61)\
-    \ + (y & mod);\n    val = (val >= mod) ? (val - mod) : val;\n    return *this;\n\
-    \  }\n  modint61 operator-() const { return modint61(val ? mod - val : u64(0));\
-    \ }\n  modint61 &operator/=(const modint61 &a) { return (*this *= a.inverse());\
-    \ }\n  modint61 operator+(const modint61 &p) const { return modint61(*this) +=\
-    \ p; }\n  modint61 operator-(const modint61 &p) const { return modint61(*this)\
-    \ -= p; }\n  modint61 operator*(const modint61 &p) const { return modint61(*this)\
-    \ *= p; }\n  modint61 operator/(const modint61 &p) const { return modint61(*this)\
-    \ /= p; }\n  bool operator<(const modint61 &other) const { return val < other.val;\
-    \ }\n  bool operator==(const modint61 &p) const { return val == p.val; }\n  bool\
-    \ operator!=(const modint61 &p) const { return val != p.val; }\n  modint61 inverse()\
-    \ const {\n    ll a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n  \
-    \    t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return\
-    \ modint61(u);\n  }\n  modint61 pow(ll n) const {\n    assert(n >= 0);\n    modint61\
-    \ ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n     \
-    \ mul *= mul, n >>= 1;\n    }\n    return ret;\n  }\n};\n\n#ifdef FASTIO\nvoid\
-    \ rd(modint61 &x) {\n  fastio::rd(x.val);\n  assert(0 <= x.val && x.val < modint61::mod);\n\
-    }\n\nvoid wt(modint61 x) { fastio::wt(x.val); }\n#endif\n#line 1 \"ds/hashmap.hpp\"\
-    \n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \n\n#line 1 \"ds/unionfind/unionfind.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\n\
+    \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
+    \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
+    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
+    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
+    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
+    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
+    \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
+    \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
+    \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
+    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 1 \"graph/tree_dp/subtree_hash.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/graph/tree_dp/subtree_hash.hpp\n\
+    #line 1 \"mod/modint61.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint61.hpp\n\
+    \nstruct modint61 {\n  static constexpr u64 mod = (1ULL << 61) - 1;\n  u64 val;\n\
+    \  constexpr modint61() : val(0ULL) {}\n  constexpr modint61(u32 x) : val(x) {}\n\
+    \  constexpr modint61(u64 x) : val(x % mod) {}\n  constexpr modint61(int x) :\
+    \ val((x < 0) ? (x + static_cast<ll>(mod)) : x) {}\n  constexpr modint61(ll x)\
+    \ : val(((x %= static_cast<ll>(mod)) < 0) ? (x + static_cast<ll>(mod)) : x) {}\n\
+    \  static constexpr u64 get_mod() { return mod; }\n\n  modint61 &operator+=(const\
+    \ modint61 &a) {\n    val = ((val += a.val) >= mod) ? (val - mod) : val;\n   \
+    \ return *this;\n  }\n  modint61 &operator-=(const modint61 &a) {\n    val = ((val\
+    \ -= a.val) >= mod) ? (val + mod) : val;\n    return *this;\n  }\n  modint61 &operator*=(const\
+    \ modint61 &a) {\n    const unsigned __int128 y = static_cast<unsigned __int128>(val)\
+    \ * a.val;\n    val = (y >> 61) + (y & mod);\n    val = (val >= mod) ? (val -\
+    \ mod) : val;\n    return *this;\n  }\n  modint61 operator-() const { return modint61(val\
+    \ ? mod - val : u64(0)); }\n  modint61 &operator/=(const modint61 &a) { return\
+    \ (*this *= a.inverse()); }\n  modint61 operator+(const modint61 &p) const { return\
+    \ modint61(*this) += p; }\n  modint61 operator-(const modint61 &p) const { return\
+    \ modint61(*this) -= p; }\n  modint61 operator*(const modint61 &p) const { return\
+    \ modint61(*this) *= p; }\n  modint61 operator/(const modint61 &p) const { return\
+    \ modint61(*this) /= p; }\n  bool operator<(const modint61 &other) const { return\
+    \ val < other.val; }\n  bool operator==(const modint61 &p) const { return val\
+    \ == p.val; }\n  bool operator!=(const modint61 &p) const { return val != p.val;\
+    \ }\n  modint61 inverse() const {\n    ll a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint61(u);\n  }\n  modint61 pow(ll n) const {\n\
+    \    assert(n >= 0);\n    modint61 ret(1), mul(val);\n    while (n > 0) {\n  \
+    \    if (n & 1) ret *= mul;\n      mul *= mul, n >>= 1;\n    }\n    return ret;\n\
+    \  }\n};\n\n#ifdef FASTIO\nvoid rd(modint61 &x) {\n  fastio::rd(x.val);\n  assert(0\
+    \ <= x.val && x.val < modint61::mod);\n}\n\nvoid wt(modint61 x) { fastio::wt(x.val);\
+    \ }\n#endif\n#line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
     \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
     \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
     \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
@@ -220,7 +225,7 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -296,11 +301,13 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 1 \"graph/tree.hpp\"\n\n#line 1 \"ds/hashmap.hpp\"\n\n//\
-    \ u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\
-    \u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
-    \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
-    \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \   }\n  }\n};\n#line 1 \"graph/tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/tree.hpp\n\
+    \n#line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
     \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
     \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
     \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
@@ -321,7 +328,7 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -397,7 +404,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 3 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
+    \   }\n  }\n};\n#line 4 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
     \u3066\u3044\u308D\u3044\u308D\n// HLD=false: \u5165\u529B\u8FBA\u9806\u3067 preorder\n\
     template <typename GT, bool HLD = true>\nstruct Tree {\n  using Graph_type = GT;\n\
     \  using WT = typename GT::cost_type;\n  int N = 0;\n  vector<int> LID, RID, head,\
@@ -517,37 +524,42 @@ data:
     \ G.csr_edges[i];\n          if (e.to == parent[v] || e.to == max_ch) continue;\n\
     \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
     \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 1 \"\
-    random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"graph/tree.hpp\"\n\n#line 1 \"\
-    ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n\
-    \  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n\
-    \  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n \
-    \   while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k),\
-    \ val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\
-    \u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\
-    \u3068.\n  void clear() {\n    used.assign(len(used), 0);\n    cap = (mask + 1)\
-    \ / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\n  int index(const\
-    \ u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] && key[i] != k; i =\
-    \ (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const u64&\
-    \ k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap ==\
-    \ 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n\
-    \    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value) {\n   \
-    \ int i = index(k);\n    return (used[i] ? val[i] : default_value);\n  }\n\n \
-    \ bool count(const u64& k) {\n    int i = index(k);\n    return used[i] && key[i]\
-    \ == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"graph/tree_dp/rerooting_dp.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/graph/tree_dp/rerooting_dp.hpp\n\
+    #line 1 \"graph/tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/tree.hpp\n\
+    \n#line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -623,7 +635,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 3 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
+    \   }\n  }\n};\n#line 4 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
     \u3066\u3044\u308D\u3044\u308D\n// HLD=false: \u5165\u529B\u8FBA\u9806\u3067 preorder\n\
     template <typename GT, bool HLD = true>\nstruct Tree {\n  using Graph_type = GT;\n\
     \  using WT = typename GT::cost_type;\n  int N = 0;\n  vector<int> LID, RID, head,\
@@ -742,7 +754,7 @@ data:
     \ (int i = G.indptr[v + 1] - 1; i >= G.indptr[v]; --i) {\n          auto &e =\
     \ G.csr_edges[i];\n          if (e.to == parent[v] || e.to == max_ch) continue;\n\
     \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
-    \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 2 \"\
+    \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 3 \"\
     graph/tree_dp/rerooting_dp.hpp\"\n\ntemplate <typename TREE, typename Data>\n\
     struct Rerooting_DP {\n  TREE& tree;\n\n  // full tree rooted at v\n  vc<Data>\
     \ dp;\n  // subtree v with respect to the original root\n  vc<Data> dp_subtree;\n\
@@ -765,7 +777,7 @@ data:
     \ tree.parent[v], v);\n      }\n\n      FOR_R(k, len(ch)) {\n        int c = ch[k];\n\
     \        Data Y = f_ee(dp[c], X);\n        Data branch = dp_parent[c];\n     \
     \   X = f_ee(branch, X);\n        dp_parent[c] = f_ev(Y, v);\n      }\n      dp[v]\
-    \ = f_ev(X, v);\n    }\n  }\n};\n#line 6 \"graph/tree_dp/subtree_hash.hpp\"\n\n\
+    \ = f_ev(X, v);\n    }\n  }\n};\n#line 7 \"graph/tree_dp/subtree_hash.hpp\"\n\n\
     // \u8907\u6570\u306E\u6728\u3067\u4F7F\u3063\u3066\u5927\u4E08\u592B\ntemplate\
     \ <typename TREE>\nstruct Subtree_Hash {\n  using mint = modint61;\n  TREE& tree;\n\
     \  vc<u64> dp, dp_subtree, dp_parent;\n\n  Subtree_Hash(TREE& tree) : tree(tree)\
@@ -783,14 +795,42 @@ data:
     \ return dp_subtree[v];\n    int w = tree.jump(v, root, 1);\n    return dp_parent[w];\n\
     \  }\n\n  static mint hash_base(int k) {\n    static vc<mint> dat;\n    while\
     \ (len(dat) <= k) dat.eb(RNG(mint::get_mod()));\n    return dat[k];\n  }\n};\n\
-    #line 1 \"enumerate/unlabeled_tree.hpp\"\n\n// unlabeled unrooted trees \u3092\
-    \u540C\u578B\u3092\u9664\u3044\u3066\u5217\u6319. vc<pair<int, int>>.\n// https://oeis.org/A000055\n\
-    // N=15: 7741, 0.005sec\n// N=20: 823065, 0.401sec\n// N=25: 104636890, 52.368sec\n\
-    template <typename F>\nvoid enumerate_unlabeled_tree(int n, F f) {\n  assert(0\
-    \ <= n && n <= 32);\n  if (n == 0) return;\n  /*\n  n/2 \u4EE5\u4E0B\u306E rooted\
-    \ tree \u3092\u5217\u6319\u3059\u308B\n  rooted tree -> bracket sequence -> 1,0\
-    \ \u306E\u5217 -> 32bit \u6574\u6570\n  */\n  int m = floor<int>(n, 2);\n  vvc<u32>\
-    \ dat(m + 1);\n  if (1 <= m) dat[1].eb(0);\n\n  FOR(n, 2, m + 1) {\n    auto dfs\
+    #line 1 \"enumerate/unlabeled_tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/enumerate/unlabeled_tree.hpp\n\
+    \n// unlabeled unrooted trees \u3092\u540C\u578B\u3092\u9664\u3044\u3066\u5217\
+    \u6319. vc<pair<int, int>>.\n// https://oeis.org/A000055\n// N=15: 7741, 0.005sec\n\
+    // N=20: 823065, 0.401sec\n// N=25: 104636890, 52.368sec\ntemplate <typename F>\n\
+    void enumerate_unlabeled_tree(int n, F f) {\n  assert(0 <= n && n <= 32);\n  if\
+    \ (n == 0) return;\n  /*\n  n/2 \u4EE5\u4E0B\u306E rooted tree \u3092\u5217\u6319\
+    \u3059\u308B\n  rooted tree -> bracket sequence -> 1,0 \u306E\u5217 -> 32bit \u6574\
+    \u6570\n  */\n  int m = floor<int>(n, 2);\n  vvc<u32> dat(m + 1);\n  if (1 <=\
+    \ m) dat[1].eb(0);\n\n  FOR(n, 2, m + 1) {\n    auto dfs = [&](auto& dfs, int\
+    \ m, int k, u32 now, int now_e) -> void {\n      if (now_e == n - 1) {\n     \
+    \   dat[n].eb(now);\n        return;\n      }\n      if (now_e + m >= n) {\n \
+    \       m = n - 1 - now_e;\n        k = 0;\n      }\n      if (m == 0) return;\n\
+    \      FOR(i, k, len(dat[m])) {\n        u32 x = dat[m][i];\n        x = (x <<\
+    \ 1) | 1;\n        dfs(dfs, m, i, now | x << (2 * now_e), now_e + m);\n      }\n\
+    \      dfs(dfs, m - 1, 0, now, now_e);\n    };\n    dfs(dfs, n - 1, 0, 0, 0);\n\
+    \  }\n\n  // m \u4EE5\u4E0B\u306E rooted tree \u304C\u5217\u6319\u3067\u304D\u305F\
+    \u306E\u3067\u3053\u308C\u3092\u5229\u7528\u3057\u3066\n  // n \u9802\u70B9\u306E\
+    \ unrooted tree \u3092\u5217\u6319\n  auto decode = [&](u64 x) -> vc<pair<int,\
+    \ int>> {\n    vc<pair<int, int>> edge;\n    vc<int> path = {0};\n    int p =\
+    \ 0;\n    FOR(i, 2 * n - 2) {\n      if (x >> i & 1) {\n        edge.eb(path.back(),\
+    \ p + 1);\n        path.eb(p + 1), p++;\n      } else {\n        path.pop_back();\n\
+    \      }\n    }\n    return edge;\n  };\n\n  auto dfs = [&](auto& dfs, int m,\
+    \ int k, u64 now, int now_e) -> void {\n    if (now_e == n - 1) {\n      f(decode(now));\n\
+    \      return;\n    }\n    if (now_e + m >= n) {\n      m = n - 1 - now_e;\n \
+    \     k = 0;\n    }\n    if (m == 0) return;\n    FOR(i, k, len(dat[m])) {\n \
+    \     u64 x = dat[m][i];\n      x = (x << 1) | 1;\n      dfs(dfs, m, i, now |\
+    \ x << (2 * now_e), now_e + m);\n    }\n    dfs(dfs, m - 1, 0, now, now_e);\n\
+    \  };\n  dfs(dfs, floor<int>(n - 1, 2), 0, 0, 0);\n\n  // \u91CD\u5FC3\u304C 2\
+    \ \u3064\u306E\u5834\u5408\n  if (2 * m == n) {\n    FOR(i, len(dat[m])) {\n \
+    \     FOR(j, i + 1) {\n        u64 x = dat[m][i], y = dat[m][j];\n        y =\
+    \ (y << 1) | 1;\n        f(decode(x | (y << (2 * (m - 1)))));\n      }\n    }\n\
+    \  }\n}\n\ntemplate <typename F>\nvoid enumerate_unlabeled_rooted_tree(int n,\
+    \ F f) {\n  assert(0 <= n && n <= 32);\n  if (n == 0) return;\n  /*\n  n/2 \u4EE5\
+    \u4E0B\u306E rooted tree \u3092\u5217\u6319\u3059\u308B\n  rooted tree -> bracket\
+    \ sequence -> 1,0 \u306E\u5217 -> 32bit \u6574\u6570\n  */\n  int m = n;\n  vvc<u32>\
+    \ dat(n + 1);\n  if (1 <= m) dat[1].eb(0);\n\n  FOR(n, 2, m + 1) {\n    auto dfs\
     \ = [&](auto& dfs, int m, int k, u32 now, int now_e) -> void {\n      if (now_e\
     \ == n - 1) {\n        dat[n].eb(now);\n        return;\n      }\n      if (now_e\
     \ + m >= n) {\n        m = n - 1 - now_e;\n        k = 0;\n      }\n      if (m\
@@ -803,35 +843,8 @@ data:
     \ x) -> vc<pair<int, int>> {\n    vc<pair<int, int>> edge;\n    vc<int> path =\
     \ {0};\n    int p = 0;\n    FOR(i, 2 * n - 2) {\n      if (x >> i & 1) {\n   \
     \     edge.eb(path.back(), p + 1);\n        path.eb(p + 1), p++;\n      } else\
-    \ {\n        path.pop_back();\n      }\n    }\n    return edge;\n  };\n\n  auto\
-    \ dfs = [&](auto& dfs, int m, int k, u64 now, int now_e) -> void {\n    if (now_e\
-    \ == n - 1) {\n      f(decode(now));\n      return;\n    }\n    if (now_e + m\
-    \ >= n) {\n      m = n - 1 - now_e;\n      k = 0;\n    }\n    if (m == 0) return;\n\
-    \    FOR(i, k, len(dat[m])) {\n      u64 x = dat[m][i];\n      x = (x << 1) |\
-    \ 1;\n      dfs(dfs, m, i, now | x << (2 * now_e), now_e + m);\n    }\n    dfs(dfs,\
-    \ m - 1, 0, now, now_e);\n  };\n  dfs(dfs, floor<int>(n - 1, 2), 0, 0, 0);\n\n\
-    \  // \u91CD\u5FC3\u304C 2 \u3064\u306E\u5834\u5408\n  if (2 * m == n) {\n   \
-    \ FOR(i, len(dat[m])) {\n      FOR(j, i + 1) {\n        u64 x = dat[m][i], y =\
-    \ dat[m][j];\n        y = (y << 1) | 1;\n        f(decode(x | (y << (2 * (m -\
-    \ 1)))));\n      }\n    }\n  }\n}\n\ntemplate <typename F>\nvoid enumerate_unlabeled_rooted_tree(int\
-    \ n, F f) {\n  assert(0 <= n && n <= 32);\n  if (n == 0) return;\n  /*\n  n/2\
-    \ \u4EE5\u4E0B\u306E rooted tree \u3092\u5217\u6319\u3059\u308B\n  rooted tree\
-    \ -> bracket sequence -> 1,0 \u306E\u5217 -> 32bit \u6574\u6570\n  */\n  int m\
-    \ = n;\n  vvc<u32> dat(n + 1);\n  if (1 <= m) dat[1].eb(0);\n\n  FOR(n, 2, m +\
-    \ 1) {\n    auto dfs = [&](auto& dfs, int m, int k, u32 now, int now_e) -> void\
-    \ {\n      if (now_e == n - 1) {\n        dat[n].eb(now);\n        return;\n \
-    \     }\n      if (now_e + m >= n) {\n        m = n - 1 - now_e;\n        k =\
-    \ 0;\n      }\n      if (m == 0) return;\n      FOR(i, k, len(dat[m])) {\n   \
-    \     u32 x = dat[m][i];\n        x = (x << 1) | 1;\n        dfs(dfs, m, i, now\
-    \ | x << (2 * now_e), now_e + m);\n      }\n      dfs(dfs, m - 1, 0, now, now_e);\n\
-    \    };\n    dfs(dfs, n - 1, 0, 0, 0);\n  }\n\n  // m \u4EE5\u4E0B\u306E rooted\
-    \ tree \u304C\u5217\u6319\u3067\u304D\u305F\u306E\u3067\u3053\u308C\u3092\u5229\
-    \u7528\u3057\u3066\n  // n \u9802\u70B9\u306E unrooted tree \u3092\u5217\u6319\
-    \n  auto decode = [&](u64 x) -> vc<pair<int, int>> {\n    vc<pair<int, int>> edge;\n\
-    \    vc<int> path = {0};\n    int p = 0;\n    FOR(i, 2 * n - 2) {\n      if (x\
-    \ >> i & 1) {\n        edge.eb(path.back(), p + 1);\n        path.eb(p + 1), p++;\n\
-    \      } else {\n        path.pop_back();\n      }\n    }\n    return edge;\n\
-    \  };\n\n  for (auto& x : dat[n]) f(decode(x));\n}\n#line 7 \"test/1_mytest/enumerate_unlabeled_tree.test.cpp\"\
+    \ {\n        path.pop_back();\n      }\n    }\n    return edge;\n  };\n\n  for\
+    \ (auto& x : dat[n]) f(decode(x));\n}\n#line 7 \"test/1_mytest/enumerate_unlabeled_tree.test.cpp\"\
     \n\nvoid test(int n) {\n  /*\n  \u30FB\u6570\u3048\u4E0A\u3052\u304C\u6B63\u3057\
     \u3044\u3053\u3068\n  \u30FB\u6728\u306B\u306A\u308B\u3053\u3068\n  \u30FB\u3042\
     \u3068\u306F\u76EE\u8996\u3067\u3044\u3044\u304B\n  */\n  int cnt = 0;\n  enumerate_unlabeled_tree(n,\
@@ -871,7 +884,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/enumerate_unlabeled_tree.test.cpp

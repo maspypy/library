@@ -2,27 +2,29 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/powersums_assign.hpp
     title: alg/acted_monoid/powersums_assign.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1548.test.cpp
     title: test/3_yukicoder/1548.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/add_array.hpp\"\n\ntemplate <typename E, int\
-    \ K>\nstruct Monoid_Add_Array {\n  using value_type = array<E, K>;\n  using X\
-    \ = value_type;\n  static X op(const X& x, const X& y) {\n    X z;\n    FOR(i,\
-    \ K) z[i] = x[i] + y[i];\n    return z;\n  }\n  static constexpr X id() { return\
-    \ X{}; }\n  static constexpr X inverse(X x) {\n    for (auto& v : x) v = -v;\n\
-    \    return x;\n  }\n  static constexpr X power(X x, ll n) {\n    for (auto& v\
-    \ : x) v *= E(n);\n    return x;\n  }\n  static constexpr bool commute = 1;\n\
-    };\n"
-  code: "\ntemplate <typename E, int K>\nstruct Monoid_Add_Array {\n  using value_type\
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/monoid/add_array.hpp
+  bundledCode: "#line 1 \"alg/monoid/add_array.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add_array.hpp\n\
+    \ntemplate <typename E, int K>\nstruct Monoid_Add_Array {\n  using value_type\
+    \ = array<E, K>;\n  using X = value_type;\n  static X op(const X& x, const X&\
+    \ y) {\n    X z;\n    FOR(i, K) z[i] = x[i] + y[i];\n    return z;\n  }\n  static\
+    \ constexpr X id() { return X{}; }\n  static constexpr X inverse(X x) {\n    for\
+    \ (auto& v : x) v = -v;\n    return x;\n  }\n  static constexpr X power(X x, ll\
+    \ n) {\n    for (auto& v : x) v *= E(n);\n    return x;\n  }\n  static constexpr\
+    \ bool commute = 1;\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add_array.hpp\n\
+    \ntemplate <typename E, int K>\nstruct Monoid_Add_Array {\n  using value_type\
     \ = array<E, K>;\n  using X = value_type;\n  static X op(const X& x, const X&\
     \ y) {\n    X z;\n    FOR(i, K) z[i] = x[i] + y[i];\n    return z;\n  }\n  static\
     \ constexpr X id() { return X{}; }\n  static constexpr X inverse(X x) {\n    for\
@@ -34,8 +36,8 @@ data:
   path: alg/monoid/add_array.hpp
   requiredBy:
   - alg/acted_monoid/powersums_assign.hpp
-  timestamp: '2026-09-05 04:01:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-10-15 19:54:56+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1548.test.cpp
 documentation_of: alg/monoid/add_array.hpp

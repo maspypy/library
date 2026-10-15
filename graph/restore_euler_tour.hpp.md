@@ -15,19 +15,22 @@ data:
   attributes:
     links:
     - https://codeforces.com/problemset/problem/1053/E
-  bundledCode: "#line 1 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
-    \ n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n);\
-    \ }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n\
-    \  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x]\
-    \ >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n\
-    \      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n   \
-    \ x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n\
-    \    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x]\
-    \ < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return\
-    \ true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] =\
-    \ (*this)[i];\n    return A;\n  }\n};\n#line 2 \"ds/decremental_fastset.hpp\"\n\
-    \n// amortized linear\n// MoFR \u306A\u3057\u3060\u3068 FastSet \u3088\u308A\u9045\
-    \u304B\u3063\u305F\nstruct Decremental_FastSet {\n  struct Decremental_Neighbor_UF\
+    - https://github.com/maspypy/library/blob/main/graph/restore_euler_tour.hpp
+  bundledCode: "#line 1 \"graph/restore_euler_tour.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/restore_euler_tour.hpp\n\
+    #line 1 \"ds/decremental_fastset.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/decremental_fastset.hpp\n\
+    #line 1 \"ds/unionfind/unionfind.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\n\
+    \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
+    \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
+    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
+    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
+    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
+    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
+    \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
+    \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
+    \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
+    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 3 \"ds/decremental_fastset.hpp\"\
+    \n\n// amortized linear\n// MoFR \u306A\u3057\u3060\u3068 FastSet \u3088\u308A\
+    \u9045\u304B\u3063\u305F\nstruct Decremental_FastSet {\n  struct Decremental_Neighbor_UF\
     \ {\n    int n;\n    UnionFind uf;\n    vc<int> L, R;\n    Decremental_Neighbor_UF(int\
     \ n) : n(n), uf(n + 2), L(n + 2), R(n + 2) {\n      FOR(i, n + 2) L[i] = i, R[i]\
     \ = i;\n    }\n    void erase(int i) {\n      assert(0 <= i && i < n);\n     \
@@ -51,7 +54,7 @@ data:
     \  }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int l, int r, F&&\
     \ f) {\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n  }\n\n  string\
     \ to_string() {\n    string S(N, '.');\n    FOR(i, N) S[i] = '0' + (dat[i / 64]\
-    \ >> (i & 63) & 1);\n    return S;\n  }\n};\n#line 2 \"graph/restore_euler_tour.hpp\"\
+    \ >> (i & 63) & 1);\n    return S;\n  }\n};\n#line 3 \"graph/restore_euler_tour.hpp\"\
     \n\n// \u672A\u77E5\u306E\u6728\u306E euler tour \u306E\u9802\u70B9\u5217\u304C\
     \ -1 \u8FBC\u307F\u3067\u4E0E\u3048\u3089\u308C\u308B\n// https://codeforces.com/problemset/problem/1053/E\n\
     // \u59CB\u70B9\u304C 0 \u3068\u306F\u9650\u308A\u307E\u305B\u3093\nvc<int> restore_euler_tour(int\
@@ -109,10 +112,11 @@ data:
     \ - 2] == v) {\n      POP(path);\n    } else {\n      if (vis[v]) return {};\n\
     \      path.eb(v);\n      vis[v] = 1;\n    }\n  }\n  if (len(path) != 1) return\
     \ {};\n  return A;\n}\n"
-  code: "#include \"ds/decremental_fastset.hpp\"\n\n// \u672A\u77E5\u306E\u6728\u306E\
-    \ euler tour \u306E\u9802\u70B9\u5217\u304C -1 \u8FBC\u307F\u3067\u4E0E\u3048\u3089\
-    \u308C\u308B\n// https://codeforces.com/problemset/problem/1053/E\n// \u59CB\u70B9\
-    \u304C 0 \u3068\u306F\u9650\u308A\u307E\u305B\u3093\nvc<int> restore_euler_tour(int\
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/restore_euler_tour.hpp\n\
+    #include \"ds/decremental_fastset.hpp\"\n\n// \u672A\u77E5\u306E\u6728\u306E euler\
+    \ tour \u306E\u9802\u70B9\u5217\u304C -1 \u8FBC\u307F\u3067\u4E0E\u3048\u3089\u308C\
+    \u308B\n// https://codeforces.com/problemset/problem/1053/E\n// \u59CB\u70B9\u304C\
+    \ 0 \u3068\u306F\u9650\u308A\u307E\u305B\u3093\nvc<int> restore_euler_tour(int\
     \ N, vc<int> A) {\n  if (N == 1) return {0};\n  assert(len(A) == N + N - 1);\n\
     \  if (A[0] == -1) A[0] = A.back();\n  if (A.back() == -1) A.back() = A[0];\n\
     \  if (A[0] != -1 && A.back() != -1 && A[0] != A.back()) return {};\n\n  vc<int>\
@@ -173,7 +177,7 @@ data:
   isVerificationFile: false
   path: graph/restore_euler_tour.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/restore_euler_tour.hpp

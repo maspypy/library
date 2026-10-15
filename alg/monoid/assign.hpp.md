@@ -8,7 +8,7 @@ data:
   - icon: ':question:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/powersums_assign.hpp
     title: alg/acted_monoid/powersums_assign.hpp
   - icon: ':question:'
@@ -54,7 +54,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/summin_assign.test.cpp
     title: test/1_mytest/summin_assign.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1548.test.cpp
     title: test/3_yukicoder/1548.test.cpp
   - icon: ':heavy_check_mark:'
@@ -73,12 +73,15 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/assign.hpp\"\n\ntemplate <typename X, int none_val>\n\
-    struct Monoid_Assign {\n  using value_type = X;\n  static X op(X x, X y) { return\
-    \ (y == X(none_val) ? x : y); }\n  static constexpr X id() { return X(none_val);\
-    \ }\n  static constexpr bool commute = false;\n};\n"
-  code: "\ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp
+  bundledCode: "#line 1 \"alg/monoid/assign.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
+    \ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
+    \ = X;\n  static X op(X x, X y) { return (y == X(none_val) ? x : y); }\n  static\
+    \ constexpr X id() { return X(none_val); }\n  static constexpr bool commute =\
+    \ false;\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
+    \ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
     \ = X;\n  static X op(X x, X y) { return (y == X(none_val) ? x : y); }\n  static\
     \ constexpr X id() { return X(none_val); }\n  static constexpr bool commute =\
     \ false;\n};\n"
@@ -92,7 +95,7 @@ data:
   - alg/acted_monoid/sum_assign.hpp
   - alg/acted_monoid/powersums_assign.hpp
   - alg/acted_monoid/summax_assign.hpp
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/rbst_am.test.cpp

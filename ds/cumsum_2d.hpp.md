@@ -16,14 +16,16 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/cumsum_2d.hpp\"\n\n#line 1 \"alg/monoid/add.hpp\"\n\n\
-    template <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
+    links:
+    - https://github.com/maspypy/library/blob/main/ds/cumsum_2d.hpp
+  bundledCode: "#line 1 \"ds/cumsum_2d.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/cumsum_2d.hpp\n\
+    \n#line 1 \"alg/monoid/add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
     \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
     \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
     \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
     \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
-    };\n#line 3 \"ds/cumsum_2d.hpp\"\n\ntemplate <typename Monoid>\nstruct Cumsum_2D\
+    };\n#line 4 \"ds/cumsum_2d.hpp\"\n\ntemplate <typename Monoid>\nstruct Cumsum_2D\
     \ {\n  using MX = Monoid;\n  static_assert(MX::commute);\n  using X = typename\
     \ MX::value_type;\n  int H, W;\n  vc<X> dat;\n\n  Cumsum_2D() {}\n  Cumsum_2D(vvc<X>\
     \ &A) { build(A); }\n  template <typename F>\n  Cumsum_2D(int H, int W, F f) {\n\
@@ -44,7 +46,8 @@ data:
     \ 0 ? dat[W * x2 + y2] : MX::id());\n    return MX::op(MX::op(a, d), MX::inverse(MX::op(b,\
     \ c)));\n  }\n\n  X prefix_sum(int x, int y) {\n    return (x == 0 || y == 0)\
     \ ? MX::id() : dat[W * x + y - (W + 1)];\n  }\n};\n"
-  code: "\n#include \"alg/monoid/add.hpp\"\n\ntemplate <typename Monoid>\nstruct Cumsum_2D\
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/cumsum_2d.hpp\n\
+    \n#include \"alg/monoid/add.hpp\"\n\ntemplate <typename Monoid>\nstruct Cumsum_2D\
     \ {\n  using MX = Monoid;\n  static_assert(MX::commute);\n  using X = typename\
     \ MX::value_type;\n  int H, W;\n  vc<X> dat;\n\n  Cumsum_2D() {}\n  Cumsum_2D(vvc<X>\
     \ &A) { build(A); }\n  template <typename F>\n  Cumsum_2D(int H, int W, F f) {\n\
@@ -70,7 +73,7 @@ data:
   isVerificationFile: false
   path: ds/cumsum_2d.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/655.test.cpp

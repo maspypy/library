@@ -7,17 +7,18 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"flow/incremental_maxflow.hpp\"\n// \u6D41\u3057\u305F\u5F8C\
-    \u3067\u8FBA\u3092\u8FFD\u52A0\u3057\u3066\u3082\u3088\u3044\ntemplate <typename\
-    \ Cap>\nstruct Incremental_MaxFlow {\n  // flow \u304C\u6B32\u3057\u3044\u5834\
-    \u5408\u306B\u306F init_cap \u3068\u306E\u5DEE\u5206\u304B\u3089\u6C42\u3081\u308B\
-    . \u6B8B\u4F59\u30B0\u30E9\u30D5\u3060\u3051\u6301\u3064.\n  struct Edge {\n \
-    \   int to;\n    Cap cap;\n  };\n\n  vc<Edge> edges;\n  vc<Cap> init_cap;\n\n\
-    \  const int N, source, sink;\n  vc<int> head, nxt;\n  vc<int> prog, level;\n\
-    \  bool calculated;\n  Cap flow_ans;\n\n  Incremental_MaxFlow(int N, int source,\
-    \ int sink)\n      : N(N),\n        source(source),\n        sink(sink),\n   \
-    \     head(N, -1),\n        prog(N, -1),\n        level(N, -1),\n        calculated(0),\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/flow/incremental_maxflow.hpp
+  bundledCode: "#line 1 \"flow/incremental_maxflow.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/flow/incremental_maxflow.hpp\n\
+    // \u6D41\u3057\u305F\u5F8C\u3067\u8FBA\u3092\u8FFD\u52A0\u3057\u3066\u3082\u3088\
+    \u3044\ntemplate <typename Cap>\nstruct Incremental_MaxFlow {\n  // flow \u304C\
+    \u6B32\u3057\u3044\u5834\u5408\u306B\u306F init_cap \u3068\u306E\u5DEE\u5206\u304B\
+    \u3089\u6C42\u3081\u308B. \u6B8B\u4F59\u30B0\u30E9\u30D5\u3060\u3051\u6301\u3064\
+    .\n  struct Edge {\n    int to;\n    Cap cap;\n  };\n\n  vc<Edge> edges;\n  vc<Cap>\
+    \ init_cap;\n\n  const int N, source, sink;\n  vc<int> head, nxt;\n  vc<int> prog,\
+    \ level;\n  bool calculated;\n  Cap flow_ans;\n\n  Incremental_MaxFlow(int N,\
+    \ int source, int sink)\n      : N(N),\n        source(source),\n        sink(sink),\n\
+    \        head(N, -1),\n        prog(N, -1),\n        level(N, -1),\n        calculated(0),\n\
     \        flow_ans(0) {}\n\n  void add(int frm, int to, Cap cap, Cap rev_cap =\
     \ 0) {\n    calculated = 0;\n    assert(0 <= frm && frm < N);\n    assert(0 <=\
     \ to && to < N);\n    assert(Cap(0) <= cap);\n    if (frm == to) return;\n   \
@@ -62,14 +63,15 @@ data:
     \ {\n          vis[POP(path)] = 0;\n        }\n        path.eb(to), vis[to] =\
     \ 1;\n      }\n      for (auto&& v : path) vis[v] = 0;\n      res.eb(path);\n\
     \    }\n    return res;\n  }\n};\n"
-  code: "// \u6D41\u3057\u305F\u5F8C\u3067\u8FBA\u3092\u8FFD\u52A0\u3057\u3066\u3082\
-    \u3088\u3044\ntemplate <typename Cap>\nstruct Incremental_MaxFlow {\n  // flow\
-    \ \u304C\u6B32\u3057\u3044\u5834\u5408\u306B\u306F init_cap \u3068\u306E\u5DEE\
-    \u5206\u304B\u3089\u6C42\u3081\u308B. \u6B8B\u4F59\u30B0\u30E9\u30D5\u3060\u3051\
-    \u6301\u3064.\n  struct Edge {\n    int to;\n    Cap cap;\n  };\n\n  vc<Edge>\
-    \ edges;\n  vc<Cap> init_cap;\n\n  const int N, source, sink;\n  vc<int> head,\
-    \ nxt;\n  vc<int> prog, level;\n  bool calculated;\n  Cap flow_ans;\n\n  Incremental_MaxFlow(int\
-    \ N, int source, int sink)\n      : N(N),\n        source(source),\n        sink(sink),\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/flow/incremental_maxflow.hpp\n\
+    // \u6D41\u3057\u305F\u5F8C\u3067\u8FBA\u3092\u8FFD\u52A0\u3057\u3066\u3082\u3088\
+    \u3044\ntemplate <typename Cap>\nstruct Incremental_MaxFlow {\n  // flow \u304C\
+    \u6B32\u3057\u3044\u5834\u5408\u306B\u306F init_cap \u3068\u306E\u5DEE\u5206\u304B\
+    \u3089\u6C42\u3081\u308B. \u6B8B\u4F59\u30B0\u30E9\u30D5\u3060\u3051\u6301\u3064\
+    .\n  struct Edge {\n    int to;\n    Cap cap;\n  };\n\n  vc<Edge> edges;\n  vc<Cap>\
+    \ init_cap;\n\n  const int N, source, sink;\n  vc<int> head, nxt;\n  vc<int> prog,\
+    \ level;\n  bool calculated;\n  Cap flow_ans;\n\n  Incremental_MaxFlow(int N,\
+    \ int source, int sink)\n      : N(N),\n        source(source),\n        sink(sink),\n\
     \        head(N, -1),\n        prog(N, -1),\n        level(N, -1),\n        calculated(0),\n\
     \        flow_ans(0) {}\n\n  void add(int frm, int to, Cap cap, Cap rev_cap =\
     \ 0) {\n    calculated = 0;\n    assert(0 <= frm && frm < N);\n    assert(0 <=\
@@ -119,7 +121,7 @@ data:
   isVerificationFile: false
   path: flow/incremental_maxflow.hpp
   requiredBy: []
-  timestamp: '2025-09-20 13:50:31+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: flow/incremental_maxflow.hpp

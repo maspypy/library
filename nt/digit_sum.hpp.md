@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/sample/aplusb128.test.cpp
     title: test/2_library_checker/sample/aplusb128.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2440.test.cpp
     title: test/3_yukicoder/2440.test.cpp
   - icon: ':x:'
@@ -55,12 +55,15 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"nt/digit_sum.hpp\"\n\nint digit_sum(u64 x) {\n  const int\
-    \ K = 100'000;\n  static vc<int> dp(K);\n  if (dp[1] == 0) { FOR(x, 1, K) dp[x]\
-    \ = dp[x / 10] + (x % 10); }\n  int res = 0;\n  while (x) {\n    res += dp[x %\
-    \ K];\n    x /= K;\n  }\n  return res;\n}\n"
-  code: "\nint digit_sum(u64 x) {\n  const int K = 100'000;\n  static vc<int> dp(K);\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/nt/digit_sum.hpp
+  bundledCode: "#line 1 \"nt/digit_sum.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/digit_sum.hpp\n\
+    \nint digit_sum(u64 x) {\n  const int K = 100'000;\n  static vc<int> dp(K);\n\
+    \  if (dp[1] == 0) { FOR(x, 1, K) dp[x] = dp[x / 10] + (x % 10); }\n  int res\
+    \ = 0;\n  while (x) {\n    res += dp[x % K];\n    x /= K;\n  }\n  return res;\n\
+    }\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/nt/digit_sum.hpp\n\
+    \nint digit_sum(u64 x) {\n  const int K = 100'000;\n  static vc<int> dp(K);\n\
     \  if (dp[1] == 0) { FOR(x, 1, K) dp[x] = dp[x / 10] + (x % 10); }\n  int res\
     \ = 0;\n  while (x) {\n    res += dp[x % K];\n    x /= K;\n  }\n  return res;\n\
     }"
@@ -69,7 +72,7 @@ data:
   path: nt/digit_sum.hpp
   requiredBy:
   - bigint/base.hpp
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/bigint.test.cpp

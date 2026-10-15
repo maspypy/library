@@ -28,12 +28,16 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"graph/tree.hpp\"\n\n#line 1 \"ds/hashmap.hpp\"\n\n// u64\
-    \ -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\
-    \u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
-    \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
-    \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/ds/dual_tree_monoid.hpp
+  bundledCode: "#line 1 \"graph/ds/dual_tree_monoid.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/ds/dual_tree_monoid.hpp\n\
+    #line 1 \"graph/tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/tree.hpp\n\
+    \n#line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
     \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
     \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
     \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
@@ -54,7 +58,7 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -130,7 +134,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 3 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
+    \   }\n  }\n};\n#line 4 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
     \u3066\u3044\u308D\u3044\u308D\n// HLD=false: \u5165\u529B\u8FBA\u9806\u3067 preorder\n\
     template <typename GT, bool HLD = true>\nstruct Tree {\n  using Graph_type = GT;\n\
     \  using WT = typename GT::cost_type;\n  int N = 0;\n  vector<int> LID, RID, head,\
@@ -250,60 +254,60 @@ data:
     \ G.csr_edges[i];\n          if (e.to == parent[v] || e.to == max_ch) continue;\n\
     \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
     \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 1 \"\
-    ds/segtree/dual_segtree.hpp\"\n\ntemplate <typename Monoid>\nstruct Dual_SegTree\
-    \ {\n  using MA = Monoid;\n  using A = typename MA::value_type;\n  int n, log,\
-    \ size;\n  vc<A> laz;\n  vc<bool> has_laz;\n\n  Dual_SegTree() : Dual_SegTree(0)\
-    \ {}\n  Dual_SegTree(int n) {\n    build(n, [&](int i) -> A { return MA::id();\
-    \ });\n  }\n  template <typename F>\n  Dual_SegTree(int n, F f) {\n    build(n,\
-    \ f);\n  }\n\n  template <typename F>\n  void build(int m, F f) {\n    n = m;\n\
-    \    log = 0;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    laz.assign(size\
-    \ << 1, MA::id());\n    FOR(i, n) laz[size + i] = f(i);\n    has_laz.assign(size,\
-    \ false);\n  }\n  void build(int n) {\n    build(n, [&](int i) -> A { return MA::id();\
-    \ });\n  }\n\n  A get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n\
-    \    for (int i = log; i >= 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n\
-    \  vc<A> get_all() {\n    FOR(i, size) push(i);\n    return {laz.begin() + size,\
-    \ laz.begin() + size + n};\n  }\n\n  void set(int p, A x) {\n    get(p);\n   \
-    \ laz[p + size] = x;\n  }\n\n  void apply(int l, int r, const A& a) {\n    assert(0\
-    \ <= l && l <= r && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n\
-    \    if (!MA::commute) {\n      for (int i = log; i >= 1; i--) {\n        if (((l\
+    ds/segtree/dual_segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/dual_segtree.hpp\n\
+    \ntemplate <typename Monoid>\nstruct Dual_SegTree {\n  using MA = Monoid;\n  using\
+    \ A = typename MA::value_type;\n  int n, log, size;\n  vc<A> laz;\n  vc<bool>\
+    \ has_laz;\n\n  Dual_SegTree() : Dual_SegTree(0) {}\n  Dual_SegTree(int n) {\n\
+    \    build(n, [&](int i) -> A { return MA::id(); });\n  }\n  template <typename\
+    \ F>\n  Dual_SegTree(int n, F f) {\n    build(n, f);\n  }\n\n  template <typename\
+    \ F>\n  void build(int m, F f) {\n    n = m;\n    log = 0;\n    while ((1 << log)\
+    \ < n) ++log;\n    size = 1 << log;\n    laz.assign(size << 1, MA::id());\n  \
+    \  FOR(i, n) laz[size + i] = f(i);\n    has_laz.assign(size, false);\n  }\n  void\
+    \ build(int n) {\n    build(n, [&](int i) -> A { return MA::id(); });\n  }\n\n\
+    \  A get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int\
+    \ i = log; i >= 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n  vc<A> get_all()\
+    \ {\n    FOR(i, size) push(i);\n    return {laz.begin() + size, laz.begin() +\
+    \ size + n};\n  }\n\n  void set(int p, A x) {\n    get(p);\n    laz[p + size]\
+    \ = x;\n  }\n\n  void apply(int l, int r, const A& a) {\n    assert(0 <= l &&\
+    \ l <= r && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n   \
+    \ if (!MA::commute) {\n      for (int i = log; i >= 1; i--) {\n        if (((l\
     \ >> i) << i) != l) push(l >> i);\n        if (((r >> i) << i) != r) push((r -\
     \ 1) >> i);\n      }\n    }\n    while (l < r) {\n      if (l & 1) all_apply(l++,\
     \ a);\n      if (r & 1) all_apply(--r, a);\n      l >>= 1, r >>= 1;\n    }\n \
     \ }\n\n private:\n  void push(int k) {\n    if (!has_laz[k]) return;\n    has_laz[k]\
     \ = false;\n    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k]\
     \ = MA::id();\n  }\n  void all_apply(int k, A a) {\n    laz[k] = MA::op(laz[k],\
-    \ a);\n    if (k < size) has_laz[k] = true;\n  }\n};\n#line 3 \"graph/ds/dual_tree_monoid.hpp\"\
-    \n\r\ntemplate <typename TREE, typename Monoid, bool edge>\r\nstruct Dual_Tree_Monoid\
-    \ {\r\n  using MX = Monoid;\r\n  using X = typename MX::value_type;\r\n  TREE\
-    \ &tree;\r\n  int N;\r\n  Dual_SegTree<MX> seg;\r\n\r\n  Dual_Tree_Monoid(TREE\
-    \ &tree) : tree(tree), N(tree.N), seg(tree.N) {}\r\n\r\n  X get(int i) {\r\n \
-    \   int v = (edge ? tree.e_to_v(i) : i);\r\n    return seg.get(tree.LID[v]);\r\
-    \n  }\r\n\r\n  vc<X> get_all() {\r\n    vc<X> tmp = seg.get_all();\r\n    vc<X>\
-    \ res(N - edge);\r\n    FOR(i, N - edge) {\r\n      int v = (edge ? tree.e_to_v(i)\
-    \ : i);\r\n      res[i] = tmp[tree.LID[v]];\r\n    }\r\n    return res;\r\n  }\r\
-    \n\r\n  void apply_path(int u, int v, X x) {\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ v, edge);\r\n    for (auto &&[a, b] : pd) {\r\n      (a <= b ? seg.apply(a,\
-    \ b + 1, x) : seg.apply(b, a + 1, x));\r\n    }\r\n    return;\r\n  }\r\n\r\n\
-    \  void apply_subtree(int u, X x) {\r\n    int l = tree.LID[u], r = tree.RID[u];\r\
-    \n    return seg.apply(l + edge, r, x);\r\n  }\r\n\r\n  void apply_outtree(int\
-    \ u, X a) {\r\n    int l = tree.LID[u], r = tree.RID[u];\r\n    seg.apply(0 +\
-    \ edge, l + edge, a);\r\n    seg.apply(r, N, a);\r\n  }\r\n};\r\n"
-  code: "#include \"graph/tree.hpp\"\r\n#include \"ds/segtree/dual_segtree.hpp\"\r\
-    \n\r\ntemplate <typename TREE, typename Monoid, bool edge>\r\nstruct Dual_Tree_Monoid\
-    \ {\r\n  using MX = Monoid;\r\n  using X = typename MX::value_type;\r\n  TREE\
-    \ &tree;\r\n  int N;\r\n  Dual_SegTree<MX> seg;\r\n\r\n  Dual_Tree_Monoid(TREE\
-    \ &tree) : tree(tree), N(tree.N), seg(tree.N) {}\r\n\r\n  X get(int i) {\r\n \
-    \   int v = (edge ? tree.e_to_v(i) : i);\r\n    return seg.get(tree.LID[v]);\r\
-    \n  }\r\n\r\n  vc<X> get_all() {\r\n    vc<X> tmp = seg.get_all();\r\n    vc<X>\
-    \ res(N - edge);\r\n    FOR(i, N - edge) {\r\n      int v = (edge ? tree.e_to_v(i)\
-    \ : i);\r\n      res[i] = tmp[tree.LID[v]];\r\n    }\r\n    return res;\r\n  }\r\
-    \n\r\n  void apply_path(int u, int v, X x) {\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ v, edge);\r\n    for (auto &&[a, b] : pd) {\r\n      (a <= b ? seg.apply(a,\
-    \ b + 1, x) : seg.apply(b, a + 1, x));\r\n    }\r\n    return;\r\n  }\r\n\r\n\
-    \  void apply_subtree(int u, X x) {\r\n    int l = tree.LID[u], r = tree.RID[u];\r\
-    \n    return seg.apply(l + edge, r, x);\r\n  }\r\n\r\n  void apply_outtree(int\
-    \ u, X a) {\r\n    int l = tree.LID[u], r = tree.RID[u];\r\n    seg.apply(0 +\
-    \ edge, l + edge, a);\r\n    seg.apply(r, N, a);\r\n  }\r\n};\r\n"
+    \ a);\n    if (k < size) has_laz[k] = true;\n  }\n};\n#line 4 \"graph/ds/dual_tree_monoid.hpp\"\
+    \n\ntemplate <typename TREE, typename Monoid, bool edge>\nstruct Dual_Tree_Monoid\
+    \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  TREE &tree;\n\
+    \  int N;\n  Dual_SegTree<MX> seg;\n\n  Dual_Tree_Monoid(TREE &tree) : tree(tree),\
+    \ N(tree.N), seg(tree.N) {}\n\n  X get(int i) {\n    int v = (edge ? tree.e_to_v(i)\
+    \ : i);\n    return seg.get(tree.LID[v]);\n  }\n\n  vc<X> get_all() {\n    vc<X>\
+    \ tmp = seg.get_all();\n    vc<X> res(N - edge);\n    FOR(i, N - edge) {\n   \
+    \   int v = (edge ? tree.e_to_v(i) : i);\n      res[i] = tmp[tree.LID[v]];\n \
+    \   }\n    return res;\n  }\n\n  void apply_path(int u, int v, X x) {\n    auto\
+    \ pd = tree.get_path_decomposition(u, v, edge);\n    for (auto &&[a, b] : pd)\
+    \ {\n      (a <= b ? seg.apply(a, b + 1, x) : seg.apply(b, a + 1, x));\n    }\n\
+    \    return;\n  }\n\n  void apply_subtree(int u, X x) {\n    int l = tree.LID[u],\
+    \ r = tree.RID[u];\n    return seg.apply(l + edge, r, x);\n  }\n\n  void apply_outtree(int\
+    \ u, X a) {\n    int l = tree.LID[u], r = tree.RID[u];\n    seg.apply(0 + edge,\
+    \ l + edge, a);\n    seg.apply(r, N, a);\n  }\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/ds/dual_tree_monoid.hpp\n\
+    #include \"graph/tree.hpp\"\n#include \"ds/segtree/dual_segtree.hpp\"\n\ntemplate\
+    \ <typename TREE, typename Monoid, bool edge>\nstruct Dual_Tree_Monoid {\n  using\
+    \ MX = Monoid;\n  using X = typename MX::value_type;\n  TREE &tree;\n  int N;\n\
+    \  Dual_SegTree<MX> seg;\n\n  Dual_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N),\
+    \ seg(tree.N) {}\n\n  X get(int i) {\n    int v = (edge ? tree.e_to_v(i) : i);\n\
+    \    return seg.get(tree.LID[v]);\n  }\n\n  vc<X> get_all() {\n    vc<X> tmp =\
+    \ seg.get_all();\n    vc<X> res(N - edge);\n    FOR(i, N - edge) {\n      int\
+    \ v = (edge ? tree.e_to_v(i) : i);\n      res[i] = tmp[tree.LID[v]];\n    }\n\
+    \    return res;\n  }\n\n  void apply_path(int u, int v, X x) {\n    auto pd =\
+    \ tree.get_path_decomposition(u, v, edge);\n    for (auto &&[a, b] : pd) {\n \
+    \     (a <= b ? seg.apply(a, b + 1, x) : seg.apply(b, a + 1, x));\n    }\n   \
+    \ return;\n  }\n\n  void apply_subtree(int u, X x) {\n    int l = tree.LID[u],\
+    \ r = tree.RID[u];\n    return seg.apply(l + edge, r, x);\n  }\n\n  void apply_outtree(int\
+    \ u, X a) {\n    int l = tree.LID[u], r = tree.RID[u];\n    seg.apply(0 + edge,\
+    \ l + edge, a);\n    seg.apply(r, N, a);\n  }\n};\n"
   dependsOn:
   - graph/tree.hpp
   - graph/base.hpp
@@ -313,7 +317,7 @@ data:
   path: graph/ds/dual_tree_monoid.hpp
   requiredBy:
   - graph/minimum_spanning_tree.hpp
-  timestamp: '2026-09-17 11:49:38+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/tree/mst.test.cpp

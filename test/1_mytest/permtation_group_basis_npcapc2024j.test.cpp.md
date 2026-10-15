@@ -28,8 +28,9 @@ data:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\
-    \n/*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n\
-    #include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
+    \n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\n\
+    library: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
+    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
     \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
     \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
@@ -142,11 +143,12 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp\"\
-    \n\n#line 1 \"seq/permutation_group_basis.hpp\"\n\n// https://codeforces.com/blog/entry/111290\n\
-    // https://codeforces.com/gym/421334/problem/A\n// https://atcoder.jp/contests/npcapc_2024/tasks/npcapc_2024_j\n\
-    template <int NMAX>\nstruct Permutation_Group_Basis {\n  using A = array<u8, NMAX>;\n\
-    \  int n;\n  // Basis[i]: i \u672A\u6E80\u306F\u56FA\u5B9A\u3057\u3066 i \u3092\
-    \u52D5\u304B\u3059\u90E8\u5206\n  // \u4F5C\u308C\u308B\u7FA4\uFF1Ag=g[0]g[1]...g[n-1]\n\
+    \n\n#line 1 \"seq/permutation_group_basis.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/seq/permutation_group_basis.hpp\n\
+    \n// https://codeforces.com/blog/entry/111290\n// https://codeforces.com/gym/421334/problem/A\n\
+    // https://atcoder.jp/contests/npcapc_2024/tasks/npcapc_2024_j\ntemplate <int\
+    \ NMAX>\nstruct Permutation_Group_Basis {\n  using A = array<u8, NMAX>;\n  int\
+    \ n;\n  // Basis[i]: i \u672A\u6E80\u306F\u56FA\u5B9A\u3057\u3066 i \u3092\u52D5\
+    \u304B\u3059\u90E8\u5206\n  // \u4F5C\u308C\u308B\u7FA4\uFF1Ag=g[0]g[1]...g[n-1]\n\
     \  // g[i]: i \u672A\u6E80\u3092\u56FA\u5B9A\u3057\u3066 i \u3092\u52D5\u304B\u3059\
     \u5199\u50CF\n  // g \u304B\u3089 g[i] \u3092\u5FA9\u5143\u3059\u308B\u306B\u306F\
     \uFF0C\u5C0F\u3055\u3044 i \u304B\u3089\u9806\u306B\u6C7A\u3081\u308B\n  vvc<A>\
@@ -182,15 +184,17 @@ data:
     \ lv) basis[u][i] = i;\n      Basis[lv].eb(basis[u]);\n      for (auto& s: X)\
     \ {\n        assert(vis[s[u]]);\n        op(lv, ibasis[s[u]], s, tmp);\n     \
     \   op(lv, tmp, basis[u], tmp2);\n        assert(tmp2[lv] == lv);\n        nxtgen.add(tmp2);\n\
-    \      }\n    }\n    return nxtgen;\n  }\n};\n#line 1 \"mod/modint_common.hpp\"\
-    \n\n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x)\
-    \ -> decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static\
-    \ auto check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod\
-    \ : public decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate\
-    \ <typename mint>\nmint fact(int n) {\n  static vector<mint> dat = {1, 1};\n \
-    \ static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n\
-    \    dat = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if (len(dat) <= n) {\n\
-    \    int now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
+    \      }\n    }\n    return nxtgen;\n  }\n};\n#line 1 \"mod/modint.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/mod/modint.hpp\n#line 1 \"mod/modint_common.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/mod/modint_common.hpp\n\
+    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
+    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
+    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
+    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
+    \ mint>\nmint fact(int n) {\n  static vector<mint> dat = {1, 1};\n  static int\
+    \ mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n    dat\
+    \ = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if (len(dat) <= n) {\n    int\
+    \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
     \    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n  }\n  return dat[n];\n\
     }\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  if (n < 0) return mint(0);\n\
     \  static vector<mint> dat = {1, 1};\n  static int mod = 0;\n  if (mod != mint::get_mod())\
@@ -224,7 +228,7 @@ data:
     }\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint, bool large = false, bool dense\
     \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
     \ mint(0);\n  if (n == 0) {\n    return (d == 0 ? mint(1) : mint(0));\n  }\n \
-    \ return C<mint, large, dense>(n + d - 1, d);\n}\n#line 2 \"mod/modint.hpp\"\n\
+    \ return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\
     \ntemplate <int mod>\nstruct modint {\n  static constexpr u32 umod = u32(mod);\n\
     \  static_assert(0 < umod && umod < u32(1) << 31);\n  u32 val;\n\n  static modint\
     \ raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
@@ -264,10 +268,10 @@ data:
     \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
     \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
     }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 1 \"string/split.hpp\"\nvc<string> split(string S, string seps = \" ,\"\
-    ) {\r\n  vc<string> res = {\"\"};\r\n  for (auto&& s : S) {\r\n    if (count(all(seps),\
-    \ s))\r\n      res.eb(\"\");\r\n    else\r\n      res.back() += s;\r\n  }\r\n\
-    \  return res;\r\n}\r\n#line 7 \"test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp\"\
+    #line 1 \"string/split.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/split.hpp\n\
+    vc<string> split(string S, string seps = \" ,\") {\n  vc<string> res = {\"\"};\n\
+    \  for (auto&& s : S) {\n    if (count(all(seps), s))\n      res.eb(\"\");\n \
+    \   else\n      res.back() += s;\n  }\n  return res;\n}\n#line 7 \"test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp\"\
     \n\nusing mint = modint998;\n\nmint mysolve(vvc<int> A) {\n  int N = len(A[0]),\
     \ M = len(A);\n  FOR(i, M) FOR(j, N)-- A[i][j];\n  Permutation_Group_Basis<30>\
     \ P(N, A);\n\n  mint ANS = 0;\n  // FOR(i, N) {\n  //   for (auto& X: P.Basis[i])\
@@ -348,7 +352,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp

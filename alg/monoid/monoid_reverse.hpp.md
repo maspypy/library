@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/static_tree_monoid.hpp
     title: graph/ds/static_tree_monoid.hpp
   - icon: ':question:'
@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
     title: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
   - icon: ':heavy_check_mark:'
@@ -39,10 +39,10 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1216.test.cpp
     title: test/3_yukicoder/1216.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1216_2.test.cpp
     title: test/3_yukicoder/1216_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1790.test.cpp
     title: test/3_yukicoder/1790.test.cpp
   - icon: ':x:'
@@ -61,17 +61,18 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/monoid_reverse.hpp\"\n\ntemplate <class Monoid>\n\
-    struct Monoid_Reverse {\n  using value_type = typename Monoid::value_type;\n \
-    \ using X = value_type;\n  static constexpr X op(const X &x, const X &y) { return\
-    \ Monoid::op(y, x); }\n  static constexpr X id() { return Monoid::id(); }\n  static\
-    \ const bool commute = Monoid::commute;\n};\n"
-  code: "\ntemplate <class Monoid>\nstruct Monoid_Reverse {\n  using value_type =\
-    \ typename Monoid::value_type;\n  using X = value_type;\n  static constexpr X\
-    \ op(const X &x, const X &y) { return Monoid::op(y, x); }\n  static constexpr\
-    \ X id() { return Monoid::id(); }\n  static const bool commute = Monoid::commute;\n\
-    };\n"
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/monoid/monoid_reverse.hpp
+  bundledCode: "#line 1 \"alg/monoid/monoid_reverse.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/monoid_reverse.hpp\n\
+    \ntemplate <class Monoid>\nstruct Monoid_Reverse {\n  using value_type = typename\
+    \ Monoid::value_type;\n  using X = value_type;\n  static constexpr X op(const\
+    \ X &x, const X &y) { return Monoid::op(y, x); }\n  static constexpr X id() {\
+    \ return Monoid::id(); }\n  static const bool commute = Monoid::commute;\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/monoid/monoid_reverse.hpp\n\
+    \ntemplate <class Monoid>\nstruct Monoid_Reverse {\n  using value_type = typename\
+    \ Monoid::value_type;\n  using X = value_type;\n  static constexpr X op(const\
+    \ X &x, const X &y) { return Monoid::op(y, x); }\n  static constexpr X id() {\
+    \ return Monoid::id(); }\n  static const bool commute = Monoid::commute;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/monoid_reverse.hpp
@@ -80,7 +81,7 @@ data:
   - graph/ds/lazy_tree_monoid.hpp
   - graph/ds/tree_monoid.hpp
   - graph/ds/static_tree_monoid.hpp
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/mo_on_tree.test.cpp

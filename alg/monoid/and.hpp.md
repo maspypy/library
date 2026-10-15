@@ -7,19 +7,21 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/and.hpp\"\n\ntemplate <typename X>\nstruct Monoid_And\
-    \ {\n  using value_type = X;\n  static X op(X x, X y) { return x & y; }\n  static\
-    \ constexpr X id() { return X(-1); };\n  static constexpr bool commute = true;\n\
-    };\n"
-  code: "\ntemplate <typename X>\nstruct Monoid_And {\n  using value_type = X;\n \
-    \ static X op(X x, X y) { return x & y; }\n  static constexpr X id() { return\
-    \ X(-1); };\n  static constexpr bool commute = true;\n};\n"
+    links:
+    - https://github.com/maspypy/library/blob/main/alg/monoid/and.hpp
+  bundledCode: "#line 1 \"alg/monoid/and.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/and.hpp\n\
+    \ntemplate <typename X>\nstruct Monoid_And {\n  using value_type = X;\n  static\
+    \ X op(X x, X y) { return x & y; }\n  static constexpr X id() { return X(-1);\
+    \ };\n  static constexpr bool commute = true;\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/alg/monoid/and.hpp\n\
+    \ntemplate <typename X>\nstruct Monoid_And {\n  using value_type = X;\n  static\
+    \ X op(X x, X y) { return x & y; }\n  static constexpr X id() { return X(-1);\
+    \ };\n  static constexpr bool commute = true;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/and.hpp
   requiredBy: []
-  timestamp: '2026-08-30 21:09:36+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/monoid/and.hpp

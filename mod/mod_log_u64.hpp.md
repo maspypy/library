@@ -12,11 +12,13 @@ data:
   attributes:
     links:
     - https://contest.ucup.ac/contest/2693/problem/15032
-  bundledCode: "#line 1 \"mod/mod_inv_u64.hpp\"\nu64 mod_inv_u64(u64 a) {\n  assert(a\
-    \ & 1);\n  u64 x = 1;\n  x = x * (2ULL - a * x);\n  x = x * (2ULL - a * x);\n\
-    \  x = x * (2ULL - a * x);\n  x = x * (2ULL - a * x);\n  x = x * (2ULL - a * x);\n\
-    \  x = x * (2ULL - a * x);\n  assert(a * x == 1);\n  return x;\n}\n#line 2 \"\
-    mod/mod_log_u64.hpp\"\n\n// https://contest.ucup.ac/contest/2693/problem/15032\n\
+    - https://github.com/maspypy/library/blob/main/mod/mod_log_u64.hpp
+  bundledCode: "#line 1 \"mod/mod_log_u64.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/mod_log_u64.hpp\n\
+    #line 1 \"mod/mod_inv_u64.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/mod_inv_u64.hpp\n\
+    u64 mod_inv_u64(u64 a) {\n  assert(a & 1);\n  u64 x = 1;\n  x = x * (2ULL - a\
+    \ * x);\n  x = x * (2ULL - a * x);\n  x = x * (2ULL - a * x);\n  x = x * (2ULL\
+    \ - a * x);\n  x = x * (2ULL - a * x);\n  x = x * (2ULL - a * x);\n  assert(a\
+    \ * x == 1);\n  return x;\n}\n#line 3 \"mod/mod_log_u64.hpp\"\n\n// https://contest.ucup.ac/contest/2693/problem/15032\n\
     pair<u64, u64> mod_log_u64_primitive_root(u64 a) {\n  assert(a & 1);\n  u64 sgn\
     \ = 0;\n  if (a & 2) sgn = 1, a = -a;\n  // X=5^K mod 2^n\n  ll n = 2;\n  u64\
     \ K = 0;\n  u64 X = 1;\n  u64 Y = 5;  // pow(5,2^{n-2})\n  FOR(62) {\n    if ((X\
@@ -31,7 +33,8 @@ data:
     \ k;\n  Y2 >>= k;\n  mod >>= k;\n  u64 n = (mod == 1 ? 0 : mod_inv_u64(Y1) * Y2\
     \ % mod);\n\n  FOR(2) {\n    if (X1 * n % 2 == X2) return n;\n    n += mod;\n\
     \  }\n  return -1;\n}\n"
-  code: "#include \"mod/mod_inv_u64.hpp\"\n\n// https://contest.ucup.ac/contest/2693/problem/15032\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/mod/mod_log_u64.hpp\n\
+    #include \"mod/mod_inv_u64.hpp\"\n\n// https://contest.ucup.ac/contest/2693/problem/15032\n\
     pair<u64, u64> mod_log_u64_primitive_root(u64 a) {\n  assert(a & 1);\n  u64 sgn\
     \ = 0;\n  if (a & 2) sgn = 1, a = -a;\n  // X=5^K mod 2^n\n  ll n = 2;\n  u64\
     \ K = 0;\n  u64 X = 1;\n  u64 Y = 5;  // pow(5,2^{n-2})\n  FOR(62) {\n    if ((X\
@@ -51,7 +54,7 @@ data:
   isVerificationFile: false
   path: mod/mod_log_u64.hpp
   requiredBy: []
-  timestamp: '2026-02-03 22:59:09+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: mod/mod_log_u64.hpp

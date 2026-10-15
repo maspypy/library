@@ -10,9 +10,11 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"geo/convex_polygon_edge_voronoi.hpp\"\n\n#line 1 \"geo/base.hpp\"\
-    \ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/geo/convex_polygon_edge_voronoi.hpp
+  bundledCode: "#line 1 \"geo/convex_polygon_edge_voronoi.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/convex_polygon_edge_voronoi.hpp\n\
+    \n#line 1 \"geo/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/base.hpp\n\
+    template <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
     \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
     \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
     \ {}\n\n  template <typename U>\n  Point(Point<U> p) : x(p.x), y(p.y) {\n    static_assert(!is_integral_v<T>\
@@ -66,7 +68,7 @@ data:
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
     \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 3 \"geo/convex_polygon_edge_voronoi.hpp\"\n\n// 20260812, written by GPT-5.6\
+    \ 4 \"geo/convex_polygon_edge_voronoi.hpp\"\n\n// 20260812, written by GPT-5.6\
     \ Sol\n//\n// A: CCW convex polygon, consecutive edges should not be collinear.\n\
     // Voronoi diagram of the edges of a convex polygon, restricted to its interior.\n\
     // Each Voronoi edge is represented by\n//   center(t) = p1 + t (p2 - p1)\n//\
@@ -131,11 +133,12 @@ data:
     \ b, c);\n    add_edge(a, b, born_point[a], born_radius[a], x, r);\n    add_edge(b,\
     \ c, born_point[b], born_radius[b], x, r);\n    add_edge(c, a, born_point[c],\
     \ born_radius[c], x, r);\n  }\n};\n"
-  code: "\n#include \"geo/base.hpp\"\n\n// 20260812, written by GPT-5.6 Sol\n//\n\
-    // A: CCW convex polygon, consecutive edges should not be collinear.\n// Voronoi\
-    \ diagram of the edges of a convex polygon, restricted to its interior.\n// Each\
-    \ Voronoi edge is represented by\n//   center(t) = p1 + t (p2 - p1)\n//   radius(t)\
-    \ = r1 + t (r2 - r1), 0 <= t <= 1.\n// O(N log N) time.\n// If a circle is tangent\
+  code: "// Source: https://github.com/maspypy/library/blob/main/geo/convex_polygon_edge_voronoi.hpp\n\
+    \n#include \"geo/base.hpp\"\n\n// 20260812, written by GPT-5.6 Sol\n//\n// A:\
+    \ CCW convex polygon, consecutive edges should not be collinear.\n// Voronoi diagram\
+    \ of the edges of a convex polygon, restricted to its interior.\n// Each Voronoi\
+    \ edge is represented by\n//   center(t) = p1 + t (p2 - p1)\n//   radius(t) =\
+    \ r1 + t (r2 - r1), 0 <= t <= 1.\n// O(N log N) time.\n// If a circle is tangent\
     \ to 4 or more edges simultaneously,\n// the combinatorial structure may be tie-broken\
     \ arbitrarily by floating errors.\ntemplate <typename P, typename Re>\nstruct\
     \ Convex_Polygon_Edge_Voronoi {\n  using RP = Point<Re>;\n  struct Edge {\n  \
@@ -201,7 +204,7 @@ data:
   isVerificationFile: false
   path: geo/convex_polygon_edge_voronoi.hpp
   requiredBy: []
-  timestamp: '2026-09-24 22:40:16+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/convex_polygon_edge_voronoi.hpp

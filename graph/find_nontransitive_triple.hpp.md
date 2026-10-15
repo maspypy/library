@@ -15,31 +15,35 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/967/problem/F
-  bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
-    struct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
-    \u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n \
-    \   u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n\
-    \    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\
-    \u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build\
-    \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
-    \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
-    \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
-    \ key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
-    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
-    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
-    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
-    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
-    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
-    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    - https://github.com/maspypy/library/blob/main/graph/find_nontransitive_triple.hpp
+  bundledCode: "#line 1 \"graph/find_nontransitive_triple.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/find_nontransitive_triple.hpp\n\
+    #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -115,7 +119,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 2 \"graph/find_nontransitive_triple.hpp\"\n\n// ab, bc \u8FBA\
+    \   }\n  }\n};\n#line 3 \"graph/find_nontransitive_triple.hpp\"\n\n// ab, bc \u8FBA\
     \u306F\u3042\u308B\u304C ac \u8FBA\u306F\u306A\u3044\u3088\u3046\u306A 3 \u3064\
     \u7D44 (a,b,c) \u3092\u63A2\u3059\u3002\n// \u306A\u3051\u308C\u3070 {-1,-1,-1}\n\
     // \u4E0D\u53EF\u80FD\uFF1A\u5B8C\u5168\u30B0\u30E9\u30D5, \u8FBA\u304C\u5168\u90E8\
@@ -133,30 +137,31 @@ data:
     \ a = x;\n        if (done[x] == 0) b = x;\n      }\n      assert(a != -1);\n\
     \      assert(b != -1);\n      return {a, b, c};\n    }\n  }\n  return {-1, -1,\
     \ -1};\n}\n"
-  code: "#include \"graph/base.hpp\"\n\n// ab, bc \u8FBA\u306F\u3042\u308B\u304C ac\
-    \ \u8FBA\u306F\u306A\u3044\u3088\u3046\u306A 3 \u3064\u7D44 (a,b,c) \u3092\u63A2\
-    \u3059\u3002\n// \u306A\u3051\u308C\u3070 {-1,-1,-1}\n// \u4E0D\u53EF\u80FD\uFF1A\
-    \u5B8C\u5168\u30B0\u30E9\u30D5, \u8FBA\u304C\u5168\u90E8\u72EC\u7ACB\n// example:\
-    \ https://codeforces.com/contest/967/problem/F\ntemplate <typename Graph>\ntuple<int,\
-    \ int, int> find_nontransitive_triple(Graph& G) {\n  int N = G.N;\n  assert(G.is_prepared());\n\
-    \  assert(!G.is_directed());\n  vc<int> done(N);\n  vc<int> que;\n  FOR(root,\
-    \ N) {\n    if (done[root]) continue;\n    que = {root};\n    int p = 0;\n   \
-    \ while (p < len(que)) {\n      int v = que[p++];\n      done[v] = 2;\n      ll\
-    \ s = 0;\n      for (auto&& e: G[v]) {\n        int to = e.to;\n        if (done[to]\
-    \ == 0) {\n          done[to] = 1;\n          que.eb(to);\n        }\n       \
-    \ elif (done[to] == 2) { ++s; }\n      }\n      if (s == p - 1) continue;\n  \
-    \    assert(p >= 3);\n      int c = v;\n      int a = -1;\n      int b = -1;\n\
-    \      for (auto&& e: G[v]) done[e.to] = 0;\n      FOR(i, p - 1) {\n        int\
-    \ x = que[i];\n        if (done[x] == 2) a = x;\n        if (done[x] == 0) b =\
-    \ x;\n      }\n      assert(a != -1);\n      assert(b != -1);\n      return {a,\
-    \ b, c};\n    }\n  }\n  return {-1, -1, -1};\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/find_nontransitive_triple.hpp\n\
+    #include \"graph/base.hpp\"\n\n// ab, bc \u8FBA\u306F\u3042\u308B\u304C ac \u8FBA\
+    \u306F\u306A\u3044\u3088\u3046\u306A 3 \u3064\u7D44 (a,b,c) \u3092\u63A2\u3059\
+    \u3002\n// \u306A\u3051\u308C\u3070 {-1,-1,-1}\n// \u4E0D\u53EF\u80FD\uFF1A\u5B8C\
+    \u5168\u30B0\u30E9\u30D5, \u8FBA\u304C\u5168\u90E8\u72EC\u7ACB\n// example: https://codeforces.com/contest/967/problem/F\n\
+    template <typename Graph>\ntuple<int, int, int> find_nontransitive_triple(Graph&\
+    \ G) {\n  int N = G.N;\n  assert(G.is_prepared());\n  assert(!G.is_directed());\n\
+    \  vc<int> done(N);\n  vc<int> que;\n  FOR(root, N) {\n    if (done[root]) continue;\n\
+    \    que = {root};\n    int p = 0;\n    while (p < len(que)) {\n      int v =\
+    \ que[p++];\n      done[v] = 2;\n      ll s = 0;\n      for (auto&& e: G[v]) {\n\
+    \        int to = e.to;\n        if (done[to] == 0) {\n          done[to] = 1;\n\
+    \          que.eb(to);\n        }\n        elif (done[to] == 2) { ++s; }\n   \
+    \   }\n      if (s == p - 1) continue;\n      assert(p >= 3);\n      int c = v;\n\
+    \      int a = -1;\n      int b = -1;\n      for (auto&& e: G[v]) done[e.to] =\
+    \ 0;\n      FOR(i, p - 1) {\n        int x = que[i];\n        if (done[x] == 2)\
+    \ a = x;\n        if (done[x] == 0) b = x;\n      }\n      assert(a != -1);\n\
+    \      assert(b != -1);\n      return {a, b, c};\n    }\n  }\n  return {-1, -1,\
+    \ -1};\n}\n"
   dependsOn:
   - graph/base.hpp
   - ds/hashmap.hpp
   isVerificationFile: false
   path: graph/find_nontransitive_triple.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:05:11+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/find_nontransitive_triple.hpp

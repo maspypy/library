@@ -21,20 +21,21 @@ data:
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/add_chmin_chmax.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n/*\n\
-    library: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
-    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
-    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
-    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
-    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
-    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
-    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
-    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
-    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
-    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
-    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n//\
+    \ Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\nlibrary:\
+    \ https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
+    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
+    Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\"\
+    )\n#endif\n#endif\n#include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
+    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
+    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class>\nconstexpr\
+    \ bool dependent_false = false;\n\ntemplate <class T>\nconstexpr T infty = []\
+    \ {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\");\n  return\
+    \ T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
     template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
     \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
     using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
@@ -136,25 +137,27 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 1 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\n\
+    u64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
     \  return l + RNG_64() % (r - l);\n}\n#line 1 \"alg/monoid/add_chmin_chmax.hpp\"\
-    \n\n// max(min(x+a,b),c) \u3068\u8868\u305B\u308B\u95A2\u6570\u306E\u5408\u6210\
-    \ntemplate <typename E>\nstruct Monoid_Add_Chmin_Chmax {\n  using value_type =\
-    \ tuple<E, E, E>;\n  using X = value_type;\n\n  static X op(X x, X y) {\n    auto\
-    \ [a, b, c] = x;\n    auto [d, e, f] = y;\n    a = a + d;\n    b = (b == infty<E>\
-    \ ? b : b + d);\n    c = (c == -infty<E> ? c : c + d);\n    b = min(b, e);\n \
-    \   c = max(min(c, e), f);\n    return {a, b, c};\n  }\n\n  static E eval(X f,\
-    \ E x) {\n    auto [a, b, c] = f;\n    return max(min(x + a, b), c);\n  }\n\n\
-    \  static X add(E a) { return {a, infty<E>, -infty<E>}; }\n  static X chmin(E\
-    \ b) { return {0, b, -infty<E>}; }\n  static X chmax(E c) { return {0, infty<E>,\
-    \ c}; }\n\n  static constexpr X id() { return {0, infty<E>, -infty<E>}; }\n  static\
-    \ constexpr bool commute = 0;\n};\n#line 5 \"test/1_mytest/add_chmin_chmax.test.cpp\"\
-    \n\nvoid test() {\n  int N = RNG(1, 100);\n  vc<int> X(N);\n  FOR(i, N) X[i] =\
-    \ RNG(-100, 100);\n  vc<int> Y = X;\n  int Q = RNG(0, 10);\n  using Mono = Monoid_Add_Chmin_Chmax<int>;\n\
+    \n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add_chmin_chmax.hpp\n\
+    \n// max(min(x+a,b),c) \u3068\u8868\u305B\u308B\u95A2\u6570\u306E\u5408\u6210\n\
+    template <typename E>\nstruct Monoid_Add_Chmin_Chmax {\n  using value_type = tuple<E,\
+    \ E, E>;\n  using X = value_type;\n\n  static X op(X x, X y) {\n    auto [a, b,\
+    \ c] = x;\n    auto [d, e, f] = y;\n    a = a + d;\n    b = (b == infty<E> ? b\
+    \ : b + d);\n    c = (c == -infty<E> ? c : c + d);\n    b = min(b, e);\n    c\
+    \ = max(min(c, e), f);\n    return {a, b, c};\n  }\n\n  static E eval(X f, E x)\
+    \ {\n    auto [a, b, c] = f;\n    return max(min(x + a, b), c);\n  }\n\n  static\
+    \ X add(E a) { return {a, infty<E>, -infty<E>}; }\n  static X chmin(E b) { return\
+    \ {0, b, -infty<E>}; }\n  static X chmax(E c) { return {0, infty<E>, c}; }\n\n\
+    \  static constexpr X id() { return {0, infty<E>, -infty<E>}; }\n  static constexpr\
+    \ bool commute = 0;\n};\n#line 5 \"test/1_mytest/add_chmin_chmax.test.cpp\"\n\n\
+    void test() {\n  int N = RNG(1, 100);\n  vc<int> X(N);\n  FOR(i, N) X[i] = RNG(-100,\
+    \ 100);\n  vc<int> Y = X;\n  int Q = RNG(0, 10);\n  using Mono = Monoid_Add_Chmin_Chmax<int>;\n\
     \  using F = typename Mono::value_type;\n  F f = Mono::id();\n\n  FOR(Q) {\n \
     \   int t = RNG(0, 3);\n    int a = RNG(-100, 100);\n    if (t == 0) {\n     \
     \ FOR(i, N) Y[i] += a;\n      f = Mono::op(f, Mono::add(a));\n    }\n    if (t\
@@ -182,7 +185,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/add_chmin_chmax.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/add_chmin_chmax.test.cpp

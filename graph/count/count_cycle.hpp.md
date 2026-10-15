@@ -19,17 +19,21 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"enumerate/bits.hpp\"\ntemplate <typename BS, typename F>\n\
-    void enumerate_bits_bitset(BS& b, int L, int R, F&& f) {\n  if (L >= len(b)) return;\n\
-    \  int p = (b[L] ? L : b._Find_next(L));\n  while (p < R) {\n    f(p);\n    p\
-    \ = b._Find_next(p);\n  }\n}\n\ntemplate <typename UINT, typename F>\ninline void\
-    \ enumerate_all_bit(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/count/count_cycle.hpp
+  bundledCode: "#line 1 \"graph/count/count_cycle.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/count/count_cycle.hpp\n\
+    #line 1 \"enumerate/bits.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/enumerate/bits.hpp\n\
+    template <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L, int\
+    \ R, F&& f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L : b._Find_next(L));\n\
+    \  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n\ntemplate <typename\
+    \ UINT, typename F>\ninline void enumerate_all_bit(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
     \  while (s) {\n    f(lowbit(s));\n    s &= s - 1;\n  }\n}\n\ntemplate <typename\
     \ UINT, bool inc_empty, typename F>\ninline void enumerate_all_subset(UINT s,\
     \ F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n  for (UINT t = s; t;\
-    \ t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n}\n#line 1 \"ds/hashmap.hpp\"\
-    \n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \ t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n}\n#line 1 \"graph/base.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n#line\
+    \ 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
     \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
     \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
     \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
@@ -53,7 +57,7 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -129,7 +133,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 3 \"graph/count/count_cycle.hpp\"\n\n// \u9802\u70B9\u96C6\
+    \   }\n  }\n};\n#line 4 \"graph/count/count_cycle.hpp\"\n\n// \u9802\u70B9\u96C6\
     \u5408\u3054\u3068\u306B\u30B5\u30A4\u30AF\u30EB\u3092\u6570\u3048\u308B. N^22^N.\n\
     // \u30B5\u30A4\u30AF\u30EB\u306E\u9577\u3055\u306F 3 \u4EE5\u4E0A\uFF08\u5358\
     \u7D14\u30B0\u30E9\u30D5\u3092\u4EEE\u5B9A\uFF09\ntemplate <typename T, typename\
@@ -143,12 +147,13 @@ data:
     \   dp[v * (s | 1 << b) + b] += dp[v * s + a];\n        });\n        if (popcnt(s)\
     \ >= 2 && nbd[a] >> v & 1) cyc[s | 1 << v] += dp[v * s + a];\n      });\n    }\n\
     \  }\n  for (auto& x : cyc) x /= T(2);\n  return cyc;\n}\n"
-  code: "#include \"enumerate/bits.hpp\"\n#include \"graph/base.hpp\"\n\n// \u9802\
-    \u70B9\u96C6\u5408\u3054\u3068\u306B\u30B5\u30A4\u30AF\u30EB\u3092\u6570\u3048\
-    \u308B. N^22^N.\n// \u30B5\u30A4\u30AF\u30EB\u306E\u9577\u3055\u306F 3 \u4EE5\u4E0A\
-    \uFF08\u5358\u7D14\u30B0\u30E9\u30D5\u3092\u4EEE\u5B9A\uFF09\ntemplate <typename\
-    \ T, typename GT>\nvc<T> count_cycle(GT& G) {\n  const int N = G.N;\n  assert(N\
-    \ <= 32 && !GT::is_directed);\n  vc<u32> nbd(N);\n  FOR(v, N) for (auto& e : G[v])\
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/count/count_cycle.hpp\n\
+    #include \"enumerate/bits.hpp\"\n#include \"graph/base.hpp\"\n\n// \u9802\u70B9\
+    \u96C6\u5408\u3054\u3068\u306B\u30B5\u30A4\u30AF\u30EB\u3092\u6570\u3048\u308B\
+    . N^22^N.\n// \u30B5\u30A4\u30AF\u30EB\u306E\u9577\u3055\u306F 3 \u4EE5\u4E0A\uFF08\
+    \u5358\u7D14\u30B0\u30E9\u30D5\u3092\u4EEE\u5B9A\uFF09\ntemplate <typename T,\
+    \ typename GT>\nvc<T> count_cycle(GT& G) {\n  const int N = G.N;\n  assert(N <=\
+    \ 32 && !GT::is_directed);\n  vc<u32> nbd(N);\n  FOR(v, N) for (auto& e : G[v])\
     \ nbd[v] |= u32(1) << (e.to);\n\n  vc<T> cyc(1 << N);\n  for (int v = 0; v < N;\
     \ ++v) {\n    vc<T> dp(v << v);\n    for (int w = 0; w < v; ++w) {\n      if (nbd[v]\
     \ >> w & 1) dp[(v << w) + w] = 1;\n    }\n    const u32 mask = (u32(1) << v) -\
@@ -165,7 +170,7 @@ data:
   isVerificationFile: false
   path: graph/count/count_cycle.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2507.test.cpp

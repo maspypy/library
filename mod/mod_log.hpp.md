@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_set/from_monoid.hpp
     title: alg/acted_set/from_monoid.hpp
   - icon: ':question:'
@@ -28,7 +28,7 @@ data:
   - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':question:'
@@ -49,16 +49,19 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"mod/dynamic_modint.hpp\"\n\n#line 1 \"mod/modint_common.hpp\"\
-    \n\n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x)\
-    \ -> decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static\
-    \ auto check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod\
-    \ : public decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate\
-    \ <typename mint>\nmint fact(int n) {\n  static vector<mint> dat = {1, 1};\n \
-    \ static int mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n\
-    \    dat = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if (len(dat) <= n) {\n\
-    \    int now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/mod/mod_log.hpp
+  bundledCode: "#line 1 \"mod/mod_log.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/mod_log.hpp\n\
+    #line 1 \"mod/dynamic_modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/dynamic_modint.hpp\n\
+    \n#line 1 \"mod/modint_common.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint_common.hpp\n\
+    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
+    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
+    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
+    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
+    \ mint>\nmint fact(int n) {\n  static vector<mint> dat = {1, 1};\n  static int\
+    \ mod = 0;\n  if (mod != mint::get_mod()) {\n    mod = mint::get_mod();\n    dat\
+    \ = {1, 1};\n  }\n  assert(0 <= n && n < mod);\n  if (len(dat) <= n) {\n    int\
+    \ now = len(dat);\n    int m = min(mod, 1 << (topbit(n) + 1));\n    dat.resize(m);\n\
     \    FOR(i, now, m) dat[i] = dat[i - 1] * mint::raw(i);\n  }\n  return dat[n];\n\
     }\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  if (n < 0) return mint(0);\n\
     \  static vector<mint> dat = {1, 1};\n  static int mod = 0;\n  if (mod != mint::get_mod())\
@@ -93,14 +96,18 @@ data:
     \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
     \ mint(0);\n  if (n == 0) {\n    return (d == 0 ? mint(1) : mint(0));\n  }\n \
     \ return C<mint, large, dense>(n + d - 1, d);\n}\n#line 1 \"mod/primitive_root.hpp\"\
-    \n\n#line 1 \"nt/factor.hpp\"\n\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n\
-    \  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n         \
-    \             chrono::high_resolution_clock::now().time_since_epoch())\n     \
-    \                     .count()) *\n                  10150724397891781847ULL;\n\
+    \n// Source: https://github.com/maspypy/library/blob/main/mod/primitive_root.hpp\n\
+    \n#line 1 \"nt/factor.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/factor.hpp\n\
+    \n#line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"mod/montgomery_modint.hpp\"\n\n\
-    // odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"nt/is_prime.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/nt/is_prime.hpp\n#line 1 \"mod/montgomery_modint.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/mod/montgomery_modint.hpp\n\
+    \n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
     \ <int id, typename U1, typename U2>\nstruct Montgomery_modint {\n  using mint\
     \ = Montgomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
     \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
@@ -120,7 +127,7 @@ data:
     \ >= 0);\n    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if\
     \ (n & 1) y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Montgomery_modint_32\
     \ = Montgomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Montgomery_modint_64\
-    \ = Montgomery_modint<id, u64, u128>;\n#line 2 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
+    \ = Montgomery_modint<id, u64, u128>;\n#line 3 \"nt/is_prime.hpp\"\n\nbool is_prime(const\
     \ u64 x) {\n  assert(x < u64(1) << 62);\n  if (x == 2 or x == 3 or x == 5 or x\
     \ == 7) return true;\n  if (x % 2 == 0 or x % 3 == 0 or x % 5 == 0 or x % 7 ==\
     \ 0) return false;\n  if (x < 121) return x > 1;\n  const u64 d = (x - 1) >> lowbit(x\
@@ -131,7 +138,7 @@ data:
     \ false;\n    return true;\n  };\n  if (x < (u64(1) << 32)) {\n    for (u64 a\
     \ : {2, 7, 61})\n      if (!ok(a)) return false;\n  } else {\n    for (u64 a :\
     \ {2, 325, 9375, 28178, 450775, 9780504, 1795265022}) {\n      if (!ok(a)) return\
-    \ false;\n    }\n  }\n  return true;\n}\n#line 4 \"nt/factor.hpp\"\n\ntemplate\
+    \ false;\n    }\n  }\n  return true;\n}\n#line 5 \"nt/factor.hpp\"\n\ntemplate\
     \ <typename mint>\nll rho(ll n, ll c) {\n  assert(n > 1);\n  const mint cc(c);\n\
     \  auto f = [&](mint x) { return x * x + cc; };\n  mint x = 1, y = 2, z = 1, q\
     \ = 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5);\n  for (ll r = 1; g\
@@ -155,8 +162,9 @@ data:
     \  return pf;\n}\n\nvc<pair<ll, int>> factor_by_spf(ll n, vc<int>& spf) {\n  vc<pair<ll,\
     \ int>> res;\n  while (n > 1) {\n    int p = spf[n];\n    int e = 0;\n    while\
     \ (n % p == 0) {\n      n /= p;\n      ++e;\n    }\n    res.eb(p, e);\n  }\n \
-    \ return res;\n}\n#line 1 \"mod/mod_pow.hpp\"\n\n#line 1 \"mod/montgomery_modint.hpp\"\
-    \n\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
+    \ return res;\n}\n#line 1 \"mod/mod_pow.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/mod_pow.hpp\n\
+    \n#line 1 \"mod/montgomery_modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/montgomery_modint.hpp\n\
+    \n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
     \ <int id, typename U1, typename U2>\nstruct Montgomery_modint {\n  using mint\
     \ = Montgomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
     \ = numeric_limits<U1>::digits;\n\n  static void set_mod(U1 mod) {\n    assert(mod\
@@ -176,53 +184,8 @@ data:
     \ >= 0);\n    mint y = 1, z = *this;\n    for (; n; n >>= 1, z *= z)\n      if\
     \ (n & 1) y *= z;\n    return y;\n  }\n};\n\ntemplate <int id>\nusing Montgomery_modint_32\
     \ = Montgomery_modint<id, u32, u64>;\ntemplate <int id>\nusing Montgomery_modint_64\
-    \ = Montgomery_modint<id, u64, u128>;\n#line 1 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
-    struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
-    \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
-    \ (m == 1) return 0;\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n\
-    \    u64 y = x * m;\n    return (z - y + (z < y ? m : 0));\n  }\n  u64 floor(u64\
-    \ z) {\n    if (m == 1) return z;\n    u64 x = (u64)(((unsigned __int128)(z)*im)\
-    \ >> 64);\n    u64 y = x * m;\n    return (z < y ? x - 1 : x);\n  }\n  pair<u64,\
-    \ u32> divmod(u64 z) {\n    if (m == 1) return {z, 0};\n    u64 x = (u64)(((unsigned\
-    \ __int128)(z)*im) >> 64);\n    u64 y = x * m;\n    if (z < y) return {x - 1,\
-    \ z - y + m};\n    return {x, z - y};\n  }\n  u32 mul(u32 a, u32 b) { return modulo(u64(a)\
-    \ * b); }\n};\n\nstruct Barrett_64 {\n  u128 mod, mh, ml;\n\n  explicit Barrett_64(u64\
-    \ mod = 1) : mod(mod) {\n    u128 m = u128(-1) / mod;\n    if (m * mod + mod ==\
-    \ u128(0)) ++m;\n    mh = m >> 64;\n    ml = m & u64(-1);\n  }\n\n  u64 umod()\
-    \ const { return mod; }\n\n  u64 modulo(u128 x) {\n    u128 z = (x & u64(-1))\
-    \ * ml;\n    z = (x & u64(-1)) * mh + (x >> 64) * ml + (z >> 64);\n    z = (x\
-    \ >> 64) * mh + (z >> 64);\n    x -= z * mod;\n    return x < mod ? x : x - mod;\n\
-    \  }\n\n  u64 mul(u64 a, u64 b) { return modulo(u128(a) * b); }\n};\n#line 4 \"\
-    mod/mod_pow.hpp\"\n\nu32 mod_pow(int a, ll n, int mod) {\n  assert(n >= 0);\n\
-    \  if (mod == 1) return 0;\n  a = ((a %= mod) < 0 ? a + mod : a);\n  if ((mod\
-    \ & 1) && (mod < (1 << 30))) {\n    using mint = Montgomery_modint_32<202311021>;\n\
-    \    mint::set_mod(mod);\n    return mint(a).pow(n).val();\n  }\n  Barrett bt(mod);\n\
-    \  int r = 1;\n  while (n) {\n    if (n & 1) r = bt.mul(r, a);\n    a = bt.mul(a,\
-    \ a), n >>= 1;\n  }\n  return r;\n}\n\nu64 mod_pow_64(ll a, ll n, u64 mod) {\n\
-    \  assert(n >= 0);\n  if (mod == 1) return 0;\n  a = ((a %= mod) < 0 ? a + mod\
-    \ : a);\n  if ((mod & 1) && (mod < (u64(1) << 62))) {\n    using mint = Montgomery_modint_64<202311021>;\n\
-    \    mint::set_mod(mod);\n    return mint(a).pow(n).val();\n  }\n  Barrett_64\
-    \ bt(mod);\n  ll r = 1;\n  while (n) {\n    if (n & 1) r = bt.mul(r, a);\n   \
-    \ a = bt.mul(a, a), n >>= 1;\n  }\n  return r;\n}\n#line 1 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                          .count()) *\n                  10150724397891781847ULL;\n\
-    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
-    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 5 \"mod/primitive_root.hpp\"\n\n//\
-    \ int\nint primitive_root(int p, bool min = true) {\n  auto pf = factor(p - 1);\n\
-    \  auto is_ok = [&](int g) -> bool {\n    for (auto&& [q, e] : pf)\n      if (mod_pow(g,\
-    \ (p - 1) / q, p) == 1) return false;\n    return true;\n  };\n  if (min) {\n\
-    \    FOR(x, 1, p) if (is_ok(x)) return x;\n  }\n  while (1) {\n    int x = RNG(1,\
-    \ p);\n    if (is_ok(x)) return x;\n  }\n  return -1;\n}\n\nll primitive_root_64(ll\
-    \ p) {\n  auto pf = factor(p - 1);\n  auto is_ok = [&](ll g) -> bool {\n    for\
-    \ (auto&& [q, e] : pf)\n      if (mod_pow_64(g, (p - 1) / q, p) == 1) return false;\n\
-    \    return true;\n  };\n  while (1) {\n    ll x = RNG(1, p);\n    if (is_ok(x))\
-    \ return x;\n  }\n  return -1;\n}\n\n// https://codeforces.com/contest/1190/problem/F\n\
-    ll primitive_root_prime_power_64(ll p, ll e) {\n  assert(p >= 3);\n  ll g = primitive_root_64(p);\n\
-    \  ll q = p;\n  ll phi = p - 1;\n  FOR(e - 1) {\n    q *= p;\n    phi *= p;\n\
-    \    if (mod_pow_64(g, phi / p, q) == 1) g += q / p;\n  }\n  return g;\n}\n#line\
-    \ 1 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    \ = Montgomery_modint<id, u64, u128>;\n#line 1 \"mod/barrett.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/mod/barrett.hpp\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
     struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
     \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
     \ (m == 1) return 0;\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n\
@@ -239,6 +202,54 @@ data:
     \ * ml;\n    z = (x & u64(-1)) * mh + (x >> 64) * ml + (z >> 64);\n    z = (x\
     \ >> 64) * mh + (z >> 64);\n    x -= z * mod;\n    return x < mod ? x : x - mod;\n\
     \  }\n\n  u64 mul(u64 a, u64 b) { return modulo(u128(a) * b); }\n};\n#line 5 \"\
+    mod/mod_pow.hpp\"\n\nu32 mod_pow(int a, ll n, int mod) {\n  assert(n >= 0);\n\
+    \  if (mod == 1) return 0;\n  a = ((a %= mod) < 0 ? a + mod : a);\n  if ((mod\
+    \ & 1) && (mod < (1 << 30))) {\n    using mint = Montgomery_modint_32<202311021>;\n\
+    \    mint::set_mod(mod);\n    return mint(a).pow(n).val();\n  }\n  Barrett bt(mod);\n\
+    \  int r = 1;\n  while (n) {\n    if (n & 1) r = bt.mul(r, a);\n    a = bt.mul(a,\
+    \ a), n >>= 1;\n  }\n  return r;\n}\n\nu64 mod_pow_64(ll a, ll n, u64 mod) {\n\
+    \  assert(n >= 0);\n  if (mod == 1) return 0;\n  a = ((a %= mod) < 0 ? a + mod\
+    \ : a);\n  if ((mod & 1) && (mod < (u64(1) << 62))) {\n    using mint = Montgomery_modint_64<202311021>;\n\
+    \    mint::set_mod(mod);\n    return mint(a).pow(n).val();\n  }\n  Barrett_64\
+    \ bt(mod);\n  ll r = 1;\n  while (n) {\n    if (n & 1) r = bt.mul(r, a);\n   \
+    \ a = bt.mul(a, a), n >>= 1;\n  }\n  return r;\n}\n#line 1 \"random/base.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\n\
+    u64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
+    \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
+    \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
+    \  return l + RNG_64() % (r - l);\n}\n#line 6 \"mod/primitive_root.hpp\"\n\n//\
+    \ int\nint primitive_root(int p, bool min = true) {\n  auto pf = factor(p - 1);\n\
+    \  auto is_ok = [&](int g) -> bool {\n    for (auto&& [q, e] : pf)\n      if (mod_pow(g,\
+    \ (p - 1) / q, p) == 1) return false;\n    return true;\n  };\n  if (min) {\n\
+    \    FOR(x, 1, p) if (is_ok(x)) return x;\n  }\n  while (1) {\n    int x = RNG(1,\
+    \ p);\n    if (is_ok(x)) return x;\n  }\n  return -1;\n}\n\nll primitive_root_64(ll\
+    \ p) {\n  auto pf = factor(p - 1);\n  auto is_ok = [&](ll g) -> bool {\n    for\
+    \ (auto&& [q, e] : pf)\n      if (mod_pow_64(g, (p - 1) / q, p) == 1) return false;\n\
+    \    return true;\n  };\n  while (1) {\n    ll x = RNG(1, p);\n    if (is_ok(x))\
+    \ return x;\n  }\n  return -1;\n}\n\n// https://codeforces.com/contest/1190/problem/F\n\
+    ll primitive_root_prime_power_64(ll p, ll e) {\n  assert(p >= 3);\n  ll g = primitive_root_64(p);\n\
+    \  ll q = p;\n  ll phi = p - 1;\n  FOR(e - 1) {\n    q *= p;\n    phi *= p;\n\
+    \    if (mod_pow_64(g, phi / p, q) == 1) g += q / p;\n  }\n  return g;\n}\n#line\
+    \ 1 \"mod/barrett.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/barrett.hpp\n\
+    \n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
+    \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
+    \ (m == 1) return 0;\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n\
+    \    u64 y = x * m;\n    return (z - y + (z < y ? m : 0));\n  }\n  u64 floor(u64\
+    \ z) {\n    if (m == 1) return z;\n    u64 x = (u64)(((unsigned __int128)(z)*im)\
+    \ >> 64);\n    u64 y = x * m;\n    return (z < y ? x - 1 : x);\n  }\n  pair<u64,\
+    \ u32> divmod(u64 z) {\n    if (m == 1) return {z, 0};\n    u64 x = (u64)(((unsigned\
+    \ __int128)(z)*im) >> 64);\n    u64 y = x * m;\n    if (z < y) return {x - 1,\
+    \ z - y + m};\n    return {x, z - y};\n  }\n  u32 mul(u32 a, u32 b) { return modulo(u64(a)\
+    \ * b); }\n};\n\nstruct Barrett_64 {\n  u128 mod, mh, ml;\n\n  explicit Barrett_64(u64\
+    \ mod = 1) : mod(mod) {\n    u128 m = u128(-1) / mod;\n    if (m * mod + mod ==\
+    \ u128(0)) ++m;\n    mh = m >> 64;\n    ml = m & u64(-1);\n  }\n\n  u64 umod()\
+    \ const { return mod; }\n\n  u64 modulo(u128 x) {\n    u128 z = (x & u64(-1))\
+    \ * ml;\n    z = (x & u64(-1)) * mh + (x >> 64) * ml + (z >> 64);\n    z = (x\
+    \ >> 64) * mh + (z >> 64);\n    x -= z * mod;\n    return x < mod ? x : x - mod;\n\
+    \  }\n\n  u64 mul(u64 a, u64 b) { return modulo(u128(a) * b); }\n};\n#line 6 \"\
     mod/dynamic_modint.hpp\"\n\ntemplate <int id>\nstruct Dynamic_Modint {\n  static\
     \ constexpr bool is_modint = true;\n  using mint = Dynamic_Modint;\n  u32 val;\n\
     \  static Barrett bt;\n  static u32 umod() { return bt.umod(); }\n\n  static int\
@@ -278,18 +289,21 @@ data:
     \ x) {\n  fastio::rd(x.val);\n  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate\
     \ <int id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
-    #line 1 \"alg/monoid/mul.hpp\"\n\ntemplate <class T>\nstruct Monoid_Mul {\n  using\
-    \ value_type = T;\n  using X = T;\n  static constexpr X op(const X &x, const X\
-    \ &y) noexcept { return x * y; }\n  static constexpr X inverse(const X &x) noexcept\
-    \ { return X(1) / x; }\n  static constexpr X id() { return X(1); }\n  static constexpr\
-    \ bool commute = true;\n};\n#line 1 \"alg/acted_set/from_monoid.hpp\"\ntemplate\
-    \ <typename Monoid>\nstruct ActedSet_from_Monoid {\n  using Monoid_A = Monoid;\n\
-    \  using A = typename Monoid::value_type;\n  using S = A;\n  static S act(const\
-    \ S &x, const A &g) { return Monoid::op(x, g); }\n};\n#line 1 \"ds/hashmap.hpp\"\
-    \n\n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
-    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
-    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
-    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    #line 1 \"nt/discrete_log.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/discrete_log.hpp\n\
+    #line 1 \"alg/monoid/mul.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/mul.hpp\n\
+    \ntemplate <class T>\nstruct Monoid_Mul {\n  using value_type = T;\n  using X\
+    \ = T;\n  static constexpr X op(const X &x, const X &y) noexcept { return x *\
+    \ y; }\n  static constexpr X inverse(const X &x) noexcept { return X(1) / x; }\n\
+    \  static constexpr X id() { return X(1); }\n  static constexpr bool commute =\
+    \ true;\n};\n#line 1 \"alg/acted_set/from_monoid.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/acted_set/from_monoid.hpp\n\
+    template <typename Monoid>\nstruct ActedSet_from_Monoid {\n  using Monoid_A =\
+    \ Monoid;\n  using A = typename Monoid::value_type;\n  using S = A;\n  static\
+    \ S act(const S &x, const A &g) { return Monoid::op(x, g); }\n};\n#line 1 \"ds/hashmap.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\n//\
+    \ u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\
+    \u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
+    \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
+    \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
     \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
     \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
     \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
@@ -310,45 +324,45 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 4 \"nt/discrete_log.hpp\"\n\r\n// \u30E2\u30CE\u30A4\u30C9 X \u306E\
+    \  }\n};\n#line 5 \"nt/discrete_log.hpp\"\n\n// \u30E2\u30CE\u30A4\u30C9 X \u306E\
     \u4F5C\u7528\u3059\u308B\u96C6\u5408 S\u3001\u30CF\u30C3\u30B7\u30E5\u95A2\u6570\
-    \ H\uFF1AS -> Z\r\n// x in X, s, t in S \u306B\u5BFE\u3057\u3066 x^ns = t \u3092\
-    \u89E3\u304F\r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\
-    \u3002\u306A\u3051\u308C\u3070 -1 \u3092\u304B\u3048\u3059\u3002\r\ntemplate <typename\
-    \ ActedSet, typename F>\r\nll discrete_log_acted(typename ActedSet::A x, typename\
-    \ ActedSet::S s,\r\n                      typename ActedSet::S t, F H, ll lb,\
-    \ ll ub) {\r\n  using Mono = typename ActedSet::Monoid_A;\r\n  using X = typename\
-    \ Mono::value_type;\r\n  using S = typename ActedSet::S;\r\n\r\n  if (lb >= ub)\
-    \ return -1;\r\n  auto xpow = [&](ll n) -> X {\r\n    X p = x;\r\n    X res =\
-    \ Mono::id();\r\n    while (n) {\r\n      if (n & 1) res = Mono::op(res, p);\r\
-    \n      p = Mono::op(p, p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\n \
-    \ };\r\n\r\n  auto Ht = H(t);\r\n  s = ActedSet::act(s, xpow(lb));\r\n  u64 LIM\
-    \ = ub - lb;\r\n\r\n  ll K = sqrt(LIM) + 1;\r\n\r\n  HashMap<char> MP(K);\r\n\r\
-    \n  FOR(k, K) {\r\n    t = ActedSet::act(t, x);\r\n    MP[H(t)] = 1;\r\n  }\r\n\
-    \r\n  X y = xpow(K);\r\n  int failed = 0;\r\n  FOR(k, K + 1) {\r\n    S s1 = ActedSet::act(s,\
-    \ y);\r\n    if (MP.count(H(s1))) {\r\n      FOR(i, K) {\r\n        if (H(s) ==\
-    \ Ht) {\r\n          ll ans = k * K + i + lb;\r\n          return (ans >= ub ?\
-    \ -1 : ans);\r\n        }\r\n        s = ActedSet::act(s, x);\r\n      }\r\n \
-    \     if (failed) return -1;\r\n      failed = 1;\r\n    }\r\n    s = s1;\r\n\
-    \  }\r\n  return -1;\r\n}\r\n\r\n// \u7FA4 X \u306B\u304A\u3051\u308B log_a b\
-    \ \u306E\u8A08\u7B97\r\n// \u30CF\u30C3\u30B7\u30E5\u95A2\u6570 H : X -> long\
-    \ long \u3092\u6301\u305F\u305B\u308B\r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\
-    \u3092\u304B\u3048\u3059\u3001\u306A\u3051\u308C\u3070 -1\r\ntemplate <typename\
-    \ Monoid, typename F>\r\nll discrete_log_monoid(typename Monoid::X a, typename\
-    \ Monoid::X b, F H, ll lb,\r\n                       ll ub) {\r\n  using AM =\
-    \ ActedSet_from_Monoid<Monoid>;\r\n  return discrete_log_acted<AM>(a, Monoid::id(),\
-    \ b, H, lb, ub);\r\n}\r\n#line 1 \"alg/monoid/mul.hpp\"\n\ntemplate <class T>\n\
-    struct Monoid_Mul {\n  using value_type = T;\n  using X = T;\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x * y; }\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return X(1) / x; }\n  static constexpr X id()\
-    \ { return X(1); }\n  static constexpr bool commute = true;\n};\n#line 4 \"mod/mod_log.hpp\"\
-    \n\r\nint mod_log(int mod, ll a, ll b) {\r\n  dmint::set_mod(mod);\r\n  return\
-    \ discrete_log_monoid<Monoid_Mul<dmint>>(\r\n      dmint(a), dmint(b), [](auto\
-    \ x) { return x.val; }, 0, mod);\r\n}\r\n"
-  code: "#include \"mod/dynamic_modint.hpp\"\r\n#include \"nt/discrete_log.hpp\"\r\
-    \n#include \"alg/monoid/mul.hpp\"\r\n\r\nint mod_log(int mod, ll a, ll b) {\r\n\
-    \  dmint::set_mod(mod);\r\n  return discrete_log_monoid<Monoid_Mul<dmint>>(\r\n\
-    \      dmint(a), dmint(b), [](auto x) { return x.val; }, 0, mod);\r\n}\r\n"
+    \ H\uFF1AS -> Z\n// x in X, s, t in S \u306B\u5BFE\u3057\u3066 x^ns = t \u3092\
+    \u89E3\u304F\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\
+    \u3002\u306A\u3051\u308C\u3070 -1 \u3092\u304B\u3048\u3059\u3002\ntemplate <typename\
+    \ ActedSet, typename F>\nll discrete_log_acted(typename ActedSet::A x, typename\
+    \ ActedSet::S s,\n                      typename ActedSet::S t, F H, ll lb, ll\
+    \ ub) {\n  using Mono = typename ActedSet::Monoid_A;\n  using X = typename Mono::value_type;\n\
+    \  using S = typename ActedSet::S;\n\n  if (lb >= ub) return -1;\n  auto xpow\
+    \ = [&](ll n) -> X {\n    X p = x;\n    X res = Mono::id();\n    while (n) {\n\
+    \      if (n & 1) res = Mono::op(res, p);\n      p = Mono::op(p, p);\n      n\
+    \ /= 2;\n    }\n    return res;\n  };\n\n  auto Ht = H(t);\n  s = ActedSet::act(s,\
+    \ xpow(lb));\n  u64 LIM = ub - lb;\n\n  ll K = sqrt(LIM) + 1;\n\n  HashMap<char>\
+    \ MP(K);\n\n  FOR(k, K) {\n    t = ActedSet::act(t, x);\n    MP[H(t)] = 1;\n \
+    \ }\n\n  X y = xpow(K);\n  int failed = 0;\n  FOR(k, K + 1) {\n    S s1 = ActedSet::act(s,\
+    \ y);\n    if (MP.count(H(s1))) {\n      FOR(i, K) {\n        if (H(s) == Ht)\
+    \ {\n          ll ans = k * K + i + lb;\n          return (ans >= ub ? -1 : ans);\n\
+    \        }\n        s = ActedSet::act(s, x);\n      }\n      if (failed) return\
+    \ -1;\n      failed = 1;\n    }\n    s = s1;\n  }\n  return -1;\n}\n\n// \u7FA4\
+    \ X \u306B\u304A\u3051\u308B log_a b \u306E\u8A08\u7B97\n// \u30CF\u30C3\u30B7\
+    \u30E5\u95A2\u6570 H : X -> long long \u3092\u6301\u305F\u305B\u308B\n// [lb,\
+    \ ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\u3001\u306A\u3051\
+    \u308C\u3070 -1\ntemplate <typename Monoid, typename F>\nll discrete_log_monoid(typename\
+    \ Monoid::X a, typename Monoid::X b, F H, ll lb,\n                       ll ub)\
+    \ {\n  using AM = ActedSet_from_Monoid<Monoid>;\n  return discrete_log_acted<AM>(a,\
+    \ Monoid::id(), b, H, lb, ub);\n}\n#line 1 \"alg/monoid/mul.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/alg/monoid/mul.hpp\n\ntemplate\
+    \ <class T>\nstruct Monoid_Mul {\n  using value_type = T;\n  using X = T;\n  static\
+    \ constexpr X op(const X &x, const X &y) noexcept { return x * y; }\n  static\
+    \ constexpr X inverse(const X &x) noexcept { return X(1) / x; }\n  static constexpr\
+    \ X id() { return X(1); }\n  static constexpr bool commute = true;\n};\n#line\
+    \ 5 \"mod/mod_log.hpp\"\n\nint mod_log(int mod, ll a, ll b) {\n  dmint::set_mod(mod);\n\
+    \  return discrete_log_monoid<Monoid_Mul<dmint>>(\n      dmint(a), dmint(b), [](auto\
+    \ x) { return x.val; }, 0, mod);\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/mod/mod_log.hpp\n\
+    #include \"mod/dynamic_modint.hpp\"\n#include \"nt/discrete_log.hpp\"\n#include\
+    \ \"alg/monoid/mul.hpp\"\n\nint mod_log(int mod, ll a, ll b) {\n  dmint::set_mod(mod);\n\
+    \  return discrete_log_monoid<Monoid_Mul<dmint>>(\n      dmint(a), dmint(b), [](auto\
+    \ x) { return x.val; }, 0, mod);\n}\n"
   dependsOn:
   - mod/dynamic_modint.hpp
   - mod/modint_common.hpp
@@ -366,7 +380,7 @@ data:
   isVerificationFile: false
   path: mod/mod_log.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp

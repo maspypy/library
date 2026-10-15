@@ -15,20 +15,22 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/1540/problem/E
-  bundledCode: "#line 1 \"linalg/diagonalize_triangular_matrix.hpp\"\n\n#line 1 \"\
-    linalg/transpose.hpp\"\ntemplate <typename VC>\nvc<VC> transpose(const vc<VC>&\
-    \ A, int H = -1, int W = -1) {\n  if (H == -1) { H = len(A), W = (len(A) == 0\
-    \ ? 0 : len(A[0])); }\n  vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x]\
-    \ = A[x][y];\n  return B;\n}\n#line 1 \"linalg/matrix_inv.hpp\"\n\n// (det, invA)\
-    \ \u3092\u304B\u3048\u3059\ntemplate <typename T>\npair<T, vc<vc<T>>> matrix_inv(vc<vc<T>>\
-    \ A) {\n  T det = 1;\n  int N = len(A);\n  vv(T, B, N, N);\n  FOR(n, N) B[n][n]\
-    \ = 1;\n  FOR(i, N) {\n    FOR(k, i, N) if (A[k][i] != 0) {\n      if (k != i)\
-    \ {\n        swap(A[i], A[k]), swap(B[i], B[k]);\n        det = -det;\n      }\n\
-    \      break;\n    }\n    if (A[i][i] == 0) return {T(0), {}};\n    T c = T(1)\
-    \ / A[i][i];\n    det *= A[i][i];\n    FOR(j, i, N) A[i][j] *= c;\n    FOR(j,\
-    \ N) B[i][j] *= c;\n    FOR(k, N) if (i != k) {\n      T c = A[k][i];\n      FOR(j,\
-    \ i, N) A[k][j] -= A[i][j] * c;\n      FOR(j, N) B[k][j] -= B[i][j] * c;\n   \
-    \ }\n  }\n  return {det, B};\n}\n#line 4 \"linalg/diagonalize_triangular_matrix.hpp\"\
+    - https://github.com/maspypy/library/blob/main/linalg/diagonalize_triangular_matrix.hpp
+  bundledCode: "#line 1 \"linalg/diagonalize_triangular_matrix.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/linalg/diagonalize_triangular_matrix.hpp\n\
+    \n#line 1 \"linalg/transpose.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/linalg/transpose.hpp\n\
+    template <typename VC>\nvc<VC> transpose(const vc<VC>& A, int H = -1, int W =\
+    \ -1) {\n  if (H == -1) { H = len(A), W = (len(A) == 0 ? 0 : len(A[0])); }\n \
+    \ vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x] = A[x][y];\n  return B;\n\
+    }\n#line 1 \"linalg/matrix_inv.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/linalg/matrix_inv.hpp\n\
+    \n// (det, invA) \u3092\u304B\u3048\u3059\ntemplate <typename T>\npair<T, vc<vc<T>>>\
+    \ matrix_inv(vc<vc<T>> A) {\n  T det = 1;\n  int N = len(A);\n  vv(T, B, N, N);\n\
+    \  FOR(n, N) B[n][n] = 1;\n  FOR(i, N) {\n    FOR(k, i, N) if (A[k][i] != 0) {\n\
+    \      if (k != i) {\n        swap(A[i], A[k]), swap(B[i], B[k]);\n        det\
+    \ = -det;\n      }\n      break;\n    }\n    if (A[i][i] == 0) return {T(0), {}};\n\
+    \    T c = T(1) / A[i][i];\n    det *= A[i][i];\n    FOR(j, i, N) A[i][j] *= c;\n\
+    \    FOR(j, N) B[i][j] *= c;\n    FOR(k, N) if (i != k) {\n      T c = A[k][i];\n\
+    \      FOR(j, i, N) A[k][j] -= A[i][j] * c;\n      FOR(j, N) B[k][j] -= B[i][j]\
+    \ * c;\n    }\n  }\n  return {det, B};\n}\n#line 5 \"linalg/diagonalize_triangular_matrix.hpp\"\
     \n\n// P^{-1}AP = diag(D) \u3068\u306A\u308B (D,P,P^{-1}) \u3092\u8FD4\u3059\n\
     // https://codeforces.com/contest/1540/problem/E\ntemplate <typename mint>\ntuple<vc<mint>,\
     \ vvc<mint>, vvc<mint>> diagonalize_triangular_matrix(\n    vvc<mint> A) {\n \
@@ -42,27 +44,28 @@ data:
     \  X[k] = 1;\n    FOR_R(i, k) {\n      mint x = 0;\n      FOR(j, i + 1, k + 1)\
     \ x += A[i][j] * X[j];\n      X[i] = x / (d - D[i]);\n    }\n    FOR(i, N) P[i][k]\
     \ = X[i];\n  }\n  auto Q = matrix_inv<mint>(P).se;\n  return {D, P, Q};\n}\n"
-  code: "\n#include \"linalg/transpose.hpp\"\n#include \"linalg/matrix_inv.hpp\"\n\
-    \n// P^{-1}AP = diag(D) \u3068\u306A\u308B (D,P,P^{-1}) \u3092\u8FD4\u3059\n//\
-    \ https://codeforces.com/contest/1540/problem/E\ntemplate <typename mint>\ntuple<vc<mint>,\
-    \ vvc<mint>, vvc<mint>> diagonalize_triangular_matrix(\n    vvc<mint> A) {\n \
-    \ int N = len(A);\n  bool lower = 1, upper = 1;\n  FOR(i, N) FOR(j, N) {\n   \
-    \ if (i < j) lower = lower && (A[i][j] == 0);\n    if (i > j) upper = upper &&\
-    \ (A[i][j] == 0);\n  }\n  assert(lower || upper);\n  if (!upper) {\n    A = transpose(A);\n\
-    \    auto [D, P, Q] = diagonalize_triangular_matrix(A);\n    return {D, transpose(Q),\
-    \ transpose(P)};\n  }\n  assert(upper);\n\n  vc<mint> D(N);\n  vv(mint, P, N,\
-    \ N);\n  FOR(k, N) D[k] = A[k][k];\n  FOR(j, N) FOR(i, j) assert(D[i] != D[j]);\n\
-    \n  FOR(k, N) {\n    mint d = A[k][k];\n    D[k] = d;\n    vc<mint> X(N);\n  \
-    \  X[k] = 1;\n    FOR_R(i, k) {\n      mint x = 0;\n      FOR(j, i + 1, k + 1)\
-    \ x += A[i][j] * X[j];\n      X[i] = x / (d - D[i]);\n    }\n    FOR(i, N) P[i][k]\
-    \ = X[i];\n  }\n  auto Q = matrix_inv<mint>(P).se;\n  return {D, P, Q};\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/linalg/diagonalize_triangular_matrix.hpp\n\
+    \n#include \"linalg/transpose.hpp\"\n#include \"linalg/matrix_inv.hpp\"\n\n//\
+    \ P^{-1}AP = diag(D) \u3068\u306A\u308B (D,P,P^{-1}) \u3092\u8FD4\u3059\n// https://codeforces.com/contest/1540/problem/E\n\
+    template <typename mint>\ntuple<vc<mint>, vvc<mint>, vvc<mint>> diagonalize_triangular_matrix(\n\
+    \    vvc<mint> A) {\n  int N = len(A);\n  bool lower = 1, upper = 1;\n  FOR(i,\
+    \ N) FOR(j, N) {\n    if (i < j) lower = lower && (A[i][j] == 0);\n    if (i >\
+    \ j) upper = upper && (A[i][j] == 0);\n  }\n  assert(lower || upper);\n  if (!upper)\
+    \ {\n    A = transpose(A);\n    auto [D, P, Q] = diagonalize_triangular_matrix(A);\n\
+    \    return {D, transpose(Q), transpose(P)};\n  }\n  assert(upper);\n\n  vc<mint>\
+    \ D(N);\n  vv(mint, P, N, N);\n  FOR(k, N) D[k] = A[k][k];\n  FOR(j, N) FOR(i,\
+    \ j) assert(D[i] != D[j]);\n\n  FOR(k, N) {\n    mint d = A[k][k];\n    D[k] =\
+    \ d;\n    vc<mint> X(N);\n    X[k] = 1;\n    FOR_R(i, k) {\n      mint x = 0;\n\
+    \      FOR(j, i + 1, k + 1) x += A[i][j] * X[j];\n      X[i] = x / (d - D[i]);\n\
+    \    }\n    FOR(i, N) P[i][k] = X[i];\n  }\n  auto Q = matrix_inv<mint>(P).se;\n\
+    \  return {D, P, Q};\n}\n"
   dependsOn:
   - linalg/transpose.hpp
   - linalg/matrix_inv.hpp
   isVerificationFile: false
   path: linalg/diagonalize_triangular_matrix.hpp
   requiredBy: []
-  timestamp: '2026-08-16 04:03:00+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: linalg/diagonalize_triangular_matrix.hpp

@@ -16,21 +16,25 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add\
-    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\n  static constexpr X id() { return X(0); }\n\
-    \  static constexpr bool commute = true;\n};\n#line 2 \"ds/fenwicktree/fenwicktree.hpp\"\
-    \n\ntemplate <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
-    \ MX = Monoid;\n  using E = typename G::value_type;\n  int n;\n  vector<E> dat;\n\
-    \  E total;\n\n  FenwickTree() {}\n  FenwickTree(int n) { build(n); }\n  template\
-    \ <typename F>\n  FenwickTree(int n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const\
-    \ vc<E>& v) { build(v); }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m,\
-    \ G::id());\n    total = G::id();\n  }\n  void build(const vc<E>& v) {\n    build(len(v),\
-    \ [&](int i) -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
-    \ m, F f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::id();\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/seq/factorial_digit_system.hpp
+  bundledCode: "#line 1 \"seq/factorial_digit_system.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/seq/factorial_digit_system.hpp\n\
+    #line 1 \"ds/fenwicktree/fenwicktree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/fenwicktree/fenwicktree.hpp\n\
+    #line 1 \"alg/monoid/add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
+    \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
+    \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
+    \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
+    };\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
+    struct FenwickTree {\n  using G = Monoid;\n  using MX = Monoid;\n  using E = typename\
+    \ G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree() {}\n\
+    \  FenwickTree(int n) { build(n); }\n  template <typename F>\n  FenwickTree(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v);\
+    \ }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m, G::id());\n    total\
+    \ = G::id();\n  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int i)\
+    \ -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F\
+    \ f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::id();\n\
     \    FOR(i, n) { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int\
     \ j = i + (i & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j -\
     \ 1]);\n    }\n    total = prefix_sum(m);\n  }\n\n  E prod_all() const { return\
@@ -83,7 +87,7 @@ data:
     \ G::inverse(dat[i + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1\
     \ << k), s = t;\n      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int\
     \ L = 0) const {\n    return max_right([&k](E x) -> bool { return x <= k; }, L);\n\
-    \  }\n};\n#line 2 \"seq/factorial_digit_system.hpp\"\n\n// \u53F3\u306B\u3042\u308B\
+    \  }\n};\n#line 3 \"seq/factorial_digit_system.hpp\"\n\n// \u53F3\u306B\u3042\u308B\
     \u5C0F\u3055\u3044\u3084\u3064\u306E\u500B\u6570 [2,0,3,1] \u2192 [2,0,1,0]\n\
     vc<int> to_factorial_digit_system(vc<int>& A) {\n  int N = len(A);\n  for (auto&&\
     \ x: A) assert(0 <= x && x < N);\n  FenwickTree<Monoid_Add<int>> bit(N);\n  vc<int>\
@@ -94,10 +98,11 @@ data:
     \ ANS(N);\n  FenwickTree<Monoid_Add<int>> bit(N, [&](int i) -> int { return 1;\
     \ });\n  FOR(i, N) {\n    ANS[i] = bit.kth(A[i]);\n    bit.add(ANS[i], -1);\n\
     \  }\n  return ANS;\n}\n"
-  code: "#include \"ds/fenwicktree/fenwicktree.hpp\"\n\n// \u53F3\u306B\u3042\u308B\
-    \u5C0F\u3055\u3044\u3084\u3064\u306E\u500B\u6570 [2,0,3,1] \u2192 [2,0,1,0]\n\
-    vc<int> to_factorial_digit_system(vc<int>& A) {\n  int N = len(A);\n  for (auto&&\
-    \ x: A) assert(0 <= x && x < N);\n  FenwickTree<Monoid_Add<int>> bit(N);\n  vc<int>\
+  code: "// Source: https://github.com/maspypy/library/blob/main/seq/factorial_digit_system.hpp\n\
+    #include \"ds/fenwicktree/fenwicktree.hpp\"\n\n// \u53F3\u306B\u3042\u308B\u5C0F\
+    \u3055\u3044\u3084\u3064\u306E\u500B\u6570 [2,0,3,1] \u2192 [2,0,1,0]\nvc<int>\
+    \ to_factorial_digit_system(vc<int>& A) {\n  int N = len(A);\n  for (auto&& x:\
+    \ A) assert(0 <= x && x < N);\n  FenwickTree<Monoid_Add<int>> bit(N);\n  vc<int>\
     \ B(N);\n  FOR_R(i, N) B[i] = bit.sum(0, A[i]), bit.add(A[i], 1);\n  return B;\n\
     }\n\n// \u53F3\u306B\u3042\u308B\u5C0F\u3055\u3044\u3084\u3064\u306E\u500B\u6570\
     \ [2,0,1,0] \u2192 [2,0,3,1]\nvc<int> from_factorial_digit_system(vc<int>& A)\
@@ -111,7 +116,7 @@ data:
   isVerificationFile: false
   path: seq/factorial_digit_system.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/factorial_digit.test.cpp

@@ -10,25 +10,27 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"graph/scc_tournament_by_indegrees.hpp\"\npair<int, vc<int>>\
-    \ scc_tournament_by_indegrees(vc<int> indeg) {\n  int N = len(indeg);\n  auto\
-    \ I = argsort(indeg);\n  vc<int> ANS(N);\n  ll sm = 0;\n  int nxt = 0;\n  FOR(i,\
-    \ N) {\n    int v = I[i];\n    ANS[v] = nxt;\n    // I[0:i] \u304C\u3072\u3068\
-    \u3064\u306E\u6210\u5206\u304B\u3069\u3046\u304B\n    sm += indeg[v];\n    ll\
-    \ TS = sm - (i + 1) * i / 2;\n    if (TS == 0) ++nxt;\n  }\n  return {nxt, ANS};\n\
-    }\n"
-  code: "pair<int, vc<int>> scc_tournament_by_indegrees(vc<int> indeg) {\n  int N\
-    \ = len(indeg);\n  auto I = argsort(indeg);\n  vc<int> ANS(N);\n  ll sm = 0;\n\
-    \  int nxt = 0;\n  FOR(i, N) {\n    int v = I[i];\n    ANS[v] = nxt;\n    // I[0:i]\
-    \ \u304C\u3072\u3068\u3064\u306E\u6210\u5206\u304B\u3069\u3046\u304B\n    sm +=\
-    \ indeg[v];\n    ll TS = sm - (i + 1) * i / 2;\n    if (TS == 0) ++nxt;\n  }\n\
-    \  return {nxt, ANS};\n}\n"
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/scc_tournament_by_indegrees.hpp
+  bundledCode: "#line 1 \"graph/scc_tournament_by_indegrees.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/scc_tournament_by_indegrees.hpp\n\
+    pair<int, vc<int>> scc_tournament_by_indegrees(vc<int> indeg) {\n  int N = len(indeg);\n\
+    \  auto I = argsort(indeg);\n  vc<int> ANS(N);\n  ll sm = 0;\n  int nxt = 0;\n\
+    \  FOR(i, N) {\n    int v = I[i];\n    ANS[v] = nxt;\n    // I[0:i] \u304C\u3072\
+    \u3068\u3064\u306E\u6210\u5206\u304B\u3069\u3046\u304B\n    sm += indeg[v];\n\
+    \    ll TS = sm - (i + 1) * i / 2;\n    if (TS == 0) ++nxt;\n  }\n  return {nxt,\
+    \ ANS};\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/scc_tournament_by_indegrees.hpp\n\
+    pair<int, vc<int>> scc_tournament_by_indegrees(vc<int> indeg) {\n  int N = len(indeg);\n\
+    \  auto I = argsort(indeg);\n  vc<int> ANS(N);\n  ll sm = 0;\n  int nxt = 0;\n\
+    \  FOR(i, N) {\n    int v = I[i];\n    ANS[v] = nxt;\n    // I[0:i] \u304C\u3072\
+    \u3068\u3064\u306E\u6210\u5206\u304B\u3069\u3046\u304B\n    sm += indeg[v];\n\
+    \    ll TS = sm - (i + 1) * i / 2;\n    if (TS == 0) ++nxt;\n  }\n  return {nxt,\
+    \ ANS};\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: graph/scc_tournament_by_indegrees.hpp
   requiredBy: []
-  timestamp: '2026-08-17 10:29:39+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/scc_tournament.test.cpp

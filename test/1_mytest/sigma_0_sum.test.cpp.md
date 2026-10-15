@@ -22,31 +22,32 @@ data:
     - https://judge.yosupo.jp/problem/aplusb
     - https://oeis.org/A057494
   bundledCode: "#line 1 \"test/1_mytest/sigma_0_sum.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n/*\nlibrary:\
-    \ https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
-    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
-    Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\"\
-    )\n#endif\n#endif\n#include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace\
-    \ std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
-    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
-    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class>\nconstexpr\
-    \ bool dependent_false = false;\n\ntemplate <class T>\nconstexpr T infty = []\
-    \ {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\");\n  return\
-    \ T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
-    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
-    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
-    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
-    template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
-    \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
-    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
-    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
-    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq_max = priority_queue<T>;\ntemplate <class T>\nusing pq_min = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
-    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
-    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
-    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
-    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\nlibrary: https://github.com/maspypy/library\n\
+    */\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n\
+    #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#if\
+    \ !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\")\n#endif\n#endif\n\
+    #include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace std;\n\nusing\
+    \ ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\n\
+    using u64 = uint64_t;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
+    using f128 = __float128;\n\ntemplate <class>\nconstexpr bool dependent_false =\
+    \ false;\n\ntemplate <class T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>,\
+    \ \"infty<T> is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int\
+    \ infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
+    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
+    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
+    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
+    \ infty<i128>;\ntemplate <>\nconstexpr long double infty<long double> = infty<i128>;\n\
+    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
+    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing pq_max = priority_queue<T>;\ntemplate <class T>\nusing\
+    \ pq_min = priority_queue<T, vector<T>, greater<T>>;\n\n#define vv(type, name,\
+    \ h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n#define\
+    \ vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name( \\\n \
+    \     h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR1_R(a)\
@@ -137,31 +138,33 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/sigma_0_sum.test.cpp\"\
-    \n\n#line 1 \"nt/convex_floor_sum.hpp\"\n\n// f: \u51F8, \u975E\u8CA0, \u5358\u8ABF\
-    \u5897\u52A0\u3092\u4EEE\u5B9A\n// above(x,y) : y > f(x)\n// slope(x,a,b) : f'(x)\
-    \ >= a/b\n// return : sum_[0,N) floor(f(x))\n// https://qoj.ac/contest/1195/problem/6188\n\
-    template <typename U, typename ANS_TYPE, typename F1, typename F2>\nANS_TYPE convex_floor_sum(U\
-    \ N, F1 above, F2 slope) {\n  if (N == 0) return 0;\n  auto check = [&](U x, U\
-    \ y) -> bool { return x < N && above(x, y); };\n\n  using T = ANS_TYPE;\n  auto\
-    \ max_add = [&](auto f, U& a, U& b, U c, U d) -> void {\n    auto dfs = [&](auto&\
-    \ dfs, U c, U d) -> void {\n      if (!f(a + c, b + d)) return;\n      a += c,\
-    \ b += d, dfs(dfs, c + c, d + d);\n      if (f(a + c, b + d)) a += c, b += d;\n\
-    \    };\n    dfs(dfs, c, d);\n  };\n\n  assert(!above(0, 0));\n  U x = 0, y =\
-    \ 0;\n  max_add([&](U x, U y) -> bool { return !above(x, y); }, x, y, 0, 1);\n\
-    \  ++y;\n  T ANS = 2 * (y - 1); //  [0,1) x [1,y)\n\n  auto add_ANS = [&](U& x,\
-    \ U& y, U a, U b) -> void {\n    U x0 = x, y0 = y;\n    max_add(check, x, y, a,\
-    \ b);\n    U n = (x - x0) / a;\n    //  (x0,y0) to (x,y)\n    ANS += 2 * (y0 -\
-    \ 1) * (x - x0);\n    ANS += (x - x0 + 1) * (y - y0 + 1) - (n + 1);\n  };\n\n\
-    \  add_ANS(x, y, 1, 0);\n  vc<tuple<U, U, U, U>> SBT;\n  SBT.eb(1, 0, 0, 1);\n\
-    \  while (x < N - 1) {\n    U a, b, c, d;\n    tie(a, b, c, d) = SBT.back();\n\
-    \    if (!check(x + c, y + d)) {\n      POP(SBT);\n      continue;\n    }\n  \
-    \  auto f = [&](u64 a, u64 b) -> bool {\n      if (x + a >= N) return 0;\n   \
-    \   if (above(x + a, y + b)) return 0;\n      if (slope(x + a, d, c)) return 0;\n\
-    \      return 1;\n    };\n    max_add(f, a, b, c, d);\n    if (check(x + a + c,\
-    \ y + b + d)) {\n      max_add([&](U a, U b) -> bool { return check(x + a, y +\
-    \ b); }, c, d, a, b);\n      SBT.eb(a, b, c, d);\n      continue;\n    }\n   \
-    \ add_ANS(x, y, c, d);\n  }\n  ANS /= T(2);\n  return ANS;\n}\n#line 2 \"nt/sigma_0_sum.hpp\"\
-    \n\n// sum_[1,N] sigma_0(n)\ntemplate <typename T = u64>\nT sigma_0_sum_small(u64\
+    \n\n#line 1 \"nt/sigma_0_sum.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/sigma_0_sum.hpp\n\
+    #line 1 \"nt/convex_floor_sum.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/convex_floor_sum.hpp\n\
+    \n// f: \u51F8, \u975E\u8CA0, \u5358\u8ABF\u5897\u52A0\u3092\u4EEE\u5B9A\n// above(x,y)\
+    \ : y > f(x)\n// slope(x,a,b) : f'(x) >= a/b\n// return : sum_[0,N) floor(f(x))\n\
+    // https://qoj.ac/contest/1195/problem/6188\ntemplate <typename U, typename ANS_TYPE,\
+    \ typename F1, typename F2>\nANS_TYPE convex_floor_sum(U N, F1 above, F2 slope)\
+    \ {\n  if (N == 0) return 0;\n  auto check = [&](U x, U y) -> bool { return x\
+    \ < N && above(x, y); };\n\n  using T = ANS_TYPE;\n  auto max_add = [&](auto f,\
+    \ U& a, U& b, U c, U d) -> void {\n    auto dfs = [&](auto& dfs, U c, U d) ->\
+    \ void {\n      if (!f(a + c, b + d)) return;\n      a += c, b += d, dfs(dfs,\
+    \ c + c, d + d);\n      if (f(a + c, b + d)) a += c, b += d;\n    };\n    dfs(dfs,\
+    \ c, d);\n  };\n\n  assert(!above(0, 0));\n  U x = 0, y = 0;\n  max_add([&](U\
+    \ x, U y) -> bool { return !above(x, y); }, x, y, 0, 1);\n  ++y;\n  T ANS = 2\
+    \ * (y - 1); //  [0,1) x [1,y)\n\n  auto add_ANS = [&](U& x, U& y, U a, U b) ->\
+    \ void {\n    U x0 = x, y0 = y;\n    max_add(check, x, y, a, b);\n    U n = (x\
+    \ - x0) / a;\n    //  (x0,y0) to (x,y)\n    ANS += 2 * (y0 - 1) * (x - x0);\n\
+    \    ANS += (x - x0 + 1) * (y - y0 + 1) - (n + 1);\n  };\n\n  add_ANS(x, y, 1,\
+    \ 0);\n  vc<tuple<U, U, U, U>> SBT;\n  SBT.eb(1, 0, 0, 1);\n  while (x < N - 1)\
+    \ {\n    U a, b, c, d;\n    tie(a, b, c, d) = SBT.back();\n    if (!check(x +\
+    \ c, y + d)) {\n      POP(SBT);\n      continue;\n    }\n    auto f = [&](u64\
+    \ a, u64 b) -> bool {\n      if (x + a >= N) return 0;\n      if (above(x + a,\
+    \ y + b)) return 0;\n      if (slope(x + a, d, c)) return 0;\n      return 1;\n\
+    \    };\n    max_add(f, a, b, c, d);\n    if (check(x + a + c, y + b + d)) {\n\
+    \      max_add([&](U a, U b) -> bool { return check(x + a, y + b); }, c, d, a,\
+    \ b);\n      SBT.eb(a, b, c, d);\n      continue;\n    }\n    add_ANS(x, y, c,\
+    \ d);\n  }\n  ANS /= T(2);\n  return ANS;\n}\n#line 3 \"nt/sigma_0_sum.hpp\"\n\
+    \n// sum_[1,N] sigma_0(n)\ntemplate <typename T = u64>\nT sigma_0_sum_small(u64\
     \ N) {\n  u32 sq = sqrtl(N);\n  T ANS = 0;\n  for (u32 d = 1; d <= sq; ++d) {\
     \ ANS += N / d; }\n  return 2 * ANS - u64(sq) * sq;\n}\n\n// https://oeis.org/A006218\n\
     // sigma0(1)+...+sigma0(N) = sum floor(N/i)\ntemplate <typename T = u64>\nT sigma_0_sum_large(u64\
@@ -193,7 +196,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/sigma_0_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/sigma_0_sum.test.cpp

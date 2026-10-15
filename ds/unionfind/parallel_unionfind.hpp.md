@@ -13,18 +13,20 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
-    \ n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n);\
-    \ }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n\
-    \  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x]\
-    \ >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n\
-    \      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n   \
-    \ x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n\
-    \    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x]\
-    \ < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return\
-    \ true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] =\
-    \ (*this)[i];\n    return A;\n  }\n};\n#line 2 \"ds/unionfind/parallel_unionfind.hpp\"\
+    links:
+    - https://github.com/maspypy/library/blob/main/ds/unionfind/parallel_unionfind.hpp
+  bundledCode: "#line 1 \"ds/unionfind/parallel_unionfind.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/parallel_unionfind.hpp\n\
+    #line 1 \"ds/unionfind/unionfind.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\n\
+    \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
+    \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
+    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
+    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
+    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
+    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
+    \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
+    \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
+    \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
+    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 3 \"ds/unionfind/parallel_unionfind.hpp\"\
     \n\n// same(L1,R1,L2,R2) \u307F\u305F\u3044\u306A\u3053\u3068\u306F\u51FA\u6765\
     \u306A\u3044\u3068\u601D\u3046(\u5FC5\u8981\u306A\u3089 rolling hash \u304B\u306A\
     )\nstruct Range_Parallel_UnionFind {\n  int N;\n  int log;\n  int n_comp;\n  //\
@@ -48,10 +50,11 @@ data:
     \      --n_comp;\n      return f(c, a ^ b ^ c);\n    }\n    if (!ufs[k].merge(L1,\
     \ L2)) return;\n    merge_inner(k - 1, L1, L2, f);\n    merge_inner(k - 1, L1\
     \ + (1 << (k - 1)), L2 + (1 << (k - 1)), f);\n  }\n};\n"
-  code: "#include \"ds/unionfind/unionfind.hpp\"\n\n// same(L1,R1,L2,R2) \u307F\u305F\
-    \u3044\u306A\u3053\u3068\u306F\u51FA\u6765\u306A\u3044\u3068\u601D\u3046(\u5FC5\
-    \u8981\u306A\u3089 rolling hash \u304B\u306A)\nstruct Range_Parallel_UnionFind\
-    \ {\n  int N;\n  int log;\n  int n_comp;\n  // ufs[i][a]==ufs[i][b] iff [a,...,a+2^i)\
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/parallel_unionfind.hpp\n\
+    #include \"ds/unionfind/unionfind.hpp\"\n\n// same(L1,R1,L2,R2) \u307F\u305F\u3044\
+    \u306A\u3053\u3068\u306F\u51FA\u6765\u306A\u3044\u3068\u601D\u3046(\u5FC5\u8981\
+    \u306A\u3089 rolling hash \u304B\u306A)\nstruct Range_Parallel_UnionFind {\n \
+    \ int N;\n  int log;\n  int n_comp;\n  // ufs[i][a]==ufs[i][b] iff [a,...,a+2^i)\
     \ == [b,...,b+2^i)\n  vc<UnionFind> ufs;\n  Range_Parallel_UnionFind(int n) :\
     \ N(n), n_comp(n) {\n    log = 1;\n    while ((1 << log) < n) ++log;\n    ufs.resize(log);\n\
     \    FOR(i, log) {\n      ll n = 1 << i;\n      ufs[i].build(N - n + 1);\n   \
@@ -76,7 +79,7 @@ data:
   isVerificationFile: false
   path: ds/unionfind/parallel_unionfind.hpp
   requiredBy: []
-  timestamp: '2026-09-28 10:13:21+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/range_parallel_uf.test.cpp

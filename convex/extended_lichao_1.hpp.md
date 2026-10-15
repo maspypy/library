@@ -13,8 +13,10 @@ data:
     links:
     - https://codeforces.com/blog/entry/86731)
     - https://codeforces.com/contest/1120/problem/F
-  bundledCode: "#line 1 \"convex/extended_lichao_1.hpp\"\n// https://codeforces.com/blog/entry/86731)\n\
-    // chmin(A[x],ax+b), A[x]+=ax+b, get A[x]\n// \u3064\u304B\u3048\u305F https://codeforces.com/contest/1120/problem/F\n\
+    - https://github.com/maspypy/library/blob/main/convex/extended_lichao_1.hpp
+  bundledCode: "#line 1 \"convex/extended_lichao_1.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/convex/extended_lichao_1.hpp\n\
+    // https://codeforces.com/blog/entry/86731)\n// chmin(A[x],ax+b), A[x]+=ax+b,\
+    \ get A[x]\n// \u3064\u304B\u3048\u305F https://codeforces.com/contest/1120/problem/F\n\
     template <bool MINIMIZE>\nstruct Extended_LiChao_Tree_1 {\n  // \u5165\u51FA\u529B\
     \u4EE5\u5916\u3067\u306F minimize \u3057\u3066\u3044\u308B\n  struct F {\n   \
     \ ll a, b;\n    F(ll a = 0, ll b = 0) : a(a), b(b) {}\n    ll operator()(ll x)\
@@ -74,7 +76,8 @@ data:
     \ node_m) {\n      chmin(res, query_rec(2 * i + 0, x, node_l, node_m, laz));\n\
     \    }\n    if (x >= node_m) {\n      chmin(res, query_rec(2 * i + 1, x, node_m,\
     \ node_r, laz));\n    }\n    return res;\n  }\n};\n"
-  code: "// https://codeforces.com/blog/entry/86731)\n// chmin(A[x],ax+b), A[x]+=ax+b,\
+  code: "// Source: https://github.com/maspypy/library/blob/main/convex/extended_lichao_1.hpp\n\
+    // https://codeforces.com/blog/entry/86731)\n// chmin(A[x],ax+b), A[x]+=ax+b,\
     \ get A[x]\n// \u3064\u304B\u3048\u305F https://codeforces.com/contest/1120/problem/F\n\
     template <bool MINIMIZE>\nstruct Extended_LiChao_Tree_1 {\n  // \u5165\u51FA\u529B\
     \u4EE5\u5916\u3067\u306F minimize \u3057\u3066\u3044\u308B\n  struct F {\n   \
@@ -139,7 +142,7 @@ data:
   isVerificationFile: false
   path: convex/extended_lichao_1.hpp
   requiredBy: []
-  timestamp: '2026-09-17 11:49:38+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/extended_lichao.test.cpp

@@ -24,20 +24,21 @@ data:
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/primesum_mod6.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n/*\n\
-    library: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
-    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
-    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
-    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
-    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
-    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
-    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
-    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
-    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
-    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
-    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n//\
+    \ Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\nlibrary:\
+    \ https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
+    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
+    Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\"\
+    )\n#endif\n#endif\n#include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
+    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
+    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class>\nconstexpr\
+    \ bool dependent_false = false;\n\ntemplate <class T>\nconstexpr T infty = []\
+    \ {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\");\n  return\
+    \ T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
     template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
     \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
     using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
@@ -138,8 +139,11 @@ data:
     \ others.end()), ...);\n}\n\n// i128\ntemplate <class T, enable_if_t<is_same_v<T,\
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
-    \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 1 \"nt/prime_table.hpp\"\
-    \n\ntemplate <typename T = int>\nvc<T> prime_table(int LIM) {\n  ++LIM;\n  const\
+    \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 1 \"nt/prime_sum_mod6.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/nt/prime_sum_mod6.hpp\n\
+    #line 1 \"nt/prime_sum.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/prime_sum.hpp\n\
+    #line 1 \"nt/prime_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/prime_table.hpp\n\
+    \ntemplate <typename T = int>\nvc<T> prime_table(int LIM) {\n  ++LIM;\n  const\
     \ int S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S\
     \ + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
     \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
@@ -150,7 +154,7 @@ data:
     \ : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
     \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
     \  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin() + k};\n\
-    }\n#line 2 \"nt/prime_sum.hpp\"\n\n/*\nN \u3068\u5B8C\u5168\u4E57\u6CD5\u7684\u95A2\
+    }\n#line 3 \"nt/prime_sum.hpp\"\n\n/*\nN \u3068\u5B8C\u5168\u4E57\u6CD5\u7684\u95A2\
     \u6570 f \u306E prefix sum \u95A2\u6570 F \u3092\u4E0E\u3048\u308B\u3002\nn =\
     \ floor(N/d) \u3068\u306A\u308B n \u306B\u5BFE\u3059\u308B sum_{p <= n} f(p) \u3092\
     \u8A08\u7B97\u3059\u308B\u3002\n\u7279\u306B\u3001\u7D20\u6570\u306E k \u4E57\u548C\
@@ -173,44 +177,44 @@ data:
     \ = 1;\n  }\n\n  void calc_count() {\n    calc([](ll x) -> T { return x; });\n\
     \  }\n\n  void calc_sum() {\n    calc([](ll x) -> T {\n      ll a = x, b = x +\
     \ 1;\n      if (!(x & 1)) a /= 2;\n      if (x & 1) b /= 2;\n      return T(a)\
-    \ * T(b);\n    });\n  }\n};\n#line 1 \"nt/prime_table.hpp\"\n\ntemplate <typename\
-    \ T = int>\nvc<T> prime_table(int LIM) {\n  ++LIM;\n  const int S = 32768;\n \
-    \ static int done = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done\
-    \ < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n   \
-    \ const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n   \
-    \ vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i])\
-    \ {\n        cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2\
-    \ * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n\
-    \      array<bool, S> block{};\n      for (auto& [p, idx] : cp)\n        for (int\
-    \ i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R\
-    \ - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
-    \ LIM);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 3 \"nt/prime_sum_mod6.hpp\"\
-    \n\ntemplate <typename T>\nstruct Prime_Sum_Mod_6 {\n  ll N;\n  ll sqN;\n\n  Prime_Sum<T>\
-    \ A, B;\n  Prime_Sum_Mod_6(ll N) : N(N), sqN(sqrtl(N)), A(N), B(N) {}\n\n  pair<T,\
-    \ T> operator[](ll x) {\n    T a = A[x], b = B[x];\n    return {(a + b) / T(2),\
-    \ (a - b) / T(2)};\n  }\n\n  void calc_count() {\n    A.calc([](ll x) -> T { return\
-    \ ((x + 2) / 3 - (x % 6 == 4)); });\n    B.calc([](ll x) -> T { return ((x + 5)\
-    \ % 6 <= 3 ? 1 : 0); });\n  }\n\n  void calc_sum() {\n    A.calc([](ll x) -> T\
-    \ {\n      ll n = (x + 2) / 3 - (x % 6 == 4);\n      ll k = n / 2;\n      if (n\
-    \ % 2 == 0) {\n        return T(6 * k) * T(k);\n      }\n      return T(6 * k)\
-    \ * T(k) + T(6 * k + 1);\n    });\n    B.calc([](ll x) -> T {\n      ll n = (x\
-    \ + 2) / 3 - (x % 6 == 4);\n      ll k = n / 2;\n      if (n % 2 == 0) {\n   \
-    \     return T(-4 * k);\n      }\n      return T(-4 * k + 6 * k + 1);\n    });\n\
-    \  }\n};\n#line 4 \"test/1_mytest/primesum_mod6.test.cpp\"\n\nvoid test_count()\
+    \ * T(b);\n    });\n  }\n};\n#line 1 \"nt/prime_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/prime_table.hpp\n\
+    \ntemplate <typename T = int>\nvc<T> prime_table(int LIM) {\n  ++LIM;\n  const\
+    \ int S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S\
+    \ + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
+    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
+    \ * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
+    \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
+    \ * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1;\
+    \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]\
+    \ : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
+    \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
+    \  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin() + k};\n\
+    }\n#line 4 \"nt/prime_sum_mod6.hpp\"\n\ntemplate <typename T>\nstruct Prime_Sum_Mod_6\
+    \ {\n  ll N;\n  ll sqN;\n\n  Prime_Sum<T> A, B;\n  Prime_Sum_Mod_6(ll N) : N(N),\
+    \ sqN(sqrtl(N)), A(N), B(N) {}\n\n  pair<T, T> operator[](ll x) {\n    T a = A[x],\
+    \ b = B[x];\n    return {(a + b) / T(2), (a - b) / T(2)};\n  }\n\n  void calc_count()\
+    \ {\n    A.calc([](ll x) -> T { return ((x + 2) / 3 - (x % 6 == 4)); });\n   \
+    \ B.calc([](ll x) -> T { return ((x + 5) % 6 <= 3 ? 1 : 0); });\n  }\n\n  void\
+    \ calc_sum() {\n    A.calc([](ll x) -> T {\n      ll n = (x + 2) / 3 - (x % 6\
+    \ == 4);\n      ll k = n / 2;\n      if (n % 2 == 0) {\n        return T(6 * k)\
+    \ * T(k);\n      }\n      return T(6 * k) * T(k) + T(6 * k + 1);\n    });\n  \
+    \  B.calc([](ll x) -> T {\n      ll n = (x + 2) / 3 - (x % 6 == 4);\n      ll\
+    \ k = n / 2;\n      if (n % 2 == 0) {\n        return T(-4 * k);\n      }\n  \
+    \    return T(-4 * k + 6 * k + 1);\n    });\n  }\n};\n#line 4 \"test/1_mytest/primesum_mod6.test.cpp\"\
+    \n\nvoid test_count() {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A5(LIM);\n  for\
+    \ (auto&& p : prime_table(LIM))\n    if (p % 6 == 1) {\n      A1[p]++;\n    }\n\
+    \  for (auto&& p : prime_table(LIM))\n    if (p % 6 == 5) {\n      A5[p]++;\n\
+    \    }\n  A1 = cumsum<int>(A1, 0);\n  A5 = cumsum<int>(A5, 0);\n\n  FOR(N, LIM)\
+    \ {\n    Prime_Sum_Mod_6<int> X(N);\n    X.calc_count();\n    FOR(K, 1, N + 10)\
+    \ { assert(X[N / K] == mp(A1[N / K], A5[N / K])); }\n  }\n}\n\nvoid test_sum()\
     \ {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A5(LIM);\n  for (auto&& p : prime_table(LIM))\n\
-    \    if (p % 6 == 1) {\n      A1[p]++;\n    }\n  for (auto&& p : prime_table(LIM))\n\
-    \    if (p % 6 == 5) {\n      A5[p]++;\n    }\n  A1 = cumsum<int>(A1, 0);\n  A5\
-    \ = cumsum<int>(A5, 0);\n\n  FOR(N, LIM) {\n    Prime_Sum_Mod_6<int> X(N);\n \
-    \   X.calc_count();\n    FOR(K, 1, N + 10) { assert(X[N / K] == mp(A1[N / K],\
-    \ A5[N / K])); }\n  }\n}\n\nvoid test_sum() {\n  ll LIM = 10000;\n  vc<int> A1(LIM),\
-    \ A5(LIM);\n  for (auto&& p : prime_table(LIM))\n    if (p % 6 == 1) {\n     \
-    \ A1[p] += p;\n    }\n  for (auto&& p : prime_table(LIM))\n    if (p % 6 == 5)\
-    \ {\n      A5[p] += p;\n    }\n  A1 = cumsum<int>(A1, 0);\n  A5 = cumsum<int>(A5,\
-    \ 0);\n\n  FOR(N, LIM) {\n    Prime_Sum_Mod_6<int> X(N);\n    X.calc_sum();\n\
-    \    FOR(K, 1, N + 10) { assert(X[N / K] == mp(A1[N / K], A5[N / K])); }\n  }\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
-    ;\n}\n\nsigned main() {\n  test_count();\n  test_sum();\n  solve();\n\n  return\
-    \ 0;\n}\n"
+    \    if (p % 6 == 1) {\n      A1[p] += p;\n    }\n  for (auto&& p : prime_table(LIM))\n\
+    \    if (p % 6 == 5) {\n      A5[p] += p;\n    }\n  A1 = cumsum<int>(A1, 0);\n\
+    \  A5 = cumsum<int>(A5, 0);\n\n  FOR(N, LIM) {\n    Prime_Sum_Mod_6<int> X(N);\n\
+    \    X.calc_sum();\n    FOR(K, 1, N + 10) { assert(X[N / K] == mp(A1[N / K], A5[N\
+    \ / K])); }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout <<\
+    \ a + b << \"\\n\";\n}\n\nsigned main() {\n  test_count();\n  test_sum();\n  solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"nt/prime_sum_mod6.hpp\"\n\nvoid test_count() {\n  ll LIM = 10000;\n\
     \  vc<int> A1(LIM), A5(LIM);\n  for (auto&& p : prime_table(LIM))\n    if (p %\
@@ -234,7 +238,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/primesum_mod6.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/primesum_mod6.test.cpp

@@ -21,20 +21,21 @@ data:
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/reduce_intervals.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n/*\n\
-    library: https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include\
-    \ <my_template_compiled.hpp>\n#else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
-    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
-    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
-    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
-    using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
-    \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
-    \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
-    \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
-    );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
-    constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n//\
+    \ Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\nlibrary:\
+    \ https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
+    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
+    Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\"\
+    )\n#endif\n#endif\n#include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
+    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
+    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class>\nconstexpr\
+    \ bool dependent_false = false;\n\ntemplate <class T>\nconstexpr T infty = []\
+    \ {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\");\n  return\
+    \ T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
+    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
+    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
     template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
     \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
     using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
@@ -136,27 +137,28 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/reduce_intervals.test.cpp\"\
-    \n\n#line 1 \"other/reduce_intervals.hpp\"\n\n// rm_included = true : I < J \u3068\
-    \u306A\u308B J \u304C\u5B58\u5728\u3059\u308C\u3070 I \u3092\u6D88\u3059\n// rm_included\
-    \ = false : I > J \u3068\u306A\u308B J \u304C\u5B58\u5728\u3059\u308C\u3070 I\
-    \ \u3092\u6D88\u3059\n// \u6B8B\u3059\u533A\u9593\u306E\u30A4\u30F3\u30C7\u30C3\
-    \u30AF\u30B9\u3092\u533A\u9593\u306E\u9806\u5E8F\u306B\u3064\u3044\u3066\u30BD\
-    \u30FC\u30C8\u3057\u3066\u8FD4\u3059\n// \u5B8C\u5168\u306B\u540C\u3058\u533A\u9593\
-    \u306F\u4EFB\u610F\u306B\u9078\u3093\u3060\u3072\u3068\u3064\u3060\u3051\u6B8B\
-    \u3059\ntemplate <typename T>\nvc<int> reduce_intervals(const vc<T> &L, const\
-    \ vc<T> &R, bool rm_included) {\n  int N = len(L);\n  vc<int> ANS;\n  vc<int>\
-    \ I(N);\n  FOR(i, N) I[i] = i;\n  if (rm_included) {\n    sort(all(I), [&](auto\
-    \ &a, auto &b) -> bool {\n      if (L[a] != L[b]) return L[a] < L[b];\n      return\
-    \ R[a] > R[b];\n    });\n    for (auto &j : I) {\n      if (!ANS.empty()) {\n\
-    \        int i = ANS.back();\n        if (R[j] <= R[i]) continue;\n      }\n \
-    \     ANS.eb(j);\n    }\n  } else {\n    sort(all(I), [&](auto &a, auto &b) ->\
-    \ bool {\n      if (R[a] != R[b]) return R[a] < R[b];\n      return L[a] > L[b];\n\
-    \    });\n    for (auto &j : I) {\n      if (!ANS.empty()) {\n        int i =\
-    \ ANS.back();\n        if (L[j] <= L[i]) continue;\n      }\n      ANS.eb(j);\n\
-    \    }\n  }\n  return ANS;\n}\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n\
-    \  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n         \
-    \             chrono::high_resolution_clock::now().time_since_epoch())\n     \
-    \                     .count()) *\n                  10150724397891781847ULL;\n\
+    \n\n#line 1 \"other/reduce_intervals.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/other/reduce_intervals.hpp\n\
+    \n// rm_included = true : I < J \u3068\u306A\u308B J \u304C\u5B58\u5728\u3059\u308C\
+    \u3070 I \u3092\u6D88\u3059\n// rm_included = false : I > J \u3068\u306A\u308B\
+    \ J \u304C\u5B58\u5728\u3059\u308C\u3070 I \u3092\u6D88\u3059\n// \u6B8B\u3059\
+    \u533A\u9593\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u3092\u533A\u9593\u306E\
+    \u9806\u5E8F\u306B\u3064\u3044\u3066\u30BD\u30FC\u30C8\u3057\u3066\u8FD4\u3059\
+    \n// \u5B8C\u5168\u306B\u540C\u3058\u533A\u9593\u306F\u4EFB\u610F\u306B\u9078\u3093\
+    \u3060\u3072\u3068\u3064\u3060\u3051\u6B8B\u3059\ntemplate <typename T>\nvc<int>\
+    \ reduce_intervals(const vc<T> &L, const vc<T> &R, bool rm_included) {\n  int\
+    \ N = len(L);\n  vc<int> ANS;\n  vc<int> I(N);\n  FOR(i, N) I[i] = i;\n  if (rm_included)\
+    \ {\n    sort(all(I), [&](auto &a, auto &b) -> bool {\n      if (L[a] != L[b])\
+    \ return L[a] < L[b];\n      return R[a] > R[b];\n    });\n    for (auto &j :\
+    \ I) {\n      if (!ANS.empty()) {\n        int i = ANS.back();\n        if (R[j]\
+    \ <= R[i]) continue;\n      }\n      ANS.eb(j);\n    }\n  } else {\n    sort(all(I),\
+    \ [&](auto &a, auto &b) -> bool {\n      if (R[a] != R[b]) return R[a] < R[b];\n\
+    \      return L[a] > L[b];\n    });\n    for (auto &j : I) {\n      if (!ANS.empty())\
+    \ {\n        int i = ANS.back();\n        if (L[j] <= L[i]) continue;\n      }\n\
+    \      ANS.eb(j);\n    }\n  }\n  return ANS;\n}\n#line 1 \"random/base.hpp\"\n\
+    // Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\nu64\
+    \ RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
     \  return l + RNG_64() % (r - l);\n}\n#line 6 \"test/1_mytest/reduce_intervals.test.cpp\"\
@@ -199,7 +201,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/reduce_intervals.test.cpp
   requiredBy: []
-  timestamp: '2026-10-14 18:35:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/reduce_intervals.test.cpp

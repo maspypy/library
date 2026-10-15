@@ -25,32 +25,36 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
-    struct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
-    \u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n \
-    \   u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n\
-    \    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\
-    \u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build\
-    \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
-    \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
-    \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
-    \ key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
-    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
-    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
-    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
-    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
-    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
-    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/find_path_through_specified.hpp
+  bundledCode: "#line 1 \"graph/find_path_through_specified.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/find_path_through_specified.hpp\n\
+    #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -126,29 +130,30 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 1 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_\
-    \ = u64(chrono::duration_cast<chrono::nanoseconds>(\n                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \   }\n  }\n};\n#line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
-    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"nt/GF2.hpp\"\n#include <emmintrin.h>\n\
-    #include <smmintrin.h>\n#include <wmmintrin.h>\n\n__attribute__((target(\"pclmul\"\
-    ))) inline __m128i myclmul(\n    const __m128i &a, const __m128i &b) {\n  return\
-    \ _mm_clmulepi64_si128(a, b, 0);\n}\n\n// 2^n \u5143\u4F53\ntemplate <int K>\n\
-    struct GF2 {\n  // https://oeis.org/A344141\n  // irreducible poly x^K + ...\n\
-    \  static constexpr int POLY[65] = {0, 0, 3, 3, 3, 5, 3, 3, 27, 3, 9, 5, 9, 27,\n\
-    \      33, 3, 43, 9, 9, 39, 9, 5, 3, 33, 27, 9, 27, 39, 3, 5, 3, 9, 141, 75, 27,\n\
-    \      5, 53, 63, 99, 17, 57, 9, 39, 89, 33, 27, 3, 33, 45, 113, 29, 75, 9, 71,\n\
-    \      125, 71, 149, 17, 99, 123, 3, 39, 105, 3, 27};\n\n  static constexpr u64\
-    \ mask() { return u64(-1) >> (64 - K); }\n\n  __attribute__((target(\"sse4.2\"\
-    ))) static u64 mul(u64 a, u64 b) {\n    static bool prepared = 0;\n    static\
-    \ u64 MEMO[8][65536];\n    if (!prepared) {\n      prepared = 1;\n      vc<u64>\
-    \ tmp(128);\n      tmp[0] = 1;\n      FOR(i, 127) {\n        tmp[i + 1] = tmp[i]\
-    \ << 1;\n        if (tmp[i] >> (K - 1) & 1) {\n          tmp[i + 1] ^= POLY[K];\n\
-    \          tmp[i + 1] &= mask();\n        }\n      }\n      FOR(k, 8) {\n    \
-    \    MEMO[k][0] = 0;\n        FOR(i, 16) {\n          FOR(s, 1 << i) { MEMO[k][s\
-    \ | 1 << i] = MEMO[k][s] ^ tmp[16 * k + i]; }\n        }\n      }\n    }\n   \
-    \ const __m128i a_ = _mm_set_epi64x(0, a);\n    const __m128i b_ = _mm_set_epi64x(0,\
+    \  return l + RNG_64() % (r - l);\n}\n#line 1 \"nt/GF2.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/GF2.hpp\n\
+    #include <emmintrin.h>\n#include <smmintrin.h>\n#include <wmmintrin.h>\n\n__attribute__((target(\"\
+    pclmul\"))) inline __m128i myclmul(\n    const __m128i &a, const __m128i &b) {\n\
+    \  return _mm_clmulepi64_si128(a, b, 0);\n}\n\n// 2^n \u5143\u4F53\ntemplate <int\
+    \ K>\nstruct GF2 {\n  // https://oeis.org/A344141\n  // irreducible poly x^K +\
+    \ ...\n  static constexpr int POLY[65] = {0, 0, 3, 3, 3, 5, 3, 3, 27, 3, 9, 5,\
+    \ 9, 27,\n      33, 3, 43, 9, 9, 39, 9, 5, 3, 33, 27, 9, 27, 39, 3, 5, 3, 9, 141,\
+    \ 75, 27,\n      5, 53, 63, 99, 17, 57, 9, 39, 89, 33, 27, 3, 33, 45, 113, 29,\
+    \ 75, 9, 71,\n      125, 71, 149, 17, 99, 123, 3, 39, 105, 3, 27};\n\n  static\
+    \ constexpr u64 mask() { return u64(-1) >> (64 - K); }\n\n  __attribute__((target(\"\
+    sse4.2\"))) static u64 mul(u64 a, u64 b) {\n    static bool prepared = 0;\n  \
+    \  static u64 MEMO[8][65536];\n    if (!prepared) {\n      prepared = 1;\n   \
+    \   vc<u64> tmp(128);\n      tmp[0] = 1;\n      FOR(i, 127) {\n        tmp[i +\
+    \ 1] = tmp[i] << 1;\n        if (tmp[i] >> (K - 1) & 1) {\n          tmp[i + 1]\
+    \ ^= POLY[K];\n          tmp[i + 1] &= mask();\n        }\n      }\n      FOR(k,\
+    \ 8) {\n        MEMO[k][0] = 0;\n        FOR(i, 16) {\n          FOR(s, 1 << i)\
+    \ { MEMO[k][s | 1 << i] = MEMO[k][s] ^ tmp[16 * k + i]; }\n        }\n      }\n\
+    \    }\n    const __m128i a_ = _mm_set_epi64x(0, a);\n    const __m128i b_ = _mm_set_epi64x(0,\
     \ b);\n    const __m128i c_ = myclmul(a_, b_);\n    u64 lo = _mm_extract_epi64(c_,\
     \ 0);\n    u64 hi = _mm_extract_epi64(c_, 1);\n    u64 x = 0;\n    x ^= MEMO[0][lo\
     \ & 65535];\n    x ^= MEMO[1][(lo >> 16) & 65535];\n    x ^= MEMO[2][(lo >> 32)\
@@ -171,7 +176,7 @@ data:
     \ (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n\
     \    }\n    return ret;\n  }\n};\n\n#ifdef FASTIO\ntemplate <int K>\nvoid rd(GF2<K>\
     \ &x) {\n  fastio::rd(x.val);\n  x.val &= GF2<K>::mask();\n}\ntemplate <int K>\n\
-    void wt(GF2<K> x) {\n  fastio::wt(x.val);\n}\n#endif\n#line 4 \"graph/find_path_through_specified.hpp\"\
+    void wt(GF2<K> x) {\n  fastio::wt(x.val);\n}\n#endif\n#line 5 \"graph/find_path_through_specified.hpp\"\
     \n\n// (s,t) path \u3067\u3042\u3063\u3066 need \u3092\u3059\u3079\u3066\u901A\
     \u308B\u3082\u306E\u306E\u6700\u5C0F\u9577\u3055\u3092\u6C42\u3081\u308B.\n//\
     \ s=t \u3067\u3082\u3088\u3044. \u6700\u521D\u306E 1 \u6B69\u76EE\u3082\u6C42\u3081\
@@ -194,7 +199,8 @@ data:
     \        if (get[b] && s == t) continue;\n        F x = (dp_v[s][a] + dp_e[s][m\
     \ ^ 1]) * c;\n        newdp_e[t][m] += x, newdp_v[t][b] += x;\n      }\n    }\n\
     \    swap(dp_v, newdp_v), swap(dp_e, newdp_e);\n  }\n  return {-1, -1};\n}\n"
-  code: "#include \"graph/base.hpp\"\n#include \"random/base.hpp\"\n#include \"nt/GF2.hpp\"\
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/find_path_through_specified.hpp\n\
+    #include \"graph/base.hpp\"\n#include \"random/base.hpp\"\n#include \"nt/GF2.hpp\"\
     \n\n// (s,t) path \u3067\u3042\u3063\u3066 need \u3092\u3059\u3079\u3066\u901A\
     \u308B\u3082\u306E\u306E\u6700\u5C0F\u9577\u3055\u3092\u6C42\u3081\u308B.\n//\
     \ s=t \u3067\u3082\u3088\u3044. \u6700\u521D\u306E 1 \u6B69\u76EE\u3082\u6C42\u3081\
@@ -225,7 +231,7 @@ data:
   isVerificationFile: false
   path: graph/find_path_through_specified.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:24:01+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1775.test.cpp

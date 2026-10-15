@@ -9,7 +9,9 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/2183/problem/H
-  bundledCode: "#line 1 \"convex/larsch.hpp\"\n// \u5236\u7D04\u304D\u3064\u3044 https://codeforces.com/contest/2183/problem/H\n\
+    - https://github.com/maspypy/library/blob/main/convex/larsch.hpp
+  bundledCode: "#line 1 \"convex/larsch.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/convex/larsch.hpp\n\
+    // \u5236\u7D04\u304D\u3064\u3044 https://codeforces.com/contest/2183/problem/H\n\
     template <class T, class F>\nclass LARSCH {\n  struct reduce_row;\n  struct reduce_col;\n\
     \  struct ColMap {\n    const ColMap* parent = nullptr;\n    const std::vector<int>*\
     \ v = nullptr;\n\n    inline int map(int j) const {\n      int x = v ? (*v)[j]\
@@ -48,7 +50,8 @@ data:
     \        root_eval_{&f_, 1, 0, &root_cm_} {\n    base_ = std::make_unique<reduce_row>(n,\
     \ root_eval_);\n  }\n\n  inline void reset() { base_->reset(); }\n  inline int\
     \ get_argmin() { return base_->get_argmin(); }\n};\n"
-  code: "// \u5236\u7D04\u304D\u3064\u3044 https://codeforces.com/contest/2183/problem/H\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/convex/larsch.hpp\n\
+    // \u5236\u7D04\u304D\u3064\u3044 https://codeforces.com/contest/2183/problem/H\n\
     template <class T, class F>\nclass LARSCH {\n  struct reduce_row;\n  struct reduce_col;\n\
     \  struct ColMap {\n    const ColMap* parent = nullptr;\n    const std::vector<int>*\
     \ v = nullptr;\n\n    inline int map(int j) const {\n      int x = v ? (*v)[j]\
@@ -91,7 +94,7 @@ data:
   isVerificationFile: false
   path: convex/larsch.hpp
   requiredBy: []
-  timestamp: '2026-03-14 22:08:09+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convex/larsch.hpp

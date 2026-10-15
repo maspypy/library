@@ -16,32 +16,38 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/hashmap.hpp\"\n\n// u64 -> Val\ntemplate <typename Val>\n\
-    struct HashMap {\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
-    \u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n); }\n  void build(u32 n) {\n \
-    \   u32 k = 8;\n    while (k < n * 2) k *= 2;\n    cap = k / 2, mask = k - 1;\n\
-    \    key.resize(k), val.resize(k), used.assign(k, 0);\n  }\n\n  // size \u3092\
-    \u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build\
-    \ \u3059\u308B\u3053\u3068.\n  void clear() {\n    used.assign(len(used), 0);\n\
-    \    cap = (mask + 1) / 2;\n  }\n  int size() { return len(used) / 2 - cap; }\n\
-    \n  int index(const u64& k) {\n    int i = 0;\n    for (i = hash(k); used[i] &&\
-    \ key[i] != k; i = (i + 1) & mask) {\n    }\n    return i;\n  }\n\n  Val& operator[](const\
-    \ u64& k) {\n    int i = index(k);\n    if (used[i]) return val[i];\n    if (cap\
-    \ == 0) extend(), i = index(k);\n    used[i] = 1, key[i] = k, val[i] = Val{},\
-    \ --cap;\n    return val[i];\n  }\n\n  Val get(const u64& k, Val default_value)\
-    \ {\n    int i = index(k);\n    return (used[i] ? val[i] : default_value);\n \
-    \ }\n\n  bool count(const u64& k) {\n    int i = index(k);\n    return used[i]\
-    \ && key[i] == k;\n  }\n\n  // f(key, val)\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n\
-    \  u32 cap, mask;\n  vc<u64> key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64\
-    \ x) {\n    static const u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/blackbox/complement_graph_distance.hpp
+  bundledCode: "#line 1 \"graph/blackbox/complement_graph_distance.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/graph/blackbox/complement_graph_distance.hpp\n\
+    #line 1 \"graph/blackbox/complement_graph_bfs.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/blackbox/complement_graph_bfs.hpp\n\
+    #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
+    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
+    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
+    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
     \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
     \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -117,7 +123,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 2 \"graph/blackbox/complement_graph_bfs.hpp\"\n\ntemplate\
+    \   }\n  }\n};\n#line 3 \"graph/blackbox/complement_graph_bfs.hpp\"\n\ntemplate\
     \ <typename GT>\npair<vc<int>, vc<int>> complement_graph_bfs(GT& G, int s) {\n\
     \  static vc<int> que, NG, dist, par, yet;\n  const int N = G.N;\n  if (len(que)\
     \ < N) que.resize(N);\n  if (len(NG) < N) NG.resize(N);\n  if (len(yet) < N) yet.resize(N);\n\
@@ -127,7 +133,7 @@ data:
     \ = 1;\n    for (int i = p - 1; i >= 0; --i) {\n      int to = yet[i];\n     \
     \ if (NG[to]) continue;\n      dist[to] = dist[v] + 1, par[to] = v, que[qr++]\
     \ = to;\n      swap(yet[i], yet[--p]);\n    }\n    for (auto& e: G[v]) NG[e.to]\
-    \ = 0;\n  }\n  return {dist, par};\n}\n#line 2 \"graph/blackbox/complement_graph_distance.hpp\"\
+    \ = 0;\n  }\n  return {dist, par};\n}\n#line 3 \"graph/blackbox/complement_graph_distance.hpp\"\
     \n\n// \u8DDD\u96E2 2 \u4EE5\u4E0A\u306E 2 \u70B9\u7D44\u306E\u5217\u6319. {v,w,dvw}.\n\
     template <typename GT>\nvc<tuple<int, int, int>> complement_graph_all_distances(GT&\
     \ G) {\n  const int N = G.N;\n  auto deg = G.deg_array();\n  int S = min_element(all(deg))\
@@ -138,8 +144,9 @@ data:
     \ = e.to;\n    auto dist = complement_graph_bfs(G, a).fi;\n    FOR(b, N) {\n \
     \     if (dist[b] <= 1) continue;\n      if (nbd[b] && a >= b) continue;\n   \
     \   res.eb(a, b, dist[b]);\n    }\n  }\n  return res;\n}\n"
-  code: "#include \"graph/blackbox/complement_graph_bfs.hpp\"\n\n// \u8DDD\u96E2 2\
-    \ \u4EE5\u4E0A\u306E 2 \u70B9\u7D44\u306E\u5217\u6319. {v,w,dvw}.\ntemplate <typename\
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/blackbox/complement_graph_distance.hpp\n\
+    #include \"graph/blackbox/complement_graph_bfs.hpp\"\n\n// \u8DDD\u96E2 2 \u4EE5\
+    \u4E0A\u306E 2 \u70B9\u7D44\u306E\u5217\u6319. {v,w,dvw}.\ntemplate <typename\
     \ GT>\nvc<tuple<int, int, int>> complement_graph_all_distances(GT& G) {\n  const\
     \ int N = G.N;\n  auto deg = G.deg_array();\n  int S = min_element(all(deg)) -\
     \ deg.begin();\n  vc<int> nbd(N);\n  for (auto& e : G[S]) {\n    nbd[e.to] = 1;\n\
@@ -156,7 +163,7 @@ data:
   isVerificationFile: false
   path: graph/blackbox/complement_graph_distance.hpp
   requiredBy: []
-  timestamp: '2026-09-13 16:05:11+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/blackbox/complement_graph_distance.hpp

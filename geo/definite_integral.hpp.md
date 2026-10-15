@@ -10,14 +10,17 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"geo/definite_integral.hpp\"\ntemplate <typename Re, typename\
-    \ F>\nRe definite_integral(Re a, Re b, F f, int n) {\n  Re I = 0;\n  Re dx = (b\
-    \ - a) / n;\n  Re fl = 0, fr = f(a);\n  FOR(i, n) {\n    Re lx = a + dx * i;\n\
-    \    Re rx = lx + dx;\n    fl = fr;\n    fr = f(rx);\n    Re fm = f((lx + rx)\
-    \ / 2);\n    I += fl + 4 * fm + fr;\n  }\n  return I * dx / 6;\n}\n"
-  code: "template <typename Re, typename F>\nRe definite_integral(Re a, Re b, F f,\
-    \ int n) {\n  Re I = 0;\n  Re dx = (b - a) / n;\n  Re fl = 0, fr = f(a);\n  FOR(i,\
+    links:
+    - https://github.com/maspypy/library/blob/main/geo/definite_integral.hpp
+  bundledCode: "#line 1 \"geo/definite_integral.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/definite_integral.hpp\n\
+    template <typename Re, typename F>\nRe definite_integral(Re a, Re b, F f, int\
+    \ n) {\n  Re I = 0;\n  Re dx = (b - a) / n;\n  Re fl = 0, fr = f(a);\n  FOR(i,\
+    \ n) {\n    Re lx = a + dx * i;\n    Re rx = lx + dx;\n    fl = fr;\n    fr =\
+    \ f(rx);\n    Re fm = f((lx + rx) / 2);\n    I += fl + 4 * fm + fr;\n  }\n  return\
+    \ I * dx / 6;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/geo/definite_integral.hpp\n\
+    template <typename Re, typename F>\nRe definite_integral(Re a, Re b, F f, int\
+    \ n) {\n  Re I = 0;\n  Re dx = (b - a) / n;\n  Re fl = 0, fr = f(a);\n  FOR(i,\
     \ n) {\n    Re lx = a + dx * i;\n    Re rx = lx + dx;\n    fl = fr;\n    fr =\
     \ f(rx);\n    Re fm = f((lx + rx) / 2);\n    I += fl + 4 * fm + fr;\n  }\n  return\
     \ I * dx / 6;\n}"
@@ -25,7 +28,7 @@ data:
   isVerificationFile: false
   path: geo/definite_integral.hpp
   requiredBy: []
-  timestamp: '2023-09-03 02:59:23+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1319.test.cpp

@@ -9,9 +9,10 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/1556/problem/H
+    - https://github.com/maspypy/library/blob/main/matroid/matroid_intersection.hpp
     - https://page.math.tu-berlin.de/~felsner/Lehre/SemMatS/Literatur/Schrijver-41:MatIntersection.pdf
-  bundledCode: "#line 1 \"matroid/matroid_intersection.hpp\"\n\n// https://codeforces.com/contest/1556/problem/H\n\
-    // https://page.math.tu-berlin.de/~felsner/Lehre/SemMatS/Literatur/Schrijver-41:MatIntersection.pdf\n\
+  bundledCode: "#line 1 \"matroid/matroid_intersection.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/matroid/matroid_intersection.hpp\n\
+    \n// https://codeforces.com/contest/1556/problem/H\n// https://page.math.tu-berlin.de/~felsner/Lehre/SemMatS/Literatur/Schrijver-41:MatIntersection.pdf\n\
     // Matroid1: for_rm_add\n// Matroid2: for_add_rm\ntemplate <class Matroid1, class\
     \ Matroid2, typename WT>\nstruct Matroid_Intersection {\n  Matroid1 &M1;\n  Matroid2\
     \ &M2;\n  int N;\n  vc<WT> weight;\n\n  Matroid_Intersection(Matroid1 &M1, Matroid2\
@@ -41,7 +42,8 @@ data:
     \ = weight[v] - pot[v];\n      if (!I[v]) w1[v] = weight[v] + pot[v], w2[v] =\
     \ -pot[v];\n    }\n\n    for (int v = t; v != -1; v = par[v]) I[v] = !I[v];\n\
     \    FOR(v, N) { pot[v] = (I[v] ? w1[v] : -w2[v]); }\n    return ans;\n  }\n};\n"
-  code: "\n// https://codeforces.com/contest/1556/problem/H\n// https://page.math.tu-berlin.de/~felsner/Lehre/SemMatS/Literatur/Schrijver-41:MatIntersection.pdf\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/matroid/matroid_intersection.hpp\n\
+    \n// https://codeforces.com/contest/1556/problem/H\n// https://page.math.tu-berlin.de/~felsner/Lehre/SemMatS/Literatur/Schrijver-41:MatIntersection.pdf\n\
     // Matroid1: for_rm_add\n// Matroid2: for_add_rm\ntemplate <class Matroid1, class\
     \ Matroid2, typename WT>\nstruct Matroid_Intersection {\n  Matroid1 &M1;\n  Matroid2\
     \ &M2;\n  int N;\n  vc<WT> weight;\n\n  Matroid_Intersection(Matroid1 &M1, Matroid2\
@@ -75,7 +77,7 @@ data:
   isVerificationFile: false
   path: matroid/matroid_intersection.hpp
   requiredBy: []
-  timestamp: '2025-10-13 18:56:57+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: matroid/matroid_intersection.hpp

@@ -10,23 +10,25 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"seq/famous/fibonacci.hpp\"\n// 0, 1, 1, 2, 3, 5, ...\ntemplate\
-    \ <typename mint>\nmint fibonacci(ll N) {\n  using P = pair<mint, mint>;\n  P\
-    \ f = {0, 1}, res = {1, 0};\n  while (N) {\n    auto& [a, b] = f;\n    auto& [c,\
-    \ d] = res;\n    if (N & 1) { res = {a * c + b * d, b * c + (a + b) * d}; }\n\
-    \    f = {a * a + b * b, b * (a + a + b)};\n    N >>= 1;\n  }\n  return res.se;\n\
-    }\n"
-  code: "// 0, 1, 1, 2, 3, 5, ...\ntemplate <typename mint>\nmint fibonacci(ll N)\
-    \ {\n  using P = pair<mint, mint>;\n  P f = {0, 1}, res = {1, 0};\n  while (N)\
-    \ {\n    auto& [a, b] = f;\n    auto& [c, d] = res;\n    if (N & 1) { res = {a\
-    \ * c + b * d, b * c + (a + b) * d}; }\n    f = {a * a + b * b, b * (a + a + b)};\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/seq/famous/fibonacci.hpp
+  bundledCode: "#line 1 \"seq/famous/fibonacci.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/seq/famous/fibonacci.hpp\n\
+    // 0, 1, 1, 2, 3, 5, ...\ntemplate <typename mint>\nmint fibonacci(ll N) {\n \
+    \ using P = pair<mint, mint>;\n  P f = {0, 1}, res = {1, 0};\n  while (N) {\n\
+    \    auto& [a, b] = f;\n    auto& [c, d] = res;\n    if (N & 1) { res = {a * c\
+    \ + b * d, b * c + (a + b) * d}; }\n    f = {a * a + b * b, b * (a + a + b)};\n\
+    \    N >>= 1;\n  }\n  return res.se;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/seq/famous/fibonacci.hpp\n\
+    // 0, 1, 1, 2, 3, 5, ...\ntemplate <typename mint>\nmint fibonacci(ll N) {\n \
+    \ using P = pair<mint, mint>;\n  P f = {0, 1}, res = {1, 0};\n  while (N) {\n\
+    \    auto& [a, b] = f;\n    auto& [c, d] = res;\n    if (N & 1) { res = {a * c\
+    \ + b * d, b * c + (a + b) * d}; }\n    f = {a * a + b * b, b * (a + a + b)};\n\
     \    N >>= 1;\n  }\n  return res.se;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: seq/famous/fibonacci.hpp
   requiredBy: []
-  timestamp: '2023-02-28 19:11:49+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/303.test.cpp

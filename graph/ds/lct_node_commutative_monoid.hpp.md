@@ -12,7 +12,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/tree/dynamic_tree_vertex_add_subtree_sum.test.cpp
     title: test/2_library_checker/tree/dynamic_tree_vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2295.test.cpp
     title: test/3_yukicoder/2295.test.cpp
   - icon: ':x:'
@@ -20,12 +20,13 @@ data:
     title: test/3_yukicoder/2296.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"graph/ds/lct_node_commutative_monoid.hpp\"\n\n// SUBTREE\
-    \ : cluster \u304C subtree \u60C5\u5831\u3092\u6301\u3064\u5834\u5408\ntemplate\
-    \ <typename Monoid, bool SUBTREE = false>\nstruct LCT_Node_Commutative_Monoid\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/ds/lct_node_commutative_monoid.hpp
+  bundledCode: "#line 1 \"graph/ds/lct_node_commutative_monoid.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/ds/lct_node_commutative_monoid.hpp\n\
+    \n// SUBTREE : cluster \u304C subtree \u60C5\u5831\u3092\u6301\u3064\u5834\u5408\
+    \ntemplate <typename Monoid, bool SUBTREE = false>\nstruct LCT_Node_Commutative_Monoid\
     \ {\n  static_assert(Monoid::commute);\n  static constexpr bool NODE_FOR_SUBTREE\
     \ = SUBTREE;\n  using np = LCT_Node_Commutative_Monoid *;\n  // \u30C7\u30D5\u30A9\
     \u30EB\u30C8\n  np l, r, p;\n  int idx, size; // size \u306F heavy path \u306E\
@@ -46,8 +47,9 @@ data:
     \ c) {\n    if constexpr (SUBTREE) mid = MX::op(mid, MX::inverse(c->x));\n  }\n\
     \n  // b->x \u306B subtree value \u304C\u5165\u3063\u3066\u3044\u308B.\n  void\
     \ change_light(np a, np b) {}\n};\n"
-  code: "\n// SUBTREE : cluster \u304C subtree \u60C5\u5831\u3092\u6301\u3064\u5834\
-    \u5408\ntemplate <typename Monoid, bool SUBTREE = false>\nstruct LCT_Node_Commutative_Monoid\
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/ds/lct_node_commutative_monoid.hpp\n\
+    \n// SUBTREE : cluster \u304C subtree \u60C5\u5831\u3092\u6301\u3064\u5834\u5408\
+    \ntemplate <typename Monoid, bool SUBTREE = false>\nstruct LCT_Node_Commutative_Monoid\
     \ {\n  static_assert(Monoid::commute);\n  static constexpr bool NODE_FOR_SUBTREE\
     \ = SUBTREE;\n  using np = LCT_Node_Commutative_Monoid *;\n  // \u30C7\u30D5\u30A9\
     \u30EB\u30C8\n  np l, r, p;\n  int idx, size; // size \u306F heavy path \u306E\
@@ -73,8 +75,8 @@ data:
   path: graph/ds/lct_node_commutative_monoid.hpp
   requiredBy:
   - graph/ds/range_edge_connected_component_query.hpp
-  timestamp: '2026-08-30 21:09:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-10-15 19:54:56+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2296.test.cpp
   - test/3_yukicoder/2295.test.cpp

@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/tree_abeliangroup.hpp
     title: graph/ds/tree_abeliangroup.hpp
   - icon: ':question:'
@@ -31,21 +31,26 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"alg/monoid/add.hpp\"\n\ntemplate <typename E>\nstruct Monoid_Add\
-    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return x + y; }\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\n  static constexpr X id() { return X(0); }\n\
-    \  static constexpr bool commute = true;\n};\n#line 2 \"ds/fenwicktree/fenwicktree.hpp\"\
-    \n\ntemplate <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
-    \ MX = Monoid;\n  using E = typename G::value_type;\n  int n;\n  vector<E> dat;\n\
-    \  E total;\n\n  FenwickTree() {}\n  FenwickTree(int n) { build(n); }\n  template\
-    \ <typename F>\n  FenwickTree(int n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const\
-    \ vc<E>& v) { build(v); }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m,\
-    \ G::id());\n    total = G::id();\n  }\n  void build(const vc<E>& v) {\n    build(len(v),\
-    \ [&](int i) -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
-    \ m, F f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::id();\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/ds/incremental_centroid.hpp
+  bundledCode: "#line 1 \"graph/ds/incremental_centroid.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/ds/incremental_centroid.hpp\n\
+    #line 1 \"graph/ds/tree_abeliangroup.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/ds/tree_abeliangroup.hpp\n\
+    #line 1 \"ds/fenwicktree/fenwicktree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/fenwicktree/fenwicktree.hpp\n\
+    #line 1 \"alg/monoid/add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
+    \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
+    \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
+    \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
+    };\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
+    struct FenwickTree {\n  using G = Monoid;\n  using MX = Monoid;\n  using E = typename\
+    \ G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree() {}\n\
+    \  FenwickTree(int n) { build(n); }\n  template <typename F>\n  FenwickTree(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v);\
+    \ }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m, G::id());\n    total\
+    \ = G::id();\n  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int i)\
+    \ -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F\
+    \ f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::id();\n\
     \    FOR(i, n) { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int\
     \ j = i + (i & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j -\
     \ 1]);\n    }\n    total = prefix_sum(m);\n  }\n\n  E prod_all() const { return\
@@ -98,11 +103,13 @@ data:
     \ G::inverse(dat[i + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1\
     \ << k), s = t;\n      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int\
     \ L = 0) const {\n    return max_right([&k](E x) -> bool { return x <= k; }, L);\n\
-    \  }\n};\n#line 1 \"graph/tree.hpp\"\n\n#line 1 \"ds/hashmap.hpp\"\n\n// u64 ->\
-    \ Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\u308C\u305F\
-    \u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0) { build(n);\
-    \ }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2) k *= 2;\n  \
-    \  cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \  }\n};\n#line 1 \"graph/tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/tree.hpp\n\
+    \n#line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
     \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
     \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
     \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
@@ -123,7 +130,7 @@ data:
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
-    \  }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -199,7 +206,7 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 3 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
+    \   }\n  }\n};\n#line 4 \"graph/tree.hpp\"\n\n// HLD euler tour \u3092\u3068\u3063\
     \u3066\u3044\u308D\u3044\u308D\n// HLD=false: \u5165\u529B\u8FBA\u9806\u3067 preorder\n\
     template <typename GT, bool HLD = true>\nstruct Tree {\n  using Graph_type = GT;\n\
     \  using WT = typename GT::cost_type;\n  int N = 0;\n  vector<int> LID, RID, head,\
@@ -318,71 +325,70 @@ data:
     \ (int i = G.indptr[v + 1] - 1; i >= G.indptr[v]; --i) {\n          auto &e =\
     \ G.csr_edges[i];\n          if (e.to == parent[v] || e.to == max_ch) continue;\n\
     \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
-    \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 3 \"\
-    graph/ds/tree_abeliangroup.hpp\"\n\r\ntemplate <typename TREE, typename AbelianGroup,\
-    \ bool edge, bool path_query,\r\n          bool subtree_query>\r\nstruct Tree_AbelianGroup\
-    \ {\r\n  using MX = AbelianGroup;\r\n  using X = typename MX::value_type;\r\n\
-    \  TREE &tree;\r\n  int N;\r\n  FenwickTree<MX> bit, bit_subtree;\r\n\r\n  Tree_AbelianGroup(TREE\
-    \ &tree) : tree(tree), N(tree.N) {\r\n    build([](int i) -> X { return MX::id();\
-    \ });\r\n  }\r\n\r\n  Tree_AbelianGroup(TREE &tree, vc<X> &dat) : tree(tree),\
-    \ N(tree.N) {\r\n    build([&](int i) -> X { return dat[i]; });\r\n  }\r\n\r\n\
-    \  template <typename F>\r\n  Tree_AbelianGroup(TREE &tree, F f) : tree(tree),\
-    \ N(tree.N) {\r\n    build(f);\r\n  }\r\n\r\n  template <typename F>\r\n  void\
-    \ build(F f) {\r\n    vc<X> bit_raw_1(2 * N);\r\n    vc<X> bit_raw_2(N);\r\n \
-    \   FOR(v, N) {\r\n      X x = MX::id();\r\n      if (!edge) x = f(v);\r\n   \
-    \   if (edge) x = (v == 0 ? MX::id() : f(tree.v_to_e(v)));\r\n      bit_raw_1[tree.ELID(v)]\
-    \ = x;\r\n      bit_raw_1[tree.ERID(v)] = MX::inverse(x);\r\n      bit_raw_2[tree.LID[v]]\
-    \ = x;\r\n    }\r\n    if constexpr (path_query) bit.build(bit_raw_1);\r\n   \
-    \ if constexpr (subtree_query) bit_subtree.build(bit_raw_2);\r\n  }\r\n\r\n  void\
-    \ add(int i, X x) {\r\n    int v = (edge ? tree.e_to_v(i) : i);\r\n    if constexpr\
-    \ (path_query) {\r\n      bit.add(tree.ELID(v), x);\r\n      bit.add(tree.ERID(v),\
-    \ MX::inverse(x));\r\n    }\r\n    if constexpr (subtree_query) bit_subtree.add(tree.LID[v],\
-    \ x);\r\n  }\r\n  void multiply(int i, X x) { add(i, x); }\r\n  X prod_path(int\
-    \ frm, int to) {\r\n    static_assert(path_query);\r\n    int lca = tree.LCA(frm,\
-    \ to);\r\n    // [frm, lca)\r\n    X x1 = bit.prod(tree.ELID(lca) + 1, tree.ELID(frm)\
-    \ + 1);\r\n    // edge \u306A\u3089 (lca, to]\u3001vertex \u306A\u3089 [lca, to]\r\
-    \n    X x2 = bit.prod(tree.ELID(lca) + edge, tree.ELID(to) + 1);\r\n    return\
-    \ MX::op(x1, x2);\r\n  }\r\n\r\n  X prod_subtree(int u, int root = -1) {\r\n \
-    \   static_assert(subtree_query);\r\n    int l = tree.LID[u], r = tree.RID[u];\r\
-    \n    if (root == -1) return bit_subtree.prod(l + edge, r);\r\n    if (root ==\
-    \ u) return bit_subtree.prod_all();\r\n    if (tree.in_subtree(u, root)) return\
-    \ bit_subtree.prod(l + edge, r);\r\n    assert(!edge);  // \u3055\u307C\u308A\r\
-    \n    u = tree.jump(u, root, 1);\r\n    int L = tree.LID[u], R = tree.RID[u];\r\
-    \n    return MX::op(bit_subtree.prod(0, L), bit_subtree.prod(R, N));\r\n  }\r\n\
-    };\r\n#line 1 \"ds/fastset.hpp\"\n// 64-ary tree\n// space: (N/63) * u64\nstruct\
-    \ FastSet {\n  static constexpr u32 B = 64;\n  int n = 0, log = 0;\n  vvc<u64>\
-    \ seg;\n\n  FastSet() {}\n  FastSet(int n) { build(n); }\n\n  int size() { return\
-    \ n; }\n\n  void fill_one() {\n    int cur = n;\n    for (auto& vs : seg) {\n\
-    \      int p = cur / B, q = cur % B;\n      FOR(i, p) vs[i] = -1ull;\n      if\
-    \ (q) vs[p] = full_mask(q);\n      cur = (cur + B - 1) / B;\n    }\n  }\n\n  template\
-    \ <typename F>\n  FastSet(int n, F f) {\n    build(n, f);\n  }\n\n  void build(int\
-    \ m) {\n    seg.clear();\n    n = m;\n    do {\n      seg.push_back(vc<u64>((m\
-    \ + B - 1) / B));\n      m = (m + B - 1) / B;\n    } while (m > 1);\n    log =\
-    \ len(seg);\n  }\n  template <typename F>\n  void build(int n, F f) {\n    build(n);\n\
-    \    FOR(i, n) { seg[0][i / B] |= u64(bool(f(i))) << (i % B); }\n    FOR(h, log\
-    \ - 1) {\n      FOR(i, len(seg[h])) {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i]))\
-    \ << (i % B);\n      }\n    }\n  }\n\n  bool operator[](int i) const {\n    assert(0\
-    \ <= i && i < n);\n    return seg[0][i / B] >> (i % B) & 1;\n  }\n  void insert(int\
-    \ i) {\n    assert(0 <= i && i < n);\n    for (int h = 0; h < log; h++) {\n  \
-    \    u64& x = seg[h][i / B];\n      u64 mask = u64(1) << (i % B);\n      if (x\
-    \ & mask) return;\n      x |= mask;\n      i /= B;\n    }\n  }\n  void add(int\
-    \ i) { insert(i); }\n  void erase(int i) {\n    assert(0 <= i && i < n);\n   \
-    \ for (int h = 0; h < log; h++) {\n      u64& x = seg[h][i / B];\n      u64 mask\
-    \ = u64(1) << (i % B);\n      if (!(x & mask)) return;\n      x ^= mask;\n   \
-    \   if (x) return;\n      i /= B;\n    }\n  }\n  void remove(int i) { erase(i);\
-    \ }\n\n  // min[x,n) or n\n  int next(int i) {\n    assert(i <= n);\n    chmax(i,\
-    \ 0);\n    for (int h = 0; h < log; h++) {\n      if (i / B == seg[h].size())\
-    \ break;\n      u64 d = seg[h][i / B] >> (i % B);\n      if (!d) {\n        i\
-    \ = i / B + 1;\n        continue;\n      }\n      i += lowbit(d);\n      for (int\
-    \ g = h - 1; g >= 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i / B]);\n\
-    \      }\n      return i;\n    }\n    return n;\n  }\n\n  // max [0,x], or -1\n\
-    \  int prev(int i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n    for\
-    \ (int h = 0; h < log; h++) {\n      if (i == -1) break;\n      u64 d = seg[h][i\
-    \ / B] << (63 - i % B);\n      if (!d) {\n        i = i / B - 1;\n        continue;\n\
-    \      }\n      i -= __builtin_clzll(d);\n      for (int g = h - 1; g >= 0; g--)\
-    \ {\n        i *= B;\n        i += topbit(seg[g][i / B]);\n      }\n      return\
-    \ i;\n    }\n    return -1;\n  }\n\n  bool any(int l, int r) {\n    assert(0 <=\
-    \ l && l <= r && r <= n);\n    return next(l) < r;\n  }\n\n  // [l, r). erase=true\
+    \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 4 \"\
+    graph/ds/tree_abeliangroup.hpp\"\n\ntemplate <typename TREE, typename AbelianGroup,\
+    \ bool edge, bool path_query,\n          bool subtree_query>\nstruct Tree_AbelianGroup\
+    \ {\n  using MX = AbelianGroup;\n  using X = typename MX::value_type;\n  TREE\
+    \ &tree;\n  int N;\n  FenwickTree<MX> bit, bit_subtree;\n\n  Tree_AbelianGroup(TREE\
+    \ &tree) : tree(tree), N(tree.N) {\n    build([](int i) -> X { return MX::id();\
+    \ });\n  }\n\n  Tree_AbelianGroup(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N)\
+    \ {\n    build([&](int i) -> X { return dat[i]; });\n  }\n\n  template <typename\
+    \ F>\n  Tree_AbelianGroup(TREE &tree, F f) : tree(tree), N(tree.N) {\n    build(f);\n\
+    \  }\n\n  template <typename F>\n  void build(F f) {\n    vc<X> bit_raw_1(2 *\
+    \ N);\n    vc<X> bit_raw_2(N);\n    FOR(v, N) {\n      X x = MX::id();\n     \
+    \ if (!edge) x = f(v);\n      if (edge) x = (v == 0 ? MX::id() : f(tree.v_to_e(v)));\n\
+    \      bit_raw_1[tree.ELID(v)] = x;\n      bit_raw_1[tree.ERID(v)] = MX::inverse(x);\n\
+    \      bit_raw_2[tree.LID[v]] = x;\n    }\n    if constexpr (path_query) bit.build(bit_raw_1);\n\
+    \    if constexpr (subtree_query) bit_subtree.build(bit_raw_2);\n  }\n\n  void\
+    \ add(int i, X x) {\n    int v = (edge ? tree.e_to_v(i) : i);\n    if constexpr\
+    \ (path_query) {\n      bit.add(tree.ELID(v), x);\n      bit.add(tree.ERID(v),\
+    \ MX::inverse(x));\n    }\n    if constexpr (subtree_query) bit_subtree.add(tree.LID[v],\
+    \ x);\n  }\n  void multiply(int i, X x) { add(i, x); }\n  X prod_path(int frm,\
+    \ int to) {\n    static_assert(path_query);\n    int lca = tree.LCA(frm, to);\n\
+    \    // [frm, lca)\n    X x1 = bit.prod(tree.ELID(lca) + 1, tree.ELID(frm) + 1);\n\
+    \    // edge \u306A\u3089 (lca, to]\u3001vertex \u306A\u3089 [lca, to]\n    X\
+    \ x2 = bit.prod(tree.ELID(lca) + edge, tree.ELID(to) + 1);\n    return MX::op(x1,\
+    \ x2);\n  }\n\n  X prod_subtree(int u, int root = -1) {\n    static_assert(subtree_query);\n\
+    \    int l = tree.LID[u], r = tree.RID[u];\n    if (root == -1) return bit_subtree.prod(l\
+    \ + edge, r);\n    if (root == u) return bit_subtree.prod_all();\n    if (tree.in_subtree(u,\
+    \ root)) return bit_subtree.prod(l + edge, r);\n    assert(!edge);  // \u3055\u307C\
+    \u308A\n    u = tree.jump(u, root, 1);\n    int L = tree.LID[u], R = tree.RID[u];\n\
+    \    return MX::op(bit_subtree.prod(0, L), bit_subtree.prod(R, N));\n  }\n};\n\
+    #line 1 \"ds/fastset.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/fastset.hpp\n\
+    // 64-ary tree\n// space: (N/63) * u64\nstruct FastSet {\n  static constexpr u32\
+    \ B = 64;\n  int n = 0, log = 0;\n  vvc<u64> seg;\n\n  FastSet() {}\n  FastSet(int\
+    \ n) { build(n); }\n\n  int size() { return n; }\n\n  void fill_one() {\n    int\
+    \ cur = n;\n    for (auto& vs : seg) {\n      int p = cur / B, q = cur % B;\n\
+    \      FOR(i, p) vs[i] = -1ull;\n      if (q) vs[p] = full_mask(q);\n      cur\
+    \ = (cur + B - 1) / B;\n    }\n  }\n\n  template <typename F>\n  FastSet(int n,\
+    \ F f) {\n    build(n, f);\n  }\n\n  void build(int m) {\n    seg.clear();\n \
+    \   n = m;\n    do {\n      seg.push_back(vc<u64>((m + B - 1) / B));\n      m\
+    \ = (m + B - 1) / B;\n    } while (m > 1);\n    log = len(seg);\n  }\n  template\
+    \ <typename F>\n  void build(int n, F f) {\n    build(n);\n    FOR(i, n) { seg[0][i\
+    \ / B] |= u64(bool(f(i))) << (i % B); }\n    FOR(h, log - 1) {\n      FOR(i, len(seg[h]))\
+    \ {\n        seg[h + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\n      }\n\
+    \    }\n  }\n\n  bool operator[](int i) const {\n    assert(0 <= i && i < n);\n\
+    \    return seg[0][i / B] >> (i % B) & 1;\n  }\n  void insert(int i) {\n    assert(0\
+    \ <= i && i < n);\n    for (int h = 0; h < log; h++) {\n      u64& x = seg[h][i\
+    \ / B];\n      u64 mask = u64(1) << (i % B);\n      if (x & mask) return;\n  \
+    \    x |= mask;\n      i /= B;\n    }\n  }\n  void add(int i) { insert(i); }\n\
+    \  void erase(int i) {\n    assert(0 <= i && i < n);\n    for (int h = 0; h <\
+    \ log; h++) {\n      u64& x = seg[h][i / B];\n      u64 mask = u64(1) << (i %\
+    \ B);\n      if (!(x & mask)) return;\n      x ^= mask;\n      if (x) return;\n\
+    \      i /= B;\n    }\n  }\n  void remove(int i) { erase(i); }\n\n  // min[x,n)\
+    \ or n\n  int next(int i) {\n    assert(i <= n);\n    chmax(i, 0);\n    for (int\
+    \ h = 0; h < log; h++) {\n      if (i / B == seg[h].size()) break;\n      u64\
+    \ d = seg[h][i / B] >> (i % B);\n      if (!d) {\n        i = i / B + 1;\n   \
+    \     continue;\n      }\n      i += lowbit(d);\n      for (int g = h - 1; g >=\
+    \ 0; g--) {\n        i *= B;\n        i += lowbit(seg[g][i / B]);\n      }\n \
+    \     return i;\n    }\n    return n;\n  }\n\n  // max [0,x], or -1\n  int prev(int\
+    \ i) {\n    assert(i >= -1);\n    if (i >= n) i = n - 1;\n    for (int h = 0;\
+    \ h < log; h++) {\n      if (i == -1) break;\n      u64 d = seg[h][i / B] << (63\
+    \ - i % B);\n      if (!d) {\n        i = i / B - 1;\n        continue;\n    \
+    \  }\n      i -= __builtin_clzll(d);\n      for (int g = h - 1; g >= 0; g--) {\n\
+    \        i *= B;\n        i += topbit(seg[g][i / B]);\n      }\n      return i;\n\
+    \    }\n    return -1;\n  }\n\n  bool any(int l, int r) {\n    assert(0 <= l &&\
+    \ l <= r && r <= n);\n    return next(l) < r;\n  }\n\n  // [l, r). erase=true\
     \ \u306E\u3068\u304D\u3001callback \u5185\u304B\u3089 this \u3092\u5909\u66F4\u3057\
     \u3066\u306F\u3044\u3051\u306A\u3044\u3002\n  template <typename F>\n  void enumerate(int\
     \ l, int r, F f, bool erase = false) {\n    assert(0 <= l && l <= r && r <= n);\n\
@@ -401,7 +407,7 @@ data:
     \  // seg[0][w] \u304C 0 \u306B\u306A\u3063\u305F\u5F8C\u306B\u547C\u3076\u3002\
     \n  void propagate_empty_word(int i) {\n    for (int h = 1; h < log; ++h) {\n\
     \      u64& y = seg[h][i / B];\n      u64 mask = u64(1) << (i % B);\n      y ^=\
-    \ mask;\n      if (y) break;\n      i /= B;\n    }\n  }\n};\n#line 3 \"graph/ds/incremental_centroid.hpp\"\
+    \ mask;\n      if (y) break;\n      i /= B;\n    }\n  }\n};\n#line 4 \"graph/ds/incremental_centroid.hpp\"\
     \n\n// \u6728\u306F\u56FA\u5B9A\u3002\u9802\u70B9\u91CD\u307F\u3092 +1 \u3067\u304D\
     \u308B\u3002\n// cent: \u91CD\u5FC3\n// max_subtree\ntemplate <typename TREE>\n\
     struct Incremental_Centroid {\n  TREE& tree;\n  int N;\n  int cent;\n  pair<int,\
@@ -427,8 +433,9 @@ data:
     \ if (2 * wt <= wt_sm) return;\n    int k = wt;\n    assert(wt_sm == 2 * k - 1);\n\
     \    int to = move_to(v);\n    max_subtree = {tree.jump(to, cent, 1), k - 1};\n\
     \    cent = to;\n  }\n};\n"
-  code: "#include \"graph/ds/tree_abeliangroup.hpp\"\n#include \"ds/fastset.hpp\"\n\
-    \n// \u6728\u306F\u56FA\u5B9A\u3002\u9802\u70B9\u91CD\u307F\u3092 +1 \u3067\u304D\
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/ds/incremental_centroid.hpp\n\
+    #include \"graph/ds/tree_abeliangroup.hpp\"\n#include \"ds/fastset.hpp\"\n\n//\
+    \ \u6728\u306F\u56FA\u5B9A\u3002\u9802\u70B9\u91CD\u307F\u3092 +1 \u3067\u304D\
     \u308B\u3002\n// cent: \u91CD\u5FC3\n// max_subtree\ntemplate <typename TREE>\n\
     struct Incremental_Centroid {\n  TREE& tree;\n  int N;\n  int cent;\n  pair<int,\
     \ int> max_subtree;  // (adj, size)\n  int wt_sm;\n  Tree_AbelianGroup<TREE, Monoid_Add<int>,\
@@ -464,7 +471,7 @@ data:
   isVerificationFile: false
   path: graph/ds/incremental_centroid.hpp
   requiredBy: []
-  timestamp: '2026-10-05 00:23:18+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/2636.test.cpp

@@ -10,14 +10,17 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"other/timer.hpp\"\n\nstruct Timer {\n  bool started;\n \
-    \ chrono::high_resolution_clock::time_point s;\n\n  Timer() : started(false) {}\n\
-    \  void start() {\n    started = true;\n    s = chrono::high_resolution_clock::now();\n\
-    \  }\n\n  // second from start\n  double operator()() {\n    assert(started);\n\
-    \    chrono::high_resolution_clock::time_point t = chrono::high_resolution_clock::now();\n\
-    \    chrono::duration<double> diff = t - s;\n    return diff.count();\n  }\n};\n"
-  code: "\nstruct Timer {\n  bool started;\n  chrono::high_resolution_clock::time_point\
+    links:
+    - https://github.com/maspypy/library/blob/main/other/timer.hpp
+  bundledCode: "#line 1 \"other/timer.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/other/timer.hpp\n\
+    \nstruct Timer {\n  bool started;\n  chrono::high_resolution_clock::time_point\
+    \ s;\n\n  Timer() : started(false) {}\n  void start() {\n    started = true;\n\
+    \    s = chrono::high_resolution_clock::now();\n  }\n\n  // second from start\n\
+    \  double operator()() {\n    assert(started);\n    chrono::high_resolution_clock::time_point\
+    \ t = chrono::high_resolution_clock::now();\n    chrono::duration<double> diff\
+    \ = t - s;\n    return diff.count();\n  }\n};\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/other/timer.hpp\n\
+    \nstruct Timer {\n  bool started;\n  chrono::high_resolution_clock::time_point\
     \ s;\n\n  Timer() : started(false) {}\n  void start() {\n    started = true;\n\
     \    s = chrono::high_resolution_clock::now();\n  }\n\n  // second from start\n\
     \  double operator()() {\n    assert(started);\n    chrono::high_resolution_clock::time_point\
@@ -27,7 +30,7 @@ data:
   isVerificationFile: false
   path: other/timer.hpp
   requiredBy: []
-  timestamp: '2025-02-25 18:00:53+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/decremental_fastset.test.cpp

@@ -7,8 +7,11 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
+    links:
+    - https://github.com/maspypy/library/blob/main/template/mo_main_LR.hpp
   bundledCode: '#line 1 "template/mo_main_LR.hpp"
+
+    // Source: https://github.com/maspypy/library/blob/main/template/mo_main_LR.hpp
 
     // template/mo_main_LR.hpp
 
@@ -25,7 +28,9 @@ data:
     mo.calc(ADD_L, ADD_R, RM_L, RM_R, CALC);
 
     '
-  code: '// template/mo_main_LR.hpp
+  code: '// Source: https://github.com/maspypy/library/blob/main/template/mo_main_LR.hpp
+
+    // template/mo_main_LR.hpp
 
     auto ADD_L = [&](int i) -> void {};
 
@@ -44,7 +49,7 @@ data:
   isVerificationFile: false
   path: template/mo_main_LR.hpp
   requiredBy: []
-  timestamp: '2026-08-17 09:25:20+09:00'
+  timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: template/mo_main_LR.hpp
