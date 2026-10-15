@@ -22,6 +22,6 @@ Enable the included local pre-commit check once per clone:
 git config core.hooksPath .githooks
 ```
 
-`expander.py` preserves source URL headers by default. Set
-`MASPY_STRIP_SOURCE_URL=1` to omit only those lines from expanded output; the
-existing `my_template.hpp` library attribution remains.
+`expander.py` omits source URL headers by default; the existing
+`my_template.hpp` library attribution remains. Set `MASPY_KEEP_SOURCE_URL=1`
+to retain source URL headers in expanded output.

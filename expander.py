@@ -15,7 +15,7 @@ if extra_paths:
     INCLUDE_PATHS.extend(extra_paths.split(os.pathsep))
 
 visited = set()
-strip_source_url = os.environ.get('MASPY_STRIP_SOURCE_URL') == '1'
+keep_source_url = os.environ.get('MASPY_KEEP_SOURCE_URL') == '1'
 
 
 def resolve_include(header):
@@ -42,7 +42,7 @@ def expand_file(path, display_name=None, caller_file=None, caller_line=None):
         for i, line in enumerate(f, start=1):
             if line.strip() == "#pragma once":
                 continue
-            if strip_source_url and line.startswith('// Source: '):
+            if not keep_source_url and line.startswith('// Source: '):
                 # The source URL was physical line i.  Reset the location for
                 # the following line so diagnostics still match the original.
                 print(f'#line {i + 1} "{display_name}"')
