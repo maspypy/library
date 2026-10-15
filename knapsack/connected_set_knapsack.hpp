@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/knapsack/connected_set_knapsack.hpp
 
 // https://arxiv.org/pdf/1807.04942
 // Example 5.

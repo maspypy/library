@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/floor_monoid_product.hpp
 #include "alg/monoid_pow.hpp"
 
 // https://yukicoder.me/submissions/883884

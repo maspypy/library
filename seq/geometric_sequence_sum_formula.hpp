@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/geometric_sequence_sum_formula.hpp
 #include "poly/fps_inv.hpp"
 
 // r != 1 とする. sum_{i=0}^{n-1}i^kr^i = c + r^n f(n) と書ける. return : c, f

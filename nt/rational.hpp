@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/rational.hpp
 template <typename T = long long, bool REDUCE = true>
 struct Rational {
   T num, den;

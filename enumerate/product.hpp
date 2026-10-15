@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/enumerate/product.hpp
 
 // [0, A0) x [0, A1) x ...
 template <typename F>

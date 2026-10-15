@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/find_even_cycle.hpp
 #include "graph/base.hpp"
 
 // (vs, es), size=(n+1,n)

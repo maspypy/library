@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/ntt_doubling.hpp
 
 #include "poly/ntt.hpp"
 

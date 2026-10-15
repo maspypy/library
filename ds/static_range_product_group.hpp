@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/static_range_product_group.hpp
 #include "alg/monoid/add.hpp"
 
 template <typename Monoid>

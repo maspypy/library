@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/compress_tree.hpp
 #include "graph/tree.hpp"
 #include "ds/fastset.hpp"
 #include "graph/fast_lca.hpp"

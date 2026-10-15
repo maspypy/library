@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/count_by_factor_type.hpp
 #include "nt/prime_table.hpp"
 #include "nt/prime_sum.hpp"
 

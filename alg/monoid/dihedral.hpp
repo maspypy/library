@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/monoid/dihedral.hpp
 
 /*
 2 面体群. 長さ n の文字列に作用する.

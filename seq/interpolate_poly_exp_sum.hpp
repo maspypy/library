@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/interpolate_poly_exp_sum.hpp
 #include "poly/lagrange_interpolate_iota.hpp"
 #include "seq/interpolate_poly_exp.hpp"
 

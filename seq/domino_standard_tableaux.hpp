@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/domino_standard_tableaux.hpp
 #include "seq/hook_length_formula.hpp"
 
 template <typename mint>

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/flow/incremental_maxflow.hpp
 // 流した後で辺を追加してもよい
 template <typename Cap>
 struct Incremental_MaxFlow {

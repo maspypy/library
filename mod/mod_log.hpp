@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/mod_log.hpp
 #include "mod/dynamic_modint.hpp"
 #include "nt/discrete_log.hpp"
 #include "alg/monoid/mul.hpp"

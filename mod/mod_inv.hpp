@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/mod_inv.hpp
 
 // long でも大丈夫
 // (val * x - 1) が mod の倍数になるようにする

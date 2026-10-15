@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/flow/min_cost_b_flow.hpp
 
 // 負辺があっても動作するよ
 // INF 辺が大きすぎると壊れたりするみたいなのでので注意

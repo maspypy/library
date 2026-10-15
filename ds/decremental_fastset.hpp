@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/decremental_fastset.hpp
 #include "ds/unionfind/unionfind.hpp"
 
 // amortized linear

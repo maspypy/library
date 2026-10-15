@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/online/online_pow.hpp
 #include "poly/online/online_division.hpp"
 
 // query(i)：f[i] を与えて (f^K)[i] を得る。

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/bitset/transitive_closure.hpp
 #include "ds/bit_array.hpp"
 
 // https://codeforces.com/contest/641/problem/F

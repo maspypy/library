@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/spf_table.hpp
 #include "nt/prime_table.hpp"
 
 // [0, LIM], 0, 1 には -1 が入る。

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/template/monoid.hpp
 // template/monoid.hpp
 struct Mono {
   using value_type = ;

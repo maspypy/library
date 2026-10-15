@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/generalized_suffix_automaton.hpp
 #pragma once
 
 #include "graph/tree.hpp"

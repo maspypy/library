@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/find_odd_cycle.hpp
 #include "graph/strongly_connected_component.hpp"
 
 // (vs, es), size=(n+1,n)

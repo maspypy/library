@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/kth_next_permutation.hpp
 #include "ds/pbds.hpp"
 
 // P の要素は distinct。

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/aho_corasick_for_general_trie.hpp
 #include "ds/dynamic_array.hpp"
 #include "ds/to_small_key.hpp"
 #include "graph/base.hpp"

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/count/count_K4.hpp
 
 // M^{1.5} + M^2/w
 // simple graph を仮定

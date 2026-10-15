@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/famous/surjection.hpp
 #include "seq/famous/stirling_number_2.hpp"
 
 // n 元集合からの全射の数え上げ

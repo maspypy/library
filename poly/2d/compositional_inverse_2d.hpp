@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/2d/compositional_inverse_2d.hpp
 #include "poly/compositional_inverse.hpp"
 
 // 注意 (H+W)^2log(H+W) 時間になっているので正方形じゃないとダメなさぼり実装

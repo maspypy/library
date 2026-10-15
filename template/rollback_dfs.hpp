@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/template/rollback_dfs.hpp
 // template/rollback_dfs.hpp
 auto upd = X.calc(len(query));
 vi ANS(len(query));

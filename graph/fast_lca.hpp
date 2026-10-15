@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/fast_lca.hpp
 #include "graph/tree.hpp"
 #include "alg/monoid/min.hpp"
 #include "ds/sparse_table/sparse_table.hpp"

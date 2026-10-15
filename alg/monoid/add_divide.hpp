@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add_divide.hpp
 
 // x -> (x+a)/b+c
 // 合成のいたるところでinfty<ll>/2以上にならないことを仮定くらいで大丈夫だと思う.

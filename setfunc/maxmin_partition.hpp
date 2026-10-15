@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/setfunc/maxmin_partition.hpp
 
 // https://codeforces.com/blog/entry/153948?#comment-1367191
 // O(n 2^n)

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/bipartite_vertex_coloring.hpp
 
 #include "graph/base.hpp"
 #include "ds/unionfind/unionfind.hpp"

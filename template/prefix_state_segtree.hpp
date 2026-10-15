@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/template/prefix_state_segtree.hpp
 // template/prefix_state_segtree.hpp
 /*
 prefix state を持ちながら左から列を読むタイプの SegTree の骨格

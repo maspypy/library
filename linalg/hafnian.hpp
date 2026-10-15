@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/hafnian.hpp
 #include "setfunc/sps_exp.hpp"
 #include "enumerate/bits.hpp"
 

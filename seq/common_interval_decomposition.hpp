@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/common_interval_decomposition.hpp
 #include "ds/segtree/lazy_segtree.hpp"
 #include "alg/acted_monoid/min_add.hpp"
 

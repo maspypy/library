@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/solve_linear_lower.hpp
 // 下三角行列を仮定。とりあえず正則も仮定。
 template <typename T>
 vc<T> solve_linear_lower(vc<vc<T>> a, vc<T> b) {

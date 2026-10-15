@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/cactus.hpp
 
 vvc<int> get_cactus_cycles(Graph<int, 0>& G, Graph<int, 0>& BCT,
                            Tree<Graph<int, 0>>& tree) {

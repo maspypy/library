@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/det.hpp
 #include "mod/barrett.hpp"
 
 int det_mod(vvc<int> A, int mod) {

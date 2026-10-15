@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/all_inverse.hpp
 template <typename mint>
 vc<mint> all_inverse(vc<mint>& X) {
   for (auto&& x: X) assert(x != mint(0));

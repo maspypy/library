@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/from_log_differentiation.hpp
 
 #include "seq/p_recursive.hpp"
 

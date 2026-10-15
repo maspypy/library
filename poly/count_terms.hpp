@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/count_terms.hpp
 template<typename mint>
 int count_terms(const vc<mint>& f){
   int t = 0;

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/template/rerooting_dp.hpp
 // template/rerooting_dp.hpp
 struct Data {};
 Data id = {};

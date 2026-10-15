@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/lattice_point_sum_polynomial_pq.hpp
 
 #include "seq/geometric_sequence_sum_formula.hpp"
 #include "convex/line_min_function.hpp"

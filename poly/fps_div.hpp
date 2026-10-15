@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/fps_div.hpp
 
 #include "poly/count_terms.hpp"
 #include "poly/fps_inv.hpp"

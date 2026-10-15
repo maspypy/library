@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/famous/riemann_zeta_even.hpp
 #include "seq/famous/bernoulli.hpp"
 
 // 2 以上 N 以下の偶数に対して, zeta(n) = c pi^n となる c

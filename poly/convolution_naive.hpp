@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/convolution_naive.hpp
 
 template <class T, typename enable_if<!has_mod<T>::value>::type* = nullptr>
 vc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {

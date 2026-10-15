@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/2d/fps_exp_2d.hpp
 
 #include "poly/fps_exp.hpp"
 #include "poly/2d/fps_log_2d.hpp"

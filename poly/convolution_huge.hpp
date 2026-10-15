@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/convolution_huge.hpp
 #include "poly/convolution.hpp"
 template <typename mint>
 vc<mint> convolution_huge(const vc<mint>& A, const vc<mint>& B) {

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/dynamic_lichao.hpp
 #include "ds/node_pool.hpp"
 
 /*

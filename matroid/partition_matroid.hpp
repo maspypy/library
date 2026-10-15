@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/matroid/partition_matroid.hpp
 
 struct Partition_Matroid {
   int N, C;

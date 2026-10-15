@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/matrix_pow.hpp
 #include "linalg/matrix_mul.hpp"
 
 template <typename T>

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/find_runs.hpp
 #include "string/z_algorithm.hpp"
 
 // (period, l, r)

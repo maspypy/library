@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/nimber/solve_quadratic.hpp
 #include "nt/nimber/base.hpp"
 #include "linalg/xor/basis.hpp"
 

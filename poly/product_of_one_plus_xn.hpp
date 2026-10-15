@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/product_of_one_plus_xn.hpp
 #include "poly/fps_exp.hpp"
 
 // prod (1 + x^a) を x^{LIM} まで求める

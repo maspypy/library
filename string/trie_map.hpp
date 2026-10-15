@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/trie_map.hpp
 template <typename CHAR>
 struct Trie {
   using MP = map<CHAR, int>;

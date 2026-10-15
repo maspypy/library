@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/scc_tournament_by_indegrees.hpp
 pair<int, vc<int>> scc_tournament_by_indegrees(vc<int> indeg) {
   int N = len(indeg);
   auto I = argsort(indeg);

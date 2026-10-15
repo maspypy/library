@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/alien_trick.hpp
 
 // MINIMIZE に応じて、base_score + add * cnt を最小化 / 最大化する
 // solve(add) -> {val, cnt}

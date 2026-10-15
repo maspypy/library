@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/substring_shortest_border.hpp
 #include "string/suffix_array.hpp"
 
 // 最短 border の長さ. なかったら R-L. O(sqrt(N)).

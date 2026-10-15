@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/blackbox/vandermonde.hpp
 #include "poly/multipoint.hpp"
 #include "poly/sum_of_rationals.hpp"
 #include "poly/fps_div.hpp"

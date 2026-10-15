@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/ntt.hpp
 
 template <class mint>
 void ntt(vector<mint>& a, bool inverse) {

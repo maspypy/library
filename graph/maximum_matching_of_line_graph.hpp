@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/maximum_matching_of_line_graph.hpp
 #include "graph/base.hpp"
 
 // 同じ頂点に接続する 2 辺をマッチできる

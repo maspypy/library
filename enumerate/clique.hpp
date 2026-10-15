@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/enumerate/clique.hpp
 // N2^{sqrt(2m)}
 // https://www.slideshare.net/wata_orz/ss-12131479
 template <typename Gr, typename F>

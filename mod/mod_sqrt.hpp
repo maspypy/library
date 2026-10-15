@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/mod_sqrt.hpp
 #include "random/base.hpp"
 #include "mod/mod_pow.hpp"
 

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/mod_kth_root.hpp
 #include "nt/is_prime.hpp"
 #include "mod/primitive_root.hpp"
 #include "mod/mod_inv.hpp"

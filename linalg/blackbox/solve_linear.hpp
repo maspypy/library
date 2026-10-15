@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/blackbox/solve_linear.hpp
 #include "random/base.hpp"
 
 // https://arxiv.org/pdf/1204.3735

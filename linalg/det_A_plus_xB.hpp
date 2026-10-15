@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/det_A_plus_xB.hpp
 #include "random/base.hpp"
 #include "linalg/matrix_mul.hpp"
 #include "linalg/matrix_inv.hpp"

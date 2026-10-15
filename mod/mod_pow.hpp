@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/mod_pow.hpp
 
 #include "mod/montgomery_modint.hpp"
 #include "mod/barrett.hpp"

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/ds/bfs_numbering.hpp
 #include "graph/base.hpp"
 
 // ID[v]：頂点の新しい番号

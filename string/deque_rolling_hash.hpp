@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/deque_rolling_hash.hpp
 #include "mod/modint61.hpp"
 
 // 特に pop はテストされてない

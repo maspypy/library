@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/crt.hpp
 #include "mod/mod_inv.hpp"
 #include "nt/coprime_factorization.hpp"
 #include "nt/factor.hpp"

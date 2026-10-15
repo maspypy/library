@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/transposed_ntt.hpp
 
 template <class mint>
 void transposed_ntt(vector<mint>& a, bool inverse) {

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/path_cycle_decomposition.hpp
 #include "graph/base.hpp"
 
 // どの点の次数も 2 以下のグラフがあるときに、

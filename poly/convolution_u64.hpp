@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/convolution_u64.hpp
 #include "poly/convolution.hpp"
 #include "mod/crt3.hpp"
 

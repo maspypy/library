@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/count/count_labeled_bipartite.hpp
 #include "poly/fps_log.hpp"
 #include "poly/fps_sqrt.hpp"
 #include "ds/power_query.hpp"

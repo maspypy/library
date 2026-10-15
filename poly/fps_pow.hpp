@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/fps_pow.hpp
 #include "poly/count_terms.hpp"
 #include "poly/fps_exp.hpp"
 #include "poly/fps_log.hpp"

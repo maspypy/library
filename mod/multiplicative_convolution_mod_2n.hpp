@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/multiplicative_convolution_mod_2n.hpp
 #include "poly/convolution.hpp"
 
 template <typename mint>

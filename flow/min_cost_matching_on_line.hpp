@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/flow/min_cost_matching_on_line.hpp
 #include "convex/slope_trick/slope_trick_0.hpp"
 
 // 座標 0, ..., N-1 に A_i 個ある

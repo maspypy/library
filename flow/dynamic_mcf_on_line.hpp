@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/flow/dynamic_mcf_on_line.hpp
 #include "alg/monoid/add.hpp"
 #include "ds/segtree/lazy_segtree.hpp"
 #include "ds/segtree/segtree.hpp"

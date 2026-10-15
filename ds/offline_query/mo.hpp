@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/mo.hpp
 // Nsqrt(Q)
 struct Mo {
   vc<pair<int, int>> LR;

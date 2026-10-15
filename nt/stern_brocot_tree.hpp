@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/stern_brocot_tree.hpp
 
 struct Stern_Brocot_Tree {
   using PATH = vi; // はじめは R

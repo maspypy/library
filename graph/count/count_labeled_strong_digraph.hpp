@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/count/count_labeled_strong_digraph.hpp
 #include "poly/fps_inv.hpp"
 #include "poly/fps_log.hpp"
 

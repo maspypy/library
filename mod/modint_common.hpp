@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/modint_common.hpp
 
 
 struct has_mod_impl {

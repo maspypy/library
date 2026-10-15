@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo3d/cross_point.hpp
 #include "geo3d/base.hpp"
 
 // 0: 交点なし

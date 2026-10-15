@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/bitset/solve_linear.hpp
 #include "ds/bit_array.hpp"
 
 // 行ベクトルを bitset にする

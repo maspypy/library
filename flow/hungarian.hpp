@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/flow/hungarian.hpp
 // returns: (ans, match, X, Y)
 // N<=M を仮定, infty も valid として計算している, O(N^2M) time。
 // ポテンシャルは次の双対問題の解である：

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/blackbox/toposort.hpp
 // set_used(v)：v を使用済に変更する
 // find_unused(v)：v の行き先を探す。なければ -1 を返すこと。
 // https://codeforces.com/contest/1158/problem/C

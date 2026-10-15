@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/lower_convex_hull_segtree.hpp
 // ALLOW_180=true のときに同一座標の点があると壊れる気がする
 template <typename T, bool ALLOW_180 = false>
 struct Lower_Convex_Hull_SegTree {

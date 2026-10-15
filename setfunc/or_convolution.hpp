@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/setfunc/or_convolution.hpp
 #include "setfunc/zeta.hpp"
 template <typename T>
 vc<T> or_convolution(vc<T> A, vc<T> B) {

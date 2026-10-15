@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/suffix_array.hpp
 #include "ds/index_compression.hpp"
 #include "alg/monoid/min.hpp"
 #include "ds/sparse_table/sparse_table.hpp"

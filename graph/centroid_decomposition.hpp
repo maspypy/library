@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/centroid_decomposition.hpp
 #include "graph/base.hpp"
 
 // 頂点ベースの重心分解

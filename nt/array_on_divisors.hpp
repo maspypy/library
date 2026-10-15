@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/array_on_divisors.hpp
 #include "nt/factor.hpp"
 #include "ds/hashmap.hpp"
 

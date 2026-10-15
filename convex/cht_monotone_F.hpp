@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/cht_monotone_F.hpp
 // x=INF で小さくなる（傾きが小さい）ものが back
 // O(QlogQ) func call or O(Q) func call + O(Q) find
 // https://contest.ucup.ac/contest/1893/problem/9737

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/famous/stirling_number_1.hpp
 #include "poly/fps_div.hpp"
 #include "poly/fps_pow.hpp"
 #include "poly/poly_taylor_shift.hpp"

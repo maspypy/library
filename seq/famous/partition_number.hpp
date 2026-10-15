@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/famous/partition_number.hpp
 #include "poly/fps_inv.hpp"
 
 template <typename T>

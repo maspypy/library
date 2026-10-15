@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/functional_graph.hpp
 #include "alg/monoid/add.hpp"
 #include "alg/monoid_pow.hpp"
 #include "graph/tree.hpp"

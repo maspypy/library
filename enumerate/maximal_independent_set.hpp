@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/enumerate/maximal_independent_set.hpp
 
 // 3^(N/3). 極大.
 // https://atcoder.jp/contests/jag2014autumn/tasks/icpc2014autumn_i

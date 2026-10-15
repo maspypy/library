@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/range_rational_count.hpp
 
 #include "nt/mertens.hpp"
 #include "mod/floor_sum_of_linear.hpp"

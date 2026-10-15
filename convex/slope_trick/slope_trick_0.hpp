@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/slope_trick/slope_trick_0.hpp
 // 最初に作った最もシンプルなやつを一応残しておく
 struct Slope_Trick_0 {
   static constexpr ll LMIN = -infty<ll>;

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/incremental_scc.hpp
 #include "graph/strongly_connected_component.hpp"
 
 // https://codeforces.com/blog/entry/91608

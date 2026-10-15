@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/io_old.hpp
 // based on yosupo's fastio
 #include <unistd.h>
 

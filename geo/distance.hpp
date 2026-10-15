@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/distance.hpp
 #include "geo/cross_point.hpp"
 
 template <typename REAL, typename T, typename U>

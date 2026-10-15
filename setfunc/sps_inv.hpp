@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/setfunc/sps_inv.hpp
 #include "setfunc/ranked_zeta.hpp"
 
 template <typename mint, int LIM>

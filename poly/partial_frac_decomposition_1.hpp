@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/partial_frac_decomposition_1.hpp
 #include "poly/multipoint.hpp"
 
 // f(x) / prod(1-a_ix) = sum b_i/1-a_ix

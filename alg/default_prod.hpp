@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/default_prod.hpp
 template <class Monoid>
 struct DefaultUnitProd {
   using X = typename Monoid::value_type;

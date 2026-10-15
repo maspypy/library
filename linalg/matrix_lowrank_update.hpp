@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/matrix_lowrank_update.hpp
 #include "linalg/matrix_inv.hpp"
 #include "linalg/matrix_rank.hpp"
 

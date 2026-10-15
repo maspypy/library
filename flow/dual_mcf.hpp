@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/flow/dual_mcf.hpp
 #include "flow/min_cost_b_flow.hpp"
 
 // INF 辺のオーバーフロー関連が未考察

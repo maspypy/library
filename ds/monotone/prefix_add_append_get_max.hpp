@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/monotone/prefix_add_append_get_max.hpp
 #include "ds/unionfind/unionfind.hpp"
 
 // prefix add / 末尾追加 / 全体 max

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/modint_64bit.hpp
 // https://qoj.ac/problem/969
 template <ll mod>
 struct modint_64bit {

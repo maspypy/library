@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/count_unbordered_string.hpp
 
 // O(N) time
 // https://oeis.org/A003000

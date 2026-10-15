@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/setfunc/power_projection_of_sps.hpp
 #include "setfunc/subset_convolution.hpp"
 #include "poly/convolution.hpp"
 

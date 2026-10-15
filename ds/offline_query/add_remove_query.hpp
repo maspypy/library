@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/add_remove_query.hpp
 /*
 ・時刻 t に x を追加する
 ・時刻 t に x を削除する

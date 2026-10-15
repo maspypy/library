@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/rollback_potentialized_unionfind.hpp
 #include "ds/rollback_array.hpp"
 
 template <typename Group>

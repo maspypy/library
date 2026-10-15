@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/mo_3d.hpp
 // https://codeforces.com/contest/940/problem/F
 // https://codeforces.com/contest/1476/problem/G
 struct Mo_3D {

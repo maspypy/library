@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/kdtree/dual_kdtree_monoid.hpp
 // 矩形作用と点取得
 template <class Monoid, typename XY>
 struct Dual_KDTree_Monoid {

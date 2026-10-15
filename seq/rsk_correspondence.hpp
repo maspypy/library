@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/rsk_correspondence.hpp
 
 pair<vvc<int>, vvc<int>> rsk_correspondence_prefix(vc<int> A, int nrow = -1) {
   int N = len(A);

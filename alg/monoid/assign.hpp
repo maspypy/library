@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp
 
 template <typename X, int none_val>
 struct Monoid_Assign {

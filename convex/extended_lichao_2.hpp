@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/extended_lichao_2.hpp
 // https://codeforces.com/blog/entry/86731)
 // chmin(A[x],ax+b), A[x]+=b, get range min
 template <bool MINIMIZE>

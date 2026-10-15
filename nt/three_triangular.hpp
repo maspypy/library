@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/three_triangular.hpp
 #include "nt/three_square.hpp"
 
 // 3 つの x(x-1)/2 の和にする

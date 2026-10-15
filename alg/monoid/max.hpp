@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/monoid/max.hpp
 // require: all values x satisfy x >= -infty<E>
 template <typename E>
 struct Monoid_Max {

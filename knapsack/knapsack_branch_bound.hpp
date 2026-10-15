@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/knapsack/knapsack_branch_bound.hpp
 // 分枝限定法。yukicoder 626
 template <typename WT, typename VAL>
 VAL knapsack_branch_bound(vc<WT> wt, vc<VAL> val, WT LIM) {

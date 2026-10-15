@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add_chmin_chmax_with_cost.hpp
 // (L,R,a,b,c)
 // position = clamp(x,L,R) + a
 // chmax_cost = b + max(L - x, 0)

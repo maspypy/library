@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/rectangle_union.hpp
 #include "ds/segtree/lazy_segtree.hpp"
 #include "alg/acted_monoid/minmincnt_add.hpp"
 

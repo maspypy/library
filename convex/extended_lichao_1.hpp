@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/extended_lichao_1.hpp
 // https://codeforces.com/blog/entry/86731)
 // chmin(A[x],ax+b), A[x]+=ax+b, get A[x]
 // つかえた https://codeforces.com/contest/1120/problem/F

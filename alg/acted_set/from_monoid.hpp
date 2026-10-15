@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/acted_set/from_monoid.hpp
 template <typename Monoid>
 struct ActedSet_from_Monoid {
   using Monoid_A = Monoid;

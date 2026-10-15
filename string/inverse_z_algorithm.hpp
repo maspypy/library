@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/inverse_z_algorithm.hpp
 
 // https://atcoder.jp/contests/yahoo-procon2018-final-open/tasks/yahoo_procon2018_final_d
 // empty OR 辞書順最小

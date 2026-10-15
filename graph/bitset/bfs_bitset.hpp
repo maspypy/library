@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/bitset/bfs_bitset.hpp
 #include "ds/bit_array.hpp"
 
 // 密グラフの重みなし最短路問題

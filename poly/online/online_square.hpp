@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/online/online_square.hpp
 #include "poly/ntt.hpp"
 
 /*

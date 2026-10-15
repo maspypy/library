@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/adjugate_matrix.hpp
 
 #include "linalg/frobenius.hpp"
 #include "mod/modint.hpp"

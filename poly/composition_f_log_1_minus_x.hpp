@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/composition_f_log_1_minus_x.hpp
 
 #include "poly/poly_taylor_shift.hpp"
 #include "poly/partial_frac_decomposition_1.hpp"

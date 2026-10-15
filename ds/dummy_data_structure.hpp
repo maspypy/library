@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/dummy_data_structure.hpp
 #include "alg/monoid/dummy.hpp"
 
 struct Dummy_Data_Structure {

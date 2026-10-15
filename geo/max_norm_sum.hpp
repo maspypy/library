@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/max_norm_sum.hpp
 #include "geo/base.hpp"
 #include "geo/angle_sort.hpp"
 

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/polygon_triangulation.hpp
 #include "geo/base.hpp"
 #include "ds/splaytree/splaytree_basic.hpp"
 #include "graph/planar_graph.hpp"

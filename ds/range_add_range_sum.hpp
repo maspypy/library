@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/range_add_range_sum.hpp
 #include "ds/fenwicktree/fenwicktree.hpp"
 
 template <typename Monoid>

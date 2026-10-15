@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/segtree/segtree_2d_dense.hpp
 
 template <class Monoid>
 struct SegTree_2D_Dense {

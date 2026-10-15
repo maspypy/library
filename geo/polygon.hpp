@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/polygon.hpp
 #include "geo/base.hpp"
 #include "geo/cross_point.hpp"
 

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/mod_2/fps_inv.hpp
 #include "poly/mod_2/convolution.hpp"
 
 Bit_Array fps_inv(const Bit_Array& F) {

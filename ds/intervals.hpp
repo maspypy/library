@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/intervals.hpp
 #include "ds/fastset.hpp"
 
 // FastSet で高速化したもの

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/O1_inverse.hpp
 
 // https://qoj.ac/problem/5
 // precompute O(p^{2/3}), query O(1)

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/geometric_sequence_sum.hpp
 
 // sum_{i=0}^{n-1}r^i
 template <typename T>

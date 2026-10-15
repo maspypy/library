@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/dyadic_intervals.hpp
 // 昇順とは限らない，両端から呼ばれる
 template <typename F>
 void dyadic_intervals(ll L, ll R, F f) {

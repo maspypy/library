@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/interpolate_linear_rec.hpp
 
 #include "seq/find_linear_rec.hpp"
 #include "poly/coef_of_rational_fps.hpp"

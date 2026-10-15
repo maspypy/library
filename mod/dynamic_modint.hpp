@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/dynamic_modint.hpp
 
 #include "mod/modint_common.hpp"
 #include "mod/primitive_root.hpp"

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/pick_formula.hpp
 
 // input: simple polygon
 // return: area2, inner, boundary

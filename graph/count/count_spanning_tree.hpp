@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/count/count_spanning_tree.hpp
 
 #include "graph/base.hpp"
 #include "linalg/det.hpp"

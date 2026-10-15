@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/setfunc/subset_convolution.hpp
 #include "setfunc/ranked_zeta.hpp"
 
 template <typename T, int LIM = 20>

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/modint_real.hpp
 // Point<T>, Line<T> などがある程度動くと期待している
 // https://codeforces.com/contest/44/submission/319952578
 template <typename mint, typename Re>

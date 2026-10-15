@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/is_cactus.hpp
 
 // EDGE = true: 各辺が唯一のサイクル（関節点でサイクルまたは辺）
 // EDGE = false： 各頂点が唯一のサイクル（橋でサイクルまたは辺）

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/transpose.hpp
 template <typename VC>
 vc<VC> transpose(const vc<VC>& A, int H = -1, int W = -1) {
   if (H == -1) { H = len(A), W = (len(A) == 0 ? 0 : len(A[0])); }

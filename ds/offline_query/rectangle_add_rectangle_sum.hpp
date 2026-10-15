@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/rectangle_add_rectangle_sum.hpp
 #include "ds/offline_query/coefficient_query_2d.hpp"
 
 template <typename T>

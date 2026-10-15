@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/bitset/mat_inv.hpp
 #include "ds/bit_array.hpp"
 
 // det = 0 の場合には empty をかえす

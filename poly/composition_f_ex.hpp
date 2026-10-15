@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/composition_f_ex.hpp
 #include "poly/sum_of_exp_bx.hpp"
 
 // N 次多項式 f に対して、f(e^x) を [0,N] 次まで。O(Nlog^2N)

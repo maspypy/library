@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/sliding_window_aggregation.hpp
 template <class Monoid>
 struct Sliding_Window_Aggregation {
   using X = typename Monoid::value_type;

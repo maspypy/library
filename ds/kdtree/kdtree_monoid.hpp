@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/kdtree/kdtree_monoid.hpp
 template <class Monoid, typename XY>
 struct KDTree_Monoid {
   using MX = Monoid;

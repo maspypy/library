@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/ds/lazy_tree_monoid.hpp
 #include "alg/monoid/monoid_reverse.hpp"
 #include "ds/segtree/lazy_segtree.hpp"
 #include "graph/tree.hpp"

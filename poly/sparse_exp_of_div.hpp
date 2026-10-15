@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/sparse_exp_of_div.hpp
 #include "poly/from_log_differentiation.hpp"
 
 // exp(f/g) で f,g が sparse

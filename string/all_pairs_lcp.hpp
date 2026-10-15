@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/all_pairs_lcp.hpp
 // dp[i][j] = lcp(S[i:], T[j:])
 template <typename STRING>
 vvc<int> all_pairs_lcp(STRING& S, STRING& T) {

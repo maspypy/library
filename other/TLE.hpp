@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/TLE.hpp
 // 提出を TLE させる目的
 void TLE() {
   volatile long long x = 0;

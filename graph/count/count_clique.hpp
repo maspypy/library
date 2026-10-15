@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/count/count_clique.hpp
 #include "graph/count/count_independent_set.hpp"
 
 // (n,m)=(1000,1000) で 24ms

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/wavelet_matrix/wavelet_matrix_old.hpp
 #include "ds/bit_vector.hpp"
 
 // 座圧するかどうかを COMPRESS で指定する

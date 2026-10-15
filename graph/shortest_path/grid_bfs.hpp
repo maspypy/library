@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/shortest_path/grid_bfs.hpp
 
 // walls = "#" や、walls = {-1} など。
 template <typename STRING>

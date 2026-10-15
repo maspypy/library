@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/famous/narayana.hpp
 
 // https://atcoder.jp/contests/agc070/tasks/agc070_c
 // a>=b のとき, (0,0) から (a,b) へのパスでちょうど k 回曲がる.

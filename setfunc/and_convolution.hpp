@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/setfunc/and_convolution.hpp
 #include "setfunc/zeta.hpp"
 template <typename T>
 vc<T> and_convolution(vc<T> A, vc<T> B) {

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/reduce_intervals.hpp
 
 // rm_included = true : I < J となる J が存在すれば I を消す
 // rm_included = false : I > J となる J が存在すれば I を消す

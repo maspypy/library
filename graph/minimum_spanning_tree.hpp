@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/minimum_spanning_tree.hpp
 #include "ds/unionfind/unionfind.hpp"
 #include "graph/base.hpp"
 #include "graph/tree.hpp"

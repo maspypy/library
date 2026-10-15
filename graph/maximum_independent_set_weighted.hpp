@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/maximum_independent_set_weighted.hpp
 #include "graph/base.hpp"
 
 // meed in middle で O(N2^{N/2})

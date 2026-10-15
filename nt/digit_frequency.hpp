@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/digit_frequency.hpp
 template <typename T = ll, int K = 10>
 array<T, K> digit_frequency_vector(vc<int> A, bool include_N) {
   assert(len(A) > 0 && A[0] != '0');

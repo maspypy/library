@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/blackbox/det.hpp
 #include "linalg/blackbox/min_poly.hpp"
 
 template <typename mint, typename F>

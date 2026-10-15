@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/mod_2/power_projection.hpp
 #include "ds/bit_array.hpp"
 #include "poly/mod_2/convolution.hpp"
 

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add_chmin.hpp
 
 // min(x+a,b) と表せる関数の合成
 template <typename E>

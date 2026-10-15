@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/count_matching_on_tree.hpp
 #include "graph/ds/static_toptree.hpp"
 #include "poly/convolution.hpp"
 

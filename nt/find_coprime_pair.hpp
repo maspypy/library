@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/find_coprime_pair.hpp
 #include "ds/bit_array.hpp"
 #include "nt/spf_table.hpp"
 #include "nt/factor.hpp"

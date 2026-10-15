@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/palindrome_decomposition_dp.hpp
 #include "string/palindromic_tree.hpp"
 
 /*

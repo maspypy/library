@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/binomial_u64.hpp
 
 struct Binomial_u64 {
   int LIM;

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/multipoint_evaluation_for_prefix_product.hpp
 #include "poly/typical_divide_conquer.hpp"
 #include "poly/convolution_all.hpp"
 #include "poly/fps_div.hpp"

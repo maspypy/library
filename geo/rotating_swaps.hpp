@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/rotating_swaps.hpp
 #include "geo/angle_sort.hpp"
 
 /*

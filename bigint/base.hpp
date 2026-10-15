@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/bigint/base.hpp
 #include "poly/convolution.hpp"
 #include "nt/digit_sum.hpp"
 

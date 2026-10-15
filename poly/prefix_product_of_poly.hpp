@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/prefix_product_of_poly.hpp
 #include "linalg/matrix_mul.hpp"
 #include "poly/lagrange_interpolate_iota.hpp"
 

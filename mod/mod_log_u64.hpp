@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/mod_log_u64.hpp
 #include "mod/mod_inv_u64.hpp"
 
 // https://contest.ucup.ac/contest/2693/problem/15032

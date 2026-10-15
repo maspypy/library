@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/GF2.hpp
 #include <emmintrin.h>
 #include <smmintrin.h>
 #include <wmmintrin.h>

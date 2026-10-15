@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/mod_pow_u64.hpp
 u64 mod_pow_u64(u64 a, u64 n) {
   u64 x = 1;
   while (n) {

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/setfunc/sps_exp.hpp
 
 #include "setfunc/subset_convolution.hpp"
 

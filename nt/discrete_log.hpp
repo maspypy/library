@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/discrete_log.hpp
 #include "alg/monoid/mul.hpp"
 #include "alg/acted_set/from_monoid.hpp"
 #include "ds/hashmap.hpp"

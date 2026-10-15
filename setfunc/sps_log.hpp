@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/setfunc/sps_log.hpp
 #include "mod/modint.hpp"
 #include "setfunc/sps_composition.hpp"
 

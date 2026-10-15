@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/bit_vector.hpp
 
 struct Bit_Vector {
   int n;

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/blackbox/pascal.hpp
 #include "poly/convolution.hpp"
 
 // transpose = 0：g[p] = sum binom(p,q) f[q]

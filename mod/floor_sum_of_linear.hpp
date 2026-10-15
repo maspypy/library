@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/floor_sum_of_linear.hpp
 
 // sum_{x in [L,R)} floor(ax + b, mod)
 // I は範囲内で ax+b がオーバーフローしない程度

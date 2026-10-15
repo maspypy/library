@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/game/dyadic_rational.hpp
 
 // a+b/2^M の形で持つ
 template <typename INTEGER>

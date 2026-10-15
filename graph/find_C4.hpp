@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/find_C4.hpp
 #include "graph/base.hpp"
 
 // 無向グラフから C4 をひとつ見つける

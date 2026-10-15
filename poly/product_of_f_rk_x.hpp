@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/product_of_f_rk_x.hpp
 
 #include "poly/fps_log.hpp"
 #include "poly/fps_exp.hpp"

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/timer.hpp
 
 struct Timer {
   bool started;

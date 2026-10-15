@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/modint61.hpp
 
 struct modint61 {
   static constexpr u64 mod = (1ULL << 61) - 1;

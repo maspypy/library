@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/min_assign.hpp
 #include "alg/monoid/min.hpp"
 #include "alg/monoid/assign.hpp"
 

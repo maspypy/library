@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/binary_search_real_abs_rel.hpp
 
 // 絶対誤差または相対誤差を小さくするときに回数を頑張って減らす
 // ok, ng が非負であることを仮定

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/enumerate_occurrences.hpp
 
 #include "graph/tree.hpp"
 #include "string/trie.hpp"

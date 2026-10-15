@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/shortest_path/K_shortest_path.hpp
 #include "graph/base.hpp"
 
 // (cost, vs, es)

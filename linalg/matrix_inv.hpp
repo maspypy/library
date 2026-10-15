@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/matrix_inv.hpp
 
 // (det, invA) をかえす
 template <typename T>

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/basic_substring_structure.hpp
 
 #include "ds/hashmap.hpp"
 #include "seq/cartesian_tree.hpp"

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/count/count_C3_C4.hpp
 #include "graph/base.hpp"
 
 // 各点に対してその点を含む C3, C4 を数える

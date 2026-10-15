@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/find_vertex_cover.hpp
 
 // 大きさ K 以下の頂点被覆があればそれを返す
 // NK*1.618^K くらい

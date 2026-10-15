@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/2d/fps_pow_1_2d.hpp
 #include "poly/fps_pow.hpp"
 
 // f^e, sparse, O(NMK)

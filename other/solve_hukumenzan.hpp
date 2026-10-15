@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/solve_hukumenzan.hpp
 // a + b = c を解く
 vc<tuple<ll, ll, ll>> solve_hukumenzan(string A, string B, string C) {
   using T = tuple<ll, ll, ll>;

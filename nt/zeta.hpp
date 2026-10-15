@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/zeta.hpp
 #include "nt/prime_table.hpp"
 
 template <typename T>

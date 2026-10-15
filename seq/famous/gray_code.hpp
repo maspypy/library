@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/famous/gray_code.hpp
 // 0, ..., 2^{LOG}-1 の順列であって、1 bit ずつ変化するものを返す
 vc<int> gray_code(int LOG) {
   vc<int> res(1 << LOG);

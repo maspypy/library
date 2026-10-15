@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/my_deque.hpp
 
 template <typename T>
 struct My_Deque {

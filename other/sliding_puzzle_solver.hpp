@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/sliding_puzzle_solver.hpp
 #include "linalg/transpose.hpp"
 #include "seq/inversion.hpp"
 

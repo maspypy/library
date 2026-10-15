@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/typical_divide_conquer.hpp
 #include "poly/convolution.hpp"
 #include "poly/middle_product.hpp"
 

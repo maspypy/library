@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/periods.hpp
 #include "string/z_algorithm.hpp"
 
 template <typename STRING>

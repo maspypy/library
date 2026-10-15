@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/famous/de_bruijn.hpp
 string de_bruijn(int n) {
   vc<int> a(2 * n, 0);
   string ANS;

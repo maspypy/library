@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/permutation_group_basis.hpp
 
 // https://codeforces.com/blog/entry/111290
 // https://codeforces.com/gym/421334/problem/A

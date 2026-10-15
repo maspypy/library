@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/enumerate/ceil_range.hpp
 // 商が q の区間 [l,r) を q について昇順
 template <typename F>
 void ceil_range(ll N, F f) {

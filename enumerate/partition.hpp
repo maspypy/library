@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/enumerate/partition.hpp
 #include "enumerate/bits.hpp"
 
 /*

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/fenwicktree/fenwicktree_2d.hpp
 #include "alg/monoid/add.hpp"
 
 template <typename Monoid, typename XY, bool SMALL_X = false>

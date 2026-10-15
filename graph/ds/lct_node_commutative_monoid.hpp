@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/ds/lct_node_commutative_monoid.hpp
 
 // SUBTREE : cluster が subtree 情報を持つ場合
 template <typename Monoid, bool SUBTREE = false>

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/modfast.hpp
 #include "mod/modint.hpp"
 #include "mod/primitive_root.hpp"
 #include "nt/spf_table.hpp"

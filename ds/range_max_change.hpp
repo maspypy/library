@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/range_max_change.hpp
 /*
 p をインクリメントしながら
 right_change: ANS[i]:=max of [i,p) を管理

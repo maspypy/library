@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/slide_split_sum.hpp
 #include "ds/removable_queue.hpp"
 
 /*

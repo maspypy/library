@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/composition_f_ex_minus_1.hpp
 
 #include "poly/poly_taylor_shift.hpp"
 #include "poly/composition_f_ex.hpp"

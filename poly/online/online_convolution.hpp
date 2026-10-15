@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/online/online_convolution.hpp
 #include "poly/ntt.hpp"
 #include "mod/modint.hpp"
 

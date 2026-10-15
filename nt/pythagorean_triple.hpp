@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/pythagorean_triple.hpp
 
 /*
 c <= LIM, (a,b,c) と (b,a,c) は同一視, O(LIM) 時間

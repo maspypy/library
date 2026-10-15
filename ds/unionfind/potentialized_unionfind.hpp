@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/potentialized_unionfind.hpp
 template <typename Group>
 struct Potentialized_UnionFind {
   using E = typename Group::value_type;

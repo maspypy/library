@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/stable_roommates.hpp
 
 // https://codeforces.com/contest/1423/problem/A
 // https://www.sciencedirect.com/science/article/abs/pii/0196677485900331?via%3Dihub

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/lattice_point_sum_polynomial.hpp
 #include "convex/line_min_function.hpp"
 #include "mod/floor_sum_of_linear_polynomial.hpp"
 #include "seq/famous/faulhaber.hpp"

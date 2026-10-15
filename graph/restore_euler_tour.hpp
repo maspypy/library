@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/restore_euler_tour.hpp
 #include "ds/decremental_fastset.hpp"
 
 // 未知の木の euler tour の頂点列が -1 込みで与えられる

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/knapsack/knapsack01.hpp
 /*
 knapsack01 の全列挙
 ・O(2^n) で、(wt, val) を全列挙 + wt でソート

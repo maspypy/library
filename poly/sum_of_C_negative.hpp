@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/sum_of_C_negative.hpp
 #include "ds/sliding_window_aggregation.hpp"
 #include "alg/monoid/mul.hpp"
 

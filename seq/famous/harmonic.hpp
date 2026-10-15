@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/famous/harmonic.hpp
 
 // 誤差 O(N^{-6})
 long double harmonic_number(ll N) {

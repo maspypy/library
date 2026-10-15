@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/xor/basis.hpp
 
 /*
 使い分け方針

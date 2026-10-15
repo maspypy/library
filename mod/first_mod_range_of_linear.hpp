@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/first_mod_range_of_linear.hpp
 #include "mod/min_of_linear_segments.hpp"
 
 // ax+b in {L, ..., R-1} mod となる最小の x>=0 を返す

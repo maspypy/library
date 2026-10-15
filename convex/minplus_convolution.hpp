@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/minplus_convolution.hpp
 
 template <typename T>
 vc<T> minplus_convolution_convex_convex(vc<T>& A, vc<T>& B) {

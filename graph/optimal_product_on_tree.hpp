@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/optimal_product_on_tree.hpp
 #include "graph/tree.hpp"
 #include "ds/unionfind/unionfind.hpp"
 #include "ds/segtree/segtree.hpp"

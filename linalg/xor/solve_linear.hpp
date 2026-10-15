@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/xor/solve_linear.hpp
 #include "linalg/xor/transpose.hpp"
 
 template <typename UINT>

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/blackbox/min_poly.hpp
 #include "seq/find_linear_rec.hpp"
 #include "random/base.hpp"
 

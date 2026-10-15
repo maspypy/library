@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/four_square.hpp
 #include "nt/three_square.hpp"
 
 tuple<ll, ll, ll, ll> four_square(ll N) {

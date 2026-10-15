@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/famous/stirling_number_2.hpp
 #include "poly/convolution.hpp"
 #include "poly/fps_pow.hpp"
 #include "mod/power_table.hpp"

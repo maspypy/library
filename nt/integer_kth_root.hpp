@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/integer_kth_root.hpp
 u64 integer_kth_root(u64 k, u64 a) {
   assert(k >= 1);
   if (a == 0 || a == 1 || k == 1) return a;

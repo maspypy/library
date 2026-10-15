@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/segtree/range_assignment_segtree.hpp
 #include "ds/segtree/segtree.hpp"
 #include "alg/monoid_pow.hpp"
 #include "ds/fastset.hpp"

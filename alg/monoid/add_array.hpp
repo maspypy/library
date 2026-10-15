@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add_array.hpp
 
 template <typename E, int K>
 struct Monoid_Add_Array {

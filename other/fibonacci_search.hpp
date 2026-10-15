@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/fibonacci_search.hpp
 // returns: {fx, x}
 // [L, R) での極小値をひとつ求める、単峰は不要
 template <typename T, bool MINIMIZE, typename F>

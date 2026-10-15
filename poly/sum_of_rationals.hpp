@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/sum_of_rationals.hpp
 
 #include "poly/convolution.hpp"
 #include "poly/ntt_doubling.hpp"

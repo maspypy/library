@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/palindromic_tree.hpp
 template <int sigma>
 struct Palindromic_Tree {
   struct Node {

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/cumsum_2d.hpp
 
 #include "alg/monoid/add.hpp"
 

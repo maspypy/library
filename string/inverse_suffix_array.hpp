@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/inverse_suffix_array.hpp
 
 // https://atcoder.jp/contests/arc044/tasks/arc044_d
 // 辞書最小 OR

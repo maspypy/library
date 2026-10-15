@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/setfunc/bitwise_transform.hpp
 
 namespace bitwise {
 

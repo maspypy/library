@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/ds/incremental_bridge_connectivity.hpp
 
 // O((N + Q) log N)
 struct Incremental_Bridge_Connectivity {

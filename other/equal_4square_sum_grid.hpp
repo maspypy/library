@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/equal_4square_sum_grid.hpp
 
 // https://atcoder.jp/contests/tupc2023/tasks/tupc2023_k
 // [0,HW-1]の順列ですべての(2,2)正方形の和がS, 解いた場合.

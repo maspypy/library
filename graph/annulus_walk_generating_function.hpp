@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/annulus_walk_generating_function.hpp
 #include "poly/poly_taylor_shift.hpp"
 
 // return: P,Q such that (# of walk s->t of step K)=[x^K]P(x)/Q(x)

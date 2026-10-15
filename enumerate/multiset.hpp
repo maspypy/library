@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/enumerate/multiset.hpp
 // N 元 K 種類の多重集合の頻度列つまり
 // a[0]+...+a[K-1]==N
 template <typename F>

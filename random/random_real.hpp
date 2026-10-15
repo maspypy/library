@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/random/random_real.hpp
 
 #include "random/base.hpp"
 

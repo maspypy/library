@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/golden_search.hpp
 // return : (fx, x)
 // f が評価される回数：2 + iter
 // 幅が 1/phi^{iter} 倍になる. iter = 44: 1e-9.

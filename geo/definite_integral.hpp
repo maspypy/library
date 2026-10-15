@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/definite_integral.hpp
 template <typename Re, typename F>
 Re definite_integral(Re a, Re b, F f, int n) {
   Re I = 0;

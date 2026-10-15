@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/random/random_matrix.hpp
 
 #include "random/base.hpp"
 #include "linalg/det.hpp"

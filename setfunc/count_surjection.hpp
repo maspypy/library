@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/setfunc/count_surjection.hpp
 template<typename mint>
 mint count_surjection(ll n, ll m) {
   if (n < m) return 0;

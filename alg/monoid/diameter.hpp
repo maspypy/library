@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/monoid/diameter.hpp
 
 template <typename TREE>
 struct Monoid_Diameter {

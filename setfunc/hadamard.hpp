@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/setfunc/hadamard.hpp
 
 #include "setfunc/bitwise_transform.hpp"
 

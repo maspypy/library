@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/kmp.hpp
 
 // KMP[n]: longest border length of S[0,n) or 0.
 // https://codeforces.com/contest/2209/problem/E

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/cht.hpp
 namespace CHT {
 template <typename T>
 struct Line {

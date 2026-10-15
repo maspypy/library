@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/count/count_connected_intervals.hpp
 
 #include "alg/acted_monoid/minmincnt_add.hpp"
 #include "ds/segtree/lazy_segtree.hpp"

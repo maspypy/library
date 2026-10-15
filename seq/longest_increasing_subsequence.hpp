@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/longest_increasing_subsequence.hpp
 // dp[i] := 第 i 項で終わる lis 長の最大値（[1, LIS]）
 template <typename T, bool strong = true>
 pair<int, vc<int>> longest_increasing_subsequence_dp(const vector<T>& A) {

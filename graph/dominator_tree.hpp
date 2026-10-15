@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/dominator_tree.hpp
 #include "graph/reverse_graph.hpp"
 
 // parent (idom) の列を返す. -1 if unreachable.

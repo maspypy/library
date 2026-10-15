@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/blackbox/scc.hpp
 
 // G とその reverse graph に対して dfs を行う
 // topo順は正しいが, 探索で見た辺を集めても scc_dag は得られないので注意

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/strongly_connected_component.hpp
 #include "graph/base.hpp"
 
 template <typename GT>

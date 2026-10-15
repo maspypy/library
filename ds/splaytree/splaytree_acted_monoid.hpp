@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/splaytree/splaytree_acted_monoid.hpp
 #include "ds/splaytree/splaytree.hpp"
 
 namespace SplayTreeNodes {

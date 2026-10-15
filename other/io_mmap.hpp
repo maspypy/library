@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/io_mmap.hpp
 
 #include <unistd.h>
 #include <sys/mman.h>

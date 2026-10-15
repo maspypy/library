@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/min_of_linear.hpp
 #include "mod/min_of_linear_segments.hpp"
 
 // min_{x in [L, R)} (ax+b mod)

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/fps_exp.hpp
 #include "poly/convolution.hpp"
 #include "poly/integrate.hpp"
 #include "poly/differentiate.hpp"

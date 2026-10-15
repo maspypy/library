@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/segtree/prefix_max_segtree.hpp
 
 /*
 key[0],...,key[n-1] がある

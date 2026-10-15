@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/count/count_labeled_eulerian.hpp
 #include "poly/fps_log.hpp"
 #include "graph/count/count_labeled_undirected.hpp"
 

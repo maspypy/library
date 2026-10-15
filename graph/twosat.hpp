@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/twosat.hpp
 #include "graph/strongly_connected_component.hpp"
 
 struct TwoSat {

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/interpolate_poly_exp.hpp
 template <typename mint>
 mint interpolate_poly_exp(vc<mint> a, mint r, ll n) {
   // a[i] = r^i * (polynomial of i) となっている場合の補間

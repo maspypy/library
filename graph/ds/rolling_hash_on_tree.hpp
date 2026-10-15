@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/ds/rolling_hash_on_tree.hpp
 #include "random/base.hpp"
 #include "graph/tree.hpp"
 #include "mod/modint61.hpp"

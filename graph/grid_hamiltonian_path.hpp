@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/grid_hamiltonian_path.hpp
 // 始点を固定して、ハミルトンパスを作る。偶数ならサイクルにする。
 // 高次元版：https://codeforces.com/contest/863/submission/194294053
 // 始点終点を止める:https://codeforces.com/problemset/problem/111/E

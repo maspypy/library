@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/bipartite_balanced_edge_coloring.hpp
 #include "graph/bipartite_edge_coloring.hpp"
 
 // 辺を K 色で塗る. 各点のまわりで色が均等（max-min <= 1）にせよ.

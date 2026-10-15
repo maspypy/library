@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/dual_unionfind.hpp
 // component apply, point get, O(log N)
 template <typename Monoid>
 struct Dual_UnionFind {

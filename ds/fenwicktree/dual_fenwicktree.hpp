@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/fenwicktree/dual_fenwicktree.hpp
 
 #include "alg/monoid/add.hpp"
 

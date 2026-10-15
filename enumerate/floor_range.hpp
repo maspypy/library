@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/enumerate/floor_range.hpp
 // 商が q の区間 [l,r) を q について昇順
 template <typename F>
 void floor_range(u64 N, F f, bool Q_ASC = true, bool INCLUDE_Q_IS_0 = false) {

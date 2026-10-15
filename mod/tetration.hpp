@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/tetration.hpp
 #include "mod/barrett.hpp"
 #include "nt/euler_phi.hpp"
 

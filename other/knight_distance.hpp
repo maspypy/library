@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/knight_distance.hpp
 ll knight_distance(ll x, ll y) {
   x = abs(x), y = abs(y);
   if (x + y == 0) return 0;

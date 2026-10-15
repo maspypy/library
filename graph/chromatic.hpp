@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/chromatic.hpp
 #include "graph/base.hpp"
 #include "random/base.hpp"
 #include "nt/is_prime.hpp"

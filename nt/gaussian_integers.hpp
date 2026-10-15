@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/gaussian_integers.hpp
 #include "nt/factor.hpp"
 #include "mod/mod_pow.hpp"
 

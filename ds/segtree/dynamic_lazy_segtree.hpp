@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/segtree/dynamic_lazy_segtree.hpp
 #include "ds/node_pool.hpp"
 
 // Q*4logN 程度必要? apply で 4logN ノード作っていると思う

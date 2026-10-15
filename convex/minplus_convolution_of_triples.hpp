@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/minplus_convolution_of_triples.hpp
 #include "convex/minplus_convolution.hpp"
 
 // https://codeforces.com/contest/436/problem/E

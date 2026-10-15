@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/sigma_0_sum.hpp
 #include "nt/convex_floor_sum.hpp"
 
 // sum_[1,N] sigma_0(n)

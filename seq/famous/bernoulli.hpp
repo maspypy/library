@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/famous/bernoulli.hpp
 #include "poly/fps_div.hpp"
 #include "mod/power_table.hpp"
 

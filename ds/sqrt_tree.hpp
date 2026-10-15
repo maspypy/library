@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/sqrt_tree.hpp
 
 // 折角なので作ってみたが，使わなさそう
 template <typename Monoid>

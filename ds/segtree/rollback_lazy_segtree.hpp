@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/segtree/rollback_lazy_segtree.hpp
 #include "ds/rollback_array.hpp"
 
 // verify? https://qoj.ac/submission/114657

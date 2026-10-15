@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/weight_balanced_tree/wbt_basic.hpp
 #pragma once
 #include "ds/node_pool.hpp"
 #include "ds/weight_balanced_tree/wbt_base.hpp"

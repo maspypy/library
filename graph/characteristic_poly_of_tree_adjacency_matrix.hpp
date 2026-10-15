@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/characteristic_poly_of_tree_adjacency_matrix.hpp
 #include "graph/ds/static_toptree.hpp"
 #include "ds/unionfind/unionfind.hpp"
 #include "poly/convolution.hpp"

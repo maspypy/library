@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/static_monoid_products.hpp
 
 // f(q, Lprod, Rprod)
 // f 以外で呼ばれるものはすべて単項追加

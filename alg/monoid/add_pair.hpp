@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add_pair.hpp
 
 template <typename E>
 struct Monoid_Add_Pair {

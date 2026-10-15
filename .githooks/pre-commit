@@ -1,0 +1,12 @@
+#!/bin/sh
+# Keep this hook non-mutating: users retain control over what enters the index.
+if command -v python3 >/dev/null 2>&1; then
+  exec python3 scripts/update_source_urls.py --check
+elif command -v python >/dev/null 2>&1; then
+  exec python scripts/update_source_urls.py --check
+elif command -v py >/dev/null 2>&1; then
+  exec py -3 scripts/update_source_urls.py --check
+fi
+
+echo "Python 3 is required for the source URL pre-commit hook." >&2
+exit 1

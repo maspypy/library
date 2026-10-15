@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/famous/simple_permutations.hpp
 #include "poly/online/online_convolution.hpp"
 
 // https://oeis.org/A059372 sum_{n>0} n!x^n の逆関数

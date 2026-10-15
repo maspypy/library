@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/pell_equation.hpp
 // x^2 - Dy^2 == pm 1, 正の最小解 1<=x<=LIM_X, なければ (0,0), O(log(ANS))
 // T で (LIM_X)^2 程度がオーバーフローしない
 template <typename T>

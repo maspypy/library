@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/digit_sum.hpp
 
 int digit_sum(u64 x) {
   const int K = 100'000;

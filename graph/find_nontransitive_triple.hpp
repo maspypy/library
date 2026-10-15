@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/find_nontransitive_triple.hpp
 #include "graph/base.hpp"
 
 // ab, bc 辺はあるが ac 辺はないような 3 つ組 (a,b,c) を探す。

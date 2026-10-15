@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/monoid/affine.hpp
 
 // op(F, G) = comp(G,F), F のあとで G
 template <typename K>

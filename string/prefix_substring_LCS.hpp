@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/prefix_substring_LCS.hpp
 #include "ds/wavelet_matrix/wavelet_matrix.hpp"
 
 // https://codeforces.com/blog/entry/111625

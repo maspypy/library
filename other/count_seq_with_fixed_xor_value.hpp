@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/count_seq_with_fixed_xor_value.hpp
 #include "mod/modint.hpp"
 
 // [0, LIM)^N のうちで、xor = X となるものの個数

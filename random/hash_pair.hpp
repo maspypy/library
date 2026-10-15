@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/random/hash_pair.hpp
 #include "random/base.hpp"
 
 template <typename T>

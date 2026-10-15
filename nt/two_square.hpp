@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/two_square.hpp
 #include "nt/gaussian_integers.hpp"
 
 vc<pair<ll, ll>> two_square(ll N, bool only_nonnegative) {

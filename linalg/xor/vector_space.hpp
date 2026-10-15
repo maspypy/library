@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/xor/vector_space.hpp
 #include "linalg/xor/transpose.hpp"
 
 /*

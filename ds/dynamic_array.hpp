@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/dynamic_array.hpp
 #include "ds/node_pool.hpp"
 
 template <typename T, bool PERSISTENT>

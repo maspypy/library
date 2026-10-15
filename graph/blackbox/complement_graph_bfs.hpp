@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/blackbox/complement_graph_bfs.hpp
 #include "graph/base.hpp"
 
 template <typename GT>

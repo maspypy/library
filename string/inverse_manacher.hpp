@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/inverse_manacher.hpp
 #include "ds/unionfind/unionfind.hpp"
 #include "other/mex.hpp"
 

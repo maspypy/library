@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/inside_polygon.hpp
 // https://qoj.ac/problem/5443
 // 線分上に頂点や辺が来ることは許容
 template <typename T>

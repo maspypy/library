@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/matrix_mul.hpp
 #include "mod/modint.hpp"
 
 template <class T, typename enable_if<has_mod<T>::value>::type* = nullptr>

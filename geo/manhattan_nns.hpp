@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/manhattan_nns.hpp
 #include "ds/segtree/segtree.hpp"
 #include "alg/monoid/minidx.hpp"
 

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/apollonian_circle.hpp
 #include "geo/base.hpp"
 
 // https://codeforces.com/contest/2/problem/C

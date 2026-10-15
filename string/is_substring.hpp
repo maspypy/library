@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/is_substring.hpp
 #include "string/z_algorithm.hpp"
 
 // 連続部分列に含むかどうか。z-algo で線形時間

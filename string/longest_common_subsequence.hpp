@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/longest_common_subsequence.hpp
 
 template <typename STRING>
 ll longest_common_subsequence(STRING& A, STRING& B) {

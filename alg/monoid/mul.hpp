@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/monoid/mul.hpp
 
 template <class T>
 struct Monoid_Mul {

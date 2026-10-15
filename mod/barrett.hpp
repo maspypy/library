@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/barrett.hpp
 
 // https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp
 struct Barrett {

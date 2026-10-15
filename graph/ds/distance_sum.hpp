@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/ds/distance_sum.hpp
 #include "graph/ds/static_toptree.hpp"
 
 // 木の頂点の重み付き集合を管理.

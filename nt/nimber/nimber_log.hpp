@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/nimber/nimber_log.hpp
 #include "nt/nimber/base.hpp"
 #include "ds/hashmap.hpp"
 #include "mod/crt3.hpp"

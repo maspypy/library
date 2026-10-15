@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/composed_product.hpp
 #include "poly/sum_of_power_of_roots.hpp"
 #include "poly/fps_exp.hpp"
 

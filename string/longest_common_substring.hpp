@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/longest_common_substring.hpp
 #include "string/suffix_array.hpp"
 
 template <typename STRING>

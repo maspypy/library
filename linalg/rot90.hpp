@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/rot90.hpp
 template <typename VC>
 vc<VC> rot90(const vc<VC>& A, bool counter_clockwise = true, int H = -1,
              int W = -1) {

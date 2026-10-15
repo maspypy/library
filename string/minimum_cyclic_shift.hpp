@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/minimum_cyclic_shift.hpp
 
 // 始点を返す
 template <typename STRING>

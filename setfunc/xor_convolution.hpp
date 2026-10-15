@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/setfunc/xor_convolution.hpp
 #include "setfunc/hadamard.hpp"
 
 template <typename T>

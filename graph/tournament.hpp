@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/tournament.hpp
 // https://yukicoder.me/problems/no/2085
 // https://codeforces.com/problemset/problem/412/D
 template <typename F>

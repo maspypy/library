@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/lcm_convolution.hpp
 #include "nt/zeta.hpp"
 
 template <typename T>

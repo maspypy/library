@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/sidon_sequence.hpp
 #include "mod/mod_sqrt.hpp"
 #include "nt/is_prime.hpp"
 #include "mod/primitive_root.hpp"

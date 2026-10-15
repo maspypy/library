@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/substring_abundant_string.hpp
 #include "string/run_length.hpp"
 
 // 部分文字列の種類数が最大であるような 01 文字列の構成

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/mod_2/convolution.hpp
 #include <wmmintrin.h>
 
 #include "ds/bit_array.hpp"

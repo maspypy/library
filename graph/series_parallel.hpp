@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/series_parallel.hpp
 // https://codeforces.com/problemset/problem/2206/G
 // two-terminal series parallel
 // series:次数2の点からなるパスの縮約

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/monoid/lcm.hpp
 
 // 大きいときは infty<T>
 template <typename T>

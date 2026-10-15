@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/lex_max_suffix_for_all_prefix.hpp
 #include "string/suffix_array.hpp"
 
 // ANS[i] := length of lex-max suffix of S[0,i), O(|S|) time

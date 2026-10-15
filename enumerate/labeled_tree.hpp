@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/enumerate/labeled_tree.hpp
 #include "enumerate/product.hpp"
 #include "graph/prufer_code.hpp"
 

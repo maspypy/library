@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/tree_dp/subtree_depth_sum.hpp
 
 #include "graph/tree_dp/rerooting_dp.hpp"
 

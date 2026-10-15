@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/setfunc/sps_composition.hpp
 #include "setfunc/ranked_zeta.hpp"
 
 // sum_i f_i/i! s^i, s^i is subset-convolution

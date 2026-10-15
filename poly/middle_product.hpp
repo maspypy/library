@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/middle_product.hpp
 
 #include "poly/ntt.hpp"
 #include "mod/crt3.hpp"

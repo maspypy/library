@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/sparse_table/sparse_table.hpp
 
 // 冪等なモノイドであることを仮定。disjoint sparse table より x 倍高速
 template <class Monoid>

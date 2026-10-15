@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/slope_trick/slope_trick_super.hpp
 #include "ds/splaytree/splaytree.hpp"
 #include "alg/monoid/add_pair.hpp"
 

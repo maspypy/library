@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/closest_pair.hpp
 #include "geo/base.hpp"
 #include "random/base.hpp"
 #include "random/shuffle.hpp"

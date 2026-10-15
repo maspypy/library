@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/rank_for_all_column_subset.hpp
 
 // return: 2^M integers
 // time: (N+M)^3+2^M

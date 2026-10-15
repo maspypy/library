@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/segtree/dynamic_segtree_sparse.hpp
 
 // 常にほとんどの要素が id であることが保証されるような動的セグ木
 // したがって、default_prod の類は持たせられず、acted monoid も一般には扱えない

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/min_slope_sum.hpp
 
 // https://uoj.ac/contest/104/problem/1037
 // A, B が下側凸包になっていて A[i]+B[j] の x 座標が正であることが保証

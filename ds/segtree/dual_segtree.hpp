@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/segtree/dual_segtree.hpp
 
 template <typename Monoid>
 struct Dual_SegTree {

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/setfunc/zeta.hpp
 
 #include "setfunc/bitwise_transform.hpp"
 

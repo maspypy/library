@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/shortest_path/warshall_floyd.hpp
 #include "graph/base.hpp"
 
 // 負辺があっても負閉路がなければ正しく動作する。

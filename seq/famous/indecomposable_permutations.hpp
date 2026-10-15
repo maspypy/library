@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/famous/indecomposable_permutations.hpp
 #include "poly/fps_inv.hpp"
 
 // 非空な prefix < suffix に分割できないもの

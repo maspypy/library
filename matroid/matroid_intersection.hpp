@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/matroid/matroid_intersection.hpp
 
 // https://codeforces.com/contest/1556/problem/H
 // https://page.math.tu-berlin.de/~felsner/Lehre/SemMatS/Literatur/Schrijver-41:MatIntersection.pdf

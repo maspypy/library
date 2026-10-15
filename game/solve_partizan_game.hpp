@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/game/solve_partizan_game.hpp
 
 #include "game/number_and_star.hpp"
 

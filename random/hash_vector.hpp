@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/random/hash_vector.hpp
 
 #include "random/base.hpp"
 #include "mod/modint61.hpp"

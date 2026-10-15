@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/hook_length_formula.hpp
 
 #include "mod/modint.hpp"
 

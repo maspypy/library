@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/connected_dp.hpp
 #include "ds/hashmap.hpp"
 #include "random/hash_vector.hpp"
 

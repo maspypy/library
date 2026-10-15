@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/mex.hpp
 int mex(const vc<int>& A) {
   int n = len(A);
   vc<bool> aru(n + 1);

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/prefix_sum_of_binom.hpp
 #include "ds/offline_query/mo.hpp"
 
 template <typename mint>

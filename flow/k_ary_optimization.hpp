@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/flow/k_ary_optimization.hpp
 
 #include "flow/maxflow.hpp"
 

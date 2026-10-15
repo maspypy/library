@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/template/sqrt_decomposition.hpp
 // template/sqrt_decomposition.hpp
 struct Block {
   int N, off;

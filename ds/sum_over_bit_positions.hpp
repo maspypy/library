@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/sum_over_bit_positions.hpp
 #include "ds/bit_array.hpp"
 
 // https://qoj.ac/contest/1784/problem/9244

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/trie.hpp
 
 // sigma が小さい
 // 一般の n 頂点の木構造で O(n) 時間で動く

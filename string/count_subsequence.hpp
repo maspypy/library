@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/count_subsequence.hpp
 // https://noshi91.hatenablog.com/entry/2023/02/26/135340
 // 行列にするときは、(mp[x]+1) の列を持つと小さい行列になることがある.
 // https://yukicoder.me/problems/no/2762

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/flow/binary_optimization.hpp
 #include "flow/maxflow.hpp"
 
 template <typename T, bool MINIMIZE>

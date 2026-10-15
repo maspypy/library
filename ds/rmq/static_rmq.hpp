@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/rmq/static_rmq.hpp
 #include "ds/sparse_table/sparse_table.hpp"
 
 // 構築 O(N), クエリ O(1)

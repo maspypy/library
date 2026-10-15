@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/ds/static_tree_monoid.hpp
 #include "ds/sparse_table/disjoint_sparse_table.hpp"
 #include "graph/tree.hpp"
 #include "alg/monoid/monoid_reverse.hpp"

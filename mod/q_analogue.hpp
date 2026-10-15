@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/q_analogue.hpp
 #include "mod/modint.hpp"
 #include "mod/all_inverse.hpp"
 

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/tree_dp/subtree_diameter.hpp
 #include "graph/tree_dp/rerooting_dp.hpp"
 
 // https://codeforces.com/problemset/problem/1725/J

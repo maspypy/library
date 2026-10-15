@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/slope_trick/slope_trick_1.hpp
 
 #include "ds/double_ended_queue_const_add.hpp"
 #include "alg/monoid/add.hpp"

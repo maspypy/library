@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/incremental_convex_hull.hpp
 #include "geo/base.hpp"
 
 // 下側凸包

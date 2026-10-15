@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/convex_floor_sum.hpp
 
 // f: 凸, 非負, 単調増加を仮定
 // above(x,y) : y > f(x)

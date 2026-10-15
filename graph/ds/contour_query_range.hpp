@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/ds/contour_query_range.hpp
 #include "graph/centroid_decomposition.hpp"
 
 // 距離 0 は含めていないことに注意！

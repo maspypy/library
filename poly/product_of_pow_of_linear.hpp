@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/product_of_pow_of_linear.hpp
 #include "poly/sum_of_rationals.hpp"
 #include "poly/fps_inv.hpp"
 #include "poly/fps_exp.hpp"

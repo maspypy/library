@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add_chmin_chmax.hpp
 
 // max(min(x+a,b),c) と表せる関数の合成
 template <typename E>

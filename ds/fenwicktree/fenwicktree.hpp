@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/fenwicktree/fenwicktree.hpp
 #include "alg/monoid/add.hpp"
 
 template <typename Monoid>

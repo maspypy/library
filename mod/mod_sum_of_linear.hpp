@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/mod_sum_of_linear.hpp
 #include "mod/floor_sum_of_linear.hpp"
 
 i128 mod_sum_of_linear(ll L, ll R, ll a, ll b, ll mod) {

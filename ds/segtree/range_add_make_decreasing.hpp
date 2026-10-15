@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/segtree/range_add_make_decreasing.hpp
 
 #include "ds/segtree/dual_segtree.hpp"
 #include "alg/monoid/add.hpp"

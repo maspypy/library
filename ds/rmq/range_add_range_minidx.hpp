@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/rmq/range_add_range_minidx.hpp
 #include "ds/segtree/segtree.hpp"
 
 // INF+x==INF みたいな処理は入れていない

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/template/grid.hpp
 // template/grid.hpp
 auto isin = [&](int x, int y) -> bool {
   return (0 <= x && x < H && 0 <= y && y < W);

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/stable_matching.hpp
 
 // グループ 1 にとって最適な stable matching が存在するのでそれをかえす.
 // O((N+M)logM)

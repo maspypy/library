@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/segtree/segtree_2d.hpp
 // 点の重複があっても別の点として set などがされる
 template <typename Monoid, typename XY, bool SMALL_X = false>
 struct SegTree_2D {

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/diagonalize_triangular_matrix.hpp
 
 #include "linalg/transpose.hpp"
 #include "linalg/matrix_inv.hpp"

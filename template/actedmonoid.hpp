@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/template/actedmonoid.hpp
 // template/actedmonoid.hpp
 struct ActedMonoid {
   using Monoid_X = ;

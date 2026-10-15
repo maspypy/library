@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/greedy_coin_counter_example.hpp
 
 // https://codeforces.com/problemset/problem/10/E
 // 最小反例 or -1 を返す.

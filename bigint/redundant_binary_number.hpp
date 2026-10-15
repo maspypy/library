@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/bigint/redundant_binary_number.hpp
 #include "ds/fastset.hpp"
 
 // 2^i を足したり引いたり. k-th digit の取得.

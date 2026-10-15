@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/range_xor_basis_query.hpp
 
 // 列もクエリも static
 template <typename INT_TYPE, int LOG>

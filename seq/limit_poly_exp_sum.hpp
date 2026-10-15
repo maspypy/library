@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/limit_poly_exp_sum.hpp
 #include "mod/modint.hpp"
 template <typename mint>
 mint limit_poly_exp_sum(vc<mint> a, mint r) {

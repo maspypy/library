@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/splaytree/splaytree.hpp
 #include "ds/node_pool.hpp"
 
 // Node 型を別に定義して使う

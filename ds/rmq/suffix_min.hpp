@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/rmq/suffix_min.hpp
 #include "ds/unionfind/unionfind.hpp"
 
 // 末尾代入

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/bitset/scc_bitset.hpp
 #include "graph/blackbox/scc.hpp"
 
 // 密グラフのscc

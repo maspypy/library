@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/array_on_floor.hpp
 // N=10 だと dat = {dp[1], dp[2], dp[3], dp[5], dp[10]} みたいになる
 // hashmap より数倍高速
 template <typename T>

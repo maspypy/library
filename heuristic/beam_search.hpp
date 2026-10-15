@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/heuristic/beam_search.hpp
 // https://codeforces.com/contest/2219/problem/E
 // struct State {
 //   using score_type = int;

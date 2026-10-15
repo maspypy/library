@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/random/random_bracket.hpp
 #include "random/shuffle.hpp"
 
 // return: +1,-1 の列

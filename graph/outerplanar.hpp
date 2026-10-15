@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/outerplanar.hpp
 
 // N>=3, simple を前提. return: biconnected planar?
 bool check_outerplanar(vc<int> cycle, Graph<int, 0> G) {

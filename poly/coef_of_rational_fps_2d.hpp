@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/coef_of_rational_fps_2d.hpp
 #include "poly/convolution.hpp"
 #include "poly/fps_div.hpp"
 #include "linalg/transpose.hpp"

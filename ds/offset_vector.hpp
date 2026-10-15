@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/offset_vector.hpp
 // V[L],...,V[R-1] を大きさ R-L の vector で管理する
 template <typename T>
 struct OffsetVector {

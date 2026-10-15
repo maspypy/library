@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/solve_linear.hpp
 /*
 0 行目に解のひとつ。
 1～行目に解空間の基底が行ベクトルとして入る。

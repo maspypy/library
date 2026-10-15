@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/prime_table.hpp
 
 template <typename T = int>
 vc<T> prime_table(int LIM) {

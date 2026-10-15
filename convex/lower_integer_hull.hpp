@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/lower_integer_hull.hpp
 
 #include "geo/base.hpp"
 #include "convex/line_min_function.hpp"

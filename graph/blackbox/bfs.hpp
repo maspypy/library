@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/blackbox/bfs.hpp
 // 辺重みはすべて 1 である
 // [dist, par]
 template <typename F1, typename F2>

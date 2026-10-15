@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/convolution.hpp
 #include "mod/modint.hpp"
 #include "mod/mod_inv.hpp"
 #include "mod/crt3.hpp"

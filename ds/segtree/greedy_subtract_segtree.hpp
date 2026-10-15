@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/segtree/greedy_subtract_segtree.hpp
 #include "alg/monoid_pow.hpp"
 
 /*

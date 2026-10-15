@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/cartesian_tree.hpp
 /*
 辞書順で高さを unique して、木にしている。
 極大長方形アルゴリズムで線形時間構築。

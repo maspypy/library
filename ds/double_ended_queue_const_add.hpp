@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/double_ended_queue_const_add.hpp
 // 全体加算もできるようにしよう
 // Monoid_Add<T> を渡す感じで. T は operator< が定義されている必要あり.
 template <typename Monoid>

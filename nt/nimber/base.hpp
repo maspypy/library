@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/nimber/base.hpp
 #include "nt/nimber/nimber_impl.hpp"
 
 template <typename UINT>

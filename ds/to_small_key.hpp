@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/to_small_key.hpp
 #include "ds/hashmap.hpp"
 
 // [30,10,20,30] -> [0,1,2,0] etc.

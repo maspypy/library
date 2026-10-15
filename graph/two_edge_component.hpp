@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/two_edge_component.hpp
 #include "graph/base.hpp"
 
 // (成分数, 成分番号の vector)

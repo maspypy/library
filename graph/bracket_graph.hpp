@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/bracket_graph.hpp
 #include "graph/base.hpp"
 
 // {G, LR}.

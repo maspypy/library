@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/convolution_karatsuba.hpp
 #include "poly/convolution_naive.hpp"
 
 // 任意の環でできる

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/acted_set/affine.hpp
 #include "alg/monoid/affine.hpp"
 
 // 1 次元ベクトル空間に、アフィン変換が作用

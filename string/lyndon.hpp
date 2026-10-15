@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/lyndon.hpp
 
 template <typename CHAR>
 struct Incremental_Lyndon_Factorization {

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/rational_binary_search.hpp
 
 // 0/1 OK, 1/0 NG. 3N がオーバーフローしない. unsigned OK.
 // return : (a,b,c,d) such that a/b OK, c/d NG.

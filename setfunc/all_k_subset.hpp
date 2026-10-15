@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/setfunc/all_k_subset.hpp
 
 #ifdef _MSC_VER
 #include <intrin.h>

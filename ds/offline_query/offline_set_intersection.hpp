@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/offline_set_intersection.hpp
 #include "ds/csr.hpp"
 #include "ds/to_small_key.hpp"
 

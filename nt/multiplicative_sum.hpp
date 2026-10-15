@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/multiplicative_sum.hpp
 #include "nt/prime_table.hpp"
 
 // f_pe：T(int p,int e), f(p^e)

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/all_lcm.hpp
 #include "nt/factor.hpp"
 #include "nt/spf_table.hpp"
 

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/io.hpp
 #define FASTIO
 
 // https://judge.yosupo.jp/submission/21623

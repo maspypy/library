@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/wildcard_pattern_matching.hpp
 #include "mod/modint.hpp"
 #include "poly/ntt.hpp"
 #include "poly/middle_product.hpp"

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/primitive_root.hpp
 
 #include "nt/factor.hpp"
 #include "mod/mod_pow.hpp"

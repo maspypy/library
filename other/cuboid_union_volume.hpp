@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/cuboid_union_volume.hpp
 #include "ds/incremental_rectangle_union.hpp"
 
 // [0,a] x [0,b] x [0,c] の和集合の体積

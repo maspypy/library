@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/ds/dual_tree_monoid.hpp
 #include "graph/tree.hpp"
 #include "ds/segtree/dual_segtree.hpp"
 

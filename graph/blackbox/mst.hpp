@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/blackbox/mst.hpp
 #include "ds/unionfind/unionfind.hpp"
 
 // Brouvka

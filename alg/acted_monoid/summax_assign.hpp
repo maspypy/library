@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/summax_assign.hpp
 #include "alg/monoid/summax.hpp"
 #include "alg/monoid/assign.hpp"
 

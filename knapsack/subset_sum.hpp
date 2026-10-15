@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/knapsack/subset_sum.hpp
 #include "ds/bit_array.hpp"
 #include "enumerate/bits.hpp"
 

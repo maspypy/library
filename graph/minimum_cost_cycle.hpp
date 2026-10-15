@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/minimum_cost_cycle.hpp
 #include "graph/base.hpp"
 
 // {wt, vs, es}, O(N * shortest path)

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/dirichlet.hpp
 #include "nt/integer_kth_root.hpp"
 
 // Dirichlet 級数自体は vc<T> で持つことにする.

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/find_path_through_specified.hpp
 #include "graph/base.hpp"
 #include "random/base.hpp"
 #include "nt/GF2.hpp"

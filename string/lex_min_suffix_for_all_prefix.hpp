@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/lex_min_suffix_for_all_prefix.hpp
 #include "string/lyndon.hpp"
 
 // ANS[i] := length of lex-min suffix of S[0,i)

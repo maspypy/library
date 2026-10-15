@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/ext_gcd.hpp
 // {g,x,y}, ax+by=g
 template <typename T>
 tuple<T, T, T> ext_gcd(T a, T b) {

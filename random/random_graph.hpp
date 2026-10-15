@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/random/random_graph.hpp
 #include "graph/base.hpp"
 #include "random/base.hpp"
 #include "random/shuffle.hpp"

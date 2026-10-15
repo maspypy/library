@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/enumerate/bits.hpp
 template <typename BS, typename F>
 void enumerate_bits_bitset(BS& b, int L, int R, F&& f) {
   if (L >= len(b)) return;

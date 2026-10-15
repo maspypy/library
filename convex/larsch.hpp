@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/larsch.hpp
 // 制約きつい https://codeforces.com/contest/2183/problem/H
 template <class T, class F>
 class LARSCH {

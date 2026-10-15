@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/sort_substrings.hpp
 #include "string/suffix_array.hpp"
 
 // dp[i][j]：S[i:i+j) の rank

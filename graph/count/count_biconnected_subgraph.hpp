@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/count/count_biconnected_subgraph.hpp
 #include "graph/count/count_connected_subgraph.hpp"
 #include "setfunc/sps_log.hpp"
 

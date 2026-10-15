@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/shortest_path/nonzero_group_product_shortest_path.hpp
 
 #include "graph/base.hpp"
 #include "graph/shortest_path/dijkstra.hpp"

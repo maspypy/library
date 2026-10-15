@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/kth_root_permutation.hpp
 
 // (status, perm)
 // 0: no solution

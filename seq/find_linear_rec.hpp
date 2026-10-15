@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/find_linear_rec.hpp
 
 #include "poly/poly_gcd.hpp"
 

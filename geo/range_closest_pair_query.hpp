@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/range_closest_pair_query.hpp
 #include "ds/hashmap.hpp"
 #include "ds/segtree/dual_segtree.hpp"
 #include "alg/monoid/min.hpp"

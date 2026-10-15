@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/count/count_P3_P4_P5.hpp
 #include "graph/count/count_C3_C4.hpp"
 
 // 各 v に対して、v を始点とする P4, P5, P5 を数える（頂点数 3, 4, 5）

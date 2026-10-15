@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/matroid/K_forest.hpp
 // frm, to, 重複度
 // https://codeforces.com/contest/1951/problem/I
 bool is_k_forest(ll K, int N, vc<tuple<int, int, ll>> dat) {

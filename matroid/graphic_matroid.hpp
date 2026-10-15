@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/matroid/graphic_matroid.hpp
 struct Graphic_Matroid {
   Graph<int, 0> G;
   vc<int> root, dep, par, que;

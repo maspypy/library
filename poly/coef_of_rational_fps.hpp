@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/coef_of_rational_fps.hpp
 #include "poly/fps_div.hpp"
 #include "poly/ntt_doubling.hpp"
 #include "poly/poly_divmod.hpp"

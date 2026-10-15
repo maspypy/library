@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/interpolate_periodic_sequence.hpp
 
 #include "string/z_algorithm.hpp"
 

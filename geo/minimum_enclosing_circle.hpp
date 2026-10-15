@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/minimum_enclosing_circle.hpp
 #include "geo/base.hpp"
 #include "random/shuffle.hpp"
 #include "geo/outcircle.hpp"

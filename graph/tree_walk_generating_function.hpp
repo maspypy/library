@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/tree_walk_generating_function.hpp
 
 #include "graph/shortest_path/bfs_01.hpp"
 #include "graph/characteristic_poly_of_tree_adjacency_matrix.hpp"

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/segtree/dynamic_dual_segtree.hpp
 #include "ds/node_pool.hpp"
 
 // Q*2logN 程度必要

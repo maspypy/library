@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/bipartite_vertex_coloring_ng1.hpp
 
 // 1 辺を除いて二部グラフになるようにする
 // https://codeforces.com/contest/1680/problem/F

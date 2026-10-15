@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/power_query.hpp
 #include "alg/monoid/mul.hpp"
 
 // 定数をべき乗するクエリ。 B 乗分ずつ前計算。

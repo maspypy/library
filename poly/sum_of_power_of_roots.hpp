@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/sum_of_power_of_roots.hpp
 #include "poly/fps_div.hpp"
 
 // f = prod(1-a_ix) のとき、g[k] = sum_i a_i^k となる g の [0, LIM] を返す

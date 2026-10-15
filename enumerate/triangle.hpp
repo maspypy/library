@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/enumerate/triangle.hpp
 #include "graph/base.hpp"
 
 template <typename Gr, typename F>

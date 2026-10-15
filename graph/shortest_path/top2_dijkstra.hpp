@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/shortest_path/top2_dijkstra.hpp
 #include "graph/base.hpp"
 #include "alg/monoid/min2.hpp"
 

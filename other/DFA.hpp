@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/DFA.hpp
 // https://qoj.ac/contest/1323/problem/7083
 struct DFA {
   // state, alphabet, initial state

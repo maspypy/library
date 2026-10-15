@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/ds/grid_decremental_connectivity.hpp
 #include "ds/unionfind/unionfind.hpp"
 
 // https://codeforces.com/contest/1864/problem/I

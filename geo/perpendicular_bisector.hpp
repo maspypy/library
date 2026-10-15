@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/perpendicular_bisector.hpp
 #include "geo/base.hpp"
 
 template <typename T>

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/reachability.hpp
 #include "graph/strongly_connected_component.hpp"
 #include "graph/reverse_graph.hpp"
 

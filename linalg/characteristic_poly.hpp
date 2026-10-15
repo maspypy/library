@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/characteristic_poly.hpp
 template <typename T>
 void to_hessenberg_matrix(vc<vc<T>>& A) {
   /*

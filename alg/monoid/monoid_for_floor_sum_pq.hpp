@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/monoid/monoid_for_floor_sum_pq.hpp
 
 // floor path で (x,y) から x 方向に進むときに p^xq^yx^k1y^k2 を足す
 template <typename T, int K1, int K2>

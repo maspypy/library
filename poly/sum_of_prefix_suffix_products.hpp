@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/sum_of_prefix_suffix_products.hpp
 #include "poly/convolution.hpp"
 
 /*

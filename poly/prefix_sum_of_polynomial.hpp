@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/prefix_sum_of_polynomial.hpp
 #include "seq/famous/bernoulli.hpp"
 
 // f: polynomial.

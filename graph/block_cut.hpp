@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/block_cut.hpp
 #include "graph/base.hpp"
 
 // 非連結でも動作する，BCT は森．

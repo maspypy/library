@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/z_algorithm.hpp
 
 template <typename STRING>  // string, vector どちらでも
 vector<int> z_algorithm(const STRING& s) {

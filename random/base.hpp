@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/random/base.hpp
 
 u64 RNG_64() {
   static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(

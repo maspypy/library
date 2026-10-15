@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/monoid/minmincnt.hpp
 
 // 最小値、最小値の個数
 template <typename E>

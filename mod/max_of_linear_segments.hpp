@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/max_of_linear_segments.hpp
 #include "mod/min_of_linear_segments.hpp"
 
 /*

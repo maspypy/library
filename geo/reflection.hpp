@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/reflection.hpp
 
 #include "geo/base.hpp"
 

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/bitset/matrix_pow.hpp
 #include "ds/bit_array.hpp"
 #include "linalg/bitset/matrix_mul_mod_2.hpp"
 

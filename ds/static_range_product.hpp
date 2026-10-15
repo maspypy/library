@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/static_range_product.hpp
 #include "ds/sparse_table/sparse_table.hpp"
 #include "ds/sparse_table/disjoint_sparse_table.hpp"
 

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/xor/transpose.hpp
 
 // n x m 行列の transpose。O((n+m)log(n+m)) 時間。
 // https://github.com/dsnet/matrix-transpose

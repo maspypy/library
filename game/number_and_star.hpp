@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/game/number_and_star.hpp
 #include "game/dyadic_rational.hpp"
 #include "other/mex.hpp"
 

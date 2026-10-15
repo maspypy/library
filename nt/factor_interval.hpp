@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/factor_interval.hpp
 #include "nt/prime_table.hpp"
 
 // n が p を持つとき f(n, p) を呼ぶ

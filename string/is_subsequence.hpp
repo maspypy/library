@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/is_subsequence.hpp
 template <typename STRING>
 bool is_subsequence(const STRING& S, const STRING& T) {
   ll p = 0;

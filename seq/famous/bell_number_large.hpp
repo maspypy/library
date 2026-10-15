@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/famous/bell_number_large.hpp
 #include "poly/coef_of_rational_fps.hpp"
 
 // Bell 数 B_n の計算。O(p logp logn)

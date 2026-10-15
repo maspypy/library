@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/static_vector.hpp
 // 固定のサイズ上限をもつ vector
 template <typename T, int N>
 struct Static_Vector {

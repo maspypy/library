@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/shortest_path/bellman_ford.hpp
 #include "graph/base.hpp"
 
 // END=true: 負閉路があれば終了して空配列を返す.

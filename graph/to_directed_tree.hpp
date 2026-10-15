@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/to_directed_tree.hpp
 #include "graph/base.hpp"
 
 template <typename GT>

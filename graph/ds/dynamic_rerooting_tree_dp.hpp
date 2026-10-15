@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/ds/dynamic_rerooting_tree_dp.hpp
 #include "graph/ds/static_toptree.hpp"
 
 /*

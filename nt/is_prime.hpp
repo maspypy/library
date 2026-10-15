@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/is_prime.hpp
 #include "mod/montgomery_modint.hpp"
 
 bool is_prime(const u64 x) {

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/ds/remove_one_edge_connectivity.hpp
 #include "graph/base.hpp"
 
 // 1 辺消したときに

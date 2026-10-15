@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/template/beats_template.hpp
 // template/beats_template.hpp
 struct Beats {
   struct MonoX {

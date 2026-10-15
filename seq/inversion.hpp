@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/inversion.hpp
 #include "ds/fenwicktree/fenwicktree_01.hpp"
 
 template <typename T>

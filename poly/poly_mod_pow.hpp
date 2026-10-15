@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/poly_mod_pow.hpp
 #include "poly/poly_divmod.hpp"
 
 // f^n mod g

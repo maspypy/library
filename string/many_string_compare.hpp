@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/many_string_compare.hpp
 #include "string/suffix_array.hpp"
 
 // https://qoj.ac/contest/1803/problem/9406

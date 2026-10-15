@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/reeds_sloane.hpp
 #include "nt/factor.hpp"
 #include "mod/mod_inv.hpp"
 #include "mod/dynamic_modint.hpp"

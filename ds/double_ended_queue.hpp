@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/double_ended_queue.hpp
 // T は operator< を持つ
 template <typename T>
 struct Double_Ended_Queue {

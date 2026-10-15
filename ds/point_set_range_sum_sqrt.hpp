@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/point_set_range_sum_sqrt.hpp
 #include "alg/monoid/add.hpp"
 
 // update O(1) / query O(sqrt N)

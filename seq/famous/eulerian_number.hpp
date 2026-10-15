@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/famous/eulerian_number.hpp
 #include "mod/power_table.hpp"
 #include "poly/convolution.hpp"
 

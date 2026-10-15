@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/ds/lct_node_monoid.hpp
 
 template <typename Monoid>
 struct LCT_Node_Monoid {

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/kdtree/kdtree_acted_monoid.hpp
 template <class ActedMonoid, typename XY>
 struct KDTree_ActedMonoid {
   using AM = ActedMonoid;

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/segtree/beats_multiset_chmin.hpp
 
 // 列 A[i] が multiset としてどうなっているかを管理する.
 // A[i]:=x, A[i]:=min(A[i],x)

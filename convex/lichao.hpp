@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/lichao.hpp
 /*
 struct F {
   using value_type = ll;  // operator() の戻り値

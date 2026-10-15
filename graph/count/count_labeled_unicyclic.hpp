@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/count/count_labeled_unicyclic.hpp
 #include "poly/fps_log.hpp"
 
 // https://oeis.org/A057500

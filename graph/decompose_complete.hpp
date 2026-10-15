@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/decompose_complete.hpp
 // 偶数頂点の無向完全グラフをハミルトンパスに分解
 vvc<int> to_paths(ll N, ll K) {
   assert(N >= 0 && N % 2 == 0 && 0 <= K && K <= N / 2);

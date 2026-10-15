@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/tree_dp/O_NK_rerooting_tree_dp.hpp
 #include "graph/base.hpp"
 #include "ds/offset_vector.hpp"
 

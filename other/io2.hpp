@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/io2.hpp
 #define INT(...)   \
   int __VA_ARGS__; \
   IN(__VA_ARGS__)

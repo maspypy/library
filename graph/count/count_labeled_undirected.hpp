@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/count/count_labeled_undirected.hpp
 // https://oeis.org/A006125
 template <typename mint>
 vc<mint> count_labeled_undirected(int N) {

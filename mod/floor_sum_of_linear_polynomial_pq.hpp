@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/floor_sum_of_linear_polynomial_pq.hpp
 #include "mod/floor_monoid_product.hpp"
 #include "alg/monoid/monoid_for_floor_sum_pq.hpp"
 

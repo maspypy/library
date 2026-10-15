@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/basis.hpp
 
 // basis[i]: i 番目に追加成功したもの. 別のラベルがあるなら外で管理する.
 // rbasis: 上三角化された基底. [i][i]==1.

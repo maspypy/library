@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/minkowski_sum.hpp
 #include "geo/angle_sort.hpp"
 
 // https://codeforces.com/contest/87/problem/E

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/compositional_inverse.hpp
 #include "poly/differentiate.hpp"
 // #include "poly/composition.hpp"
 #include "poly/fps_div.hpp"

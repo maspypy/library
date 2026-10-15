@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/setfunc/xor_submask_lower_bound.hpp
 
 // a <= b xor (submask S) となる中で右辺の最小
 // なければ UINT(-1)

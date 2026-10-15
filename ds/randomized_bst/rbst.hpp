@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/randomized_bst/rbst.hpp
 #include "ds/node_pool.hpp"
 
 // 単に S の元の列を管理する

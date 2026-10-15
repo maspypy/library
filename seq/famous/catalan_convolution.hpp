@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/famous/catalan_convolution.hpp
 // [x^n]C(x)^pow
 template <typename mint>
 mint catalan_convolution(ll pow, ll n) {

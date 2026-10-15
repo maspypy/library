@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/run_length.hpp
 template <typename STRING = string>
 vc<pair<typename STRING::value_type, ll>> run_length(const STRING& S) {
   vc<pair<typename STRING::value_type, ll>> res;

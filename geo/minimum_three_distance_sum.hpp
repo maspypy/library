@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/minimum_three_distance_sum.hpp
 #include "geo/cross_point.hpp"
 
 // Fermat point OR vertex

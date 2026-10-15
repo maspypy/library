@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/powersums_assign.hpp
 
 #include "alg/monoid/assign.hpp"
 #include "alg/monoid/add_array.hpp"

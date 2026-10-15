@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/ds/fundamental_cut.hpp
 
 // 木および, 2 点組 M 個を与える.
 // set_on, set_off: M 個の組のオンオフができる.

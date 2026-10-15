@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/cycle_decomposition.hpp
 #include "ds/splaytree/splaytree_basic.hpp"
 
 // 順列のサイクル分解を管理

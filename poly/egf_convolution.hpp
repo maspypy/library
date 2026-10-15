@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/egf_convolution.hpp
 
 #include "nt/factor.hpp"
 #include "mod/mod_inv.hpp"

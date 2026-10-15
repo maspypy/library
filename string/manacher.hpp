@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/manacher.hpp
 
 // i<=j に対して match(i,j) が定義されているとき極大回文 [L,R) を列挙する
 // https://atcoder.jp/contests/xmascontest2015noon/tasks/xmascontest2015_c

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/blackbox/complement_graph_distance.hpp
 #include "graph/blackbox/complement_graph_bfs.hpp"
 
 // 距離 2 以上の 2 点組の列挙. {v,w,dvw}.

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/factor.hpp
 
 #include "random/base.hpp"
 #include "nt/is_prime.hpp"

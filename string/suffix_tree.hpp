@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/suffix_tree.hpp
 
 #include "string/suffix_array.hpp"
 #include "seq/cartesian_tree.hpp"

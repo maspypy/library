@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/sparse_table/sparse_table_on_segtree.hpp
 #include "ds/sparse_table/sparse_table.hpp"
 /*
 https://codeforces.com/problemset/problem/713/D

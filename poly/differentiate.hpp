@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/differentiate.hpp
 
 template <typename mint>
 vc<mint> differentiate(const vc<mint>& f) {

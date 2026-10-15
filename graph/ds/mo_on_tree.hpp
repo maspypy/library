@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/ds/mo_on_tree.hpp
 #include "graph/tree.hpp"
 #include "ds/offline_query/mo.hpp"
 

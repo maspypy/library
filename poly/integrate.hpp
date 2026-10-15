@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/integrate.hpp
 
 // 不定積分：integrate(f)
 // 定積分：integrate(f, L, R)

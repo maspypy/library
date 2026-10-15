@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/centroid_decomposition_old.hpp
 #include "graph/base.hpp"
 #include "graph/find_centroid.hpp"
 

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/segtree/beats_kinetic.hpp
 #include "ds/segtree/segtree_beats.hpp"
 
 // (x[i],y[i]) からなる列. a>=0 であるときに y[i] := y[i] + ax[i] + b

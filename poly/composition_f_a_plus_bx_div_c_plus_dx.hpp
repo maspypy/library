@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
 #include "poly/composition_f_a_plus_bx.hpp"
 #include "poly/fps_pow.hpp"
 

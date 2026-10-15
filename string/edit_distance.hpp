@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/edit_distance.hpp
 template <typename STRING>
 int edit_distance(STRING& S, STRING& T) {
   int N = len(S), M = len(T);

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/count/count_tree_by_root_degree.hpp
 /*
 ラベル付き木の数え上げ。頂点数と根の次数ごとに数え上げる。
 */

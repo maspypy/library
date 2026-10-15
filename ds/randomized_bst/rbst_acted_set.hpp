@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/randomized_bst/rbst_acted_set.hpp
 #include "ds/node_pool.hpp"
 
 template <typename ActedSet, bool PERSISTENT>

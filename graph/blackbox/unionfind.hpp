@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/blackbox/unionfind.hpp
 #include "ds/unionfind/unionfind.hpp"
 
 // 頂点を削除しながら、適当なデータ構造により次の辺を探す。

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/frobenius.hpp
 #include "random/base.hpp"
 #include "linalg/matrix_inv.hpp"
 #include "linalg/matrix_mul.hpp"

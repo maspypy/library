@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/rollback_mo.hpp
 // https://codeforces.com/contest/620/problem/F
 // (10^5,3*10^5), mo+fastset 1300ms
 // https://codeforces.com/problemset/submission/765/240821486

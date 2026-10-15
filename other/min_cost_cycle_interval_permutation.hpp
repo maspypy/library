@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/min_cost_cycle_interval_permutation.hpp
 
 // (a[i],b[i]) がたくさんある. これらをサイクルに並べて
 // sum |b[i]-a[i+1]| を最小化する

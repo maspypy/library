@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/poly_taylor_shift.hpp
 
 #include "mod/power_table.hpp"
 #include "poly/convolution.hpp"

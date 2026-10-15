@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/mod_inv_u64.hpp
 u64 mod_inv_u64(u64 a) {
   assert(a & 1);
   u64 x = 1;

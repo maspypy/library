@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/famous/stirling_number_query.hpp
 #include "nt/is_prime.hpp"
 
 // O(p^2) 時間の前計算のもと、O(log n) 時間

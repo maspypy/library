@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/randomized_bst/rbst_monoid.hpp
 #include "ds/node_pool.hpp"
 
 template <typename Monoid, bool PERSISTENT>

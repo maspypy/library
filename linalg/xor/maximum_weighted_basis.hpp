@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/xor/maximum_weighted_basis.hpp
 // https://codeforces.com/gym/102331/problem/E
 template <typename UINT, int LIM, typename WT>
 struct Maximum_Weighted_Basis {

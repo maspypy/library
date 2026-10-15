@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/coefficient_query_2d.hpp
 #include "ds/index_compression.hpp"
 #include "ds/fenwicktree/fenwicktree.hpp"
 

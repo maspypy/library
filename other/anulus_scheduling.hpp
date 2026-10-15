@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/anulus_scheduling.hpp
 
 // return: [1周以上するのにかかる回数, 始点].
 // dist[i]: i から進める距離.

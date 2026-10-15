@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/magic_square.hpp
 // とりあえず奇数のみ対応する
 vvc<int> magic_square(int N) {
   assert(N % 2 == 1);

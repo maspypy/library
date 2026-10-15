@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/setfunc/sperner.hpp
 
 namespace Sperner {
 // Symmetric Chain Decomposition

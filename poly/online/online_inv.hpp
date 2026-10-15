@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/online/online_inv.hpp
 #include "poly/online/online_division.hpp"
 
 // query(i)：f[i] を与えて (f^{-1})[i] を得る。

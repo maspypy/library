@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/degree_sequence.hpp
 #include "ds/csr.hpp"
 
 // O(N). 単純グラフの存在判定. Erdos-Gallai の定理.

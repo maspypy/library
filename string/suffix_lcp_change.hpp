@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/suffix_lcp_change.hpp
 #include "string/suffix_array.hpp"
 
 // 辞書順 k 番目の suffix との LCP. k=0,1,2,... としたときの変化.

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/segtree/xor_segtree.hpp
 // set,prod どちらも O(sqrt(N)) 時間。
 // モノイドが可換なら普通のセグ木を使うこと。
 template <class Monoid>

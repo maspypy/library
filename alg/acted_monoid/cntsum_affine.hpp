@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/cntsum_affine.hpp
 #include "alg/monoid/add_pair.hpp"
 #include "alg/monoid/affine.hpp"
 

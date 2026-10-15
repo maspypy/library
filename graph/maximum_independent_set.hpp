@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/maximum_independent_set.hpp
 #include "graph/base.hpp"
 
 // worst N*1.381^N だが、N=100 程度でも使える可能性がある。

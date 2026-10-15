@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/node_pool.hpp
 // マルチテストケースでも確保済み chunk を再利用する
 template <class Node>
 struct Node_Pool {

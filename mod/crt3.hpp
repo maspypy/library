@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/crt3.hpp
 
 constexpr u32 mod_pow_constexpr(u64 a, u64 n, u32 mod) {
   a %= mod;

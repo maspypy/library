@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/monge/check_monge.hpp
 
 // check Monge property on [0, N]:
 // f(a,d) + f(b,c) >= f(a,c) + f(b,d) for a < b < c < d

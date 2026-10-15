@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/double_ended_palindromic_tree.hpp
 // https://arxiv.org/abs/2210.02292
 // https://codeforces.com/contest/1738/submission/263034583
 template <int sigma, char offset>

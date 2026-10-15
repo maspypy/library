@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/prefix_sum.hpp
 #include "ds/static_range_product_group.hpp"
 
 template <typename T>

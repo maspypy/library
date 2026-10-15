@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/optimize_1d_beam.hpp
 
 // return: f(x), x
 template <typename T, bool MINIMIZE, typename F>

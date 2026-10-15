@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/ds/remove_one_vertex_connectivity.hpp
 #include "graph/base.hpp"
 
 // 1 点消したときに

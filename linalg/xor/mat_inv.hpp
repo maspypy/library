@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/xor/mat_inv.hpp
 // 行ベクトルを整数型で表現
 template <typename UINT>
 vc<UINT> mat_inv(vc<UINT> A) {

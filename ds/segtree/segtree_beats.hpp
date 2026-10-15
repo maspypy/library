@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/segtree/segtree_beats.hpp
 
 template <typename ActedMonoid>
 struct SegTree_Beats {

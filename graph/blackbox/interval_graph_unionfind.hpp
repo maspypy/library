@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/blackbox/interval_graph_unionfind.hpp
 
 #include "ds/unionfind/unionfind.hpp"
 

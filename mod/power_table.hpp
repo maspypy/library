@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/power_table.hpp
 #include "nt/prime_table.hpp"
 
 // a^0, ..., a^N

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/optimize_2d.hpp
 #include "ds/hashmap.hpp"
 #include "random/base.hpp"
 

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/sparse_table/xor_disjoint_sparse_table.hpp
 template <typename Monoid>
 struct Xor_Disjoint_Sparse_Table {
   using MX = Monoid;

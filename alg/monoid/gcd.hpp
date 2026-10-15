@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/monoid/gcd.hpp
 
 template <typename X>
 struct Monoid_Gcd {

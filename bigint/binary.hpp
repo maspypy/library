@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/bigint/binary.hpp
 #include "poly/convolution.hpp"
 
 struct BigInteger_Binary {

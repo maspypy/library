@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/dice.hpp
 #include "graph/base.hpp"
 
 // 次の番号付けるに従う：UFRLBD

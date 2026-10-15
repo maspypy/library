@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/min_max.hpp
 #include "alg/monoid/max.hpp"
 #include "alg/monoid/min.hpp"
 

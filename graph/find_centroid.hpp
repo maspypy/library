@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/find_centroid.hpp
 #include "graph/base.hpp"
 
 // (v,w) or (v,-1)

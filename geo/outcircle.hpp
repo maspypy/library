@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/outcircle.hpp
 #include "geo/base.hpp"
 #include "geo/triangle_area.hpp"
 

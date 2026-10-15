@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/solve_linear_real.hpp
 
 // 正方行列 full rank 前提
 // 誤差で死ぬパターンがないかは知らない

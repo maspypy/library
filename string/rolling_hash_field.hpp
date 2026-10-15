@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/rolling_hash_field.hpp
 // +, -, * が定義された構造体を渡す
 template <typename Field>
 struct Rolling_Hash_Field {

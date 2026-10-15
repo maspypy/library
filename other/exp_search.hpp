@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/exp_search.hpp
 // find max true
 template <typename F>
 ll exp_search(F&& check, ll ok) {

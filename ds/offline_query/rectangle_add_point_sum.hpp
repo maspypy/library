@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/rectangle_add_point_sum.hpp
 #include "ds/fenwicktree/fenwicktree.hpp"
 
 template <typename AbelianGroup, typename XY, bool SMALL_X = false>

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/nth_element_from_sorted_lists.hpp
 
 // 行の要素数が S[0], S[1], ..., S[N-1]
 // O(N(logN+logK)) time

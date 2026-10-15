@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/kdtree/kdtree.hpp
 template <typename XY>
 struct KDTree {
   // 小数も考慮すると、閉で持つ設計方針になる。ただし、クエリはいつもの半開を使う

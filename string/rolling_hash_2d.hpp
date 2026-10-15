@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/rolling_hash_2d.hpp
 #include "mod/modint61.hpp"
 #include "random/base.hpp"
 

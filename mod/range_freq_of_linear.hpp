@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/range_freq_of_linear.hpp
 #include "mod/floor_sum_of_linear.hpp"
 
 // count x in [L,R) such that lo <= (a*x+b) mod mod < hi

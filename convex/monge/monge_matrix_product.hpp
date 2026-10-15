@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/monge/monge_matrix_product.hpp
 
 // https://topcoder-g-hatena-ne-jp.jag-icpc.org/spaghetti_source/20120915/1347668163.html
 // Prop 1

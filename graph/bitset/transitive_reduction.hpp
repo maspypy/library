@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/bitset/transitive_reduction.hpp
 #include "graph/bitset/transitive_closure.hpp"
 
 // 入力は DAG. reachability 関係を保つ最小辺集合を残す.

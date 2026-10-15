@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/count/count_cycle.hpp
 #include "enumerate/bits.hpp"
 #include "graph/base.hpp"
 

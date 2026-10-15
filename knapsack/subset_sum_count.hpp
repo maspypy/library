@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/knapsack/subset_sum_count.hpp
 
 /*
 O(2^{N/2})

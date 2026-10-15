@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/sum_of_powers.hpp
 #include "poly/convolution_all.hpp"
 #include "poly/fps_log.hpp"
 #include "poly/fps_div.hpp"

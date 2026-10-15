@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/monoid/arithmetic_expression.hpp
 // https://ac.nowcoder.com/acm/contest/81599/K
 
 /*

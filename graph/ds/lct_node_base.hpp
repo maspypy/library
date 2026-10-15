@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/ds/lct_node_base.hpp
 // SUBTREE : cluster が subtree 情報を持つ場合
 struct LCT_Node_Base {
   using np = LCT_Node_Base*;

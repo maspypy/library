@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/enumerate/asymmetric_unlabeled_tree.hpp
 
 // 非自明な自己同型が存在しない unlabeled unrooted trees を同型を除いて列挙. vc<pair<int, int>>.
 // https://oeis.org/A000220

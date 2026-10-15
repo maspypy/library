@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/famous/faulhaber.hpp
 #include "seq/famous/bernoulli.hpp"
 
 // sum_[1,n]i^k=f(n)

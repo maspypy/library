@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/manhattan_path.hpp
 
 // Find A suth that: A[0]=s, A[N]=t, dist(A[i],A[i+1])==D[i]. (integer points)
 // empty if it does not exists.

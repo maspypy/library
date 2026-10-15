@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/cht_monotone.hpp
 template <typename T, bool isMin>
 struct CHT_Monotone {
   static_assert(is_same_v<T, ll> || std::is_floating_point_v<T>);

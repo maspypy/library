@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/online/online_log.hpp
 #include "poly/online/online_division.hpp"
 
 template <typename mint>

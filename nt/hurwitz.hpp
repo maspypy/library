@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/hurwitz.hpp
 
 /*
 https://codeforces.com/contest/1375/problem/I

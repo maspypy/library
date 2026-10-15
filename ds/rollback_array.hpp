@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/rollback_array.hpp
 
 template <typename T>
 struct Rollback_Array {

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/three_square.hpp
 #include "nt/is_prime.hpp"
 #include "nt/gaussian_integers.hpp"
 

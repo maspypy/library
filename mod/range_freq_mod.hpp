@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/range_freq_mod.hpp
 // count x in [L,R) such that (x mod mod) in [lo,hi)
 template <typename I>
 I range_freq_mod(I L, I R, I lo, I hi, I mod) {

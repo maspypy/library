@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/count/count_bridgeless_subgraph.hpp
 #include "graph/count/count_connected_subgraph.hpp"
 #include "setfunc/subset_convolution.hpp"
 #include "setfunc/sps_exp.hpp"

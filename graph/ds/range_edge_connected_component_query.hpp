@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/ds/range_edge_connected_component_query.hpp
 
 #include "graph/ds/link_cut_tree.hpp"
 #include "graph/ds/lct_node_commutative_monoid.hpp"

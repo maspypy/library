@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/count/count_labeled_biconnected.hpp
 #include "graph/count/count_labeled_connected.hpp"
 #include "poly/compositional_inverse.hpp"
 #include "poly/composition.hpp"

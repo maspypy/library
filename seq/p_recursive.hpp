@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/p_recursive.hpp
 
 #include "poly/prefix_product_of_poly.hpp"
 #include "linalg/solve_linear.hpp"

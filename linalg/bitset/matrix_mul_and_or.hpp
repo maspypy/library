@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/bitset/matrix_mul_and_or.hpp
 #include "ds/bit_array.hpp"
 
 // Boolean Matrix Multiplication C[i][k] |= A[i][j] && B[j][k]

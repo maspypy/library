@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/max_max.hpp
 #include "alg/monoid/max.hpp"
 
 template <typename E>

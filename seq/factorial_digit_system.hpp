@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/seq/factorial_digit_system.hpp
 #include "ds/fenwicktree/fenwicktree.hpp"
 
 // 右にある小さいやつの個数 [2,0,3,1] → [2,0,1,0]

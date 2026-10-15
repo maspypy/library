@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/piecewise_constant/piecewise_constant.hpp
 #include "ds/splaytree/splaytree.hpp"
 
 enum Border_Type { inc, dec, l, r };

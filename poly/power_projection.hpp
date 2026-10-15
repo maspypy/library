@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/power_projection.hpp
 
 #include "mod/modint.hpp"
 #include "poly/convolution.hpp"

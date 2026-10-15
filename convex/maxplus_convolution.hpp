@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/convex/maxplus_convolution.hpp
 
 template <typename T>
 vc<T> maxplus_convolution_concave_concave(vc<T>& A, vc<T>& B) {

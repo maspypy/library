@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/non_dominated_suffix.hpp
 #include "string/lyndon.hpp"
 #include "string/z_algorithm.hpp"
 

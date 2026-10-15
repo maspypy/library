@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/template/mo_main.hpp
 // template/mo_main.hpp
 auto ADD = [&](int i) -> void {};
 auto RM = [&](int i) -> void {};

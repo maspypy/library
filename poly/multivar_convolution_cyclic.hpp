@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/multivar_convolution_cyclic.hpp
 #include "poly/multipoint.hpp"
 #include "mod/primitive_root.hpp"
 

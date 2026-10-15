@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/all_but_one_products.hpp
 template <typename Monoid, typename X = typename Monoid::value_type>
 vector<X> all_but_one_products(const vc<X>& A) {
   int N = len(A);

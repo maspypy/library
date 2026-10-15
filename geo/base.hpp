@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/base.hpp
 template <typename T>
 struct Point {
   T x, y;

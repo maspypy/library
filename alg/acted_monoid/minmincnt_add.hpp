@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/minmincnt_add.hpp
 #include "alg/monoid/minmincnt.hpp"
 #include "alg/monoid/add.hpp"
 

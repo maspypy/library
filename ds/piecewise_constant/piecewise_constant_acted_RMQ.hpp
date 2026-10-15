@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/piecewise_constant/piecewise_constant_acted_RMQ.hpp
 #include "ds/piecewise_constant/piecewise_constant.hpp"
 
 // Y_type に作用する，作用が順序を保つとする

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/coprime_factorization.hpp
 
 /*
 互いに素な整数 p1, p2, ..., pk を用いて n_i = prod p_i^e_i と表す.

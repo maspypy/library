@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/binomial.hpp
 #include "mod/primitive_root.hpp"
 #include "mod/mod_inv.hpp"
 

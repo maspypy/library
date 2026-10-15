@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/flow/cyclic_b_flow.hpp
 /*
 円環上の MCF。
 cost[i]：i → i+1 のコスト

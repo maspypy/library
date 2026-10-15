@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/2d/convolution2d.hpp
 
 #include "poly/convolution.hpp"
 

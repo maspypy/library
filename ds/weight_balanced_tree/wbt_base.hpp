@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/weight_balanced_tree/wbt_base.hpp
 #pragma once
 
 // Adams' weight balanced trees (JFP 1993), with weight(t)=size(t)+1,

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/min_of_linear_segments.hpp
 
 /*
 ax + b (x>=0) が最小となるところの情報を返す。

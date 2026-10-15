@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/linalg/bitset/det.hpp
 #include "ds/bit_array.hpp"
 
 template <typename BS>

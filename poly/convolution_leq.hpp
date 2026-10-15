@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/convolution_leq.hpp
 #include "poly/convolution.hpp"
 
 // h[k] = sum_{i+j=k and i<=j} f_ig_j

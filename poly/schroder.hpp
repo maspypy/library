@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/schroder.hpp
 #include "poly/composition.hpp"
 #include "poly/compositional_inverse.hpp"
 #include "poly/fps_div.hpp"

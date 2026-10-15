@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/EGZ.hpp
 #include "ds/csr.hpp"
 #include "mod/mod_inv.hpp"
 

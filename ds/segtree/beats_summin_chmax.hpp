@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/segtree/beats_summin_chmax.hpp
 #include "ds/segtree/segtree_beats.hpp"
 template <typename T>
 struct Beats_SumMin_Chmax {

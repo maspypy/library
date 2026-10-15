@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/removable_queue.hpp
 
 template <typename QUE_TYPE>
 struct Removable_Queue {

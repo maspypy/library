@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/knapsack/independent_set_knapsack.hpp
 #include "graph/tree.hpp"
 
 // https://arxiv.org/pdf/1807.04942

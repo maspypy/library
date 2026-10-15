@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/geo/convex_polygon_union_area.hpp
 #include "geo/base.hpp"
 
 // それぞれが ccw order の strict convex polygon

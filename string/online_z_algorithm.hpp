@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/string/online_z_algorithm.hpp
 
 // https://heno239.hatenablog.com/entry/2020/07/07/140651
 // S[i] を追加すると，S[j:i] が lcp であるような j 全体の vector がかえる.

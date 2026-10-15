@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/incremental_rectangle_union.hpp
 
 #include "ds/fastset.hpp"
 

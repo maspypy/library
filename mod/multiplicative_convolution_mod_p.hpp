@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/multiplicative_convolution_mod_p.hpp
 #include "poly/convolution.hpp"
 #include "mod/primitive_root.hpp"
 

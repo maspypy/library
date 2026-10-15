@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/ds/link_cut_tree.hpp
 /*
 各 heavy path を head が左, tail が右となるように splay tree で持つ.
 ユーザーが直接呼ぶ可能性があるものだけ int でも実装.

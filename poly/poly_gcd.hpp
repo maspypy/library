@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/poly_gcd.hpp
 #include "poly/poly_divmod.hpp"
 
 // https://people.eecs.berkeley.edu/~fateman/282/readings/yap-2.pdf

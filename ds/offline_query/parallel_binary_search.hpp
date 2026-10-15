@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/parallel_binary_search.hpp
 /*
 並列二分探索。(Q, ok, ng, init, upd, check)。
 check が成り立つぎりぎりの upd回数を返す。

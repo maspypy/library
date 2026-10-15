@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/fenwicktree/fenwicktree_range_add.hpp
 
 #include "ds/fenwicktree/fenwicktree.hpp"
 

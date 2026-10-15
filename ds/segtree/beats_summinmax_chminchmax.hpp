@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/segtree/beats_summinmax_chminchmax.hpp
 #include "ds/segtree/segtree_beats.hpp"
 
 template <typename T>

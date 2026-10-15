@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/multivar_convolution.hpp
 #include "poly/convolution.hpp"
 
 /*

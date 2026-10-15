@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/poly/sum_of_exp_bx.hpp
 #include "poly/sum_of_rationals.hpp"
 #include "poly/fps_inv.hpp"
 

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/euler_phi.hpp
 #include "nt/zeta.hpp"
 #include "nt/factor.hpp"
 

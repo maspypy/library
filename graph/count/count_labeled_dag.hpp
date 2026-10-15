@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/count/count_labeled_dag.hpp
 #include "poly/fps_inv.hpp"
 
 // https://oeis.org/A003024

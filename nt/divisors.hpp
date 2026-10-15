@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/nt/divisors.hpp
 #include "nt/factor.hpp"
 
 // sort はしない

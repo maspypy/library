@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/setfunc/online/online_or_convolution.hpp
 #include "setfunc/online/online_subset_zeta.hpp"
 #include "setfunc/online/online_subset_mobius.hpp"
 

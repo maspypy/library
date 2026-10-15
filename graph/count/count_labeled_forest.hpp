@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/count/count_labeled_forest.hpp
 #include "poly/fps_exp.hpp"
 #include "graph/count/count_labeled_tree.hpp"
 

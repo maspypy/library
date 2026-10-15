@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/graph/all_cycle_common_vertices.hpp
 #include "graph/strongly_connected_component.hpp"
 #include "graph/toposort.hpp"
 #include "graph/find_cycle.hpp"

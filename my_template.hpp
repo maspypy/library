@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/my_template.hpp
 /*
 library: https://github.com/maspypy/library
 */

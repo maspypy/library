@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/sum_affine.hpp
 #include "alg/monoid/add.hpp"
 #include "alg/monoid/affine.hpp"
 

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/mod/montgomery_modint.hpp
 
 // odd mod.
 // x の代わりに rx を持つ
