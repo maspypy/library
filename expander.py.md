@@ -18,28 +18,33 @@ data:
     LIBRARY_DIR = SCRIPT_DIR\n\nINCLUDE_PATHS = [\n    '.',\n    LIBRARY_DIR,\n]\n\
     \nextra_paths = os.environ.get('MASPY_EXPANDER_INCLUDE_PATHS')\nif extra_paths:\n\
     \    INCLUDE_PATHS.extend(extra_paths.split(os.pathsep))\n\nvisited = set()\n\
-    strip_source_url = os.environ.get('MASPY_STRIP_SOURCE_URL') == '1'\n\n\ndef resolve_include(header):\n\
+    keep_source_url = os.environ.get('MASPY_KEEP_SOURCE_URL') == '1'\n\n\ndef resolve_include(header):\n\
     \    for path in INCLUDE_PATHS:\n        full_path = os.path.join(path, header)\n\
     \        if os.path.isfile(full_path):\n            return os.path.abspath(full_path)\n\
     \    return None\n\n\ndef expand_file(path, display_name=None, caller_file=None,\
     \ caller_line=None):\n    abs_path = os.path.abspath(path)\n    if abs_path in\
     \ visited:\n        return\n    visited.add(abs_path)\n\n    if display_name is\
     \ None:\n        display_name = os.path.basename(path)\n\n    print(f'// BEGIN:\
-    \ {display_name}')\n    print(f'#line 1 \"{display_name}\"')\n\n    with open(path)\
-    \ as f:\n        for i, line in enumerate(f, start=1):\n            if line.strip()\
-    \ == \"#pragma once\":\n                continue\n            if strip_source_url\
+    \ {display_name}')\n    next_output_line = None\n\n    with open(path) as f:\n\
+    \        for i, line in enumerate(f, start=1):\n            if line.strip() ==\
+    \ \"#pragma once\":\n                continue\n            if not keep_source_url\
     \ and line.startswith('// Source: '):\n                # The source URL was physical\
-    \ line i.  Reset the location for\n                # the following line so diagnostics\
-    \ still match the original.\n                print(f'#line {i + 1} \"{display_name}\"\
-    ')\n                continue\n\n            m = re.match(r'#\\s*include\\s*\"\
-    ([^\"]+)\"', line)\n            if m:\n                header = m.group(1)\n \
-    \               resolved = resolve_include(header)\n                if resolved:\n\
-    \                    if resolved not in visited:\n                        expand_file(resolved,\
-    \ header, display_name, i + 1)\n                    print(f'#line {i + 1} \"{display_name}\"\
-    ')\n                else:\n                    print(f'// [warning] include not\
-    \ found: {header}')\n            elif re.match(r'#\\s*include\\s*<[^>]+>', line):\n\
-    \                print(line, end='')\n            else:\n                print(line,\
-    \ end='')\n\n    print(f'// END: {display_name}')\n\n\nif __name__ == '__main__':\n\
+    \ line i.  The location directive\n                # for the next emitted line\
+    \ is produced lazily below.\n                continue\n\n            m = re.match(r'#\\\
+    s*include\\s*\"([^\"]+)\"', line)\n            if m:\n                header =\
+    \ m.group(1)\n                resolved = resolve_include(header)\n           \
+    \     if resolved:\n                    if resolved not in visited:\n        \
+    \                expand_file(resolved, header, display_name, i + 1)\n        \
+    \            next_output_line = None\n                else:\n                \
+    \    if next_output_line != i:\n                        print(f'#line {i} \"{display_name}\"\
+    ')\n                    print(f'// [warning] include not found: {header}')\n \
+    \                   next_output_line = i + 1\n            elif re.match(r'#\\\
+    s*include\\s*<[^>]+>', line):\n                if next_output_line != i:\n   \
+    \                 print(f'#line {i} \"{display_name}\"')\n                print(line,\
+    \ end='')\n                next_output_line = i + 1\n            else:\n     \
+    \           if next_output_line != i:\n                    print(f'#line {i} \"\
+    {display_name}\"')\n                print(line, end='')\n                next_output_line\
+    \ = i + 1\n\n    print(f'// END: {display_name}')\n\n\nif __name__ == '__main__':\n\
     \    if len(sys.argv) != 2:\n        print(\"Usage: python3 expander.py main.cpp\
     \ > singlefile.cpp\")\n        sys.exit(1)\n\n    expand_file(sys.argv[1])\n"
   dependsOn: []
