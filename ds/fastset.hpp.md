@@ -38,7 +38,7 @@ data:
   - icon: ':x:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   - icon: ':warning:'
@@ -81,7 +81,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/2809.test.cpp
     title: test/3_yukicoder/2809.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2251_1.test.cpp
     title: test/4_aoj/2251_1.test.cpp
   - icon: ':x:'

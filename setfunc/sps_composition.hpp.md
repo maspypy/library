@@ -24,12 +24,12 @@ data:
     path: setfunc/sps_log.hpp
     title: setfunc/sps_log.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/set_power_series/composition_sps.test.cpp
     title: test/2_library_checker/set_power_series/composition_sps.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/setfunc/sps_composition.hpp
@@ -133,7 +133,7 @@ data:
   - graph/tutte_polynomial.hpp
   - setfunc/sps_log.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/set_power_series/composition_sps.test.cpp
 documentation_of: setfunc/sps_composition.hpp

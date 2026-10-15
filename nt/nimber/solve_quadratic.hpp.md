@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/xor/basis.hpp
     title: linalg/xor/basis.hpp
   - icon: ':question:'

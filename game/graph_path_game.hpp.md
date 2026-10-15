@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':question:'

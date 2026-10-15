@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1036.test.cpp
     title: test/3_yukicoder/1036.test.cpp
   - icon: ':x:'
@@ -24,7 +24,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/2935.test.cpp
     title: test/3_yukicoder/2935.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/789.test.cpp
     title: test/3_yukicoder/789.test.cpp
   _isVerificationFailed: true

@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/functional_graph.hpp
     title: graph/functional_graph.hpp
   - icon: ':question:'
@@ -51,7 +51,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1211.test.cpp
     title: test/3_yukicoder/1211.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1242.test.cpp
     title: test/3_yukicoder/1242.test.cpp
   - icon: ':x:'

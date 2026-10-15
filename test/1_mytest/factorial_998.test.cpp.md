@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/factorial998.hpp
     title: mod/factorial998.hpp
   - icon: ':question:'

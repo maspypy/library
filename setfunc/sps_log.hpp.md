@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
   _extendedRequiredBy:

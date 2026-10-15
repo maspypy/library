@@ -19,14 +19,14 @@ data:
   - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/polynomial_composite_set_power_series
@@ -441,7 +441,7 @@ data:
   path: test/2_library_checker/set_power_series/composition_sps.test.cpp
   requiredBy: []
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: TEST_ACCEPTED
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/set_power_series/composition_sps.test.cpp
 layout: document

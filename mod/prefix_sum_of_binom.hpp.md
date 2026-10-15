@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/prefix_sum_of_binom.test.cpp
     title: test/1_mytest/prefix_sum_of_binom.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2206.test.cpp
     title: test/3_yukicoder/2206.test.cpp
   - icon: ':x:'

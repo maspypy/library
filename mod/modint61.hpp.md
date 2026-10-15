@@ -29,10 +29,10 @@ data:
   - icon: ':warning:'
     path: string/deque_rolling_hash.hpp
     title: string/deque_rolling_hash.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/rolling_hash_2d.hpp
     title: string/rolling_hash_2d.hpp
   _extendedVerifiedWith:
@@ -60,7 +60,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/general_matching.test.cpp
     title: test/2_library_checker/graph/general_matching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - icon: ':heavy_check_mark:'
@@ -93,13 +93,13 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/578.test.cpp
     title: test/3_yukicoder/578.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_14_C.test.cpp
     title: test/4_aoj/ALDS1_14_C.test.cpp
   _isVerificationFailed: true

@@ -3,10 +3,10 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/enumerate_palindromes.test.cpp
     title: test/2_library_checker/string/enumerate_palindromes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2858.test.cpp
     title: test/3_yukicoder/2858.test.cpp
   _isVerificationFailed: true

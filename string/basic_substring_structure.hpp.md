@@ -31,7 +31,7 @@ data:
   - icon: ':x:'
     path: seq/cartesian_tree.hpp
     title: seq/cartesian_tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
   - icon: ':question:'

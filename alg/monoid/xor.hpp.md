@@ -6,7 +6,7 @@ data:
     path: setfunc/boolean_range_add_point_get.hpp
     title: setfunc/boolean_range_add_point_get.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1602.test.cpp
     title: test/3_yukicoder/1602.test.cpp
   - icon: ':x:'
@@ -18,7 +18,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/2293.test.cpp
     title: test/3_yukicoder/2293.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2294.test.cpp
     title: test/3_yukicoder/2294.test.cpp
   _isVerificationFailed: true

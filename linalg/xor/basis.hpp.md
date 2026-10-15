@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/nimber.test.cpp
     title: test/1_mytest/nimber.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2895.test.cpp
     title: test/3_yukicoder/2895.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/linalg/xor/basis.hpp
@@ -70,7 +70,7 @@ data:
   requiredBy:
   - nt/nimber/solve_quadratic.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/nimber.test.cpp
   - test/3_yukicoder/2895.test.cpp

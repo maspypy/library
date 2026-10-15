@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: string/find_runs.hpp
     title: string/find_runs.hpp
   - icon: ':question:'

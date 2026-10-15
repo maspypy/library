@@ -12,7 +12,7 @@ data:
     path: graph/st_numbering.hpp
     title: graph/st_numbering.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/biconnected_component.test.cpp
     title: test/2_library_checker/graph/biconnected_component.test.cpp
   - icon: ':x:'
@@ -21,7 +21,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1326.test.cpp
     title: test/3_yukicoder/1326.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/GRL_3_A.test.cpp
     title: test/4_aoj/GRL_3_A.test.cpp
   _isVerificationFailed: true

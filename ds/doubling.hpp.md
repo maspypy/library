@@ -6,7 +6,7 @@ data:
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1097.test.cpp
     title: test/3_yukicoder/1097.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/3_yukicoder/2242.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/doubling.hpp
@@ -87,7 +87,7 @@ data:
   path: ds/doubling.hpp
   requiredBy: []
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1977.test.cpp
   - test/3_yukicoder/1097.test.cpp

@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/randomized_bst/rbst_commutative_monoid.hpp
     title: ds/randomized_bst/rbst_commutative_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/randomized_bst/rbst_monoid.hpp
     title: ds/randomized_bst/rbst_monoid.hpp
   - icon: ':warning:'
@@ -210,13 +210,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/K_shortest_walk.test.cpp
     title: test/2_library_checker/graph/K_shortest_walk.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1036.test.cpp
     title: test/3_yukicoder/1036.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/1154.test.cpp
     title: test/3_yukicoder/1154.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1441.test.cpp
     title: test/3_yukicoder/1441.test.cpp
   - icon: ':x:'
@@ -240,7 +240,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/686.test.cpp
     title: test/3_yukicoder/686.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/789.test.cpp
     title: test/3_yukicoder/789.test.cpp
   - icon: ':x:'
@@ -249,7 +249,7 @@ data:
   - icon: ':x:'
     path: test/4_aoj/1508.test.cpp
     title: test/4_aoj/1508.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/1508_2.test.cpp
     title: test/4_aoj/1508_2.test.cpp
   _isVerificationFailed: true

@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
   - icon: ':question:'
@@ -54,7 +54,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/set_power_series/composition_sps.test.cpp
     title: test/2_library_checker/set_power_series/composition_sps.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,7 +66,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/set_power_series/sps_exp.test.cpp
     title: test/2_library_checker/set_power_series/sps_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/set_power_series/subset_convolution.test.cpp
     title: test/2_library_checker/set_power_series/subset_convolution.test.cpp
   - icon: ':x:'

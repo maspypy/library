@@ -6,7 +6,7 @@ data:
     title: string/z_algorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/run_enumerate.test.cpp
     title: test/2_library_checker/string/run_enumerate.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/2_library_checker/string/run_enumerate_vec.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/string/find_runs.hpp
@@ -83,7 +83,7 @@ data:
   path: string/find_runs.hpp
   requiredBy: []
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/string/run_enumerate_vec.test.cpp
   - test/2_library_checker/string/run_enumerate.test.cpp
