@@ -6,6 +6,6 @@ AllowShortCaseLabelsOnASingleLine: true
 AllowShortFunctionsOnASingleLine: All
 SortIncludes: false
 ColumnLimit: 80
-
+CommentPragmas: '^ Source:'
 BinPackParameters: true
 AlignAfterOpenBracket: false

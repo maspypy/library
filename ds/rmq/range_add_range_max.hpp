@@ -1,5 +1,4 @@
-// Source:
-// https://github.com/maspypy/library/blob/main/ds/rmq/range_add_range_max.hpp
+// Source: https://github.com/maspypy/library/blob/main/ds/rmq/range_add_range_max.hpp
 #include "ds/segtree/dynamic_segtree_sparse.hpp"
 #include "ds/segtree/segtree.hpp"
 
