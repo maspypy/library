@@ -2,9 +2,6 @@
 /*
 library: https://github.com/maspypy/library
 */
-#if defined(USE_PCH)
-#include <my_template_compiled.hpp>
-#else
 #if defined(__GNUC__)
 #include <bits/allocator.h>
 #pragma GCC optimize("Ofast,unroll-loops")
@@ -335,4 +332,3 @@ constexpr i128 gcd(i128 a, i128 b) {
   }
   return abs(a);
 }
-#endif

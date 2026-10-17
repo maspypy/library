@@ -21,27 +21,31 @@ copy_temp_cpp() {
 }
 
 expand_main() {
-  python3 "$COMPRO_LIBRARY_DIR/expander.py" main.cpp > temp.cpp
+  python3 "$COMPRO_LIBRARY_DIR/scripts/expander.py" main.cpp > temp.cpp
+}
+
+expand_main_pch() {
+  python3 "$COMPRO_LIBRARY_DIR/scripts/expander.py" --pch main.cpp > temp.cpp
 }
 
 compile_debug() {
-  expand_main || return
+  expand_main_pch || return
   copy_temp_cpp
-  g++ -I "$COMPRO_LIBRARY_DIR" -DLOCAL -DUSE_PCH -DMASPY_NON_AVX2 \
-    -std=c++2a -O2 -Wall -Wfatal-errors -D_GLIBCXX_DEBUG temp.cpp
+  g++ -I "$COMPRO_LIBRARY_DIR" -DLOCAL -DMASPY_NON_AVX2 \
+    -std=c++2a -O2 -Wall -Wfatal-errors -D_GLIBCXX_DEBUG -include my_template.hpp temp.cpp
 }
 
 compile_sanitize() {
-  expand_main || return
+  expand_main_pch || return
   copy_temp_cpp
-  g++ -I "$COMPRO_LIBRARY_DIR" -DLOCAL -DUSE_PCH -DMASPY_NON_AVX2 \
+  g++ -I "$COMPRO_LIBRARY_DIR" -DLOCAL -DMASPY_NON_AVX2 \
     -std=c++2a -O2 -fsanitize=address -fno-omit-frame-pointer -g \
-    -fsanitize=undefined temp.cpp
+    -fsanitize=undefined -include my_template.hpp temp.cpp
 }
 
 compile_fast() {
-  expand_main || return
-  g++ -I "$COMPRO_LIBRARY_DIR" -DUSE_PCH -DMASPY_NON_AVX2 -std=c++2a -O2 temp.cpp
+  expand_main_pch || return
+  g++ -I "$COMPRO_LIBRARY_DIR"  -DMASPY_NON_AVX2 -std=c++2a -O2 -include my_template.hpp temp.cpp
 }
 
 compile_fast_no_pch() {
@@ -56,36 +60,31 @@ test_samples() {
 }
 
 shrink_temp() {
-  python3 "$COMPRO_LIBRARY_DIR/shrink.py" --report temp.cpp > submit.cpp
+  python3 "$COMPRO_LIBRARY_DIR/scripts/shrink.py" --report temp.cpp > submit.cpp
 }
 
 precompile() {
   (
     cd "$COMPRO_LIBRARY_DIR" || return
-    local pch_src="my_template_compiled.hpp"
-    local out_dir="my_template_compiled.hpp.gch"
-    awk '
-      NR <= 6 { next }
-      { lines[++n] = $0 }
-      END { for (i = 1; i < n; i++) print lines[i] }
-    ' my_template.hpp > "$pch_src"
+    local pch_src="my_template.hpp"
+    local out_dir="my_template.hpp.gch"
     rm -rf "$out_dir"
     mkdir -p "$out_dir"
 
-    g++ -o "$out_dir/debug.gch" -I . -DLOCAL -DUSE_PCH -DMASPY_NON_AVX2 \
+    g++ -o "$out_dir/debug.gch" -I . -DLOCAL -DMASPY_NON_AVX2 \
       -std=c++2a -O2 -Wall -Wfatal-errors -D_GLIBCXX_DEBUG -x c++-header \
       "$pch_src" || return
-    g++ -o "$out_dir/sanitize.gch" -I . -DLOCAL -DUSE_PCH -DMASPY_NON_AVX2 \
+    g++ -o "$out_dir/sanitize.gch" -I . -DLOCAL -DMASPY_NON_AVX2 \
       -std=c++2a -O2 -fsanitize=address -fno-omit-frame-pointer -g \
       -fsanitize=undefined -x c++-header "$pch_src" || return
-    g++ -o "$out_dir/fast.gch" -I . -DUSE_PCH -DMASPY_NON_AVX2 -std=c++2a -O2 \
+    g++ -o "$out_dir/fast.gch" -I .  -DMASPY_NON_AVX2 -std=c++2a -O2 \
       -x c++-header "$pch_src" || return
     echo "PCH built: non-AVX2"
   )
 }
 
 compile_oracle() {
-  python3 "$COMPRO_LIBRARY_DIR/expander.py" ac.cpp > temp_ac.cpp || return
+  python3 "$COMPRO_LIBRARY_DIR/scripts/expander.py" ac.cpp > temp_ac.cpp || return
   g++ -I "$COMPRO_LIBRARY_DIR" -DMASPY_NON_AVX2 -std=c++2a -O2 temp_ac.cpp -o ./ac.out
 }
 

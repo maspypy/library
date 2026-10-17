@@ -3,7 +3,7 @@ import os
 import re
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-LIBRARY_DIR = SCRIPT_DIR
+LIBRARY_DIR = os.path.dirname(SCRIPT_DIR)
 
 INCLUDE_PATHS = [
     '.',
@@ -16,6 +16,7 @@ if extra_paths:
 
 visited = set()
 keep_source_url = os.environ.get('MASPY_KEEP_SOURCE_URL') == '1'
+pch_mode = False
 
 
 def resolve_include(header, including_file):
@@ -34,6 +35,8 @@ def resolve_include(header, including_file):
 
 def expand_file(path, display_name=None, caller_file=None, caller_line=None):
     abs_path = os.path.abspath(path)
+    if pch_mode and abs_path == os.path.join(LIBRARY_DIR, "my_template.hpp"):
+        return
     if abs_path in visited:
         return
     visited.add(abs_path)
@@ -81,8 +84,11 @@ def expand_file(path, display_name=None, caller_file=None, caller_line=None):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print("Usage: python3 expander.py main.cpp > singlefile.cpp")
+    args = sys.argv[1:]
+    if args and args[0] == '--pch':
+        pch_mode = True
+        args.pop(0)
+    if len(args) != 1:
+        print("Usage: python3 expander.py [--pch] main.cpp > singlefile.cpp", file=sys.stderr)
         sys.exit(1)
-
-    expand_file(sys.argv[1])
+    expand_file(args[0])

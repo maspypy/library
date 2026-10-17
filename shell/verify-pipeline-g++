@@ -40,7 +40,7 @@ work_dir="$(mktemp -d "${TMPDIR:-/tmp}/maspy-verify.XXXXXX")"
 trap 'rm -rf -- "$work_dir"' EXIT
 
 expanded_file="$work_dir/expanded.cpp"
-python3 "$library_dir/expander.py" "$source_file" > "$expanded_file"
+python3 "$library_dir/scripts/expander.py" "$source_file" > "$expanded_file"
 
 compile_file="$expanded_file"
 if [[ "$mode" == shrunk ]]; then
@@ -48,7 +48,7 @@ if [[ "$mode" == shrunk ]]; then
   # The final compile and judge execution below are stronger than shrink.py's
   # built-in syntax-only check, and use exactly the C++17 flags supplied by
   # oj-verify-helper.
-  python3 "$library_dir/shrink.py" \
+  python3 "$library_dir/scripts/shrink.py" \
     "$expanded_file" --no-check -o "$compile_file"
 fi
 

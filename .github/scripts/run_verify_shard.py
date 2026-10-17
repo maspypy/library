@@ -13,7 +13,7 @@ from typing import Any
 TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S %z"
 PIPELINE_FILES = (
     ".verify-helper/config.toml", ".github/scripts/run_verify_shard.py",
-    "expander.py", "shrink.py", "shell/verify-expanded-g++",
+    "scripts/expander.py", "scripts/shrink.py", "shell/verify-expanded-g++",
     "shell/verify-pipeline-g++", "shell/verify-shrunk-g++",
 )
 

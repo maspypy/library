@@ -1,7 +1,7 @@
 # shellcheck shell=bash
 
 randomtest() {
-  python3 "$COMPRO_LIBRARY_DIR/expander.py" ac.cpp > temp_ac.cpp
+  python3 "$COMPRO_LIBRARY_DIR/scripts/expander.py" ac.cpp > temp_ac.cpp
   g++ -I "$COMPRO_LIBRARY_DIR" -std=c++2a -O2 temp_ac.cpp -o ./ac.out
 
   ac_count=0
@@ -39,7 +39,7 @@ randomtest() {
 }
 
 randomtest_noout() {
-  python3 "$COMPRO_LIBRARY_DIR/expander.py" ac.cpp > temp_ac.cpp
+  python3 "$COMPRO_LIBRARY_DIR/scripts/expander.py" ac.cpp > temp_ac.cpp
   g++ -I "$COMPRO_LIBRARY_DIR" -std=c++2a -O2 temp_ac.cpp -o ./ac.out
 
   ac_count=0
@@ -76,7 +76,7 @@ randomtest_noout() {
 }
 
 randomtest_real() {
-  python3 "$COMPRO_LIBRARY_DIR/expander.py" ac.cpp > temp_ac.cpp
+  python3 "$COMPRO_LIBRARY_DIR/scripts/expander.py" ac.cpp > temp_ac.cpp
   g++ -I "$COMPRO_LIBRARY_DIR" -std=c++2a -O2 temp_ac.cpp -o ./ac.out
 
   ac_count=0

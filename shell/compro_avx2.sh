@@ -21,27 +21,31 @@ copy_temp_cpp() {
 }
 
 expand_main() {
-  python3 "$COMPRO_LIBRARY_DIR/expander.py" main.cpp > temp.cpp
+  python3 "$COMPRO_LIBRARY_DIR/scripts/expander.py" main.cpp > temp.cpp
+}
+
+expand_main_pch() {
+  python3 "$COMPRO_LIBRARY_DIR/scripts/expander.py" --pch main.cpp > temp.cpp
 }
 
 compile_debug() {
-  expand_main || return
+  expand_main_pch || return
   copy_temp_cpp
-  g++ -I "$COMPRO_LIBRARY_DIR" -DLOCAL -DUSE_PCH -std=c++2a -O2 -Wall \
-    -Wfatal-errors -D_GLIBCXX_DEBUG -mavx2 -mpopcnt temp.cpp
+  g++ -I "$COMPRO_LIBRARY_DIR" -DLOCAL -std=c++2a -O2 -Wall \
+    -Wfatal-errors -D_GLIBCXX_DEBUG -mavx2 -mpopcnt -include my_template.hpp temp.cpp
 }
 
 compile_sanitize() {
-  expand_main || return
+  expand_main_pch || return
   copy_temp_cpp
-  g++ -I "$COMPRO_LIBRARY_DIR" -DLOCAL -DUSE_PCH -mavx2 -mpopcnt \
+  g++ -I "$COMPRO_LIBRARY_DIR" -DLOCAL -mavx2 -mpopcnt \
     -std=c++2a -O2 -fsanitize=address -fno-omit-frame-pointer -g \
-    -fsanitize=undefined temp.cpp
+    -fsanitize=undefined -include my_template.hpp temp.cpp
 }
 
 compile_fast() {
-  expand_main || return
-  g++ -I "$COMPRO_LIBRARY_DIR" -DUSE_PCH -std=c++2a -O2 -mavx2 -mpopcnt temp.cpp
+  expand_main_pch || return
+  g++ -I "$COMPRO_LIBRARY_DIR"  -std=c++2a -O2 -mavx2 -mpopcnt -include my_template.hpp temp.cpp
 }
 
 compile_fast_no_pch() {
@@ -56,29 +60,24 @@ test_samples() {
 }
 
 shrink_temp() {
-  python3 "$COMPRO_LIBRARY_DIR/shrink.py" --report temp.cpp > submit.cpp
+  python3 "$COMPRO_LIBRARY_DIR/scripts/shrink.py" --report temp.cpp > submit.cpp
 }
 
 precompile() {
   (
     cd "$COMPRO_LIBRARY_DIR" || return
-    local pch_src="my_template_compiled.hpp"
-    local out_dir="my_template_compiled.hpp.gch"
-    awk '
-      NR <= 6 { next }
-      { lines[++n] = $0 }
-      END { for (i = 1; i < n; i++) print lines[i] }
-    ' my_template.hpp > "$pch_src"
+    local pch_src="my_template.hpp"
+    local out_dir="my_template.hpp.gch"
     rm -rf "$out_dir"
     mkdir -p "$out_dir"
 
-    g++ -o "$out_dir/debug.gch" -I . -DLOCAL -DUSE_PCH -std=c++2a -O2 \
+    g++ -o "$out_dir/debug.gch" -I . -DLOCAL -std=c++2a -O2 \
       -Wall -Wfatal-errors -D_GLIBCXX_DEBUG -mavx2 -mpopcnt -x c++-header \
       "$pch_src" || return
-    g++ -o "$out_dir/sanitize.gch" -I . -DLOCAL -DUSE_PCH -std=c++2a -O2 \
+    g++ -o "$out_dir/sanitize.gch" -I . -DLOCAL -std=c++2a -O2 \
       -fsanitize=address -fno-omit-frame-pointer -g -fsanitize=undefined \
       -mavx2 -mpopcnt -x c++-header "$pch_src" || return
-    g++ -o "$out_dir/fast.gch" -I . -DUSE_PCH -std=c++2a -O2 -mavx2 -mpopcnt \
+    g++ -o "$out_dir/fast.gch" -I .  -std=c++2a -O2 -mavx2 -mpopcnt \
       -x c++-header "$pch_src" || return
     echo "PCH built: AVX2"
   )
