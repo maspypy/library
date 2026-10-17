@@ -11,19 +11,19 @@ data:
   - icon: ':warning:'
     path: graph/degree_sequence.hpp
     title: graph/degree_sequence.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/EGZ.hpp
     title: nt/EGZ.hpp
   - icon: ':warning:'
     path: string/enumerate_occurrences.hpp
     title: string/enumerate_occurrences.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/EGZ.test.cpp
     title: test/1_mytest/EGZ.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/csr.hpp
@@ -67,7 +67,7 @@ data:
   - ds/offline_query/offline_set_intersection.hpp
   - string/enumerate_occurrences.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/EGZ.test.cpp
 documentation_of: ds/csr.hpp

@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_add_range_max.test.cpp
     title: test/1_mytest/range_add_range_max.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/542/problem/B
     - https://github.com/maspypy/library/blob/main/ds/rmq/range_add_range_max.hpp
-  bundledCode: "#line 1 \"ds/rmq/range_add_range_max.hpp\"\n// Source:\n// https://github.com/maspypy/library/blob/main/ds/rmq/range_add_range_max.hpp\n\
+  bundledCode: "#line 1 \"ds/rmq/range_add_range_max.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/rmq/range_add_range_max.hpp\n\
     #line 1 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/dynamic_segtree_sparse.hpp\n\
     \n// \u5E38\u306B\u307B\u3068\u3093\u3069\u306E\u8981\u7D20\u304C id \u3067\u3042\
     \u308B\u3053\u3068\u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\u52D5\
@@ -158,7 +158,7 @@ data:
     \    }\n\n    int m = len(I);\n    while (I[0] > 1) {\n      int nxt = 0;\n  \
     \    int last = -1;\n      FOR(k, m) {\n        int p = I[k] >> 1;\n        if\
     \ (p == last) continue;\n        update(p);\n        I[nxt++] = p;\n        last\
-    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 5 \"ds/rmq/range_add_range_max.hpp\"\
+    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 4 \"ds/rmq/range_add_range_max.hpp\"\
     \n\n// INF+x==INF \u307F\u305F\u3044\u306A\u51E6\u7406\u306F\u5165\u308C\u3066\
     \u3044\u306A\u3044\n// N=Q=10^6 \u3067 lazysegtree \u3088\u308A 40% \u7A0B\u5EA6\
     \u9AD8\u901F\ntemplate <typename T>\nstruct Range_Add_Range_Max {\n  struct Mono\
@@ -213,7 +213,7 @@ data:
     \ -x); }\n\n  // [i,n)\n  void apply_suffix(ll i, T x) {\n    if (i == seg.R0)\
     \ return;\n    T t = seg.get(root, i).fi + x;\n    root = seg.set(root, i, {t,\
     \ t});\n  }\n  void apply_all(T x) { lazy += x; }\n};\n"
-  code: "// Source:\n// https://github.com/maspypy/library/blob/main/ds/rmq/range_add_range_max.hpp\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/rmq/range_add_range_max.hpp\n\
     #include \"ds/segtree/dynamic_segtree_sparse.hpp\"\n#include \"ds/segtree/segtree.hpp\"\
     \n\n// INF+x==INF \u307F\u305F\u3044\u306A\u51E6\u7406\u306F\u5165\u308C\u3066\
     \u3044\u306A\u3044\n// N=Q=10^6 \u3067 lazysegtree \u3088\u308A 40% \u7A0B\u5EA6\
@@ -275,8 +275,8 @@ data:
   isVerificationFile: false
   path: ds/rmq/range_add_range_max.hpp
   requiredBy: []
-  timestamp: '2026-10-17 16:27:04+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-10-17 16:35:49+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/range_add_range_max.test.cpp
 documentation_of: ds/rmq/range_add_range_max.hpp
