@@ -3,3 +3,4 @@ __pycache__/*
 
 temp.cpp
 my_template.hpp.gch/
+my_template_compiled.hpp

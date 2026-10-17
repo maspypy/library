@@ -66,12 +66,12 @@ precompile() {
     local out_dir="my_template_compiled.hpp.gch"
     # Extract the marked body; do not depend on physical line numbers.
     awk '
-      $0 == "#else // MASPY_TEMPLATE_BODY" {
+      /^[[:space:]]*#[[:space:]]*else[[:space:]]*\/\/[[:space:]]*MASPY_TEMPLATE_BODY[[:space:]]*$/ {
         if (started || ended) exit 1
         started = 1
         next
       }
-      $0 == "#endif // MASPY_TEMPLATE_BODY" {
+      /^[[:space:]]*#[[:space:]]*endif[[:space:]]*\/\/[[:space:]]*MASPY_TEMPLATE_BODY[[:space:]]*$/ {
         if (!started || ended) exit 1
         ended = 1
         next
