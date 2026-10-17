@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/mertens.hpp
     title: nt/mertens.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
@@ -15,24 +15,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/enumerate_quotients.test.cpp
     title: test/2_library_checker/number_theory/enumerate_quotients.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1260.test.cpp
     title: test/3_yukicoder/1260.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1276.test.cpp
     title: test/3_yukicoder/1276.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1573.test.cpp
     title: test/3_yukicoder/1573.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2266.test.cpp
     title: test/3_yukicoder/2266.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/4954.test.cpp
     title: test/3_yukicoder/4954.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/enumerate/floor_range.hpp
@@ -63,7 +63,7 @@ data:
   - nt/range_rational_count.hpp
   - nt/mertens.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/floor_ceil_ranges.test.cpp
   - test/3_yukicoder/1276.test.cpp

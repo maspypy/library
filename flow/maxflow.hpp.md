@@ -8,7 +8,7 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
   - icon: ':warning:'
@@ -24,10 +24,10 @@ data:
     path: graph/maximum_weighted_antichain.hpp
     title: graph/maximum_weighted_antichain.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1541.test.cpp
     title: test/3_yukicoder/1541.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/177.test.cpp
     title: test/3_yukicoder/177.test.cpp
   - icon: ':x:'
@@ -39,7 +39,7 @@ data:
   - icon: ':x:'
     path: test/4_aoj/2835.test.cpp
     title: test/4_aoj/2835.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_6_A.test.cpp
     title: test/4_aoj/GRL_6_A.test.cpp
   _isVerificationFailed: true
