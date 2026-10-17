@@ -28,10 +28,10 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/cartesian_tree.hpp
     title: seq/cartesian_tree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
   - icon: ':question:'
