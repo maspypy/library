@@ -6,15 +6,15 @@ data:
     path: convex/monge/monge_shortest_path_d_edge.hpp
     title: convex/monge/monge_shortest_path_d_edge.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/monge_shortest_path.test.cpp
     title: test/1_mytest/monge_shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/705.test.cpp
     title: test/3_yukicoder/705.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/convex/monge/monge_shortest_path.hpp
@@ -79,7 +79,7 @@ data:
   requiredBy:
   - convex/monge/monge_shortest_path_d_edge.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/monge_shortest_path.test.cpp
   - test/3_yukicoder/705.test.cpp

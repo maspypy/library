@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1211.test.cpp
     title: test/3_yukicoder/1211.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1242.test.cpp
     title: test/3_yukicoder/1242.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/graph/functional_graph.hpp
@@ -470,7 +470,7 @@ data:
   path: graph/functional_graph.hpp
   requiredBy: []
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1211.test.cpp
   - test/3_yukicoder/2122.test.cpp

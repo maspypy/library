@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
     title: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/alg/monoid/rolling_hash.hpp
@@ -77,7 +77,7 @@ data:
   path: alg/monoid/rolling_hash.hpp
   requiredBy: []
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
 documentation_of: alg/monoid/rolling_hash.hpp

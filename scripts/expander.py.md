@@ -1,0 +1,70 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
+  _pathExtension: py
+  _verificationStatusIcon: ':warning:'
+  attributes:
+    links: []
+  bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/onlinejudge_verify/documentation/build.py\"\
+    , line 71, in _render_source_code_stat\n    bundled_code = language.bundle(stat.path,\
+    \ basedir=basedir, options={'include_paths': [basedir]}).decode()\n          \
+    \         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\
+    \  File \"/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages/onlinejudge_verify/languages/python.py\"\
+    , line 96, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
+  code: "import sys\nimport os\nimport re\n\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\n\
+    LIBRARY_DIR = os.path.dirname(SCRIPT_DIR)\n\nINCLUDE_PATHS = [\n    '.',\n   \
+    \ LIBRARY_DIR,\n]\n\nextra_paths = os.environ.get('MASPY_EXPANDER_INCLUDE_PATHS')\n\
+    if extra_paths:\n    INCLUDE_PATHS.extend(extra_paths.split(os.pathsep))\n\nvisited\
+    \ = set()\nkeep_source_url = os.environ.get('MASPY_KEEP_SOURCE_URL') == '1'\n\
+    pch_mode = False\n\n\ndef resolve_include(header, including_file):\n    for path\
+    \ in INCLUDE_PATHS:\n        full_path = os.path.join(path, header)\n        if\
+    \ os.path.isfile(full_path):\n            return os.path.abspath(full_path)\n\n\
+    \    # Fall back to the directory of the file containing the #include.\n    #\
+    \ Search INCLUDE_PATHS first to preserve existing behavior.\n    full_path = os.path.join(os.path.dirname(including_file),\
+    \ header)\n    if os.path.isfile(full_path):\n        return os.path.abspath(full_path)\n\
+    \    return None\n\n\ndef expand_file(path, display_name=None, caller_file=None,\
+    \ caller_line=None):\n    abs_path = os.path.abspath(path)\n    if pch_mode and\
+    \ abs_path == os.path.join(LIBRARY_DIR, \"my_template.hpp\"):\n        return\n\
+    \    if abs_path in visited:\n        return\n    visited.add(abs_path)\n\n  \
+    \  if display_name is None:\n        display_name = os.path.basename(path)\n\n\
+    \    print(f'// BEGIN: {display_name}')\n    next_output_line = None\n\n    with\
+    \ open(path) as f:\n        for i, line in enumerate(f, start=1):\n          \
+    \  if line.strip() == \"#pragma once\":\n                continue\n          \
+    \  if not keep_source_url and line.startswith('// Source: '):\n              \
+    \  # The source URL was physical line i.  The location directive\n           \
+    \     # for the next emitted line is produced lazily below.\n                continue\n\
+    \n            m = re.match(r'#\\s*include\\s*\"([^\"]+)\"', line)\n          \
+    \  if m:\n                header = m.group(1)\n                resolved = resolve_include(header,\
+    \ abs_path)\n                if resolved:\n                    if resolved not\
+    \ in visited:\n                        expand_file(resolved, header, display_name,\
+    \ i + 1)\n                    next_output_line = None\n                else:\n\
+    \                    if next_output_line != i:\n                        print(f'#line\
+    \ {i} \"{display_name}\"')\n                    print(f'// [warning] include not\
+    \ found: {header}')\n                    next_output_line = i + 1\n          \
+    \  elif re.match(r'#\\s*include\\s*<[^>]+>', line):\n                if next_output_line\
+    \ != i:\n                    print(f'#line {i} \"{display_name}\"')\n        \
+    \        print(line, end='')\n                next_output_line = i + 1\n     \
+    \       else:\n                if next_output_line != i:\n                   \
+    \ print(f'#line {i} \"{display_name}\"')\n                print(line, end='')\n\
+    \                next_output_line = i + 1\n\n    print(f'// END: {display_name}')\n\
+    \n\nif __name__ == '__main__':\n    args = sys.argv[1:]\n    if args and args[0]\
+    \ == '--pch':\n        pch_mode = True\n        args.pop(0)\n    if len(args)\
+    \ != 1:\n        print(\"Usage: python3 expander.py [--pch] main.cpp > singlefile.cpp\"\
+    , file=sys.stderr)\n        sys.exit(1)\n    expand_file(args[0])\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: scripts/expander.py
+  requiredBy: []
+  timestamp: '1970-01-01 00:00:00+00:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: scripts/expander.py
+layout: document
+redirect_from:
+- /library/scripts/expander.py
+- /library/scripts/expander.py.html
+title: scripts/expander.py
+---

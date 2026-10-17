@@ -6,21 +6,24 @@ data:
     path: ds/offline_query/offline_set_intersection.hpp
     title: ds/offline_query/offline_set_intersection.hpp
   - icon: ':warning:'
+    path: graph/cactus.hpp
+    title: graph/cactus.hpp
+  - icon: ':warning:'
     path: graph/degree_sequence.hpp
     title: graph/degree_sequence.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/EGZ.hpp
     title: nt/EGZ.hpp
   - icon: ':warning:'
     path: string/enumerate_occurrences.hpp
     title: string/enumerate_occurrences.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/EGZ.test.cpp
     title: test/1_mytest/EGZ.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/csr.hpp
@@ -59,11 +62,12 @@ data:
   path: ds/csr.hpp
   requiredBy:
   - nt/EGZ.hpp
+  - graph/cactus.hpp
   - graph/degree_sequence.hpp
   - ds/offline_query/offline_set_intersection.hpp
   - string/enumerate_occurrences.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/EGZ.test.cpp
 documentation_of: ds/csr.hpp

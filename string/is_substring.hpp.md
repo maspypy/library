@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/z_algorithm.hpp
     title: string/z_algorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/is_substring.test.cpp
     title: test/1_mytest/is_substring.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/string/is_substring.hpp
@@ -44,7 +44,7 @@ data:
   path: string/is_substring.hpp
   requiredBy: []
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/is_substring.test.cpp
 documentation_of: string/is_substring.hpp

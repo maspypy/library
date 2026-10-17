@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/bitwise_transform.hpp
     title: setfunc/bitwise_transform.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/xor_convolution.hpp
     title: setfunc/xor_convolution.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
     title: test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1142.test.cpp
     title: test/3_yukicoder/1142.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1753.test.cpp
     title: test/3_yukicoder/1753.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/setfunc/hadamard.hpp
@@ -73,7 +73,7 @@ data:
   requiredBy:
   - setfunc/xor_convolution.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1753.test.cpp
   - test/3_yukicoder/1142.test.cpp

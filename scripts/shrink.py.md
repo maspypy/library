@@ -222,15 +222,15 @@ data:
     \        raise SystemExit(1)\n"
   dependsOn: []
   isVerificationFile: false
-  path: shrink.py
+  path: scripts/shrink.py
   requiredBy: []
   timestamp: '1970-01-01 00:00:00+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: shrink.py
+documentation_of: scripts/shrink.py
 layout: document
 redirect_from:
-- /library/shrink.py
-- /library/shrink.py.html
-title: shrink.py
+- /library/scripts/shrink.py
+- /library/scripts/shrink.py.html
+title: scripts/shrink.py
 ---

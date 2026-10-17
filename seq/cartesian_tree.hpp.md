@@ -5,28 +5,28 @@ data:
   - icon: ':warning:'
     path: string/basic_substring_structure.hpp
     title: string/basic_substring_structure.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/cartesian_tree.test.cpp
     title: test/2_library_checker/tree/cartesian_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2574.test.cpp
     title: test/3_yukicoder/2574.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DPL_3_B.test.cpp
     title: test/4_aoj/DPL_3_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DPL_3_C.test.cpp
     title: test/4_aoj/DPL_3_C.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/seq/cartesian_tree.hpp
@@ -91,7 +91,7 @@ data:
   - string/basic_substring_structure.hpp
   - string/suffix_tree.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/2574.test.cpp

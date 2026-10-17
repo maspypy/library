@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/number_of_substrings
@@ -56,8 +56,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/number_of_substrings2.test.cpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-17 16:28:12+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/string/number_of_substrings2.test.cpp
 layout: document

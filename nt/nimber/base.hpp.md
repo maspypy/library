@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/nimber/nimber_impl.hpp
     title: nt/nimber/nimber_impl.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/nimber/nimber_log.hpp
     title: nt/nimber/nimber_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/nimber/solve_quadratic.hpp
     title: nt/nimber/solve_quadratic.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/nimber.test.cpp
     title: test/1_mytest/nimber.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/nimber_log.test.cpp
     title: test/1_mytest/nimber_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/nim_product.test.cpp
     title: test/2_library_checker/number_theory/nim_product.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2907.test.cpp
     title: test/3_yukicoder/2907.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2907_2.test.cpp
     title: test/3_yukicoder/2907_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/nt/nimber/base.hpp
@@ -126,7 +126,7 @@ data:
   - nt/nimber/solve_quadratic.hpp
   - nt/nimber/nimber_log.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/nimber_log.test.cpp
   - test/1_mytest/nimber.test.cpp

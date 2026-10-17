@@ -48,3 +48,12 @@ source "path/to/library/shell/compro.sh"
 ## precompile
 `precompile` を実行すると、`my_template.hpp` の事前コンパイルがされる。library clone 後に一度実行すればよい。`my_template.hpp` が更新された場合にはレポジトリを最新にしたあとで再び実行する。
 
+
+## Tools and PCH implementation
+
+- `scripts/expander.py`: normal expansion for submission; `--pch` skips
+  `my_template.hpp` for local compile that uses GCC's `-include my_template.hpp`.
+- `scripts/shrink.py`: optional post-processing of the expanded source.
+- `precompile`: builds `my_template.hpp.gch/{debug,sanitize,fast}.gch`;
+  rerun when the template or compiler flags change.
+- `shell/` remains the entry point for sourced shell functions and verifier wrappers.

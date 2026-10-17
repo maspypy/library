@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: game/number_and_star.hpp
     title: game/number_and_star.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: game/solve_partizan_game.hpp
     title: game/solve_partizan_game.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/dyadic_rational.test.cpp
     title: test/1_mytest/dyadic_rational.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/partizan.test.cpp
     title: test/1_mytest/partizan.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/game/dyadic_rational.hpp
@@ -110,7 +110,7 @@ data:
   - game/number_and_star.hpp
   - game/solve_partizan_game.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/dyadic_rational.test.cpp
   - test/1_mytest/partizan.test.cpp

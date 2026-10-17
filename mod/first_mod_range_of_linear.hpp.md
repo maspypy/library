@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/min_of_linear_segments.hpp
     title: mod/min_of_linear_segments.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/first_mod_range_of_linear.test.cpp
     title: test/1_mytest/first_mod_range_of_linear.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/mod/first_mod_range_of_linear.hpp
@@ -66,7 +66,7 @@ data:
   path: mod/first_mod_range_of_linear.hpp
   requiredBy: []
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/first_mod_range_of_linear.test.cpp
 documentation_of: mod/first_mod_range_of_linear.hpp

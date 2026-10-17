@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/rmq/range_add_range_max.hpp
     title: ds/rmq/range_add_range_max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -41,30 +41,30 @@ data:
   bundledCode: "#line 1 \"test/1_mytest/range_add_range_max.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n//\
     \ Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\nlibrary:\
-    \ https://github.com/maspypy/library\n*/\n#if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\
-    #else\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n#pragma GCC optimize(\"\
-    Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\"\
-    )\n#endif\n#endif\n#include <bits/stdc++.h>\n#include <cassert>\n\nusing namespace\
-    \ std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\n\
-    using u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128 = __int128;\nusing u128\
-    \ = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class>\nconstexpr\
-    \ bool dependent_false = false;\n\ntemplate <class T>\nconstexpr T infty = []\
-    \ {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\");\n  return\
-    \ T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate\
-    \ <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
-    \ u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\n\
-    template <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
-    template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
-    \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
-    using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
-    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
-    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq_max = priority_queue<T>;\ntemplate <class T>\nusing pq_min = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
-    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
-    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
-    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
-    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \ https://github.com/maspypy/library\n*/\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
+    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
+    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#line\
+    \ 14 \"my_template.hpp\"\n\nusing namespace std;\n\nusing ll = long long;\nusing\
+    \ u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\n\
+    using i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\
+    \ntemplate <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class\
+    \ T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T>\
+    \ is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int>\
+    \ = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
+    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
+    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
+    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
+    \ infty<i128>;\ntemplate <>\nconstexpr long double infty<long double> = infty<i128>;\n\
+    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
+    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing pq_max = priority_queue<T>;\ntemplate <class T>\nusing\
+    \ pq_min = priority_queue<T, vector<T>, greater<T>>;\n\n#define vv(type, name,\
+    \ h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n#define\
+    \ vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name( \\\n \
+    \     h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR1_R(a)\
@@ -154,7 +154,7 @@ data:
     \ others.end()), ...);\n}\n\n// i128\ntemplate <class T, enable_if_t<is_same_v<T,\
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
-    \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif\n#line 3 \"test/1_mytest/range_add_range_max.test.cpp\"\
+    \    a = b, b = c;\n  }\n  return abs(a);\n}\n#line 3 \"test/1_mytest/range_add_range_max.test.cpp\"\
     \n\n#line 1 \"alg/acted_monoid/max_add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/max_add.hpp\n\
     #line 1 \"alg/monoid/add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
     \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
@@ -240,7 +240,7 @@ data:
     \ (k < size) has_laz[k] = 1, laz[k] = MA::op(laz[k], a);\n  }\n  void push(int\
     \ k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = 0;\n    apply_at(2 * k,\
     \ laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k] = MA::id();\n  }\n};\n#line\
-    \ 1 \"ds/rmq/range_add_range_max.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/rmq/range_add_range_max.hpp\n\
+    \ 1 \"ds/rmq/range_add_range_max.hpp\"\n// Source:\n// https://github.com/maspypy/library/blob/main/ds/rmq/range_add_range_max.hpp\n\
     #line 1 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/dynamic_segtree_sparse.hpp\n\
     \n// \u5E38\u306B\u307B\u3068\u3093\u3069\u306E\u8981\u7D20\u304C id \u3067\u3042\
     \u308B\u3053\u3068\u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\u52D5\
@@ -379,7 +379,7 @@ data:
     \    }\n\n    int m = len(I);\n    while (I[0] > 1) {\n      int nxt = 0;\n  \
     \    int last = -1;\n      FOR(k, m) {\n        int p = I[k] >> 1;\n        if\
     \ (p == last) continue;\n        update(p);\n        I[nxt++] = p;\n        last\
-    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 4 \"ds/rmq/range_add_range_max.hpp\"\
+    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 5 \"ds/rmq/range_add_range_max.hpp\"\
     \n\n// INF+x==INF \u307F\u305F\u3044\u306A\u51E6\u7406\u306F\u5165\u308C\u3066\
     \u3044\u306A\u3044\n// N=Q=10^6 \u3067 lazysegtree \u3088\u308A 40% \u7A0B\u5EA6\
     \u9AD8\u901F\ntemplate <typename T>\nstruct Range_Add_Range_Max {\n  struct Mono\
@@ -409,15 +409,25 @@ data:
     \ apply_all(T x) { lazy += x; }\n\n  void set(int i, T x) {\n    T now = prod(i,\
     \ i + 1);\n    apply(i, i + 1, x - now);\n  }\n\n  void multiply(int i, T x) {\n\
     \    T now = prod(i, i + 1);\n    if (now < x) apply(i, i + 1, x - now);\n  }\n\
-    };\n\n// \u5EA7\u6A19\u306F long long. \u307B\u307C verify \u3055\u308C\u3066\u3044\
-    \u306A\u3044\n// https://codeforces.com/contest/542/problem/B\ntemplate <typename\
-    \ T>\nstruct Dynamic_Range_Add_Range_Max {\n  struct Mono {\n    using value_type\
-    \ = pair<T, T>;\n    using X = value_type;\n    static X op(X L, X R) { return\
-    \ {L.fi + R.fi, max(L.se, L.fi + R.se)}; }\n    static constexpr X id() { return\
-    \ {0, 0}; }\n    static constexpr bool commute = false;\n  };\n  int n;\n  Dynamic_SegTree_Sparse<Mono,\
-    \ false> seg;\n  T lazy;\n  using np = typename decltype(seg)::np;\n  np root;\n\
-    \n  // range apply * 2 \u304F\u3089\u3044\u306E\u30CE\u30FC\u30C9\u6570\n  Dynamic_Range_Add_Range_Max(int\
-    \ NODES, ll L, ll R)\n      : seg(NODES, L, R), lazy(0) {\n    root = seg.new_root();\n\
+    \  template <class F>\n  int max_right(F check, int L) const {\n    assert(0 <=\
+    \ L && L <= n && check(-infty<T>));\n    if (L == n) return n;\n\n    T pre =\
+    \ lazy + seg.prod(0, L).fi;\n\n    auto f = [&](pair<T, T> x) -> bool {\n    \
+    \  if (x == Mono::id()) return true;\n      return check(pre + x.se);\n    };\n\
+    \    return seg.max_right(f, L);\n  }\n\n  template <class F>\n  int min_left(F\
+    \ check, int R) const {\n    assert(0 <= R && R <= n && check(-infty<T>));\n \
+    \   if (R == 0) return 0;\n\n    T suf = lazy + seg.prod(0, R).fi;  // A[R-1]\n\
+    \n    auto f = [&](pair<T, T> x) -> bool {\n      if (x == Mono::id()) return\
+    \ true;\n      return check(suf - x.fi + x.se);\n    };\n    return seg.min_left(f,\
+    \ R);\n  }\n};\n\n// \u5EA7\u6A19\u306F long long. \u307B\u307C verify \u3055\u308C\
+    \u3066\u3044\u306A\u3044\n// https://codeforces.com/contest/542/problem/B\ntemplate\
+    \ <typename T>\nstruct Dynamic_Range_Add_Range_Max {\n  struct Mono {\n    using\
+    \ value_type = pair<T, T>;\n    using X = value_type;\n    static X op(X L, X\
+    \ R) { return {L.fi + R.fi, max(L.se, L.fi + R.se)}; }\n    static constexpr X\
+    \ id() { return {0, 0}; }\n    static constexpr bool commute = false;\n  };\n\
+    \  int n;\n  Dynamic_SegTree_Sparse<Mono, false> seg;\n  T lazy;\n  using np =\
+    \ typename decltype(seg)::np;\n  np root;\n\n  // range apply * 2 \u304F\u3089\
+    \u3044\u306E\u30CE\u30FC\u30C9\u6570\n  Dynamic_Range_Add_Range_Max(int NODES,\
+    \ ll L, ll R)\n      : seg(NODES, L, R), lazy(0) {\n    root = seg.new_root();\n\
     \  }\n\n  T prod(ll L, ll R) {\n    if (L == R) return -infty<T>;\n    ll ans\
     \ = seg.prod(root, L, R).se;\n    ans += seg.prod(root, seg.L0, L).fi;\n    return\
     \ ans + lazy;\n  }\n\n  void apply(ll L, ll R, T x) { apply_suffix(L, x), apply_suffix(R,\
@@ -499,8 +509,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_add_range_max.test.cpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-17 16:28:12+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/range_add_range_max.test.cpp
 layout: document

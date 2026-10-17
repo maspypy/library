@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/rect_add_pt_get.test.cpp
     title: test/2_library_checker/data_structure/rect_add_pt_get.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/fenwicktree/dual_fenwicktree_2d.hpp
@@ -105,7 +105,7 @@ data:
   path: ds/fenwicktree/dual_fenwicktree_2d.hpp
   requiredBy: []
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/data_structure/rect_add_pt_get.test.cpp
 documentation_of: ds/fenwicktree/dual_fenwicktree_2d.hpp

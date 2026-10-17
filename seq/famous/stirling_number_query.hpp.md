@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/seq/famous/stirling_number_query.hpp
@@ -130,7 +130,7 @@ data:
   path: seq/famous/stirling_number_query.hpp
   requiredBy: []
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp

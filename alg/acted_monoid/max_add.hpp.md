@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/range_add_range_max.test.cpp
     title: test/1_mytest/range_add_range_max.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/686.test.cpp
     title: test/3_yukicoder/686.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/alg/acted_monoid/max_add.hpp
@@ -52,7 +52,7 @@ data:
   path: alg/acted_monoid/max_add.hpp
   requiredBy: []
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/range_add_range_max.test.cpp
   - test/3_yukicoder/686.test.cpp

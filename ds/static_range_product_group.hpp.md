@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/prefix_sum.hpp
     title: ds/prefix_sum.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/static_range_sum.test.cpp
     title: test/2_library_checker/data_structure/static_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2065.test.cpp
     title: test/3_yukicoder/2065.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/924.test.cpp
     title: test/3_yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/static_range_product_group.hpp
@@ -66,7 +66,7 @@ data:
   requiredBy:
   - ds/prefix_sum.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/924.test.cpp
   - test/3_yukicoder/2065.test.cpp

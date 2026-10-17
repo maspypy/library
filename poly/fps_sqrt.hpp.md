@@ -1,83 +1,83 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/count_bipartite.test.cpp
     title: test/1_mytest/count_bipartite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/poly/fps_sqrt.hpp
@@ -1186,7 +1186,7 @@ data:
   requiredBy:
   - graph/count/count_labeled_bipartite.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/count_bipartite.test.cpp
   - test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp

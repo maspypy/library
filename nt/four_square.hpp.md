@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/three_square.hpp
     title: nt/three_square.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/four_square.test.cpp
     title: test/1_mytest/four_square.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/nt/four_square.hpp
@@ -291,7 +291,7 @@ data:
   path: nt/four_square.hpp
   requiredBy: []
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/four_square.test.cpp
 documentation_of: nt/four_square.hpp

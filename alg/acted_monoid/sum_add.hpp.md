@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/ARC30D.test.cpp
     title: test/1_mytest/ARC30D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/fenwick_raq.test.cpp
     title: test/1_mytest/fenwick_raq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/rbst_am_2.test.cpp
     title: test/1_mytest/rbst_am_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/splay_am.test.cpp
     title: test/1_mytest/splay_am.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1197.test.cpp
     title: test/3_yukicoder/1197.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/789_2.test.cpp
     title: test/3_yukicoder/789_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/alg/acted_monoid/sum_add.hpp
@@ -57,7 +57,7 @@ data:
   path: alg/acted_monoid/sum_add.hpp
   requiredBy: []
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/fenwick_raq.test.cpp
   - test/1_mytest/ARC30D.test.cpp

@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: game/dyadic_rational.hpp
     title: game/dyadic_rational.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: game/number_and_star.hpp
     title: game/number_and_star.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/mex.hpp
     title: other/mex.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/partizan.test.cpp
     title: test/1_mytest/partizan.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/game/solve_partizan_game.hpp
@@ -136,7 +136,7 @@ data:
   path: game/solve_partizan_game.hpp
   requiredBy: []
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/partizan.test.cpp
 documentation_of: game/solve_partizan_game.hpp

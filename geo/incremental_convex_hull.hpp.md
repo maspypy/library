@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/convex_polygon_side.test.cpp
     title: test/1_mytest/convex_polygon_side.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/convex_polygon_visible_range.test.cpp
     title: test/1_mytest/convex_polygon_visible_range.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/incremental_ch.test.cpp
     title: test/1_mytest/incremental_ch.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/max_dot.test.cpp
     title: test/1_mytest/max_dot.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/geo/incremental_convex_hull.hpp
@@ -197,7 +197,7 @@ data:
   path: geo/incremental_convex_hull.hpp
   requiredBy: []
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/convex_polygon_visible_range.test.cpp
   - test/1_mytest/max_dot.test.cpp
