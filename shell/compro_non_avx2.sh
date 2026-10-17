@@ -24,28 +24,24 @@ expand_main() {
   python3 "$COMPRO_LIBRARY_DIR/scripts/expander.py" main.cpp > temp.cpp
 }
 
-expand_main_pch() {
-  python3 "$COMPRO_LIBRARY_DIR/scripts/expander.py" --pch main.cpp > temp.cpp
-}
-
 compile_debug() {
-  expand_main_pch || return
+  expand_main || return
   copy_temp_cpp
   g++ -I "$COMPRO_LIBRARY_DIR" -DLOCAL -DMASPY_NON_AVX2 \
-    -std=c++2a -O2 -Wall -Wfatal-errors -D_GLIBCXX_DEBUG -include my_template.hpp temp.cpp
+    -std=c++2a -O2 -Wall -Wfatal-errors -D_GLIBCXX_DEBUG -DUSE_PCH temp.cpp
 }
 
 compile_sanitize() {
-  expand_main_pch || return
+  expand_main || return
   copy_temp_cpp
   g++ -I "$COMPRO_LIBRARY_DIR" -DLOCAL -DMASPY_NON_AVX2 \
     -std=c++2a -O2 -fsanitize=address -fno-omit-frame-pointer -g \
-    -fsanitize=undefined -include my_template.hpp temp.cpp
+    -fsanitize=undefined -DUSE_PCH temp.cpp
 }
 
 compile_fast() {
-  expand_main_pch || return
-  g++ -I "$COMPRO_LIBRARY_DIR"  -DMASPY_NON_AVX2 -std=c++2a -O2 -include my_template.hpp temp.cpp
+  expand_main || return
+  g++ -I "$COMPRO_LIBRARY_DIR"  -DMASPY_NON_AVX2 -std=c++2a -O2 -DUSE_PCH temp.cpp
 }
 
 compile_fast_no_pch() {
@@ -66,8 +62,29 @@ shrink_temp() {
 precompile() {
   (
     cd "$COMPRO_LIBRARY_DIR" || return
-    local pch_src="my_template.hpp"
-    local out_dir="my_template.hpp.gch"
+    local pch_src="my_template_compiled.hpp"
+    local out_dir="my_template_compiled.hpp.gch"
+    # Extract the marked body; do not depend on physical line numbers.
+    awk '
+      $0 == "#else // MASPY_TEMPLATE_BODY" {
+        if (started || ended) exit 1
+        started = 1
+        next
+      }
+      $0 == "#endif // MASPY_TEMPLATE_BODY" {
+        if (!started || ended) exit 1
+        ended = 1
+        next
+      }
+      started && !ended { print }
+      END {
+        if (!started || !ended) {
+          print "my_template.hpp: PCH body markers not found" > "/dev/stderr"
+          exit 1
+        }
+      }
+    ' my_template.hpp > "$pch_src" || return
+
     rm -rf "$out_dir"
     mkdir -p "$out_dir"
 

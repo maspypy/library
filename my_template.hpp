@@ -1,4 +1,7 @@
 // Source: https://github.com/maspypy/library/blob/main/my_template.hpp
+#if defined(USE_PCH)
+#include <my_template_compiled.hpp>
+#else  // MASPY_TEMPLATE_BODY
 /*
 library: https://github.com/maspypy/library
 */
@@ -332,3 +335,4 @@ constexpr i128 gcd(i128 a, i128 b) {
   }
   return abs(a);
 }
+#endif  // MASPY_TEMPLATE_BODY
