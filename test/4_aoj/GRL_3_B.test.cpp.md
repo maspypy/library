@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B
@@ -29,16 +29,17 @@ data:
   bundledCode: "#line 1 \"test/4_aoj/GRL_3_B.test.cpp\"\n#define PROBLEM \\\n  \"\
     https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_3_B\"\n\n#line 1\
     \ \"my_template.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n\
+    #if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n#else  // MASPY_TEMPLATE_BODY\n\
     /*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(__GNUC__)\n#include\
     \ <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n\
     #pragma GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n\
-    #line 14 \"my_template.hpp\"\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 =\
-    \ uint64_t;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128\
-    \ = __float128;\n\ntemplate <class>\nconstexpr bool dependent_false = false;\n\
-    \ntemplate <class T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>,\
-    \ \"infty<T> is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int\
-    \ infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
+    #include <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8\
+    \ = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\n\
+    using i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\
+    \ntemplate <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class\
+    \ T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T>\
+    \ is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int>\
+    \ = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
     template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
     \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
     \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
@@ -142,64 +143,65 @@ data:
     \ others.end()), ...);\n}\n\n// i128\ntemplate <class T, enable_if_t<is_same_v<T,\
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
-    \    a = b, b = c;\n  }\n  return abs(a);\n}\n#line 1 \"other/io.hpp\"\n// Source:\
-    \ https://github.com/maspypy/library/blob/main/other/io.hpp\n#define FASTIO\n\n\
-    // https://judge.yosupo.jp/submission/21623\nnamespace fastio {\nstatic constexpr\
-    \ uint32_t SZ = 1 << 17;\nchar ibuf[SZ];\nchar obuf[SZ];\nchar out[100];\n// pointer\
-    \ of ibuf, obuf\nuint32_t pil = 0, pir = 0, por = 0;\nbool input_eof = false;\n\
-    \ntemplate <class T>\nconstexpr bool is_signed_integer_v = is_signed_v<T> || is_same_v<T,\
-    \ i128>;\n\ntemplate <class T>\nstruct unsigned_integer {\n  using type = make_unsigned_t<T>;\n\
-    };\ntemplate <>\nstruct unsigned_integer<i128> {\n  using type = u128;\n};\ntemplate\
-    \ <>\nstruct unsigned_integer<u128> {\n  using type = u128;\n};\ntemplate <class\
-    \ T>\nusing unsigned_integer_t = typename unsigned_integer<T>::type;\n\n[[noreturn]]\
-    \ inline void input_error(const char *message) {\n  fputs(message, stderr);\n\
-    \  fputc('\\n', stderr);\n  exit(EXIT_FAILURE);\n}\n\nstruct Pre {\n  char num[10000][4];\n\
-    \  constexpr Pre() : num() {\n    for (int i = 0; i < 10000; i++) {\n      int\
-    \ n = i;\n      for (int j = 3; j >= 0; j--) {\n        num[i][j] = n % 10 | '0';\n\
-    \        n /= 10;\n      }\n    }\n  }\n} constexpr pre;\n\ninline void load()\
-    \ {\n  uint32_t n = pir - pil;\n  memmove(ibuf, ibuf + pil, n);\n  pil = 0;\n\
-    \  pir = n;\n  if (input_eof) return;\n\n  pir += fread(ibuf + pir, 1, SZ - pir,\
-    \ stdin);\n  if (ferror(stdin)) input_error(\"fastio: input error\");\n  if (feof(stdin))\
-    \ {\n    input_eof = true;\n    // Allows the last token to end exactly at EOF\
-    \ without a trailing\n    // whitespace.\n    if (pir < SZ) ibuf[pir++] = '\\\
-    n';\n  }\n}\n\ninline char get_char() {\n  if (pil == pir) {\n    load();\n  \
-    \  if (pil == pir) input_error(\"fastio: unexpected EOF\");\n  }\n  return ibuf[pil++];\n\
-    }\n\ninline void flush() {\n  fwrite(obuf, 1, por, stdout);\n  por = 0;\n}\n\n\
-    void rd(char &c) {\n  do c = get_char();\n  while (isspace(static_cast<unsigned\
-    \ char>(c)));\n}\n\nvoid rd(string &x) {\n  x.clear();\n  char c;\n  do c = get_char();\n\
-    \  while (isspace(static_cast<unsigned char>(c)));\n  do {\n    x += c;\n    c\
-    \ = get_char();\n  } while (!isspace(static_cast<unsigned char>(c)));\n}\n\ntemplate\
-    \ <typename T>\nvoid rd_real(T &x) {\n  string s;\n  rd(s);\n  x = stod(s);\n\
-    }\n\ntemplate <typename T>\nvoid rd_integer_slow(T &x) {\n  char c;\n  do c =\
-    \ get_char();\n  while (c < '-');\n  bool minus = 0;\n  if constexpr (is_signed_integer_v<T>)\
-    \ {\n    if (c == '-') {\n      minus = 1, c = get_char();\n    }\n  }\n  x =\
+    \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif  // MASPY_TEMPLATE_BODY\n\
+    #line 1 \"other/io.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/other/io.hpp\n\
+    #define FASTIO\n\n// https://judge.yosupo.jp/submission/21623\nnamespace fastio\
+    \ {\nstatic constexpr uint32_t SZ = 1 << 17;\nchar ibuf[SZ];\nchar obuf[SZ];\n\
+    char out[100];\n// pointer of ibuf, obuf\nuint32_t pil = 0, pir = 0, por = 0;\n\
+    bool input_eof = false;\n\ntemplate <class T>\nconstexpr bool is_signed_integer_v\
+    \ = is_signed_v<T> || is_same_v<T, i128>;\n\ntemplate <class T>\nstruct unsigned_integer\
+    \ {\n  using type = make_unsigned_t<T>;\n};\ntemplate <>\nstruct unsigned_integer<i128>\
+    \ {\n  using type = u128;\n};\ntemplate <>\nstruct unsigned_integer<u128> {\n\
+    \  using type = u128;\n};\ntemplate <class T>\nusing unsigned_integer_t = typename\
+    \ unsigned_integer<T>::type;\n\n[[noreturn]] inline void input_error(const char\
+    \ *message) {\n  fputs(message, stderr);\n  fputc('\\n', stderr);\n  exit(EXIT_FAILURE);\n\
+    }\n\nstruct Pre {\n  char num[10000][4];\n  constexpr Pre() : num() {\n    for\
+    \ (int i = 0; i < 10000; i++) {\n      int n = i;\n      for (int j = 3; j >=\
+    \ 0; j--) {\n        num[i][j] = n % 10 | '0';\n        n /= 10;\n      }\n  \
+    \  }\n  }\n} constexpr pre;\n\ninline void load() {\n  uint32_t n = pir - pil;\n\
+    \  memmove(ibuf, ibuf + pil, n);\n  pil = 0;\n  pir = n;\n  if (input_eof) return;\n\
+    \n  pir += fread(ibuf + pir, 1, SZ - pir, stdin);\n  if (ferror(stdin)) input_error(\"\
+    fastio: input error\");\n  if (feof(stdin)) {\n    input_eof = true;\n    // Allows\
+    \ the last token to end exactly at EOF without a trailing\n    // whitespace.\n\
+    \    if (pir < SZ) ibuf[pir++] = '\\n';\n  }\n}\n\ninline char get_char() {\n\
+    \  if (pil == pir) {\n    load();\n    if (pil == pir) input_error(\"fastio: unexpected\
+    \ EOF\");\n  }\n  return ibuf[pil++];\n}\n\ninline void flush() {\n  fwrite(obuf,\
+    \ 1, por, stdout);\n  por = 0;\n}\n\nvoid rd(char &c) {\n  do c = get_char();\n\
+    \  while (isspace(static_cast<unsigned char>(c)));\n}\n\nvoid rd(string &x) {\n\
+    \  x.clear();\n  char c;\n  do c = get_char();\n  while (isspace(static_cast<unsigned\
+    \ char>(c)));\n  do {\n    x += c;\n    c = get_char();\n  } while (!isspace(static_cast<unsigned\
+    \ char>(c)));\n}\n\ntemplate <typename T>\nvoid rd_real(T &x) {\n  string s;\n\
+    \  rd(s);\n  x = stod(s);\n}\n\ntemplate <typename T>\nvoid rd_integer_slow(T\
+    \ &x) {\n  char c;\n  do c = get_char();\n  while (c < '-');\n  bool minus = 0;\n\
+    \  if constexpr (is_signed_integer_v<T>) {\n    if (c == '-') {\n      minus =\
+    \ 1, c = get_char();\n    }\n  }\n  x = 0;\n  assert('0' <= c && c <= '9');\n\
+    \  while ('0' <= c && c <= '9') {\n    x = x * 10 + (c & 15), c = get_char();\n\
+    \  }\n  assert(isspace(static_cast<unsigned char>(c)));\n  if constexpr (is_signed_integer_v<T>)\
+    \ {\n    if (minus) x = -x;\n  }\n}\n\ntemplate <typename T>\nvoid rd_integer(T\
+    \ &x) {\n  if (pil + 100 > pir) {\n    load();\n    if (pil + 100 > pir) {\n \
+    \     rd_integer_slow(x);\n      return;\n    }\n  }\n  char c;\n  do c = ibuf[pil++];\n\
+    \  while (c < '-');\n  bool minus = 0;\n  if constexpr (is_signed_integer_v<T>)\
+    \ {\n    if (c == '-') {\n      minus = 1, c = ibuf[pil++];\n    }\n  }\n  x =\
     \ 0;\n  assert('0' <= c && c <= '9');\n  while ('0' <= c && c <= '9') {\n    x\
-    \ = x * 10 + (c & 15), c = get_char();\n  }\n  assert(isspace(static_cast<unsigned\
+    \ = x * 10 + (c & 15), c = ibuf[pil++];\n  }\n  assert(isspace(static_cast<unsigned\
     \ char>(c)));\n  if constexpr (is_signed_integer_v<T>) {\n    if (minus) x = -x;\n\
-    \  }\n}\n\ntemplate <typename T>\nvoid rd_integer(T &x) {\n  if (pil + 100 > pir)\
-    \ {\n    load();\n    if (pil + 100 > pir) {\n      rd_integer_slow(x);\n    \
-    \  return;\n    }\n  }\n  char c;\n  do c = ibuf[pil++];\n  while (c < '-');\n\
-    \  bool minus = 0;\n  if constexpr (is_signed_integer_v<T>) {\n    if (c == '-')\
-    \ {\n      minus = 1, c = ibuf[pil++];\n    }\n  }\n  x = 0;\n  assert('0' <=\
-    \ c && c <= '9');\n  while ('0' <= c && c <= '9') {\n    x = x * 10 + (c & 15),\
-    \ c = ibuf[pil++];\n  }\n  assert(isspace(static_cast<unsigned char>(c)));\n \
-    \ if constexpr (is_signed_integer_v<T>) {\n    if (minus) x = -x;\n  }\n}\n\n\
-    template <class T>\nenable_if_t<is_integral_v<T> || is_same_v<T, i128> || is_same_v<T,\
-    \ u128>> rd(\n    T &x) {\n  rd_integer(x);\n}\n\ntemplate <class T>\nenable_if_t<is_floating_point_v<T>\
-    \ || is_same_v<T, f128>> rd(T &x) {\n  rd_real(x);\n}\n\ntemplate <class T, class\
-    \ U>\nvoid rd(pair<T, U> &p) {\n  rd(p.first), rd(p.second);\n}\ntemplate <size_t\
-    \ N = 0, typename T>\nvoid rd_tuple(T &t) {\n  if constexpr (N < tuple_size<T>::value)\
-    \ {\n    auto &x = get<N>(t);\n    rd(x);\n    rd_tuple<N + 1>(t);\n  }\n}\ntemplate\
-    \ <class... T>\nvoid rd(tuple<T...> &tpl) {\n  rd_tuple(tpl);\n}\n\ntemplate <class\
-    \ T, size_t N>\nvoid rd(array<T, N> &x) {\n  for (auto &d : x) rd(d);\n}\ntemplate\
-    \ <class T>\nvoid rd(vc<T> &x) {\n  for (auto &d : x) rd(d);\n}\n\ntemplate <class...\
-    \ T>\nvoid read(T &...x) {\n  (rd(x), ...);\n}\n\ninline void wt_range(const char\
-    \ *s, size_t n) {\n  size_t i = 0;\n  while (i < n) {\n    if (por == SZ) flush();\n\
-    \    size_t chunk = min(n - i, (size_t)(SZ - por));\n    memcpy(obuf + por, s\
-    \ + i, chunk);\n    por += chunk;\n    i += chunk;\n  }\n}\n\nvoid wt(const char\
-    \ c) {\n  if (por == SZ) flush();\n  obuf[por++] = c;\n}\nvoid wt(const char *s)\
-    \ { wt_range(s, strlen(s)); }\nvoid wt(const string &s) { wt_range(s.data(), s.size());\
-    \ }\n\ntemplate <typename T>\nvoid wt_integer(T x) {\n  if (por > SZ - 100) flush();\n\
+    \  }\n}\n\ntemplate <class T>\nenable_if_t<is_integral_v<T> || is_same_v<T, i128>\
+    \ || is_same_v<T, u128>> rd(\n    T &x) {\n  rd_integer(x);\n}\n\ntemplate <class\
+    \ T>\nenable_if_t<is_floating_point_v<T> || is_same_v<T, f128>> rd(T &x) {\n \
+    \ rd_real(x);\n}\n\ntemplate <class T, class U>\nvoid rd(pair<T, U> &p) {\n  rd(p.first),\
+    \ rd(p.second);\n}\ntemplate <size_t N = 0, typename T>\nvoid rd_tuple(T &t) {\n\
+    \  if constexpr (N < tuple_size<T>::value) {\n    auto &x = get<N>(t);\n    rd(x);\n\
+    \    rd_tuple<N + 1>(t);\n  }\n}\ntemplate <class... T>\nvoid rd(tuple<T...> &tpl)\
+    \ {\n  rd_tuple(tpl);\n}\n\ntemplate <class T, size_t N>\nvoid rd(array<T, N>\
+    \ &x) {\n  for (auto &d : x) rd(d);\n}\ntemplate <class T>\nvoid rd(vc<T> &x)\
+    \ {\n  for (auto &d : x) rd(d);\n}\n\ntemplate <class... T>\nvoid read(T &...x)\
+    \ {\n  (rd(x), ...);\n}\n\ninline void wt_range(const char *s, size_t n) {\n \
+    \ size_t i = 0;\n  while (i < n) {\n    if (por == SZ) flush();\n    size_t chunk\
+    \ = min(n - i, (size_t)(SZ - por));\n    memcpy(obuf + por, s + i, chunk);\n \
+    \   por += chunk;\n    i += chunk;\n  }\n}\n\nvoid wt(const char c) {\n  if (por\
+    \ == SZ) flush();\n  obuf[por++] = c;\n}\nvoid wt(const char *s) { wt_range(s,\
+    \ strlen(s)); }\nvoid wt(const string &s) { wt_range(s.data(), s.size()); }\n\n\
+    template <typename T>\nvoid wt_integer(T x) {\n  if (por > SZ - 100) flush();\n\
     \  using U = unsigned_integer_t<T>;\n  U y = static_cast<U>(x);\n  if constexpr\
     \ (is_signed_integer_v<T>) {\n    if (x < 0) {\n      obuf[por++] = '-';\n   \
     \   y = U(0) - y;\n    }\n  }\n  int outi;\n  for (outi = 96; y >= 10000; outi\
@@ -407,8 +409,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/GRL_3_B.test.cpp
   requiredBy: []
-  timestamp: '2026-10-17 16:28:12+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-17 18:26:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/GRL_3_B.test.cpp
 layout: document

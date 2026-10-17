@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -25,17 +25,18 @@ data:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/dynamic_segtree_sparse.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\
-    \n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\n\
-    library: https://github.com/maspypy/library\n*/\n#if defined(__GNUC__)\n#include\
+    \n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n#if\
+    \ defined(USE_PCH)\n#include <my_template_compiled.hpp>\n#else  // MASPY_TEMPLATE_BODY\n\
+    /*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(__GNUC__)\n#include\
     \ <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n\
     #pragma GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n\
-    #line 14 \"my_template.hpp\"\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 =\
-    \ uint64_t;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128\
-    \ = __float128;\n\ntemplate <class>\nconstexpr bool dependent_false = false;\n\
-    \ntemplate <class T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>,\
-    \ \"infty<T> is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int\
-    \ infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
+    #include <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8\
+    \ = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\n\
+    using i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\
+    \ntemplate <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class\
+    \ T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T>\
+    \ is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int>\
+    \ = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
     template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
     \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
     \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
@@ -139,13 +140,13 @@ data:
     \ others.end()), ...);\n}\n\n// i128\ntemplate <class T, enable_if_t<is_same_v<T,\
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
-    \    a = b, b = c;\n  }\n  return abs(a);\n}\n#line 1 \"alg/monoid/min.hpp\"\n\
-    // Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n//\
-    \ require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct Monoid_Min\
-    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
-    \ return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 1 \"\
-    ds/segtree/dynamic_segtree_sparse.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/dynamic_segtree_sparse.hpp\n\
+    \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif  // MASPY_TEMPLATE_BODY\n\
+    #line 1 \"alg/monoid/min.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n\
+    // require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
+    \ Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
+    \ op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
+    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
+    \ 1 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/dynamic_segtree_sparse.hpp\n\
     \n// \u5E38\u306B\u307B\u3068\u3093\u3069\u306E\u8981\u7D20\u304C id \u3067\u3042\
     \u308B\u3053\u3068\u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\u52D5\
     \u7684\u30BB\u30B0\u6728\n// \u3057\u305F\u304C\u3063\u3066\u3001default_prod\
@@ -280,7 +281,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/dynamic_segtree_sparse.test.cpp
   requiredBy: []
-  timestamp: '2026-10-17 16:28:12+09:00'
+  timestamp: '2026-10-17 18:26:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/dynamic_segtree_sparse.test.cpp

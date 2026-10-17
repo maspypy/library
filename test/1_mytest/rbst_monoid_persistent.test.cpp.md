@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/randomized_bst/rbst_monoid.hpp
     title: ds/randomized_bst/rbst_monoid.hpp
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -34,17 +34,18 @@ data:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/rbst_monoid_persistent.test.cpp\"\n#define\
     \ PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\
-    \n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n/*\n\
-    library: https://github.com/maspypy/library\n*/\n#if defined(__GNUC__)\n#include\
+    \n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n#if\
+    \ defined(USE_PCH)\n#include <my_template_compiled.hpp>\n#else  // MASPY_TEMPLATE_BODY\n\
+    /*\nlibrary: https://github.com/maspypy/library\n*/\n#if defined(__GNUC__)\n#include\
     \ <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n\
     #pragma GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n\
-    #line 14 \"my_template.hpp\"\n\nusing namespace std;\n\nusing ll = long long;\n\
-    using u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 =\
-    \ uint64_t;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128\
-    \ = __float128;\n\ntemplate <class>\nconstexpr bool dependent_false = false;\n\
-    \ntemplate <class T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>,\
-    \ \"infty<T> is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int\
-    \ infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
+    #include <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8\
+    \ = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\n\
+    using i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\
+    \ntemplate <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class\
+    \ T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T>\
+    \ is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int>\
+    \ = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
     template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
     \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
     \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
@@ -148,8 +149,8 @@ data:
     \ others.end()), ...);\n}\n\n// i128\ntemplate <class T, enable_if_t<is_same_v<T,\
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
-    \    a = b, b = c;\n  }\n  return abs(a);\n}\n#line 1 \"alg/monoid/assign.hpp\"\
-    \n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
+    \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif  // MASPY_TEMPLATE_BODY\n\
+    #line 1 \"alg/monoid/assign.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
     \ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
     \ = X;\n  static X op(X x, X y) { return (y == X(none_val) ? x : y); }\n  static\
     \ constexpr X id() { return X(none_val); }\n  static constexpr bool commute =\
@@ -433,7 +434,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_monoid_persistent.test.cpp
   requiredBy: []
-  timestamp: '2026-10-17 16:28:12+09:00'
+  timestamp: '2026-10-17 18:26:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_monoid_persistent.test.cpp
