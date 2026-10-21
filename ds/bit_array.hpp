@@ -16,7 +16,7 @@ struct Bit_Array {
 
   // x で埋める
   Bit_Array(int N = 0, int x = 0) : N(N) {
-    assert(N >= 0);
+    assert(0 <= N && N <= INT_MAX - 63);
     assert(x == 0 || x == 1);
     u64 v = (x == 0 ? 0 : -1);
     dat.assign((N + 63) >> 6, v);
@@ -26,7 +26,7 @@ struct Bit_Array {
   int size() const { return N; }
 
   void resize(int n) {
-    assert(n >= 0);
+    assert(0 <= n && n <= INT_MAX - 63);
     dat.resize((n + 63) >> 6);
     int r = n & 63;
     if (r) dat.back() &= full_mask(r);
