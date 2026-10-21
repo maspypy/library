@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/rmq/range_add_range_max.hpp
     title: ds/rmq/range_add_range_max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -424,18 +424,16 @@ data:
     \ value_type = pair<T, T>;\n    using X = value_type;\n    static X op(X L, X\
     \ R) { return {L.fi + R.fi, max(L.se, L.fi + R.se)}; }\n    static constexpr X\
     \ id() { return {0, 0}; }\n    static constexpr bool commute = false;\n  };\n\
-    \  int n;\n  Dynamic_SegTree_Sparse<Mono, false> seg;\n  T lazy;\n  using np =\
-    \ typename decltype(seg)::np;\n  np root;\n\n  // range apply * 2 \u304F\u3089\
-    \u3044\u306E\u30CE\u30FC\u30C9\u6570\n  Dynamic_Range_Add_Range_Max(int NODES,\
-    \ ll L, ll R)\n      : seg(NODES, L, R), lazy(0) {\n    root = seg.new_root();\n\
-    \  }\n\n  T prod(ll L, ll R) {\n    if (L == R) return -infty<T>;\n    ll ans\
-    \ = seg.prod(root, L, R).se;\n    ans += seg.prod(root, seg.L0, L).fi;\n    return\
-    \ ans + lazy;\n  }\n\n  void apply(ll L, ll R, T x) { apply_suffix(L, x), apply_suffix(R,\
-    \ -x); }\n\n  // [i,n)\n  void apply_suffix(ll i, T x) {\n    if (i == seg.R0)\
-    \ return;\n    T t = seg.get(root, i).fi + x;\n    root = seg.set(root, i, {t,\
-    \ t});\n  }\n  void apply_all(T x) { lazy += x; }\n};\n#line 1 \"random/base.hpp\"\
-    \n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\n\
-    u64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \  int n;\n  Dynamic_SegTree_Sparse<Mono, false> seg;\n  T lazy;\n  int root;\n\
+    \n  Dynamic_Range_Add_Range_Max(ll L, ll R) : seg(L, R), lazy(0) {\n    root =\
+    \ seg.new_root();\n  }\n\n  T prod(ll L, ll R) {\n    if (L == R) return -infty<T>;\n\
+    \    T ans = seg.prod(root, L + 1, R).se;\n    ans += seg.prod(root, seg.L0, L\
+    \ + 1).fi;\n    return ans + lazy;\n  }\n\n  void apply(ll L, ll R, T x) { apply_suffix(L,\
+    \ x), apply_suffix(R, -x); }\n\n  // [i,n)\n  void apply_suffix(ll i, T x) {\n\
+    \    if (i == seg.R0) return;\n    T t = seg.get(root, i).fi + x;\n    root =\
+    \ seg.set(root, i, {t, t});\n  }\n  void apply_all(T x) { lazy += x; }\n};\n#line\
+    \ 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
@@ -509,8 +507,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_add_range_max.test.cpp
   requiredBy: []
-  timestamp: '2026-10-22 01:32:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-22 08:30:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/range_add_range_max.test.cpp
 layout: document

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/range_add_range_max.test.cpp
     title: test/1_mytest/range_add_range_max.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/542/problem/B
@@ -203,16 +203,14 @@ data:
     \ value_type = pair<T, T>;\n    using X = value_type;\n    static X op(X L, X\
     \ R) { return {L.fi + R.fi, max(L.se, L.fi + R.se)}; }\n    static constexpr X\
     \ id() { return {0, 0}; }\n    static constexpr bool commute = false;\n  };\n\
-    \  int n;\n  Dynamic_SegTree_Sparse<Mono, false> seg;\n  T lazy;\n  using np =\
-    \ typename decltype(seg)::np;\n  np root;\n\n  // range apply * 2 \u304F\u3089\
-    \u3044\u306E\u30CE\u30FC\u30C9\u6570\n  Dynamic_Range_Add_Range_Max(int NODES,\
-    \ ll L, ll R)\n      : seg(NODES, L, R), lazy(0) {\n    root = seg.new_root();\n\
-    \  }\n\n  T prod(ll L, ll R) {\n    if (L == R) return -infty<T>;\n    ll ans\
-    \ = seg.prod(root, L, R).se;\n    ans += seg.prod(root, seg.L0, L).fi;\n    return\
-    \ ans + lazy;\n  }\n\n  void apply(ll L, ll R, T x) { apply_suffix(L, x), apply_suffix(R,\
-    \ -x); }\n\n  // [i,n)\n  void apply_suffix(ll i, T x) {\n    if (i == seg.R0)\
-    \ return;\n    T t = seg.get(root, i).fi + x;\n    root = seg.set(root, i, {t,\
-    \ t});\n  }\n  void apply_all(T x) { lazy += x; }\n};\n"
+    \  int n;\n  Dynamic_SegTree_Sparse<Mono, false> seg;\n  T lazy;\n  int root;\n\
+    \n  Dynamic_Range_Add_Range_Max(ll L, ll R) : seg(L, R), lazy(0) {\n    root =\
+    \ seg.new_root();\n  }\n\n  T prod(ll L, ll R) {\n    if (L == R) return -infty<T>;\n\
+    \    T ans = seg.prod(root, L + 1, R).se;\n    ans += seg.prod(root, seg.L0, L\
+    \ + 1).fi;\n    return ans + lazy;\n  }\n\n  void apply(ll L, ll R, T x) { apply_suffix(L,\
+    \ x), apply_suffix(R, -x); }\n\n  // [i,n)\n  void apply_suffix(ll i, T x) {\n\
+    \    if (i == seg.R0) return;\n    T t = seg.get(root, i).fi + x;\n    root =\
+    \ seg.set(root, i, {t, t});\n  }\n  void apply_all(T x) { lazy += x; }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/ds/rmq/range_add_range_max.hpp\n\
     #include \"ds/segtree/dynamic_segtree_sparse.hpp\"\n#include \"ds/segtree/segtree.hpp\"\
     \n\n// INF+x==INF \u307F\u305F\u3044\u306A\u51E6\u7406\u306F\u5165\u308C\u3066\
@@ -259,24 +257,22 @@ data:
     \ value_type = pair<T, T>;\n    using X = value_type;\n    static X op(X L, X\
     \ R) { return {L.fi + R.fi, max(L.se, L.fi + R.se)}; }\n    static constexpr X\
     \ id() { return {0, 0}; }\n    static constexpr bool commute = false;\n  };\n\
-    \  int n;\n  Dynamic_SegTree_Sparse<Mono, false> seg;\n  T lazy;\n  using np =\
-    \ typename decltype(seg)::np;\n  np root;\n\n  // range apply * 2 \u304F\u3089\
-    \u3044\u306E\u30CE\u30FC\u30C9\u6570\n  Dynamic_Range_Add_Range_Max(int NODES,\
-    \ ll L, ll R)\n      : seg(NODES, L, R), lazy(0) {\n    root = seg.new_root();\n\
-    \  }\n\n  T prod(ll L, ll R) {\n    if (L == R) return -infty<T>;\n    ll ans\
-    \ = seg.prod(root, L, R).se;\n    ans += seg.prod(root, seg.L0, L).fi;\n    return\
-    \ ans + lazy;\n  }\n\n  void apply(ll L, ll R, T x) { apply_suffix(L, x), apply_suffix(R,\
-    \ -x); }\n\n  // [i,n)\n  void apply_suffix(ll i, T x) {\n    if (i == seg.R0)\
-    \ return;\n    T t = seg.get(root, i).fi + x;\n    root = seg.set(root, i, {t,\
-    \ t});\n  }\n  void apply_all(T x) { lazy += x; }\n};\n"
+    \  int n;\n  Dynamic_SegTree_Sparse<Mono, false> seg;\n  T lazy;\n  int root;\n\
+    \n  Dynamic_Range_Add_Range_Max(ll L, ll R) : seg(L, R), lazy(0) {\n    root =\
+    \ seg.new_root();\n  }\n\n  T prod(ll L, ll R) {\n    if (L == R) return -infty<T>;\n\
+    \    T ans = seg.prod(root, L + 1, R).se;\n    ans += seg.prod(root, seg.L0, L\
+    \ + 1).fi;\n    return ans + lazy;\n  }\n\n  void apply(ll L, ll R, T x) { apply_suffix(L,\
+    \ x), apply_suffix(R, -x); }\n\n  // [i,n)\n  void apply_suffix(ll i, T x) {\n\
+    \    if (i == seg.R0) return;\n    T t = seg.get(root, i).fi + x;\n    root =\
+    \ seg.set(root, i, {t, t});\n  }\n  void apply_all(T x) { lazy += x; }\n};\n"
   dependsOn:
   - ds/segtree/dynamic_segtree_sparse.hpp
   - ds/segtree/segtree.hpp
   isVerificationFile: false
   path: ds/rmq/range_add_range_max.hpp
   requiredBy: []
-  timestamp: '2026-10-17 16:35:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-22 08:30:21+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/range_add_range_max.test.cpp
 documentation_of: ds/rmq/range_add_range_max.hpp
