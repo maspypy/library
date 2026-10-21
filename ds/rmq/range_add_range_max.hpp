@@ -139,8 +139,8 @@ struct Dynamic_Range_Add_Range_Max {
 
   T prod(ll L, ll R) {
     if (L == R) return -infty<T>;
-    ll ans = seg.prod(root, L, R).se;
-    ans += seg.prod(root, seg.L0, L).fi;
+    T ans = seg.prod(root, L + 1, R).se;
+    ans += seg.prod(root, seg.L0, L + 1).fi;
     return ans + lazy;
   }
 
