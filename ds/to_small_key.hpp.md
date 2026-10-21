@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   _extendedRequiredBy:
@@ -76,9 +76,9 @@ data:
   isVerificationFile: false
   path: ds/to_small_key.hpp
   requiredBy:
-  - ds/static_range_frequency.hpp
-  - ds/offline_query/offline_set_intersection.hpp
   - string/aho_corasick_for_general_trie.hpp
+  - ds/offline_query/offline_set_intersection.hpp
+  - ds/static_range_frequency.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

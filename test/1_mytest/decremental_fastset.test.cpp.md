@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/decremental_fastset.hpp
     title: ds/decremental_fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
@@ -16,10 +16,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/timer.hpp
     title: other/timer.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -35,10 +35,9 @@ data:
   bundledCode: "#line 1 \"test/1_mytest/decremental_fastset.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n//\
     \ Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n#if defined(USE_PCH)\n\
-    #include <my_template_compiled.hpp>\n#else  // MASPY_TEMPLATE_BODY\n/*\nlibrary:\
-    \ https://github.com/maspypy/library\n*/\n#if defined(__GNUC__)\n#include <bits/allocator.h>\n\
-    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
-    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n#include <bits/stdc++.h>\n#include\
+    #include <my_template_compiled.hpp>\n\n#if defined(__GNUC__)\n#pragma GCC optimize(\"\
+    Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\"\
+    )\n#endif\n#endif\n#else  // MASPY_TEMPLATE_BODY\n#include <bits/stdc++.h>\n#include\
     \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
     using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
     \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
@@ -151,12 +150,13 @@ data:
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif  // MASPY_TEMPLATE_BODY\n\
     #line 3 \"test/1_mytest/decremental_fastset.test.cpp\"\n\n#line 1 \"ds/unionfind/unionfind.hpp\"\
     \n// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\n\
-    \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
+    \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat;  // par or (-size)\n  UnionFind(int\
     \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
-    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
-    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
-    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
-    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
+    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int add_vertex() {\n    ++n_comp,\
+    \ dat.eb(-1);\n    return n++;\n  }\n\n  int operator[](int x) {\n    while (dat[x]\
+    \ >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) {\n        return dat[x];\n\
+    \      }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x)\
+    \ {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
     \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
     \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
     \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
@@ -234,12 +234,13 @@ data:
     \ mask;\n      if (y) break;\n      i /= B;\n    }\n  }\n};\n#line 1 \"ds/decremental_fastset.hpp\"\
     \n// Source: https://github.com/maspypy/library/blob/main/ds/decremental_fastset.hpp\n\
     #line 1 \"ds/unionfind/unionfind.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\n\
-    \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
+    \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat;  // par or (-size)\n  UnionFind(int\
     \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
-    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
-    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
-    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
-    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
+    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int add_vertex() {\n    ++n_comp,\
+    \ dat.eb(-1);\n    return n++;\n  }\n\n  int operator[](int x) {\n    while (dat[x]\
+    \ >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) {\n        return dat[x];\n\
+    \      }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x)\
+    \ {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
     \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
     \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
     \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
@@ -340,7 +341,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/decremental_fastset.test.cpp
   requiredBy: []
-  timestamp: '2026-10-17 18:26:19+09:00'
+  timestamp: '2026-10-22 01:32:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/decremental_fastset.test.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   _extendedRequiredBy:
@@ -398,9 +398,9 @@ data:
   isVerificationFile: false
   path: ds/piecewise_constant/piecewise_constant.hpp
   requiredBy:
-  - ds/piecewise_constant/piecewise_constant_basic.hpp
   - ds/piecewise_constant/piecewise_constant_acted.hpp
   - ds/piecewise_constant/piecewise_constant_acted_RMQ.hpp
+  - ds/piecewise_constant/piecewise_constant_basic.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

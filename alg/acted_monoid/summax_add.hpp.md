@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
@@ -55,8 +55,8 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/kdtree_am.test.cpp
   - test/1_mytest/summax_add.test.cpp
+  - test/1_mytest/kdtree_am.test.cpp
 documentation_of: alg/acted_monoid/summax_add.hpp
 layout: document
 redirect_from:

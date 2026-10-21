@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/bitwise_transform.hpp
     title: setfunc/bitwise_transform.hpp
   _extendedRequiredBy:
@@ -29,10 +29,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
   - icon: ':warning:'
@@ -41,7 +41,7 @@ data:
   - icon: ':warning:'
     path: setfunc/sps_log.hpp
     title: setfunc/sps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedVerifiedWith:
@@ -54,7 +54,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/set_power_series/composition_sps.test.cpp
     title: test/2_library_checker/set_power_series/composition_sps.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,15 +66,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/set_power_series/sps_exp.test.cpp
     title: test/2_library_checker/set_power_series/sps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/set_power_series/subset_convolution.test.cpp
     title: test/2_library_checker/set_power_series/subset_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2507.test.cpp
     title: test/3_yukicoder/2507.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/setfunc/ranked_zeta.hpp
@@ -131,31 +131,31 @@ data:
   isVerificationFile: false
   path: setfunc/ranked_zeta.hpp
   requiredBy:
-  - graph/count/count_connected_subgraph.hpp
-  - graph/count/count_tree_subgraph.hpp
-  - graph/count/count_bridgeless_subgraph.hpp
-  - graph/count/count_biconnected_subgraph.hpp
-  - graph/chromatic.hpp
-  - graph/tutte_polynomial.hpp
-  - linalg/hafnian.hpp
+  - setfunc/sps_log.hpp
   - setfunc/sps_composition.hpp
-  - setfunc/sps_exp.hpp
-  - setfunc/subset_convolution.hpp
   - setfunc/sps_inv.hpp
   - setfunc/power_projection_of_sps.hpp
-  - setfunc/sps_log.hpp
+  - setfunc/sps_exp.hpp
+  - setfunc/subset_convolution.hpp
+  - graph/tutte_polynomial.hpp
+  - graph/count/count_tree_subgraph.hpp
+  - graph/count/count_biconnected_subgraph.hpp
+  - graph/count/count_bridgeless_subgraph.hpp
+  - graph/count/count_connected_subgraph.hpp
+  - graph/chromatic.hpp
+  - linalg/hafnian.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2507.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
   - test/2_library_checker/set_power_series/composition_sps.test.cpp
-  - test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
-  - test/2_library_checker/set_power_series/subset_convolution.test.cpp
   - test/2_library_checker/set_power_series/sps_exp.test.cpp
+  - test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
   - test/2_library_checker/set_power_series/powproj_sps.test.cpp
+  - test/2_library_checker/set_power_series/subset_convolution.test.cpp
+  - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
 documentation_of: setfunc/ranked_zeta.hpp
 layout: document
 redirect_from:

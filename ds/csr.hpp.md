@@ -64,8 +64,8 @@ data:
   - nt/EGZ.hpp
   - graph/cactus.hpp
   - graph/degree_sequence.hpp
-  - ds/offline_query/offline_set_intersection.hpp
   - string/enumerate_occurrences.hpp
+  - ds/offline_query/offline_set_intersection.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

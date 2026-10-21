@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':heavy_check_mark:'
@@ -395,8 +395,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/convex_polygon_visible_range.test.cpp
-  - test/1_mytest/max_dot.test.cpp
   - test/1_mytest/convex_polygon_side.test.cpp
+  - test/1_mytest/max_dot.test.cpp
 documentation_of: geo/convex_polygon.hpp
 layout: document
 redirect_from:

@@ -22,22 +22,22 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
@@ -59,19 +59,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/2d/fps_pow_1_2d.hpp
     title: poly/2d/fps_pow_1_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/schroder.hpp
     title: poly/schroder.hpp
   - icon: ':heavy_check_mark:'
@@ -135,7 +135,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/pow_of_fps.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - icon: ':heavy_check_mark:'
@@ -162,21 +162,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1549.test.cpp
     title: test/3_yukicoder/1549.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1939.test.cpp
     title: test/3_yukicoder/1939.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/3619.test.cpp
     title: test/3_yukicoder/3619.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/3621.test.cpp
     title: test/3_yukicoder/3621.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/poly/fps_pow.hpp
@@ -892,51 +892,51 @@ data:
   path: poly/fps_pow.hpp
   requiredBy:
   - graph/count/count_labeled_biconnected.hpp
-  - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_bipartite.hpp
-  - poly/compositional_inverse.hpp
-  - poly/2d/fps_pow_1_2d.hpp
+  - graph/count/count_labeled_bridgeless.hpp
   - poly/2d/compositional_inverse_2d.hpp
-  - poly/fps_sqrt.hpp
-  - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
-  - poly/schroder.hpp
+  - poly/2d/fps_pow_1_2d.hpp
   - poly/composition_f_log_1_minus_x.hpp
+  - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
+  - poly/fps_sqrt.hpp
+  - poly/compositional_inverse.hpp
+  - poly/schroder.hpp
+  - seq/famous/stirling_number_1.hpp
   - seq/famous/surjection.hpp
   - seq/famous/stirling_number_2.hpp
-  - seq/famous/stirling_number_1.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/count_bipartite.test.cpp
-  - test/1_mytest/stirling_1_suffix.test.cpp
-  - test/1_mytest/online_pow.test.cpp
-  - test/1_mytest/power_projection.test.cpp
-  - test/1_mytest/compositional_inverset.test.cpp
-  - test/1_mytest/online_square.test.cpp
-  - test/1_mytest/composition_log_1_minus_x.test.cpp
-  - test/1_mytest/bell.test.cpp
-  - test/1_mytest/count_labeled_biconnected.test.cpp
-  - test/1_mytest/count_labeled_bridgeless.test.cpp
-  - test/1_mytest/sparse_pow_2d.test.cpp
-  - test/3_yukicoder/1321.test.cpp
-  - test/3_yukicoder/1533.test.cpp
-  - test/3_yukicoder/1392.test.cpp
   - test/3_yukicoder/1549.test.cpp
-  - test/3_yukicoder/1939.test.cpp
-  - test/3_yukicoder/2583.test.cpp
-  - test/3_yukicoder/3621.test.cpp
   - test/3_yukicoder/3619.test.cpp
-  - test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/3_yukicoder/1392.test.cpp
+  - test/3_yukicoder/1533.test.cpp
+  - test/3_yukicoder/2583.test.cpp
+  - test/3_yukicoder/1939.test.cpp
+  - test/3_yukicoder/1321.test.cpp
+  - test/3_yukicoder/3621.test.cpp
+  - test/1_mytest/composition_log_1_minus_x.test.cpp
+  - test/1_mytest/count_labeled_bridgeless.test.cpp
+  - test/1_mytest/bell.test.cpp
+  - test/1_mytest/compositional_inverset.test.cpp
+  - test/1_mytest/online_pow.test.cpp
+  - test/1_mytest/stirling_1_suffix.test.cpp
+  - test/1_mytest/count_bipartite.test.cpp
+  - test/1_mytest/count_labeled_biconnected.test.cpp
+  - test/1_mytest/power_projection.test.cpp
+  - test/1_mytest/online_square.test.cpp
+  - test/1_mytest/sparse_pow_2d.test.cpp
   - test/2_library_checker/polynomial/compositional_inverse.test.cpp
-  - test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
   - test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/2_library_checker/polynomial/pow_of_fps.test.cpp
+  - test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
+  - test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
+  - test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
 documentation_of: poly/fps_pow.hpp
 layout: document
 redirect_from:

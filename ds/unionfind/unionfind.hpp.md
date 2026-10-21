@@ -17,10 +17,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/unionfind/parallel_unionfind.hpp
     title: ds/unionfind/parallel_unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/bipartite_matching.hpp
     title: flow/bipartite_matching.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/rank_maximal_bipartite_matching.hpp
     title: flow/rank_maximal_bipartite_matching.hpp
   - icon: ':warning:'
@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
   - icon: ':heavy_check_mark:'
@@ -50,10 +50,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/blackbox/unionfind.hpp
     title: graph/blackbox/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   - icon: ':heavy_check_mark:'
@@ -65,16 +65,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/euler_walk.hpp
     title: graph/euler_walk.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/functional_graph.hpp
     title: graph/functional_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
   - icon: ':warning:'
@@ -83,16 +83,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/st_numbering.hpp
     title: graph/st_numbering.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   - icon: ':warning:'
     path: graph/tutte_polynomial.hpp
     title: graph/tutte_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/unicyclic_graph.hpp
     title: graph/unicyclic_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -225,7 +225,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1242.test.cpp
     title: test/3_yukicoder/1242.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1254.test.cpp
     title: test/3_yukicoder/1254.test.cpp
   - icon: ':heavy_check_mark:'
@@ -234,22 +234,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1392.test.cpp
     title: test/3_yukicoder/1392.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1451.test.cpp
     title: test/3_yukicoder/1451.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1479.test.cpp
     title: test/3_yukicoder/1479.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1600.test.cpp
     title: test/3_yukicoder/1600.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1615.test.cpp
     title: test/3_yukicoder/1615.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1744.test.cpp
     title: test/3_yukicoder/1744.test.cpp
   - icon: ':heavy_check_mark:'
@@ -258,63 +258,65 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1911.test.cpp
     title: test/3_yukicoder/1911.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1983.test.cpp
     title: test/3_yukicoder/1983.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2295.test.cpp
     title: test/3_yukicoder/2295.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2296.test.cpp
     title: test/3_yukicoder/2296.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587_2.test.cpp
     title: test/3_yukicoder/2587_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/3148.test.cpp
     title: test/3_yukicoder/3148.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/1566.test.cpp
     title: test/4_aoj/1566.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2251_1.test.cpp
     title: test/4_aoj/2251_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2251_2.test.cpp
     title: test/4_aoj/2251_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp
   bundledCode: "#line 1 \"ds/unionfind/unionfind.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\n\
-    \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
+    \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat;  // par or (-size)\n  UnionFind(int\
     \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
-    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
-    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
-    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
-    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
+    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int add_vertex() {\n    ++n_comp,\
+    \ dat.eb(-1);\n    return n++;\n  }\n\n  int operator[](int x) {\n    while (dat[x]\
+    \ >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) {\n        return dat[x];\n\
+    \      }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x)\
+    \ {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
     \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
     \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
     \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
     \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\n\
-    \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
+    \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat;  // par or (-size)\n  UnionFind(int\
     \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
-    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
-    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
-    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
-    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
+    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int add_vertex() {\n    ++n_comp,\
+    \ dat.eb(-1);\n    return n++;\n  }\n\n  int operator[](int x) {\n    while (dat[x]\
+    \ >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) {\n        return dat[x];\n\
+    \      }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x)\
+    \ {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
     \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
     \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
     \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
@@ -323,105 +325,105 @@ data:
   isVerificationFile: false
   path: ds/unionfind/unionfind.hpp
   requiredBy:
+  - random/random_graph.hpp
   - graph/euler_walk.hpp
-  - graph/blackbox/unionfind.hpp
-  - graph/blackbox/mst.hpp
+  - graph/unicyclic_graph.hpp
+  - graph/bipartite_edge_coloring.hpp
+  - graph/minimum_spanning_tree.hpp
+  - graph/restore_euler_tour.hpp
+  - graph/dag_path_cover.hpp
+  - graph/bipartite_vertex_coloring.hpp
+  - graph/functional_graph.hpp
+  - graph/bipartite_balanced_edge_coloring.hpp
+  - graph/tutte_polynomial.hpp
+  - graph/st_numbering.hpp
+  - graph/ds/grid_decremental_connectivity.hpp
+  - graph/tree_of_unionfind.hpp
+  - graph/optimal_product_on_tree.hpp
+  - graph/tree_walk_generating_function.hpp
   - graph/blackbox/interval_graph_unionfind.hpp
   - graph/blackbox/complement_graph_unionfind.hpp
-  - graph/minimum_spanning_tree.hpp
-  - graph/optimal_product_on_tree.hpp
-  - graph/characteristic_poly_of_tree_adjacency_matrix.hpp
-  - graph/restore_euler_tour.hpp
-  - graph/ds/grid_decremental_connectivity.hpp
-  - graph/dag_path_cover.hpp
-  - graph/functional_graph.hpp
+  - graph/blackbox/mst.hpp
+  - graph/blackbox/unionfind.hpp
   - graph/maximum_antichain.hpp
-  - graph/bipartite_balanced_edge_coloring.hpp
-  - graph/bipartite_vertex_coloring.hpp
-  - graph/tree_of_unionfind.hpp
   - graph/directed_mst.hpp
-  - graph/tree_walk_generating_function.hpp
-  - graph/unicyclic_graph.hpp
-  - graph/st_numbering.hpp
-  - graph/tutte_polynomial.hpp
-  - graph/bipartite_edge_coloring.hpp
-  - ds/unionfind/parallel_unionfind.hpp
-  - ds/monotone/prefix_add_append_get_max.hpp
-  - ds/rmq/suffix_min.hpp
-  - ds/rmq/suffix_max.hpp
-  - ds/decremental_fastset.hpp
-  - geo/manhattan_mst.hpp
-  - flow/bipartite_matching.hpp
-  - flow/rank_maximal_bipartite_matching.hpp
+  - graph/characteristic_poly_of_tree_adjacency_matrix.hpp
   - string/inverse_manacher.hpp
-  - random/random_graph.hpp
+  - ds/decremental_fastset.hpp
+  - ds/unionfind/parallel_unionfind.hpp
+  - ds/rmq/suffix_max.hpp
+  - ds/rmq/suffix_min.hpp
+  - ds/monotone/prefix_add_append_get_max.hpp
+  - flow/rank_maximal_bipartite_matching.hpp
+  - flow/bipartite_matching.hpp
   - game/graph_path_game.hpp
-  timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - geo/manhattan_mst.hpp
+  timestamp: '2026-10-22 01:32:06+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/find_odd_cycle.test.cpp
-  - test/1_mytest/remove_one_edge.test.cpp
-  - test/1_mytest/enumerate_labeled_tree.test.cpp
-  - test/1_mytest/enumerate_unlabeled_tree.test.cpp
-  - test/1_mytest/find_cycle_minimum.test.cpp
-  - test/1_mytest/find_C4.test.cpp
-  - test/1_mytest/incremental_scc.test.cpp
-  - test/1_mytest/outer_planar.test.cpp
-  - test/1_mytest/connected_set_knapsack.test.cpp
-  - test/1_mytest/tutte.test.cpp
-  - test/1_mytest/remove_one_vertex.test.cpp
-  - test/1_mytest/independent_set_knapsack.test.cpp
-  - test/1_mytest/decremental_fastset.test.cpp
-  - test/1_mytest/find_even_cycle.test.cpp
-  - test/1_mytest/count_K4.test.cpp
-  - test/1_mytest/count_P3P4P5.test.cpp
-  - test/1_mytest/matching_line_graph.test.cpp
-  - test/1_mytest/matching_ve.test.cpp
-  - test/1_mytest/tree_walk_gf.test.cpp
-  - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
-  - test/1_mytest/prufer.test.cpp
-  - test/1_mytest/count_indep_set.test.cpp
-  - test/1_mytest/rolling_hash_on_tree.test.cpp
-  - test/1_mytest/count_clique.test.cpp
-  - test/3_yukicoder/1615.test.cpp
-  - test/3_yukicoder/1911.test.cpp
-  - test/3_yukicoder/1303.test.cpp
-  - test/3_yukicoder/1744.test.cpp
-  - test/3_yukicoder/1170_2.test.cpp
-  - test/3_yukicoder/1254.test.cpp
-  - test/3_yukicoder/1211.test.cpp
-  - test/3_yukicoder/1745.test.cpp
-  - test/3_yukicoder/2122.test.cpp
-  - test/3_yukicoder/1392.test.cpp
-  - test/3_yukicoder/2296.test.cpp
-  - test/3_yukicoder/3148.test.cpp
-  - test/3_yukicoder/1983.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
-  - test/3_yukicoder/1479.test.cpp
+  - test/3_yukicoder/1254.test.cpp
   - test/3_yukicoder/2587.test.cpp
+  - test/3_yukicoder/1983.test.cpp
+  - test/3_yukicoder/1615.test.cpp
+  - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/1451.test.cpp
-  - test/3_yukicoder/2295.test.cpp
-  - test/3_yukicoder/1242.test.cpp
+  - test/3_yukicoder/1479.test.cpp
+  - test/3_yukicoder/1911.test.cpp
+  - test/3_yukicoder/1211.test.cpp
+  - test/3_yukicoder/1392.test.cpp
+  - test/3_yukicoder/3148.test.cpp
+  - test/3_yukicoder/2296.test.cpp
   - test/3_yukicoder/1600.test.cpp
+  - test/3_yukicoder/2122.test.cpp
+  - test/3_yukicoder/1745.test.cpp
+  - test/3_yukicoder/1170_2.test.cpp
+  - test/3_yukicoder/2295.test.cpp
   - test/3_yukicoder/114.test.cpp
   - test/3_yukicoder/1600_2.test.cpp
-  - test/2_library_checker/graph/complement_graph_unionfind.test.cpp
-  - test/2_library_checker/graph/eulerwalk_d.test.cpp
-  - test/2_library_checker/graph/st_numbering.test.cpp
-  - test/2_library_checker/graph/bipartitematching.test.cpp
-  - test/2_library_checker/graph/incremental_scc.test.cpp
-  - test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
-  - test/2_library_checker/graph/eulerwalk_ud.test.cpp
-  - test/2_library_checker/graph/directed_mst.test.cpp
-  - test/2_library_checker/data_structure/unionfind.test.cpp
-  - test/2_library_checker/data_structure/range_parallel_uf.test.cpp
-  - test/2_library_checker/geometry/manhattan_mst.test.cpp
-  - test/2_library_checker/tree/mst.test.cpp
-  - test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
+  - test/3_yukicoder/1242.test.cpp
+  - test/3_yukicoder/1744.test.cpp
   - test/4_aoj/2251_1.test.cpp
   - test/4_aoj/2251_2.test.cpp
   - test/4_aoj/GRL_2_A.test.cpp
   - test/4_aoj/1566.test.cpp
+  - test/1_mytest/connected_set_knapsack.test.cpp
+  - test/1_mytest/find_even_cycle.test.cpp
+  - test/1_mytest/count_K4.test.cpp
+  - test/1_mytest/matching_ve.test.cpp
+  - test/1_mytest/find_odd_cycle.test.cpp
+  - test/1_mytest/count_indep_set.test.cpp
+  - test/1_mytest/tree_walk_gf.test.cpp
+  - test/1_mytest/rolling_hash_on_tree.test.cpp
+  - test/1_mytest/independent_set_knapsack.test.cpp
+  - test/1_mytest/find_C4.test.cpp
+  - test/1_mytest/tutte.test.cpp
+  - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+  - test/1_mytest/remove_one_vertex.test.cpp
+  - test/1_mytest/prufer.test.cpp
+  - test/1_mytest/decremental_fastset.test.cpp
+  - test/1_mytest/count_P3P4P5.test.cpp
+  - test/1_mytest/incremental_scc.test.cpp
+  - test/1_mytest/matching_line_graph.test.cpp
+  - test/1_mytest/remove_one_edge.test.cpp
+  - test/1_mytest/find_cycle_minimum.test.cpp
+  - test/1_mytest/count_clique.test.cpp
+  - test/1_mytest/enumerate_labeled_tree.test.cpp
+  - test/1_mytest/enumerate_unlabeled_tree.test.cpp
+  - test/1_mytest/outer_planar.test.cpp
+  - test/2_library_checker/data_structure/unionfind.test.cpp
+  - test/2_library_checker/data_structure/range_parallel_uf.test.cpp
+  - test/2_library_checker/tree/mst.test.cpp
+  - test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
+  - test/2_library_checker/graph/eulerwalk_d.test.cpp
+  - test/2_library_checker/graph/st_numbering.test.cpp
+  - test/2_library_checker/graph/eulerwalk_ud.test.cpp
+  - test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test/2_library_checker/graph/directed_mst.test.cpp
+  - test/2_library_checker/graph/complement_graph_unionfind.test.cpp
+  - test/2_library_checker/graph/bipartitematching.test.cpp
+  - test/2_library_checker/graph/incremental_scc.test.cpp
+  - test/2_library_checker/geometry/manhattan_mst.test.cpp
 documentation_of: ds/unionfind/unionfind.hpp
 layout: document
 redirect_from:

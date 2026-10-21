@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -202,12 +202,13 @@ data:
     \ <typename T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) {\n    int j = RNG(0,\
     \ i + 1);\n    if (i != j) swap(A[i], A[j]);\n  }\n}\n#line 1 \"ds/unionfind/unionfind.hpp\"\
     \n// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\n\
-    \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
+    \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat;  // par or (-size)\n  UnionFind(int\
     \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
-    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
-    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
-    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
-    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
+    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int add_vertex() {\n    ++n_comp,\
+    \ dat.eb(-1);\n    return n++;\n  }\n\n  int operator[](int x) {\n    while (dat[x]\
+    \ >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) {\n        return dat[x];\n\
+    \      }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x)\
+    \ {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
     \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
     \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
     \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
@@ -363,28 +364,28 @@ data:
   isVerificationFile: false
   path: random/random_graph.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-10-22 01:32:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/find_odd_cycle.test.cpp
-  - test/1_mytest/remove_one_edge.test.cpp
-  - test/1_mytest/find_cycle_minimum.test.cpp
-  - test/1_mytest/find_C4.test.cpp
-  - test/1_mytest/incremental_scc.test.cpp
-  - test/1_mytest/outer_planar.test.cpp
   - test/1_mytest/connected_set_knapsack.test.cpp
-  - test/1_mytest/remove_one_vertex.test.cpp
-  - test/1_mytest/independent_set_knapsack.test.cpp
   - test/1_mytest/find_even_cycle.test.cpp
   - test/1_mytest/count_K4.test.cpp
-  - test/1_mytest/count_P3P4P5.test.cpp
-  - test/1_mytest/matching_line_graph.test.cpp
   - test/1_mytest/matching_ve.test.cpp
-  - test/1_mytest/tree_walk_gf.test.cpp
-  - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+  - test/1_mytest/find_odd_cycle.test.cpp
   - test/1_mytest/count_indep_set.test.cpp
+  - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/rolling_hash_on_tree.test.cpp
+  - test/1_mytest/independent_set_knapsack.test.cpp
+  - test/1_mytest/find_C4.test.cpp
+  - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+  - test/1_mytest/remove_one_vertex.test.cpp
+  - test/1_mytest/count_P3P4P5.test.cpp
+  - test/1_mytest/incremental_scc.test.cpp
+  - test/1_mytest/matching_line_graph.test.cpp
+  - test/1_mytest/remove_one_edge.test.cpp
+  - test/1_mytest/find_cycle_minimum.test.cpp
   - test/1_mytest/count_clique.test.cpp
+  - test/1_mytest/outer_planar.test.cpp
 documentation_of: random/random_graph.hpp
 layout: document
 redirect_from:

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   _extendedRequiredBy:
@@ -89,13 +89,13 @@ data:
   isVerificationFile: false
   path: ds/dynamic_array.hpp
   requiredBy:
-  - ds/unionfind/dynamic_unionfind.hpp
   - string/aho_corasick_for_general_trie.hpp
+  - ds/unionfind/dynamic_unionfind.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/data_structure/persistent_unionfind.test.cpp
   - test/2_library_checker/data_structure/persistent_queue.test.cpp
+  - test/2_library_checker/data_structure/persistent_unionfind.test.cpp
 documentation_of: ds/dynamic_array.hpp
 layout: document
 redirect_from:

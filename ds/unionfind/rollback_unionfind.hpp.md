@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/rollback_array.hpp
     title: ds/rollback_array.hpp
   _extendedRequiredBy: []
@@ -58,8 +58,8 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
   - test/2_library_checker/data_structure/add_remove_query.test.cpp
+  - test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
 documentation_of: ds/unionfind/rollback_unionfind.hpp
 layout: document
 redirect_from:

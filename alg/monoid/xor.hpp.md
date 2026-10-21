@@ -6,24 +6,24 @@ data:
     path: setfunc/boolean_range_add_point_get.hpp
     title: setfunc/boolean_range_add_point_get.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1602.test.cpp
     title: test/3_yukicoder/1602.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1641.test.cpp
     title: test/3_yukicoder/1641.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1790.test.cpp
     title: test/3_yukicoder/1790.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2293.test.cpp
     title: test/3_yukicoder/2293.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2294.test.cpp
     title: test/3_yukicoder/2294.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/alg/monoid/xor.hpp
@@ -45,13 +45,13 @@ data:
   requiredBy:
   - setfunc/boolean_range_add_point_get.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/2293.test.cpp
   - test/3_yukicoder/1602.test.cpp
+  - test/3_yukicoder/1641.test.cpp
   - test/3_yukicoder/2294.test.cpp
   - test/3_yukicoder/1790.test.cpp
-  - test/3_yukicoder/1641.test.cpp
+  - test/3_yukicoder/2293.test.cpp
 documentation_of: alg/monoid/xor.hpp
 layout: document
 redirect_from:

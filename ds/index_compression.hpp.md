@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/offline_query/coefficient_query_2d.hpp
     title: ds/offline_query/coefficient_query_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - icon: ':warning:'
@@ -29,7 +29,7 @@ data:
   - icon: ':warning:'
     path: string/substring_shortest_border.hpp
     title: string/substring_shortest_border.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   - icon: ':heavy_check_mark:'
@@ -72,36 +72,36 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/longest_common_substring.test.cpp
     title: test/2_library_checker/string/longest_common_substring.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/number_of_substrings.test.cpp
     title: test/2_library_checker/string/number_of_substrings.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/suffix_array.test.cpp
     title: test/2_library_checker/string/suffix_array.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/suffix_array_vec.test.cpp
     title: test/2_library_checker/string/suffix_array_vec.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1490.test.cpp
     title: test/3_yukicoder/1490.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1625_2.test.cpp
     title: test/3_yukicoder/1625_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1919_2.test.cpp
     title: test/3_yukicoder/1919_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2859.test.cpp
     title: test/3_yukicoder/2859.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/index_compression.hpp
@@ -189,40 +189,40 @@ data:
   isVerificationFile: false
   path: ds/index_compression.hpp
   requiredBy:
-  - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
-  - ds/offline_query/rectangle_add_rectangle_sum.hpp
-  - ds/offline_query/coefficient_query_2d.hpp
-  - string/longest_common_substring.hpp
-  - string/suffix_array.hpp
+  - string/many_string_compare.hpp
+  - string/suffix_lcp_change.hpp
   - string/basic_substring_structure.hpp
   - string/sort_substrings.hpp
-  - string/many_string_compare.hpp
-  - string/lex_max_suffix_for_all_prefix.hpp
   - string/substring_shortest_border.hpp
   - string/suffix_tree.hpp
-  - string/suffix_lcp_change.hpp
+  - string/suffix_array.hpp
+  - string/lex_max_suffix_for_all_prefix.hpp
+  - string/longest_common_substring.hpp
+  - ds/offline_query/coefficient_query_2d.hpp
+  - ds/offline_query/rectangle_add_rectangle_sum.hpp
+  - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/index_compression.test.cpp
-  - test/1_mytest/longest_common_substr.test.cpp
-  - test/1_mytest/suffix_lcp_change.test.cpp
-  - test/1_mytest/lex_minmax_suffix.test.cpp
-  - test/3_yukicoder/2361.test.cpp
-  - test/3_yukicoder/1625_2.test.cpp
-  - test/3_yukicoder/1919_2.test.cpp
-  - test/3_yukicoder/1490.test.cpp
   - test/3_yukicoder/2859.test.cpp
+  - test/3_yukicoder/1625_2.test.cpp
+  - test/3_yukicoder/2361.test.cpp
+  - test/3_yukicoder/1490.test.cpp
   - test/3_yukicoder/1600_2.test.cpp
-  - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
-  - test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
+  - test/3_yukicoder/1919_2.test.cpp
+  - test/1_mytest/lex_minmax_suffix.test.cpp
+  - test/1_mytest/suffix_lcp_change.test.cpp
+  - test/1_mytest/longest_common_substr.test.cpp
+  - test/1_mytest/index_compression.test.cpp
   - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
-  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
-  - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
   - test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - test/2_library_checker/string/longest_common_substring.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
+  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
   - test/2_library_checker/string/suffix_array_vec.test.cpp
   - test/2_library_checker/string/suffix_array.test.cpp
+  - test/2_library_checker/string/longest_common_substring.test.cpp
   - test/2_library_checker/string/number_of_substrings.test.cpp
 documentation_of: ds/index_compression.hpp
 layout: document

@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/interpolate_periodic_sequence.hpp
     title: seq/interpolate_periodic_sequence.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/find_runs.hpp
     title: string/find_runs.hpp
   - icon: ':heavy_check_mark:'
@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/is_substring.test.cpp
     title: test/1_mytest/is_substring.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/run_enumerate.test.cpp
     title: test/2_library_checker/string/run_enumerate.test.cpp
   - icon: ':heavy_check_mark:'
@@ -33,15 +33,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1848.test.cpp
     title: test/3_yukicoder/1848.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2626_2.test.cpp
-    title: test/3_yukicoder/2626_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2858.test.cpp
     title: test/3_yukicoder/2858.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/string/z_algorithm.hpp
@@ -63,18 +60,17 @@ data:
   isVerificationFile: false
   path: string/z_algorithm.hpp
   requiredBy:
-  - string/periods.hpp
   - string/find_runs.hpp
-  - string/non_dominated_suffix.hpp
   - string/is_substring.hpp
+  - string/periods.hpp
+  - string/non_dominated_suffix.hpp
   - seq/interpolate_periodic_sequence.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/is_substring.test.cpp
-  - test/3_yukicoder/2626_2.test.cpp
-  - test/3_yukicoder/1848.test.cpp
   - test/3_yukicoder/2858.test.cpp
+  - test/3_yukicoder/1848.test.cpp
+  - test/1_mytest/is_substring.test.cpp
   - test/2_library_checker/string/run_enumerate_vec.test.cpp
   - test/2_library_checker/string/zalgorithm.test.cpp
   - test/2_library_checker/string/run_enumerate.test.cpp

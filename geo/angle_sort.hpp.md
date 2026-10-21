@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
@@ -23,7 +23,7 @@ data:
   - icon: ':warning:'
     path: geo/rotating_swaps.hpp
     title: geo/rotating_swaps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -48,12 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1777.test.cpp
     title: test/3_yukicoder/1777.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/geo/angle_sort.hpp
@@ -149,23 +149,23 @@ data:
   isVerificationFile: false
   path: geo/angle_sort.hpp
   requiredBy:
+  - random/random_polygon.hpp
   - graph/planar_graph.hpp
+  - geo/convex_polygon_dp_order.hpp
   - geo/max_norm_sum.hpp
   - geo/minkowski_sum.hpp
-  - geo/rotating_swaps.hpp
   - geo/count_points_in_triangles.hpp
+  - geo/rotating_swaps.hpp
   - geo/polygon_triangulation.hpp
-  - geo/convex_polygon_dp_order.hpp
-  - random/random_polygon.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/3_yukicoder/1777.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/qoj5443.test.cpp
   - test/1_mytest/count_points_in_triangles.test.cpp
-  - test/1_mytest/polygon_triangulation.test.cpp
-  - test/3_yukicoder/1777.test.cpp
-  - test/2_library_checker/geometry/sort_points_by_argument.test.cpp
   - test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  - test/2_library_checker/geometry/sort_points_by_argument.test.cpp
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
 documentation_of: geo/angle_sort.hpp
 layout: document

@@ -22,10 +22,10 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':question:'
@@ -38,34 +38,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_spanning_tree.hpp
     title: graph/count/count_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/blackbox/det.hpp
     title: linalg/blackbox/det.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':heavy_check_mark:'
     path: poly/find_roots_of_polynomial.hpp
     title: poly/find_roots_of_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
   - icon: ':heavy_check_mark:'
     path: poly/poly_mod_pow.hpp
     title: poly/poly_mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   _extendedVerifiedWith:
@@ -117,7 +117,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/polynomial_division.test.cpp
     title: test/2_library_checker/polynomial/polynomial_division.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/slice_rational.test.cpp
     title: test/2_library_checker/polynomial/slice_rational.test.cpp
   - icon: ':heavy_check_mark:'
@@ -126,54 +126,54 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1516.test.cpp
     title: test/3_yukicoder/1516.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1547.test.cpp
     title: test/3_yukicoder/1547.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1755.test.cpp
     title: test/3_yukicoder/1755.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1844.test.cpp
     title: test/3_yukicoder/1844.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1962.test.cpp
     title: test/3_yukicoder/1962.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2305.test.cpp
     title: test/3_yukicoder/2305.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587_2.test.cpp
     title: test/3_yukicoder/2587_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/310.test.cpp
     title: test/3_yukicoder/310.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/578.test.cpp
     title: test/3_yukicoder/578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/poly/poly_divmod.hpp
@@ -503,55 +503,55 @@ data:
   isVerificationFile: false
   path: poly/poly_divmod.hpp
   requiredBy:
-  - graph/count/BEST.hpp
   - graph/count/count_spanning_tree.hpp
-  - linalg/blackbox/det.hpp
-  - linalg/blackbox/min_poly.hpp
+  - graph/count/BEST.hpp
   - poly/slice_rational_fps.hpp
-  - poly/find_roots_of_polynomial.hpp
-  - poly/coef_of_rational_fps.hpp
   - poly/poly_gcd.hpp
+  - poly/coef_of_rational_fps.hpp
   - poly/poly_mod_pow.hpp
+  - poly/find_roots_of_polynomial.hpp
   - seq/interpolate_linear_rec.hpp
-  - seq/famous/bell_number_large.hpp
   - seq/find_linear_rec.hpp
+  - seq/famous/bell_number_large.hpp
+  - linalg/blackbox/min_poly.hpp
+  - linalg/blackbox/det.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/min_poly.test.cpp
-  - test/1_mytest/slice_rational_fps.test.cpp
-  - test/1_mytest/coef_of_rational.test.cpp
-  - test/1_mytest/bell.test.cpp
-  - test/1_mytest/poly_root_finding.test.cpp
-  - test/3_yukicoder/1516.test.cpp
-  - test/3_yukicoder/578.test.cpp
-  - test/3_yukicoder/1547.test.cpp
-  - test/3_yukicoder/2122.test.cpp
-  - test/3_yukicoder/310.test.cpp
-  - test/3_yukicoder/541.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
-  - test/3_yukicoder/2877.test.cpp
   - test/3_yukicoder/2587.test.cpp
-  - test/3_yukicoder/1500.test.cpp
-  - test/3_yukicoder/1844.test.cpp
-  - test/3_yukicoder/1962.test.cpp
+  - test/3_yukicoder/310.test.cpp
   - test/3_yukicoder/1561.test.cpp
+  - test/3_yukicoder/1755.test.cpp
+  - test/3_yukicoder/1500.test.cpp
+  - test/3_yukicoder/1962.test.cpp
+  - test/3_yukicoder/541.test.cpp
   - test/3_yukicoder/2583.test.cpp
   - test/3_yukicoder/579.test.cpp
-  - test/3_yukicoder/1755.test.cpp
+  - test/3_yukicoder/1547.test.cpp
+  - test/3_yukicoder/2122.test.cpp
+  - test/3_yukicoder/1844.test.cpp
+  - test/3_yukicoder/1516.test.cpp
+  - test/3_yukicoder/2877.test.cpp
   - test/3_yukicoder/2305.test.cpp
+  - test/3_yukicoder/578.test.cpp
+  - test/1_mytest/bell.test.cpp
+  - test/1_mytest/min_poly.test.cpp
+  - test/1_mytest/coef_of_rational.test.cpp
+  - test/1_mytest/poly_root_finding.test.cpp
+  - test/1_mytest/slice_rational_fps.test.cpp
   - test/2_library_checker/polynomial/slice_rational.test.cpp
-  - test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
   - test/2_library_checker/polynomial/polynomial_division.test.cpp
-  - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
-  - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
+  - test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
   - test/2_library_checker/graph/counting_eulerian_dense.test.cpp
-  - test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
   - test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
-  - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/2_library_checker/other/find_linear_recurrence.test.cpp
+  - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: poly/poly_divmod.hpp
 layout: document
 redirect_from:
