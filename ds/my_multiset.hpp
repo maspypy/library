@@ -12,7 +12,7 @@ struct My_Multiset {
   };
   Dynamic_SegTree_Sparse<Mono, false> seg;
 
-  My_Multiset(int NODES) : seg(NODES, -infty<ll>, infty<ll>) {}
+  My_Multiset() : seg(-infty<ll>, infty<ll>) {}
 
   void reset() { seg.reset(); }
   int new_root() { return seg.new_root(); }

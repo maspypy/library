@@ -131,12 +131,9 @@ struct Dynamic_Range_Add_Range_Max {
   int n;
   Dynamic_SegTree_Sparse<Mono, false> seg;
   T lazy;
-  using np = typename decltype(seg)::np;
-  np root;
+  int root;
 
-  // range apply * 2 くらいのノード数
-  Dynamic_Range_Add_Range_Max(int NODES, ll L, ll R)
-      : seg(NODES, L, R), lazy(0) {
+  Dynamic_Range_Add_Range_Max(ll L, ll R) : seg(L, R), lazy(0) {
     root = seg.new_root();
   }
 
