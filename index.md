@@ -354,7 +354,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':warning:'
@@ -986,7 +986,7 @@ data:
     - icon: ':warning:'
       path: graph/annulus_walk_generating_function.hpp
       title: graph/annulus_walk_generating_function.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':warning:'
@@ -1945,7 +1945,7 @@ data:
     - icon: ':warning:'
       path: other/cuboid_union_volume.hpp
       title: other/cuboid_union_volume.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/dice.hpp
       title: other/dice.hpp
     - icon: ':warning:'
@@ -5289,7 +5289,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/4_aoj/ITP1_11_A.test.cpp
       title: test/4_aoj/ITP1_11_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/4_aoj/ITP1_11_B.test.cpp
       title: test/4_aoj/ITP1_11_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -5319,7 +5319,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/4_aoj/NTL_2_B.test.cpp
       title: test/4_aoj/NTL_2_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/4_aoj/NTL_2_C.test.cpp
       title: test/4_aoj/NTL_2_C.test.cpp
 layout: toppage

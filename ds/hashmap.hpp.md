@@ -56,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/all_cycle_common_vertices.hpp
     title: graph/all_cycle_common_vertices.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':warning:'
@@ -395,7 +395,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/dice.hpp
     title: other/dice.hpp
   - icon: ':warning:'
@@ -1002,7 +1002,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_A.test.cpp
     title: test/4_aoj/ITP1_11_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_B.test.cpp
     title: test/4_aoj/ITP1_11_B.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1011,9 +1011,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_D.test.cpp
     title: test/4_aoj/ITP1_11_D.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/hashmap.hpp
@@ -1214,7 +1214,7 @@ data:
   - geo/manhattan_mst.hpp
   - geo/polygon_triangulation.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/1718.test.cpp
