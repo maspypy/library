@@ -21,7 +21,9 @@ void solve() {
     A.xor_to_range(c, d, x);
   }
   string ANS = A.to_string();
-  for (auto&& ch: ANS) { ch = (ch == '0' ? 'E' : 'O'); }
+  for (auto&& ch : ANS) {
+    ch = (ch == '0' ? 'E' : 'O');
+  }
   print(ANS);
 }
 

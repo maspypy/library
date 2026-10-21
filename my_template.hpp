@@ -1,17 +1,14 @@
 // Source: https://github.com/maspypy/library/blob/main/my_template.hpp
 #if defined(USE_PCH)
 #include <my_template_compiled.hpp>
-#else  // MASPY_TEMPLATE_BODY
-/*
-library: https://github.com/maspypy/library
-*/
+
 #if defined(__GNUC__)
-#include <bits/allocator.h>
 #pragma GCC optimize("Ofast,unroll-loops")
 #if !defined(MASPY_NON_AVX2)
 #pragma GCC target("avx2,popcnt")
 #endif
 #endif
+#else  // MASPY_TEMPLATE_BODY
 #include <bits/stdc++.h>
 #include <cassert>
 

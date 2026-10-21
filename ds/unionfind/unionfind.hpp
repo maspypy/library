@@ -2,7 +2,7 @@
 
 struct UnionFind {
   int n, n_comp;
-  vc<int> dat; // par or (-size)
+  vc<int> dat;  // par or (-size)
   UnionFind(int n = 0) { build(n); }
 
   void build(int m) {
@@ -12,10 +12,17 @@ struct UnionFind {
 
   void reset() { build(n); }
 
+  int add_vertex() {
+    ++n_comp, dat.eb(-1);
+    return n++;
+  }
+
   int operator[](int x) {
     while (dat[x] >= 0) {
       int pp = dat[dat[x]];
-      if (pp < 0) { return dat[x]; }
+      if (pp < 0) {
+        return dat[x];
+      }
       x = dat[x] = pp;
     }
     return x;

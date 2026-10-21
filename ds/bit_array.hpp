@@ -1,7 +1,7 @@
-// Source: https://github.com/maspypy/library/blob/main/ds/bit_array.hpp
 #include "my_template.hpp"
 #include "other/io.hpp"
 
+#include "other/bit.hpp"
 
 /*
 01 列を管理する．内部では 64 bit ごとにまとめて保持する．主な用途として，
@@ -202,7 +202,9 @@ struct Bit_Array {
     Bit_Array p(R - L);
     int rm = (R - L) & 63;
     FOR(rm) {
-      p[R - L - 1] = bool((*this)[R - 1]);
+      int j = R - L - 1;
+      p.dat[j >> 6] |= u64((dat[(R - 1) >> 6] >> ((R - 1) & 63)) & 1)
+                       << (j & 63);
       --R;
     }
     int n = (R - L) >> 6;
@@ -227,106 +229,75 @@ struct Bit_Array {
     return cnt;
   }
 
-  // [L,R) に p を代入
-  void assign_to_range(int L, int R, const Bit_Array &p) {
+  /*
+  OP = 0: assign, 1: or, 2: xor, 3: and.
+  自己参照かつ重複する区間だけを退避する。非重複の場合は入力・出力を直接
+  扱い、通常ケースの word loop を単純に保つ。
+  */
+  template <int OP>
+  void apply_to_range(
+      int L, int R, const Bit_Array &other, int L1 = -1, int R1 = -1) {
+    static_assert(0 <= OP && OP < 4);
     assert(0 <= L && L <= R && R <= N);
-    assert(p.N == R - L);
-    int a = 0, b = p.N;
-    while (L < R && (L & 63)) {
-      (*this)[L++] = bool(p[a++]);
+    if (L1 == -1) L1 = 0, R1 = other.N;
+    assert(0 <= L1 && L1 <= R1 && R1 <= other.N);
+    assert(R - L == R1 - L1);
+
+    if (&other == this && max(L, L1) < min(R, R1)) {
+      Bit_Array tmp = other.slice(L1, R1);
+      apply_to_range<OP>(L, R, tmp);
+      return;
     }
-    while (L < R && (R & 63)) {
-      (*this)[--R] = bool(p[--b]);
-    }
-    // p[a:b] を [L:R] に
-    int l = L >> 6, r = R >> 6;
-    int s = a >> 6;
-    int n = r - l;
-    if (!(a & 63)) {
-      FOR(i, n) dat[l + i] = p.dat[s + i];
+
+    auto apply_bit = [&](int i, bool x) {
+      u64 bit = u64(x) << (i & 63);
+      if constexpr (OP == 0)
+        dat[i >> 6] = (dat[i >> 6] & ~(u64(1) << (i & 63))) | bit;
+      if constexpr (OP == 1) dat[i >> 6] |= bit;
+      if constexpr (OP == 2) dat[i >> 6] ^= bit;
+      if constexpr (OP == 3) dat[i >> 6] &= ~(u64(!x) << (i & 63));
+    };
+    auto apply_word = [&](int i, u64 x) {
+      if constexpr (OP == 0) dat[i] = x;
+      if constexpr (OP == 1) dat[i] |= x;
+      if constexpr (OP == 2) dat[i] ^= x;
+      if constexpr (OP == 3) dat[i] &= x;
+    };
+    auto get_bit = [&](int i) -> bool {
+      return (other.dat[i >> 6] >> (i & 63)) & 1;
+    };
+
+    while (L < R && (L & 63)) apply_bit(L++, get_bit(L1++));
+    int n = (R - L) >> 6;
+    int l = L >> 6, s = L1 >> 6, sh = L1 & 63;
+    if (sh == 0) {
+      FOR(i, n) apply_word(l + i, other.dat[s + i]);
     } else {
-      int hi = a & 63;
-      int lo = 64 - hi;
-      FOR(i, n) dat[l + i] = (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);
+      int lo = 64 - sh;
+      FOR(i, n) {
+        apply_word(
+            l + i, (other.dat[s + i] >> sh) | (other.dat[s + i + 1] << lo));
+      }
     }
+    L += 64 * n, L1 += 64 * n;
+    while (L < R) apply_bit(L++, get_bit(L1++));
   }
 
-  // [L,R) に p を xor
-  void xor_to_range(int L, int R, const Bit_Array &p) {
-    assert(0 <= L && L <= R && R <= N);
-    assert(p.N == R - L);
-    int a = 0, b = p.N;
-    while (L < R && (L & 63)) {
-      dat[L >> 6] ^= u64(p[a]) << (L & 63);
-      ++a, ++L;
-    }
-    while (L < R && (R & 63)) {
-      --b, --R;
-      dat[R >> 6] ^= u64(p[b]) << (R & 63);
-    }
-    // p[a:b] を [L:R] に
-    int l = L >> 6, r = R >> 6;
-    int s = a >> 6;
-    int n = r - l;
-    if (!(a & 63)) {
-      FOR(i, n) dat[l + i] ^= p.dat[s + i];
-    } else {
-      int hi = a & 63;
-      int lo = 64 - hi;
-      FOR(i, n) dat[l + i] ^= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);
-    }
+  void assign_to_range(
+      int L, int R, const Bit_Array &other, int L1 = -1, int R1 = -1) {
+    apply_to_range<0>(L, R, other, L1, R1);
   }
-
-  // [L,R) に p を and
-  void and_to_range(int L, int R, const Bit_Array &p) {
-    assert(0 <= L && L <= R && R <= N);
-    assert(p.N == R - L);
-    int a = 0, b = p.N;
-    while (L < R && (L & 63)) {
-      if (!p[a]) (*this)[L] = 0;
-      a++, L++;
-    }
-    while (L < R && (R & 63)) {
-      --b, --R;
-      if (!p[b]) (*this)[R] = 0;
-    }
-    // p[a:b] を [L:R] に
-    int l = L >> 6, r = R >> 6;
-    int s = a >> 6;
-    int n = r - l;
-    if (!(a & 63)) {
-      FOR(i, n) dat[l + i] &= p.dat[s + i];
-    } else {
-      int hi = a & 63;
-      int lo = 64 - hi;
-      FOR(i, n) dat[l + i] &= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);
-    }
+  void or_to_range(
+      int L, int R, const Bit_Array &other, int L1 = -1, int R1 = -1) {
+    apply_to_range<1>(L, R, other, L1, R1);
   }
-
-  // [L,R) に p を or
-  void or_to_range(int L, int R, const Bit_Array &p) {
-    assert(0 <= L && L <= R && R <= N);
-    assert(p.N == R - L);
-    int a = 0, b = p.N;
-    while (L < R && (L & 63)) {
-      dat[L >> 6] |= u64(p[a]) << (L & 63);
-      ++a, ++L;
-    }
-    while (L < R && (R & 63)) {
-      --b, --R;
-      dat[R >> 6] |= u64(p[b]) << (R & 63);
-    }
-    // p[a:b] を [L:R] に
-    int l = L >> 6, r = R >> 6;
-    int s = a >> 6;
-    int n = r - l;
-    if (!(a & 63)) {
-      FOR(i, n) dat[l + i] |= p.dat[s + i];
-    } else {
-      int hi = a & 63;
-      int lo = 64 - hi;
-      FOR(i, n) dat[l + i] |= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);
-    }
+  void xor_to_range(
+      int L, int R, const Bit_Array &other, int L1 = -1, int R1 = -1) {
+    apply_to_range<2>(L, R, other, L1, R1);
+  }
+  void and_to_range(
+      int L, int R, const Bit_Array &other, int L1 = -1, int R1 = -1) {
+    apply_to_range<3>(L, R, other, L1, R1);
   }
 
   // p は [i:N) にしかないとして p を xor する
