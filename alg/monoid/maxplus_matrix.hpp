@@ -1,5 +1,5 @@
 template <typename T, int K, bool upper = false>
-struct Monoid_MinPlus_Matrix {
+struct Monoid_MaxPlus_Matrix {
   using X = array<array<T, K>, K>;
   using value_type = X;
 
