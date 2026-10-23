@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/alg/monoid/maxplus_matrix.hpp
 template <typename T, int K, bool upper = false>
 struct Monoid_MaxPlus_Matrix {
   using X = array<array<T, K>, K>;
