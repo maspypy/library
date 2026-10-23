@@ -36,6 +36,7 @@ struct Range_Assignment_SegTree {
   }
 
   X prod(int l, int r) {
+    if (l == r) return MX::id();
     int a = cut.prev(l), c = cut.prev(r);
     if (a == c) {
       return monoid_pow<MX>(dat[a], r - l);

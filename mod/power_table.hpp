@@ -4,6 +4,7 @@
 // a^0, ..., a^N
 template <typename mint>
 vc<mint> power_table_1(mint a, ll N) {
+  assert(0 <= N);
   // table of a^i
   vc<mint> f(N + 1, 1);
   FOR(i, N) f[i + 1] = a * f[i];
@@ -13,6 +14,7 @@ vc<mint> power_table_1(mint a, ll N) {
 // 0^e, ..., N^e
 template <typename mint>
 vc<mint> power_table_2(ll e, ll N) {
+  assert(0 <= N);
   auto primes = prime_table(N);
   vc<mint> f(N + 1, 1);
   f[0] = mint(0).pow(e);
