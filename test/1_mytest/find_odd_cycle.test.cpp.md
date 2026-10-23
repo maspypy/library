@@ -592,24 +592,28 @@ data:
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
     \   }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\n\ntemplate\
     \ <typename GT>\npair<int, vc<int>> strongly_connected_component(GT& G) {\n  static_assert(GT::is_directed);\n\
-    \  assert(G.is_prepared());\n  int N = G.N;\n  int C = 0;\n  vc<int> comp(N),\
-    \ low(N), ord(N, -1), path;\n  int now = 0;\n\n  auto dfs = [&](auto& dfs, int\
-    \ v) -> void {\n    low[v] = ord[v] = now++;\n    path.eb(v);\n    for (auto&&\
-    \ [frm, to, cost, id]: G[v]) {\n      if (ord[to] == -1) {\n        dfs(dfs, to),\
-    \ chmin(low[v], low[to]);\n      } else {\n        chmin(low[v], ord[to]);\n \
-    \     }\n    }\n    if (low[v] == ord[v]) {\n      while (1) {\n        int u\
-    \ = POP(path);\n        ord[u] = N, comp[u] = C;\n        if (u == v) break;\n\
-    \      }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs,\
-    \ v);\n  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n  return {C, comp};\n}\n\n\
-    template <typename GT>\nGraph<int, 1> scc_dag(GT& G, int C, vc<int>& comp) {\n\
-    \  Graph<int, 1> DAG(C);\n  vvc<int> edges(C);\n  for (auto&& e: G.edges) {\n\
-    \    int x = comp[e.frm], y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n\
-    \  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c,\
-    \ to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line 3 \"graph/find_odd_cycle.hpp\"\
-    \n\n// (vs, es), size=(n+1,n)\n// https://yukicoder.me/problems/no/1436\ntemplate\
-    \ <typename GT>\npair<vc<int>, vc<int>> find_odd_cycle(GT& G) {\n  int N = G.N;\n\
-    \  vc<int> comp(N);\n  if constexpr (GT::is_directed) {\n    comp = strongly_connected_component<GT>(G).se;\n\
-    \  }\n  vc<int> dist(2 * N, infty<int>);\n  vc<int> par(2 * N, -1); // edge index\n\
+    \  assert(G.is_prepared());\n  int N = G.N;\n  int nc = 0;\n  vc<int> comp(N),\
+    \ low(N), ord(N, -1), path;\n  vc<int> par(N, -1), it = G.indptr;\n  int now =\
+    \ 0;\n\n  FOR(s, N) {\n    if (ord[s] != -1) continue;\n    int v = s;\n    low[v]\
+    \ = ord[v] = now++;\n    path.eb(v);\n\n    while (v != -1) {\n      if (it[v]\
+    \ < G.indptr[v + 1]) {\n        int to = G.csr_edges[it[v]++].to;\n        if\
+    \ (ord[to] == -1) {\n          par[to] = v;\n          v = to;\n          low[v]\
+    \ = ord[v] = now++;\n          path.eb(v);\n        } else {\n          chmin(low[v],\
+    \ ord[to]);\n        }\n      } else {\n        if (low[v] == ord[v]) {\n    \
+    \      while (1) {\n            int u = POP(path);\n            ord[u] = N, comp[u]\
+    \ = nc;\n            if (u == v) break;\n          }\n          ++nc;\n      \
+    \  }\n        int p = par[v];\n        if (p != -1) chmin(low[p], low[v]);\n \
+    \       v = p;\n      }\n    }\n  }\n  FOR(v, N) comp[v] = nc - 1 - comp[v];\n\
+    \  return {nc, comp};\n}\n\ntemplate <typename GT>\nGraph<int, 1> scc_dag(GT&\
+    \ G, int nc, vc<int>& comp) {\n  Graph<int, 1> DAG(nc);\n  vvc<int> edges(nc);\n\
+    \  for (auto&& e : G.edges) {\n    int x = comp[e.frm], y = comp[e.to];\n    if\
+    \ (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c, nc) {\n    UNIQUE(edges[c]);\n\
+    \    for (auto&& to : edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return\
+    \ DAG;\n}\n#line 3 \"graph/find_odd_cycle.hpp\"\n\n// (vs, es), size=(n+1,n)\n\
+    // https://yukicoder.me/problems/no/1436\ntemplate <typename GT>\npair<vc<int>,\
+    \ vc<int>> find_odd_cycle(GT& G) {\n  int N = G.N;\n  vc<int> comp(N);\n  if constexpr\
+    \ (GT::is_directed) {\n    comp = strongly_connected_component<GT>(G).se;\n  }\n\
+    \  vc<int> dist(2 * N, infty<int>);\n  vc<int> par(2 * N, -1); // edge index\n\
     \  deque<int> que;\n  auto add = [&](int v, int d, int p) -> void {\n    if (chmin(dist[v],\
     \ d)) { que.eb(v), par[v] = p; }\n  };\n  FOR(root, N) {\n    if (dist[2 * root\
     \ + 0] < infty<int>) continue;\n    if (dist[2 * root + 1] < infty<int>) continue;\n\
@@ -698,7 +702,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/find_odd_cycle.test.cpp
   requiredBy: []
-  timestamp: '2026-10-22 01:32:06+09:00'
+  timestamp: '2026-10-24 07:57:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/find_odd_cycle.test.cpp

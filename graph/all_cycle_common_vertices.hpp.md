@@ -137,22 +137,25 @@ data:
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
     \   }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\n\ntemplate\
     \ <typename GT>\npair<int, vc<int>> strongly_connected_component(GT& G) {\n  static_assert(GT::is_directed);\n\
-    \  assert(G.is_prepared());\n  int N = G.N;\n  int C = 0;\n  vc<int> comp(N),\
-    \ low(N), ord(N, -1), path;\n  int now = 0;\n\n  auto dfs = [&](auto& dfs, int\
-    \ v) -> void {\n    low[v] = ord[v] = now++;\n    path.eb(v);\n    for (auto&&\
-    \ [frm, to, cost, id]: G[v]) {\n      if (ord[to] == -1) {\n        dfs(dfs, to),\
-    \ chmin(low[v], low[to]);\n      } else {\n        chmin(low[v], ord[to]);\n \
-    \     }\n    }\n    if (low[v] == ord[v]) {\n      while (1) {\n        int u\
-    \ = POP(path);\n        ord[u] = N, comp[u] = C;\n        if (u == v) break;\n\
-    \      }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs,\
-    \ v);\n  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n  return {C, comp};\n}\n\n\
-    template <typename GT>\nGraph<int, 1> scc_dag(GT& G, int C, vc<int>& comp) {\n\
-    \  Graph<int, 1> DAG(C);\n  vvc<int> edges(C);\n  for (auto&& e: G.edges) {\n\
-    \    int x = comp[e.frm], y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n\
-    \  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c,\
-    \ to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line 1 \"graph/toposort.hpp\"\n\
-    // Source: https://github.com/maspypy/library/blob/main/graph/toposort.hpp\n#line\
-    \ 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    \  assert(G.is_prepared());\n  int N = G.N;\n  int nc = 0;\n  vc<int> comp(N),\
+    \ low(N), ord(N, -1), path;\n  vc<int> par(N, -1), it = G.indptr;\n  int now =\
+    \ 0;\n\n  FOR(s, N) {\n    if (ord[s] != -1) continue;\n    int v = s;\n    low[v]\
+    \ = ord[v] = now++;\n    path.eb(v);\n\n    while (v != -1) {\n      if (it[v]\
+    \ < G.indptr[v + 1]) {\n        int to = G.csr_edges[it[v]++].to;\n        if\
+    \ (ord[to] == -1) {\n          par[to] = v;\n          v = to;\n          low[v]\
+    \ = ord[v] = now++;\n          path.eb(v);\n        } else {\n          chmin(low[v],\
+    \ ord[to]);\n        }\n      } else {\n        if (low[v] == ord[v]) {\n    \
+    \      while (1) {\n            int u = POP(path);\n            ord[u] = N, comp[u]\
+    \ = nc;\n            if (u == v) break;\n          }\n          ++nc;\n      \
+    \  }\n        int p = par[v];\n        if (p != -1) chmin(low[p], low[v]);\n \
+    \       v = p;\n      }\n    }\n  }\n  FOR(v, N) comp[v] = nc - 1 - comp[v];\n\
+    \  return {nc, comp};\n}\n\ntemplate <typename GT>\nGraph<int, 1> scc_dag(GT&\
+    \ G, int nc, vc<int>& comp) {\n  Graph<int, 1> DAG(nc);\n  vvc<int> edges(nc);\n\
+    \  for (auto&& e : G.edges) {\n    int x = comp[e.frm], y = comp[e.to];\n    if\
+    \ (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c, nc) {\n    UNIQUE(edges[c]);\n\
+    \    for (auto&& to : edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return\
+    \ DAG;\n}\n#line 1 \"graph/toposort.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/toposort.hpp\n\
+    #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
     #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
     \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
     \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
@@ -539,7 +542,7 @@ data:
   isVerificationFile: false
   path: graph/all_cycle_common_vertices.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-10-24 07:57:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/all_cycle_common_vertex.test.cpp

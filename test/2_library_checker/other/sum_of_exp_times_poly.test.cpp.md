@@ -678,14 +678,14 @@ data:
     \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
     \  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin() + k};\n\
     }\n#line 3 \"mod/power_table.hpp\"\n\n// a^0, ..., a^N\ntemplate <typename mint>\n\
-    vc<mint> power_table_1(mint a, ll N) {\n  // table of a^i\n  vc<mint> f(N + 1,\
-    \ 1);\n  FOR(i, N) f[i + 1] = a * f[i];\n  return f;\n}\n\n// 0^e, ..., N^e\n\
-    template <typename mint>\nvc<mint> power_table_2(ll e, ll N) {\n  auto primes\
-    \ = prime_table(N);\n  vc<mint> f(N + 1, 1);\n  f[0] = mint(0).pow(e);\n  for\
-    \ (auto&& p : primes) {\n    if (p > N) break;\n    mint xp = mint(p).pow(e);\n\
-    \    ll pp = p;\n    while (pp <= N) {\n      ll i = pp;\n      while (i <= N)\
-    \ {\n        f[i] *= xp;\n        i += pp;\n      }\n      pp *= p;\n    }\n \
-    \ }\n  return f;\n}\n#line 7 \"test/2_library_checker/other/sum_of_exp_times_poly.test.cpp\"\
+    vc<mint> power_table_1(mint a, ll N) {\n  assert(0 <= N);\n  // table of a^i\n\
+    \  vc<mint> f(N + 1, 1);\n  FOR(i, N) f[i + 1] = a * f[i];\n  return f;\n}\n\n\
+    // 0^e, ..., N^e\ntemplate <typename mint>\nvc<mint> power_table_2(ll e, ll N)\
+    \ {\n  assert(0 <= N);\n  auto primes = prime_table(N);\n  vc<mint> f(N + 1, 1);\n\
+    \  f[0] = mint(0).pow(e);\n  for (auto&& p : primes) {\n    if (p > N) break;\n\
+    \    mint xp = mint(p).pow(e);\n    ll pp = p;\n    while (pp <= N) {\n      ll\
+    \ i = pp;\n      while (i <= N) {\n        f[i] *= xp;\n        i += pp;\n   \
+    \   }\n      pp *= p;\n    }\n  }\n  return f;\n}\n#line 7 \"test/2_library_checker/other/sum_of_exp_times_poly.test.cpp\"\
     \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  mint r;\r\n  read(r);\r\n\
     \  LL(d, n);\r\n  int L = d + 5;\r\n  vc<mint> a = power_table_2<mint>(d, L -\
     \ 1);\r\n  mint p = 1;\r\n  FOR(i, L) {\r\n    a[i] *= p;\r\n    p *= r;\r\n \
@@ -721,7 +721,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
   requiredBy: []
-  timestamp: '2026-10-22 01:32:06+09:00'
+  timestamp: '2026-10-24 07:57:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp

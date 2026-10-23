@@ -1232,24 +1232,24 @@ data:
     \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
     \  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin() + k};\n\
     }\n#line 3 \"mod/power_table.hpp\"\n\n// a^0, ..., a^N\ntemplate <typename mint>\n\
-    vc<mint> power_table_1(mint a, ll N) {\n  // table of a^i\n  vc<mint> f(N + 1,\
-    \ 1);\n  FOR(i, N) f[i + 1] = a * f[i];\n  return f;\n}\n\n// 0^e, ..., N^e\n\
-    template <typename mint>\nvc<mint> power_table_2(ll e, ll N) {\n  auto primes\
-    \ = prime_table(N);\n  vc<mint> f(N + 1, 1);\n  f[0] = mint(0).pow(e);\n  for\
-    \ (auto&& p : primes) {\n    if (p > N) break;\n    mint xp = mint(p).pow(e);\n\
-    \    ll pp = p;\n    while (pp <= N) {\n      ll i = pp;\n      while (i <= N)\
-    \ {\n        f[i] *= xp;\n        i += pp;\n      }\n      pp *= p;\n    }\n \
-    \ }\n  return f;\n}\n#line 5 \"seq/famous/stirling_number_2.hpp\"\n\n// n \u500B\
-    \u306E\u3082\u306E (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\
-    \u5206\u3051\u308B\u65B9\u6CD5\n// label \u3092\u3064\u3051\u308B\u3053\u3068\u3067\
-    \u3001\u5168\u5C04\u306E\u6570\u3048\u4E0A\u3052\u306B\u5229\u7528\u3067\u304D\
-    \u308B\ntemplate <typename mint>\nvvc<mint> stirling_number_2_2d(int nmax, int\
-    \ kmax) {\n  vv(mint, A, nmax + 1, kmax + 1);\n  A[0][0] = 1;\n  FOR(i, 1, nmax\
-    \ + 1) {\n    FOR(j, i + 1) {\n      if (j > kmax) break;\n      if (j) A[i][j]\
-    \ += A[i - 1][j - 1];\n      if (j < i) A[i][j] += A[i - 1][j] * mint(j);\n  \
-    \  }\n  }\n  return A;\n}\n\n// n \u500B\u306E\u3082\u306E (labeled) \u3092 k\
-    \ \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\n//\
-    \ label \u3092\u3064\u3051\u308B\u3053\u3068\u3067\u3001\u5168\u5C04\u306E\u6570\
+    vc<mint> power_table_1(mint a, ll N) {\n  assert(0 <= N);\n  // table of a^i\n\
+    \  vc<mint> f(N + 1, 1);\n  FOR(i, N) f[i + 1] = a * f[i];\n  return f;\n}\n\n\
+    // 0^e, ..., N^e\ntemplate <typename mint>\nvc<mint> power_table_2(ll e, ll N)\
+    \ {\n  assert(0 <= N);\n  auto primes = prime_table(N);\n  vc<mint> f(N + 1, 1);\n\
+    \  f[0] = mint(0).pow(e);\n  for (auto&& p : primes) {\n    if (p > N) break;\n\
+    \    mint xp = mint(p).pow(e);\n    ll pp = p;\n    while (pp <= N) {\n      ll\
+    \ i = pp;\n      while (i <= N) {\n        f[i] *= xp;\n        i += pp;\n   \
+    \   }\n      pp *= p;\n    }\n  }\n  return f;\n}\n#line 5 \"seq/famous/stirling_number_2.hpp\"\
+    \n\n// n \u500B\u306E\u3082\u306E (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7\
+    \ (no label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\n// label \u3092\u3064\u3051\
+    \u308B\u3053\u3068\u3067\u3001\u5168\u5C04\u306E\u6570\u3048\u4E0A\u3052\u306B\
+    \u5229\u7528\u3067\u304D\u308B\ntemplate <typename mint>\nvvc<mint> stirling_number_2_2d(int\
+    \ nmax, int kmax) {\n  vv(mint, A, nmax + 1, kmax + 1);\n  A[0][0] = 1;\n  FOR(i,\
+    \ 1, nmax + 1) {\n    FOR(j, i + 1) {\n      if (j > kmax) break;\n      if (j)\
+    \ A[i][j] += A[i - 1][j - 1];\n      if (j < i) A[i][j] += A[i - 1][j] * mint(j);\n\
+    \    }\n  }\n  return A;\n}\n\n// n \u500B\u306E\u3082\u306E (labeled) \u3092\
+    \ k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\n\
+    // label \u3092\u3064\u3051\u308B\u3053\u3068\u3067\u3001\u5168\u5C04\u306E\u6570\
     \u3048\u4E0A\u3052\u306B\u5229\u7528\u3067\u304D\u308B\n// O(klogk)\ntemplate\
     \ <typename mint>\nvc<mint> stirling_number_2_n(int n, int k_max) {\n  vc<mint>\
     \ a = power_table_2<mint>(n, k_max + 1);\n  FOR(i, k_max + 1) a[i] *= fact_inv<mint>(i);\n\
@@ -2043,7 +2043,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/bell.test.cpp
   requiredBy: []
-  timestamp: '2026-10-22 01:32:06+09:00'
+  timestamp: '2026-10-24 07:57:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/bell.test.cpp

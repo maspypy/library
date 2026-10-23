@@ -294,10 +294,11 @@ data:
     \ { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
     \    n = m;\n    cut.build(n);\n    cut.fill_one();\n    dat.resize(m);\n    seg.build(m,\
     \ [&](int i) { return dat[i] = f(i); });\n  }\n\n  X prod(int l, int r) {\n  \
-    \  int a = cut.prev(l), c = cut.prev(r);\n    if (a == c) {\n      return monoid_pow<MX>(dat[a],\
-    \ r - l);\n    };\n    int b = cut.next(l);\n    assert(b <= c);\n    X x = monoid_pow<MX>(dat[a],\
-    \ b - l);\n    X y = seg.prod(b, c);\n    X z = monoid_pow<MX>(dat[c], r - c);\n\
-    \    return MX::op(MX::op(x, y), z);\n  }\n\n  X prod_all() { return seg.prod_all();\
+    \  if (l == r) return MX::id();\n    int a = cut.prev(l), c = cut.prev(r);\n \
+    \   if (a == c) {\n      return monoid_pow<MX>(dat[a], r - l);\n    };\n    int\
+    \ b = cut.next(l);\n    assert(b <= c);\n    X x = monoid_pow<MX>(dat[a], b -\
+    \ l);\n    X y = seg.prod(b, c);\n    X z = monoid_pow<MX>(dat[c], r - c);\n \
+    \   return MX::op(MX::op(x, y), z);\n  }\n\n  X prod_all() { return seg.prod_all();\
     \ }\n\n  void assign(int l, int r, X x) {\n    if (l == r) return;\n\n    int\
     \ a = cut.prev(l);\n    int b = cut.next(r);\n\n    bool has_left = (a < l);\n\
     \    bool has_right = (r < b);\n\n    X left, right;\n    if (has_left) {\n  \
@@ -464,7 +465,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_assign.test.cpp
   requiredBy: []
-  timestamp: '2026-10-22 01:32:06+09:00'
+  timestamp: '2026-10-24 07:57:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/range_assign.test.cpp
