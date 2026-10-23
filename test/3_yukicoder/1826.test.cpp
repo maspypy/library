@@ -12,8 +12,14 @@ void solve() {
     X.eb(t - x), Y.eb(t + x), V.eb(v);
   }
 
-  auto I = argsort(X);
-  X = rearrange(X, I), Y = rearrange(Y, I), V = rearrange(V, I);
+  {
+    auto I = argsort(Y);
+    X = rearrange(X, I), Y = rearrange(Y, I), V = rearrange(V, I);
+  }
+  {
+    auto I = argsort(X);
+    X = rearrange(X, I), Y = rearrange(Y, I), V = rearrange(V, I);
+  }
 
   ll LIM = 1LL << 31;
   Dynamic_SegTree<Monoid_Max<ll>, false> seg(-LIM, LIM);
