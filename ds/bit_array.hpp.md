@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/bipartite_matching_dense.hpp
     title: flow/bipartite_matching_dense.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/bitset/bfs_bitset.hpp
     title: graph/bitset/bfs_bitset.hpp
   - icon: ':warning:'
@@ -72,7 +72,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1340.test.cpp
     title: test/3_yukicoder/1340.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1400.test.cpp
     title: test/3_yukicoder/1400.test.cpp
   - icon: ':heavy_check_mark:'
@@ -99,9 +99,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/4_2.test.cpp
     title: test/3_yukicoder/4_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/bit_array.hpp
@@ -441,7 +441,7 @@ data:
   - flow/bipartite_matching_dense.hpp
   - knapsack/subset_sum.hpp
   timestamp: '2026-10-23 11:03:42+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/sum_over_bit_positions.test.cpp
   - test/1_mytest/mybitset.test.cpp

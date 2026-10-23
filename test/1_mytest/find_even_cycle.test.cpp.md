@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/find_even_cycle.hpp
     title: graph/find_even_cycle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
