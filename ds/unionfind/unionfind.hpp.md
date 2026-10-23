@@ -95,6 +95,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/unicyclic_graph.hpp
     title: graph/unicyclic_graph.hpp
+  - icon: ':warning:'
+    path: other/todd_coxeter.hpp
+    title: other/todd_coxeter.hpp
   - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
@@ -352,6 +355,7 @@ data:
   - ds/rmq/suffix_min.hpp
   - ds/rmq/suffix_max.hpp
   - ds/decremental_fastset.hpp
+  - other/todd_coxeter.hpp
   - geo/manhattan_mst.hpp
   - flow/bipartite_matching.hpp
   - flow/rank_maximal_bipartite_matching.hpp

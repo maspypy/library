@@ -2017,6 +2017,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/timer.hpp
       title: other/timer.hpp
+    - icon: ':warning:'
+      path: other/todd_coxeter.hpp
+      title: other/todd_coxeter.hpp
   - name: other/mhc_template_directory
     pages:
     - icon: ':warning:'
