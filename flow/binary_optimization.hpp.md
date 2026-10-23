@@ -356,8 +356,8 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1541.test.cpp
   - test/3_yukicoder/2320.test.cpp
+  - test/3_yukicoder/1541.test.cpp
 documentation_of: flow/binary_optimization.hpp
 layout: document
 redirect_from:

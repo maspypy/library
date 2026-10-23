@@ -118,14 +118,14 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1276.test.cpp
-  - test/3_yukicoder/1781.test.cpp
-  - test/1_mytest/primesum_mod6.test.cpp
   - test/1_mytest/prime_sum.test.cpp
-  - test/1_mytest/count_by_factor_type.test.cpp
   - test/1_mytest/primesum_mod4.test.cpp
-  - test/2_library_checker/number_theory/totient_sum.test.cpp
+  - test/1_mytest/primesum_mod6.test.cpp
+  - test/1_mytest/count_by_factor_type.test.cpp
+  - test/3_yukicoder/1781.test.cpp
+  - test/3_yukicoder/1276.test.cpp
   - test/2_library_checker/number_theory/counting_primes.test.cpp
+  - test/2_library_checker/number_theory/totient_sum.test.cpp
 documentation_of: nt/prime_sum.hpp
 layout: document
 redirect_from:

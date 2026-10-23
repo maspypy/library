@@ -69,8 +69,8 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1276.test.cpp
   - test/3_yukicoder/1781.test.cpp
+  - test/3_yukicoder/1276.test.cpp
   - test/2_library_checker/number_theory/totient_sum.test.cpp
 documentation_of: nt/multiplicative_sum.hpp
 layout: document

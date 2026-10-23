@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
   - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
   - icon: ':heavy_check_mark:'
@@ -22,7 +22,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -286,8 +286,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2613.test.cpp
-  - test/3_yukicoder/2181.test.cpp
   - test/3_yukicoder/2120.test.cpp
+  - test/3_yukicoder/2181.test.cpp
   - test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
 documentation_of: mod/binomial.hpp
 layout: document

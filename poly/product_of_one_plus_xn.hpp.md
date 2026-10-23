@@ -414,8 +414,8 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2062.test.cpp
   - test/1_mytest/product_of_one_pm_xn.test.cpp
+  - test/3_yukicoder/2062.test.cpp
   - test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
 documentation_of: poly/product_of_one_plus_xn.hpp
 layout: document

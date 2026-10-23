@@ -321,7 +321,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/binary_trie.hpp
       title: ds/binary_trie.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/bit_array.hpp
       title: ds/bit_array.hpp
     - icon: ':heavy_check_mark:'
@@ -438,7 +438,7 @@ data:
     - icon: ':warning:'
       path: ds/static_vector.hpp
       title: ds/static_vector.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/sum_over_bit_positions.hpp
       title: ds/sum_over_bit_positions.hpp
     - icon: ':heavy_check_mark:'
@@ -739,7 +739,7 @@ data:
     - icon: ':warning:'
       path: enumerate/asymmetric_unlabeled_tree.hpp
       title: enumerate/asymmetric_unlabeled_tree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: enumerate/bits.hpp
       title: enumerate/bits.hpp
     - icon: ':heavy_check_mark:'
@@ -783,7 +783,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/bipartite_matching.hpp
       title: flow/bipartite_matching.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: flow/bipartite_matching_dense.hpp
       title: flow/bipartite_matching_dense.hpp
     - icon: ':warning:'
@@ -1210,7 +1210,7 @@ data:
       title: graph/vs_to_es.hpp
   - name: graph/bitset
     pages:
-    - icon: ':warning:'
+    - icon: ':x:'
       path: graph/bitset/bfs_bitset.hpp
       title: graph/bitset/bfs_bitset.hpp
     - icon: ':warning:'
@@ -1485,7 +1485,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: knapsack/knapsack_branch_bound.hpp
       title: knapsack/knapsack_branch_bound.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: knapsack/subset_sum.hpp
       title: knapsack/subset_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -1561,19 +1561,19 @@ data:
     - icon: ':warning:'
       path: linalg/bitset/det.hpp
       title: linalg/bitset/det.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: linalg/bitset/mat_inv.hpp
       title: linalg/bitset/mat_inv.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: linalg/bitset/matrix_mul_and_or.hpp
       title: linalg/bitset/matrix_mul_and_or.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: linalg/bitset/matrix_mul_mod_2.hpp
       title: linalg/bitset/matrix_mul_mod_2.hpp
     - icon: ':warning:'
       path: linalg/bitset/matrix_pow.hpp
       title: linalg/bitset/matrix_pow.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: linalg/bitset/solve_linear.hpp
       title: linalg/bitset/solve_linear.hpp
   - name: linalg/blackbox
@@ -1635,7 +1635,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/all_inverse.hpp
       title: mod/all_inverse.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/barrett.hpp
       title: mod/barrett.hpp
     - icon: ':heavy_check_mark:'
@@ -1698,7 +1698,7 @@ data:
     - icon: ':warning:'
       path: mod/mod_log_u64.hpp
       title: mod/mod_log_u64.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/mod_pow.hpp
       title: mod/mod_pow.hpp
     - icon: ':warning:'
@@ -1728,7 +1728,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/modular_subset_sum.hpp
       title: mod/modular_subset_sum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/montgomery_modint.hpp
       title: mod/montgomery_modint.hpp
     - icon: ':heavy_check_mark:'
@@ -2296,7 +2296,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -2689,7 +2689,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/wildcard_pattern_matching.hpp
       title: string/wildcard_pattern_matching.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: string/z_algorithm.hpp
       title: string/z_algorithm.hpp
   - name: template

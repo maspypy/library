@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/find_runs.hpp
     title: string/find_runs.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/z_algorithm.hpp
     title: string/z_algorithm.hpp
   _extendedRequiredBy: []

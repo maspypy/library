@@ -40,7 +40,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -493,18 +493,18 @@ data:
   isVerificationFile: false
   path: linalg/blackbox/det.hpp
   requiredBy:
-  - graph/count/count_spanning_tree.hpp
   - graph/count/BEST.hpp
+  - graph/count/count_spanning_tree.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/310.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+  - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
   - test/2_library_checker/graph/counting_eulerian_dense.test.cpp
-  - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
-  - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
-  - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
 documentation_of: linalg/blackbox/det.hpp
 layout: document

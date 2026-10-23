@@ -1068,8 +1068,8 @@ data:
   timestamp: '2026-10-22 01:32:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/4_aoj/GRL_2_A.test.cpp
   - test/2_library_checker/tree/mst.test.cpp
+  - test/4_aoj/GRL_2_A.test.cpp
 documentation_of: graph/minimum_spanning_tree.hpp
 layout: document
 redirect_from:

@@ -125,9 +125,9 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/kdtree_nns.test.cpp
   - test/3_yukicoder/2909.test.cpp
   - test/4_aoj/DSL_2_C.test.cpp
-  - test/1_mytest/kdtree_nns.test.cpp
 documentation_of: ds/kdtree/kdtree.hpp
 layout: document
 redirect_from:

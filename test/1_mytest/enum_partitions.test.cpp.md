@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   - icon: ':heavy_check_mark:'
@@ -40,7 +40,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'

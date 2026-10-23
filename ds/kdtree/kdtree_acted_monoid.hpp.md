@@ -145,8 +145,8 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2342.test.cpp
   - test/1_mytest/kdtree_am.test.cpp
+  - test/3_yukicoder/2342.test.cpp
   - test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
 documentation_of: ds/kdtree/kdtree_acted_monoid.hpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
   - icon: ':heavy_check_mark:'
@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
@@ -153,8 +153,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1262.test.cpp
-  - test/4_aoj/NTL_1_D.test.cpp
   - test/2_library_checker/number_theory/tetration.test.cpp
+  - test/4_aoj/NTL_1_D.test.cpp
 documentation_of: nt/euler_phi.hpp
 layout: document
 redirect_from:

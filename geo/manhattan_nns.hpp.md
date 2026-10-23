@@ -133,8 +133,8 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2897.test.cpp
   - test/1_mytest/manhattan_nns.test.cpp
+  - test/3_yukicoder/2897.test.cpp
 documentation_of: geo/manhattan_nns.hpp
 layout: document
 redirect_from:

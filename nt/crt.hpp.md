@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
   - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
   - icon: ':heavy_check_mark:'
@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -233,10 +233,10 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1956.test.cpp
-  - test/3_yukicoder/590.test.cpp
-  - test/3_yukicoder/187.test.cpp
   - test/3_yukicoder/2119.test.cpp
+  - test/3_yukicoder/187.test.cpp
+  - test/3_yukicoder/590.test.cpp
+  - test/3_yukicoder/1956.test.cpp
 documentation_of: nt/crt.hpp
 layout: document
 redirect_from:

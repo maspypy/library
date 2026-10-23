@@ -11,6 +11,9 @@ data:
   - icon: ':warning:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
+  - icon: ':warning:'
+    path: nt/find_coprime_pair.hpp
+    title: nt/find_coprime_pair.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/modfast.test.cpp
@@ -62,14 +65,15 @@ data:
   path: nt/spf_table.hpp
   requiredBy:
   - nt/all_lcm.hpp
+  - nt/find_coprime_pair.hpp
   - mod/modfast.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/modfast.test.cpp
+  - test/3_yukicoder/1411.test.cpp
   - test/3_yukicoder/1575.test.cpp
   - test/3_yukicoder/1881.test.cpp
-  - test/3_yukicoder/1411.test.cpp
-  - test/1_mytest/modfast.test.cpp
 documentation_of: nt/spf_table.hpp
 layout: document
 redirect_from:

@@ -167,8 +167,8 @@ data:
   isVerificationFile: false
   path: graph/path_cycle_decomposition.hpp
   requiredBy:
-  - graph/count/count_clique.hpp
   - graph/count/count_independent_set.hpp
+  - graph/count/count_clique.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -76,8 +76,8 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1141.test.cpp
   - test/3_yukicoder/655.test.cpp
+  - test/3_yukicoder/1141.test.cpp
 documentation_of: ds/cumsum_2d.hpp
 layout: document
 redirect_from:

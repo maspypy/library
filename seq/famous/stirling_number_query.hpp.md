@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
   - icon: ':heavy_check_mark:'
@@ -132,8 +132,8 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
 documentation_of: seq/famous/stirling_number_query.hpp
 layout: document
 redirect_from:
