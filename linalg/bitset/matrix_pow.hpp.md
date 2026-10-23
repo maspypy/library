@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/bit_array.hpp
     title: ds/bit_array.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/bitset/matrix_mul_mod_2.hpp
     title: linalg/bitset/matrix_mul_mod_2.hpp
   _extendedRequiredBy: []

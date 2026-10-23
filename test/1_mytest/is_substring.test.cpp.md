@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
     path: string/is_substring.hpp
     title: string/is_substring.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/z_algorithm.hpp
     title: string/z_algorithm.hpp
   _extendedRequiredBy: []

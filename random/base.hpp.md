@@ -483,7 +483,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/multipoint_prefix.test.cpp
     title: test/1_mytest/multipoint_prefix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/mybitset.test.cpp
     title: test/1_mytest/mybitset.test.cpp
   - icon: ':heavy_check_mark:'
@@ -645,13 +645,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/stern_brocot.test.cpp
     title: test/1_mytest/stern_brocot.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/subset_sum.test.cpp
     title: test/1_mytest/subset_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/suffix_lcp_change.test.cpp
     title: test/1_mytest/suffix_lcp_change.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/sum_over_bit_positions.test.cpp
     title: test/1_mytest/sum_over_bit_positions.test.cpp
   - icon: ':heavy_check_mark:'
@@ -963,9 +963,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_1_D.test.cpp
     title: test/4_aoj/NTL_1_D.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/random/base.hpp
@@ -1051,7 +1051,7 @@ data:
   - seq/reeds_sloane.hpp
   - seq/sidon_sequence.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/extended_lichao.test.cpp
   - test/1_mytest/kinetic.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/bit_array.hpp
     title: ds/bit_array.hpp
   _extendedRequiredBy:
@@ -9,12 +9,12 @@ data:
     path: linalg/bitset/matrix_pow.hpp
     title: linalg/bitset/matrix_pow.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
     title: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/linalg/bitset/matrix_mul_mod_2.hpp
@@ -204,7 +204,7 @@ data:
   requiredBy:
   - linalg/bitset/matrix_pow.hpp
   timestamp: '2026-10-23 11:03:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
 documentation_of: linalg/bitset/matrix_mul_mod_2.hpp
