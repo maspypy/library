@@ -19,6 +19,8 @@ void solve() {
     }
   }
 
+  if (N == 1 && G[0][1] == 0) return No();
+
   FOR(s, N) {
     auto dist = bfs_bitset<BS>(G, s);
     if (T % 2 == 0) {
