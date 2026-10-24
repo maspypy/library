@@ -233,6 +233,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/incremental_scc.hpp
     title: graph/incremental_scc.hpp
+  - icon: ':warning:'
+    path: graph/is_cactus.hpp
+    title: graph/is_cactus.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
@@ -1164,6 +1167,7 @@ data:
   - graph/minimum_cost_cycle.hpp
   - graph/tree_of_unionfind.hpp
   - graph/dominator_tree.hpp
+  - graph/is_cactus.hpp
   - graph/directed_mst.hpp
   - graph/strongly_connected_component.hpp
   - graph/find_C4.hpp

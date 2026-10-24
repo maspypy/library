@@ -8,6 +8,9 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/is_cactus.hpp
+    title: graph/is_cactus.hpp
   - icon: ':heavy_check_mark:'
     path: graph/st_numbering.hpp
     title: graph/st_numbering.hpp
@@ -200,6 +203,7 @@ data:
   isVerificationFile: false
   path: graph/block_cut.hpp
   requiredBy:
+  - graph/is_cactus.hpp
   - graph/st_numbering.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
