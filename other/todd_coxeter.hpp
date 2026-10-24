@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/todd_coxeter.hpp
 #include "ds/unionfind/unionfind.hpp"
 
 // 有限モノイドであることを前提として，遷移表を返す
