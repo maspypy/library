@@ -266,11 +266,11 @@ data:
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\nvoid TIDAK(bool t = 1) {\
     \ YA(!t); }\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\nvoid\
     \ Bob(bool t = 1) { Alice(!t); }\n#line 1 \"alg/monoid/min.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n\
-    // require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
-    \ Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
-    \ op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
-    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
-    \ 1 \"ds/offline_query/static_monoid_products.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/static_monoid_products.hpp\n\
+    // require: all values x satisfy x < infty<E>\ntemplate <typename E>\nstruct Monoid_Min\
+    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
+    \ return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 1 \"\
+    ds/offline_query/static_monoid_products.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/static_monoid_products.hpp\n\
     \n// f(q, Lprod, Rprod)\n// f \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\
     \u306E\u306F\u3059\u3079\u3066\u5358\u9805\u8FFD\u52A0\n// https://qoj.ac/contest/1784/problem/9245\n\
     template <typename Mono, typename T, typename F>\nvoid static_monoid_products(vc<T>&\
@@ -307,7 +307,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/staticrmq_dc.test.cpp
   requiredBy: []
-  timestamp: '2026-10-22 01:32:06+09:00'
+  timestamp: '2026-10-24 10:08:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/staticrmq_dc.test.cpp

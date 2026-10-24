@@ -323,7 +323,7 @@ data:
     \ LOG;\n    X x = ST.prod(a + 1, b);\n    x = MX::op(suf[L], x);\n    x = MX::op(x,\
     \ pre[R]);\n    return x;\n  }\n};\n#line 1 \"alg/monoid/min.hpp\"\n// Source:\
     \ https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n// require:\
-    \ all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct Monoid_Min\
+    \ all values x satisfy x < infty<E>\ntemplate <typename E>\nstruct Monoid_Min\
     \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
     \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
     \ return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 7 \"\
@@ -346,7 +346,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/staticrmq_x.test.cpp
   requiredBy: []
-  timestamp: '2026-10-22 01:32:06+09:00'
+  timestamp: '2026-10-24 10:08:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/staticrmq_x.test.cpp

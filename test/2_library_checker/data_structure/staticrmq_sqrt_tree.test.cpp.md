@@ -267,11 +267,11 @@ data:
     \ YA(!t); }\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\nvoid\
     \ Bob(bool t = 1) { Alice(!t); }\n#line 5 \"test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp\"\
     \n\n#line 1 \"alg/monoid/min.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n\
-    // require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
-    \ Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
-    \ op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
-    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
-    \ 1 \"ds/sqrt_tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/sqrt_tree.hpp\n\
+    // require: all values x satisfy x < infty<E>\ntemplate <typename E>\nstruct Monoid_Min\
+    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
+    \ return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 1 \"\
+    ds/sqrt_tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/sqrt_tree.hpp\n\
     \n// \u6298\u89D2\u306A\u306E\u3067\u4F5C\u3063\u3066\u307F\u305F\u304C\uFF0C\u4F7F\
     \u308F\u306A\u3055\u305D\u3046\ntemplate <typename Monoid>\nstruct SQRT_Tree {\n\
     \  using MX = Monoid;\n  using X = typename MX::value_type;\n\n  static constexpr\
@@ -331,7 +331,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-10-22 01:32:06+09:00'
+  timestamp: '2026-10-24 10:08:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp

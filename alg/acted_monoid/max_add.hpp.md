@@ -29,7 +29,7 @@ data:
     \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
     \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
     };\n#line 1 \"alg/monoid/max.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/max.hpp\n\
-    // require: all values x satisfy x >= -infty<E>\ntemplate <typename E>\nstruct\
+    // require: all values x satisfy x > -infty<E>\ntemplate <typename E>\nstruct\
     \ Monoid_Max {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
     \ op(const X &x, const X &y) noexcept { return max(x, y); }\n  static constexpr\
     \ X id() { return -infty<E>; }\n  static constexpr bool commute = true;\n};\n\
@@ -51,7 +51,7 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/max_add.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-10-24 10:08:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/range_add_range_max.test.cpp

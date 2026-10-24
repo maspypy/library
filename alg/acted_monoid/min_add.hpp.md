@@ -44,11 +44,11 @@ data:
     \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
     \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
     };\n#line 1 \"alg/monoid/min.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n\
-    // require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
-    \ Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
-    \ op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
-    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
-    \ 4 \"alg/acted_monoid/min_add.hpp\"\n\ntemplate <typename E>\nstruct ActedMonoid_Min_Add\
+    // require: all values x satisfy x < infty<E>\ntemplate <typename E>\nstruct Monoid_Min\
+    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
+    \ return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 4 \"\
+    alg/acted_monoid/min_add.hpp\"\n\ntemplate <typename E>\nstruct ActedMonoid_Min_Add\
     \ {\n  using Monoid_X = Monoid_Min<E>;\n  using Monoid_A = Monoid_Add<E>;\n  using\
     \ X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
     \  static constexpr X act(const X &x, const A &a, const ll &size) {\n    if (x\
@@ -67,7 +67,7 @@ data:
   path: alg/acted_monoid/min_add.hpp
   requiredBy:
   - seq/common_interval_decomposition.hpp
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-10-24 10:08:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/range_add_range_min.test.cpp

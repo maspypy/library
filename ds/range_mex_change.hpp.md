@@ -17,11 +17,11 @@ data:
     - https://github.com/maspypy/library/blob/main/ds/range_mex_change.hpp
   bundledCode: "#line 1 \"ds/range_mex_change.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/range_mex_change.hpp\n\
     #line 1 \"alg/monoid/min.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n\
-    // require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
-    \ Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
-    \ op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
-    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
-    \ 1 \"ds/segtree/segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/segtree.hpp\n\
+    // require: all values x satisfy x < infty<E>\ntemplate <typename E>\nstruct Monoid_Min\
+    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
+    \ return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 1 \"\
+    ds/segtree/segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/segtree.hpp\n\
     \ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X =\
     \ typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log,\
     \ size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
@@ -107,7 +107,7 @@ data:
   isVerificationFile: false
   path: ds/range_mex_change.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-10-24 10:08:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/range_mex_change.hpp

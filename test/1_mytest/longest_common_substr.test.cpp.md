@@ -208,11 +208,11 @@ data:
     \ =\n    typename std::conditional<SAME, Index_Compression_SAME<T, SMALL>,\n \
     \                             Index_Compression_DISTINCT<T, SMALL>>::type;\n#line\
     \ 1 \"alg/monoid/min.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n\
-    // require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
-    \ Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
-    \ op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
-    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
-    \ 1 \"ds/sparse_table/sparse_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/sparse_table/sparse_table.hpp\n\
+    // require: all values x satisfy x < infty<E>\ntemplate <typename E>\nstruct Monoid_Min\
+    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
+    \ return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 1 \"\
+    ds/sparse_table/sparse_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/sparse_table/sparse_table.hpp\n\
     \n// \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\
     \u4EEE\u5B9A\u3002disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\ntemplate\
     \ <class Monoid>\nstruct Sparse_Table {\n  using MX = Monoid;\n  using X = typename\
@@ -500,7 +500,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/longest_common_substr.test.cpp
   requiredBy: []
-  timestamp: '2026-10-24 09:43:23+09:00'
+  timestamp: '2026-10-24 10:08:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/longest_common_substr.test.cpp

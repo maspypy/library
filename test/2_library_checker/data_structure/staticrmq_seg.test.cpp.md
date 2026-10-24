@@ -323,14 +323,14 @@ data:
     \ (p == last) continue;\n        update(p);\n        I[nxt++] = p;\n        last\
     \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 1 \"alg/monoid/min.hpp\"\
     \n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n\
-    // require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
-    \ Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
-    \ op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
-    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
-    \ 6 \"test/2_library_checker/data_structure/staticrmq_seg.test.cpp\"\n\r\nvoid\
-    \ solve() {\r\n  LL(N, Q);\r\n  using Mono = Monoid_Min<int>;\r\n  SegTree<Mono>\
-    \ seg(N, [&](int i) -> int {\r\n    INT(x);\r\n    return x;\r\n  });\r\n  FOR(Q)\
-    \ {\r\n    LL(L, R);\r\n    print(seg.prod(L, R));\r\n  }\r\n}\r\n\r\nsigned main()\
+    // require: all values x satisfy x < infty<E>\ntemplate <typename E>\nstruct Monoid_Min\
+    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
+    \ return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 6 \"\
+    test/2_library_checker/data_structure/staticrmq_seg.test.cpp\"\n\r\nvoid solve()\
+    \ {\r\n  LL(N, Q);\r\n  using Mono = Monoid_Min<int>;\r\n  SegTree<Mono> seg(N,\
+    \ [&](int i) -> int {\r\n    INT(x);\r\n    return x;\r\n  });\r\n  FOR(Q) {\r\
+    \n    LL(L, R);\r\n    print(seg.prod(L, R));\r\n  }\r\n}\r\n\r\nsigned main()\
     \ {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/segtree/segtree.hpp\"\
@@ -347,7 +347,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
   requiredBy: []
-  timestamp: '2026-10-22 01:32:06+09:00'
+  timestamp: '2026-10-24 10:08:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/staticrmq_seg.test.cpp

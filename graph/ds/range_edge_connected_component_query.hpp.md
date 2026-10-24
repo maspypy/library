@@ -182,7 +182,7 @@ data:
     \n  // b->x \u306B subtree value \u304C\u5165\u3063\u3066\u3044\u308B.\n  void\
     \ change_light(np a, np b) {}\n};\n#line 1 \"alg/monoid/min.hpp\"\n// Source:\
     \ https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n// require:\
-    \ all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct Monoid_Min\
+    \ all values x satisfy x < infty<E>\ntemplate <typename E>\nstruct Monoid_Min\
     \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
     \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
     \ return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 1 \"\
@@ -450,7 +450,7 @@ data:
   isVerificationFile: false
   path: graph/ds/range_edge_connected_component_query.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-10-24 10:08:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/ds/range_edge_connected_component_query.hpp

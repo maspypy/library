@@ -147,16 +147,16 @@ data:
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif  // MASPY_TEMPLATE_BODY\n\
     #line 1 \"alg/acted_monoid/min_max.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/min_max.hpp\n\
     #line 1 \"alg/monoid/max.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/max.hpp\n\
-    // require: all values x satisfy x >= -infty<E>\ntemplate <typename E>\nstruct\
+    // require: all values x satisfy x > -infty<E>\ntemplate <typename E>\nstruct\
     \ Monoid_Max {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
     \ op(const X &x, const X &y) noexcept { return max(x, y); }\n  static constexpr\
     \ X id() { return -infty<E>; }\n  static constexpr bool commute = true;\n};\n\
     #line 1 \"alg/monoid/min.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n\
-    // require: all values x satisfy x <= infty<E>\ntemplate <typename E>\nstruct\
-    \ Monoid_Min {\n  using X = E;\n  using value_type = X;\n  static constexpr X\
-    \ op(const X &x, const X &y) noexcept { return min(x, y); }\n  static constexpr\
-    \ X id() { return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line\
-    \ 4 \"alg/acted_monoid/min_max.hpp\"\n\ntemplate <typename E>\nstruct ActedMonoid_Min_Max\
+    // require: all values x satisfy x < infty<E>\ntemplate <typename E>\nstruct Monoid_Min\
+    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
+    \ return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 4 \"\
+    alg/acted_monoid/min_max.hpp\"\n\ntemplate <typename E>\nstruct ActedMonoid_Min_Max\
     \ {\n  using Monoid_X = Monoid_Min<E>;\n  using Monoid_A = Monoid_Max<E>;\n  using\
     \ X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
     \  static constexpr X act(const X &x, const A &a, const ll &size) {\n    return\
@@ -267,7 +267,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/min_max.test.cpp
   requiredBy: []
-  timestamp: '2026-10-22 01:32:06+09:00'
+  timestamp: '2026-10-24 10:08:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/min_max.test.cpp
