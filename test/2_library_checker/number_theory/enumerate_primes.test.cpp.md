@@ -264,19 +264,19 @@ data:
     \ YA(!t); }\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\nvoid\
     \ Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/2_library_checker/number_theory/enumerate_primes.test.cpp\"\
     \n\n#line 1 \"nt/prime_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/prime_table.hpp\n\
-    \ntemplate <typename T = int>\nvc<T> prime_table(int LIM) {\n  ++LIM;\n  const\
-    \ int S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S\
-    \ + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
-    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
-    \ * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
-    \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
-    \ * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1;\
-    \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]\
-    \ : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
-    \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
-    \  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin() + k};\n\
-    }\n#line 6 \"test/2_library_checker/number_theory/enumerate_primes.test.cpp\"\n\
-    \nvoid solve() {\n  LL(N, A, B);\n  auto primes = prime_table(N);\n  int pi_N\
+    \ntemplate <typename T = int>\nvc<T> prime_table(int LIM) {\n  assert(LIM <= infty<int>);\n\
+    \  ++LIM;\n  const int S = 32768;\n  static int done = 2;\n  static vc<T> primes\
+    \ = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes =\
+    \ {2}, sieve.assign(S + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM\
+    \ / log(LIM) * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S;\
+    \ i += 2) {\n      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for\
+    \ (int j = i * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int\
+    \ L = 1; L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p,\
+    \ idx] : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L]\
+    \ = 1;\n      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n\
+    \    }\n  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin()\
+    \ + k};\n}\n#line 6 \"test/2_library_checker/number_theory/enumerate_primes.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, A, B);\n  auto primes = prime_table(N);\n  int pi_N\
     \ = UB(primes, N);\n\n  vc<int> ANS;\n  while (B < pi_N) {\n    ANS.eb(primes[B]);\n\
     \    B += A;\n  }\n  print(pi_N, len(ANS));\n  print(ANS);\n}\n\nsigned main()\
     \ {\n  solve();\n\n  return 0;\n}\n"
@@ -293,7 +293,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/enumerate_primes.test.cpp
   requiredBy: []
-  timestamp: '2026-10-22 01:32:06+09:00'
+  timestamp: '2026-10-24 09:51:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/enumerate_primes.test.cpp

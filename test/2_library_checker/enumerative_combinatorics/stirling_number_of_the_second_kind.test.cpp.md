@@ -1251,51 +1251,51 @@ data:
     \ K) : fps_pow_1_dense(f, K));\n}\n#line 1 \"mod/power_table.hpp\"\n// Source:\
     \ https://github.com/maspypy/library/blob/main/mod/power_table.hpp\n#line 1 \"\
     nt/prime_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/prime_table.hpp\n\
-    \ntemplate <typename T = int>\nvc<T> prime_table(int LIM) {\n  ++LIM;\n  const\
-    \ int S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S\
-    \ + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
-    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
-    \ * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
-    \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
-    \ * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1;\
-    \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]\
-    \ : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
-    \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
-    \  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin() + k};\n\
-    }\n#line 3 \"mod/power_table.hpp\"\n\n// a^0, ..., a^N\ntemplate <typename mint>\n\
-    vc<mint> power_table_1(mint a, ll N) {\n  assert(0 <= N);\n  // table of a^i\n\
-    \  vc<mint> f(N + 1, 1);\n  FOR(i, N) f[i + 1] = a * f[i];\n  return f;\n}\n\n\
-    // 0^e, ..., N^e\ntemplate <typename mint>\nvc<mint> power_table_2(ll e, ll N)\
-    \ {\n  assert(0 <= N);\n  auto primes = prime_table(N);\n  vc<mint> f(N + 1, 1);\n\
-    \  f[0] = mint(0).pow(e);\n  for (auto&& p : primes) {\n    if (p > N) break;\n\
-    \    mint xp = mint(p).pow(e);\n    ll pp = p;\n    while (pp <= N) {\n      ll\
-    \ i = pp;\n      while (i <= N) {\n        f[i] *= xp;\n        i += pp;\n   \
-    \   }\n      pp *= p;\n    }\n  }\n  return f;\n}\n#line 5 \"seq/famous/stirling_number_2.hpp\"\
-    \n\n// n \u500B\u306E\u3082\u306E (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7\
+    \ntemplate <typename T = int>\nvc<T> prime_table(int LIM) {\n  assert(LIM <= infty<int>);\n\
+    \  ++LIM;\n  const int S = 32768;\n  static int done = 2;\n  static vc<T> primes\
+    \ = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes =\
+    \ {2}, sieve.assign(S + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM\
+    \ / log(LIM) * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S;\
+    \ i += 2) {\n      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for\
+    \ (int j = i * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int\
+    \ L = 1; L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p,\
+    \ idx] : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L]\
+    \ = 1;\n      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n\
+    \    }\n  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin()\
+    \ + k};\n}\n#line 3 \"mod/power_table.hpp\"\n\n// a^0, ..., a^N\ntemplate <typename\
+    \ mint>\nvc<mint> power_table_1(mint a, ll N) {\n  assert(0 <= N);\n  // table\
+    \ of a^i\n  vc<mint> f(N + 1, 1);\n  FOR(i, N) f[i + 1] = a * f[i];\n  return\
+    \ f;\n}\n\n// 0^e, ..., N^e\ntemplate <typename mint>\nvc<mint> power_table_2(ll\
+    \ e, ll N) {\n  assert(0 <= N && N <= infty<int>);\n  auto primes = prime_table(N);\n\
+    \  vc<mint> f(N + 1, 1);\n  f[0] = mint(0).pow(e);\n  for (auto&& p : primes)\
+    \ {\n    if (p > N) break;\n    mint xp = mint(p).pow(e);\n    ll pp = p;\n  \
+    \  while (pp <= N) {\n      ll i = pp;\n      while (i <= N) {\n        f[i] *=\
+    \ xp;\n        i += pp;\n      }\n      pp *= p;\n    }\n  }\n  return f;\n}\n\
+    #line 5 \"seq/famous/stirling_number_2.hpp\"\n\n// n \u500B\u306E\u3082\u306E\
+    \ (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\
+    \u65B9\u6CD5\n// label \u3092\u3064\u3051\u308B\u3053\u3068\u3067\u3001\u5168\u5C04\
+    \u306E\u6570\u3048\u4E0A\u3052\u306B\u5229\u7528\u3067\u304D\u308B\ntemplate <typename\
+    \ mint>\nvvc<mint> stirling_number_2_2d(int nmax, int kmax) {\n  vv(mint, A, nmax\
+    \ + 1, kmax + 1);\n  A[0][0] = 1;\n  FOR(i, 1, nmax + 1) {\n    FOR(j, i + 1)\
+    \ {\n      if (j > kmax) break;\n      if (j) A[i][j] += A[i - 1][j - 1];\n  \
+    \    if (j < i) A[i][j] += A[i - 1][j] * mint(j);\n    }\n  }\n  return A;\n}\n\
+    \n// n \u500B\u306E\u3082\u306E (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7 (no\
+    \ label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\n// label \u3092\u3064\u3051\u308B\
+    \u3053\u3068\u3067\u3001\u5168\u5C04\u306E\u6570\u3048\u4E0A\u3052\u306B\u5229\
+    \u7528\u3067\u304D\u308B\n// O(klogk)\ntemplate <typename mint>\nvc<mint> stirling_number_2_n(int\
+    \ n, int k_max) {\n  vc<mint> a = power_table_2<mint>(n, k_max + 1);\n  FOR(i,\
+    \ k_max + 1) a[i] *= fact_inv<mint>(i);\n  vc<mint> b(k_max + 1);\n  FOR(i, k_max\
+    \ + 1) b[i] = fact_inv<mint>(i);\n  for (int i = 1; i <= k_max; i += 2) b[i] =\
+    \ -b[i];\n  auto f = convolution(a, b);\n  f.resize(k_max + 1);\n  return f;\n\
+    }\n\n// n \u500B\u306E\u3082\u306E (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7\
     \ (no label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\n// label \u3092\u3064\u3051\
     \u308B\u3053\u3068\u3067\u3001\u5168\u5C04\u306E\u6570\u3048\u4E0A\u3052\u306B\
-    \u5229\u7528\u3067\u304D\u308B\ntemplate <typename mint>\nvvc<mint> stirling_number_2_2d(int\
-    \ nmax, int kmax) {\n  vv(mint, A, nmax + 1, kmax + 1);\n  A[0][0] = 1;\n  FOR(i,\
-    \ 1, nmax + 1) {\n    FOR(j, i + 1) {\n      if (j > kmax) break;\n      if (j)\
-    \ A[i][j] += A[i - 1][j - 1];\n      if (j < i) A[i][j] += A[i - 1][j] * mint(j);\n\
-    \    }\n  }\n  return A;\n}\n\n// n \u500B\u306E\u3082\u306E (labeled) \u3092\
-    \ k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\n\
-    // label \u3092\u3064\u3051\u308B\u3053\u3068\u3067\u3001\u5168\u5C04\u306E\u6570\
-    \u3048\u4E0A\u3052\u306B\u5229\u7528\u3067\u304D\u308B\n// O(klogk)\ntemplate\
-    \ <typename mint>\nvc<mint> stirling_number_2_n(int n, int k_max) {\n  vc<mint>\
-    \ a = power_table_2<mint>(n, k_max + 1);\n  FOR(i, k_max + 1) a[i] *= fact_inv<mint>(i);\n\
-    \  vc<mint> b(k_max + 1);\n  FOR(i, k_max + 1) b[i] = fact_inv<mint>(i);\n  for\
-    \ (int i = 1; i <= k_max; i += 2) b[i] = -b[i];\n  auto f = convolution(a, b);\n\
-    \  f.resize(k_max + 1);\n  return f;\n}\n\n// n \u500B\u306E\u3082\u306E (labeled)\
-    \ \u3092 k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\
-    \n// label \u3092\u3064\u3051\u308B\u3053\u3068\u3067\u3001\u5168\u5C04\u306E\u6570\
-    \u3048\u4E0A\u3052\u306B\u5229\u7528\u3067\u304D\u308B\n// 1/k! (e^x-1)^k\n//\
-    \ O(nlogn)\ntemplate <typename mint>\nvc<mint> stirling_number_2_k(int k, int\
-    \ n_max) {\n  if (k > n_max) {\n    return vc<mint>(n_max + 1);\n  }\n  int LIM\
-    \ = n_max - k;\n  vc<mint> f(LIM + 1);\n  FOR(i, LIM + 1) f[i] = fact_inv<mint>(i\
-    \ + 1);\n  f = fps_pow(f, k);\n  mint cf = fact_inv<mint>(k);\n\n  vc<mint> res(n_max\
-    \ + 1);\n  FOR(i, len(f)) res[k + i] = fact<mint>(k + i) * f[i] * cf;\n  return\
-    \ res;\n}\n#line 6 \"test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp\"\
+    \u5229\u7528\u3067\u304D\u308B\n// 1/k! (e^x-1)^k\n// O(nlogn)\ntemplate <typename\
+    \ mint>\nvc<mint> stirling_number_2_k(int k, int n_max) {\n  if (k > n_max) {\n\
+    \    return vc<mint>(n_max + 1);\n  }\n  int LIM = n_max - k;\n  vc<mint> f(LIM\
+    \ + 1);\n  FOR(i, LIM + 1) f[i] = fact_inv<mint>(i + 1);\n  f = fps_pow(f, k);\n\
+    \  mint cf = fact_inv<mint>(k);\n\n  vc<mint> res(n_max + 1);\n  FOR(i, len(f))\
+    \ res[k + i] = fact<mint>(k + i) * f[i] * cf;\n  return res;\n}\n#line 6 \"test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp\"\
     \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  auto ANS = stirling_number_2_n<mint>(N,\
     \ N);\r\n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return\
     \ 0;\r\n}\r\n"
@@ -1328,7 +1328,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
   requiredBy: []
-  timestamp: '2026-10-24 07:57:14+09:00'
+  timestamp: '2026-10-24 09:51:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp

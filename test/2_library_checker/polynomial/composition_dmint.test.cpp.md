@@ -832,27 +832,27 @@ data:
     #line 1 \"poly/poly_taylor_shift.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/poly_taylor_shift.hpp\n\
     \n#line 1 \"mod/power_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/power_table.hpp\n\
     #line 1 \"nt/prime_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/prime_table.hpp\n\
-    \ntemplate <typename T = int>\nvc<T> prime_table(int LIM) {\n  ++LIM;\n  const\
-    \ int S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S\
-    \ + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
-    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
-    \ * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
-    \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
-    \ * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1;\
-    \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]\
-    \ : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
-    \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
-    \  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin() + k};\n\
-    }\n#line 3 \"mod/power_table.hpp\"\n\n// a^0, ..., a^N\ntemplate <typename mint>\n\
-    vc<mint> power_table_1(mint a, ll N) {\n  assert(0 <= N);\n  // table of a^i\n\
-    \  vc<mint> f(N + 1, 1);\n  FOR(i, N) f[i + 1] = a * f[i];\n  return f;\n}\n\n\
-    // 0^e, ..., N^e\ntemplate <typename mint>\nvc<mint> power_table_2(ll e, ll N)\
-    \ {\n  assert(0 <= N);\n  auto primes = prime_table(N);\n  vc<mint> f(N + 1, 1);\n\
-    \  f[0] = mint(0).pow(e);\n  for (auto&& p : primes) {\n    if (p > N) break;\n\
-    \    mint xp = mint(p).pow(e);\n    ll pp = p;\n    while (pp <= N) {\n      ll\
-    \ i = pp;\n      while (i <= N) {\n        f[i] *= xp;\n        i += pp;\n   \
-    \   }\n      pp *= p;\n    }\n  }\n  return f;\n}\n#line 1 \"poly/convolution.hpp\"\
-    \n// Source: https://github.com/maspypy/library/blob/main/poly/convolution.hpp\n\
+    \ntemplate <typename T = int>\nvc<T> prime_table(int LIM) {\n  assert(LIM <= infty<int>);\n\
+    \  ++LIM;\n  const int S = 32768;\n  static int done = 2;\n  static vc<T> primes\
+    \ = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes =\
+    \ {2}, sieve.assign(S + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM\
+    \ / log(LIM) * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S;\
+    \ i += 2) {\n      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for\
+    \ (int j = i * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int\
+    \ L = 1; L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p,\
+    \ idx] : cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L]\
+    \ = 1;\n      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n\
+    \    }\n  }\n  int k = LB(primes, LIM);\n  return {primes.begin(), primes.begin()\
+    \ + k};\n}\n#line 3 \"mod/power_table.hpp\"\n\n// a^0, ..., a^N\ntemplate <typename\
+    \ mint>\nvc<mint> power_table_1(mint a, ll N) {\n  assert(0 <= N);\n  // table\
+    \ of a^i\n  vc<mint> f(N + 1, 1);\n  FOR(i, N) f[i + 1] = a * f[i];\n  return\
+    \ f;\n}\n\n// 0^e, ..., N^e\ntemplate <typename mint>\nvc<mint> power_table_2(ll\
+    \ e, ll N) {\n  assert(0 <= N && N <= infty<int>);\n  auto primes = prime_table(N);\n\
+    \  vc<mint> f(N + 1, 1);\n  f[0] = mint(0).pow(e);\n  for (auto&& p : primes)\
+    \ {\n    if (p > N) break;\n    mint xp = mint(p).pow(e);\n    ll pp = p;\n  \
+    \  while (pp <= N) {\n      ll i = pp;\n      while (i <= N) {\n        f[i] *=\
+    \ xp;\n        i += pp;\n      }\n      pp *= p;\n    }\n  }\n  return f;\n}\n\
+    #line 1 \"poly/convolution.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/convolution.hpp\n\
     #line 1 \"mod/modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint.hpp\n\
     #line 1 \"mod/modint_common.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint_common.hpp\n\
     \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
@@ -1307,7 +1307,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/polynomial/composition_dmint.test.cpp
   requiredBy: []
-  timestamp: '2026-10-24 07:57:14+09:00'
+  timestamp: '2026-10-24 09:51:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/polynomial/composition_dmint.test.cpp
