@@ -2,6 +2,7 @@
 
 template <typename T = int>
 vc<T> prime_table(int LIM) {
+  assert(LIM <= infty<int>);
   ++LIM;
   const int S = 32768;
   static int done = 2;
