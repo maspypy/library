@@ -10,8 +10,10 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/unionfind/unionfind.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/other/todd_coxeter.hpp
+  bundledCode: "#line 1 \"other/todd_coxeter.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/other/todd_coxeter.hpp\n\
+    #line 1 \"ds/unionfind/unionfind.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\n\
     \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat;  // par or (-size)\n  UnionFind(int\
     \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
     \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int add_vertex() {\n    ++n_comp,\
@@ -22,7 +24,7 @@ data:
     \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
     \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
     \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
-    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 2 \"other/todd_coxeter.hpp\"\
+    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 3 \"other/todd_coxeter.hpp\"\
     \n\n// \u6709\u9650\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\
     \u524D\u63D0\u3068\u3057\u3066\uFF0C\u9077\u79FB\u8868\u3092\u8FD4\u3059\ntemplate\
     \ <int K>\nvc<array<int, K>> todd_coxeter(const vc<pair<vc<int>, vc<int>>> &R)\
@@ -46,9 +48,10 @@ data:
     \  int n = len(root);\n  vc<int> new_idx(N);\n  FOR(i, n) new_idx[root[i]] = i;\n\
     \  for (int v : root) {\n    FOR(x, K) T[v][x] = new_idx[uf[T[v][x]]];\n  }\n\
     \  FOR(i, n) T[i] = T[root[i]];\n  T.resize(n);\n  return T;\n}\n"
-  code: "#include \"ds/unionfind/unionfind.hpp\"\n\n// \u6709\u9650\u30E2\u30CE\u30A4\
-    \u30C9\u3067\u3042\u308B\u3053\u3068\u3092\u524D\u63D0\u3068\u3057\u3066\uFF0C\
-    \u9077\u79FB\u8868\u3092\u8FD4\u3059\ntemplate <int K>\nvc<array<int, K>> todd_coxeter(const\
+  code: "// Source: https://github.com/maspypy/library/blob/main/other/todd_coxeter.hpp\n\
+    #include \"ds/unionfind/unionfind.hpp\"\n\n// \u6709\u9650\u30E2\u30CE\u30A4\u30C9\
+    \u3067\u3042\u308B\u3053\u3068\u3092\u524D\u63D0\u3068\u3057\u3066\uFF0C\u9077\
+    \u79FB\u8868\u3092\u8FD4\u3059\ntemplate <int K>\nvc<array<int, K>> todd_coxeter(const\
     \ vc<pair<vc<int>, vc<int>>> &R) {\n  int N = 0;\n\n  vector<array<int, K>> T;\n\
     \  UnionFind uf;\n  vc<bool> done;\n\n  auto add_vertex = [&]() -> int {\n   \
     \ int v = N++;\n    T.emplace_back().fill(-1);\n    uf.add_vertex();\n    done.eb(false);\n\
@@ -75,7 +78,7 @@ data:
   isVerificationFile: false
   path: other/todd_coxeter.hpp
   requiredBy: []
-  timestamp: '2026-10-24 08:45:31+09:00'
+  timestamp: '2026-10-24 10:36:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: other/todd_coxeter.hpp

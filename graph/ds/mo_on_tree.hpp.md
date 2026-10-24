@@ -250,28 +250,28 @@ data:
     \          st.eb(e.to), head[e.to] = e.to;\n        }\n        if (max_ch != -1)\
     \ st.eb(max_ch), head[max_ch] = head[v];\n      }\n    }\n  }\n};\n#line 1 \"\
     ds/offline_query/mo.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/mo.hpp\n\
-    // Nsqrt(Q)\nstruct Mo {\n  vc<pair<int, int>> LR;\n  void add(int L, int R) {\
-    \ LR.emplace_back(L, R); }\n\n  static vc<int> get_mo_order(vc<pair<int, int>>\
-    \ LR) {\n    int N = 1;\n    for (auto &&[l, r] : LR) chmax(N, l), chmax(N, r);\n\
-    \    int Q = len(LR);\n    if (Q == 0) return {};\n    int bs = sqrt(3) * N /\
-    \ sqrt(2 * Q);\n    chmax(bs, 1);\n    vc<int> I(Q);\n    iota(all(I), 0);\n \
-    \   sort(all(I), [&](int a, int b) {\n      int aa = LR[a].fi / bs, bb = LR[b].fi\
-    \ / bs;\n      if (aa != bb) return aa < bb;\n      return (aa & 1) ? LR[a].se\
-    \ > LR[b].se : LR[a].se < LR[b].se;\n    });\n\n    auto cost = [&](int a, int\
-    \ b) -> int {\n      return abs(LR[I[a]].fi - LR[I[b]].fi) + abs(LR[I[a]].se -\
-    \ LR[I[b]].se);\n    };\n\n    // \u30E9\u30F3\u30C0\u30E0\u30B1\u30FC\u30B9\u3067\
-    6%\u7A0B\u5EA6\u6539\u5584\n    auto work = [&](int k) -> void {\n      if (cost(k,\
-    \ k + 2) + cost(k + 1, k + 3) <\n          cost(k, k + 1) + cost(k + 2, k + 3))\
-    \ {\n        swap(I[k + 1], I[k + 2]);\n      }\n      if (cost(k, k + 3) + cost(k\
-    \ + 1, k + 4) <\n          cost(k, k + 1) + cost(k + 3, k + 4)) {\n        swap(I[k\
-    \ + 1], I[k + 3]);\n      }\n    };\n    FOR(k, Q - 5) work(k);\n    FOR_R(k,\
-    \ Q - 5) work(k);\n    return I;\n  }\n\n  template <typename F1, typename F2,\
-    \ typename F3, typename F4, typename F5>\n  void calc(F1 add_l, F2 add_r, F3 rm_l,\
-    \ F4 rm_r, F5 query) {\n    auto I = get_mo_order(LR);\n    int l = 0, r = 0;\n\
-    \    for (auto idx : I) {\n      while (l > LR[idx].fi) add_l(--l);\n      while\
-    \ (r < LR[idx].se) add_r(r++);\n      while (l < LR[idx].fi) rm_l(l++);\n    \
-    \  while (r > LR[idx].se) rm_r(--r);\n      query(idx);\n    }\n  }\n};\n#line\
-    \ 4 \"graph/ds/mo_on_tree.hpp\"\n\n// https://codeforces.com/contest/852/problem/I\n\
+    \nstruct Mo {\n  vc<pair<int, int>> LR;\n  void add(int L, int R) { LR.emplace_back(L,\
+    \ R); }\n\n  static vc<int> get_mo_order(vc<pair<int, int>> LR) {\n    int N =\
+    \ 1;\n    for (auto &&[l, r] : LR) chmax(N, l), chmax(N, r);\n    int Q = len(LR);\n\
+    \    if (Q == 0) return {};\n    assert(N * sqrt(Q) <= TEN[9]);\n    int bs =\
+    \ sqrt(3) * N / sqrt(2 * Q);\n    chmax(bs, 1);\n    vc<int> I(Q);\n    iota(all(I),\
+    \ 0);\n    sort(all(I), [&](int a, int b) {\n      int aa = LR[a].fi / bs, bb\
+    \ = LR[b].fi / bs;\n      if (aa != bb) return aa < bb;\n      return (aa & 1)\
+    \ ? LR[a].se > LR[b].se : LR[a].se < LR[b].se;\n    });\n\n    auto cost = [&](int\
+    \ a, int b) -> int {\n      return abs(LR[I[a]].fi - LR[I[b]].fi) + abs(LR[I[a]].se\
+    \ - LR[I[b]].se);\n    };\n\n    // \u30E9\u30F3\u30C0\u30E0\u30B1\u30FC\u30B9\
+    \u30676%\u7A0B\u5EA6\u6539\u5584\n    auto work = [&](int k) -> void {\n     \
+    \ if (cost(k, k + 2) + cost(k + 1, k + 3) <\n          cost(k, k + 1) + cost(k\
+    \ + 2, k + 3)) {\n        swap(I[k + 1], I[k + 2]);\n      }\n      if (cost(k,\
+    \ k + 3) + cost(k + 1, k + 4) <\n          cost(k, k + 1) + cost(k + 3, k + 4))\
+    \ {\n        swap(I[k + 1], I[k + 3]);\n      }\n    };\n    FOR(k, Q - 5) work(k);\n\
+    \    FOR_R(k, Q - 5) work(k);\n    return I;\n  }\n\n  template <typename F1,\
+    \ typename F2, typename F3, typename F4, typename F5>\n  void calc(F1 add_l, F2\
+    \ add_r, F3 rm_l, F4 rm_r, F5 query) {\n    auto I = get_mo_order(LR);\n    int\
+    \ l = 0, r = 0;\n    for (auto idx : I) {\n      while (l > LR[idx].fi) add_l(--l);\n\
+    \      while (r < LR[idx].se) add_r(r++);\n      while (l < LR[idx].fi) rm_l(l++);\n\
+    \      while (r > LR[idx].se) rm_r(--r);\n      query(idx);\n    }\n  }\n};\n\
+    #line 4 \"graph/ds/mo_on_tree.hpp\"\n\n// https://codeforces.com/contest/852/problem/I\n\
     template <typename TREE, bool ORIENTED = false>\nstruct Mo_on_Tree {\n  TREE&\
     \ tree;\n  vc<pair<int, int>> LR;\n\n  Mo mo;\n  Mo_on_Tree(TREE& tree) : tree(tree)\
     \ {}\n  void add(int u, int v) {\n    if constexpr (!ORIENTED) {\n      if (tree.LID[u]\
@@ -386,7 +386,7 @@ data:
   isVerificationFile: false
   path: graph/ds/mo_on_tree.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-10-24 10:49:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/mo_on_tree.test.cpp
