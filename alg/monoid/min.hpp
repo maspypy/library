@@ -1,5 +1,5 @@
 // Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp
-// require: all values x satisfy x <= infty<E>
+// require: all values x satisfy x < infty<E>
 template <typename E>
 struct Monoid_Min {
   using X = E;
