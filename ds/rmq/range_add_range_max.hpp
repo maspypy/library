@@ -56,10 +56,13 @@ struct Range_Add_Range_Max {
 
   T prod_all() { return prod(0, n); }
 
-  // 基本デバッグ用というつもりでさぼり O(NlogN) になっている
   vc<T> get_all() {
     vc<T> ANS(n);
-    FOR(i, n) ANS[i] = prod(i, i + 1);
+    T pre = 0;
+    FOR(i, n) {
+      pre += seg.get(i).fi;
+      ANS[i] = pre + lazy;
+    }
     return ANS;
   }
 

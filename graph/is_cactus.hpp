@@ -1,16 +1,18 @@
 // Source: https://github.com/maspypy/library/blob/main/graph/is_cactus.hpp
 
+#include "graph/block_cut.hpp"
+
 // EDGE = true: 各辺が唯一のサイクル（関節点でサイクルまたは辺）
 // EDGE = false： 各頂点が唯一のサイクル（橋でサイクルまたは辺）
 template <bool EDGE>
 bool is_cactus(Graph<int, 0> G) {
   if constexpr (EDGE) {
     static_assert(EDGE);
-    auto BCT = block_cut(G);
-    int N = G.N, n = BCT.N;
-    Tree<decltype(BCT)> tree(BCT);
+    Block_Cut X(G);
+    int N = G.N, n = X.BCT.N;
+    Tree<decltype(X.BCT)> tree(X.BCT);
     vc<int> NV(n), NE(n);
-    FOR(i, N, n) NV[i] = BCT.deg(i);
+    FOR(i, N, n) NV[i] = X.BCT.deg(i);
     for (auto& e : G.edges) {
       int a = e.frm, b = e.to;
       int i = tree.jump(a, b, 1);
