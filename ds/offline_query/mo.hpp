@@ -1,5 +1,5 @@
 // Source: https://github.com/maspypy/library/blob/main/ds/offline_query/mo.hpp
-// Nsqrt(Q)
+
 struct Mo {
   vc<pair<int, int>> LR;
   void add(int L, int R) { LR.emplace_back(L, R); }
@@ -9,6 +9,7 @@ struct Mo {
     for (auto &&[l, r] : LR) chmax(N, l), chmax(N, r);
     int Q = len(LR);
     if (Q == 0) return {};
+    assert(N * sqrt(Q) <= TEN[9]);
     int bs = sqrt(3) * N / sqrt(2 * Q);
     chmax(bs, 1);
     vc<int> I(Q);
