@@ -54,6 +54,8 @@ struct Suffix_Array {
       seg.build(LCP);
     }
     int n = len(SA);
+    assert(0 <= i && i <= n);
+    assert(0 <= j && j <= n);
     if (i == n || j == n) return 0;
     if (i == j) return n - i;
     i = ISA[i], j = ISA[j];
@@ -63,6 +65,8 @@ struct Suffix_Array {
 
   // S[i:] との lcp が n 以上であるような半開区間
   pair<int, int> lcp_range(int i, int n) {
+    assert(0 <= i && i < len(SA));
+    assert(0 <= n);
     if (!build_seg) {
       build_seg = true;
       seg.build(LCP);
@@ -77,6 +81,9 @@ struct Suffix_Array {
   //  0: S[L1:R1) = S[L2, R2)
   // +1: S[L1:R1) > S[L2, R2)
   int compare(int L1, int R1, int L2, int R2) {
+    int N = len(SA);
+    assert(0 <= L1 && L1 <= R1 && R1 <= N);
+    assert(0 <= L2 && L2 <= R2 && R2 <= N);
     int n1 = R1 - L1, n2 = R2 - L2;
     int n = lcp(L1, L2);
     chmin(n, n1);
