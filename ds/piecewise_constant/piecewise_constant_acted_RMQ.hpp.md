@@ -300,24 +300,24 @@ data:
     \ x.c2; }\n  Y_type& y() { return x.y; }\n\n  int lsize() { return (l ? l->size\
     \ : 0); }\n  int rsize() { return (r ? r->size : 0); }\n\n  static void new_node(np\
     \ n, const S& x) {\n    n->p = n->l = n->r = nullptr;\n    n->x = x, n->size =\
-    \ 1, n->rev = 0;\n  }\n\n  void update() {\n    size = 1 + lsize() + rsize();\n\
-    \    x.y_min = x.y, x.y_max = x.y;\n    if (l) {\n      x.y_min = min(x.y_min,\
-    \ l->x.y_min), x.y_max = max(x.y_max, l->x.y_max);\n    }\n    if (r) {\n    \
-    \  x.y_min = min(x.y_min, r->x.y_min), x.y_max = max(x.y_max, r->x.y_max);\n \
-    \   }\n  }\n  void apply(const A& a) {\n    x.y = AS::act(x.y, a);\n    x.y_min\
-    \ = AS::act(x.y_min, a);\n    x.y_max = AS::act(x.y_max, a);\n    lazy = AS::Monoid_A::op(lazy,\
-    \ a);\n  }\n  void push() {\n    if (lazy != Monoid_A::id()) {\n      if (l) {\n\
-    \        l->apply(lazy);\n      }\n      if (r) {\n        r->apply(lazy);\n \
-    \     }\n      lazy = Monoid_A::id();\n    }\n    if (rev) {\n      if (l) {\n\
-    \        l->rev ^= 1, swap(l->l, l->r);\n      }\n      if (r) {\n        r->rev\
-    \ ^= 1, swap(r->l, r->r);\n      }\n      rev = 0;\n    }\n  }\n\n  // update,\
-    \ push \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\u306E\u306F\u3001splay\
-    \ \u5F8C\u3067\u3042\u308B\u3053\u3068\u304C\u60F3\u5B9A\u3055\u308C\u3066\u3044\
-    \u308B\u3002\n  // \u3057\u305F\u304C\u3063\u3066\u305D\u306E\u6642\u70B9\u3067\
-    \ update, push \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\
-    \u3088\u3044\u3002\n  S get() { return x; }\n  void set(const S& xx) {\n    x\
-    \ = xx;\n    update();\n  }\n  void reverse() {\n    swap(l, r);\n    rev ^= 1;\n\
-    \  }\n};\n"
+    \ 1, n->rev = 0;\n    n->lazy = Monoid_A::id();\n  }\n\n  void update() {\n  \
+    \  size = 1 + lsize() + rsize();\n    x.y_min = x.y, x.y_max = x.y;\n    if (l)\
+    \ {\n      x.y_min = min(x.y_min, l->x.y_min), x.y_max = max(x.y_max, l->x.y_max);\n\
+    \    }\n    if (r) {\n      x.y_min = min(x.y_min, r->x.y_min), x.y_max = max(x.y_max,\
+    \ r->x.y_max);\n    }\n  }\n  void apply(const A& a) {\n    x.y = AS::act(x.y,\
+    \ a);\n    x.y_min = AS::act(x.y_min, a);\n    x.y_max = AS::act(x.y_max, a);\n\
+    \    lazy = AS::Monoid_A::op(lazy, a);\n  }\n  void push() {\n    if (lazy !=\
+    \ Monoid_A::id()) {\n      if (l) {\n        l->apply(lazy);\n      }\n      if\
+    \ (r) {\n        r->apply(lazy);\n      }\n      lazy = Monoid_A::id();\n    }\n\
+    \    if (rev) {\n      if (l) {\n        l->rev ^= 1, swap(l->l, l->r);\n    \
+    \  }\n      if (r) {\n        r->rev ^= 1, swap(r->l, r->r);\n      }\n      rev\
+    \ = 0;\n    }\n  }\n\n  // update, push \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\
+    \u3082\u306E\u306F\u3001splay \u5F8C\u3067\u3042\u308B\u3053\u3068\u304C\u60F3\
+    \u5B9A\u3055\u308C\u3066\u3044\u308B\u3002\n  // \u3057\u305F\u304C\u3063\u3066\
+    \u305D\u306E\u6642\u70B9\u3067 update, push \u6E08\u3067\u3042\u308B\u3053\u3068\
+    \u3092\u4EEE\u5B9A\u3057\u3066\u3088\u3044\u3002\n  S get() { return x; }\n  void\
+    \ set(const S& xx) {\n    x = xx;\n    update();\n  }\n  void reverse() {\n  \
+    \  swap(l, r);\n    rev ^= 1;\n  }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/ds/piecewise_constant/piecewise_constant_acted_RMQ.hpp\n\
     #include \"ds/piecewise_constant/piecewise_constant.hpp\"\n\n// Y_type \u306B\u4F5C\
     \u7528\u3059\u308B\uFF0C\u4F5C\u7528\u304C\u9806\u5E8F\u3092\u4FDD\u3064\u3068\
@@ -335,24 +335,24 @@ data:
     \ x.c2; }\n  Y_type& y() { return x.y; }\n\n  int lsize() { return (l ? l->size\
     \ : 0); }\n  int rsize() { return (r ? r->size : 0); }\n\n  static void new_node(np\
     \ n, const S& x) {\n    n->p = n->l = n->r = nullptr;\n    n->x = x, n->size =\
-    \ 1, n->rev = 0;\n  }\n\n  void update() {\n    size = 1 + lsize() + rsize();\n\
-    \    x.y_min = x.y, x.y_max = x.y;\n    if (l) {\n      x.y_min = min(x.y_min,\
-    \ l->x.y_min), x.y_max = max(x.y_max, l->x.y_max);\n    }\n    if (r) {\n    \
-    \  x.y_min = min(x.y_min, r->x.y_min), x.y_max = max(x.y_max, r->x.y_max);\n \
-    \   }\n  }\n  void apply(const A& a) {\n    x.y = AS::act(x.y, a);\n    x.y_min\
-    \ = AS::act(x.y_min, a);\n    x.y_max = AS::act(x.y_max, a);\n    lazy = AS::Monoid_A::op(lazy,\
-    \ a);\n  }\n  void push() {\n    if (lazy != Monoid_A::id()) {\n      if (l) {\n\
-    \        l->apply(lazy);\n      }\n      if (r) {\n        r->apply(lazy);\n \
-    \     }\n      lazy = Monoid_A::id();\n    }\n    if (rev) {\n      if (l) {\n\
-    \        l->rev ^= 1, swap(l->l, l->r);\n      }\n      if (r) {\n        r->rev\
-    \ ^= 1, swap(r->l, r->r);\n      }\n      rev = 0;\n    }\n  }\n\n  // update,\
-    \ push \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\u306E\u306F\u3001splay\
-    \ \u5F8C\u3067\u3042\u308B\u3053\u3068\u304C\u60F3\u5B9A\u3055\u308C\u3066\u3044\
-    \u308B\u3002\n  // \u3057\u305F\u304C\u3063\u3066\u305D\u306E\u6642\u70B9\u3067\
-    \ update, push \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\
-    \u3088\u3044\u3002\n  S get() { return x; }\n  void set(const S& xx) {\n    x\
-    \ = xx;\n    update();\n  }\n  void reverse() {\n    swap(l, r);\n    rev ^= 1;\n\
-    \  }\n};\n"
+    \ 1, n->rev = 0;\n    n->lazy = Monoid_A::id();\n  }\n\n  void update() {\n  \
+    \  size = 1 + lsize() + rsize();\n    x.y_min = x.y, x.y_max = x.y;\n    if (l)\
+    \ {\n      x.y_min = min(x.y_min, l->x.y_min), x.y_max = max(x.y_max, l->x.y_max);\n\
+    \    }\n    if (r) {\n      x.y_min = min(x.y_min, r->x.y_min), x.y_max = max(x.y_max,\
+    \ r->x.y_max);\n    }\n  }\n  void apply(const A& a) {\n    x.y = AS::act(x.y,\
+    \ a);\n    x.y_min = AS::act(x.y_min, a);\n    x.y_max = AS::act(x.y_max, a);\n\
+    \    lazy = AS::Monoid_A::op(lazy, a);\n  }\n  void push() {\n    if (lazy !=\
+    \ Monoid_A::id()) {\n      if (l) {\n        l->apply(lazy);\n      }\n      if\
+    \ (r) {\n        r->apply(lazy);\n      }\n      lazy = Monoid_A::id();\n    }\n\
+    \    if (rev) {\n      if (l) {\n        l->rev ^= 1, swap(l->l, l->r);\n    \
+    \  }\n      if (r) {\n        r->rev ^= 1, swap(r->l, r->r);\n      }\n      rev\
+    \ = 0;\n    }\n  }\n\n  // update, push \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\
+    \u3082\u306E\u306F\u3001splay \u5F8C\u3067\u3042\u308B\u3053\u3068\u304C\u60F3\
+    \u5B9A\u3055\u308C\u3066\u3044\u308B\u3002\n  // \u3057\u305F\u304C\u3063\u3066\
+    \u305D\u306E\u6642\u70B9\u3067 update, push \u6E08\u3067\u3042\u308B\u3053\u3068\
+    \u3092\u4EEE\u5B9A\u3057\u3066\u3088\u3044\u3002\n  S get() { return x; }\n  void\
+    \ set(const S& xx) {\n    x = xx;\n    update();\n  }\n  void reverse() {\n  \
+    \  swap(l, r);\n    rev ^= 1;\n  }\n};\n"
   dependsOn:
   - ds/piecewise_constant/piecewise_constant.hpp
   - ds/splaytree/splaytree.hpp
@@ -360,7 +360,7 @@ data:
   isVerificationFile: false
   path: ds/piecewise_constant/piecewise_constant_acted_RMQ.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-10-24 10:56:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/piecewise_constant/piecewise_constant_acted_RMQ.hpp
