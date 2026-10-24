@@ -262,23 +262,26 @@ data:
     \ to_compressed_vector(const vc<int>& s) {\n    Index_Compression<int, 1, 0> I;\n\
     \    return I.build(s);\n  }\n\n  // lcp(S[i:], S[j:])\n  int lcp(int i, int j)\
     \ {\n    if (!build_seg) {\n      build_seg = true;\n      seg.build(LCP);\n \
-    \   }\n    int n = len(SA);\n    if (i == n || j == n) return 0;\n    if (i ==\
-    \ j) return n - i;\n    i = ISA[i], j = ISA[j];\n    if (i > j) swap(i, j);\n\
-    \    return seg.prod(i, j);\n  }\n\n  // S[i:] \u3068\u306E lcp \u304C n \u4EE5\
-    \u4E0A\u3067\u3042\u308B\u3088\u3046\u306A\u534A\u958B\u533A\u9593\n  pair<int,\
-    \ int> lcp_range(int i, int n) {\n    if (!build_seg) {\n      build_seg = true;\n\
-    \      seg.build(LCP);\n    }\n    i = ISA[i];\n    int a = seg.min_left([&](auto\
-    \ e) -> bool { return e >= n; }, i);\n    int b = seg.max_right([&](auto e) ->\
-    \ bool { return e >= n; }, i);\n    return {a, b + 1};\n  }\n\n  // -1: S[L1:R1)\
-    \ < S[L2, R2)\n  //  0: S[L1:R1) = S[L2, R2)\n  // +1: S[L1:R1) > S[L2, R2)\n\
-    \  int compare(int L1, int R1, int L2, int R2) {\n    int n1 = R1 - L1, n2 = R2\
-    \ - L2;\n    int n = lcp(L1, L2);\n    chmin(n, n1);\n    chmin(n, n2);\n    if\
-    \ (n == n1 && n == n2) return 0;\n    if (n == n1) return -1;\n    if (n == n2)\
-    \ return 1;\n    return (ISA[L1 + n] > ISA[L2 + n] ? 1 : -1);\n  }\n\n private:\n\
-    \  void induced_sort(const vc<int>& vect, int val_range, vc<int>& SA,\n      const\
-    \ vc<bool>& sl, const vc<int>& lms_idx) {\n    vc<int> l(val_range, 0), r(val_range,\
-    \ 0);\n    for (int c : vect) {\n      if (c + 1 < val_range) ++l[c + 1];\n  \
-    \    ++r[c];\n    }\n    partial_sum(l.begin(), l.end(), l.begin());\n    partial_sum(r.begin(),\
+    \   }\n    int n = len(SA);\n    assert(0 <= i && i <= n);\n    assert(0 <= j\
+    \ && j <= n);\n    if (i == n || j == n) return 0;\n    if (i == j) return n -\
+    \ i;\n    i = ISA[i], j = ISA[j];\n    if (i > j) swap(i, j);\n    return seg.prod(i,\
+    \ j);\n  }\n\n  // S[i:] \u3068\u306E lcp \u304C n \u4EE5\u4E0A\u3067\u3042\u308B\
+    \u3088\u3046\u306A\u534A\u958B\u533A\u9593\n  pair<int, int> lcp_range(int i,\
+    \ int n) {\n    assert(0 <= i && i < len(SA));\n    assert(0 <= n);\n    if (!build_seg)\
+    \ {\n      build_seg = true;\n      seg.build(LCP);\n    }\n    i = ISA[i];\n\
+    \    int a = seg.min_left([&](auto e) -> bool { return e >= n; }, i);\n    int\
+    \ b = seg.max_right([&](auto e) -> bool { return e >= n; }, i);\n    return {a,\
+    \ b + 1};\n  }\n\n  // -1: S[L1:R1) < S[L2, R2)\n  //  0: S[L1:R1) = S[L2, R2)\n\
+    \  // +1: S[L1:R1) > S[L2, R2)\n  int compare(int L1, int R1, int L2, int R2)\
+    \ {\n    int N = len(SA);\n    assert(0 <= L1 && L1 <= R1 && R1 <= N);\n    assert(0\
+    \ <= L2 && L2 <= R2 && R2 <= N);\n    int n1 = R1 - L1, n2 = R2 - L2;\n    int\
+    \ n = lcp(L1, L2);\n    chmin(n, n1);\n    chmin(n, n2);\n    if (n == n1 && n\
+    \ == n2) return 0;\n    if (n == n1) return -1;\n    if (n == n2) return 1;\n\
+    \    return (ISA[L1 + n] > ISA[L2 + n] ? 1 : -1);\n  }\n\n private:\n  void induced_sort(const\
+    \ vc<int>& vect, int val_range, vc<int>& SA,\n      const vc<bool>& sl, const\
+    \ vc<int>& lms_idx) {\n    vc<int> l(val_range, 0), r(val_range, 0);\n    for\
+    \ (int c : vect) {\n      if (c + 1 < val_range) ++l[c + 1];\n      ++r[c];\n\
+    \    }\n    partial_sum(l.begin(), l.end(), l.begin());\n    partial_sum(r.begin(),\
     \ r.end(), r.begin());\n    fill(SA.begin(), SA.end(), -1);\n    for (int i =\
     \ (int)lms_idx.size() - 1; i >= 0; --i)\n      SA[--r[vect[lms_idx[i]]]] = lms_idx[i];\n\
     \    for (int i : SA)\n      if (i >= 1 && sl[i - 1]) SA[l[vect[i - 1]]++] = i\
@@ -362,7 +365,7 @@ data:
   isVerificationFile: false
   path: string/substring_shortest_border.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-10-24 09:43:23+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/substring_shortest_border.hpp
