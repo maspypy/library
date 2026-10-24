@@ -39,6 +39,7 @@ struct Node_Piecewise_Constant_Acted_RMQ {
   static void new_node(np n, const S& x) {
     n->p = n->l = n->r = nullptr;
     n->x = x, n->size = 1, n->rev = 0;
+    n->lazy = 0;
   }
 
   void update() {
