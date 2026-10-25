@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -275,13 +275,13 @@ data:
     \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
     };\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
     struct FenwickTree {\n  using G = Monoid;\n  using MX = Monoid;\n  using E = typename\
-    \ G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree() {}\n\
-    \  FenwickTree(int n) { build(n); }\n  template <typename F>\n  FenwickTree(int\
-    \ n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v);\
-    \ }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m, G::id());\n    total\
-    \ = G::id();\n  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int i)\
-    \ -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F\
-    \ f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::id();\n\
+    \ G::value_type;\n  static_assert(G::commute);\n  int n;\n  vector<E> dat;\n \
+    \ E total;\n\n  FenwickTree() {}\n  FenwickTree(int n) { build(n); }\n  template\
+    \ <typename F>\n  FenwickTree(int n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const\
+    \ vc<E>& v) { build(v); }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m,\
+    \ G::id());\n    total = G::id();\n  }\n  void build(const vc<E>& v) {\n    build(len(v),\
+    \ [&](int i) -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::id();\n\
     \    FOR(i, n) { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int\
     \ j = i + (i & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j -\
     \ 1]);\n    }\n    total = prefix_sum(m);\n  }\n\n  E prod_all() const { return\
@@ -297,48 +297,48 @@ data:
     \ - 1]), L -= L & -L;\n    }\n    return G::op(pos, G::inverse(neg));\n  }\n\n\
     \  vc<E> get_all() const {\n    vc<E> res(n);\n    FOR(i, n) res[i] = prod(i,\
     \ i + 1);\n    return res;\n  }\n\n  void add(int k, E x) { multiply(k, x); }\n\
-    \  void multiply(int k, E x) {\n    static_assert(G::commute);\n    assert(0 <=\
-    \ k && k < n);\n    total = G::op(total, x);\n    for (++k; k <= n; k += k & -k)\
-    \ dat[k - 1] = G::op(dat[k - 1], x);\n  }\n  void set(int k, E x) { add(k, G::op(G::inverse(prod(k,\
-    \ k + 1)), x)); }\n\n  template <class F>\n  int max_right(const F check, int\
-    \ L = 0) const {\n    assert(check(G::id()));\n    E s = G::id();\n    int i =\
-    \ L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while\
-    \ (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i -\
-    \ 1])), i -= 1;\n        }\n        if (i == 0) {\n          return topbit(n)\
-    \ + 1;\n        }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) >\
-    \ n) return k;\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t))\
-    \ {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])),\
-    \ i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n      if (i +\
-    \ (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n\
-    \        if (i + (1 << k) <= L || check(t)) {\n          i += (1 << k), s = t;\n\
-    \        }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n  template\
-    \ <class F>\n  int max_right_with_index(const F check, int L = 0) const {\n  \
-    \  assert(check(L, G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k\
-    \ \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n   \
-    \     if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i - 1])), i -=\
-    \ 1;\n        }\n        if (i == 0) {\n          return topbit(n) + 1;\n    \
-    \    }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n\
-    \        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(i + (1 <<\
-    \ k), t)) {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i\
-    \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
-    \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
-    \ - 1]);\n        if (i + (1 << k) <= L || check(i + (1 << k), t)) {\n       \
-    \   i += (1 << k), s = t;\n        }\n      }\n    }\n    return i;\n  }\n\n \
-    \ template <class F>\n  int min_left(const F check, int R) const {\n    assert(check(G::id()));\n\
-    \    E s = G::id();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\
-    \u308D\u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s))\
-    \ {\n      s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n\
-    \    }\n    if (check(s)) {\n      assert(i == 0);\n      return 0;\n    }\n \
-    \   // 2^k \u9032\u3080\u3068 ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\
-    \u6301\u3057\u3066\u9032\u3080\n    while (k) {\n      --k;\n      E t = G::op(s,\
-    \ G::inverse(dat[i + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1\
-    \ << k), s = t;\n      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int\
-    \ L = 0) const {\n    return max_right([&k](E x) -> bool { return x <= k; }, L);\n\
-    \  }\n};\n#line 6 \"test/2_library_checker/data_structure/point_add_range_sum.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  FenwickTree<Monoid_Add<ll>> bit(N, [&](int\
-    \ i) -> ll {\n    LL(x);\n    return x;\n  });\n\n  FOR(Q) {\n    LL(t, a, b);\n\
-    \    if (t == 0) {\n      bit.add(a, b);\n    } else {\n      print(bit.prod(a,\
-    \ b));\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \  void multiply(int k, E x) {\n    assert(0 <= k && k < n);\n    total = G::op(total,\
+    \ x);\n    for (++k; k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n\
+    \  }\n  void set(int k, E x) { add(k, G::op(G::inverse(prod(k, k + 1)), x)); }\n\
+    \n  template <class F>\n  int max_right(const F check, int L = 0) const {\n  \
+    \  assert(check(G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k \u9032\
+    \u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n        if (i\
+    \ % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i - 1])), i -= 1;\n     \
+    \   }\n        if (i == 0) {\n          return topbit(n) + 1;\n        }\n   \
+    \     int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n      \
+    \  E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t)) {\n        \
+    \  return k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])), i -= i\
+    \ & -i;\n      }\n    }();\n    while (k) {\n      --k;\n      if (i + (1 << k)\
+    \ - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if\
+    \ (i + (1 << k) <= L || check(t)) {\n          i += (1 << k), s = t;\n       \
+    \ }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n  template <class\
+    \ F>\n  int max_right_with_index(const F check, int L = 0) const {\n    assert(check(L,\
+    \ G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k \u9032\u3080\u3068\
+    \u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n        if (i % 2 == 1)\
+    \ {\n          s = G::op(s, G::inverse(dat[i - 1])), i -= 1;\n        }\n    \
+    \    if (i == 0) {\n          return topbit(n) + 1;\n        }\n        int k\
+    \ = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n        E t = G::op(s,\
+    \ dat[i + (1 << k) - 1]);\n        if (!check(i + (1 << k), t)) {\n          return\
+    \ k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n\
+    \      }\n    }();\n    while (k) {\n      --k;\n      if (i + (1 << k) - 1 <\
+    \ len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (i +\
+    \ (1 << k) <= L || check(i + (1 << k), t)) {\n          i += (1 << k), s = t;\n\
+    \        }\n      }\n    }\n    return i;\n  }\n\n  template <class F>\n  int\
+    \ min_left(const F check, int R) const {\n    assert(check(G::id()));\n    E s\
+    \ = G::id();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\u308D\
+    \u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s)) {\n  \
+    \    s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n   \
+    \ }\n    if (check(s)) {\n      assert(i == 0);\n      return 0;\n    }\n    //\
+    \ 2^k \u9032\u3080\u3068 ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\u6301\
+    \u3057\u3066\u9032\u3080\n    while (k) {\n      --k;\n      E t = G::op(s, G::inverse(dat[i\
+    \ + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1 << k), s = t;\n\
+    \      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int L = 0) const {\n\
+    \    return max_right([&k](E x) -> bool { return x <= k; }, L);\n  }\n};\n#line\
+    \ 6 \"test/2_library_checker/data_structure/point_add_range_sum.test.cpp\"\n\n\
+    void solve() {\n  LL(N, Q);\n  FenwickTree<Monoid_Add<ll>> bit(N, [&](int i) ->\
+    \ ll {\n    LL(x);\n    return x;\n  });\n\n  FOR(Q) {\n    LL(t, a, b);\n   \
+    \ if (t == 0) {\n      bit.add(a, b);\n    } else {\n      print(bit.prod(a, b));\n\
+    \    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/fenwicktree/fenwicktree.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  FenwickTree<Monoid_Add<ll>> bit(N, [&](int\
@@ -353,7 +353,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/point_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2026-10-22 01:32:06+09:00'
+  timestamp: '2026-10-25 14:30:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/point_add_range_sum.test.cpp

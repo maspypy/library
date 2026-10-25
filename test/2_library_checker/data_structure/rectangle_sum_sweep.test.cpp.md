@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/point_add_rectangle_sum.hpp
     title: ds/offline_query/point_add_rectangle_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -278,13 +278,13 @@ data:
     \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
     };\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
     struct FenwickTree {\n  using G = Monoid;\n  using MX = Monoid;\n  using E = typename\
-    \ G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree() {}\n\
-    \  FenwickTree(int n) { build(n); }\n  template <typename F>\n  FenwickTree(int\
-    \ n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v);\
-    \ }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m, G::id());\n    total\
-    \ = G::id();\n  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int i)\
-    \ -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F\
-    \ f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::id();\n\
+    \ G::value_type;\n  static_assert(G::commute);\n  int n;\n  vector<E> dat;\n \
+    \ E total;\n\n  FenwickTree() {}\n  FenwickTree(int n) { build(n); }\n  template\
+    \ <typename F>\n  FenwickTree(int n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const\
+    \ vc<E>& v) { build(v); }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m,\
+    \ G::id());\n    total = G::id();\n  }\n  void build(const vc<E>& v) {\n    build(len(v),\
+    \ [&](int i) -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::id();\n\
     \    FOR(i, n) { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int\
     \ j = i + (i & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j -\
     \ 1]);\n    }\n    total = prefix_sum(m);\n  }\n\n  E prod_all() const { return\
@@ -300,45 +300,44 @@ data:
     \ - 1]), L -= L & -L;\n    }\n    return G::op(pos, G::inverse(neg));\n  }\n\n\
     \  vc<E> get_all() const {\n    vc<E> res(n);\n    FOR(i, n) res[i] = prod(i,\
     \ i + 1);\n    return res;\n  }\n\n  void add(int k, E x) { multiply(k, x); }\n\
-    \  void multiply(int k, E x) {\n    static_assert(G::commute);\n    assert(0 <=\
-    \ k && k < n);\n    total = G::op(total, x);\n    for (++k; k <= n; k += k & -k)\
-    \ dat[k - 1] = G::op(dat[k - 1], x);\n  }\n  void set(int k, E x) { add(k, G::op(G::inverse(prod(k,\
-    \ k + 1)), x)); }\n\n  template <class F>\n  int max_right(const F check, int\
-    \ L = 0) const {\n    assert(check(G::id()));\n    E s = G::id();\n    int i =\
-    \ L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while\
-    \ (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i -\
-    \ 1])), i -= 1;\n        }\n        if (i == 0) {\n          return topbit(n)\
-    \ + 1;\n        }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) >\
-    \ n) return k;\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t))\
-    \ {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])),\
-    \ i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n      if (i +\
-    \ (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n\
-    \        if (i + (1 << k) <= L || check(t)) {\n          i += (1 << k), s = t;\n\
-    \        }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n  template\
-    \ <class F>\n  int max_right_with_index(const F check, int L = 0) const {\n  \
-    \  assert(check(L, G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k\
-    \ \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n   \
-    \     if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i - 1])), i -=\
-    \ 1;\n        }\n        if (i == 0) {\n          return topbit(n) + 1;\n    \
-    \    }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n\
-    \        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(i + (1 <<\
-    \ k), t)) {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i\
-    \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
-    \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
-    \ - 1]);\n        if (i + (1 << k) <= L || check(i + (1 << k), t)) {\n       \
-    \   i += (1 << k), s = t;\n        }\n      }\n    }\n    return i;\n  }\n\n \
-    \ template <class F>\n  int min_left(const F check, int R) const {\n    assert(check(G::id()));\n\
-    \    E s = G::id();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\
-    \u308D\u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s))\
-    \ {\n      s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n\
-    \    }\n    if (check(s)) {\n      assert(i == 0);\n      return 0;\n    }\n \
-    \   // 2^k \u9032\u3080\u3068 ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\
-    \u6301\u3057\u3066\u9032\u3080\n    while (k) {\n      --k;\n      E t = G::op(s,\
-    \ G::inverse(dat[i + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1\
-    \ << k), s = t;\n      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int\
-    \ L = 0) const {\n    return max_right([&k](E x) -> bool { return x <= k; }, L);\n\
-    \  }\n};\n#line 1 \"ds/offline_query/point_add_rectangle_sum.hpp\"\n// Source:\
-    \ https://github.com/maspypy/library/blob/main/ds/offline_query/point_add_rectangle_sum.hpp\n\
+    \  void multiply(int k, E x) {\n    assert(0 <= k && k < n);\n    total = G::op(total,\
+    \ x);\n    for (++k; k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n\
+    \  }\n  void set(int k, E x) { add(k, G::op(G::inverse(prod(k, k + 1)), x)); }\n\
+    \n  template <class F>\n  int max_right(const F check, int L = 0) const {\n  \
+    \  assert(check(G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k \u9032\
+    \u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n        if (i\
+    \ % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i - 1])), i -= 1;\n     \
+    \   }\n        if (i == 0) {\n          return topbit(n) + 1;\n        }\n   \
+    \     int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n      \
+    \  E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t)) {\n        \
+    \  return k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])), i -= i\
+    \ & -i;\n      }\n    }();\n    while (k) {\n      --k;\n      if (i + (1 << k)\
+    \ - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if\
+    \ (i + (1 << k) <= L || check(t)) {\n          i += (1 << k), s = t;\n       \
+    \ }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n  template <class\
+    \ F>\n  int max_right_with_index(const F check, int L = 0) const {\n    assert(check(L,\
+    \ G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k \u9032\u3080\u3068\
+    \u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n        if (i % 2 == 1)\
+    \ {\n          s = G::op(s, G::inverse(dat[i - 1])), i -= 1;\n        }\n    \
+    \    if (i == 0) {\n          return topbit(n) + 1;\n        }\n        int k\
+    \ = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n        E t = G::op(s,\
+    \ dat[i + (1 << k) - 1]);\n        if (!check(i + (1 << k), t)) {\n          return\
+    \ k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n\
+    \      }\n    }();\n    while (k) {\n      --k;\n      if (i + (1 << k) - 1 <\
+    \ len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (i +\
+    \ (1 << k) <= L || check(i + (1 << k), t)) {\n          i += (1 << k), s = t;\n\
+    \        }\n      }\n    }\n    return i;\n  }\n\n  template <class F>\n  int\
+    \ min_left(const F check, int R) const {\n    assert(check(G::id()));\n    E s\
+    \ = G::id();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\u308D\
+    \u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s)) {\n  \
+    \    s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n   \
+    \ }\n    if (check(s)) {\n      assert(i == 0);\n      return 0;\n    }\n    //\
+    \ 2^k \u9032\u3080\u3068 ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\u6301\
+    \u3057\u3066\u9032\u3080\n    while (k) {\n      --k;\n      E t = G::op(s, G::inverse(dat[i\
+    \ + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1 << k), s = t;\n\
+    \      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int L = 0) const {\n\
+    \    return max_right([&k](E x) -> bool { return x <= k; }, L);\n  }\n};\n#line\
+    \ 1 \"ds/offline_query/point_add_rectangle_sum.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/point_add_rectangle_sum.hpp\n\
     #line 1 \"ds/fenwicktree/fenwicktree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/fenwicktree/fenwicktree.hpp\n\
     #line 1 \"alg/monoid/add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
     \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
@@ -348,13 +347,13 @@ data:
     \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
     };\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
     struct FenwickTree {\n  using G = Monoid;\n  using MX = Monoid;\n  using E = typename\
-    \ G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree() {}\n\
-    \  FenwickTree(int n) { build(n); }\n  template <typename F>\n  FenwickTree(int\
-    \ n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v);\
-    \ }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m, G::id());\n    total\
-    \ = G::id();\n  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int i)\
-    \ -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F\
-    \ f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::id();\n\
+    \ G::value_type;\n  static_assert(G::commute);\n  int n;\n  vector<E> dat;\n \
+    \ E total;\n\n  FenwickTree() {}\n  FenwickTree(int n) { build(n); }\n  template\
+    \ <typename F>\n  FenwickTree(int n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const\
+    \ vc<E>& v) { build(v); }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m,\
+    \ G::id());\n    total = G::id();\n  }\n  void build(const vc<E>& v) {\n    build(len(v),\
+    \ [&](int i) -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::id();\n\
     \    FOR(i, n) { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int\
     \ j = i + (i & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j -\
     \ 1]);\n    }\n    total = prefix_sum(m);\n  }\n\n  E prod_all() const { return\
@@ -370,73 +369,73 @@ data:
     \ - 1]), L -= L & -L;\n    }\n    return G::op(pos, G::inverse(neg));\n  }\n\n\
     \  vc<E> get_all() const {\n    vc<E> res(n);\n    FOR(i, n) res[i] = prod(i,\
     \ i + 1);\n    return res;\n  }\n\n  void add(int k, E x) { multiply(k, x); }\n\
-    \  void multiply(int k, E x) {\n    static_assert(G::commute);\n    assert(0 <=\
-    \ k && k < n);\n    total = G::op(total, x);\n    for (++k; k <= n; k += k & -k)\
-    \ dat[k - 1] = G::op(dat[k - 1], x);\n  }\n  void set(int k, E x) { add(k, G::op(G::inverse(prod(k,\
-    \ k + 1)), x)); }\n\n  template <class F>\n  int max_right(const F check, int\
-    \ L = 0) const {\n    assert(check(G::id()));\n    E s = G::id();\n    int i =\
-    \ L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while\
-    \ (1) {\n        if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i -\
-    \ 1])), i -= 1;\n        }\n        if (i == 0) {\n          return topbit(n)\
-    \ + 1;\n        }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) >\
-    \ n) return k;\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t))\
-    \ {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])),\
-    \ i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n      if (i +\
-    \ (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n\
-    \        if (i + (1 << k) <= L || check(t)) {\n          i += (1 << k), s = t;\n\
-    \        }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n  template\
-    \ <class F>\n  int max_right_with_index(const F check, int L = 0) const {\n  \
-    \  assert(check(L, G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k\
-    \ \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n   \
-    \     if (i % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i - 1])), i -=\
-    \ 1;\n        }\n        if (i == 0) {\n          return topbit(n) + 1;\n    \
-    \    }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n\
-    \        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(i + (1 <<\
-    \ k), t)) {\n          return k;\n        }\n        s = G::op(s, G::inverse(dat[i\
-    \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
-    \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
-    \ - 1]);\n        if (i + (1 << k) <= L || check(i + (1 << k), t)) {\n       \
-    \   i += (1 << k), s = t;\n        }\n      }\n    }\n    return i;\n  }\n\n \
-    \ template <class F>\n  int min_left(const F check, int R) const {\n    assert(check(G::id()));\n\
-    \    E s = G::id();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\
-    \u308D\u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s))\
-    \ {\n      s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n\
-    \    }\n    if (check(s)) {\n      assert(i == 0);\n      return 0;\n    }\n \
-    \   // 2^k \u9032\u3080\u3068 ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\
-    \u6301\u3057\u3066\u9032\u3080\n    while (k) {\n      --k;\n      E t = G::op(s,\
-    \ G::inverse(dat[i + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1\
-    \ << k), s = t;\n      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int\
-    \ L = 0) const {\n    return max_right([&k](E x) -> bool { return x <= k; }, L);\n\
-    \  }\n};\n#line 3 \"ds/offline_query/point_add_rectangle_sum.hpp\"\n\ntemplate\
-    \ <typename AbelianGroup, typename XY, bool SMALL_X = false>\nstruct Point_Add_Rectangle_Sum\
-    \ {\n  using G = typename AbelianGroup::value_type;\n  using Point = tuple<XY,\
-    \ XY, G>;\n  vector<Point> point;\n  vector<tuple<XY, XY, XY, XY>> rect;\n\n \
-    \ Point_Add_Rectangle_Sum() {}\n\n  void add_query(XY x, XY y, G w) { point.eb(x,\
-    \ y, w); }\n  void sum_query(XY xl, XY xr, XY yl, XY yr) { rect.eb(xl, xr, yl,\
-    \ yr); }\n\n  vector<G> calc() {\n    int N = point.size(), Q = rect.size();\n\
-    \    if (N == 0 || Q == 0) return vector<G>(Q, AbelianGroup::id());\n    // X\
-    \ \u65B9\u5411\u306E\u5EA7\u5727\n    int NX = 0;\n    if (!SMALL_X) {\n     \
-    \ sort(all(point),\n           [&](auto &x, auto &y) -> bool { return get<0>(x)\
-    \ < get<0>(y); });\n      vc<XY> keyX;\n      keyX.reserve(N);\n      for (auto\
-    \ &&[a, b, c]: point) {\n        if (len(keyX) == 0 || keyX.back() != a) { keyX.eb(a);\
-    \ }\n        a = len(keyX) - 1;\n      }\n      for (auto &&[xl, xr, yl, yr]:\
-    \ rect) {\n        xl = LB(keyX, xl);\n        xr = LB(keyX, xr);\n      }\n \
-    \     NX = len(keyX);\n    }\n    if (SMALL_X) {\n      XY mx = infty<XY>;\n \
-    \     for (auto &&[x, y, g]: point) chmin(mx, x);\n      for (auto &&[x, y, g]:\
-    \ point) x -= mx, chmax(NX, x + 1);\n      for (auto &&[xl, xr, yl, yr]: rect)\
-    \ {\n        xl -= mx, xr -= mx;\n        xl = max(0, min<int>(xl, NX));\n   \
-    \     xr = max(0, min<int>(xr, NX));\n      }\n    }\n\n    vc<tuple<XY, int,\
-    \ int, int>> event(Q + Q);\n    FOR(q, Q) {\n      auto &[xl, xr, yl, yr] = rect[q];\n\
-    \      event[2 * q] = {yl, xl, xr, 2 * q};\n      event[2 * q + 1] = {yr, xl,\
-    \ xr, 2 * q + 1};\n    }\n    sort(all(point),\n         [&](auto &x, auto &y)\
-    \ -> bool { return get<1>(x) < get<1>(y); });\n    sort(all(event),\n        \
-    \ [&](auto &x, auto &y) -> bool { return get<0>(x) < get<0>(y); });\n\n    FenwickTree<AbelianGroup>\
-    \ bit(NX);\n    vc<G> res(Q, AbelianGroup::id());\n    int j = 0;\n    for (auto\
-    \ &&[y, xl, xr, qq]: event) {\n      while (j < N && get<1>(point[j]) < y) {\n\
-    \        bit.add(get<0>(point[j]), get<2>(point[j]));\n        ++j;\n      }\n\
-    \      G g = bit.sum(xl, xr);\n      int q = qq / 2;\n      if (qq % 2 == 0) g\
-    \ = AbelianGroup::inverse(g);\n      res[q] = AbelianGroup::op(res[q], g);\n \
-    \   }\n    return res;\n  }\n};\n#line 8 \"test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp\"\
+    \  void multiply(int k, E x) {\n    assert(0 <= k && k < n);\n    total = G::op(total,\
+    \ x);\n    for (++k; k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n\
+    \  }\n  void set(int k, E x) { add(k, G::op(G::inverse(prod(k, k + 1)), x)); }\n\
+    \n  template <class F>\n  int max_right(const F check, int L = 0) const {\n  \
+    \  assert(check(G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k \u9032\
+    \u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n        if (i\
+    \ % 2 == 1) {\n          s = G::op(s, G::inverse(dat[i - 1])), i -= 1;\n     \
+    \   }\n        if (i == 0) {\n          return topbit(n) + 1;\n        }\n   \
+    \     int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n      \
+    \  E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t)) {\n        \
+    \  return k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])), i -= i\
+    \ & -i;\n      }\n    }();\n    while (k) {\n      --k;\n      if (i + (1 << k)\
+    \ - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if\
+    \ (i + (1 << k) <= L || check(t)) {\n          i += (1 << k), s = t;\n       \
+    \ }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n  template <class\
+    \ F>\n  int max_right_with_index(const F check, int L = 0) const {\n    assert(check(L,\
+    \ G::id()));\n    E s = G::id();\n    int i = L;\n    // 2^k \u9032\u3080\u3068\
+    \u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n        if (i % 2 == 1)\
+    \ {\n          s = G::op(s, G::inverse(dat[i - 1])), i -= 1;\n        }\n    \
+    \    if (i == 0) {\n          return topbit(n) + 1;\n        }\n        int k\
+    \ = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n        E t = G::op(s,\
+    \ dat[i + (1 << k) - 1]);\n        if (!check(i + (1 << k), t)) {\n          return\
+    \ k;\n        }\n        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n\
+    \      }\n    }();\n    while (k) {\n      --k;\n      if (i + (1 << k) - 1 <\
+    \ len(dat)) {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (i +\
+    \ (1 << k) <= L || check(i + (1 << k), t)) {\n          i += (1 << k), s = t;\n\
+    \        }\n      }\n    }\n    return i;\n  }\n\n  template <class F>\n  int\
+    \ min_left(const F check, int R) const {\n    assert(check(G::id()));\n    E s\
+    \ = G::id();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\u308D\
+    \u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s)) {\n  \
+    \    s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n   \
+    \ }\n    if (check(s)) {\n      assert(i == 0);\n      return 0;\n    }\n    //\
+    \ 2^k \u9032\u3080\u3068 ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\u6301\
+    \u3057\u3066\u9032\u3080\n    while (k) {\n      --k;\n      E t = G::op(s, G::inverse(dat[i\
+    \ + (1 << k) - 1]));\n      if (!check(t)) {\n        i += (1 << k), s = t;\n\
+    \      }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int L = 0) const {\n\
+    \    return max_right([&k](E x) -> bool { return x <= k; }, L);\n  }\n};\n#line\
+    \ 3 \"ds/offline_query/point_add_rectangle_sum.hpp\"\n\ntemplate <typename AbelianGroup,\
+    \ typename XY, bool SMALL_X = false>\nstruct Point_Add_Rectangle_Sum {\n  using\
+    \ G = typename AbelianGroup::value_type;\n  using Point = tuple<XY, XY, G>;\n\
+    \  vector<Point> point;\n  vector<tuple<XY, XY, XY, XY>> rect;\n\n  Point_Add_Rectangle_Sum()\
+    \ {}\n\n  void add_query(XY x, XY y, G w) { point.eb(x, y, w); }\n  void sum_query(XY\
+    \ xl, XY xr, XY yl, XY yr) { rect.eb(xl, xr, yl, yr); }\n\n  vector<G> calc()\
+    \ {\n    int N = point.size(), Q = rect.size();\n    if (N == 0 || Q == 0) return\
+    \ vector<G>(Q, AbelianGroup::id());\n    // X \u65B9\u5411\u306E\u5EA7\u5727\n\
+    \    int NX = 0;\n    if (!SMALL_X) {\n      sort(all(point),\n           [&](auto\
+    \ &x, auto &y) -> bool { return get<0>(x) < get<0>(y); });\n      vc<XY> keyX;\n\
+    \      keyX.reserve(N);\n      for (auto &&[a, b, c]: point) {\n        if (len(keyX)\
+    \ == 0 || keyX.back() != a) { keyX.eb(a); }\n        a = len(keyX) - 1;\n    \
+    \  }\n      for (auto &&[xl, xr, yl, yr]: rect) {\n        xl = LB(keyX, xl);\n\
+    \        xr = LB(keyX, xr);\n      }\n      NX = len(keyX);\n    }\n    if (SMALL_X)\
+    \ {\n      XY mx = infty<XY>;\n      for (auto &&[x, y, g]: point) chmin(mx, x);\n\
+    \      for (auto &&[x, y, g]: point) x -= mx, chmax(NX, x + 1);\n      for (auto\
+    \ &&[xl, xr, yl, yr]: rect) {\n        xl -= mx, xr -= mx;\n        xl = max(0,\
+    \ min<int>(xl, NX));\n        xr = max(0, min<int>(xr, NX));\n      }\n    }\n\
+    \n    vc<tuple<XY, int, int, int>> event(Q + Q);\n    FOR(q, Q) {\n      auto\
+    \ &[xl, xr, yl, yr] = rect[q];\n      event[2 * q] = {yl, xl, xr, 2 * q};\n  \
+    \    event[2 * q + 1] = {yr, xl, xr, 2 * q + 1};\n    }\n    sort(all(point),\n\
+    \         [&](auto &x, auto &y) -> bool { return get<1>(x) < get<1>(y); });\n\
+    \    sort(all(event),\n         [&](auto &x, auto &y) -> bool { return get<0>(x)\
+    \ < get<0>(y); });\n\n    FenwickTree<AbelianGroup> bit(NX);\n    vc<G> res(Q,\
+    \ AbelianGroup::id());\n    int j = 0;\n    for (auto &&[y, xl, xr, qq]: event)\
+    \ {\n      while (j < N && get<1>(point[j]) < y) {\n        bit.add(get<0>(point[j]),\
+    \ get<2>(point[j]));\n        ++j;\n      }\n      G g = bit.sum(xl, xr);\n  \
+    \    int q = qq / 2;\n      if (qq % 2 == 0) g = AbelianGroup::inverse(g);\n \
+    \     res[q] = AbelianGroup::op(res[q], g);\n    }\n    return res;\n  }\n};\n\
+    #line 8 \"test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  Point_Add_Rectangle_Sum<Monoid_Add<ll>, int>\
     \ RS;\n  FOR(N) {\n    LL(x, y, w);\n    RS.add_query(x, y, w);\n  }\n  FOR(Q)\
     \ {\n    LL(l, d, r, u);\n    RS.sum_query(l, r, d, u);\n  }\n  auto ANS = RS.calc();\n\
@@ -460,7 +459,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp
   requiredBy: []
-  timestamp: '2026-10-22 01:32:06+09:00'
+  timestamp: '2026-10-25 14:30:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp
