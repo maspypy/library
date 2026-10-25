@@ -22,7 +22,7 @@ vc<mint> fps_div_sparse(vc<mint> f, const vc<mint>& g) {
   assert(!g.empty() && g[0] != 0);
   mint c = g[0].inverse();
   if (c != mint(1)) {
-    for (auto&& x : f) x *= cf;
+    for (auto&& x : f) x *= c;
   }
 
   vc<pair<int, mint>> dat;
