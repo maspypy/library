@@ -1,86 +1,86 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs_01.hpp
     title: graph/shortest_path/bfs_01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -1807,30 +1807,31 @@ data:
     \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\n}\n#line 5 \"\
     poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\
     \u308B.\ntemplate <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint>\
-    \ f, vc<mint> g) {\n  if (SPARSE || count_terms(g) < 200) return fps_div_sparse(f,\
-    \ g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n  f = convolution(f,\
-    \ g);\n  f.resize(n);\n  return f;\n}\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\n\
-    template <typename mint>\nvc<mint> fps_div_sparse(vc<mint> f, vc<mint>& g) {\n\
-    \  if (g[0] != mint(1)) {\n    mint cf = g[0].inverse();\n    for (auto&& x: f)\
-    \ x *= cf;\n    for (auto&& x: g) x *= cf;\n  }\n\n  vc<pair<int, mint>> dat;\n\
-    \  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f))\
-    \ {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i - j];\n\
-    \    }\n  }\n  return f;\n}\n#line 7 \"test/1_mytest/tree_walk_gf.test.cpp\"\n\
-    \nusing mint = modint998;\n\ntemplate <bool ALLOW_LOOP>\nvoid test() {\n  FOR(N,\
-    \ 1, 30) {\n    FOR(50) {\n      Graph<int, 0> G(N);\n      vv(mint, mat, N, N);\n\
-    \      for (auto& [a, b]: random_tree(N)) {\n        G.add(a, b);\n        mat[a][b]\
-    \ = RNG(0, mint::get_mod());\n        mat[b][a] = RNG(0, mint::get_mod());\n \
-    \     }\n      G.build();\n      if (ALLOW_LOOP) { FOR(v, N) mat[v][v] = RNG(mint::get_mod());\
-    \ }\n      int s = RNG(0, N), t = RNG(0, N);\n      int LIM = 200;\n      vc<mint>\
-    \ ANS(LIM + 1);\n      vc<mint> dp(N);\n      dp[s] = 1;\n      FOR(k, LIM) {\n\
-    \        ANS[k] = dp[t];\n        vc<mint> newdp(N);\n        FOR(a, N) FOR(b,\
-    \ N) newdp[b] += dp[a] * mat[a][b];\n        swap(dp, newdp);\n        ANS[k +\
-    \ 1] = dp[t];\n      }\n      auto [f, g] = tree_walk_generating_function<ALLOW_LOOP,\
-    \ mint>(\n          G, s, t, [&](int i, int j) -> mint { return mat[i][j]; });\n\
-    \      f.resize(LIM + 1);\n      g.resize(LIM + 1);\n      f = fps_div(f, g);\n\
-    \      assert(f == ANS);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
-    \ >> a >> b;\n  cout << a + b << '\\n';\n}\n\nsigned main() {\n  test<0>();\n\
-    \  test<1>();\n  solve();\n  return 0;\n}\n"
+    \ f, vc<mint> g) {\n  assert(!g.empty() && g[0] != 0);\n  if (SPARSE || count_terms(g)\
+    \ < 200) return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g\
+    \ = fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n  return f;\n\
+    }\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\ntemplate <typename mint>\nvc<mint>\
+    \ fps_div_sparse(vc<mint> f, const vc<mint>& g) {\n  assert(!g.empty() && g[0]\
+    \ != 0);\n  mint c = g[0].inverse();\n  if (c != mint(1)) {\n    for (auto&& x\
+    \ : f) x *= cf;\n  }\n\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, len(g)) if (g[i]\
+    \ != mint(0)) dat.eb(i, -g[i] * c);\n  FOR(i, len(f)) {\n    for (auto&& [j, x]\
+    \ : dat) {\n      if (i >= j) f[i] += x * f[i - j];\n    }\n  }\n  return f;\n\
+    }\n#line 7 \"test/1_mytest/tree_walk_gf.test.cpp\"\n\nusing mint = modint998;\n\
+    \ntemplate <bool ALLOW_LOOP>\nvoid test() {\n  FOR(N, 1, 30) {\n    FOR(50) {\n\
+    \      Graph<int, 0> G(N);\n      vv(mint, mat, N, N);\n      for (auto& [a, b]:\
+    \ random_tree(N)) {\n        G.add(a, b);\n        mat[a][b] = RNG(0, mint::get_mod());\n\
+    \        mat[b][a] = RNG(0, mint::get_mod());\n      }\n      G.build();\n   \
+    \   if (ALLOW_LOOP) { FOR(v, N) mat[v][v] = RNG(mint::get_mod()); }\n      int\
+    \ s = RNG(0, N), t = RNG(0, N);\n      int LIM = 200;\n      vc<mint> ANS(LIM\
+    \ + 1);\n      vc<mint> dp(N);\n      dp[s] = 1;\n      FOR(k, LIM) {\n      \
+    \  ANS[k] = dp[t];\n        vc<mint> newdp(N);\n        FOR(a, N) FOR(b, N) newdp[b]\
+    \ += dp[a] * mat[a][b];\n        swap(dp, newdp);\n        ANS[k + 1] = dp[t];\n\
+    \      }\n      auto [f, g] = tree_walk_generating_function<ALLOW_LOOP, mint>(\n\
+    \          G, s, t, [&](int i, int j) -> mint { return mat[i][j]; });\n      f.resize(LIM\
+    \ + 1);\n      g.resize(LIM + 1);\n      f = fps_div(f, g);\n      assert(f ==\
+    \ ANS);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
+    \ << a + b << '\\n';\n}\n\nsigned main() {\n  test<0>();\n  test<1>();\n  solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/random_graph.hpp\"\n#include \"graph/tree_walk_generating_function.hpp\"\
     \n#include \"poly/fps_div.hpp\"\n\nusing mint = modint998;\n\ntemplate <bool ALLOW_LOOP>\n\
@@ -1877,8 +1878,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/tree_walk_gf.test.cpp
   requiredBy: []
-  timestamp: '2026-10-25 14:31:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-25 17:45:10+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/tree_walk_gf.test.cpp
 layout: document

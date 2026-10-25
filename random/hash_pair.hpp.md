@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
@@ -35,20 +35,20 @@ data:
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
     \  return l + RNG_64() % (r - l);\n}\n#line 3 \"random/hash_pair.hpp\"\n\ntemplate\
-    \ <typename T>\nu64 hash_pair(pair<T, T> X) {\n  static ll hash_base = 0;\n  if\
-    \ (hash_base == 0) hash_base = RNG_64();\n  return hash_base * X.fi + X.se;\n\
-    }\n"
+    \ <typename T>\nu64 hash_pair(pair<T, T> X) {\n  static u64 hash_base = 0;\n \
+    \ if (hash_base == 0) hash_base = RNG_64();\n  return hash_base * u64(X.fi) +\
+    \ u64(X.se);\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/random/hash_pair.hpp\n\
     #include \"random/base.hpp\"\n\ntemplate <typename T>\nu64 hash_pair(pair<T, T>\
-    \ X) {\n  static ll hash_base = 0;\n  if (hash_base == 0) hash_base = RNG_64();\n\
-    \  return hash_base * X.fi + X.se;\n}\n"
+    \ X) {\n  static u64 hash_base = 0;\n  if (hash_base == 0) hash_base = RNG_64();\n\
+    \  return hash_base * u64(X.fi) + u64(X.se);\n}\n"
   dependsOn:
   - random/base.hpp
   isVerificationFile: false
   path: random/hash_pair.hpp
   requiredBy:
   - geo/closest_pair.hpp
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-10-25 17:23:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2167.test.cpp

@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
     path: random/hash_pair.hpp
     title: random/hash_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -385,39 +385,39 @@ data:
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
     \  return l + RNG_64() % (r - l);\n}\n#line 3 \"random/hash_pair.hpp\"\n\ntemplate\
-    \ <typename T>\nu64 hash_pair(pair<T, T> X) {\n  static ll hash_base = 0;\n  if\
-    \ (hash_base == 0) hash_base = RNG_64();\n  return hash_base * X.fi + X.se;\n\
-    }\n#line 7 \"geo/closest_pair.hpp\"\n\ntemplate <typename T>\npair<int, int> closest_pair(vc<Point<T>>\
-    \ points) {\n  int N = len(points);\n  assert(N >= 2);\n  HashMap<int> MP(N);\n\
-    \  vc<int> I(N);\n  iota(all(I), 0);\n  shuffle(I);\n  points = rearrange(points,\
-    \ I);\n\n  auto calc = [&](int i, int j) -> T {\n    return (points[j] - points[i]).dot(points[j]\
-    \ - points[i]);\n  };\n\n  T best = calc(0, 1);\n  pair<int, int> res = {0, 1};\n\
-    \  T w = sqrtl(best);\n\n  vc<int> nxt(N, -1);\n\n  auto insert = [&](int i) ->\
-    \ void {\n    u64 k = hash_pair<ll>({points[i].x / w, points[i].y / w});\n   \
-    \ nxt[i] = MP.get(k, -1);\n    MP[k] = i;\n  };\n\n  auto query = [&](int i) ->\
-    \ bool {\n    ll a = points[i].x / w;\n    ll b = points[i].y / w;\n    bool upd\
-    \ = 0;\n    FOR(dx, -1, 2) FOR(dy, -1, 2) {\n      u64 k = hash_pair<ll>({a +\
-    \ dx, b + dy});\n      int j = MP.get(k, -1);\n      while (j != -1) {\n     \
-    \   if (chmin(best, calc(i, j))) { upd = 1, res = {i, j}, w = sqrtl(best); }\n\
-    \        j = nxt[j];\n      }\n    }\n    return upd;\n  };\n\n  if (best == T(0))\
-    \ {\n    res.fi = I[res.fi], res.se = I[res.se];\n    return res;\n  }\n\n  insert(0),\
-    \ insert(1);\n  FOR(i, 2, N) {\n    if (query(i)) {\n      if (best == T(0)) break;\n\
-    \      MP.build(N);\n      FOR(j, i) insert(j);\n    }\n    insert(i);\n  }\n\
-    \  res.fi = I[res.fi], res.se = I[res.se];\n  return res;\n}\n\npair<int, int>\
-    \ closest_pair_dc(vc<Point<ll>> point) {\n  int N = len(point);\n  assert(N >=\
-    \ 2);\n\n  auto I = argsort(point);\n  point = rearrange(point, I);\n\n  ll best\
-    \ = -1;\n  pair<int, int> best_pair = {-1, -1};\n\n  auto upd = [&](int i, int\
-    \ j) -> void {\n    Point<ll> p = point[i] - point[j];\n    ll d = p.dot(p);\n\
-    \    if (best == -1 || best > d) { best = d, best_pair = {I[i], I[j]}; }\n  };\n\
-    \  upd(0, 1);\n\n  auto dfs = [&](auto &dfs, int L, int R) -> vc<int> {\n    //\
-    \ return: [L,R) \u3092 y \u306B\u3064\u3044\u3066 sort \u3057\u305F\u3082\u306E\
-    \n    if (R == L + 1) return {L};\n    int M = (L + R) / 2;\n    vc<int> I0 =\
-    \ dfs(dfs, L, M);\n    vc<int> I1 = dfs(dfs, M, R);\n    vc<int> I;\n    vc<int>\
-    \ near;\n    int a = 0, b = 0;\n    FOR(R - L) {\n      int idx = [&]() -> int\
-    \ {\n        if (a == len(I0)) return I1[b++];\n        if (b == len(I1)) return\
-    \ I0[a++];\n        int i = I0[a], j = I1[b];\n        if (point[i].y < point[j].y)\
-    \ {\n          ++a;\n          return i;\n        }\n        ++b;\n        return\
-    \ j;\n      }();\n      I.eb(idx);\n      ll dx = point[M].x - point[idx].x;\n\
+    \ <typename T>\nu64 hash_pair(pair<T, T> X) {\n  static u64 hash_base = 0;\n \
+    \ if (hash_base == 0) hash_base = RNG_64();\n  return hash_base * u64(X.fi) +\
+    \ u64(X.se);\n}\n#line 7 \"geo/closest_pair.hpp\"\n\ntemplate <typename T>\npair<int,\
+    \ int> closest_pair(vc<Point<T>> points) {\n  int N = len(points);\n  assert(N\
+    \ >= 2);\n  HashMap<int> MP(N);\n  vc<int> I(N);\n  iota(all(I), 0);\n  shuffle(I);\n\
+    \  points = rearrange(points, I);\n\n  auto calc = [&](int i, int j) -> T {\n\
+    \    return (points[j] - points[i]).dot(points[j] - points[i]);\n  };\n\n  T best\
+    \ = calc(0, 1);\n  pair<int, int> res = {0, 1};\n  T w = sqrtl(best);\n\n  vc<int>\
+    \ nxt(N, -1);\n\n  auto insert = [&](int i) -> void {\n    u64 k = hash_pair<ll>({points[i].x\
+    \ / w, points[i].y / w});\n    nxt[i] = MP.get(k, -1);\n    MP[k] = i;\n  };\n\
+    \n  auto query = [&](int i) -> bool {\n    ll a = points[i].x / w;\n    ll b =\
+    \ points[i].y / w;\n    bool upd = 0;\n    FOR(dx, -1, 2) FOR(dy, -1, 2) {\n \
+    \     u64 k = hash_pair<ll>({a + dx, b + dy});\n      int j = MP.get(k, -1);\n\
+    \      while (j != -1) {\n        if (chmin(best, calc(i, j))) { upd = 1, res\
+    \ = {i, j}, w = sqrtl(best); }\n        j = nxt[j];\n      }\n    }\n    return\
+    \ upd;\n  };\n\n  if (best == T(0)) {\n    res.fi = I[res.fi], res.se = I[res.se];\n\
+    \    return res;\n  }\n\n  insert(0), insert(1);\n  FOR(i, 2, N) {\n    if (query(i))\
+    \ {\n      if (best == T(0)) break;\n      MP.build(N);\n      FOR(j, i) insert(j);\n\
+    \    }\n    insert(i);\n  }\n  res.fi = I[res.fi], res.se = I[res.se];\n  return\
+    \ res;\n}\n\npair<int, int> closest_pair_dc(vc<Point<ll>> point) {\n  int N =\
+    \ len(point);\n  assert(N >= 2);\n\n  auto I = argsort(point);\n  point = rearrange(point,\
+    \ I);\n\n  ll best = -1;\n  pair<int, int> best_pair = {-1, -1};\n\n  auto upd\
+    \ = [&](int i, int j) -> void {\n    Point<ll> p = point[i] - point[j];\n    ll\
+    \ d = p.dot(p);\n    if (best == -1 || best > d) { best = d, best_pair = {I[i],\
+    \ I[j]}; }\n  };\n  upd(0, 1);\n\n  auto dfs = [&](auto &dfs, int L, int R) ->\
+    \ vc<int> {\n    // return: [L,R) \u3092 y \u306B\u3064\u3044\u3066 sort \u3057\
+    \u305F\u3082\u306E\n    if (R == L + 1) return {L};\n    int M = (L + R) / 2;\n\
+    \    vc<int> I0 = dfs(dfs, L, M);\n    vc<int> I1 = dfs(dfs, M, R);\n    vc<int>\
+    \ I;\n    vc<int> near;\n    int a = 0, b = 0;\n    FOR(R - L) {\n      int idx\
+    \ = [&]() -> int {\n        if (a == len(I0)) return I1[b++];\n        if (b ==\
+    \ len(I1)) return I0[a++];\n        int i = I0[a], j = I1[b];\n        if (point[i].y\
+    \ < point[j].y) {\n          ++a;\n          return i;\n        }\n        ++b;\n\
+    \        return j;\n      }();\n      I.eb(idx);\n      ll dx = point[M].x - point[idx].x;\n\
     \      if (dx * dx > best) { continue; }\n      FOR_R(k, len(near)) {\n      \
     \  int j = near[k];\n        ll dy = point[idx].y - point[j].y;\n        if (best\
     \ == 0 || dy * dy > best) break;\n        upd(idx, j);\n      }\n      near.eb(idx);\n\
@@ -444,7 +444,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/CGL_5_A.test.cpp
   requiredBy: []
-  timestamp: '2026-10-22 01:32:06+09:00'
+  timestamp: '2026-10-25 17:23:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/CGL_5_A.test.cpp

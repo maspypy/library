@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   _extendedRequiredBy: []
