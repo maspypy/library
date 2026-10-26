@@ -750,7 +750,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/online_convolution.test.cpp
     title: test/2_library_checker/convolution/online_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/add_remove_query.test.cpp
     title: test/2_library_checker/data_structure/add_remove_query.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1080,7 +1080,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/domninator_tree.test.cpp
     title: test/2_library_checker/graph/domninator_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
     title: test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1908,7 +1908,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1826_2.test.cpp
     title: test/3_yukicoder/1826_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1838.test.cpp
     title: test/3_yukicoder/1838.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2082,7 +2082,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2292.test.cpp
     title: test/3_yukicoder/2292.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2293.test.cpp
     title: test/3_yukicoder/2293.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2322,7 +2322,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/686.test.cpp
     title: test/3_yukicoder/686.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/694.test.cpp
     title: test/3_yukicoder/694.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2421,10 +2421,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_1_C.test.cpp
     title: test/4_aoj/ALDS1_1_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_2_A.test.cpp
     title: test/4_aoj/ALDS1_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_5.test.cpp
     title: test/4_aoj/ALDS1_5.test.cpp
   - icon: ':heavy_check_mark:'

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
   _extendedRequiredBy:
@@ -18,21 +18,21 @@ data:
     path: other/sliding_puzzle_solver.hpp
     title: other/sliding_puzzle_solver.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1838.test.cpp
     title: test/3_yukicoder/1838.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/694.test.cpp
     title: test/3_yukicoder/694.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_2_A.test.cpp
     title: test/4_aoj/ALDS1_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_5.test.cpp
     title: test/4_aoj/ALDS1_5.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/seq/inversion.hpp
@@ -196,8 +196,8 @@ data:
     \uFF1AA_i \u304C\u5148\u982D\u306B\u306A\u308B\u3088\u3046\u306B rotate \u3057\
     \u305F\u3068\u304D\u306E\u8EE2\u5012\u6570\ntemplate <typename T, bool SMALL =\
     \ false>\nvi inversion_rotate(const vc<T>& A) {\n  if (A.empty()) return {};\n\
-    \  const int N = len(A);\n  Index_Compression_SAME<T, SMALL> comp;\n  vc<int>\
-    \ rank = comp.build(A);\n  int K = MAX(rank) + 1;\n  ll ANS = 0;\n  FenwickTree<Monoid_Add<int>>\
+    \  const int N = len(A);\n  Index_Compression_SAME<T, SMALL> comp;\n  auto rank\
+    \ = comp.build(A);\n  int K = MAX(rank) + 1;\n  ll ANS = 0;\n  FenwickTree<Monoid_Add<int>>\
     \ bit(K);\n  for (auto&& x : rank) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x,\
     \ 1);\n  }\n  vi res(N);\n  FOR(i, N) {\n    res[i] = ANS;\n    ll x = rank[i];\n\
     \    ANS = ANS + bit.sum(x + 1, K) - bit.prefix_sum(x);\n  }\n  return res;\n\
@@ -220,9 +220,9 @@ data:
     \u5148\u982D\u306B\u306A\u308B\u3088\u3046\u306B rotate \u3057\u305F\u3068\u304D\
     \u306E\u8EE2\u5012\u6570\ntemplate <typename T, bool SMALL = false>\nvi inversion_rotate(const\
     \ vc<T>& A) {\n  if (A.empty()) return {};\n  const int N = len(A);\n  Index_Compression_SAME<T,\
-    \ SMALL> comp;\n  vc<int> rank = comp.build(A);\n  int K = MAX(rank) + 1;\n  ll\
-    \ ANS = 0;\n  FenwickTree<Monoid_Add<int>> bit(K);\n  for (auto&& x : rank) {\n\
-    \    ANS += bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n  vi res(N);\n  FOR(i,\
+    \ SMALL> comp;\n  auto rank = comp.build(A);\n  int K = MAX(rank) + 1;\n  ll ANS\
+    \ = 0;\n  FenwickTree<Monoid_Add<int>> bit(K);\n  for (auto&& x : rank) {\n  \
+    \  ANS += bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n  vi res(N);\n  FOR(i,\
     \ N) {\n    res[i] = ANS;\n    ll x = rank[i];\n    ANS = ANS + bit.sum(x + 1,\
     \ K) - bit.prefix_sum(x);\n  }\n  return res;\n}\n\n// inv[i][j] = inversion A[i:j)\
     \ \u3067\u3042\u308B\u3088\u3046\u306A (N+1, N+1) \u30C6\u30FC\u30D6\u30EB\ntemplate\
@@ -243,8 +243,8 @@ data:
   path: seq/inversion.hpp
   requiredBy:
   - other/sliding_puzzle_solver.hpp
-  timestamp: '2026-10-27 03:18:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-10-27 03:23:51+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1838.test.cpp
   - test/3_yukicoder/694.test.cpp

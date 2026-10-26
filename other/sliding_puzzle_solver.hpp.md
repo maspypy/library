@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedRequiredBy: []
@@ -192,8 +192,8 @@ data:
     \uFF1AA_i \u304C\u5148\u982D\u306B\u306A\u308B\u3088\u3046\u306B rotate \u3057\
     \u305F\u3068\u304D\u306E\u8EE2\u5012\u6570\ntemplate <typename T, bool SMALL =\
     \ false>\nvi inversion_rotate(const vc<T>& A) {\n  if (A.empty()) return {};\n\
-    \  const int N = len(A);\n  Index_Compression_SAME<T, SMALL> comp;\n  vc<int>\
-    \ rank = comp.build(A);\n  int K = MAX(rank) + 1;\n  ll ANS = 0;\n  FenwickTree<Monoid_Add<int>>\
+    \  const int N = len(A);\n  Index_Compression_SAME<T, SMALL> comp;\n  auto rank\
+    \ = comp.build(A);\n  int K = MAX(rank) + 1;\n  ll ANS = 0;\n  FenwickTree<Monoid_Add<int>>\
     \ bit(K);\n  for (auto&& x : rank) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x,\
     \ 1);\n  }\n  vi res(N);\n  FOR(i, N) {\n    res[i] = ANS;\n    ll x = rank[i];\n\
     \    ANS = ANS + bit.sum(x + 1, K) - bit.prefix_sum(x);\n  }\n  return res;\n\
@@ -379,7 +379,7 @@ data:
   isVerificationFile: false
   path: other/sliding_puzzle_solver.hpp
   requiredBy: []
-  timestamp: '2026-10-27 03:18:49+09:00'
+  timestamp: '2026-10-27 03:23:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: other/sliding_puzzle_solver.hpp
