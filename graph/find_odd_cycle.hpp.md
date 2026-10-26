@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/find_odd_cycle.test.cpp
     title: test/1_mytest/find_odd_cycle.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/graph/find_odd_cycle.hpp
@@ -127,46 +127,47 @@ data:
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
     \   }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\n\ntemplate\
-    \ <typename GT>\npair<int, vc<int>> strongly_connected_component(GT& G) {\n  static_assert(GT::is_directed);\n\
-    \  assert(G.is_prepared());\n  int N = G.N;\n  int nc = 0;\n  vc<int> comp(N),\
-    \ low(N), ord(N, -1), path;\n  vc<int> par(N, -1), it = G.indptr;\n  int now =\
-    \ 0;\n\n  FOR(s, N) {\n    if (ord[s] != -1) continue;\n    int v = s;\n    low[v]\
-    \ = ord[v] = now++;\n    path.eb(v);\n\n    while (v != -1) {\n      if (it[v]\
-    \ < G.indptr[v + 1]) {\n        int to = G.csr_edges[it[v]++].to;\n        if\
-    \ (ord[to] == -1) {\n          par[to] = v;\n          v = to;\n          low[v]\
-    \ = ord[v] = now++;\n          path.eb(v);\n        } else {\n          chmin(low[v],\
-    \ ord[to]);\n        }\n      } else {\n        if (low[v] == ord[v]) {\n    \
-    \      while (1) {\n            int u = POP(path);\n            ord[u] = N, comp[u]\
-    \ = nc;\n            if (u == v) break;\n          }\n          ++nc;\n      \
-    \  }\n        int p = par[v];\n        if (p != -1) chmin(low[p], low[v]);\n \
-    \       v = p;\n      }\n    }\n  }\n  FOR(v, N) comp[v] = nc - 1 - comp[v];\n\
-    \  return {nc, comp};\n}\n\ntemplate <typename GT>\nGraph<int, 1> scc_dag(GT&\
-    \ G, int nc, vc<int>& comp) {\n  Graph<int, 1> DAG(nc);\n  vvc<int> edges(nc);\n\
-    \  for (auto&& e : G.edges) {\n    int x = comp[e.frm], y = comp[e.to];\n    if\
-    \ (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c, nc) {\n    UNIQUE(edges[c]);\n\
-    \    for (auto&& to : edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return\
-    \ DAG;\n}\n#line 3 \"graph/find_odd_cycle.hpp\"\n\n// (vs, es), size=(n+1,n)\n\
-    // https://yukicoder.me/problems/no/1436\ntemplate <typename GT>\npair<vc<int>,\
-    \ vc<int>> find_odd_cycle(GT& G) {\n  int N = G.N;\n  vc<int> comp(N);\n  if constexpr\
-    \ (GT::is_directed) {\n    comp = strongly_connected_component<GT>(G).se;\n  }\n\
-    \  vc<int> dist(2 * N, infty<int>);\n  vc<int> par(2 * N, -1); // edge index\n\
-    \  deque<int> que;\n  auto add = [&](int v, int d, int p) -> void {\n    if (chmin(dist[v],\
-    \ d)) { que.eb(v), par[v] = p; }\n  };\n  FOR(root, N) {\n    if (dist[2 * root\
-    \ + 0] < infty<int>) continue;\n    if (dist[2 * root + 1] < infty<int>) continue;\n\
-    \    add(2 * root, 0, -1);\n    while (len(que)) {\n      auto v = POP(que);\n\
-    \      auto [a, b] = divmod(v, 2);\n      for (auto&& e: G[a]) {\n        if (comp[e.frm]\
-    \ != comp[e.to]) continue;\n        int w = 2 * e.to + (b ^ 1);\n        add(w,\
-    \ dist[v] + 1, e.id);\n      }\n    }\n    if (dist[2 * root + 1] == infty<int>)\
-    \ continue;\n    // found\n    vc<int> edges;\n    vc<int> vs;\n    vs.eb(root);\n\
-    \    int v = 2 * root + 1;\n    while (par[v] != -1) {\n      int i = par[v];\n\
-    \      edges.eb(i);\n      auto& e = G.edges[i];\n      v = 2 * (e.frm + e.to)\
-    \ + 1 - v;\n      vs.eb(v / 2);\n    }\n    reverse(all(edges));\n    reverse(all(vs));\n\
-    \    // walk -> cycle\n    vc<int> used(N, -1);\n    int l = -1, r = -1;\n   \
-    \ FOR(i, len(vs)) {\n      if (used[vs[i]] == -1) {\n        used[vs[i]] = i;\n\
-    \        continue;\n      }\n      l = used[vs[i]];\n      r = i;\n      break;\n\
-    \    }\n    assert(l != -1);\n    vs = {vs.begin() + l, vs.begin() + r};\n   \
-    \ edges = {edges.begin() + l, edges.begin() + r};\n    vs.eb(vs[0]);\n    return\
-    \ {vs, edges};\n  }\n  return {};\n}\n"
+    \ <typename GT>\npair<int, vc<int>> strongly_connected_component(const GT& G)\
+    \ {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n  int N =\
+    \ G.N;\n  int nc = 0;\n  vc<int> comp(N), low(N), ord(N, -1), path;\n  vc<int>\
+    \ par(N, -1), it = G.indptr;\n  int now = 0;\n\n  FOR(s, N) {\n    if (ord[s]\
+    \ != -1) continue;\n    int v = s;\n    low[v] = ord[v] = now++;\n    path.eb(v);\n\
+    \n    while (v != -1) {\n      if (it[v] < G.indptr[v + 1]) {\n        int to\
+    \ = G.csr_edges[it[v]++].to;\n        if (ord[to] == -1) {\n          par[to]\
+    \ = v;\n          v = to;\n          low[v] = ord[v] = now++;\n          path.eb(v);\n\
+    \        } else {\n          chmin(low[v], ord[to]);\n        }\n      } else\
+    \ {\n        if (low[v] == ord[v]) {\n          while (1) {\n            int u\
+    \ = POP(path);\n            ord[u] = N, comp[u] = nc;\n            if (u == v)\
+    \ break;\n          }\n          ++nc;\n        }\n        int p = par[v];\n \
+    \       if (p != -1) chmin(low[p], low[v]);\n        v = p;\n      }\n    }\n\
+    \  }\n  FOR(v, N) comp[v] = nc - 1 - comp[v];\n  return {nc, comp};\n}\n\ntemplate\
+    \ <typename GT>\nGraph<int, 1> scc_dag(const GT& G, int nc, const vc<int>& comp)\
+    \ {\n  Graph<int, 1> DAG(nc);\n  vvc<int> edges(nc);\n  for (auto&& e : G.edges)\
+    \ {\n    int x = comp[e.frm], y = comp[e.to];\n    if (x == y) continue;\n   \
+    \ edges[x].eb(y);\n  }\n  FOR(c, nc) {\n    UNIQUE(edges[c]);\n    for (auto&&\
+    \ to : edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line\
+    \ 3 \"graph/find_odd_cycle.hpp\"\n\n// (vs, es), size=(n+1,n)\n// https://yukicoder.me/problems/no/1436\n\
+    template <typename GT>\npair<vc<int>, vc<int>> find_odd_cycle(GT& G) {\n  int\
+    \ N = G.N;\n  vc<int> comp(N);\n  if constexpr (GT::is_directed) {\n    comp =\
+    \ strongly_connected_component<GT>(G).se;\n  }\n  vc<int> dist(2 * N, infty<int>);\n\
+    \  vc<int> par(2 * N, -1); // edge index\n  deque<int> que;\n  auto add = [&](int\
+    \ v, int d, int p) -> void {\n    if (chmin(dist[v], d)) { que.eb(v), par[v] =\
+    \ p; }\n  };\n  FOR(root, N) {\n    if (dist[2 * root + 0] < infty<int>) continue;\n\
+    \    if (dist[2 * root + 1] < infty<int>) continue;\n    add(2 * root, 0, -1);\n\
+    \    while (len(que)) {\n      auto v = POP(que);\n      auto [a, b] = divmod(v,\
+    \ 2);\n      for (auto&& e: G[a]) {\n        if (comp[e.frm] != comp[e.to]) continue;\n\
+    \        int w = 2 * e.to + (b ^ 1);\n        add(w, dist[v] + 1, e.id);\n   \
+    \   }\n    }\n    if (dist[2 * root + 1] == infty<int>) continue;\n    // found\n\
+    \    vc<int> edges;\n    vc<int> vs;\n    vs.eb(root);\n    int v = 2 * root +\
+    \ 1;\n    while (par[v] != -1) {\n      int i = par[v];\n      edges.eb(i);\n\
+    \      auto& e = G.edges[i];\n      v = 2 * (e.frm + e.to) + 1 - v;\n      vs.eb(v\
+    \ / 2);\n    }\n    reverse(all(edges));\n    reverse(all(vs));\n    // walk ->\
+    \ cycle\n    vc<int> used(N, -1);\n    int l = -1, r = -1;\n    FOR(i, len(vs))\
+    \ {\n      if (used[vs[i]] == -1) {\n        used[vs[i]] = i;\n        continue;\n\
+    \      }\n      l = used[vs[i]];\n      r = i;\n      break;\n    }\n    assert(l\
+    \ != -1);\n    vs = {vs.begin() + l, vs.begin() + r};\n    edges = {edges.begin()\
+    \ + l, edges.begin() + r};\n    vs.eb(vs[0]);\n    return {vs, edges};\n  }\n\
+    \  return {};\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/graph/find_odd_cycle.hpp\n\
     #include \"graph/strongly_connected_component.hpp\"\n\n// (vs, es), size=(n+1,n)\n\
     // https://yukicoder.me/problems/no/1436\ntemplate <typename GT>\npair<vc<int>,\
@@ -197,8 +198,8 @@ data:
   isVerificationFile: false
   path: graph/find_odd_cycle.hpp
   requiredBy: []
-  timestamp: '2026-10-25 14:31:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-26 22:27:11+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/find_odd_cycle.test.cpp
 documentation_of: graph/find_odd_cycle.hpp

@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
     path: graph/incremental_scc.hpp
     title: graph/incremental_scc.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -260,25 +260,26 @@ data:
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
     \   }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\n\ntemplate\
-    \ <typename GT>\npair<int, vc<int>> strongly_connected_component(GT& G) {\n  static_assert(GT::is_directed);\n\
-    \  assert(G.is_prepared());\n  int N = G.N;\n  int nc = 0;\n  vc<int> comp(N),\
-    \ low(N), ord(N, -1), path;\n  vc<int> par(N, -1), it = G.indptr;\n  int now =\
-    \ 0;\n\n  FOR(s, N) {\n    if (ord[s] != -1) continue;\n    int v = s;\n    low[v]\
-    \ = ord[v] = now++;\n    path.eb(v);\n\n    while (v != -1) {\n      if (it[v]\
-    \ < G.indptr[v + 1]) {\n        int to = G.csr_edges[it[v]++].to;\n        if\
-    \ (ord[to] == -1) {\n          par[to] = v;\n          v = to;\n          low[v]\
-    \ = ord[v] = now++;\n          path.eb(v);\n        } else {\n          chmin(low[v],\
-    \ ord[to]);\n        }\n      } else {\n        if (low[v] == ord[v]) {\n    \
-    \      while (1) {\n            int u = POP(path);\n            ord[u] = N, comp[u]\
-    \ = nc;\n            if (u == v) break;\n          }\n          ++nc;\n      \
-    \  }\n        int p = par[v];\n        if (p != -1) chmin(low[p], low[v]);\n \
-    \       v = p;\n      }\n    }\n  }\n  FOR(v, N) comp[v] = nc - 1 - comp[v];\n\
-    \  return {nc, comp};\n}\n\ntemplate <typename GT>\nGraph<int, 1> scc_dag(GT&\
-    \ G, int nc, vc<int>& comp) {\n  Graph<int, 1> DAG(nc);\n  vvc<int> edges(nc);\n\
-    \  for (auto&& e : G.edges) {\n    int x = comp[e.frm], y = comp[e.to];\n    if\
-    \ (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c, nc) {\n    UNIQUE(edges[c]);\n\
-    \    for (auto&& to : edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return\
-    \ DAG;\n}\n#line 3 \"graph/incremental_scc.hpp\"\n\n// https://codeforces.com/blog/entry/91608\n\
+    \ <typename GT>\npair<int, vc<int>> strongly_connected_component(const GT& G)\
+    \ {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n  int N =\
+    \ G.N;\n  int nc = 0;\n  vc<int> comp(N), low(N), ord(N, -1), path;\n  vc<int>\
+    \ par(N, -1), it = G.indptr;\n  int now = 0;\n\n  FOR(s, N) {\n    if (ord[s]\
+    \ != -1) continue;\n    int v = s;\n    low[v] = ord[v] = now++;\n    path.eb(v);\n\
+    \n    while (v != -1) {\n      if (it[v] < G.indptr[v + 1]) {\n        int to\
+    \ = G.csr_edges[it[v]++].to;\n        if (ord[to] == -1) {\n          par[to]\
+    \ = v;\n          v = to;\n          low[v] = ord[v] = now++;\n          path.eb(v);\n\
+    \        } else {\n          chmin(low[v], ord[to]);\n        }\n      } else\
+    \ {\n        if (low[v] == ord[v]) {\n          while (1) {\n            int u\
+    \ = POP(path);\n            ord[u] = N, comp[u] = nc;\n            if (u == v)\
+    \ break;\n          }\n          ++nc;\n        }\n        int p = par[v];\n \
+    \       if (p != -1) chmin(low[p], low[v]);\n        v = p;\n      }\n    }\n\
+    \  }\n  FOR(v, N) comp[v] = nc - 1 - comp[v];\n  return {nc, comp};\n}\n\ntemplate\
+    \ <typename GT>\nGraph<int, 1> scc_dag(const GT& G, int nc, const vc<int>& comp)\
+    \ {\n  Graph<int, 1> DAG(nc);\n  vvc<int> edges(nc);\n  for (auto&& e : G.edges)\
+    \ {\n    int x = comp[e.frm], y = comp[e.to];\n    if (x == y) continue;\n   \
+    \ edges[x].eb(y);\n  }\n  FOR(c, nc) {\n    UNIQUE(edges[c]);\n    for (auto&&\
+    \ to : edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line\
+    \ 3 \"graph/incremental_scc.hpp\"\n\n// https://codeforces.com/blog/entry/91608\n\
     // https://codeforces.com/contest/1989/problem/F\n// \u30B0\u30E9\u30D5\u306E\u8FBA\
     \u756A\u53F7 0, 1, 2, ... \u9806\u306B\u8FBA\u3092\u8DB3\u3057\u3066\u3044\u304F\
     .\n// \u5404\u8FBA i \u306B\u5BFE\u3057\u3066\u305D\u308C\u304C\u30B5\u30A4\u30AF\
@@ -547,7 +548,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/incremental_scc.test.cpp
   requiredBy: []
-  timestamp: '2026-10-25 14:31:22+09:00'
+  timestamp: '2026-10-26 22:27:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/incremental_scc.test.cpp

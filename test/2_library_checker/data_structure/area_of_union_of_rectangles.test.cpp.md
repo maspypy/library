@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/minmincnt.hpp
     title: alg/monoid/minmincnt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/rectangle_union.hpp
     title: ds/rectangle_union.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/area_of_union_of_rectangles
@@ -365,21 +365,22 @@ data:
     \ &x, const A &a, const ll &size) {\n    auto [xmin, xmincnt] = x;\n    if (xmin\
     \ == infty<E>) return x;\n    return {xmin + a, xmincnt};\n  }\n};\n#line 4 \"\
     ds/rectangle_union.hpp\"\n\ntemplate <typename XY = int>\nstruct Rectangle_Union\
-    \ {\n  using RECT = tuple<XY, XY, XY, XY>;\n  vc<RECT> rectangles;\n  vc<XY> X,\
-    \ Y;\n\n  void add_rect(XY xl, XY xr, XY yl, XY yr) {\n    assert(xl < xr && yl\
-    \ < yr);\n    X.eb(xl), X.eb(xr), Y.eb(yl), Y.eb(yr);\n    rectangles.eb(xl, xr,\
-    \ yl, yr);\n  }\n\n  template <typename ANS_TYPE = ll>\n  ANS_TYPE calc() {\n\
-    \    if (rectangles.empty()) return 0;\n    int N = len(X);\n    vc<int> ord_x\
-    \ = argsort(X);\n    vc<int> ord_y = argsort(Y);\n    vc<int> rk_y(N);\n    FOR(i,\
-    \ N) rk_y[ord_y[i]] = i;\n    X = rearrange(X, ord_x);\n    Y = rearrange(Y, ord_y);\n\
-    \n    using AM = ActedMonoid_MinMincnt_Add<XY>;\n    Lazy_SegTree<AM> seg(N -\
-    \ 1, [&](int i) -> pair<XY, XY> { return {0, Y[i + 1] - Y[i]}; });\n\n    ANS_TYPE\
-    \ ANS = 0;\n    XY total = Y.back() - Y[0];\n    FOR(i, N - 1) {\n      int k\
-    \ = ord_x[i] / 2;\n      int a = (ord_x[i] & 1 ? -1 : 1);\n      seg.apply(rk_y[2\
-    \ * k], rk_y[2 * k + 1], a);\n      auto [min, mincnt] = seg.prod_all();\n   \
-    \   ANS_TYPE dy = total - (min == 0 ? mincnt : 0);\n      ANS_TYPE dx = X[i +\
-    \ 1] - X[i];\n      ANS += dx * dy;\n    }\n    return ANS;\n  }\n};\n#line 6\
-    \ \"test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp\"\
+    \ {\n  bool calculated = false;\n  using RECT = tuple<XY, XY, XY, XY>;\n  vc<RECT>\
+    \ rectangles;\n  vc<XY> X, Y;\n\n  void add_rect(XY xl, XY xr, XY yl, XY yr) {\n\
+    \    assert(!calculated);\n    assert(xl < xr && yl < yr);\n    X.eb(xl), X.eb(xr),\
+    \ Y.eb(yl), Y.eb(yr);\n    rectangles.eb(xl, xr, yl, yr);\n  }\n\n  template <typename\
+    \ ANS_TYPE = ll>\n  ANS_TYPE calc() {\n    assert(!calculated);\n    calculated\
+    \ = true;\n    if (rectangles.empty()) return 0;\n    int N = len(X);\n    vc<int>\
+    \ ord_x = argsort(X);\n    vc<int> ord_y = argsort(Y);\n    vc<int> rk_y(N);\n\
+    \    FOR(i, N) rk_y[ord_y[i]] = i;\n    X = rearrange(X, ord_x);\n    Y = rearrange(Y,\
+    \ ord_y);\n\n    using AM = ActedMonoid_MinMincnt_Add<XY>;\n    Lazy_SegTree<AM>\
+    \ seg(\n        N - 1, [&](int i) -> pair<XY, XY> { return {0, Y[i + 1] - Y[i]};\
+    \ });\n\n    ANS_TYPE ANS = 0;\n    XY total = Y.back() - Y[0];\n    FOR(i, N\
+    \ - 1) {\n      int k = ord_x[i] / 2;\n      int a = (ord_x[i] & 1 ? -1 : 1);\n\
+    \      seg.apply(rk_y[2 * k], rk_y[2 * k + 1], a);\n      auto [min, mincnt] =\
+    \ seg.prod_all();\n      ANS_TYPE dy = total - (min == 0 ? mincnt : 0);\n    \
+    \  ANS_TYPE dx = X[i + 1] - X[i];\n      ANS += dx * dy;\n    }\n    return ANS;\n\
+    \  }\n};\n#line 6 \"test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  Rectangle_Union<int> X;\n  FOR(N) {\n    LL(a,\
     \ b, c, d);\n    X.add_rect(a, c, b, d);\n  }\n  print(X.calc<ll>());\n}\n\nsigned\
     \ main() {\n  cout << fixed << setprecision(15);\n\n  solve();\n\n  return 0;\n\
@@ -401,8 +402,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
   requiredBy: []
-  timestamp: '2026-10-22 01:32:06+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-10-26 22:30:55+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
 layout: document
