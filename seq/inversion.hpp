@@ -26,14 +26,14 @@ vi inversion_rotate(const vc<T>& A) {
   int K = MAX(rank) + 1;
   ll ANS = 0;
   FenwickTree<Monoid_Add<int>> bit(K);
-  for (auto&& x : A) {
+  for (auto&& x : rank) {
     ANS += bit.sum(x + 1, K);
     bit.add(x, 1);
   }
   vi res(N);
   FOR(i, N) {
     res[i] = ANS;
-    ll x = A[i];
+    ll x = rank[i];
     ANS = ANS + bit.sum(x + 1, K) - bit.prefix_sum(x);
   }
   return res;
