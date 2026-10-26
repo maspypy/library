@@ -127,7 +127,7 @@ template <typename T>
 struct Segment {
   Point<T> A, B;
 
-  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}
+  Segment(Point<T> A, Point<T> B) : A(A), B(B) { assert(A != B); }
   Segment(T x1, T y1, T x2, T y2)
       : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}
 

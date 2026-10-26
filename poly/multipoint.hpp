@@ -122,6 +122,7 @@ vc<mint> multipoint_interpolate(const vc<mint>& x, const vc<mint>& y) {
 // calculate f(ar^k) for 0 <= k < m
 template <typename mint>
 vc<mint> multipoint_eval_on_geom_seq(vc<mint> f, mint a, mint r, int m) {
+  assert(m >= 0);
   const int n = len(f);
   if (m == 0) return {};
   if (n == 0) return vc<mint>(m, 0);

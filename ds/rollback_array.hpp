@@ -17,11 +17,10 @@ struct Rollback_Array {
 
   int time() { return len(history); }
   void rollback(int t) {
-    FOR_R(i, t, time()) {
-      auto& [idx, v] = history[i];
+    while (t < time()) {
+      auto [idx, v] = POP(history[i]);
       dat[idx] = v;
     }
-    history.resize(t);
   }
   T get(int idx) { return dat[idx]; }
   void set(int idx, T x) {
@@ -29,9 +28,5 @@ struct Rollback_Array {
     dat[idx] = x;
   }
 
-  vc<T> get_all() {
-    vc<T> res(N);
-    FOR(i, N) res[i] = get(i);
-    return res;
-  }
+  vc<T> get_all() { return dat; }
 };

@@ -1,5 +1,6 @@
 // Source: https://github.com/maspypy/library/blob/main/seq/inversion.hpp
 #include "ds/fenwicktree/fenwicktree_01.hpp"
+#include "ds/index_compression.hpp"
 
 template <typename T>
 ll inversion(const vc<T>& A) {
@@ -17,15 +18,12 @@ ll inversion(const vc<T>& A) {
 
 // i 番目：A_i が先頭になるように rotate したときの転倒数
 template <typename T, bool SMALL = false>
-vi inversion_rotate(vc<T>& A) {
+vi inversion_rotate(const vc<T>& A) {
   if (A.empty()) return {};
   const int N = len(A);
-  if (!SMALL) {
-    auto key = A;
-    UNIQUE(key);
-    for (auto&& x : A) x = LB(key, x);
-  }
-  ll K = MAX(A) + 1;
+  Index_Compression_SAME<T, SMALL> comp;
+  vc<int> rank = comp.build(A);
+  int K = MAX(rank) + 1;
   ll ANS = 0;
   FenwickTree<Monoid_Add<int>> bit(K);
   for (auto&& x : A) {

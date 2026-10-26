@@ -30,6 +30,7 @@ struct Dynamic_Modint {
   Dynamic_Modint(int x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}
   Dynamic_Modint(ll x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}
   Dynamic_Modint(i128 x) : val((x %= get_mod()) < 0 ? x + get_mod() : x){};
+  Dynamic_Modint(u128 x) : val(x % umod()) {}
 
   bool operator<(const mint& other) const { return val < other.val; }
   mint& operator+=(const mint& rhs) {
