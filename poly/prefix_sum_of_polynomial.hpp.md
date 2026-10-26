@@ -40,17 +40,17 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2580.test.cpp
     title: test/3_yukicoder/2580.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/poly/prefix_sum_of_polynomial.hpp
@@ -448,7 +448,7 @@ data:
   path: poly/prefix_sum_of_polynomial.hpp
   requiredBy: []
   timestamp: '2026-10-25 17:50:13+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2580.test.cpp
 documentation_of: poly/prefix_sum_of_polynomial.hpp

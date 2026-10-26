@@ -49,7 +49,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/power_projection.hpp
     title: poly/power_projection.hpp
   _extendedRequiredBy:
@@ -62,7 +62,7 @@ data:
   - icon: ':warning:'
     path: poly/2d/compositional_inverse_2d.hpp
     title: poly/2d/compositional_inverse_2d.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/schroder.hpp
     title: poly/schroder.hpp
   _extendedVerifiedWith:
@@ -81,15 +81,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3619.test.cpp
     title: test/3_yukicoder/3619.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3621.test.cpp
     title: test/3_yukicoder/3621.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/poly/compositional_inverse.hpp
@@ -1604,7 +1604,7 @@ data:
   - poly/2d/compositional_inverse_2d.hpp
   - poly/schroder.hpp
   timestamp: '2026-10-25 17:50:13+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/compositional_inverset.test.cpp
   - test/1_mytest/count_labeled_biconnected.test.cpp

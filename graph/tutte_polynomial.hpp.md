@@ -4,19 +4,19 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/bitwise_transform.hpp
     title: setfunc/bitwise_transform.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
   - icon: ':heavy_check_mark:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []

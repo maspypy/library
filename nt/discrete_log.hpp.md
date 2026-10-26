@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_set/from_monoid.hpp
     title: alg/acted_set/from_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
   - icon: ':question:'
@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
     title: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1339.test.cpp
     title: test/3_yukicoder/1339.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/nt/discrete_log.hpp
@@ -125,7 +125,7 @@ data:
   requiredBy:
   - mod/mod_log.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1339.test.cpp
   - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
