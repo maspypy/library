@@ -46,6 +46,7 @@ struct SubproductTree {
     FOR(i, m) a[i] = T[1][m - i - 1] * (i + 1);
 
     a = evaluation(a);
+    for (auto& v : a) assert(v != mint(0));
     vc<vc<mint>> t(2 * sz);
     FOR(i, sz) t[sz + i] = {(i < m ? y[i] / a[i] : 0)};
     FOR3_R(i, 1, sz) {
@@ -112,6 +113,7 @@ vc<mint> multipoint_eval(const vc<mint>& f, const vc<mint>& x) {
 
 template <typename mint>
 vc<mint> multipoint_interpolate(const vc<mint>& x, const vc<mint>& y) {
+  assert(len(x) == len(y));
   if (x.empty()) return {};
   SubproductTree<mint> F(x);
   return F.interpolation(y);
@@ -173,6 +175,7 @@ vc<mint> multipoint_interpolate_on_geom_seq(vc<mint> Y, mint a, mint r) {
   if (n == 0) return {};
   if (n == 1) return {Y[0]};
   assert(r != mint(0));
+  assert(a != mint(0));
   mint ir = r.inverse();
 
   vc<mint> POW(n + n - 1), tPOW(n + n - 1);
@@ -187,6 +190,7 @@ vc<mint> multipoint_interpolate_on_geom_seq(vc<mint> Y, mint a, mint r) {
   vc<mint> S(n);
   S[0] = mint(1);
   FOR(i, 1, n) S[i] = S[i - 1] * (mint(1) - POW[i]);
+  assert(S[n - 1] != mint(0));
   vc<mint> iS = all_inverse<mint>(S);
   mint sn = S[n - 1] * (mint(1) - POW[n]);
 
