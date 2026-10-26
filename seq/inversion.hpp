@@ -22,7 +22,7 @@ vi inversion_rotate(const vc<T>& A) {
   if (A.empty()) return {};
   const int N = len(A);
   Index_Compression_SAME<T, SMALL> comp;
-  vc<int> rank = comp.build(A);
+  auto rank = comp.build(A);
   int K = MAX(rank) + 1;
   ll ANS = 0;
   FenwickTree<Monoid_Add<int>> bit(K);
