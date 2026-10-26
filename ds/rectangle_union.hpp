@@ -4,11 +4,13 @@
 
 template <typename XY = int>
 struct Rectangle_Union {
+  bool calculated = false;
   using RECT = tuple<XY, XY, XY, XY>;
   vc<RECT> rectangles;
   vc<XY> X, Y;
 
   void add_rect(XY xl, XY xr, XY yl, XY yr) {
+    assert(!calculated);
     assert(xl < xr && yl < yr);
     X.eb(xl), X.eb(xr), Y.eb(yl), Y.eb(yr);
     rectangles.eb(xl, xr, yl, yr);
@@ -16,6 +18,8 @@ struct Rectangle_Union {
 
   template <typename ANS_TYPE = ll>
   ANS_TYPE calc() {
+    assert(!calculated);
+    calculated = true;
     if (rectangles.empty()) return 0;
     int N = len(X);
     vc<int> ord_x = argsort(X);
@@ -26,7 +30,8 @@ struct Rectangle_Union {
     Y = rearrange(Y, ord_y);
 
     using AM = ActedMonoid_MinMincnt_Add<XY>;
-    Lazy_SegTree<AM> seg(N - 1, [&](int i) -> pair<XY, XY> { return {0, Y[i + 1] - Y[i]}; });
+    Lazy_SegTree<AM> seg(
+        N - 1, [&](int i) -> pair<XY, XY> { return {0, Y[i + 1] - Y[i]}; });
 
     ANS_TYPE ANS = 0;
     XY total = Y.back() - Y[0];

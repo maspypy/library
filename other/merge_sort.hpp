@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/other/merge_sort.hpp
 // floor(n log_2n) 回以下の comp call
 template <class T, class Comp>
 void merge_sort(vc<T>& A, Comp comp) {
