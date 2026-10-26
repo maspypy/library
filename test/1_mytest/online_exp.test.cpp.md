@@ -551,46 +551,46 @@ data:
     // Source: https://github.com/maspypy/library/blob/main/poly/count_terms.hpp\n\
     template<typename mint>\nint count_terms(const vc<mint>& f){\n  int t = 0;\n \
     \ FOR(i, len(f)) if(f[i] != mint(0)) ++t;\n  return t;\n}\n#line 6 \"poly/fps_exp.hpp\"\
-    \n\ntemplate <typename mint>\nvc<mint> fps_exp_sparse(vc<mint>& f) {\n  if (len(f)\
-    \ == 0) return {};\n  assert(f[0] == 0);\n  int N = len(f);\n  // df \u3092\u6301\
-    \u305F\u305B\u308B\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, N) if (f[i] != mint(0))\
-    \ dat.eb(i - 1, mint(i) * f[i]);\n  vc<mint> F(N);\n  F[0] = 1;\n  FOR(n, 1, N)\
-    \ {\n    mint rhs = 0;\n    for (auto&& [k, fk] : dat) {\n      if (k > n - 1)\
-    \ break;\n      rhs += fk * F[n - 1 - k];\n    }\n    F[n] = rhs * inv<mint>(n);\n\
-    \  }\n  return F;\n}\n\ntemplate <typename mint>\nvc<mint> fps_exp_dense(vc<mint>&\
-    \ h) {\n  if (h.empty()) return {};\n  const int n = len(h);\n  assert(h[0] ==\
-    \ mint(0));\n  if (mint::can_ntt()) {\n    vc<mint>& f = h;\n    vc<mint> b =\
-    \ {1, (1 < n ? f[1] : 0)};\n    vc<mint> c = {1}, z1, z2 = {1, 1};\n    while\
-    \ (len(b) < n) {\n      int m = len(b);\n      auto y = b;\n      y.resize(2 *\
-    \ m);\n      ntt(y, 0);\n      z1 = z2;\n      vc<mint> z(m);\n      FOR(i, m)\
-    \ z[i] = y[i] * z1[i];\n      ntt(z, 1);\n      FOR(i, m / 2) z[i] = 0;\n    \
-    \  ntt(z, 0);\n      FOR(i, m) z[i] *= -z1[i];\n      ntt(z, 1);\n      c.insert(c.end(),\
-    \ z.begin() + m / 2, z.end());\n      z2 = c;\n      z2.resize(2 * m);\n     \
-    \ ntt(z2, 0);\n\n      vc<mint> x(f.begin(), f.begin() + m);\n      FOR(i, len(x)\
-    \ - 1) x[i] = x[i + 1] * mint(i + 1);\n      x.back() = 0;\n      ntt(x, 0);\n\
-    \      FOR(i, m) x[i] *= y[i];\n      ntt(x, 1);\n\n      FOR(i, m - 1) x[i] -=\
-    \ b[i + 1] * mint(i + 1);\n\n      x.resize(m + m);\n      FOR(i, m - 1) x[m +\
-    \ i] = x[i], x[i] = 0;\n      ntt(x, 0);\n      FOR(i, m + m) x[i] *= z2[i];\n\
-    \      ntt(x, 1);\n      FOR_R(i, len(x) - 1) x[i + 1] = x[i] * inv<mint>(i +\
-    \ 1);\n      x[0] = 0;\n\n      FOR3(i, m, min(n, m + m)) x[i] += f[i];\n    \
-    \  FOR(i, m) x[i] = 0;\n      ntt(x, 0);\n      FOR(i, m + m) x[i] *= y[i];\n\
-    \      ntt(x, 1);\n      b.insert(b.end(), x.begin() + m, x.end());\n    }\n \
-    \   b.resize(n);\n    return b;\n  }\n\n  const int L = len(h);\n  assert(L >\
-    \ 0 && h[0] == mint(0));\n  int LOG = 0;\n  while (1 << LOG < L) ++LOG;\n  h.resize(1\
-    \ << LOG);\n  auto dh = differentiate(h);\n  vc<mint> f = {1}, g = {1};\n  int\
-    \ m = 1;\n\n  vc<mint> p;\n\n  FOR(LOG) {\n    p = convolution(f, g);\n    p.resize(m);\n\
-    \    p = convolution(p, g);\n    p.resize(m);\n    g.resize(m);\n    FOR(i, m)\
-    \ g[i] += g[i] - p[i];\n    p = {dh.begin(), dh.begin() + m - 1};\n    p = convolution(f,\
-    \ p);\n    p.resize(m + m - 1);\n    FOR(i, m + m - 1) p[i] = -p[i];\n    FOR(i,\
-    \ m - 1) p[i] += mint(i + 1) * f[i + 1];\n    p = convolution(p, g);\n\n    p.resize(m\
-    \ + m - 1);\n    FOR(i, m - 1) p[i] += dh[i];\n    p = integrate(p);\n    FOR(i,\
-    \ m + m) p[i] = h[i] - p[i];\n    p[0] += mint(1);\n    f = convolution(f, p);\n\
-    \    f.resize(m + m);\n    m += m;\n  }\n  f.resize(L);\n  return f;\n}\n\ntemplate\
-    \ <typename mint>\nvc<mint> fps_exp(vc<mint>& f) {\n  int n = count_terms(f);\n\
-    \  int t = (mint::can_ntt() ? 320 : 3000);\n  return (n <= t ? fps_exp_sparse<mint>(f)\
-    \ : fps_exp_dense<mint>(f));\n}\n#line 1 \"poly/online/online_exp.hpp\"\n// Source:\
-    \ https://github.com/maspypy/library/blob/main/poly/online/online_exp.hpp\n#line\
-    \ 1 \"poly/online/online_convolution.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/online/online_convolution.hpp\n\
+    \n\ntemplate <typename mint>\nvc<mint> fps_exp_sparse(const vc<mint>& f) {\n \
+    \ if (len(f) == 0) return {};\n  assert(f[0] == 0);\n  int N = len(f);\n  // df\
+    \ \u3092\u6301\u305F\u305B\u308B\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, N) if\
+    \ (f[i] != mint(0)) dat.eb(i - 1, mint(i) * f[i]);\n  vc<mint> F(N);\n  F[0] =\
+    \ 1;\n  FOR(n, 1, N) {\n    mint rhs = 0;\n    for (auto&& [k, fk] : dat) {\n\
+    \      if (k > n - 1) break;\n      rhs += fk * F[n - 1 - k];\n    }\n    F[n]\
+    \ = rhs * inv<mint>(n);\n  }\n  return F;\n}\n\ntemplate <typename mint>\nvc<mint>\
+    \ fps_exp_dense(const vc<mint>& h) {\n  if (h.empty()) return {};\n  const int\
+    \ n = len(h);\n  assert(h[0] == mint(0));\n  if (mint::can_ntt()) {\n    const\
+    \ vc<mint>& f = h;\n    vc<mint> b = {1, (1 < n ? f[1] : 0)};\n    vc<mint> c\
+    \ = {1}, z1, z2 = {1, 1};\n    while (len(b) < n) {\n      int m = len(b);\n \
+    \     auto y = b;\n      y.resize(2 * m);\n      ntt(y, 0);\n      z1 = z2;\n\
+    \      vc<mint> z(m);\n      FOR(i, m) z[i] = y[i] * z1[i];\n      ntt(z, 1);\n\
+    \      FOR(i, m / 2) z[i] = 0;\n      ntt(z, 0);\n      FOR(i, m) z[i] *= -z1[i];\n\
+    \      ntt(z, 1);\n      c.insert(c.end(), z.begin() + m / 2, z.end());\n    \
+    \  z2 = c;\n      z2.resize(2 * m);\n      ntt(z2, 0);\n\n      vc<mint> x(f.begin(),\
+    \ f.begin() + m);\n      FOR(i, len(x) - 1) x[i] = x[i + 1] * mint(i + 1);\n \
+    \     x.back() = 0;\n      ntt(x, 0);\n      FOR(i, m) x[i] *= y[i];\n      ntt(x,\
+    \ 1);\n\n      FOR(i, m - 1) x[i] -= b[i + 1] * mint(i + 1);\n\n      x.resize(m\
+    \ + m);\n      FOR(i, m - 1) x[m + i] = x[i], x[i] = 0;\n      ntt(x, 0);\n  \
+    \    FOR(i, m + m) x[i] *= z2[i];\n      ntt(x, 1);\n      FOR_R(i, len(x) - 1)\
+    \ x[i + 1] = x[i] * inv<mint>(i + 1);\n      x[0] = 0;\n\n      FOR3(i, m, min(n,\
+    \ m + m)) x[i] += f[i];\n      FOR(i, m) x[i] = 0;\n      ntt(x, 0);\n      FOR(i,\
+    \ m + m) x[i] *= y[i];\n      ntt(x, 1);\n      b.insert(b.end(), x.begin() +\
+    \ m, x.end());\n    }\n    b.resize(n);\n    return b;\n  }\n\n  const int L =\
+    \ len(h);\n  assert(L > 0 && h[0] == mint(0));\n  int LOG = 0;\n  while (1 <<\
+    \ LOG < L) ++LOG;\n  auto dh = differentiate(h);\n  vc<mint> f = {1}, g = {1};\n\
+    \  int m = 1;\n\n  vc<mint> p;\n\n  FOR(LOG) {\n    p = convolution(f, g);\n \
+    \   p.resize(m);\n    p = convolution(p, g);\n    p.resize(m);\n    g.resize(m);\n\
+    \    FOR(i, m) g[i] += g[i] - p[i];\n    p = {dh.begin(), dh.begin() + m - 1};\n\
+    \    p = convolution(f, p);\n    p.resize(m + m - 1);\n    FOR(i, m + m - 1) p[i]\
+    \ = -p[i];\n    FOR(i, m - 1) p[i] += mint(i + 1) * f[i + 1];\n    p = convolution(p,\
+    \ g);\n\n    p.resize(m + m - 1);\n    FOR(i, m - 1) p[i] += dh[i];\n    p = integrate(p);\n\
+    \    FOR(i, m + m) { p[i] = (i < L ? h[i] : mint(0)) - p[i]; }\n    p[0] += mint(1);\n\
+    \    f = convolution(f, p);\n    f.resize(m + m);\n    m += m;\n  }\n  f.resize(L);\n\
+    \  return f;\n}\n\ntemplate <typename mint>\nvc<mint> fps_exp(const vc<mint>&\
+    \ f) {\n  int n = count_terms(f);\n  int t = (mint::can_ntt() ? 320 : 3000);\n\
+    \  return (n <= t ? fps_exp_sparse<mint>(f) : fps_exp_dense<mint>(f));\n}\n#line\
+    \ 1 \"poly/online/online_exp.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/online/online_exp.hpp\n\
+    #line 1 \"poly/online/online_convolution.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/online/online_convolution.hpp\n\
     #line 1 \"poly/ntt.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/ntt.hpp\n\
     \ntemplate <class mint>\nvoid ntt(vector<mint>& a, bool inverse) {\n  assert(mint::can_ntt());\n\
     \  const int rank2 = mint::ntt_info().fi;\n  const u32 mod = mint::get_mod();\n\
@@ -786,7 +786,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/online_exp.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
+  timestamp: '2026-10-27 04:18:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/online_exp.test.cpp

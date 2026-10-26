@@ -365,47 +365,48 @@ data:
     \n\nstruct Common_Interval_Decomposition {\n  struct Node {\n    vc<Node*> ch;\n\
     \    bool inc, dec;\n    int l, r, lo, hi;\n    string type() {\n      if (r ==\
     \ l + 1) return \"leaf\";\n      if (inc) return \"inc\";\n      if (dec) return\
-    \ \"dec\";\n      return \"prime\";\n    }\n  };\n\n  Node* pool;\n  Node* root;\n\
-    \  int pid;\n\n  Common_Interval_Decomposition(vc<int>& P) : pid(0) {\n    pool\
-    \ = new Node[2 * len(P)];\n    build(P);\n  }\n\n  Node* new_node(bool inc, bool\
-    \ dec, int l, int r, int lo, int hi) {\n    pool[pid].inc = inc;\n    pool[pid].dec\
-    \ = dec;\n    pool[pid].l = l;\n    pool[pid].r = r;\n    pool[pid].lo = lo;\n\
-    \    pool[pid].hi = hi;\n    return &(pool[pid++]);\n  }\n\n  void build(vc<int>&\
-    \ P) {\n    int N = len(P);\n    Lazy_SegTree<ActedMonoid_Min_Add<int>> seg(vc<int>(N,\
-    \ 0));\n\n    vc<Node*> st;\n    vc<int> mi = {-1}, ma = {-1};\n    FOR(i, N)\
-    \ {\n      while (mi.back() != -1 && P[i] < P[mi.back()]) {\n        int j = POP(mi);\n\
-    \        seg.apply(mi.back() + 1, j + 1, P[j] - P[i]);\n      }\n      while (ma.back()\
-    \ != -1 && P[i] > P[ma.back()]) {\n        int j = POP(ma);\n        seg.apply(ma.back()\
-    \ + 1, j + 1, P[i] - P[j]);\n      }\n      mi.eb(i), ma.eb(i);\n\n      Node*\
-    \ now = new_node(0, 0, i, i + 1, P[i], P[i] + 1);\n      while (len(st)) {\n \
-    \       Node* n = st.back();\n        if (n->hi == now->lo) {\n          if (n->inc)\
-    \ {\n            n->ch.eb(now);\n            n->r = now->r;\n            n->hi\
-    \ = now->hi;\n            now = n;\n            st.pop_back();\n          } else\
-    \ {\n            Node* p = new_node(1, 0, n->l, now->r, n->lo, now->hi);\n   \
-    \         p->ch.eb(n);\n            p->ch.eb(now);\n            now = p;\n   \
-    \         st.pop_back();\n          }\n          continue;\n        }\n      \
-    \  if (n->lo == now->hi) {\n          if (n->dec) {\n            n->ch.eb(now);\n\
-    \            n->r = now->r;\n            n->lo = now->lo;\n            now = n;\n\
-    \            st.pop_back();\n          } else {\n            Node* p = new_node(0,\
-    \ 1, n->l, now->r, now->lo, n->hi);\n            p->ch.eb(n);\n            p->ch.eb(now);\n\
+    \ \"dec\";\n      return \"prime\";\n    }\n  };\n\n  unique_ptr<Node[]> pool;\n\
+    \  Node* root;\n  int pid;\n\n  Common_Interval_Decomposition(vc<int>& P) : pid(0)\
+    \ {\n    pool = make_unique<Node[]>(2 * len(P));\n    build(P);\n  }\n\n  Node*\
+    \ new_node(bool inc, bool dec, int l, int r, int lo, int hi) {\n    pool[pid].inc\
+    \ = inc;\n    pool[pid].dec = dec;\n    pool[pid].l = l;\n    pool[pid].r = r;\n\
+    \    pool[pid].lo = lo;\n    pool[pid].hi = hi;\n    return &(pool[pid++]);\n\
+    \  }\n\n  void build(vc<int>& P) {\n    int N = len(P);\n    Lazy_SegTree<ActedMonoid_Min_Add<int>>\
+    \ seg(vc<int>(N, 0));\n\n    vc<Node*> st;\n    vc<int> mi = {-1}, ma = {-1};\n\
+    \    FOR(i, N) {\n      while (mi.back() != -1 && P[i] < P[mi.back()]) {\n   \
+    \     int j = POP(mi);\n        seg.apply(mi.back() + 1, j + 1, P[j] - P[i]);\n\
+    \      }\n      while (ma.back() != -1 && P[i] > P[ma.back()]) {\n        int\
+    \ j = POP(ma);\n        seg.apply(ma.back() + 1, j + 1, P[i] - P[j]);\n      }\n\
+    \      mi.eb(i), ma.eb(i);\n\n      Node* now = new_node(0, 0, i, i + 1, P[i],\
+    \ P[i] + 1);\n      while (len(st)) {\n        Node* n = st.back();\n        if\
+    \ (n->hi == now->lo) {\n          if (n->inc) {\n            n->ch.eb(now);\n\
+    \            n->r = now->r;\n            n->hi = now->hi;\n            now = n;\n\
+    \            st.pop_back();\n          } else {\n            Node* p = new_node(1,\
+    \ 0, n->l, now->r, n->lo, now->hi);\n            p->ch.eb(n);\n            p->ch.eb(now);\n\
     \            now = p;\n            st.pop_back();\n          }\n          continue;\n\
-    \        }\n        // prime supernode creation\n        if (seg.prod(0, now->l)\
-    \ != 0) break;\n        Node* p = new_node(0, 0, now->l, now->r, now->lo, now->hi);\n\
-    \        p->ch.eb(now);\n        now = p;\n        while (1) {\n          auto\
-    \ c = POP(st);\n          now->l = c->l;\n          chmin(now->lo, c->lo);\n \
-    \         chmax(now->hi, c->hi);\n          now->ch.eb(c);\n          if (now->r\
-    \ - now->l == now->hi - now->lo) break;\n        }\n        reverse(all(now->ch));\n\
-    \      }\n      st.eb(now);\n      seg.apply(0, i + 1, -1);\n    }\n    assert(len(st)\
-    \ == 1);\n    root = POP(st);\n    return;\n  }\n\n  void debug() {\n    auto\
-    \ dfs = [&](auto& dfs, Node* n) -> void {\n      print(\"l, r, lo, hi\", n->l,\
-    \ n->r, n->lo, n->hi);\n      for (auto&& c : n->ch) dfs(dfs, c);\n    };\n  \
-    \  dfs(dfs, root);\n  };\n};\n#line 5 \"test/2_library_checker/graph/common_interval_decomposition.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(int, P, N);\n  Common_Interval_Decomposition\
-    \ X(P);\n  int nxt = 0;\n  auto dfs = [&](auto& dfs, auto n, int p) -> void {\n\
-    \    string t = (n->inc || n->dec || (n->r - n->l == 1) ? \"linear\" : \"prime\"\
-    );\n    print(p, n->l, n->r - 1, t);\n    int v = nxt++;\n    for (auto&& c :\
-    \ n->ch) dfs(dfs, c, v);\n  };\n  print(X.pid);\n  dfs(dfs, X.root, -1);\n}\n\n\
-    signed main() {\n  solve();\n\n  return 0;\n}\n"
+    \        }\n        if (n->lo == now->hi) {\n          if (n->dec) {\n       \
+    \     n->ch.eb(now);\n            n->r = now->r;\n            n->lo = now->lo;\n\
+    \            now = n;\n            st.pop_back();\n          } else {\n      \
+    \      Node* p = new_node(0, 1, n->l, now->r, now->lo, n->hi);\n            p->ch.eb(n);\n\
+    \            p->ch.eb(now);\n            now = p;\n            st.pop_back();\n\
+    \          }\n          continue;\n        }\n        // prime supernode creation\n\
+    \        if (seg.prod(0, now->l) != 0) break;\n        Node* p = new_node(0, 0,\
+    \ now->l, now->r, now->lo, now->hi);\n        p->ch.eb(now);\n        now = p;\n\
+    \        while (1) {\n          auto c = POP(st);\n          now->l = c->l;\n\
+    \          chmin(now->lo, c->lo);\n          chmax(now->hi, c->hi);\n        \
+    \  now->ch.eb(c);\n          if (now->r - now->l == now->hi - now->lo) break;\n\
+    \        }\n        reverse(all(now->ch));\n      }\n      st.eb(now);\n     \
+    \ seg.apply(0, i + 1, -1);\n    }\n    assert(len(st) == 1);\n    root = POP(st);\n\
+    \    return;\n  }\n\n  void debug() {\n    auto dfs = [&](auto& dfs, Node* n)\
+    \ -> void {\n      print(\"l, r, lo, hi\", n->l, n->r, n->lo, n->hi);\n      for\
+    \ (auto&& c : n->ch) dfs(dfs, c);\n    };\n    dfs(dfs, root);\n  };\n};\n#line\
+    \ 5 \"test/2_library_checker/graph/common_interval_decomposition.test.cpp\"\n\n\
+    void solve() {\n  LL(N);\n  VEC(int, P, N);\n  Common_Interval_Decomposition X(P);\n\
+    \  int nxt = 0;\n  auto dfs = [&](auto& dfs, auto n, int p) -> void {\n    string\
+    \ t = (n->inc || n->dec || (n->r - n->l == 1) ? \"linear\" : \"prime\");\n   \
+    \ print(p, n->l, n->r - 1, t);\n    int v = nxt++;\n    for (auto&& c : n->ch)\
+    \ dfs(dfs, c, v);\n  };\n  print(X.pid);\n  dfs(dfs, X.root, -1);\n}\n\nsigned\
+    \ main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/common_interval_decomposition_tree\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/common_interval_decomposition.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(int, P, N);\n  Common_Interval_Decomposition\
@@ -425,7 +426,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
+  timestamp: '2026-10-27 04:18:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/common_interval_decomposition.test.cpp
