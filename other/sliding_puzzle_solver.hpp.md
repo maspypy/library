@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedRequiredBy: []
@@ -27,9 +27,9 @@ data:
   bundledCode: "#line 1 \"other/sliding_puzzle_solver.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/other/sliding_puzzle_solver.hpp\n\
     #line 1 \"linalg/transpose.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/linalg/transpose.hpp\n\
     template <typename VC>\nvc<VC> transpose(const vc<VC>& A, int H = -1, int W =\
-    \ -1) {\n  if (H == -1) { H = len(A), W = (len(A) == 0 ? 0 : len(A[0])); }\n \
-    \ vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x] = A[x][y];\n  return B;\n\
-    }\n#line 1 \"seq/inversion.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/seq/inversion.hpp\n\
+    \ -1) {\n  if (H == -1) {\n    H = len(A), W = (len(A) == 0 ? 0 : len(A[0]));\n\
+    \  }\n  assert(W != -1);\n  vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x]\
+    \ = A[x][y];\n  return B;\n}\n#line 1 \"seq/inversion.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/seq/inversion.hpp\n\
     #line 1 \"ds/fenwicktree/fenwicktree_01.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/fenwicktree/fenwicktree_01.hpp\n\
     \n#line 1 \"ds/fenwicktree/fenwicktree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/fenwicktree/fenwicktree.hpp\n\
     #line 1 \"alg/monoid/add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
@@ -336,7 +336,7 @@ data:
   isVerificationFile: false
   path: other/sliding_puzzle_solver.hpp
   requiredBy: []
-  timestamp: '2026-10-25 14:30:37+09:00'
+  timestamp: '2026-10-26 22:59:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: other/sliding_puzzle_solver.hpp

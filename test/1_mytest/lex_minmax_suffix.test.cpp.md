@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -34,7 +34,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/lyndon.hpp
     title: string/lyndon.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
@@ -52,8 +52,9 @@ data:
     \ Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n#if defined(USE_PCH)\n\
     #include <my_template_compiled.hpp>\n\n#if defined(__GNUC__)\n#pragma GCC optimize(\"\
     Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma GCC target(\"avx2,popcnt\"\
-    )\n#endif\n#endif\n#else  // MASPY_TEMPLATE_BODY\n#include <bits/stdc++.h>\n#include\
-    \ <cassert>\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
+    )\n#endif\n#endif\n\n#else  // MASPY_TEMPLATE_BODY\n#include <bits/stdc++.h>\n\
+    #include <cassert>\n\n#if defined(__GNUC__)\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+    )\n#endif\n\nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\n\
     using u16 = uint16_t;\nusing u32 = uint32_t;\nusing u64 = uint64_t;\nusing i128\
     \ = __int128;\nusing u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate\
     \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
@@ -528,7 +529,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/lex_minmax_suffix.test.cpp
   requiredBy: []
-  timestamp: '2026-10-24 10:08:11+09:00'
+  timestamp: '2026-10-26 22:59:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/lex_minmax_suffix.test.cpp

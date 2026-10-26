@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
   _extendedRequiredBy: []
@@ -19,9 +19,9 @@ data:
   bundledCode: "#line 1 \"linalg/diagonalize_triangular_matrix.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/linalg/diagonalize_triangular_matrix.hpp\n\
     \n#line 1 \"linalg/transpose.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/linalg/transpose.hpp\n\
     template <typename VC>\nvc<VC> transpose(const vc<VC>& A, int H = -1, int W =\
-    \ -1) {\n  if (H == -1) { H = len(A), W = (len(A) == 0 ? 0 : len(A[0])); }\n \
-    \ vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x] = A[x][y];\n  return B;\n\
-    }\n#line 1 \"linalg/matrix_inv.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/linalg/matrix_inv.hpp\n\
+    \ -1) {\n  if (H == -1) {\n    H = len(A), W = (len(A) == 0 ? 0 : len(A[0]));\n\
+    \  }\n  assert(W != -1);\n  vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x]\
+    \ = A[x][y];\n  return B;\n}\n#line 1 \"linalg/matrix_inv.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/linalg/matrix_inv.hpp\n\
     \n// (det, invA) \u3092\u304B\u3048\u3059\ntemplate <typename T>\npair<T, vc<vc<T>>>\
     \ matrix_inv(vc<vc<T>> A) {\n  T det = 1;\n  int N = len(A);\n  vv(T, B, N, N);\n\
     \  FOR(n, N) B[n][n] = 1;\n  FOR(i, N) {\n    FOR(k, i, N) if (A[k][i] != 0) {\n\
@@ -65,7 +65,7 @@ data:
   isVerificationFile: false
   path: linalg/diagonalize_triangular_matrix.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-10-26 22:59:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: linalg/diagonalize_triangular_matrix.hpp

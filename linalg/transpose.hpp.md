@@ -15,28 +15,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/equal_4square_sum_grid.test.cpp
     title: test/1_mytest/equal_4square_sum_grid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2108.test.cpp
     title: test/3_yukicoder/2108.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2907.test.cpp
     title: test/3_yukicoder/2907.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/linalg/transpose.hpp
   bundledCode: "#line 1 \"linalg/transpose.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/linalg/transpose.hpp\n\
     template <typename VC>\nvc<VC> transpose(const vc<VC>& A, int H = -1, int W =\
-    \ -1) {\n  if (H == -1) { H = len(A), W = (len(A) == 0 ? 0 : len(A[0])); }\n \
-    \ vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x] = A[x][y];\n  return B;\n\
-    }\n"
+    \ -1) {\n  if (H == -1) {\n    H = len(A), W = (len(A) == 0 ? 0 : len(A[0]));\n\
+    \  }\n  assert(W != -1);\n  vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x]\
+    \ = A[x][y];\n  return B;\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/linalg/transpose.hpp\n\
     template <typename VC>\nvc<VC> transpose(const vc<VC>& A, int H = -1, int W =\
-    \ -1) {\n  if (H == -1) { H = len(A), W = (len(A) == 0 ? 0 : len(A[0])); }\n \
-    \ vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x] = A[x][y];\n  return B;\n\
-    }\n"
+    \ -1) {\n  if (H == -1) {\n    H = len(A), W = (len(A) == 0 ? 0 : len(A[0]));\n\
+    \  }\n  assert(W != -1);\n  vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x]\
+    \ = A[x][y];\n  return B;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: linalg/transpose.hpp
@@ -44,8 +44,8 @@ data:
   - linalg/diagonalize_triangular_matrix.hpp
   - other/sliding_puzzle_solver.hpp
   - poly/coef_of_rational_fps_2d.hpp
-  timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-26 22:59:32+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/equal_4square_sum_grid.test.cpp
   - test/3_yukicoder/2108.test.cpp
