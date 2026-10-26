@@ -4,19 +4,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -79,16 +79,16 @@ data:
     \  bool is_same(Line other) {\n    if (a * other.b != b * other.a) return 0;\n\
     \    if (a * other.c != c * other.a) return 0;\n    if (b * other.c != c * other.b)\
     \ return 0;\n    return 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n\
-    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T\
-    \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
-    \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
-    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
-    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
-    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
-    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
-    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
-    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 1 \"geo/triangle_area.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/triangle_area.hpp\n\
+    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) { assert(A\
+    \ != B); }\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1),\
+    \ Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B\
+    \ - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C\
+    \ - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\
+    \ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle()\
+    \ {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y,\
+    \ REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
+    \ <= r * r;\n  }\n};\n#line 1 \"geo/triangle_area.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/triangle_area.hpp\n\
     template <typename REAL, typename T>\nREAL triangle_area(Point<T> A, Point<T>\
     \ B, Point<T> C) {\n  return abs((B - A).det(C - A)) * 0.5;\n}\n#line 4 \"geo/outcircle.hpp\"\
     \n\ntemplate <typename REAL, typename T>\nCircle<REAL> outcircle(Point<T> A, Point<T>\
@@ -237,7 +237,7 @@ data:
   isVerificationFile: false
   path: geo/delaunay_triangulation_of_convex_polygon.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-10-27 03:13:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/delaunay_triangulation_of_convex_polygon.hpp

@@ -10,10 +10,10 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   - icon: ':heavy_check_mark:'
@@ -25,7 +25,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':heavy_check_mark:'
@@ -40,7 +40,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/polygon_triangulation.hpp
     title: geo/polygon_triangulation.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -49,7 +49,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -237,16 +237,16 @@ data:
     \  bool is_same(Line other) {\n    if (a * other.b != b * other.a) return 0;\n\
     \    if (a * other.c != c * other.a) return 0;\n    if (b * other.c != c * other.b)\
     \ return 0;\n    return 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n\
-    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T\
-    \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
-    \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
-    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
-    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
-    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
-    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
-    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
-    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 1 \"geo/convex_hull.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/convex_hull.hpp\n\
+    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) { assert(A\
+    \ != B); }\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1),\
+    \ Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B\
+    \ - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C\
+    \ - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\
+    \ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle()\
+    \ {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y,\
+    \ REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
+    \ <= r * r;\n  }\n};\n#line 1 \"geo/convex_hull.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/convex_hull.hpp\n\
     \n#line 1 \"geo/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/base.hpp\n\
     template <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
     \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
@@ -293,37 +293,37 @@ data:
     \  bool is_same(Line other) {\n    if (a * other.b != b * other.a) return 0;\n\
     \    if (a * other.c != c * other.a) return 0;\n    if (b * other.c != c * other.b)\
     \ return 0;\n    return 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n\
-    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T\
-    \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
-    \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
-    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
-    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
-    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
-    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
-    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
-    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 4 \"geo/convex_hull.hpp\"\n\n// allow_180=true \u3067\u540C\u4E00\u5EA7\u6A19\
-    \u70B9\u304C\u3042\u308B\u3068\u3053\u308F\u308C\u308B\n// full \u306A\u3089 I[0]\
-    \ \u304C sorted \u3067 min \u306B\u306A\u308B\ntemplate <typename T, bool allow_180\
-    \ = false>\nvector<int> convex_hull(vector<Point<T>>& XY, string mode = \"full\"\
-    ,\n                        bool sorted = false) {\n  assert(mode == \"full\" ||\
-    \ mode == \"lower\" || mode == \"upper\");\n  ll N = XY.size();\n  if (N == 1)\
-    \ return {0};\n  if (N == 2) {\n    if (XY[0] < XY[1]) return {0, 1};\n    if\
-    \ (XY[1] < XY[0]) return {1, 0};\n    return {0};\n  }\n  vc<int> I(N);\n  if\
-    \ (sorted) {\n    FOR(i, N) I[i] = i;\n  } else {\n    I = argsort(XY);\n  }\n\
-    \  if constexpr (allow_180) {\n    FOR(i, N - 1) assert(XY[i] != XY[i + 1]);\n\
-    \  }\n\n  auto check = [&](ll i, ll j, ll k) -> bool {\n    T det = (XY[j] - XY[i]).det(XY[k]\
-    \ - XY[i]);\n    if constexpr (allow_180) return det >= 0;\n    return det > T(0);\n\
-    \  };\n\n  auto calc = [&]() {\n    vector<int> P;\n    for (auto&& k : I) {\n\
-    \      while (P.size() > 1) {\n        auto i = P[P.size() - 2];\n        auto\
-    \ j = P[P.size() - 1];\n        if (check(i, j, k)) break;\n        P.pop_back();\n\
-    \      }\n      P.eb(k);\n    }\n    return P;\n  };\n\n  vc<int> P;\n  if (mode\
-    \ == \"full\" || mode == \"lower\") {\n    vc<int> Q = calc();\n    P.insert(P.end(),\
-    \ all(Q));\n  }\n  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty())\
-    \ P.pop_back();\n    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(),\
-    \ all(Q));\n  }\n  if (mode == \"upper\") reverse(all(P));\n  while (len(P) >=\
-    \ 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n  return P;\n}\n#line 1 \"geo/cross_point.hpp\"\
-    \n// Source: https://github.com/maspypy/library/blob/main/geo/cross_point.hpp\n\
+    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) { assert(A\
+    \ != B); }\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1),\
+    \ Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B\
+    \ - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C\
+    \ - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\
+    \ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle()\
+    \ {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y,\
+    \ REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
+    \ <= r * r;\n  }\n};\n#line 4 \"geo/convex_hull.hpp\"\n\n// allow_180=true \u3067\
+    \u540C\u4E00\u5EA7\u6A19\u70B9\u304C\u3042\u308B\u3068\u3053\u308F\u308C\u308B\
+    \n// full \u306A\u3089 I[0] \u304C sorted \u3067 min \u306B\u306A\u308B\ntemplate\
+    \ <typename T, bool allow_180 = false>\nvector<int> convex_hull(vector<Point<T>>&\
+    \ XY, string mode = \"full\",\n                        bool sorted = false) {\n\
+    \  assert(mode == \"full\" || mode == \"lower\" || mode == \"upper\");\n  ll N\
+    \ = XY.size();\n  if (N == 1) return {0};\n  if (N == 2) {\n    if (XY[0] < XY[1])\
+    \ return {0, 1};\n    if (XY[1] < XY[0]) return {1, 0};\n    return {0};\n  }\n\
+    \  vc<int> I(N);\n  if (sorted) {\n    FOR(i, N) I[i] = i;\n  } else {\n    I\
+    \ = argsort(XY);\n  }\n  if constexpr (allow_180) {\n    FOR(i, N - 1) assert(XY[i]\
+    \ != XY[i + 1]);\n  }\n\n  auto check = [&](ll i, ll j, ll k) -> bool {\n    T\
+    \ det = (XY[j] - XY[i]).det(XY[k] - XY[i]);\n    if constexpr (allow_180) return\
+    \ det >= 0;\n    return det > T(0);\n  };\n\n  auto calc = [&]() {\n    vector<int>\
+    \ P;\n    for (auto&& k : I) {\n      while (P.size() > 1) {\n        auto i =\
+    \ P[P.size() - 2];\n        auto j = P[P.size() - 1];\n        if (check(i, j,\
+    \ k)) break;\n        P.pop_back();\n      }\n      P.eb(k);\n    }\n    return\
+    \ P;\n  };\n\n  vc<int> P;\n  if (mode == \"full\" || mode == \"lower\") {\n \
+    \   vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n  }\n  if (mode == \"\
+    full\" || mode == \"upper\") {\n    if (!P.empty()) P.pop_back();\n    reverse(all(I));\n\
+    \    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n  }\n  if (mode == \"\
+    upper\") reverse(all(P));\n  while (len(P) >= 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n\
+    \  return P;\n}\n#line 1 \"geo/cross_point.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/cross_point.hpp\n\
     \n#line 1 \"geo/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/base.hpp\n\
     template <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
     \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
@@ -370,24 +370,25 @@ data:
     \  bool is_same(Line other) {\n    if (a * other.b != b * other.a) return 0;\n\
     \    if (a * other.c != c * other.a) return 0;\n    if (b * other.c != c * other.b)\
     \ return 0;\n    return 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n\
-    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T\
-    \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
-    \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
-    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
-    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
-    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
-    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
-    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
-    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 4 \"geo/cross_point.hpp\"\n\n// \u5E73\u884C\u3067\u306A\u3044\u3053\u3068\u3092\
-    \u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(const\
-    \ Line<T> L1, const Line<T> L2) {\n  T det = L1.a * L2.b - L1.b * L2.a;\n  assert(det\
-    \ != 0);\n  REAL x = -REAL(L1.c) * L2.b + REAL(L1.b) * L2.c;\n  REAL y = -REAL(L1.a)\
-    \ * L2.c + REAL(L1.c) * L2.a;\n  return Point<REAL>(x / det, y / det);\n}\n\n\
-    // return: x,y,D. point=(x/D,y/D)\ntemplate <typename T>\ntuple<T, T, T> cross_point_exact(const\
-    \ Line<T> L1, const Line<T> L2) {\n  T det = L1.a * L2.b - L1.b * L2.a;\n  assert(det\
-    \ != 0);\n  T x = -L1.c * L2.b + L1.b * L2.c;\n  T y = -L1.a * L2.c + L1.c * L2.a;\n\
-    \  if (det < 0) x = -x, y = -y, det = -det;\n  return {x, y, det};\n}\n\n// \u6D6E\
+    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) { assert(A\
+    \ != B); }\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1),\
+    \ Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B\
+    \ - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C\
+    \ - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\
+    \ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle()\
+    \ {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y,\
+    \ REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
+    \ <= r * r;\n  }\n};\n#line 4 \"geo/cross_point.hpp\"\n\n// \u5E73\u884C\u3067\
+    \u306A\u3044\u3053\u3068\u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename\
+    \ T>\nPoint<REAL> cross_point(const Line<T> L1, const Line<T> L2) {\n  T det =\
+    \ L1.a * L2.b - L1.b * L2.a;\n  assert(det != 0);\n  REAL x = -REAL(L1.c) * L2.b\
+    \ + REAL(L1.b) * L2.c;\n  REAL y = -REAL(L1.a) * L2.c + REAL(L1.c) * L2.a;\n \
+    \ return Point<REAL>(x / det, y / det);\n}\n\n// return: x,y,D. point=(x/D,y/D)\n\
+    template <typename T>\ntuple<T, T, T> cross_point_exact(const Line<T> L1, const\
+    \ Line<T> L2) {\n  T det = L1.a * L2.b - L1.b * L2.a;\n  assert(det != 0);\n \
+    \ T x = -L1.c * L2.b + L1.b * L2.c;\n  T y = -L1.a * L2.c + L1.c * L2.a;\n  if\
+    \ (det < 0) x = -x, y = -y, det = -det;\n  return {x, y, det};\n}\n\n// \u6D6E\
     \u52D5\u5C0F\u6570\u70B9\u6570\u306F\u30A8\u30E9\u30FC\n// 0: \u4EA4\u70B9\u306A\
     \u3057\n// 1: \u4E00\u610F\u306A\u4EA4\u70B9\n// 2\uFF1A2 \u3064\u4EE5\u4E0A\u306E\
     \u4EA4\u70B9\uFF08\u6574\u6570\u578B\u3092\u5229\u7528\u3057\u3066\u53B3\u5BC6\
@@ -474,30 +475,31 @@ data:
     \  bool is_same(Line other) {\n    if (a * other.b != b * other.a) return 0;\n\
     \    if (a * other.c != c * other.a) return 0;\n    if (b * other.c != c * other.b)\
     \ return 0;\n    return 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n\
-    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T\
-    \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
-    \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
-    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
-    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
-    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
-    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
-    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
-    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 4 \"geo/angle_sort.hpp\"\n\n// lower: -1, origin: 0, upper: 1, (-pi,pi]\ntemplate\
-    \ <typename T> int lower_or_upper(const Point<T> &p) {\n  if (p.y != 0)\n    return\
-    \ (p.y > 0 ? 1 : -1);\n  if (p.x > 0)\n    return -1;\n  if (p.x < 0)\n    return\
-    \ 1;\n  return 0;\n}\n\n// L<R:-1, L==R:0, L>R:1, (-pi,pi]\ntemplate <typename\
-    \ T> int angle_comp_3(const Point<T> &L, const Point<T> &R) {\n  int a = lower_or_upper(L),\
-    \ b = lower_or_upper(R);\n  if (a != b)\n    return (a < b ? -1 : +1);\n  T det\
-    \ = L.det(R);\n  if (det > 0)\n    return -1;\n  if (det < 0)\n    return 1;\n\
-    \  return 0;\n}\n\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort,\
-    \ (-pi,pi]\ntemplate <typename T> vector<int> angle_sort(vector<Point<T>> &P)\
-    \ {\n  vc<int> I(len(P));\n  FOR(i, len(P)) I[i] = i;\n  sort(all(I), [&](auto\
-    \ &L, auto &R) -> bool {\n    return angle_comp_3(P[L], P[R]) == -1;\n  });\n\
-    \  return I;\n}\n\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort,\
-    \ (-pi,pi]\ntemplate <typename T> vector<int> angle_sort(vector<pair<T, T>> &P)\
-    \ {\n  vc<Point<T>> tmp(len(P));\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\n\
-    \  return angle_sort<T>(tmp);\n}\n#line 1 \"geo/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/base.hpp\n\
+    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) { assert(A\
+    \ != B); }\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1),\
+    \ Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B\
+    \ - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C\
+    \ - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\
+    \ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle()\
+    \ {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y,\
+    \ REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
+    \ <= r * r;\n  }\n};\n#line 4 \"geo/angle_sort.hpp\"\n\n// lower: -1, origin:\
+    \ 0, upper: 1, (-pi,pi]\ntemplate <typename T> int lower_or_upper(const Point<T>\
+    \ &p) {\n  if (p.y != 0)\n    return (p.y > 0 ? 1 : -1);\n  if (p.x > 0)\n   \
+    \ return -1;\n  if (p.x < 0)\n    return 1;\n  return 0;\n}\n\n// L<R:-1, L==R:0,\
+    \ L>R:1, (-pi,pi]\ntemplate <typename T> int angle_comp_3(const Point<T> &L, const\
+    \ Point<T> &R) {\n  int a = lower_or_upper(L), b = lower_or_upper(R);\n  if (a\
+    \ != b)\n    return (a < b ? -1 : +1);\n  T det = L.det(R);\n  if (det > 0)\n\
+    \    return -1;\n  if (det < 0)\n    return 1;\n  return 0;\n}\n\n// \u504F\u89D2\
+    \u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort, (-pi,pi]\ntemplate <typename\
+    \ T> vector<int> angle_sort(vector<Point<T>> &P) {\n  vc<int> I(len(P));\n  FOR(i,\
+    \ len(P)) I[i] = i;\n  sort(all(I), [&](auto &L, auto &R) -> bool {\n    return\
+    \ angle_comp_3(P[L], P[R]) == -1;\n  });\n  return I;\n}\n\n// \u504F\u89D2\u30BD\
+    \u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort, (-pi,pi]\ntemplate <typename T>\
+    \ vector<int> angle_sort(vector<pair<T, T>> &P) {\n  vc<Point<T>> tmp(len(P));\n\
+    \  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\n  return angle_sort<T>(tmp);\n}\n\
+    #line 1 \"geo/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/base.hpp\n\
     template <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
     \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
     \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
@@ -543,16 +545,16 @@ data:
     \  bool is_same(Line other) {\n    if (a * other.b != b * other.a) return 0;\n\
     \    if (a * other.c != c * other.a) return 0;\n    if (b * other.c != c * other.b)\
     \ return 0;\n    return 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n\
-    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T\
-    \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
-    \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
-    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
-    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
-    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
-    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
-    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
-    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) { assert(A\
+    \ != B); }\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1),\
+    \ Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B\
+    \ - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C\
+    \ - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\
+    \ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle()\
+    \ {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y,\
+    \ REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
+    \ <= r * r;\n  }\n};\n#line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
     \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
@@ -785,16 +787,17 @@ data:
     \  bool is_same(Line other) {\n    if (a * other.b != b * other.a) return 0;\n\
     \    if (a * other.c != c * other.a) return 0;\n    if (b * other.c != c * other.b)\
     \ return 0;\n    return 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n\
-    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T\
-    \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
-    \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
-    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
-    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
-    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
-    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
-    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
-    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 1 \"ds/splaytree/splaytree_basic.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/splaytree/splaytree_basic.hpp\n\
+    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) { assert(A\
+    \ != B); }\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1),\
+    \ Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B\
+    \ - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C\
+    \ - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\
+    \ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle()\
+    \ {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y,\
+    \ REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
+    \ <= r * r;\n  }\n};\n#line 1 \"ds/splaytree/splaytree_basic.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/ds/splaytree/splaytree_basic.hpp\n\
     #line 1 \"ds/splaytree/splaytree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/splaytree/splaytree.hpp\n\
     #line 1 \"ds/node_pool.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/node_pool.hpp\n\
     // \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\
@@ -1125,16 +1128,16 @@ data:
     \  bool is_same(Line other) {\n    if (a * other.b != b * other.a) return 0;\n\
     \    if (a * other.c != c * other.a) return 0;\n    if (b * other.c != c * other.b)\
     \ return 0;\n    return 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n\
-    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T\
-    \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
-    \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
-    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
-    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
-    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
-    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
-    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
-    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 1 \"geo/angle_sort.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/angle_sort.hpp\n\
+    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) { assert(A\
+    \ != B); }\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1),\
+    \ Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B\
+    \ - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C\
+    \ - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\
+    \ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle()\
+    \ {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y,\
+    \ REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
+    \ <= r * r;\n  }\n};\n#line 1 \"geo/angle_sort.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/angle_sort.hpp\n\
     \n#line 1 \"geo/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/base.hpp\n\
     template <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
     \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
@@ -1181,47 +1184,48 @@ data:
     \  bool is_same(Line other) {\n    if (a * other.b != b * other.a) return 0;\n\
     \    if (a * other.c != c * other.a) return 0;\n    if (b * other.c != c * other.b)\
     \ return 0;\n    return 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n\
-    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T\
-    \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
-    \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
-    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
-    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
-    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
-    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
-    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
-    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 4 \"geo/angle_sort.hpp\"\n\n// lower: -1, origin: 0, upper: 1, (-pi,pi]\ntemplate\
-    \ <typename T> int lower_or_upper(const Point<T> &p) {\n  if (p.y != 0)\n    return\
-    \ (p.y > 0 ? 1 : -1);\n  if (p.x > 0)\n    return -1;\n  if (p.x < 0)\n    return\
-    \ 1;\n  return 0;\n}\n\n// L<R:-1, L==R:0, L>R:1, (-pi,pi]\ntemplate <typename\
-    \ T> int angle_comp_3(const Point<T> &L, const Point<T> &R) {\n  int a = lower_or_upper(L),\
-    \ b = lower_or_upper(R);\n  if (a != b)\n    return (a < b ? -1 : +1);\n  T det\
-    \ = L.det(R);\n  if (det > 0)\n    return -1;\n  if (det < 0)\n    return 1;\n\
-    \  return 0;\n}\n\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort,\
-    \ (-pi,pi]\ntemplate <typename T> vector<int> angle_sort(vector<Point<T>> &P)\
-    \ {\n  vc<int> I(len(P));\n  FOR(i, len(P)) I[i] = i;\n  sort(all(I), [&](auto\
-    \ &L, auto &R) -> bool {\n    return angle_comp_3(P[L], P[R]) == -1;\n  });\n\
-    \  return I;\n}\n\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort,\
-    \ (-pi,pi]\ntemplate <typename T> vector<int> angle_sort(vector<pair<T, T>> &P)\
-    \ {\n  vc<Point<T>> tmp(len(P));\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\n\
-    \  return angle_sort<T>(tmp);\n}\n#line 5 \"graph/planar_graph.hpp\"\n\n/*\n\u30FB\
-    \u9023\u7D50\u5E73\u9762\u30B0\u30E9\u30D5\u306B\u306A\u3063\u3066\u3044\u306A\
-    \u3044\u3068\u304D\u306B\u3069\u3046\u52D5\u4F5C\u3059\u308B\u304B\u306F\u4F55\
-    \u3082\u8003\u3048\u3066\u3044\u306A\u3044\n\u30FBN=1 \u3082\u6271\u308F\u306A\
-    \u3044\n\u30FB0\u756A\u76EE\u306B\u5916\u9762\u304C\u5165\u308B\n\u30FB\u6B21\u6570\
-    \ 1 \u306E\u70B9\u3068\u304B\u306F\u3042\u3063\u3066\u3082\u5927\u4E08\u592B\u3063\
-    \u307D\u3044\uFF1F\n*/\ntemplate <typename XY>\nstruct Planar_Graph {\n  using\
-    \ P = Point<XY>;\n  int NV, NE, NF;\n  // \u9802\u70B9, \u8FBA\u304B\u3089\u306A\
-    \u308B\u30B0\u30E9\u30D5. \u6709\u5411\u8FBA\u3092 2 \u3064\u5165\u308C\u3066\u304A\
-    \u304F\n  Graph<int, 1> G;\n  // \u9802\u70B9\u5C5E\u6027\n  vc<P> point; // \u5EA7\
-    \u6A19\n  // \u8FBA\u5C5E\u6027\n  vc<int> left_face; // \u6709\u5411\u8FBA\u306E\
-    \u5DE6\u306B\u3042\u308B\u9762\u306E\u756A\u53F7\n  vc<int> nxt_edge;  // \u9762\
-    \u3092\u53CD\u6642\u8A08\u56DE\u308A\u306B\u307E\u308F\u308B\u3068\u304D\u306E\
-    \u6B21\u306E\u8FBA\n  // \u9762\u5C5E\u6027\n  vc<int> first_edge;\n\n  Planar_Graph(int\
-    \ N, vc<P> point) : NV(N), G(N), point(point) { assert(N > 1); }\n\n  void add(int\
-    \ a, int b) { G.add(a, b), G.add(b, a); }\n  void build() {\n    G.build();\n\
-    \    NE = G.M / 2;\n    nxt_edge.assign(G.M, -1);\n    left_face.assign(G.M, -1);\n\
-    \    int v0 = 0;\n    int e0 = 0;\n    FOR(v, NV) {\n      if (point[v] < point[v0])\
+    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) { assert(A\
+    \ != B); }\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1),\
+    \ Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B\
+    \ - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C\
+    \ - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\
+    \ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle()\
+    \ {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y,\
+    \ REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
+    \ <= r * r;\n  }\n};\n#line 4 \"geo/angle_sort.hpp\"\n\n// lower: -1, origin:\
+    \ 0, upper: 1, (-pi,pi]\ntemplate <typename T> int lower_or_upper(const Point<T>\
+    \ &p) {\n  if (p.y != 0)\n    return (p.y > 0 ? 1 : -1);\n  if (p.x > 0)\n   \
+    \ return -1;\n  if (p.x < 0)\n    return 1;\n  return 0;\n}\n\n// L<R:-1, L==R:0,\
+    \ L>R:1, (-pi,pi]\ntemplate <typename T> int angle_comp_3(const Point<T> &L, const\
+    \ Point<T> &R) {\n  int a = lower_or_upper(L), b = lower_or_upper(R);\n  if (a\
+    \ != b)\n    return (a < b ? -1 : +1);\n  T det = L.det(R);\n  if (det > 0)\n\
+    \    return -1;\n  if (det < 0)\n    return 1;\n  return 0;\n}\n\n// \u504F\u89D2\
+    \u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort, (-pi,pi]\ntemplate <typename\
+    \ T> vector<int> angle_sort(vector<Point<T>> &P) {\n  vc<int> I(len(P));\n  FOR(i,\
+    \ len(P)) I[i] = i;\n  sort(all(I), [&](auto &L, auto &R) -> bool {\n    return\
+    \ angle_comp_3(P[L], P[R]) == -1;\n  });\n  return I;\n}\n\n// \u504F\u89D2\u30BD\
+    \u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort, (-pi,pi]\ntemplate <typename T>\
+    \ vector<int> angle_sort(vector<pair<T, T>> &P) {\n  vc<Point<T>> tmp(len(P));\n\
+    \  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\n  return angle_sort<T>(tmp);\n}\n\
+    #line 5 \"graph/planar_graph.hpp\"\n\n/*\n\u30FB\u9023\u7D50\u5E73\u9762\u30B0\
+    \u30E9\u30D5\u306B\u306A\u3063\u3066\u3044\u306A\u3044\u3068\u304D\u306B\u3069\
+    \u3046\u52D5\u4F5C\u3059\u308B\u304B\u306F\u4F55\u3082\u8003\u3048\u3066\u3044\
+    \u306A\u3044\n\u30FBN=1 \u3082\u6271\u308F\u306A\u3044\n\u30FB0\u756A\u76EE\u306B\
+    \u5916\u9762\u304C\u5165\u308B\n\u30FB\u6B21\u6570 1 \u306E\u70B9\u3068\u304B\u306F\
+    \u3042\u3063\u3066\u3082\u5927\u4E08\u592B\u3063\u307D\u3044\uFF1F\n*/\ntemplate\
+    \ <typename XY>\nstruct Planar_Graph {\n  using P = Point<XY>;\n  int NV, NE,\
+    \ NF;\n  // \u9802\u70B9, \u8FBA\u304B\u3089\u306A\u308B\u30B0\u30E9\u30D5. \u6709\
+    \u5411\u8FBA\u3092 2 \u3064\u5165\u308C\u3066\u304A\u304F\n  Graph<int, 1> G;\n\
+    \  // \u9802\u70B9\u5C5E\u6027\n  vc<P> point; // \u5EA7\u6A19\n  // \u8FBA\u5C5E\
+    \u6027\n  vc<int> left_face; // \u6709\u5411\u8FBA\u306E\u5DE6\u306B\u3042\u308B\
+    \u9762\u306E\u756A\u53F7\n  vc<int> nxt_edge;  // \u9762\u3092\u53CD\u6642\u8A08\
+    \u56DE\u308A\u306B\u307E\u308F\u308B\u3068\u304D\u306E\u6B21\u306E\u8FBA\n  //\
+    \ \u9762\u5C5E\u6027\n  vc<int> first_edge;\n\n  Planar_Graph(int N, vc<P> point)\
+    \ : NV(N), G(N), point(point) { assert(N > 1); }\n\n  void add(int a, int b) {\
+    \ G.add(a, b), G.add(b, a); }\n  void build() {\n    G.build();\n    NE = G.M\
+    \ / 2;\n    nxt_edge.assign(G.M, -1);\n    left_face.assign(G.M, -1);\n    int\
+    \ v0 = 0;\n    int e0 = 0;\n    FOR(v, NV) {\n      if (point[v] < point[v0])\
     \ v0 = v;\n      vc<int> eid;\n      vc<P> dir;\n      for (auto& e: G[v]) {\n\
     \        eid.eb(e.id);\n        dir.eb(point[e.to] - point[e.frm]);\n      }\n\
     \      auto I = angle_sort(dir);\n      assert(len(I) > 0);\n      FOR(k, len(I))\
@@ -1352,7 +1356,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/polygon_triangulation.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
+  timestamp: '2026-10-27 03:13:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/polygon_triangulation.test.cpp

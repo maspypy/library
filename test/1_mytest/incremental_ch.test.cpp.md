@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':heavy_check_mark:'
@@ -184,19 +184,19 @@ data:
     \  bool is_same(Line other) {\n    if (a * other.b != b * other.a) return 0;\n\
     \    if (a * other.c != c * other.a) return 0;\n    if (b * other.c != c * other.b)\
     \ return 0;\n    return 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n\
-    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T\
-    \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
-    \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
-    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
-    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
-    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
-    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
-    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
-    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 3 \"geo/incremental_convex_hull.hpp\"\n\n// \u4E0B\u5074\u51F8\u5305\ntemplate\
-    \ <typename T, bool strict = true>\nstruct Incremental_Convex_Hull_Lower {\n \
-    \ using P = Point<T>;\n  set<P> S;\n\n  Incremental_Convex_Hull_Lower() {}\n\n\
-    \  int size() { return len(S); }\n\n  template <typename ADD_V, typename RM_V,\
+    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) { assert(A\
+    \ != B); }\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1),\
+    \ Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B\
+    \ - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C\
+    \ - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\
+    \ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle()\
+    \ {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y,\
+    \ REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
+    \ <= r * r;\n  }\n};\n#line 3 \"geo/incremental_convex_hull.hpp\"\n\n// \u4E0B\
+    \u5074\u51F8\u5305\ntemplate <typename T, bool strict = true>\nstruct Incremental_Convex_Hull_Lower\
+    \ {\n  using P = Point<T>;\n  set<P> S;\n\n  Incremental_Convex_Hull_Lower() {}\n\
+    \n  int size() { return len(S); }\n\n  template <typename ADD_V, typename RM_V,\
     \ typename ADD_E, typename RM_E>\n  void add(Point<T> p, ADD_V add_v, RM_V rm_v,\
     \ ADD_E add_e, RM_E rm_e) {\n    int s = side(p);\n    if (strict && s >= 0) return;\n\
     \    if (!strict && s > 0) return;\n\n    // \u70B9\u8FFD\u52A0\n    add_v(p);\n\
@@ -293,7 +293,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/incremental_ch.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
+  timestamp: '2026-10-27 03:13:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/incremental_ch.test.cpp

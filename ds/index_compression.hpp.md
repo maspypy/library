@@ -12,6 +12,12 @@ data:
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - icon: ':warning:'
+    path: other/sliding_puzzle_solver.hpp
+    title: other/sliding_puzzle_solver.hpp
+  - icon: ':x:'
+    path: seq/inversion.hpp
+    title: seq/inversion.hpp
+  - icon: ':warning:'
     path: string/basic_substring_structure.hpp
     title: string/basic_substring_structure.hpp
   - icon: ':heavy_check_mark:'
@@ -90,6 +96,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1625_2.test.cpp
     title: test/3_yukicoder/1625_2.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/1838.test.cpp
+    title: test/3_yukicoder/1838.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1919_2.test.cpp
     title: test/3_yukicoder/1919_2.test.cpp
@@ -99,9 +108,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2859.test.cpp
     title: test/3_yukicoder/2859.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/3_yukicoder/694.test.cpp
+    title: test/3_yukicoder/694.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/ALDS1_2_A.test.cpp
+    title: test/4_aoj/ALDS1_2_A.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/ALDS1_5.test.cpp
+    title: test/4_aoj/ALDS1_5.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/index_compression.hpp
@@ -192,6 +210,7 @@ data:
   - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   - ds/offline_query/coefficient_query_2d.hpp
+  - other/sliding_puzzle_solver.hpp
   - string/longest_common_substring.hpp
   - string/suffix_array.hpp
   - string/basic_substring_structure.hpp
@@ -201,16 +220,19 @@ data:
   - string/substring_shortest_border.hpp
   - string/suffix_tree.hpp
   - string/suffix_lcp_change.hpp
+  - seq/inversion.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/index_compression.test.cpp
   - test/1_mytest/longest_common_substr.test.cpp
   - test/1_mytest/suffix_lcp_change.test.cpp
   - test/1_mytest/lex_minmax_suffix.test.cpp
+  - test/3_yukicoder/1838.test.cpp
   - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/1625_2.test.cpp
   - test/3_yukicoder/1919_2.test.cpp
+  - test/3_yukicoder/694.test.cpp
   - test/3_yukicoder/1490.test.cpp
   - test/3_yukicoder/2859.test.cpp
   - test/3_yukicoder/1600_2.test.cpp
@@ -224,6 +246,8 @@ data:
   - test/2_library_checker/string/suffix_array_vec.test.cpp
   - test/2_library_checker/string/suffix_array.test.cpp
   - test/2_library_checker/string/number_of_substrings.test.cpp
+  - test/4_aoj/ALDS1_2_A.test.cpp
+  - test/4_aoj/ALDS1_5.test.cpp
 documentation_of: ds/index_compression.hpp
 layout: document
 redirect_from:

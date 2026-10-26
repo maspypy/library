@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy: []
@@ -59,58 +59,58 @@ data:
     \  bool is_same(Line other) {\n    if (a * other.b != b * other.a) return 0;\n\
     \    if (a * other.c != c * other.a) return 0;\n    if (b * other.c != c * other.b)\
     \ return 0;\n    return 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n\
-    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T\
-    \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
-    \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
-    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
-    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
-    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
-    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
-    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
-    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 4 \"geo/convex_polygon_edge_voronoi.hpp\"\n\n// 20260812, written by GPT-5.6\
-    \ Sol\n//\n// A: CCW convex polygon, consecutive edges should not be collinear.\n\
-    // Voronoi diagram of the edges of a convex polygon, restricted to its interior.\n\
-    // Each Voronoi edge is represented by\n//   center(t) = p1 + t (p2 - p1)\n//\
-    \   radius(t) = r1 + t (r2 - r1), 0 <= t <= 1.\n// O(N log N) time.\n// If a circle\
-    \ is tangent to 4 or more edges simultaneously,\n// the combinatorial structure\
-    \ may be tie-broken arbitrarily by floating errors.\ntemplate <typename P, typename\
-    \ Re>\nstruct Convex_Polygon_Edge_Voronoi {\n  using RP = Point<Re>;\n  struct\
-    \ Edge {\n    int i, j;\n    RP p1, p2;\n    Re r1, r2;\n  };\n\n  int N;\n  vc<P>\
-    \ A;\n\n  // polygon edge i:\n  //   U[i].dot(x) <= H[i]\n  // where U[i] is the\
-    \ id outward normal.\n  vc<RP> U;\n  vc<Re> H;\n\n  vc<Edge> edges;\n  vc<vc<int>>\
-    \ incident;\n\n  Convex_Polygon_Edge_Voronoi(vc<P> A) : N(len(A)), A(A) { build();\
-    \ }\n\n  RP point(const Edge& e, Re t) const { return e.p1 + (e.p2 - e.p1) * t;\
-    \ }\n  Re radius(const Edge& e, Re t) const { return e.r1 + (e.r2 - e.r1) * t;\
-    \ }\n  pair<RP, RP> segment(const Edge& e) const { return {e.p1, e.p2}; }\n\n\
-    \  // Voronoi cell of polygon edge i.\n  // Collinear points on the boundary may\
-    \ be removed.\n  vc<RP> cell(int i) const {\n    vc<RP> X;\n    X.eb(RP(A[i]));\n\
-    \    X.eb(RP(A[(i + 1) % N]));\n\n    for (int k : incident[i]) {\n      X.eb(edges[k].p1);\n\
-    \      X.eb(edges[k].p2);\n    }\n\n    sort(all(X), [&](const RP& a, const RP&\
-    \ b) -> bool {\n      if (a.x != b.x) return a.x < b.x;\n      return a.y < b.y;\n\
-    \    });\n    X.erase(unique(all(X),\n                   [&](const RP& a, const\
-    \ RP& b) -> bool {\n                     return a.x == b.x && a.y == b.y;\n  \
-    \                 }),\n            X.end());\n    if (len(X) <= 2) return X;\n\
-    \    vc<RP> H;\n    auto push = [&](RP p) -> void {\n      while (len(H) >= 2)\
-    \ {\n        RP a = H[len(H) - 2];\n        RP b = H[len(H) - 1];\n        if\
-    \ ((b - a).det(p - b) > 0) break;\n        H.pop_back();\n      }\n      H.eb(p);\n\
-    \    };\n    for (auto& p : X) push(p);\n    int k = len(H);\n    for (int i =\
-    \ len(X) - 2; i >= 0; --i) push(X[i]);\n    H.pop_back();\n    return H;\n  }\n\
-    \n private:\n  void add_edge(int i, int j, RP p1, Re r1, RP p2, Re r2) {\n   \
-    \ // Except for tiny errors around simultaneous events,\n    // radius is nondecreasing\
-    \ along a medial-axis branch.\n    if (r1 > r2) {\n      swap(p1, p2);\n     \
-    \ swap(r1, r2);\n    }\n\n    int k = len(edges);\n    edges.eb(Edge{i, j, p1,\
-    \ p2, r1, r2});\n    incident[i].eb(k);\n    incident[j].eb(k);\n  }\n\n  // For\
-    \ three consecutive active polygon edges a,b,c,\n  // returns the center and radius\
-    \ where b disappears.\n  pair<RP, Re> event(int a, int b, int c) const {\n   \
-    \ RP p = U[a] - U[b];\n    RP q = U[b] - U[c];\n    Re s = H[a] - H[b];\n    Re\
-    \ t = H[b] - H[c];\n    Re det = p.det(q);\n    assert(det != Re(0));\n    RP\
-    \ x((s * q.y - p.y * t) / det, (p.x * t - s * q.x) / det);\n    Re r = H[b] -\
-    \ U[b].dot(x);\n    return {x, r};\n  }\n\n  void build() {\n    assert(N >= 3);\n\
-    \n    U.resize(N);\n    H.resize(N);\n    incident.resize(N);\n\n    FOR(i, N)\
-    \ {\n      int j = (i + 1) % N;\n      Re dx = Re(A[j].x) - Re(A[i].x);\n    \
-    \  Re dy = Re(A[j].y) - Re(A[i].y);\n      Re d = sqrt(dx * dx + dy * dy);\n \
-    \     // A is CCW, so the right normal is outward.\n      U[i] = RP(dy / d, -dx\
+    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) { assert(A\
+    \ != B); }\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1),\
+    \ Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B\
+    \ - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C\
+    \ - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\
+    \ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle()\
+    \ {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y,\
+    \ REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
+    \ <= r * r;\n  }\n};\n#line 4 \"geo/convex_polygon_edge_voronoi.hpp\"\n\n// 20260812,\
+    \ written by GPT-5.6 Sol\n//\n// A: CCW convex polygon, consecutive edges should\
+    \ not be collinear.\n// Voronoi diagram of the edges of a convex polygon, restricted\
+    \ to its interior.\n// Each Voronoi edge is represented by\n//   center(t) = p1\
+    \ + t (p2 - p1)\n//   radius(t) = r1 + t (r2 - r1), 0 <= t <= 1.\n// O(N log N)\
+    \ time.\n// If a circle is tangent to 4 or more edges simultaneously,\n// the\
+    \ combinatorial structure may be tie-broken arbitrarily by floating errors.\n\
+    template <typename P, typename Re>\nstruct Convex_Polygon_Edge_Voronoi {\n  using\
+    \ RP = Point<Re>;\n  struct Edge {\n    int i, j;\n    RP p1, p2;\n    Re r1,\
+    \ r2;\n  };\n\n  int N;\n  vc<P> A;\n\n  // polygon edge i:\n  //   U[i].dot(x)\
+    \ <= H[i]\n  // where U[i] is the id outward normal.\n  vc<RP> U;\n  vc<Re> H;\n\
+    \n  vc<Edge> edges;\n  vc<vc<int>> incident;\n\n  Convex_Polygon_Edge_Voronoi(vc<P>\
+    \ A) : N(len(A)), A(A) { build(); }\n\n  RP point(const Edge& e, Re t) const {\
+    \ return e.p1 + (e.p2 - e.p1) * t; }\n  Re radius(const Edge& e, Re t) const {\
+    \ return e.r1 + (e.r2 - e.r1) * t; }\n  pair<RP, RP> segment(const Edge& e) const\
+    \ { return {e.p1, e.p2}; }\n\n  // Voronoi cell of polygon edge i.\n  // Collinear\
+    \ points on the boundary may be removed.\n  vc<RP> cell(int i) const {\n    vc<RP>\
+    \ X;\n    X.eb(RP(A[i]));\n    X.eb(RP(A[(i + 1) % N]));\n\n    for (int k : incident[i])\
+    \ {\n      X.eb(edges[k].p1);\n      X.eb(edges[k].p2);\n    }\n\n    sort(all(X),\
+    \ [&](const RP& a, const RP& b) -> bool {\n      if (a.x != b.x) return a.x <\
+    \ b.x;\n      return a.y < b.y;\n    });\n    X.erase(unique(all(X),\n       \
+    \            [&](const RP& a, const RP& b) -> bool {\n                     return\
+    \ a.x == b.x && a.y == b.y;\n                   }),\n            X.end());\n \
+    \   if (len(X) <= 2) return X;\n    vc<RP> H;\n    auto push = [&](RP p) -> void\
+    \ {\n      while (len(H) >= 2) {\n        RP a = H[len(H) - 2];\n        RP b\
+    \ = H[len(H) - 1];\n        if ((b - a).det(p - b) > 0) break;\n        H.pop_back();\n\
+    \      }\n      H.eb(p);\n    };\n    for (auto& p : X) push(p);\n    int k =\
+    \ len(H);\n    for (int i = len(X) - 2; i >= 0; --i) push(X[i]);\n    H.pop_back();\n\
+    \    return H;\n  }\n\n private:\n  void add_edge(int i, int j, RP p1, Re r1,\
+    \ RP p2, Re r2) {\n    // Except for tiny errors around simultaneous events,\n\
+    \    // radius is nondecreasing along a medial-axis branch.\n    if (r1 > r2)\
+    \ {\n      swap(p1, p2);\n      swap(r1, r2);\n    }\n\n    int k = len(edges);\n\
+    \    edges.eb(Edge{i, j, p1, p2, r1, r2});\n    incident[i].eb(k);\n    incident[j].eb(k);\n\
+    \  }\n\n  // For three consecutive active polygon edges a,b,c,\n  // returns the\
+    \ center and radius where b disappears.\n  pair<RP, Re> event(int a, int b, int\
+    \ c) const {\n    RP p = U[a] - U[b];\n    RP q = U[b] - U[c];\n    Re s = H[a]\
+    \ - H[b];\n    Re t = H[b] - H[c];\n    Re det = p.det(q);\n    assert(det !=\
+    \ Re(0));\n    RP x((s * q.y - p.y * t) / det, (p.x * t - s * q.x) / det);\n \
+    \   Re r = H[b] - U[b].dot(x);\n    return {x, r};\n  }\n\n  void build() {\n\
+    \    assert(N >= 3);\n\n    U.resize(N);\n    H.resize(N);\n    incident.resize(N);\n\
+    \n    FOR(i, N) {\n      int j = (i + 1) % N;\n      Re dx = Re(A[j].x) - Re(A[i].x);\n\
+    \      Re dy = Re(A[j].y) - Re(A[i].y);\n      Re d = sqrt(dx * dx + dy * dy);\n\
+    \      // A is CCW, so the right normal is outward.\n      U[i] = RP(dy / d, -dx\
     \ / d);\n      H[i] = U[i].dot(RP(A[i]));\n    }\n\n    vc<int> nxt(N), pre(N);\n\
     \    FOR(i, N) {\n      nxt[i] = (i + 1) % N;\n      pre[nxt[i]] = i;\n    }\n\
     \n    vc<bool> alive(N, true);\n\n    vc<RP> born_point(N);\n    vc<Re> born_radius(N,\
@@ -204,7 +204,7 @@ data:
   isVerificationFile: false
   path: geo/convex_polygon_edge_voronoi.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-10-27 03:13:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/convex_polygon_edge_voronoi.hpp

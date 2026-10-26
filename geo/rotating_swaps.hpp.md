@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy: []
@@ -65,36 +65,37 @@ data:
     \  bool is_same(Line other) {\n    if (a * other.b != b * other.a) return 0;\n\
     \    if (a * other.c != c * other.a) return 0;\n    if (b * other.c != c * other.b)\
     \ return 0;\n    return 1;\n  }\n};\n\ntemplate <typename T>\nstruct Segment {\n\
-    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T\
-    \ x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\
-    \n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if (det !=\
-    \ 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n\
-    \  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\ntemplate <typename REAL>\n\
-    struct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n  Circle(Point<REAL>\
-    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
-    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
-    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 4 \"geo/angle_sort.hpp\"\n\n// lower: -1, origin: 0, upper: 1, (-pi,pi]\ntemplate\
-    \ <typename T> int lower_or_upper(const Point<T> &p) {\n  if (p.y != 0)\n    return\
-    \ (p.y > 0 ? 1 : -1);\n  if (p.x > 0)\n    return -1;\n  if (p.x < 0)\n    return\
-    \ 1;\n  return 0;\n}\n\n// L<R:-1, L==R:0, L>R:1, (-pi,pi]\ntemplate <typename\
-    \ T> int angle_comp_3(const Point<T> &L, const Point<T> &R) {\n  int a = lower_or_upper(L),\
-    \ b = lower_or_upper(R);\n  if (a != b)\n    return (a < b ? -1 : +1);\n  T det\
-    \ = L.det(R);\n  if (det > 0)\n    return -1;\n  if (det < 0)\n    return 1;\n\
-    \  return 0;\n}\n\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort,\
-    \ (-pi,pi]\ntemplate <typename T> vector<int> angle_sort(vector<Point<T>> &P)\
-    \ {\n  vc<int> I(len(P));\n  FOR(i, len(P)) I[i] = i;\n  sort(all(I), [&](auto\
-    \ &L, auto &R) -> bool {\n    return angle_comp_3(P[L], P[R]) == -1;\n  });\n\
-    \  return I;\n}\n\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort,\
-    \ (-pi,pi]\ntemplate <typename T> vector<int> angle_sort(vector<pair<T, T>> &P)\
-    \ {\n  vc<Point<T>> tmp(len(P));\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\n\
-    \  return angle_sort<T>(tmp);\n}\n#line 3 \"geo/rotating_swaps.hpp\"\n\n/*\nreturn\
-    \ : {init, events}\ninit: \u65B9\u5411\u30D9\u30AF\u30C8\u30EB (-1,-eps) \u65B9\
-    \u5411\u306B\u3064\u3044\u3066\u30BD\u30FC\u30C8\u3057\u305F\u3068\u304D\u306E\
-    \u9806\u5E8F\nevents: i,j \u306E\u9806\u4F4D\u304C\u5165\u308C\u66FF\u308F\u308B\
-    \ (i<j \u304B\u3089 j<i)\u3068\u3044\u3046\u30A4\u30D9\u30F3\u30C8\u306E\u5217\
-    \n360\u5EA6\u5206\u3042\u308B, \u6700\u5F8C\u306B\u306F init \u306B\u623B\u3063\
-    \u3066\u304F\u308B\nhttps://atcoder.jp/contests/tupc2023/tasks/tupc2023_m\nhttps://atcoder.jp/contests/pakencamp-2025-day2/tasks/pakencamp_2025_day2_f\n\
+    \  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) { assert(A\
+    \ != B); }\n  Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1),\
+    \ Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B\
+    \ - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C\
+    \ - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_line() { return Line(A, B); }\n};\n\
+    \ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle()\
+    \ {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y,\
+    \ REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
+    \ <= r * r;\n  }\n};\n#line 4 \"geo/angle_sort.hpp\"\n\n// lower: -1, origin:\
+    \ 0, upper: 1, (-pi,pi]\ntemplate <typename T> int lower_or_upper(const Point<T>\
+    \ &p) {\n  if (p.y != 0)\n    return (p.y > 0 ? 1 : -1);\n  if (p.x > 0)\n   \
+    \ return -1;\n  if (p.x < 0)\n    return 1;\n  return 0;\n}\n\n// L<R:-1, L==R:0,\
+    \ L>R:1, (-pi,pi]\ntemplate <typename T> int angle_comp_3(const Point<T> &L, const\
+    \ Point<T> &R) {\n  int a = lower_or_upper(L), b = lower_or_upper(R);\n  if (a\
+    \ != b)\n    return (a < b ? -1 : +1);\n  T det = L.det(R);\n  if (det > 0)\n\
+    \    return -1;\n  if (det < 0)\n    return 1;\n  return 0;\n}\n\n// \u504F\u89D2\
+    \u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort, (-pi,pi]\ntemplate <typename\
+    \ T> vector<int> angle_sort(vector<Point<T>> &P) {\n  vc<int> I(len(P));\n  FOR(i,\
+    \ len(P)) I[i] = i;\n  sort(all(I), [&](auto &L, auto &R) -> bool {\n    return\
+    \ angle_comp_3(P[L], P[R]) == -1;\n  });\n  return I;\n}\n\n// \u504F\u89D2\u30BD\
+    \u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort, (-pi,pi]\ntemplate <typename T>\
+    \ vector<int> angle_sort(vector<pair<T, T>> &P) {\n  vc<Point<T>> tmp(len(P));\n\
+    \  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\n  return angle_sort<T>(tmp);\n}\n\
+    #line 3 \"geo/rotating_swaps.hpp\"\n\n/*\nreturn : {init, events}\ninit: \u65B9\
+    \u5411\u30D9\u30AF\u30C8\u30EB (-1,-eps) \u65B9\u5411\u306B\u3064\u3044\u3066\u30BD\
+    \u30FC\u30C8\u3057\u305F\u3068\u304D\u306E\u9806\u5E8F\nevents: i,j \u306E\u9806\
+    \u4F4D\u304C\u5165\u308C\u66FF\u308F\u308B (i<j \u304B\u3089 j<i)\u3068\u3044\u3046\
+    \u30A4\u30D9\u30F3\u30C8\u306E\u5217\n360\u5EA6\u5206\u3042\u308B, \u6700\u5F8C\
+    \u306B\u306F init \u306B\u623B\u3063\u3066\u304F\u308B\nhttps://atcoder.jp/contests/tupc2023/tasks/tupc2023_m\n\
+    https://atcoder.jp/contests/pakencamp-2025-day2/tasks/pakencamp_2025_day2_f\n\
     */\ntemplate <typename T>\npair<vc<int>, vc<pair<int, int>>> rotating_swaps(vc<Point<T>>\
     \ point) {\n  using P = Point<T>;\n  /*\n  \u89D2\u5EA6 t \u306B\u304A\u3051\u308B\
     \u30BF\u30A4\u30D6\u30EC\u30A4\u30AF\u306B\u3064\u3044\u3066\n  \u89D2\u5EA6 t-eps\
@@ -169,7 +170,7 @@ data:
   isVerificationFile: false
   path: geo/rotating_swaps.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-10-27 03:13:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/rotating_swaps.hpp

@@ -10,10 +10,13 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
+  - icon: ':question:'
+    path: ds/index_compression.hpp
+    title: ds/index_compression.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedRequiredBy: []
@@ -142,70 +145,109 @@ data:
     \ e) -> bool { return e <= 0; }, idx) - 1;\n    if (idx == -1) return -1;\n  \
     \  return 64 * idx + topbit(dat[idx]);\n  }\n\n  string to_string() {\n    string\
     \ out;\n    FOR(i, N) out += '0' + (dat[i / 64] >> (i & 63) & 1);\n    return\
-    \ out;\n  }\n};\n#line 3 \"seq/inversion.hpp\"\n\ntemplate <typename T>\nll inversion(const\
-    \ vc<T>& A) {\n  int N = len(A);\n  if (A.empty()) return 0;\n  ll ANS = 0;\n\
-    \  FenwickTree_01 bit(N);\n  auto I = argsort(A);\n  for (auto& i : I) {\n   \
-    \ ANS += bit.sum_all() - bit.sum(i);\n    bit.add(i, 1);\n  }\n  return ANS;\n\
-    }\n\n// i \u756A\u76EE\uFF1AA_i \u304C\u5148\u982D\u306B\u306A\u308B\u3088\u3046\
-    \u306B rotate \u3057\u305F\u3068\u304D\u306E\u8EE2\u5012\u6570\ntemplate <typename\
-    \ T, bool SMALL = false>\nvi inversion_rotate(vc<T>& A) {\n  if (A.empty()) return\
-    \ {};\n  const int N = len(A);\n  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n\
-    \    for (auto&& x : A) x = LB(key, x);\n  }\n  ll K = MAX(A) + 1;\n  ll ANS =\
-    \ 0;\n  FenwickTree<Monoid_Add<int>> bit(K);\n  for (auto&& x : A) {\n    ANS\
-    \ += bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n  vi res(N);\n  FOR(i, N) {\n\
-    \    res[i] = ANS;\n    ll x = A[i];\n    ANS = ANS + bit.sum(x + 1, K) - bit.prefix_sum(x);\n\
-    \  }\n  return res;\n}\n\n// inv[i][j] = inversion A[i:j) \u3067\u3042\u308B\u3088\
-    \u3046\u306A (N+1, N+1) \u30C6\u30FC\u30D6\u30EB\ntemplate <typename T>\nvvc<int>\
-    \ all_range_inversion(const vc<T>& A) {\n  int N = len(A);\n  vv(int, dp, N +\
-    \ 1, N + 1);\n  FOR_R(L, N + 1) FOR(R, L + 2, N + 1) {\n    dp[L][R] = dp[L][R\
-    \ - 1] + dp[L + 1][R] - dp[L + 1][R - 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n\
-    \  }\n  return dp;\n}\n\ntemplate <typename T>\nll inversion_between(const vc<T>&\
-    \ A, const vc<T>& B) {\n  assert(len(A) == len(B));\n  int N = len(A);\n  map<T,\
-    \ vc<int>> MP;\n  FOR(i, N) MP[B[i]].eb(i);\n  vc<int> TO(N);\n  FOR_R(i, N) {\n\
-    \    auto& I = MP[A[i]];\n    if (I.empty()) return -1;\n    TO[i] = POP(I);\n\
-    \  }\n  return inversion(TO);\n}\n#line 4 \"other/sliding_puzzle_solver.hpp\"\n\
-    \n/*\nO(HW(H+W))\n\u7A7A\u30DE\u30B9\u306F -1 (unique)\n\u540C\u3058\u5024\u304C\
-    \u8907\u6570\u3042\u3063\u3066\u3082\u3088\u3044\n\u64CD\u4F5C\u56DE\u6570\u3092\
-    \ K \u3068\u3057\u3066\u3001\u9577\u3055 K+1 \u306E\u7A7A\u30DE\u30B9\u306E\u5EA7\
-    \u6A19\u5217\u3092\u304B\u3048\u3059\n*/\nstruct Sliding_Puzzle_Solver {\n  using\
-    \ P = pair<int, int>;\n  vc<P> solve(vvc<int> A, vvc<int> B) {\n    int H = len(A),\
-    \ W = len(A[0]);\n    auto find = [&](vvc<int>& A, int k) -> P {\n      FOR(x,\
-    \ H) FOR(y, W) if (A[x][y] == k) return {x, y};\n      assert(0);\n      return\
-    \ {0, 0};\n    };\n    auto [ax, ay] = find(A, -1);\n    auto [bx, by] = find(B,\
-    \ -1);\n    vc<P> ANS_1, ANS_2;\n    while (ax > 0) {\n      ANS_1.eb(ax, ay),\
-    \ swap(A[ax][ay], A[ax - 1][ay]), --ax;\n    }\n    while (ay > 0) {\n      ANS_1.eb(ax,\
-    \ ay), swap(A[ax][ay], A[ax][ay - 1]), --ay;\n    }\n    while (bx > 0) {\n  \
-    \    ANS_2.eb(bx, by), swap(B[bx][by], B[bx - 1][by]), --bx;\n    }\n    while\
-    \ (by > 0) {\n      ANS_2.eb(bx, by), swap(B[bx][by], B[bx][by - 1]), --by;\n\
-    \    }\n    vc<P> ANS = solve_00(A, B);\n    if (ANS.empty()) return {};\n   \
-    \ reverse(all(ANS_2));\n    return concat(ANS_1, ANS, ANS_2);\n  }\n\n private:\n\
-    \  vc<P> solve_00(vvc<int> A, vvc<int> B) {\n    assert(A[0][0] == -1 && B[0][0]\
-    \ == -1);\n    int H = len(A), W = len(A[0]);\n    if (H == 1 || W == 1) {\n \
-    \     if (A != B) return {};\n      vc<P> ANS;\n      ANS.eb(0, 0);\n      return\
-    \ ANS;\n    }\n    vc<P> XYA, XYB;\n    FOR(x, H) FOR(y, W) XYA.eb(x, y), XYB.eb(x,\
-    \ y);\n    sort(all(XYA), [&](auto& a, auto& b) -> bool {\n      return A[a.fi][a.se]\
-    \ < A[b.fi][b.se];\n    });\n    sort(all(XYB), [&](auto& a, auto& b) -> bool\
-    \ {\n      return B[a.fi][a.se] < B[b.fi][b.se];\n    });\n    auto check = [&]()\
-    \ -> bool {\n      vc<int> S, T;\n      FOR(i, H * W) {\n        auto [x1, y1]\
-    \ = XYA[i];\n        auto [x2, y2] = XYB[i];\n        if (A[x1][y1] != B[x2][y2])\
-    \ return 0;\n        S.eb(W * x1 + y1);\n        T.eb(W * x2 + y2);\n      }\n\
-    \      ll x = inversion_between(S, T);\n      return x % 2 == 0;\n    };\n   \
-    \ if (!check()) {\n      FOR(i, H * W - 1) {\n        auto [x1, y1] = XYA[i];\n\
-    \        auto [x2, y2] = XYA[i + 1];\n        if (A[x1][y1] != A[x2][y2]) continue;\n\
-    \        swap(XYA[i], XYA[i + 1]);\n        break;\n      }\n      if (!check())\
-    \ return {};\n    }\n    vv(P, X, H, W);\n    FOR(i, H * W) {\n      auto [x1,\
-    \ y1] = XYA[i];\n      auto [x2, y2] = XYB[i];\n      X[x1][y1] = {x2, y2};\n\
-    \    }\n    vc<P> ANS;\n    ANS.eb(0, 0);\n    solve_sort(X, ANS, false);\n  \
-    \  return ANS;\n  }\n\n  // \u79FB\u52D5\u5148\u306E\u5EA7\u6A19\u306E\u5217\u3092\
-    \u4E26\u3079\u305F\u30B0\u30EA\u30C3\u30C9\u3092\u4E0E\u3048\u308B.\n  // (0,0)\
-    \ \u304C\u7A7A\u30DE\u30B9\n  void solve_sort(vvc<pair<int, int>>& A, vc<P>& ANS,\
-    \ bool tr) {\n    int H = len(A), W = len(A[0]);\n    vv(P, pos, H, W);\n    FOR(x,\
-    \ H) FOR(y, W) {\n      P p = A[x][y];\n      pos[p.fi][p.se] = {x, y};\n    }\n\
-    \n    auto [px, py] = pos[0][0];\n\n    auto ope = [&](int x, int y) -> void {\n\
-    \      assert(abs(px - x) + abs(py - y) == 1);\n      swap(A[px][py], A[x][y]);\n\
-    \      if (!tr) ANS.eb(x, y);\n      if (tr) ANS.eb(y, x);\n      pos[A[px][py].fi][A[px][py].se]\
-    \ = {px, py};\n      px = x, py = y;\n      pos[A[px][py].fi][A[px][py].se] =\
-    \ {px, py};\n    };\n    if (H == 2 && W == 2) {\n      auto check = [&]() ->\
+    \ out;\n  }\n};\n#line 1 \"ds/index_compression.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/index_compression.hpp\n\
+    template <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  int mi, ma;\n\
+    \  vc<T> dat;\n  vc<T> build(vc<int> X) {\n    mi = 0, ma = -1;\n    if (!X.empty())\
+    \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
+    \ : X) dat[x - mi + 1]++;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n  \
+    \  for (auto& x : X) {\n      x = dat[x - mi]++;\n    }\n    FOR_R(i, 1, len(dat))\
+    \ dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return X;\n  }\n  int size() const\
+    \ { return len(dat); }\n  int val_to_idx(T x) const { return dat[clamp<ll>(x -\
+    \ mi, 0, ma - mi + 1)]; }\n  int idx_to_val(int i) const { return dat[i]; }\n\
+    };\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL {\n  int mi,\
+    \ ma;\n  vc<T> dat;\n  vc<T> build(vc<T> X) {\n    mi = 0, ma = -1;\n    if (!X.empty())\
+    \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
+    \ : X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n\
+    \    for (auto& x : X) {\n      x = dat[x - mi];\n    }\n    return X;\n  }\n\
+    \  int size() const { return len(dat); }\n  int val_to_idx(T x) const { return\
+    \ dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }\n  int idx_to_val(int i) const { return\
+    \ dat[i]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE\
+    \ {\n  vc<T> dat;\n  vc<int> build(const vc<T>& X) {\n    dat.reserve(len(X));\n\
+    \    vc<pair<T, int>> tmp(len(X));\n    FOR(i, len(X)) tmp[i] = {X[i], i};\n \
+    \   sort(all(tmp));\n    vc<int> ANS(len(X));\n    for (auto [x, j] : tmp) {\n\
+    \      if (dat.empty() || dat.back() != x) dat.eb(x);\n      ANS[j] = len(dat)\
+    \ - 1;\n    }\n    return ANS;\n  }\n  int size() const { return len(dat); }\n\
+    \  int val_to_idx(T x) const { return LB(dat, x); }\n  int idx_to_val(int i) const\
+    \ { return dat[i]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_DISTINCT_LARGE\
+    \ {\n  vc<T> dat;\n  vc<int> build(vc<T> X) {\n    dat.reserve(len(X));\n    vc<pair<T,\
+    \ int>> tmp(len(X));\n    FOR(i, len(X)) tmp[i] = {X[i], i};\n    sort(all(tmp));\n\
+    \    vc<int> ANS(len(X));\n    for (auto [x, j] : tmp) {\n      dat.eb(x);\n \
+    \     ANS[j] = len(dat) - 1;\n    }\n    return ANS;\n  }\n  int size() const\
+    \ { return len(dat); }\n  int val_to_idx(T x) const { return LB(dat, x); }\n \
+    \ int idx_to_val(int i) const { return dat[i]; }\n};\n\ntemplate <typename T,\
+    \ bool SMALL>\nusing Index_Compression_DISTINCT =\n    typename std::conditional<SMALL,\
+    \ Index_Compression_DISTINCT_SMALL<T>,\n                              Index_Compression_DISTINCT_LARGE<T>>::type;\n\
+    template <typename T, bool SMALL>\nusing Index_Compression_SAME =\n    typename\
+    \ std::conditional<SMALL, Index_Compression_SAME_SMALL<T>,\n                 \
+    \             Index_Compression_SAME_LARGE<T>>::type;\n\n// SAME: [2,3,2] -> [0,1,0]\n\
+    // DISTINCT: [2,2,3] -> [0,2,1]\n// build \u3067\u5217\u3092\u5727\u7E2E\u3057\
+    \u3066\u304F\u308C\u308B. \u305D\u306E\u3042\u3068\n// (x): lower_bound(X,x) \u3092\
+    \u304B\u3048\u3059\ntemplate <typename T, bool SAME, bool SMALL>\nusing Index_Compression\
+    \ =\n    typename std::conditional<SAME, Index_Compression_SAME<T, SMALL>,\n \
+    \                             Index_Compression_DISTINCT<T, SMALL>>::type;\n#line\
+    \ 4 \"seq/inversion.hpp\"\n\ntemplate <typename T>\nll inversion(const vc<T>&\
+    \ A) {\n  int N = len(A);\n  if (A.empty()) return 0;\n  ll ANS = 0;\n  FenwickTree_01\
+    \ bit(N);\n  auto I = argsort(A);\n  for (auto& i : I) {\n    ANS += bit.sum_all()\
+    \ - bit.sum(i);\n    bit.add(i, 1);\n  }\n  return ANS;\n}\n\n// i \u756A\u76EE\
+    \uFF1AA_i \u304C\u5148\u982D\u306B\u306A\u308B\u3088\u3046\u306B rotate \u3057\
+    \u305F\u3068\u304D\u306E\u8EE2\u5012\u6570\ntemplate <typename T, bool SMALL =\
+    \ false>\nvi inversion_rotate(const vc<T>& A) {\n  if (A.empty()) return {};\n\
+    \  const int N = len(A);\n  Index_Compression_SAME<T, SMALL> comp;\n  vc<int>\
+    \ rank = comp.build(A);\n  int K = MAX(rank) + 1;\n  ll ANS = 0;\n  FenwickTree<Monoid_Add<int>>\
+    \ bit(K);\n  for (auto&& x : rank) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x,\
+    \ 1);\n  }\n  vi res(N);\n  FOR(i, N) {\n    res[i] = ANS;\n    ll x = rank[i];\n\
+    \    ANS = ANS + bit.sum(x + 1, K) - bit.prefix_sum(x);\n  }\n  return res;\n\
+    }\n\n// inv[i][j] = inversion A[i:j) \u3067\u3042\u308B\u3088\u3046\u306A (N+1,\
+    \ N+1) \u30C6\u30FC\u30D6\u30EB\ntemplate <typename T>\nvvc<int> all_range_inversion(const\
+    \ vc<T>& A) {\n  int N = len(A);\n  vv(int, dp, N + 1, N + 1);\n  FOR_R(L, N +\
+    \ 1) FOR(R, L + 2, N + 1) {\n    dp[L][R] = dp[L][R - 1] + dp[L + 1][R] - dp[L\
+    \ + 1][R - 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n  }\n  return dp;\n}\n\n\
+    template <typename T>\nll inversion_between(const vc<T>& A, const vc<T>& B) {\n\
+    \  assert(len(A) == len(B));\n  int N = len(A);\n  map<T, vc<int>> MP;\n  FOR(i,\
+    \ N) MP[B[i]].eb(i);\n  vc<int> TO(N);\n  FOR_R(i, N) {\n    auto& I = MP[A[i]];\n\
+    \    if (I.empty()) return -1;\n    TO[i] = POP(I);\n  }\n  return inversion(TO);\n\
+    }\n#line 4 \"other/sliding_puzzle_solver.hpp\"\n\n/*\nO(HW(H+W))\n\u7A7A\u30DE\
+    \u30B9\u306F -1 (unique)\n\u540C\u3058\u5024\u304C\u8907\u6570\u3042\u3063\u3066\
+    \u3082\u3088\u3044\n\u64CD\u4F5C\u56DE\u6570\u3092 K \u3068\u3057\u3066\u3001\u9577\
+    \u3055 K+1 \u306E\u7A7A\u30DE\u30B9\u306E\u5EA7\u6A19\u5217\u3092\u304B\u3048\u3059\
+    \n*/\nstruct Sliding_Puzzle_Solver {\n  using P = pair<int, int>;\n  vc<P> solve(vvc<int>\
+    \ A, vvc<int> B) {\n    int H = len(A), W = len(A[0]);\n    auto find = [&](vvc<int>&\
+    \ A, int k) -> P {\n      FOR(x, H) FOR(y, W) if (A[x][y] == k) return {x, y};\n\
+    \      assert(0);\n      return {0, 0};\n    };\n    auto [ax, ay] = find(A, -1);\n\
+    \    auto [bx, by] = find(B, -1);\n    vc<P> ANS_1, ANS_2;\n    while (ax > 0)\
+    \ {\n      ANS_1.eb(ax, ay), swap(A[ax][ay], A[ax - 1][ay]), --ax;\n    }\n  \
+    \  while (ay > 0) {\n      ANS_1.eb(ax, ay), swap(A[ax][ay], A[ax][ay - 1]), --ay;\n\
+    \    }\n    while (bx > 0) {\n      ANS_2.eb(bx, by), swap(B[bx][by], B[bx - 1][by]),\
+    \ --bx;\n    }\n    while (by > 0) {\n      ANS_2.eb(bx, by), swap(B[bx][by],\
+    \ B[bx][by - 1]), --by;\n    }\n    vc<P> ANS = solve_00(A, B);\n    if (ANS.empty())\
+    \ return {};\n    reverse(all(ANS_2));\n    return concat(ANS_1, ANS, ANS_2);\n\
+    \  }\n\n private:\n  vc<P> solve_00(vvc<int> A, vvc<int> B) {\n    assert(A[0][0]\
+    \ == -1 && B[0][0] == -1);\n    int H = len(A), W = len(A[0]);\n    if (H == 1\
+    \ || W == 1) {\n      if (A != B) return {};\n      vc<P> ANS;\n      ANS.eb(0,\
+    \ 0);\n      return ANS;\n    }\n    vc<P> XYA, XYB;\n    FOR(x, H) FOR(y, W)\
+    \ XYA.eb(x, y), XYB.eb(x, y);\n    sort(all(XYA), [&](auto& a, auto& b) -> bool\
+    \ {\n      return A[a.fi][a.se] < A[b.fi][b.se];\n    });\n    sort(all(XYB),\
+    \ [&](auto& a, auto& b) -> bool {\n      return B[a.fi][a.se] < B[b.fi][b.se];\n\
+    \    });\n    auto check = [&]() -> bool {\n      vc<int> S, T;\n      FOR(i,\
+    \ H * W) {\n        auto [x1, y1] = XYA[i];\n        auto [x2, y2] = XYB[i];\n\
+    \        if (A[x1][y1] != B[x2][y2]) return 0;\n        S.eb(W * x1 + y1);\n \
+    \       T.eb(W * x2 + y2);\n      }\n      ll x = inversion_between(S, T);\n \
+    \     return x % 2 == 0;\n    };\n    if (!check()) {\n      FOR(i, H * W - 1)\
+    \ {\n        auto [x1, y1] = XYA[i];\n        auto [x2, y2] = XYA[i + 1];\n  \
+    \      if (A[x1][y1] != A[x2][y2]) continue;\n        swap(XYA[i], XYA[i + 1]);\n\
+    \        break;\n      }\n      if (!check()) return {};\n    }\n    vv(P, X,\
+    \ H, W);\n    FOR(i, H * W) {\n      auto [x1, y1] = XYA[i];\n      auto [x2,\
+    \ y2] = XYB[i];\n      X[x1][y1] = {x2, y2};\n    }\n    vc<P> ANS;\n    ANS.eb(0,\
+    \ 0);\n    solve_sort(X, ANS, false);\n    return ANS;\n  }\n\n  // \u79FB\u52D5\
+    \u5148\u306E\u5EA7\u6A19\u306E\u5217\u3092\u4E26\u3079\u305F\u30B0\u30EA\u30C3\
+    \u30C9\u3092\u4E0E\u3048\u308B.\n  // (0,0) \u304C\u7A7A\u30DE\u30B9\n  void solve_sort(vvc<pair<int,\
+    \ int>>& A, vc<P>& ANS, bool tr) {\n    int H = len(A), W = len(A[0]);\n    vv(P,\
+    \ pos, H, W);\n    FOR(x, H) FOR(y, W) {\n      P p = A[x][y];\n      pos[p.fi][p.se]\
+    \ = {x, y};\n    }\n\n    auto [px, py] = pos[0][0];\n\n    auto ope = [&](int\
+    \ x, int y) -> void {\n      assert(abs(px - x) + abs(py - y) == 1);\n      swap(A[px][py],\
+    \ A[x][y]);\n      if (!tr) ANS.eb(x, y);\n      if (tr) ANS.eb(y, x);\n     \
+    \ pos[A[px][py].fi][A[px][py].se] = {px, py};\n      px = x, py = y;\n      pos[A[px][py].fi][A[px][py].se]\
+    \ = {px, py};\n    };\n    if (H == 2 && W == 2) {\n      auto check = [&]() ->\
     \ bool {\n        FOR(x, H) FOR(y, W) if (A[x][y].fi != x || A[x][y].se != y)\
     \ return 0;\n        return 1;\n      };\n      while (!check()) {\n        if\
     \ (px == 0 && py == 0) ope(1, 0);\n        if (px == 1 && py == 0) ope(1, 1);\n\
@@ -333,10 +375,11 @@ data:
   - ds/fenwicktree/fenwicktree_01.hpp
   - ds/fenwicktree/fenwicktree.hpp
   - alg/monoid/add.hpp
+  - ds/index_compression.hpp
   isVerificationFile: false
   path: other/sliding_puzzle_solver.hpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
+  timestamp: '2026-10-27 03:18:49+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: other/sliding_puzzle_solver.hpp

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
     path: ds/meldable_heap.hpp
     title: ds/meldable_heap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -229,7 +229,7 @@ data:
     \ G, vc<int> vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<T> dist(N,\
     \ infty<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n\n  using P = pair<T,\
     \ int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  FOR(k, len(vs))\
-    \ {\n    int v = vs[k];\n    dist[v] = 0;\n    root[v] = v;\n    que.emplace(T(0),\
+    \ {\n    int v = vs[k];\n    if (chmin(dist[v], 0)) root[v] = v, que.emplace(T(0),\
     \ v);\n  }\n\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n\
     \    if (dv > dist[v]) continue;\n    for (auto&& e : G[v]) {\n      if (chmin(dist[e.to],\
     \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
@@ -402,7 +402,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/K_shortest_walk.hpp
   requiredBy: []
-  timestamp: '2026-10-25 14:31:22+09:00'
+  timestamp: '2026-10-27 03:13:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/graph/K_shortest_walk.test.cpp

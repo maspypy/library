@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -16,25 +16,25 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -616,18 +616,18 @@ data:
     \ modint<2>>, \"use Bit_Array version for mod\n  // 2\");\n  assert(f[0] != mint(0));\n\
     \  int n = count_terms(f);\n  int t = (mint::can_ntt() ? 160 : 820);\n  return\
     \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\n}\n#line 5 \"\
-    poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\
-    \u308B.\ntemplate <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint>\
-    \ f, vc<mint> g) {\n  assert(!g.empty() && g[0] != 0);\n  if (SPARSE || count_terms(g)\
-    \ < 200) return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g\
-    \ = fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n  return f;\n\
-    }\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\ntemplate <typename mint>\nvc<mint>\
-    \ fps_div_sparse(vc<mint> f, const vc<mint>& g) {\n  assert(!g.empty() && g[0]\
-    \ != 0);\n  mint c = g[0].inverse();\n  if (c != mint(1)) {\n    for (auto&& x\
-    \ : f) x *= c;\n  }\n\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, len(g)) if (g[i]\
+    poly/fps_div.hpp\"\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\ntemplate <typename\
+    \ mint>\nvc<mint> fps_div_sparse(vc<mint> f, const vc<mint>& g) {\n  assert(!g.empty()\
+    \ && g[0] != 0);\n  mint c = g[0].inverse();\n  if (c != mint(1)) {\n    for (auto&&\
+    \ x : f) x *= c;\n  }\n\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, len(g)) if (g[i]\
     \ != mint(0)) dat.eb(i, -g[i] * c);\n  FOR(i, len(f)) {\n    for (auto&& [j, x]\
     \ : dat) {\n      if (i >= j) f[i] += x * f[i - j];\n    }\n  }\n  return f;\n\
-    }\n#line 1 \"linalg/transpose.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/linalg/transpose.hpp\n\
+    }\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate\
+    \ <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint> f, vc<mint>\
+    \ g) {\n  assert(!g.empty() && g[0] != 0);\n  if (SPARSE || count_terms(g) < 200)\
+    \ return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n\
+    \  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n#line 1 \"linalg/transpose.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/linalg/transpose.hpp\n\
     template <typename VC>\nvc<VC> transpose(const vc<VC>& A, int H = -1, int W =\
     \ -1) {\n  if (H == -1) {\n    H = len(A), W = (len(A) == 0 ? 0 : len(A[0]));\n\
     \  }\n  assert(W != -1);\n  vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x]\
@@ -769,7 +769,7 @@ data:
   isVerificationFile: false
   path: poly/coef_of_rational_fps_2d.hpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
+  timestamp: '2026-10-27 03:13:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: poly/coef_of_rational_fps_2d.hpp

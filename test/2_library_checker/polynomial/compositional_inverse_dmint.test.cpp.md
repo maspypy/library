@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
   - icon: ':heavy_check_mark:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':heavy_check_mark:'
@@ -43,46 +43,46 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
     path: poly/power_projection.hpp
     title: poly/power_projection.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -547,35 +547,36 @@ data:
     \ {}\n  Dynamic_Modint(u64 x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(int x)\
     \ : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n  Dynamic_Modint(ll x) :\
     \ val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n  Dynamic_Modint(i128 x) :\
-    \ val((x %= get_mod()) < 0 ? x + get_mod() : x){};\n\n  bool operator<(const mint&\
-    \ other) const { return val < other.val; }\n  mint& operator+=(const mint& rhs)\
-    \ {\n    val = (val += rhs.val) < umod() ? val : val - umod();\n    return *this;\n\
-    \  }\n  mint& operator-=(const mint& rhs) {\n    val = (val += umod() - rhs.val)\
-    \ < umod() ? val : val - umod();\n    return *this;\n  }\n  mint& operator*=(const\
-    \ mint& rhs) {\n    val = bt.mul(val, rhs.val);\n    return *this;\n  }\n  mint&\
-    \ operator/=(const mint& rhs) { return *this = *this * rhs.inverse(); }\n  mint\
-    \ operator-() const { return mint() - *this; }\n  mint pow(ll n) const {\n   \
-    \ assert(0 <= n);\n    mint x = *this, r = 1;\n    while (n) {\n      if (n &\
-    \ 1) r *= x;\n      x *= x, n >>= 1;\n    }\n    return r;\n  }\n  mint inverse()\
-    \ const {\n    int x = val, mod = get_mod();\n    int a = x, b = mod, u = 1, v\
-    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\n    }\n    if (u < 0) u += mod;\n    return u;\n  }\n\n  friend\
-    \ mint operator+(const mint& lhs, const mint& rhs) {\n    return mint(lhs) +=\
-    \ rhs;\n  }\n  friend mint operator-(const mint& lhs, const mint& rhs) {\n   \
-    \ return mint(lhs) -= rhs;\n  }\n  friend mint operator*(const mint& lhs, const\
-    \ mint& rhs) {\n    return mint(lhs) *= rhs;\n  }\n  friend mint operator/(const\
-    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) /= rhs;\n  }\n  friend bool\
-    \ operator==(const mint& lhs, const mint& rhs) {\n    return lhs.val == rhs.val;\n\
-    \  }\n  friend bool operator!=(const mint& lhs, const mint& rhs) {\n    return\
-    \ lhs.val != rhs.val;\n  }\n  static pair<int, int>& get_ntt() {\n    static pair<int,\
-    \ int> p = {-1, -1};\n    return p;\n  }\n  static void set_ntt_info() {\n   \
-    \ int mod = get_mod();\n    int k = lowbit(mod - 1);\n    int r = primitive_root(mod);\n\
-    \    r = mod_pow(r, (mod - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static\
-    \ pair<int, int> ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return\
-    \ ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>&\
-    \ x) {\n  fastio::rd(x.val);\n  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate\
-    \ <int id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
+    \ val((x %= get_mod()) < 0 ? x + get_mod() : x){};\n  Dynamic_Modint(u128 x) :\
+    \ val(x % umod()) {}\n\n  bool operator<(const mint& other) const { return val\
+    \ < other.val; }\n  mint& operator+=(const mint& rhs) {\n    val = (val += rhs.val)\
+    \ < umod() ? val : val - umod();\n    return *this;\n  }\n  mint& operator-=(const\
+    \ mint& rhs) {\n    val = (val += umod() - rhs.val) < umod() ? val : val - umod();\n\
+    \    return *this;\n  }\n  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val,\
+    \ rhs.val);\n    return *this;\n  }\n  mint& operator/=(const mint& rhs) { return\
+    \ *this = *this * rhs.inverse(); }\n  mint operator-() const { return mint() -\
+    \ *this; }\n  mint pow(ll n) const {\n    assert(0 <= n);\n    mint x = *this,\
+    \ r = 1;\n    while (n) {\n      if (n & 1) r *= x;\n      x *= x, n >>= 1;\n\
+    \    }\n    return r;\n  }\n  mint inverse() const {\n    int x = val, mod = get_mod();\n\
+    \    int a = x, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a /\
+    \ b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    if (u < 0) u\
+    \ += mod;\n    return u;\n  }\n\n  friend mint operator+(const mint& lhs, const\
+    \ mint& rhs) {\n    return mint(lhs) += rhs;\n  }\n  friend mint operator-(const\
+    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) -= rhs;\n  }\n  friend mint\
+    \ operator*(const mint& lhs, const mint& rhs) {\n    return mint(lhs) *= rhs;\n\
+    \  }\n  friend mint operator/(const mint& lhs, const mint& rhs) {\n    return\
+    \ mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint& lhs, const mint&\
+    \ rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool operator!=(const\
+    \ mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n  }\n  static\
+    \ pair<int, int>& get_ntt() {\n    static pair<int, int> p = {-1, -1};\n    return\
+    \ p;\n  }\n  static void set_ntt_info() {\n    int mod = get_mod();\n    int k\
+    \ = lowbit(mod - 1);\n    int r = primitive_root(mod);\n    r = mod_pow(r, (mod\
+    \ - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static pair<int, int> ntt_info()\
+    \ { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi != -1;\
+    \ }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>& x) {\n\
+    \  fastio::rd(x.val);\n  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate <int\
+    \ id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing\
+    \ dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
     #line 1 \"poly/power_projection.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/power_projection.hpp\n\
     \n#line 1 \"mod/modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint.hpp\n\
     #line 1 \"mod/modint_common.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint_common.hpp\n\
@@ -1321,19 +1322,19 @@ data:
     \ modint<2>>, \"use Bit_Array version for mod\n  // 2\");\n  assert(f[0] != mint(0));\n\
     \  int n = count_terms(f);\n  int t = (mint::can_ntt() ? 160 : 820);\n  return\
     \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\n}\n#line 5 \"\
-    poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\
-    \u308B.\ntemplate <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint>\
-    \ f, vc<mint> g) {\n  assert(!g.empty() && g[0] != 0);\n  if (SPARSE || count_terms(g)\
-    \ < 200) return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g\
-    \ = fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n  return f;\n\
-    }\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\ntemplate <typename mint>\nvc<mint>\
-    \ fps_div_sparse(vc<mint> f, const vc<mint>& g) {\n  assert(!g.empty() && g[0]\
-    \ != 0);\n  mint c = g[0].inverse();\n  if (c != mint(1)) {\n    for (auto&& x\
-    \ : f) x *= c;\n  }\n\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, len(g)) if (g[i]\
+    poly/fps_div.hpp\"\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\ntemplate <typename\
+    \ mint>\nvc<mint> fps_div_sparse(vc<mint> f, const vc<mint>& g) {\n  assert(!g.empty()\
+    \ && g[0] != 0);\n  mint c = g[0].inverse();\n  if (c != mint(1)) {\n    for (auto&&\
+    \ x : f) x *= c;\n  }\n\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, len(g)) if (g[i]\
     \ != mint(0)) dat.eb(i, -g[i] * c);\n  FOR(i, len(f)) {\n    for (auto&& [j, x]\
     \ : dat) {\n      if (i >= j) f[i] += x * f[i - j];\n    }\n  }\n  return f;\n\
-    }\n#line 1 \"poly/fps_pow.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/fps_pow.hpp\n\
-    #line 1 \"poly/count_terms.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/count_terms.hpp\n\
+    }\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate\
+    \ <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint> f, vc<mint>\
+    \ g) {\n  assert(!g.empty() && g[0] != 0);\n  if (SPARSE || count_terms(g) < 200)\
+    \ return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n\
+    \  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n#line 1 \"poly/fps_pow.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/poly/fps_pow.hpp\n#line\
+    \ 1 \"poly/count_terms.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/count_terms.hpp\n\
     template<typename mint>\nint count_terms(const vc<mint>& f){\n  int t = 0;\n \
     \ FOR(i, len(f)) if(f[i] != mint(0)) ++t;\n  return t;\n}\n#line 1 \"poly/fps_exp.hpp\"\
     \n// Source: https://github.com/maspypy/library/blob/main/poly/fps_exp.hpp\n#line\
@@ -2508,7 +2509,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
+  timestamp: '2026-10-27 03:13:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp

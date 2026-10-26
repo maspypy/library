@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/rollback_array.hpp
     title: ds/rollback_array.hpp
   _extendedRequiredBy: []
@@ -19,19 +19,18 @@ data:
     \ T>> history;\n\n  Rollback_Array() {}\n  Rollback_Array(vc<T> x) : N(len(x)),\
     \ dat(x) {}\n  Rollback_Array(int N) : N(N), dat(N) {}\n  template <typename F>\n\
     \  Rollback_Array(int N, F f) : N(N) {\n    dat.reserve(N);\n    FOR(i, N) dat.eb(f(i));\n\
-    \  }\n\n  int time() { return len(history); }\n  void rollback(int t) {\n    FOR_R(i,\
-    \ t, time()) {\n      auto& [idx, v] = history[i];\n      dat[idx] = v;\n    }\n\
-    \    history.resize(t);\n  }\n  T get(int idx) { return dat[idx]; }\n  void set(int\
-    \ idx, T x) {\n    history.eb(idx, dat[idx]);\n    dat[idx] = x;\n  }\n\n  vc<T>\
-    \ get_all() {\n    vc<T> res(N);\n    FOR(i, N) res[i] = get(i);\n    return res;\n\
-    \  }\n};\n#line 3 \"ds/segtree/rollback_lazy_segtree.hpp\"\n\n// verify? https://qoj.ac/submission/114657\n\
-    template <typename ActedMonoid>\nstruct Rollback_Lazy_SegTree {\n  using AM =\
-    \ ActedMonoid;\n  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n\
-    \  using X = typename MX::value_type;\n  using A = typename MA::value_type;\n\
-    \  int n, log, size;\n  Rollback_Array<X> dat;\n  Rollback_Array<A> laz;\n\n \
-    \ Rollback_Lazy_SegTree() {}\n  Rollback_Lazy_SegTree(int n) { build(n); }\n \
-    \ template <typename F>\n  Rollback_Lazy_SegTree(int n, F f) {\n    build(n, f);\n\
-    \  }\n  Rollback_Lazy_SegTree(const vc<X>& v) { build(v); }\n\n  void build(int\
+    \  }\n\n  int time() { return len(history); }\n  void rollback(int t) {\n    while\
+    \ (t < time()) {\n      auto [idx, v] = POP(history);\n      dat[idx] = v;\n \
+    \   }\n  }\n  T get(int idx) { return dat[idx]; }\n  void set(int idx, T x) {\n\
+    \    history.eb(idx, dat[idx]);\n    dat[idx] = x;\n  }\n\n  vc<T> get_all() {\
+    \ return dat; }\n};\n#line 3 \"ds/segtree/rollback_lazy_segtree.hpp\"\n\n// verify?\
+    \ https://qoj.ac/submission/114657\ntemplate <typename ActedMonoid>\nstruct Rollback_Lazy_SegTree\
+    \ {\n  using AM = ActedMonoid;\n  using MX = typename AM::Monoid_X;\n  using MA\
+    \ = typename AM::Monoid_A;\n  using X = typename MX::value_type;\n  using A =\
+    \ typename MA::value_type;\n  int n, log, size;\n  Rollback_Array<X> dat;\n  Rollback_Array<A>\
+    \ laz;\n\n  Rollback_Lazy_SegTree() {}\n  Rollback_Lazy_SegTree(int n) { build(n);\
+    \ }\n  template <typename F>\n  Rollback_Lazy_SegTree(int n, F f) {\n    build(n,\
+    \ f);\n  }\n  Rollback_Lazy_SegTree(const vc<X>& v) { build(v); }\n\n  void build(int\
     \ m) {\n    build(m, [](int i) -> X { return MX::id(); });\n  }\n  void build(const\
     \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
     \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 0;\n    while ((1\
@@ -152,7 +151,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/rollback_lazy_segtree.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-10-27 03:17:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/segtree/rollback_lazy_segtree.hpp

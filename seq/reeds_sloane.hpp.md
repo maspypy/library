@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':heavy_check_mark:'
@@ -28,7 +28,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -323,35 +323,36 @@ data:
     \ {}\n  Dynamic_Modint(u64 x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(int x)\
     \ : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n  Dynamic_Modint(ll x) :\
     \ val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n  Dynamic_Modint(i128 x) :\
-    \ val((x %= get_mod()) < 0 ? x + get_mod() : x){};\n\n  bool operator<(const mint&\
-    \ other) const { return val < other.val; }\n  mint& operator+=(const mint& rhs)\
-    \ {\n    val = (val += rhs.val) < umod() ? val : val - umod();\n    return *this;\n\
-    \  }\n  mint& operator-=(const mint& rhs) {\n    val = (val += umod() - rhs.val)\
-    \ < umod() ? val : val - umod();\n    return *this;\n  }\n  mint& operator*=(const\
-    \ mint& rhs) {\n    val = bt.mul(val, rhs.val);\n    return *this;\n  }\n  mint&\
-    \ operator/=(const mint& rhs) { return *this = *this * rhs.inverse(); }\n  mint\
-    \ operator-() const { return mint() - *this; }\n  mint pow(ll n) const {\n   \
-    \ assert(0 <= n);\n    mint x = *this, r = 1;\n    while (n) {\n      if (n &\
-    \ 1) r *= x;\n      x *= x, n >>= 1;\n    }\n    return r;\n  }\n  mint inverse()\
-    \ const {\n    int x = val, mod = get_mod();\n    int a = x, b = mod, u = 1, v\
-    \ = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\n    }\n    if (u < 0) u += mod;\n    return u;\n  }\n\n  friend\
-    \ mint operator+(const mint& lhs, const mint& rhs) {\n    return mint(lhs) +=\
-    \ rhs;\n  }\n  friend mint operator-(const mint& lhs, const mint& rhs) {\n   \
-    \ return mint(lhs) -= rhs;\n  }\n  friend mint operator*(const mint& lhs, const\
-    \ mint& rhs) {\n    return mint(lhs) *= rhs;\n  }\n  friend mint operator/(const\
-    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) /= rhs;\n  }\n  friend bool\
-    \ operator==(const mint& lhs, const mint& rhs) {\n    return lhs.val == rhs.val;\n\
-    \  }\n  friend bool operator!=(const mint& lhs, const mint& rhs) {\n    return\
-    \ lhs.val != rhs.val;\n  }\n  static pair<int, int>& get_ntt() {\n    static pair<int,\
-    \ int> p = {-1, -1};\n    return p;\n  }\n  static void set_ntt_info() {\n   \
-    \ int mod = get_mod();\n    int k = lowbit(mod - 1);\n    int r = primitive_root(mod);\n\
-    \    r = mod_pow(r, (mod - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static\
-    \ pair<int, int> ntt_info() { return get_ntt(); }\n  static bool can_ntt() { return\
-    \ ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>&\
-    \ x) {\n  fastio::rd(x.val);\n  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate\
-    \ <int id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
+    \ val((x %= get_mod()) < 0 ? x + get_mod() : x){};\n  Dynamic_Modint(u128 x) :\
+    \ val(x % umod()) {}\n\n  bool operator<(const mint& other) const { return val\
+    \ < other.val; }\n  mint& operator+=(const mint& rhs) {\n    val = (val += rhs.val)\
+    \ < umod() ? val : val - umod();\n    return *this;\n  }\n  mint& operator-=(const\
+    \ mint& rhs) {\n    val = (val += umod() - rhs.val) < umod() ? val : val - umod();\n\
+    \    return *this;\n  }\n  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val,\
+    \ rhs.val);\n    return *this;\n  }\n  mint& operator/=(const mint& rhs) { return\
+    \ *this = *this * rhs.inverse(); }\n  mint operator-() const { return mint() -\
+    \ *this; }\n  mint pow(ll n) const {\n    assert(0 <= n);\n    mint x = *this,\
+    \ r = 1;\n    while (n) {\n      if (n & 1) r *= x;\n      x *= x, n >>= 1;\n\
+    \    }\n    return r;\n  }\n  mint inverse() const {\n    int x = val, mod = get_mod();\n\
+    \    int a = x, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a /\
+    \ b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    if (u < 0) u\
+    \ += mod;\n    return u;\n  }\n\n  friend mint operator+(const mint& lhs, const\
+    \ mint& rhs) {\n    return mint(lhs) += rhs;\n  }\n  friend mint operator-(const\
+    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) -= rhs;\n  }\n  friend mint\
+    \ operator*(const mint& lhs, const mint& rhs) {\n    return mint(lhs) *= rhs;\n\
+    \  }\n  friend mint operator/(const mint& lhs, const mint& rhs) {\n    return\
+    \ mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint& lhs, const mint&\
+    \ rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool operator!=(const\
+    \ mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n  }\n  static\
+    \ pair<int, int>& get_ntt() {\n    static pair<int, int> p = {-1, -1};\n    return\
+    \ p;\n  }\n  static void set_ntt_info() {\n    int mod = get_mod();\n    int k\
+    \ = lowbit(mod - 1);\n    int r = primitive_root(mod);\n    r = mod_pow(r, (mod\
+    \ - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static pair<int, int> ntt_info()\
+    \ { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi != -1;\
+    \ }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>& x) {\n\
+    \  fastio::rd(x.val);\n  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate <int\
+    \ id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing\
+    \ dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
     #line 5 \"seq/reeds_sloane.hpp\"\n\ntemplate <bool EVEN>\nvc<u32> reeds_sloane_prime_power(vc<u32>\
     \ S, int p, int e) {\n  using T = std::conditional_t<EVEN, u32, Dynamic_Modint<20260623>>;\n\
     \  u32 M = 1;\n  FOR(e) M *= p;\n  if constexpr (EVEN) {\n    assert(p == 2);\n\
@@ -458,7 +459,7 @@ data:
   isVerificationFile: false
   path: seq/reeds_sloane.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-10-27 03:13:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/reeds_sloane.test.cpp

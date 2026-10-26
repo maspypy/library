@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -13,22 +13,22 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -261,7 +261,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2580.test.cpp
     title: test/3_yukicoder/2580.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
   - icon: ':heavy_check_mark:'
@@ -291,9 +291,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/poly/fps_div.hpp
@@ -597,31 +597,30 @@ data:
     \ modint<2>>, \"use Bit_Array version for mod\n  // 2\");\n  assert(f[0] != mint(0));\n\
     \  int n = count_terms(f);\n  int t = (mint::can_ntt() ? 160 : 820);\n  return\
     \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\n}\n#line 5 \"\
-    poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\
-    \u308B.\ntemplate <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint>\
-    \ f, vc<mint> g) {\n  assert(!g.empty() && g[0] != 0);\n  if (SPARSE || count_terms(g)\
-    \ < 200) return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g\
-    \ = fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n  return f;\n\
-    }\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\ntemplate <typename mint>\nvc<mint>\
-    \ fps_div_sparse(vc<mint> f, const vc<mint>& g) {\n  assert(!g.empty() && g[0]\
-    \ != 0);\n  mint c = g[0].inverse();\n  if (c != mint(1)) {\n    for (auto&& x\
-    \ : f) x *= c;\n  }\n\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, len(g)) if (g[i]\
+    poly/fps_div.hpp\"\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\ntemplate <typename\
+    \ mint>\nvc<mint> fps_div_sparse(vc<mint> f, const vc<mint>& g) {\n  assert(!g.empty()\
+    \ && g[0] != 0);\n  mint c = g[0].inverse();\n  if (c != mint(1)) {\n    for (auto&&\
+    \ x : f) x *= c;\n  }\n\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, len(g)) if (g[i]\
     \ != mint(0)) dat.eb(i, -g[i] * c);\n  FOR(i, len(f)) {\n    for (auto&& [j, x]\
     \ : dat) {\n      if (i >= j) f[i] += x * f[i - j];\n    }\n  }\n  return f;\n\
-    }\n"
+    }\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate\
+    \ <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint> f, vc<mint>\
+    \ g) {\n  assert(!g.empty() && g[0] != 0);\n  if (SPARSE || count_terms(g) < 200)\
+    \ return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n\
+    \  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/poly/fps_div.hpp\n\
-    \n#include \"poly/count_terms.hpp\"\n#include \"poly/fps_inv.hpp\"\n\n// f/g.\
-    \ f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate <typename\
-    \ mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint> f, vc<mint> g) {\n  assert(!g.empty()\
-    \ && g[0] != 0);\n  if (SPARSE || count_terms(g) < 200) return fps_div_sparse(f,\
-    \ g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n  f = convolution(f,\
-    \ g);\n  f.resize(n);\n  return f;\n}\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\n\
-    template <typename mint>\nvc<mint> fps_div_sparse(vc<mint> f, const vc<mint>&\
-    \ g) {\n  assert(!g.empty() && g[0] != 0);\n  mint c = g[0].inverse();\n  if (c\
-    \ != mint(1)) {\n    for (auto&& x : f) x *= c;\n  }\n\n  vc<pair<int, mint>>\
-    \ dat;\n  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i] * c);\n  FOR(i,\
-    \ len(f)) {\n    for (auto&& [j, x] : dat) {\n      if (i >= j) f[i] += x * f[i\
-    \ - j];\n    }\n  }\n  return f;\n}"
+    \n#include \"poly/count_terms.hpp\"\n#include \"poly/fps_inv.hpp\"\n\n// f/g \u305F\
+    \u3060\u3057 g \u306F sparse\ntemplate <typename mint>\nvc<mint> fps_div_sparse(vc<mint>\
+    \ f, const vc<mint>& g) {\n  assert(!g.empty() && g[0] != 0);\n  mint c = g[0].inverse();\n\
+    \  if (c != mint(1)) {\n    for (auto&& x : f) x *= c;\n  }\n\n  vc<pair<int,\
+    \ mint>> dat;\n  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i] * c);\n\
+    \  FOR(i, len(f)) {\n    for (auto&& [j, x] : dat) {\n      if (i >= j) f[i] +=\
+    \ x * f[i - j];\n    }\n  }\n  return f;\n}\n\n// f/g. f \u306E\u9577\u3055\u3067\
+    \u51FA\u529B\u3055\u308C\u308B.\ntemplate <typename mint, bool SPARSE = false>\n\
+    vc<mint> fps_div(vc<mint> f, vc<mint> g) {\n  assert(!g.empty() && g[0] != 0);\n\
+    \  if (SPARSE || count_terms(g) < 200) return fps_div_sparse(f, g);\n  int n =\
+    \ len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n  f = convolution(f, g);\n\
+    \  f.resize(n);\n  return f;\n}\n"
   dependsOn:
   - poly/count_terms.hpp
   - poly/fps_inv.hpp
@@ -665,8 +664,8 @@ data:
   - seq/famous/bernoulli.hpp
   - seq/famous/stirling_number_1.hpp
   - seq/sum_of_powers.hpp
-  timestamp: '2026-10-25 17:50:13+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2026-10-27 03:13:48+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/stirling_1_suffix.test.cpp
   - test/1_mytest/faulhaber.test.cpp

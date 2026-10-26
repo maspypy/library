@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/unionfind/potentialized_unionfind.hpp
     title: ds/unionfind/potentialized_unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
   - icon: ':question:'
