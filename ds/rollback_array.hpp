@@ -18,7 +18,7 @@ struct Rollback_Array {
   int time() { return len(history); }
   void rollback(int t) {
     while (t < time()) {
-      auto [idx, v] = POP(history[i]);
+      auto [idx, v] = POP(history);
       dat[idx] = v;
     }
   }
