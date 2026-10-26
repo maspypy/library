@@ -6,6 +6,7 @@ struct Monoid_Lcm {
   using value_type = T;
   using X = value_type;
   static X op(X x, X y) {
+    if (x == 0 || y == 0) return 0;
     if (x == infty<T> || y == infty<T>) return infty<T>;
     x /= gcd(x, y);
     if (x >= ceil(infty<T>, y)) return infty<T>;

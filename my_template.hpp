@@ -8,9 +8,14 @@
 #pragma GCC target("avx2,popcnt")
 #endif
 #endif
+
 #else  // MASPY_TEMPLATE_BODY
 #include <bits/stdc++.h>
 #include <cassert>
+
+#if defined(__GNUC__)
+#pragma GCC optimize("Ofast,unroll-loops")
+#endif
 
 using namespace std;
 
