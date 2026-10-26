@@ -5,7 +5,7 @@
 #include "poly/count_terms.hpp"
 
 template <typename mint>
-vc<mint> fps_exp_sparse(vc<mint>& f) {
+vc<mint> fps_exp_sparse(const vc<mint>& f) {
   if (len(f) == 0) return {};
   assert(f[0] == 0);
   int N = len(f);
@@ -26,12 +26,12 @@ vc<mint> fps_exp_sparse(vc<mint>& f) {
 }
 
 template <typename mint>
-vc<mint> fps_exp_dense(vc<mint>& h) {
+vc<mint> fps_exp_dense(const vc<mint>& h) {
   if (h.empty()) return {};
   const int n = len(h);
   assert(h[0] == mint(0));
   if (mint::can_ntt()) {
-    vc<mint>& f = h;
+    const vc<mint>& f = h;
     vc<mint> b = {1, (1 < n ? f[1] : 0)};
     vc<mint> c = {1}, z1, z2 = {1, 1};
     while (len(b) < n) {
@@ -84,7 +84,6 @@ vc<mint> fps_exp_dense(vc<mint>& h) {
   assert(L > 0 && h[0] == mint(0));
   int LOG = 0;
   while (1 << LOG < L) ++LOG;
-  h.resize(1 << LOG);
   auto dh = differentiate(h);
   vc<mint> f = {1}, g = {1};
   int m = 1;
@@ -108,7 +107,7 @@ vc<mint> fps_exp_dense(vc<mint>& h) {
     p.resize(m + m - 1);
     FOR(i, m - 1) p[i] += dh[i];
     p = integrate(p);
-    FOR(i, m + m) p[i] = h[i] - p[i];
+    FOR(i, m + m) { p[i] = (i < L ? h[i] : mint(0)) - p[i]; }
     p[0] += mint(1);
     f = convolution(f, p);
     f.resize(m + m);
@@ -119,7 +118,7 @@ vc<mint> fps_exp_dense(vc<mint>& h) {
 }
 
 template <typename mint>
-vc<mint> fps_exp(vc<mint>& f) {
+vc<mint> fps_exp(const vc<mint>& f) {
   int n = count_terms(f);
   int t = (mint::can_ntt() ? 320 : 3000);
   return (n <= t ? fps_exp_sparse<mint>(f) : fps_exp_dense<mint>(f));

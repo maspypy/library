@@ -15,12 +15,12 @@ struct Common_Interval_Decomposition {
     }
   };
 
-  Node* pool;
+  unique_ptr<Node[]> pool;
   Node* root;
   int pid;
 
   Common_Interval_Decomposition(vc<int>& P) : pid(0) {
-    pool = new Node[2 * len(P)];
+    pool = make_unique<Node[]>(2 * len(P));
     build(P);
   }
 
