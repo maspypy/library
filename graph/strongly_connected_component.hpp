@@ -2,7 +2,7 @@
 #include "graph/base.hpp"
 
 template <typename GT>
-pair<int, vc<int>> strongly_connected_component(GT& G) {
+pair<int, vc<int>> strongly_connected_component(const GT& G) {
   static_assert(GT::is_directed);
   assert(G.is_prepared());
   int N = G.N;
@@ -48,7 +48,7 @@ pair<int, vc<int>> strongly_connected_component(GT& G) {
 }
 
 template <typename GT>
-Graph<int, 1> scc_dag(GT& G, int nc, vc<int>& comp) {
+Graph<int, 1> scc_dag(const GT& G, int nc, const vc<int>& comp) {
   Graph<int, 1> DAG(nc);
   vvc<int> edges(nc);
   for (auto&& e : G.edges) {
