@@ -5,7 +5,7 @@
 // 各点を中心とする極大回文の長さ (in [1,3,5,...])
 // 辞書最小 OR empty
 vc<int> inverse_manacher(vc<int> R) {
-  for (auto& x : R) assert(x & 1), x = (x + 1) / 2;
+  for (auto& x : R) assert(0 <= x && (x & 1)), x = x / 2 + 1;
   ll N = len(R);
   UnionFind uf(N);
   vvc<int> DIFF(N);

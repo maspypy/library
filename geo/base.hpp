@@ -84,19 +84,20 @@ template <typename T>
 struct Line {
   T a, b, c;
 
-  Line(T a, T b, T c) : a(a), b(b), c(c) {}
+  Line(T a, T b, T c) : a(a), b(b), c(c) { assert(a != 0 || b != 0); }
   Line(Point<T> A, Point<T> B) {
     a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x;
+    assert(a != 0 || b != 0);
   }
   Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}
 
   template <typename U>
-  U eval(Point<U> P) {
-    return U(a) * P.x + U(b) * P.y + U(c);
+  auto eval(Point<U> P) const {
+    return eval(P.x, P.y);
   }
 
   template <typename U>
-  T eval(U x, U y) {
+  auto eval(U x, U y) const {
     return a * x + b * y + c;
   }
 
