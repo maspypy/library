@@ -55,25 +55,26 @@ data:
     \ {}\n  np new_root() {\n    np c = pool.create();\n    c->x = x0;\n    fill(c->ch,\
     \ c->ch + (1 << LOG), nullptr);\n    return c;\n  }\n\n  np new_node(vc<T> dat)\
     \ {\n    np root = new_root();\n    FOR(i, len(dat)) root = set(root, i, dat[i],\
-    \ false);\n    return root;\n  }\n\n  T get(np c, int idx) {\n    if (!c) return\
-    \ x0;\n    if (idx == 0) return c->x;\n    return get(c->ch[idx & MASK], (idx\
-    \ - 1) >> LOG);\n  }\n\n  np set(np c, int idx, T x, bool make_copy = true) {\n\
-    \    c = (c ? clone(c, make_copy) : new_root());\n    if (idx == 0) {\n      c->x\
-    \ = x;\n      return c;\n    }\n    c->ch[idx & MASK] = set(c->ch[idx & MASK],\
-    \ (idx - 1) >> LOG, x);\n    return c;\n  }\n\n private:\n  np clone(np c, bool\
-    \ make_copy) {\n    if (!make_copy || !PERSISTENT) return c;\n    return pool.clone(c);\n\
-    \  }\n};\n#line 3 \"ds/unionfind/dynamic_unionfind.hpp\"\n\ntemplate <bool PERSISTENT>\n\
-    struct Dynamic_UnionFind {\n  // \u7D4C\u8DEF\u5727\u7E2E\u306A\u3057\n  Dynamic_Array<int,\
-    \ PERSISTENT> PA;\n  using np = typename decltype(PA)::np;\n\n  Dynamic_UnionFind(int\
-    \ N) : PA(-1) {}\n\n  np new_root() { return PA.new_root(); }\n\n  int root(np\
-    \ c, int x) {\n    while (1) {\n      int p = PA.get(c, x);\n      assert(x !=\
-    \ p);\n      if (p < 0) break;\n      x = p;\n    }\n    return x;\n  }\n\n  pair<np,\
-    \ bool> merge(np c, int x, int y) {\n    x = root(c, x), y = root(c, y);\n   \
-    \ if (x == y) return {c, false};\n    if (-PA.get(c, x) < -PA.get(c, y)) swap(x,\
-    \ y);\n    int new_sz = PA.get(c, x) + PA.get(c, y);\n    c = PA.set(c, x, new_sz);\n\
-    \    assert(PA.get(c, x) == new_sz);\n    c = PA.set(c, y, x);\n    assert(PA.get(c,\
-    \ y) == x);\n    return {c, true};\n  }\n\n  ll size(np c, int x) { return -PA.get(c,\
-    \ root(c, x)); }\n};\n"
+    \ false);\n    return root;\n  }\n\n  T get(np c, int idx) {\n    assert(0 <=\
+    \ idx);\n    if (!c) return x0;\n    if (idx == 0) return c->x;\n    return get(c->ch[idx\
+    \ & MASK], (idx - 1) >> LOG);\n  }\n\n  np set(np c, int idx, T x, bool make_copy\
+    \ = true) {\n    assert(0 <= idx);\n    c = (c ? clone(c, make_copy) : new_root());\n\
+    \    if (idx == 0) {\n      c->x = x;\n      return c;\n    }\n    c->ch[idx &\
+    \ MASK] = set(c->ch[idx & MASK], (idx - 1) >> LOG, x);\n    return c;\n  }\n\n\
+    \ private:\n  np clone(np c, bool make_copy) {\n    if (!make_copy || !PERSISTENT)\
+    \ return c;\n    return pool.clone(c);\n  }\n};\n#line 3 \"ds/unionfind/dynamic_unionfind.hpp\"\
+    \n\ntemplate <bool PERSISTENT>\nstruct Dynamic_UnionFind {\n  // \u7D4C\u8DEF\u5727\
+    \u7E2E\u306A\u3057\n  Dynamic_Array<int, PERSISTENT> PA;\n  using np = typename\
+    \ decltype(PA)::np;\n\n  Dynamic_UnionFind(int N) : PA(-1) {}\n\n  np new_root()\
+    \ { return PA.new_root(); }\n\n  int root(np c, int x) {\n    while (1) {\n  \
+    \    int p = PA.get(c, x);\n      assert(x != p);\n      if (p < 0) break;\n \
+    \     x = p;\n    }\n    return x;\n  }\n\n  pair<np, bool> merge(np c, int x,\
+    \ int y) {\n    x = root(c, x), y = root(c, y);\n    if (x == y) return {c, false};\n\
+    \    if (-PA.get(c, x) < -PA.get(c, y)) swap(x, y);\n    int new_sz = PA.get(c,\
+    \ x) + PA.get(c, y);\n    c = PA.set(c, x, new_sz);\n    assert(PA.get(c, x) ==\
+    \ new_sz);\n    c = PA.set(c, y, x);\n    assert(PA.get(c, y) == x);\n    return\
+    \ {c, true};\n  }\n\n  ll size(np c, int x) { return -PA.get(c, root(c, x)); }\n\
+    };\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/dynamic_unionfind.hpp\n\
     #include \"ds/dynamic_array.hpp\"\n\ntemplate <bool PERSISTENT>\nstruct Dynamic_UnionFind\
     \ {\n  // \u7D4C\u8DEF\u5727\u7E2E\u306A\u3057\n  Dynamic_Array<int, PERSISTENT>\
@@ -93,7 +94,7 @@ data:
   isVerificationFile: false
   path: ds/unionfind/dynamic_unionfind.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-10-30 01:10:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/persistent_unionfind.test.cpp

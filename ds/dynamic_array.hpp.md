@@ -60,14 +60,14 @@ data:
     \ {}\n  np new_root() {\n    np c = pool.create();\n    c->x = x0;\n    fill(c->ch,\
     \ c->ch + (1 << LOG), nullptr);\n    return c;\n  }\n\n  np new_node(vc<T> dat)\
     \ {\n    np root = new_root();\n    FOR(i, len(dat)) root = set(root, i, dat[i],\
-    \ false);\n    return root;\n  }\n\n  T get(np c, int idx) {\n    if (!c) return\
-    \ x0;\n    if (idx == 0) return c->x;\n    return get(c->ch[idx & MASK], (idx\
-    \ - 1) >> LOG);\n  }\n\n  np set(np c, int idx, T x, bool make_copy = true) {\n\
-    \    c = (c ? clone(c, make_copy) : new_root());\n    if (idx == 0) {\n      c->x\
-    \ = x;\n      return c;\n    }\n    c->ch[idx & MASK] = set(c->ch[idx & MASK],\
-    \ (idx - 1) >> LOG, x);\n    return c;\n  }\n\n private:\n  np clone(np c, bool\
-    \ make_copy) {\n    if (!make_copy || !PERSISTENT) return c;\n    return pool.clone(c);\n\
-    \  }\n};\n"
+    \ false);\n    return root;\n  }\n\n  T get(np c, int idx) {\n    assert(0 <=\
+    \ idx);\n    if (!c) return x0;\n    if (idx == 0) return c->x;\n    return get(c->ch[idx\
+    \ & MASK], (idx - 1) >> LOG);\n  }\n\n  np set(np c, int idx, T x, bool make_copy\
+    \ = true) {\n    assert(0 <= idx);\n    c = (c ? clone(c, make_copy) : new_root());\n\
+    \    if (idx == 0) {\n      c->x = x;\n      return c;\n    }\n    c->ch[idx &\
+    \ MASK] = set(c->ch[idx & MASK], (idx - 1) >> LOG, x);\n    return c;\n  }\n\n\
+    \ private:\n  np clone(np c, bool make_copy) {\n    if (!make_copy || !PERSISTENT)\
+    \ return c;\n    return pool.clone(c);\n  }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/ds/dynamic_array.hpp\n\
     #include \"ds/node_pool.hpp\"\n\ntemplate <typename T, bool PERSISTENT>\nstruct\
     \ Dynamic_Array {\n  static constexpr int LOG = 4;\n  static constexpr int MASK\
@@ -77,13 +77,14 @@ data:
     \    c->x = x0;\n    fill(c->ch, c->ch + (1 << LOG), nullptr);\n    return c;\n\
     \  }\n\n  np new_node(vc<T> dat) {\n    np root = new_root();\n    FOR(i, len(dat))\
     \ root = set(root, i, dat[i], false);\n    return root;\n  }\n\n  T get(np c,\
-    \ int idx) {\n    if (!c) return x0;\n    if (idx == 0) return c->x;\n    return\
-    \ get(c->ch[idx & MASK], (idx - 1) >> LOG);\n  }\n\n  np set(np c, int idx, T\
-    \ x, bool make_copy = true) {\n    c = (c ? clone(c, make_copy) : new_root());\n\
-    \    if (idx == 0) {\n      c->x = x;\n      return c;\n    }\n    c->ch[idx &\
-    \ MASK] = set(c->ch[idx & MASK], (idx - 1) >> LOG, x);\n    return c;\n  }\n\n\
-    \ private:\n  np clone(np c, bool make_copy) {\n    if (!make_copy || !PERSISTENT)\
-    \ return c;\n    return pool.clone(c);\n  }\n};\n"
+    \ int idx) {\n    assert(0 <= idx);\n    if (!c) return x0;\n    if (idx == 0)\
+    \ return c->x;\n    return get(c->ch[idx & MASK], (idx - 1) >> LOG);\n  }\n\n\
+    \  np set(np c, int idx, T x, bool make_copy = true) {\n    assert(0 <= idx);\n\
+    \    c = (c ? clone(c, make_copy) : new_root());\n    if (idx == 0) {\n      c->x\
+    \ = x;\n      return c;\n    }\n    c->ch[idx & MASK] = set(c->ch[idx & MASK],\
+    \ (idx - 1) >> LOG, x);\n    return c;\n  }\n\n private:\n  np clone(np c, bool\
+    \ make_copy) {\n    if (!make_copy || !PERSISTENT) return c;\n    return pool.clone(c);\n\
+    \  }\n};\n"
   dependsOn:
   - ds/node_pool.hpp
   isVerificationFile: false
@@ -91,7 +92,7 @@ data:
   requiredBy:
   - ds/unionfind/dynamic_unionfind.hpp
   - string/aho_corasick_for_general_trie.hpp
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-10-30 01:10:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/persistent_unionfind.test.cpp

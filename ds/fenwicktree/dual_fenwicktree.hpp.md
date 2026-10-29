@@ -29,11 +29,11 @@ data:
     \  }\n\n  E get(int k) {\n    E x = G::id();\n    for (++k; k <= n; k += k & -k)\
     \ x = G::op(x, dat[k - 1]);\n    return x;\n  }\n  vc<E> get_all() {\n    vc<E>\
     \ A = dat;\n    FOR_R(i, 1, len(A) + 1) {\n      int j = i + (i & -i);\n     \
-    \ if (j <= len(A)) A[i - 1] += A[j - 1];\n    }\n    return A;\n  }\n\n  void\
-    \ apply(int L, int R, E x) {\n    assert(0 <= L && L <= R && R <= n);\n    E neg_x\
-    \ = G::inverse(x);\n    while (L < R) { dat[R - 1] = G::op(x, dat[R - 1]), R -=\
-    \ R & -R; };\n    while (R < L) { dat[L - 1] = G::op(neg_x, dat[L - 1]), L -=\
-    \ L & -L; };\n  }\n};\n"
+    \ if (j <= len(A)) A[i - 1] = G::op(A[i - 1], A[j - 1]);\n    }\n    return A;\n\
+    \  }\n\n  void apply(int L, int R, E x) {\n    assert(0 <= L && L <= R && R <=\
+    \ n);\n    E neg_x = G::inverse(x);\n    while (L < R) {\n      dat[R - 1] = G::op(x,\
+    \ dat[R - 1]), R -= R & -R;\n    };\n    while (R < L) {\n      dat[L - 1] = G::op(neg_x,\
+    \ dat[L - 1]), L -= L & -L;\n    };\n  }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/ds/fenwicktree/dual_fenwicktree.hpp\n\
     \n#include \"alg/monoid/add.hpp\"\n\ntemplate <typename Monoid>\nstruct Dual_FenwickTree\
     \ {\n  using G = Monoid;\n  using E = typename G::value_type;\n  int n;\n  vector<E>\
@@ -42,16 +42,17 @@ data:
     \ k) {\n    E x = G::id();\n    for (++k; k <= n; k += k & -k) x = G::op(x, dat[k\
     \ - 1]);\n    return x;\n  }\n  vc<E> get_all() {\n    vc<E> A = dat;\n    FOR_R(i,\
     \ 1, len(A) + 1) {\n      int j = i + (i & -i);\n      if (j <= len(A)) A[i -\
-    \ 1] += A[j - 1];\n    }\n    return A;\n  }\n\n  void apply(int L, int R, E x)\
-    \ {\n    assert(0 <= L && L <= R && R <= n);\n    E neg_x = G::inverse(x);\n \
-    \   while (L < R) { dat[R - 1] = G::op(x, dat[R - 1]), R -= R & -R; };\n    while\
-    \ (R < L) { dat[L - 1] = G::op(neg_x, dat[L - 1]), L -= L & -L; };\n  }\n};\n"
+    \ 1] = G::op(A[i - 1], A[j - 1]);\n    }\n    return A;\n  }\n\n  void apply(int\
+    \ L, int R, E x) {\n    assert(0 <= L && L <= R && R <= n);\n    E neg_x = G::inverse(x);\n\
+    \    while (L < R) {\n      dat[R - 1] = G::op(x, dat[R - 1]), R -= R & -R;\n\
+    \    };\n    while (R < L) {\n      dat[L - 1] = G::op(neg_x, dat[L - 1]), L -=\
+    \ L & -L;\n    };\n  }\n};\n"
   dependsOn:
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: ds/fenwicktree/dual_fenwicktree.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-10-30 01:10:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/dual_fenwick.test.cpp

@@ -62,14 +62,15 @@ data:
     \ {}\n  np new_root() {\n    np c = pool.create();\n    c->x = x0;\n    fill(c->ch,\
     \ c->ch + (1 << LOG), nullptr);\n    return c;\n  }\n\n  np new_node(vc<T> dat)\
     \ {\n    np root = new_root();\n    FOR(i, len(dat)) root = set(root, i, dat[i],\
-    \ false);\n    return root;\n  }\n\n  T get(np c, int idx) {\n    if (!c) return\
-    \ x0;\n    if (idx == 0) return c->x;\n    return get(c->ch[idx & MASK], (idx\
-    \ - 1) >> LOG);\n  }\n\n  np set(np c, int idx, T x, bool make_copy = true) {\n\
-    \    c = (c ? clone(c, make_copy) : new_root());\n    if (idx == 0) {\n      c->x\
-    \ = x;\n      return c;\n    }\n    c->ch[idx & MASK] = set(c->ch[idx & MASK],\
-    \ (idx - 1) >> LOG, x);\n    return c;\n  }\n\n private:\n  np clone(np c, bool\
-    \ make_copy) {\n    if (!make_copy || !PERSISTENT) return c;\n    return pool.clone(c);\n\
-    \  }\n};\n#line 1 \"ds/to_small_key.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/to_small_key.hpp\n\
+    \ false);\n    return root;\n  }\n\n  T get(np c, int idx) {\n    assert(0 <=\
+    \ idx);\n    if (!c) return x0;\n    if (idx == 0) return c->x;\n    return get(c->ch[idx\
+    \ & MASK], (idx - 1) >> LOG);\n  }\n\n  np set(np c, int idx, T x, bool make_copy\
+    \ = true) {\n    assert(0 <= idx);\n    c = (c ? clone(c, make_copy) : new_root());\n\
+    \    if (idx == 0) {\n      c->x = x;\n      return c;\n    }\n    c->ch[idx &\
+    \ MASK] = set(c->ch[idx & MASK], (idx - 1) >> LOG, x);\n    return c;\n  }\n\n\
+    \ private:\n  np clone(np c, bool make_copy) {\n    if (!make_copy || !PERSISTENT)\
+    \ return c;\n    return pool.clone(c);\n  }\n};\n#line 1 \"ds/to_small_key.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/ds/to_small_key.hpp\n\
     #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
     \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
     \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
@@ -237,7 +238,7 @@ data:
   isVerificationFile: false
   path: string/aho_corasick_for_general_trie.hpp
   requiredBy: []
-  timestamp: '2026-10-30 00:34:21+09:00'
+  timestamp: '2026-10-30 01:10:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/aho_corasick_for_general_trie.hpp

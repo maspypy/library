@@ -10,28 +10,34 @@ data:
     links:
     - https://github.com/maspypy/library/blob/main/alg/monoid/diameter.hpp
   bundledCode: "#line 1 \"alg/monoid/diameter.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/diameter.hpp\n\
-    \ntemplate <typename TREE>\nstruct Monoid_Diameter {\n  using value_type = pair<int,\
-    \ int>;\n  using X = value_type;\n  static inline const TREE* tree = nullptr;\n\
-    \  static void set_tree(const TREE& T) { tree = &T; }\n\n  static X op(X L, X\
-    \ R) {\n    assert(tree != nullptr);\n    if (L.fi == -1) return R;\n    if (R.fi\
-    \ == -1) return L;\n    auto [a, b] = L;\n    auto [c, d] = R;\n    for (int v\
-    \ : {c, d}) {\n      int ab = tree->dist(a, b);\n      int av = tree->dist(a,\
-    \ v);\n      int bv = tree->dist(b, v);\n      int ma = max({ab, av, bv});\n \
-    \     if (ma == ab) {\n      }\n      elif (ma == av) { b = v; }\n      else {\n\
-    \        a = v;\n      }\n    }\n    return {a, b};\n  }\n  static int eval(const\
+    \n// TREE \u306F\u4F7F\u7528\u4E2D\u306B\u751F\u5B58\u3057\u3066\u3044\u308B\u3053\
+    \u3068\u3002\n// \u540C\u3058 ID \u3067\u306F\u540C\u6642\u306B\u8907\u6570\u306E\
+    \u6728\u3092\u6271\u3048\u306A\u3044\u3002\ntemplate <typename TREE, int id =\
+    \ 20261030>\nstruct Monoid_Diameter {\n  using value_type = pair<int, int>;\n\
+    \  using X = value_type;\n  static inline const TREE* tree = nullptr;\n  static\
+    \ void set_tree(const TREE& T) { tree = &T; }\n\n  static X op(X L, X R) {\n \
+    \   assert(tree != nullptr);\n    if (L.fi == -1) return R;\n    if (R.fi == -1)\
+    \ return L;\n    auto [a, b] = L;\n    auto [c, d] = R;\n    for (int v : {c,\
+    \ d}) {\n      int ab = tree->dist(a, b);\n      int av = tree->dist(a, v);\n\
+    \      int bv = tree->dist(b, v);\n      int ma = max({ab, av, bv});\n      if\
+    \ (ma == ab) {\n      }\n      elif (ma == av) { b = v; }\n      else {\n    \
+    \    a = v;\n      }\n    }\n    return {a, b};\n  }\n  static int eval(const\
     \ X& D) {\n    assert(tree != nullptr);\n    return tree->dist(D.fi, D.se);\n\
     \  }\n\n  static constexpr X id() { return {-1, -1}; }\n  static constexpr bool\
     \ commute = true;\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/alg/monoid/diameter.hpp\n\
-    \ntemplate <typename TREE>\nstruct Monoid_Diameter {\n  using value_type = pair<int,\
-    \ int>;\n  using X = value_type;\n  static inline const TREE* tree = nullptr;\n\
-    \  static void set_tree(const TREE& T) { tree = &T; }\n\n  static X op(X L, X\
-    \ R) {\n    assert(tree != nullptr);\n    if (L.fi == -1) return R;\n    if (R.fi\
-    \ == -1) return L;\n    auto [a, b] = L;\n    auto [c, d] = R;\n    for (int v\
-    \ : {c, d}) {\n      int ab = tree->dist(a, b);\n      int av = tree->dist(a,\
-    \ v);\n      int bv = tree->dist(b, v);\n      int ma = max({ab, av, bv});\n \
-    \     if (ma == ab) {\n      }\n      elif (ma == av) { b = v; }\n      else {\n\
-    \        a = v;\n      }\n    }\n    return {a, b};\n  }\n  static int eval(const\
+    \n// TREE \u306F\u4F7F\u7528\u4E2D\u306B\u751F\u5B58\u3057\u3066\u3044\u308B\u3053\
+    \u3068\u3002\n// \u540C\u3058 ID \u3067\u306F\u540C\u6642\u306B\u8907\u6570\u306E\
+    \u6728\u3092\u6271\u3048\u306A\u3044\u3002\ntemplate <typename TREE, int id =\
+    \ 20261030>\nstruct Monoid_Diameter {\n  using value_type = pair<int, int>;\n\
+    \  using X = value_type;\n  static inline const TREE* tree = nullptr;\n  static\
+    \ void set_tree(const TREE& T) { tree = &T; }\n\n  static X op(X L, X R) {\n \
+    \   assert(tree != nullptr);\n    if (L.fi == -1) return R;\n    if (R.fi == -1)\
+    \ return L;\n    auto [a, b] = L;\n    auto [c, d] = R;\n    for (int v : {c,\
+    \ d}) {\n      int ab = tree->dist(a, b);\n      int av = tree->dist(a, v);\n\
+    \      int bv = tree->dist(b, v);\n      int ma = max({ab, av, bv});\n      if\
+    \ (ma == ab) {\n      }\n      elif (ma == av) { b = v; }\n      else {\n    \
+    \    a = v;\n      }\n    }\n    return {a, b};\n  }\n  static int eval(const\
     \ X& D) {\n    assert(tree != nullptr);\n    return tree->dist(D.fi, D.se);\n\
     \  }\n\n  static constexpr X id() { return {-1, -1}; }\n  static constexpr bool\
     \ commute = true;\n};"
@@ -39,7 +45,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/diameter.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-10-30 01:10:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: alg/monoid/diameter.hpp

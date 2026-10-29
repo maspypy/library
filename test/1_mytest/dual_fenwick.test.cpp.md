@@ -162,22 +162,22 @@ data:
     \  }\n\n  E get(int k) {\n    E x = G::id();\n    for (++k; k <= n; k += k & -k)\
     \ x = G::op(x, dat[k - 1]);\n    return x;\n  }\n  vc<E> get_all() {\n    vc<E>\
     \ A = dat;\n    FOR_R(i, 1, len(A) + 1) {\n      int j = i + (i & -i);\n     \
-    \ if (j <= len(A)) A[i - 1] += A[j - 1];\n    }\n    return A;\n  }\n\n  void\
-    \ apply(int L, int R, E x) {\n    assert(0 <= L && L <= R && R <= n);\n    E neg_x\
-    \ = G::inverse(x);\n    while (L < R) { dat[R - 1] = G::op(x, dat[R - 1]), R -=\
-    \ R & -R; };\n    while (R < L) { dat[L - 1] = G::op(neg_x, dat[L - 1]), L -=\
-    \ L & -L; };\n  }\n};\n#line 6 \"test/1_mytest/dual_fenwick.test.cpp\"\n\nvoid\
-    \ test() {\n  FOR(N, 1, 50) {\n    FOR(Q, 1, 100) {\n      vc<int> A(N);\n   \
-    \   Dual_FenwickTree<Monoid_Add<int>> bit(N);\n      FOR(Q) {\n        int t =\
-    \ RNG(0, 3);\n        if (t == 0) {\n          // apply\n          int L = RNG(0,\
-    \ N), R = RNG(0, N);\n          if (L > R) swap(L, R);\n          int x = RNG(0,\
-    \ 100);\n          ++R;\n          FOR(i, L, R) A[i] += x;\n          bit.apply(L,\
-    \ R, x);\n        }\n        if (t == 1) {\n          // get\n          int i\
-    \ = RNG(0, N);\n          assert(A[i] == bit.get(i));\n        }\n        if (t\
-    \ == 2) {\n          // get_all\n          assert(A == bit.get_all());\n     \
-    \   }\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a + b << '\\n';\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
-    \ 0;\n}\n"
+    \ if (j <= len(A)) A[i - 1] = G::op(A[i - 1], A[j - 1]);\n    }\n    return A;\n\
+    \  }\n\n  void apply(int L, int R, E x) {\n    assert(0 <= L && L <= R && R <=\
+    \ n);\n    E neg_x = G::inverse(x);\n    while (L < R) {\n      dat[R - 1] = G::op(x,\
+    \ dat[R - 1]), R -= R & -R;\n    };\n    while (R < L) {\n      dat[L - 1] = G::op(neg_x,\
+    \ dat[L - 1]), L -= L & -L;\n    };\n  }\n};\n#line 6 \"test/1_mytest/dual_fenwick.test.cpp\"\
+    \n\nvoid test() {\n  FOR(N, 1, 50) {\n    FOR(Q, 1, 100) {\n      vc<int> A(N);\n\
+    \      Dual_FenwickTree<Monoid_Add<int>> bit(N);\n      FOR(Q) {\n        int\
+    \ t = RNG(0, 3);\n        if (t == 0) {\n          // apply\n          int L =\
+    \ RNG(0, N), R = RNG(0, N);\n          if (L > R) swap(L, R);\n          int x\
+    \ = RNG(0, 100);\n          ++R;\n          FOR(i, L, R) A[i] += x;\n        \
+    \  bit.apply(L, R, x);\n        }\n        if (t == 1) {\n          // get\n \
+    \         int i = RNG(0, N);\n          assert(A[i] == bit.get(i));\n        }\n\
+    \        if (t == 2) {\n          // get_all\n          assert(A == bit.get_all());\n\
+    \        }\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a\
+    \ >> b;\n  cout << a + b << '\\n';\n}\n\nsigned main() {\n  test();\n  solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/base.hpp\"\n#include \"ds/fenwicktree/dual_fenwicktree.hpp\"\
     \n\nvoid test() {\n  FOR(N, 1, 50) {\n    FOR(Q, 1, 100) {\n      vc<int> A(N);\n\
@@ -199,7 +199,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/dual_fenwick.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
+  timestamp: '2026-10-30 01:10:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/dual_fenwick.test.cpp

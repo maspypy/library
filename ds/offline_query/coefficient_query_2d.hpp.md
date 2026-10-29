@@ -175,19 +175,20 @@ data:
     \     // calc query\n      tmp = bit.prod(IY.val_to_idx(b + 1));\n      T ans\
     \ = 0;\n      FOR(i, A) FOR(j, B) ans += tmp[B * i + j] * CX[i] * CY[j];\n   \
     \   ANS[qid] += ans;\n    }\n  }\n\n  vc<T> calc() {\n    assert(!done);\n   \
-    \ done = 1;\n    ANS.assign(nsum, 0);\n    int Q = len(query);\n    auto comp\
-    \ = [&](int i, int j) -> bool {\n      return (get<0>(query[i])) < (get<0>(query[j]));\n\
-    \    };\n    if (STATIC) {\n      vc<int> ADD, GET;\n      FOR(i, Q) { (get<3>(query[i])\
-    \ == -1 ? ADD : GET).eb(i); }\n      sort(all(ADD), comp);\n      sort(all(GET),\
-    \ comp);\n      calc_static(ADD, GET);\n      return ANS;\n    }\n    auto dfs\
-    \ = [&](auto& dfs, int L, int R) -> pair<vc<int>, vc<int>> {\n      vc<int> ADD,\
-    \ GET;\n      if (R == L + 1) {\n        (get<3>(query[L]) == -1 ? ADD : GET).eb(L);\n\
-    \        return {ADD, GET};\n      }\n      int M = (L + R) / 2;\n      auto [ADD1,\
-    \ GET1] = dfs(dfs, L, M);\n      auto [ADD2, GET2] = dfs(dfs, M, R);\n      calc_static(ADD1,\
-    \ GET2);\n      ADD.resize(len(ADD1) + len(ADD2));\n      GET.resize(len(GET1)\
-    \ + len(GET2));\n      merge(all(ADD1), all(ADD2), ADD.begin(), comp);\n     \
-    \ merge(all(GET1), all(GET2), GET.begin(), comp);\n      return {ADD, GET};\n\
-    \    };\n    dfs(dfs, 0, Q);\n    return ANS;\n  }\n};\n"
+    \ done = 1;\n    ANS.assign(nsum, 0);\n    int Q = len(query);\n    if (Q == 0)\
+    \ return {};\n    auto comp = [&](int i, int j) -> bool {\n      return (get<0>(query[i]))\
+    \ < (get<0>(query[j]));\n    };\n    if (STATIC) {\n      vc<int> ADD, GET;\n\
+    \      FOR(i, Q) { (get<3>(query[i]) == -1 ? ADD : GET).eb(i); }\n      sort(all(ADD),\
+    \ comp);\n      sort(all(GET), comp);\n      calc_static(ADD, GET);\n      return\
+    \ ANS;\n    }\n    auto dfs = [&](auto& dfs, int L, int R) -> pair<vc<int>, vc<int>>\
+    \ {\n      vc<int> ADD, GET;\n      if (R == L + 1) {\n        (get<3>(query[L])\
+    \ == -1 ? ADD : GET).eb(L);\n        return {ADD, GET};\n      }\n      int M\
+    \ = (L + R) / 2;\n      auto [ADD1, GET1] = dfs(dfs, L, M);\n      auto [ADD2,\
+    \ GET2] = dfs(dfs, M, R);\n      calc_static(ADD1, GET2);\n      ADD.resize(len(ADD1)\
+    \ + len(ADD2));\n      GET.resize(len(GET1) + len(GET2));\n      merge(all(ADD1),\
+    \ all(ADD2), ADD.begin(), comp);\n      merge(all(GET1), all(GET2), GET.begin(),\
+    \ comp);\n      return {ADD, GET};\n    };\n    dfs(dfs, 0, Q);\n    return ANS;\n\
+    \  }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/coefficient_query_2d.hpp\n\
     #include \"ds/index_compression.hpp\"\n#include \"ds/fenwicktree/fenwicktree.hpp\"\
     \n\n// A, B\uFF1A\u5B9A\u6570\n// \u5EA7\u6A19\u306F ll \u3067\u4FC2\u6570\u306F\
@@ -225,13 +226,13 @@ data:
     \      tmp = bit.prod(IY.val_to_idx(b + 1));\n      T ans = 0;\n      FOR(i, A)\
     \ FOR(j, B) ans += tmp[B * i + j] * CX[i] * CY[j];\n      ANS[qid] += ans;\n \
     \   }\n  }\n\n  vc<T> calc() {\n    assert(!done);\n    done = 1;\n    ANS.assign(nsum,\
-    \ 0);\n    int Q = len(query);\n    auto comp = [&](int i, int j) -> bool {\n\
-    \      return (get<0>(query[i])) < (get<0>(query[j]));\n    };\n    if (STATIC)\
-    \ {\n      vc<int> ADD, GET;\n      FOR(i, Q) { (get<3>(query[i]) == -1 ? ADD\
-    \ : GET).eb(i); }\n      sort(all(ADD), comp);\n      sort(all(GET), comp);\n\
-    \      calc_static(ADD, GET);\n      return ANS;\n    }\n    auto dfs = [&](auto&\
-    \ dfs, int L, int R) -> pair<vc<int>, vc<int>> {\n      vc<int> ADD, GET;\n  \
-    \    if (R == L + 1) {\n        (get<3>(query[L]) == -1 ? ADD : GET).eb(L);\n\
+    \ 0);\n    int Q = len(query);\n    if (Q == 0) return {};\n    auto comp = [&](int\
+    \ i, int j) -> bool {\n      return (get<0>(query[i])) < (get<0>(query[j]));\n\
+    \    };\n    if (STATIC) {\n      vc<int> ADD, GET;\n      FOR(i, Q) { (get<3>(query[i])\
+    \ == -1 ? ADD : GET).eb(i); }\n      sort(all(ADD), comp);\n      sort(all(GET),\
+    \ comp);\n      calc_static(ADD, GET);\n      return ANS;\n    }\n    auto dfs\
+    \ = [&](auto& dfs, int L, int R) -> pair<vc<int>, vc<int>> {\n      vc<int> ADD,\
+    \ GET;\n      if (R == L + 1) {\n        (get<3>(query[L]) == -1 ? ADD : GET).eb(L);\n\
     \        return {ADD, GET};\n      }\n      int M = (L + R) / 2;\n      auto [ADD1,\
     \ GET1] = dfs(dfs, L, M);\n      auto [ADD2, GET2] = dfs(dfs, M, R);\n      calc_static(ADD1,\
     \ GET2);\n      ADD.resize(len(ADD1) + len(ADD2));\n      GET.resize(len(GET1)\
@@ -246,7 +247,7 @@ data:
   path: ds/offline_query/coefficient_query_2d.hpp
   requiredBy:
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
-  timestamp: '2026-10-25 14:30:37+09:00'
+  timestamp: '2026-10-30 01:10:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp

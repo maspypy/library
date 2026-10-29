@@ -303,14 +303,14 @@ data:
     \ {}\n  np new_root() {\n    np c = pool.create();\n    c->x = x0;\n    fill(c->ch,\
     \ c->ch + (1 << LOG), nullptr);\n    return c;\n  }\n\n  np new_node(vc<T> dat)\
     \ {\n    np root = new_root();\n    FOR(i, len(dat)) root = set(root, i, dat[i],\
-    \ false);\n    return root;\n  }\n\n  T get(np c, int idx) {\n    if (!c) return\
-    \ x0;\n    if (idx == 0) return c->x;\n    return get(c->ch[idx & MASK], (idx\
-    \ - 1) >> LOG);\n  }\n\n  np set(np c, int idx, T x, bool make_copy = true) {\n\
-    \    c = (c ? clone(c, make_copy) : new_root());\n    if (idx == 0) {\n      c->x\
-    \ = x;\n      return c;\n    }\n    c->ch[idx & MASK] = set(c->ch[idx & MASK],\
-    \ (idx - 1) >> LOG, x);\n    return c;\n  }\n\n private:\n  np clone(np c, bool\
-    \ make_copy) {\n    if (!make_copy || !PERSISTENT) return c;\n    return pool.clone(c);\n\
-    \  }\n};\n#line 6 \"test/2_library_checker/data_structure/persistent_queue.test.cpp\"\
+    \ false);\n    return root;\n  }\n\n  T get(np c, int idx) {\n    assert(0 <=\
+    \ idx);\n    if (!c) return x0;\n    if (idx == 0) return c->x;\n    return get(c->ch[idx\
+    \ & MASK], (idx - 1) >> LOG);\n  }\n\n  np set(np c, int idx, T x, bool make_copy\
+    \ = true) {\n    assert(0 <= idx);\n    c = (c ? clone(c, make_copy) : new_root());\n\
+    \    if (idx == 0) {\n      c->x = x;\n      return c;\n    }\n    c->ch[idx &\
+    \ MASK] = set(c->ch[idx & MASK], (idx - 1) >> LOG, x);\n    return c;\n  }\n\n\
+    \ private:\n  np clone(np c, bool make_copy) {\n    if (!make_copy || !PERSISTENT)\
+    \ return c;\n    return pool.clone(c);\n  }\n};\n#line 6 \"test/2_library_checker/data_structure/persistent_queue.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(Q);\r\n  vc<int> L, R;\r\n\r\n  Dynamic_Array<int,\
     \ true> X(0);\r\n  using np = typename decltype(X)::np;\r\n  vc<np> roots;\r\n\
     \r\n  roots.eb(X.new_root());\r\n  L.eb(0), R.eb(0);\r\n\r\n  FOR(Q) {\r\n   \
@@ -337,7 +337,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/persistent_queue.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
+  timestamp: '2026-10-30 01:10:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/persistent_queue.test.cpp
