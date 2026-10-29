@@ -3,16 +3,18 @@
 
 // (成分数, 成分番号の vector)
 // 連結じゃなくても OK
+// 辺 ID は登録順に 0,1,...,M-1 であることを仮定
 template <typename GT>
 pair<int, vc<int>> two_edge_component(GT& G) {
   static_assert(!GT::is_directed);
   int N = G.N, M = G.M, n_comp = 0;
+  FOR(i, M) assert(G.edges[i].id == i);
   vc<int> V, par(N, -2), dp(N), comp(N);
   V.reserve(N);
   vc<bool> used(M);
   auto dfs = [&](auto& dfs, int v) -> void {
     V.eb(v);
-    for (auto&& e: G[v]) {
+    for (auto&& e : G[v]) {
       if (used[e.id]) continue;
       if (par[e.to] != -2) dp[v]++, dp[e.to]--, used[e.id] = 1;
       if (par[e.to] == -2) {
@@ -26,6 +28,6 @@ pair<int, vc<int>> two_edge_component(GT& G) {
   FOR_R(i, N) {
     if (par[V[i]] != -1) dp[par[V[i]]] += dp[V[i]];
   }
-  for (auto&& v: V) comp[v] = (dp[v] == 0 ? n_comp++ : comp[par[v]]);
+  for (auto&& v : V) comp[v] = (dp[v] == 0 ? n_comp++ : comp[par[v]]);
   return {n_comp, comp};
 }
