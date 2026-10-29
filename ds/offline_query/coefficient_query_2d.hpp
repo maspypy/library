@@ -90,6 +90,7 @@ struct Coefficient_Query_2D {
     done = 1;
     ANS.assign(nsum, 0);
     int Q = len(query);
+    if (Q == 0) return {};
     auto comp = [&](int i, int j) -> bool {
       return (get<0>(query[i])) < (get<0>(query[j]));
     };

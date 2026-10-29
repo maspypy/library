@@ -28,12 +28,14 @@ struct Dynamic_Array {
   }
 
   T get(np c, int idx) {
+    assert(0 <= idx);
     if (!c) return x0;
     if (idx == 0) return c->x;
     return get(c->ch[idx & MASK], (idx - 1) >> LOG);
   }
 
   np set(np c, int idx, T x, bool make_copy = true) {
+    assert(0 <= idx);
     c = (c ? clone(c, make_copy) : new_root());
     if (idx == 0) {
       c->x = x;

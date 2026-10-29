@@ -1,6 +1,8 @@
 // Source: https://github.com/maspypy/library/blob/main/alg/monoid/diameter.hpp
 
-template <typename TREE>
+// TREE は使用中に生存していること。
+// 同じ ID では同時に複数の木を扱えない。
+template <typename TREE, int id = 20261030>
 struct Monoid_Diameter {
   using value_type = pair<int, int>;
   using X = value_type;
