@@ -10,8 +10,8 @@ normalize=false: 階段形（三角化）のみ維持。少し高速
 */
 template <typename UINT, int MAX_DIM>
 struct Vector_Space {
-  static_assert(is_same_v<UINT, u32> || is_same_v<UINT, u64> ||
-                is_same_v<UINT, u128>);
+  static_assert(
+      is_same_v<UINT, u32> || is_same_v<UINT, u64> || is_same_v<UINT, u128>);
   int dim;
   array<UINT, MAX_DIM> dat;
   bool norm;
@@ -98,8 +98,8 @@ struct Vector_Space {
     return res;
   }
 
-  static Vector_Space merge(Vector_Space x, Vector_Space y,
-                            bool keep_normalized = false) {
+  static Vector_Space merge(
+      Vector_Space x, Vector_Space y, bool keep_normalized = false) {
     if (len(x) < len(y)) swap(x, y);
     for (auto v : y.dat) {
       x.add_element(v, keep_normalized);
@@ -110,6 +110,7 @@ struct Vector_Space {
   static Vector_Space intersection(Vector_Space& x, Vector_Space& y) {
     // とりあえず
     static_assert(is_same_v<UINT, u32>);
+    static_assert(1 <= MAX_DIM && MAX_DIM <= 32);
     Vector_Space<u64, MAX_DIM * 2> z;
     for (auto v : x.dat) {
       if (v) z.add_element(v | static_cast<u64>(v) << MAX_DIM);
@@ -119,7 +120,7 @@ struct Vector_Space {
     }
     Vector_Space<UINT, MAX_DIM> ANS;
     for (auto& v : z.dat) {
-      if (v <= u32(-1)) ANS.add_element(v);
+      if (v < (u64(1) << MAX_DIM)) ANS.add_element(v);
     }
     return ANS;
   }
