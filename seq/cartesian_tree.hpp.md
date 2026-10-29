@@ -88,16 +88,16 @@ data:
   isVerificationFile: false
   path: seq/cartesian_tree.hpp
   requiredBy:
-  - string/basic_substring_structure.hpp
   - string/suffix_tree.hpp
+  - string/basic_substring_structure.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/4_aoj/DPL_3_B.test.cpp
+  - test/4_aoj/DPL_3_C.test.cpp
+  - test/2_library_checker/tree/cartesian_tree.test.cpp
   - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/2574.test.cpp
-  - test/2_library_checker/tree/cartesian_tree.test.cpp
-  - test/4_aoj/DPL_3_C.test.cpp
-  - test/4_aoj/DPL_3_B.test.cpp
 documentation_of: seq/cartesian_tree.hpp
 layout: document
 redirect_from:

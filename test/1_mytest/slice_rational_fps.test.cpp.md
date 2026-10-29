@@ -1006,9 +1006,9 @@ data:
     }\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate\
     \ <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint> f, vc<mint>\
     \ g) {\n  assert(!g.empty() && g[0] != 0);\n  if (SPARSE || count_terms(g) < 200)\
-    \ return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n\
-    \  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n#line 1 \"poly/poly_divmod.hpp\"\
-    \n// Source: https://github.com/maspypy/library/blob/main/poly/poly_divmod.hpp\n\
+    \ return fps_div_sparse(move(f), g);\n  int n = len(f);\n  g.resize(n);\n  g =\
+    \ fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n\
+    #line 1 \"poly/poly_divmod.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/poly_divmod.hpp\n\
     \n#line 1 \"poly/fps_inv.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/fps_inv.hpp\n\
     #line 1 \"poly/count_terms.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/count_terms.hpp\n\
     template<typename mint>\nint count_terms(const vc<mint>& f){\n  int t = 0;\n \
@@ -1507,7 +1507,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/slice_rational_fps.test.cpp
   requiredBy: []
-  timestamp: '2026-10-27 03:13:48+09:00'
+  timestamp: '2026-10-30 00:22:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/slice_rational_fps.test.cpp

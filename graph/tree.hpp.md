@@ -428,9 +428,13 @@ data:
     \ = depth[b] - depth[c];\n    if (k > d_ac + d_bc) return -1;\n    if (k <= d_ac)\
     \ return LA(a, k);\n    return LA(b, d_ac + d_bc - k);\n  }\n\n  vc<int> collect_child(int\
     \ v) const {\n    vc<int> res;\n    for (int k = LID[v] + 1; k < RID[v];) {\n\
-    \      res.eb(V[k]), k = RID[V[k]];\n    }\n    return res;\n  }\n\n  vc<int>\
-    \ collect_subtree(int v) const {\n    return {V.begin() + LID[v], V.begin() +\
-    \ RID[v]};\n  }\n\n  vc<int> collect_light(int v) const {\n    static_assert(HLD);\n\
+    \      res.eb(V[k]), k = RID[V[k]];\n    }\n    return res;\n  }\n  void collect_child(int\
+    \ v, vc<int> &buf) const {\n    buf.clear();\n    for (int k = LID[v] + 1; k <\
+    \ RID[v];) {\n      buf.eb(V[k]), k = RID[V[k]];\n    }\n  }\n\n  template <typename\
+    \ F>\n  void for_each_child(int v, const F &f, bool rev) const {\n    for (int\
+    \ k = LID[v] + 1; k < RID[v];) {\n      f(V[k]), k = RID[V[k]];\n    }\n  }\n\n\
+    \  vc<int> collect_subtree(int v) const {\n    return {V.begin() + LID[v], V.begin()\
+    \ + RID[v]};\n  }\n\n  vc<int> collect_light(int v) const {\n    static_assert(HLD);\n\
     \    vc<int> res;\n    for (int k = LID[v] + 1; k < RID[v];) {\n      if (head[V[k]]\
     \ == V[k]) res.eb(V[k]);\n      k = RID[V[k]];\n    }\n    return res;\n  }\n\n\
     \  vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge) const {\n\
@@ -549,9 +553,13 @@ data:
     \ = depth[b] - depth[c];\n    if (k > d_ac + d_bc) return -1;\n    if (k <= d_ac)\
     \ return LA(a, k);\n    return LA(b, d_ac + d_bc - k);\n  }\n\n  vc<int> collect_child(int\
     \ v) const {\n    vc<int> res;\n    for (int k = LID[v] + 1; k < RID[v];) {\n\
-    \      res.eb(V[k]), k = RID[V[k]];\n    }\n    return res;\n  }\n\n  vc<int>\
-    \ collect_subtree(int v) const {\n    return {V.begin() + LID[v], V.begin() +\
-    \ RID[v]};\n  }\n\n  vc<int> collect_light(int v) const {\n    static_assert(HLD);\n\
+    \      res.eb(V[k]), k = RID[V[k]];\n    }\n    return res;\n  }\n  void collect_child(int\
+    \ v, vc<int> &buf) const {\n    buf.clear();\n    for (int k = LID[v] + 1; k <\
+    \ RID[v];) {\n      buf.eb(V[k]), k = RID[V[k]];\n    }\n  }\n\n  template <typename\
+    \ F>\n  void for_each_child(int v, const F &f, bool rev) const {\n    for (int\
+    \ k = LID[v] + 1; k < RID[v];) {\n      f(V[k]), k = RID[V[k]];\n    }\n  }\n\n\
+    \  vc<int> collect_subtree(int v) const {\n    return {V.begin() + LID[v], V.begin()\
+    \ + RID[v]};\n  }\n\n  vc<int> collect_light(int v) const {\n    static_assert(HLD);\n\
     \    vc<int> res;\n    for (int k = LID[v] + 1; k < RID[v];) {\n      if (head[V[k]]\
     \ == V[k]) res.eb(V[k]);\n      k = RID[V[k]];\n    }\n    return res;\n  }\n\n\
     \  vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge) const {\n\
@@ -630,97 +638,97 @@ data:
   isVerificationFile: false
   path: graph/tree.hpp
   requiredBy:
-  - graph/compress_tree.hpp
+  - graph/functional_graph.hpp
+  - graph/tree_dp/subtree_hash.hpp
   - graph/tree_dp/rerooting_dp.hpp
   - graph/tree_dp/subtree_diameter.hpp
-  - graph/tree_dp/subtree_hash.hpp
   - graph/tree_dp/subtree_depth_sum.hpp
   - graph/minimum_spanning_tree.hpp
   - graph/fast_lca.hpp
-  - graph/optimal_product_on_tree.hpp
-  - graph/characteristic_poly_of_tree_adjacency_matrix.hpp
-  - graph/ds/rolling_hash_on_tree.hpp
-  - graph/ds/dual_tree_monoid.hpp
-  - graph/ds/lazy_tree_monoid.hpp
-  - graph/ds/mo_on_tree.hpp
-  - graph/ds/tree_wavelet_matrix.hpp
-  - graph/ds/dynamic_tree_dp.hpp
-  - graph/ds/tree_monoid.hpp
-  - graph/ds/static_tree_monoid.hpp
-  - graph/ds/dynamic_rerooting_tree_dp.hpp
-  - graph/ds/static_toptree.hpp
-  - graph/ds/incremental_centroid.hpp
-  - graph/ds/distance_sum.hpp
-  - graph/ds/tree_abeliangroup.hpp
-  - graph/functional_graph.hpp
-  - graph/tree_walk_generating_function.hpp
-  - graph/unicyclic_graph.hpp
   - graph/count_matching_on_tree.hpp
-  - string/generalized_suffix_automaton.hpp
-  - string/suffix_automaton.hpp
-  - string/enumerate_occurrences.hpp
+  - graph/unicyclic_graph.hpp
+  - graph/ds/dynamic_rerooting_tree_dp.hpp
+  - graph/ds/distance_sum.hpp
+  - graph/ds/mo_on_tree.hpp
+  - graph/ds/static_tree_monoid.hpp
+  - graph/ds/lazy_tree_monoid.hpp
+  - graph/ds/static_toptree.hpp
+  - graph/ds/dynamic_tree_dp.hpp
+  - graph/ds/rolling_hash_on_tree.hpp
+  - graph/ds/tree_abeliangroup.hpp
+  - graph/ds/tree_monoid.hpp
+  - graph/ds/dual_tree_monoid.hpp
+  - graph/ds/incremental_centroid.hpp
+  - graph/ds/tree_wavelet_matrix.hpp
+  - graph/characteristic_poly_of_tree_adjacency_matrix.hpp
+  - graph/compress_tree.hpp
+  - graph/optimal_product_on_tree.hpp
+  - graph/tree_walk_generating_function.hpp
   - knapsack/ancestor_closed_set_knapsack.hpp
   - knapsack/independent_set_knapsack.hpp
-  timestamp: '2026-10-25 14:31:22+09:00'
+  - string/enumerate_occurrences.hpp
+  - string/suffix_automaton.hpp
+  - string/generalized_suffix_automaton.hpp
+  timestamp: '2026-10-30 00:22:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/enumerate_unlabeled_tree.test.cpp
-  - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/connected_set_knapsack.test.cpp
   - test/1_mytest/independent_set_knapsack.test.cpp
-  - test/1_mytest/tree_walk_gf.test.cpp
-  - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   - test/1_mytest/rolling_hash_on_tree.test.cpp
-  - test/3_yukicoder/1295.test.cpp
-  - test/3_yukicoder/529.test.cpp
-  - test/3_yukicoder/1524.test.cpp
-  - test/3_yukicoder/1494.test.cpp
-  - test/3_yukicoder/2258.test.cpp
-  - test/3_yukicoder/1216_2.test.cpp
-  - test/3_yukicoder/235.test.cpp
-  - test/3_yukicoder/2342.test.cpp
-  - test/3_yukicoder/1254.test.cpp
-  - test/3_yukicoder/1418.test.cpp
-  - test/3_yukicoder/1211.test.cpp
-  - test/3_yukicoder/2122.test.cpp
-  - test/3_yukicoder/1789.test.cpp
-  - test/3_yukicoder/1790.test.cpp
-  - test/3_yukicoder/1212.test.cpp
-  - test/3_yukicoder/3148.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
-  - test/3_yukicoder/2587.test.cpp
-  - test/3_yukicoder/1451.test.cpp
-  - test/3_yukicoder/1718.test.cpp
-  - test/3_yukicoder/1242.test.cpp
-  - test/3_yukicoder/1641.test.cpp
-  - test/3_yukicoder/1600.test.cpp
-  - test/3_yukicoder/1216.test.cpp
-  - test/3_yukicoder/1976.test.cpp
-  - test/3_yukicoder/1778.test.cpp
-  - test/3_yukicoder/1600_2.test.cpp
-  - test/3_yukicoder/2360.test.cpp
-  - test/3_yukicoder/1326.test.cpp
-  - test/3_yukicoder/1197.test.cpp
-  - test/3_yukicoder/2342_2.test.cpp
-  - test/3_yukicoder/2595.test.cpp
-  - test/2_library_checker/graph/classify_tree.test.cpp
-  - test/2_library_checker/string/number_of_substrings2.test.cpp
-  - test/2_library_checker/tree/rerooting_dp.test.cpp
-  - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
-  - test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
-  - test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  - test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
-  - test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
-  - test/2_library_checker/tree/lca_directed.test.cpp
-  - test/2_library_checker/tree/mst.test.cpp
-  - test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
-  - test/2_library_checker/tree/lca_fast.test.cpp
-  - test/2_library_checker/tree/lca.test.cpp
-  - test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
+  - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+  - test/1_mytest/mo_on_tree.test.cpp
+  - test/1_mytest/tree_walk_gf.test.cpp
+  - test/1_mytest/enumerate_unlabeled_tree.test.cpp
   - test/4_aoj/2677.test.cpp
-  - test/4_aoj/GRL_2_A.test.cpp
   - test/4_aoj/GRL_5_E.test.cpp
   - test/4_aoj/2636.test.cpp
+  - test/4_aoj/GRL_2_A.test.cpp
+  - test/2_library_checker/graph/classify_tree.test.cpp
+  - test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
+  - test/2_library_checker/tree/lca_fast.test.cpp
+  - test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
+  - test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
+  - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
+  - test/2_library_checker/tree/mst.test.cpp
+  - test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
+  - test/2_library_checker/tree/lca_directed.test.cpp
+  - test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
+  - test/2_library_checker/tree/rerooting_dp.test.cpp
+  - test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
+  - test/2_library_checker/tree/lca.test.cpp
+  - test/2_library_checker/string/number_of_substrings2.test.cpp
+  - test/3_yukicoder/1641.test.cpp
+  - test/3_yukicoder/3148.test.cpp
+  - test/3_yukicoder/1216_2.test.cpp
+  - test/3_yukicoder/1216.test.cpp
+  - test/3_yukicoder/1778.test.cpp
+  - test/3_yukicoder/1212.test.cpp
+  - test/3_yukicoder/2258.test.cpp
+  - test/3_yukicoder/1211.test.cpp
+  - test/3_yukicoder/1600_2.test.cpp
+  - test/3_yukicoder/1197.test.cpp
+  - test/3_yukicoder/1718.test.cpp
+  - test/3_yukicoder/1295.test.cpp
+  - test/3_yukicoder/2587.test.cpp
+  - test/3_yukicoder/2360.test.cpp
+  - test/3_yukicoder/1600.test.cpp
+  - test/3_yukicoder/1524.test.cpp
+  - test/3_yukicoder/1976.test.cpp
+  - test/3_yukicoder/1418.test.cpp
+  - test/3_yukicoder/2122.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
+  - test/3_yukicoder/2342.test.cpp
+  - test/3_yukicoder/1326.test.cpp
+  - test/3_yukicoder/1451.test.cpp
+  - test/3_yukicoder/235.test.cpp
+  - test/3_yukicoder/2595.test.cpp
+  - test/3_yukicoder/1789.test.cpp
+  - test/3_yukicoder/529.test.cpp
+  - test/3_yukicoder/1242.test.cpp
+  - test/3_yukicoder/1254.test.cpp
+  - test/3_yukicoder/1790.test.cpp
+  - test/3_yukicoder/2342_2.test.cpp
+  - test/3_yukicoder/1494.test.cpp
 documentation_of: graph/tree.hpp
 layout: document
 redirect_from:

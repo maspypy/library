@@ -563,13 +563,13 @@ data:
   verifiedWith:
   - test/1_mytest/tutte.test.cpp
   - test/1_mytest/matching_ve.test.cpp
+  - test/4_aoj/1566.test.cpp
+  - test/4_aoj/2251_2.test.cpp
+  - test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test/2_library_checker/graph/bipartitematching.test.cpp
   - test/3_yukicoder/1744.test.cpp
   - test/3_yukicoder/1745.test.cpp
   - test/3_yukicoder/1479.test.cpp
-  - test/2_library_checker/graph/bipartitematching.test.cpp
-  - test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
-  - test/4_aoj/2251_2.test.cpp
-  - test/4_aoj/1566.test.cpp
 documentation_of: flow/bipartite_matching.hpp
 layout: document
 redirect_from:

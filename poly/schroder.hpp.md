@@ -1113,10 +1113,10 @@ data:
     }\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate\
     \ <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint> f, vc<mint>\
     \ g) {\n  assert(!g.empty() && g[0] != 0);\n  if (SPARSE || count_terms(g) < 200)\
-    \ return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n\
-    \  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n#line 1 \"poly/fps_pow.hpp\"\
-    \n// Source: https://github.com/maspypy/library/blob/main/poly/fps_pow.hpp\n#line\
-    \ 1 \"poly/count_terms.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/count_terms.hpp\n\
+    \ return fps_div_sparse(move(f), g);\n  int n = len(f);\n  g.resize(n);\n  g =\
+    \ fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n\
+    #line 1 \"poly/fps_pow.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/fps_pow.hpp\n\
+    #line 1 \"poly/count_terms.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/count_terms.hpp\n\
     template<typename mint>\nint count_terms(const vc<mint>& f){\n  int t = 0;\n \
     \ FOR(i, len(f)) if(f[i] != mint(0)) ++t;\n  return t;\n}\n#line 1 \"poly/fps_exp.hpp\"\
     \n// Source: https://github.com/maspypy/library/blob/main/poly/fps_exp.hpp\n#line\
@@ -2560,26 +2560,26 @@ data:
     }\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate\
     \ <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint> f, vc<mint>\
     \ g) {\n  assert(!g.empty() && g[0] != 0);\n  if (SPARSE || count_terms(g) < 200)\
-    \ return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n\
-    \  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n#line 5 \"poly/schroder.hpp\"\
-    \n\n// 0=[x^0]F, a=[x^1]F\n// [2,N) \u3067 a^i != a\n// \u3053\u306E\u3068\u304D\
-    \ G, H \u306F\u4E92\u3044\u306B\u5408\u6210\u9006\u3067\n// G(F(x))=aG(x), F(H(x))=H(ax)\n\
-    // https://yukicoder.me/problems/no/3621\ntemplate <typename mint>\nstruct Schroder\
-    \ {\n  int N;\n  vc<mint> F, G, H;\n  mint a;\n  vc<mint> pw;\n  Schroder(vc<mint>\
-    \ &F) : F(F) {\n    N = len(F);\n    a = (N <= 1 ? 1 : F[1]);\n    pw.resize(N\
-    \ + 1, 1);\n    FOR(i, N) pw[i + 1] = pw[i] * a;\n    H.resize(2);\n    H[1] =\
-    \ 1;\n    while (len(H) < N) {\n      int m = len(H);\n      int M = min<int>(2\
-    \ * m - 1, N);\n      H.resize(M);\n      vc<mint> f(M);\n      FOR(i, M) f[i]\
-    \ = F[i];\n      vc<mint> E = composition(f, H);\n      E = {E.begin() + m, E.begin()\
-    \ + M};\n      vc<mint> den(M - m);\n      FOR(i, M - m) den[i] = H[i + 1] * pw[i]\
-    \ * (i + 1);\n      E = fps_div<mint>(E, den);\n      FOR(i, M - m) E[i] /= pw[m\
-    \ + i] - a;\n      vc<mint> DH(M - m);\n      FOR(i, M - m) { DH[i] = H[i + 1]\
-    \ * (i + 1); }\n      E = convolution<mint>(E, DH);\n      E.resize(M - m);\n\
-    \      FOR(i, M - m) H[m + i] = E[i];\n    }\n    SHOW(H);\n    H.resize(N);\n\
-    \    G = compositional_inverse(H);\n  }\n\n  // F \u306E K \u56DE\u5408\u6210\n\
-    \  vc<mint> iterated_composition(ll K) {\n    mint c = a.pow(K);\n    vc<mint>\
-    \ g(N);\n    FOR(i, N) g[i] = G[i] * c;\n    return composition(H, g);\n  }\n\
-    };\n"
+    \ return fps_div_sparse(move(f), g);\n  int n = len(f);\n  g.resize(n);\n  g =\
+    \ fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n\
+    #line 5 \"poly/schroder.hpp\"\n\n// 0=[x^0]F, a=[x^1]F\n// [2,N) \u3067 a^i !=\
+    \ a\n// \u3053\u306E\u3068\u304D G, H \u306F\u4E92\u3044\u306B\u5408\u6210\u9006\
+    \u3067\n// G(F(x))=aG(x), F(H(x))=H(ax)\n// https://yukicoder.me/problems/no/3621\n\
+    template <typename mint>\nstruct Schroder {\n  int N;\n  vc<mint> F, G, H;\n \
+    \ mint a;\n  vc<mint> pw;\n  Schroder(vc<mint> &F) : F(F) {\n    N = len(F);\n\
+    \    a = (N <= 1 ? 1 : F[1]);\n    pw.resize(N + 1, 1);\n    FOR(i, N) pw[i +\
+    \ 1] = pw[i] * a;\n    H.resize(2);\n    H[1] = 1;\n    while (len(H) < N) {\n\
+    \      int m = len(H);\n      int M = min<int>(2 * m - 1, N);\n      H.resize(M);\n\
+    \      vc<mint> f(M);\n      FOR(i, M) f[i] = F[i];\n      vc<mint> E = composition(f,\
+    \ H);\n      E = {E.begin() + m, E.begin() + M};\n      vc<mint> den(M - m);\n\
+    \      FOR(i, M - m) den[i] = H[i + 1] * pw[i] * (i + 1);\n      E = fps_div<mint>(E,\
+    \ den);\n      FOR(i, M - m) E[i] /= pw[m + i] - a;\n      vc<mint> DH(M - m);\n\
+    \      FOR(i, M - m) { DH[i] = H[i + 1] * (i + 1); }\n      E = convolution<mint>(E,\
+    \ DH);\n      E.resize(M - m);\n      FOR(i, M - m) H[m + i] = E[i];\n    }\n\
+    \    SHOW(H);\n    H.resize(N);\n    G = compositional_inverse(H);\n  }\n\n  //\
+    \ F \u306E K \u56DE\u5408\u6210\n  vc<mint> iterated_composition(ll K) {\n   \
+    \ mint c = a.pow(K);\n    vc<mint> g(N);\n    FOR(i, N) g[i] = G[i] * c;\n   \
+    \ return composition(H, g);\n  }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/poly/schroder.hpp\n\
     #include \"poly/composition.hpp\"\n#include \"poly/compositional_inverse.hpp\"\
     \n#include \"poly/fps_div.hpp\"\n\n// 0=[x^0]F, a=[x^1]F\n// [2,N) \u3067 a^i\
@@ -2627,11 +2627,11 @@ data:
   isVerificationFile: false
   path: poly/schroder.hpp
   requiredBy: []
-  timestamp: '2026-10-27 04:18:44+09:00'
+  timestamp: '2026-10-30 00:22:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/3621.test.cpp
   - test/3_yukicoder/3619.test.cpp
+  - test/3_yukicoder/3621.test.cpp
 documentation_of: poly/schroder.hpp
 layout: document
 redirect_from:

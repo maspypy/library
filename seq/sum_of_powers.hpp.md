@@ -1053,9 +1053,9 @@ data:
     }\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate\
     \ <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint> f, vc<mint>\
     \ g) {\n  assert(!g.empty() && g[0] != 0);\n  if (SPARSE || count_terms(g) < 200)\
-    \ return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n\
-    \  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n#line 1 \"poly/sum_of_rationals.hpp\"\
-    \n// Source: https://github.com/maspypy/library/blob/main/poly/sum_of_rationals.hpp\n\
+    \ return fps_div_sparse(move(f), g);\n  int n = len(f);\n  g.resize(n);\n  g =\
+    \ fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n\
+    #line 1 \"poly/sum_of_rationals.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/sum_of_rationals.hpp\n\
     \n#line 1 \"poly/convolution.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/convolution.hpp\n\
     #line 1 \"mod/modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint.hpp\n\
     #line 1 \"mod/modint_common.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint_common.hpp\n\
@@ -1487,13 +1487,13 @@ data:
   isVerificationFile: false
   path: seq/sum_of_powers.hpp
   requiredBy: []
-  timestamp: '2026-10-27 03:13:48+09:00'
+  timestamp: '2026-10-30 00:22:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2459.test.cpp
-  - test/3_yukicoder/2747.test.cpp
-  - test/3_yukicoder/1145.test.cpp
   - test/3_yukicoder/1575.test.cpp
+  - test/3_yukicoder/2459.test.cpp
+  - test/3_yukicoder/1145.test.cpp
+  - test/3_yukicoder/2747.test.cpp
 documentation_of: seq/sum_of_powers.hpp
 layout: document
 redirect_from:

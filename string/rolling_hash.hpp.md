@@ -123,11 +123,11 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/3_yukicoder/263.test.cpp
-  - test/3_yukicoder/2102.test.cpp
   - test/3_yukicoder/2626.test.cpp
   - test/3_yukicoder/2231.test.cpp
-  - test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
+  - test/3_yukicoder/2102.test.cpp
 documentation_of: string/rolling_hash.hpp
 layout: document
 redirect_from:

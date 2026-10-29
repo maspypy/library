@@ -362,19 +362,20 @@ data:
     }\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate\
     \ <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint> f, vc<mint>\
     \ g) {\n  assert(!g.empty() && g[0] != 0);\n  if (SPARSE || count_terms(g) < 200)\
-    \ return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n\
-    \  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n#line 4 \"poly/compositional_inverse_old.hpp\"\
-    \n\n// O(N ^ 2)\ntemplate <typename mint>\nvc<mint> compositional_inverse_old(const\
-    \ vc<mint>& F) {\n  const int N = len(F);\n  if (N == 0) return {};\n  assert(F[0]\
-    \ == mint(0));\n  if (N == 1) return F;\n  assert(F[0] == mint(0) && F[1] != mint(0));\n\
-    \  vc<mint> DF = differentiate(F);\n\n  vc<mint> G(2);\n  G[1] = mint(1) / F[1];\n\
-    \  while (len(G) < N) {\n    // G:= G(x)-(F(G(x))-x)/DF(G(x))\n    int n = len(G);\n\
-    \    vc<mint> G1, G2;\n    {\n      vc<mint> FF(2 * n), GG(2 * n), DFF(n);\n \
-    \     FOR(i, min<int>(len(F), 2 * n)) FF[i] = F[i];\n      FOR(i, min<int>(len(DF),\
-    \ n)) DFF[i] = DF[i];\n      FOR(i, n) GG[i] = G[i];\n      G1 = composition(FF,\
-    \ GG);\n      G2 = composition(DFF, G);\n    }\n    G1 = {G1.begin() + n, G1.end()};\n\
-    \    G1 = fps_div(G1, G2);\n    G.resize(2 * n);\n    FOR(i, n) G[n + i] -= G1[i];\n\
-    \  }\n  G.resize(N);\n  return G;\n}\n"
+    \ return fps_div_sparse(move(f), g);\n  int n = len(f);\n  g.resize(n);\n  g =\
+    \ fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n\
+    #line 4 \"poly/compositional_inverse_old.hpp\"\n\n// O(N ^ 2)\ntemplate <typename\
+    \ mint>\nvc<mint> compositional_inverse_old(const vc<mint>& F) {\n  const int\
+    \ N = len(F);\n  if (N == 0) return {};\n  assert(F[0] == mint(0));\n  if (N ==\
+    \ 1) return F;\n  assert(F[0] == mint(0) && F[1] != mint(0));\n  vc<mint> DF =\
+    \ differentiate(F);\n\n  vc<mint> G(2);\n  G[1] = mint(1) / F[1];\n  while (len(G)\
+    \ < N) {\n    // G:= G(x)-(F(G(x))-x)/DF(G(x))\n    int n = len(G);\n    vc<mint>\
+    \ G1, G2;\n    {\n      vc<mint> FF(2 * n), GG(2 * n), DFF(n);\n      FOR(i, min<int>(len(F),\
+    \ 2 * n)) FF[i] = F[i];\n      FOR(i, min<int>(len(DF), n)) DFF[i] = DF[i];\n\
+    \      FOR(i, n) GG[i] = G[i];\n      G1 = composition(FF, GG);\n      G2 = composition(DFF,\
+    \ G);\n    }\n    G1 = {G1.begin() + n, G1.end()};\n    G1 = fps_div(G1, G2);\n\
+    \    G.resize(2 * n);\n    FOR(i, n) G[n + i] -= G1[i];\n  }\n  G.resize(N);\n\
+    \  return G;\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/poly/compositional_inverse_old.hpp\n\
     #include \"poly/differentiate.hpp\"\n#include \"poly/fps_div.hpp\"\n\n// O(N ^\
     \ 2)\ntemplate <typename mint>\nvc<mint> compositional_inverse_old(const vc<mint>&\
@@ -404,7 +405,7 @@ data:
   isVerificationFile: false
   path: poly/compositional_inverse_old.hpp
   requiredBy: []
-  timestamp: '2026-10-27 03:13:48+09:00'
+  timestamp: '2026-10-30 00:22:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/compositional_inverset.test.cpp

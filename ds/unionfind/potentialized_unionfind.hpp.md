@@ -69,11 +69,11 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2294.test.cpp
-  - test/3_yukicoder/1502.test.cpp
+  - test/4_aoj/DSL_1_B.test.cpp
   - test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
   - test/2_library_checker/unionfind_with_potential.test.cpp
-  - test/4_aoj/DSL_1_B.test.cpp
+  - test/3_yukicoder/1502.test.cpp
+  - test/3_yukicoder/2294.test.cpp
 documentation_of: ds/unionfind/potentialized_unionfind.hpp
 layout: document
 redirect_from:

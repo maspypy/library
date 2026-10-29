@@ -366,15 +366,15 @@ data:
     }\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate\
     \ <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint> f, vc<mint>\
     \ g) {\n  assert(!g.empty() && g[0] != 0);\n  if (SPARSE || count_terms(g) < 200)\
-    \ return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n\
-    \  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n#line 3 \"poly/sum_of_power_of_roots.hpp\"\
-    \n\n// f = prod(1-a_ix) \u306E\u3068\u304D\u3001g[k] = sum_i a_i^k \u3068\u306A\
-    \u308B g \u306E [0, LIM] \u3092\u8FD4\u3059\ntemplate <typename mint>\nvc<mint>\
-    \ sum_of_power_of_roots(vc<mint>& f, int LIM) {\n  const int n = len(f) - 1;\n\
-    \  // n - xf'/f\n  vc<mint> g(n + 1);\n  FOR(i, n + 1) g[i] = mint(n - i) * f[i];\n\
-    \  g.resize(LIM + 1);\n  return fps_div(g, f);\n}\n#line 1 \"poly/fps_exp.hpp\"\
-    \n// Source: https://github.com/maspypy/library/blob/main/poly/fps_exp.hpp\n#line\
-    \ 1 \"poly/convolution.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/convolution.hpp\n\
+    \ return fps_div_sparse(move(f), g);\n  int n = len(f);\n  g.resize(n);\n  g =\
+    \ fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n\
+    #line 3 \"poly/sum_of_power_of_roots.hpp\"\n\n// f = prod(1-a_ix) \u306E\u3068\
+    \u304D\u3001g[k] = sum_i a_i^k \u3068\u306A\u308B g \u306E [0, LIM] \u3092\u8FD4\
+    \u3059\ntemplate <typename mint>\nvc<mint> sum_of_power_of_roots(vc<mint>& f,\
+    \ int LIM) {\n  const int n = len(f) - 1;\n  // n - xf'/f\n  vc<mint> g(n + 1);\n\
+    \  FOR(i, n + 1) g[i] = mint(n - i) * f[i];\n  g.resize(LIM + 1);\n  return fps_div(g,\
+    \ f);\n}\n#line 1 \"poly/fps_exp.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/fps_exp.hpp\n\
+    #line 1 \"poly/convolution.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/convolution.hpp\n\
     #line 1 \"mod/modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint.hpp\n\
     #line 1 \"mod/modint_common.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint_common.hpp\n\
     \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
@@ -737,7 +737,7 @@ data:
   isVerificationFile: false
   path: poly/composed_sum.hpp
   requiredBy: []
-  timestamp: '2026-10-27 04:18:44+09:00'
+  timestamp: '2026-10-30 00:22:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: poly/composed_sum.hpp

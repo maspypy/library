@@ -33,9 +33,9 @@ data:
   isVerificationFile: false
   path: other/mex.hpp
   requiredBy:
-  - string/inverse_manacher.hpp
   - game/number_and_star.hpp
   - game/solve_partizan_game.hpp
+  - string/inverse_manacher.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

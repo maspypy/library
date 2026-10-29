@@ -343,9 +343,13 @@ data:
     \ = depth[b] - depth[c];\n    if (k > d_ac + d_bc) return -1;\n    if (k <= d_ac)\
     \ return LA(a, k);\n    return LA(b, d_ac + d_bc - k);\n  }\n\n  vc<int> collect_child(int\
     \ v) const {\n    vc<int> res;\n    for (int k = LID[v] + 1; k < RID[v];) {\n\
-    \      res.eb(V[k]), k = RID[V[k]];\n    }\n    return res;\n  }\n\n  vc<int>\
-    \ collect_subtree(int v) const {\n    return {V.begin() + LID[v], V.begin() +\
-    \ RID[v]};\n  }\n\n  vc<int> collect_light(int v) const {\n    static_assert(HLD);\n\
+    \      res.eb(V[k]), k = RID[V[k]];\n    }\n    return res;\n  }\n  void collect_child(int\
+    \ v, vc<int> &buf) const {\n    buf.clear();\n    for (int k = LID[v] + 1; k <\
+    \ RID[v];) {\n      buf.eb(V[k]), k = RID[V[k]];\n    }\n  }\n\n  template <typename\
+    \ F>\n  void for_each_child(int v, const F &f, bool rev) const {\n    for (int\
+    \ k = LID[v] + 1; k < RID[v];) {\n      f(V[k]), k = RID[V[k]];\n    }\n  }\n\n\
+    \  vc<int> collect_subtree(int v) const {\n    return {V.begin() + LID[v], V.begin()\
+    \ + RID[v]};\n  }\n\n  vc<int> collect_light(int v) const {\n    static_assert(HLD);\n\
     \    vc<int> res;\n    for (int k = LID[v] + 1; k < RID[v];) {\n      if (head[V[k]]\
     \ == V[k]) res.eb(V[k]);\n      k = RID[V[k]];\n    }\n    return res;\n  }\n\n\
     \  vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge) const {\n\
@@ -1213,12 +1217,12 @@ data:
   isVerificationFile: false
   path: graph/tree_walk_generating_function.hpp
   requiredBy: []
-  timestamp: '2026-10-25 14:31:22+09:00'
+  timestamp: '2026-10-30 00:22:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/tree_walk_gf.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/2587.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
 documentation_of: graph/tree_walk_generating_function.hpp
 layout: document
 redirect_from:

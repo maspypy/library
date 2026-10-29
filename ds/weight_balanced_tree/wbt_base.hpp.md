@@ -76,8 +76,8 @@ data:
   isVerificationFile: false
   path: ds/weight_balanced_tree/wbt_base.hpp
   requiredBy:
-  - ds/weight_balanced_tree/wbt_acted_monoid.hpp
   - ds/weight_balanced_tree/wbt_monoid.hpp
+  - ds/weight_balanced_tree/wbt_acted_monoid.hpp
   - ds/weight_balanced_tree/wbt_basic.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS

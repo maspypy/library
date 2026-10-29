@@ -56,8 +56,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/fibonacci_search.test.cpp
-  - test/3_yukicoder/2627.test.cpp
   - test/3_yukicoder/2276.test.cpp
+  - test/3_yukicoder/2627.test.cpp
 documentation_of: other/fibonacci_search.hpp
 layout: document
 redirect_from:

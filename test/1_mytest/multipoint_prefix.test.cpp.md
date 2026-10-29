@@ -1437,34 +1437,34 @@ data:
     }\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate\
     \ <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint> f, vc<mint>\
     \ g) {\n  assert(!g.empty() && g[0] != 0);\n  if (SPARSE || count_terms(g) < 200)\
-    \ return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n\
-    \  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n#line 5 \"poly/multipoint_evaluation_for_prefix_product.hpp\"\
-    \n\n// F[0](point[i]) ... F[CNT[i]-1](point[i])\ntemplate <typename mint>\nvc<mint>\
-    \ multipoint_evaluation_for_prefix_product(vvc<mint> F, vc<mint> point, vc<int>\
-    \ CNT) {\n  int N = len(point);\n  if (N == 0) return {};\n  auto I = argsort(CNT);\n\
-    \  point = rearrange(point, I), CNT = rearrange(CNT, I);\n  vvc<mint> G1, G2;\n\
-    \  vvvc<mint> L(N), R(N);\n  FOR(i, N) {\n    vc<mint> f{mint(1), -point[i]};\n\
-    \    L[i].eb(f), R[i].eb(f), G2.eb(f);\n  }\n  int K = 0;\n  for (auto& f: F)\
-    \ reverse(all(f));\n  FOR(i, CNT[0]) { G1.eb(F[i]), K += len(F[i]) - 1; }\n  FOR(j,\
-    \ N - 1) {\n    FOR(k, CNT[j], CNT[j + 1]) {\n      vc<mint> g(len(F[k]));\n \
-    \     g.back() = 1;\n      L[j].eb(F[k]), R[j + 1].eb(g), K += len(g) - 1;\n \
-    \   }\n  }\n  Typical_Divide_Conquer<mint> TDC(N);\n  FOR(i, N - 1) TDC.set_L(i,\
-    \ convolution_all<mint>(L[i]));\n  FOR(i, 1, N) TDC.set_R(i, convolution_all<mint>(R[i]));\n\
-    \  vc<mint> g1 = convolution_all<mint>(G1);\n  vc<mint> g2 = convolution_all<mint>(G2);\n\
-    \  g1.resize(K + 1), g2.resize(K + 1);\n  vc<mint> ANS = TDC.calc(K, fps_div<mint>(g1,\
-    \ g2));\n  I = argsort(I);\n  ANS = rearrange(ANS, I);\n  return ANS;\n}\n#line\
-    \ 7 \"test/1_mytest/multipoint_prefix.test.cpp\"\n\nusing mint = modint998;\n\n\
-    void test() {\n  int N = RNG(0, 10);\n  int M = RNG(0, 10);\n  vvc<mint> poly(M);\n\
-    \  vc<mint> point(N);\n  vc<int> CNT(N);\n  FOR(i, M) {\n    int d = RNG(0, 5);\n\
-    \    vc<mint> f(d + 1);\n    FOR(k, d + 1) f[k] = RNG(0, 2);\n    poly[i] = f;\n\
-    \  }\n  FOR(i, N) point[i] = RNG(0, 10);\n  FOR(i, N) CNT[i] = RNG(0, M + 1);\n\
-    \n  vc<mint> god(N);\n  FOR(i, N) {\n    mint ans = 1;\n    FOR(j, CNT[i]) {\n\
-    \      mint p = 1;\n      mint y = 0;\n      for (auto& x: poly[j]) { y += x *\
-    \ p, p *= point[i]; }\n      ans *= y;\n    }\n    god[i] = ans;\n  }\n  vc<mint>\
-    \ Y = multipoint_evaluation_for_prefix_product<mint>(poly, point, CNT);\n  assert(god\
-    \ == Y);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b\
-    \ << \"\\n\";\n}\n\nsigned main() {\n  FOR(100000) test();\n  solve();\n  return\
-    \ 0;\n}\n"
+    \ return fps_div_sparse(move(f), g);\n  int n = len(f);\n  g.resize(n);\n  g =\
+    \ fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n\
+    #line 5 \"poly/multipoint_evaluation_for_prefix_product.hpp\"\n\n// F[0](point[i])\
+    \ ... F[CNT[i]-1](point[i])\ntemplate <typename mint>\nvc<mint> multipoint_evaluation_for_prefix_product(vvc<mint>\
+    \ F, vc<mint> point, vc<int> CNT) {\n  int N = len(point);\n  if (N == 0) return\
+    \ {};\n  auto I = argsort(CNT);\n  point = rearrange(point, I), CNT = rearrange(CNT,\
+    \ I);\n  vvc<mint> G1, G2;\n  vvvc<mint> L(N), R(N);\n  FOR(i, N) {\n    vc<mint>\
+    \ f{mint(1), -point[i]};\n    L[i].eb(f), R[i].eb(f), G2.eb(f);\n  }\n  int K\
+    \ = 0;\n  for (auto& f: F) reverse(all(f));\n  FOR(i, CNT[0]) { G1.eb(F[i]), K\
+    \ += len(F[i]) - 1; }\n  FOR(j, N - 1) {\n    FOR(k, CNT[j], CNT[j + 1]) {\n \
+    \     vc<mint> g(len(F[k]));\n      g.back() = 1;\n      L[j].eb(F[k]), R[j +\
+    \ 1].eb(g), K += len(g) - 1;\n    }\n  }\n  Typical_Divide_Conquer<mint> TDC(N);\n\
+    \  FOR(i, N - 1) TDC.set_L(i, convolution_all<mint>(L[i]));\n  FOR(i, 1, N) TDC.set_R(i,\
+    \ convolution_all<mint>(R[i]));\n  vc<mint> g1 = convolution_all<mint>(G1);\n\
+    \  vc<mint> g2 = convolution_all<mint>(G2);\n  g1.resize(K + 1), g2.resize(K +\
+    \ 1);\n  vc<mint> ANS = TDC.calc(K, fps_div<mint>(g1, g2));\n  I = argsort(I);\n\
+    \  ANS = rearrange(ANS, I);\n  return ANS;\n}\n#line 7 \"test/1_mytest/multipoint_prefix.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  int N = RNG(0, 10);\n  int M =\
+    \ RNG(0, 10);\n  vvc<mint> poly(M);\n  vc<mint> point(N);\n  vc<int> CNT(N);\n\
+    \  FOR(i, M) {\n    int d = RNG(0, 5);\n    vc<mint> f(d + 1);\n    FOR(k, d +\
+    \ 1) f[k] = RNG(0, 2);\n    poly[i] = f;\n  }\n  FOR(i, N) point[i] = RNG(0, 10);\n\
+    \  FOR(i, N) CNT[i] = RNG(0, M + 1);\n\n  vc<mint> god(N);\n  FOR(i, N) {\n  \
+    \  mint ans = 1;\n    FOR(j, CNT[i]) {\n      mint p = 1;\n      mint y = 0;\n\
+    \      for (auto& x: poly[j]) { y += x * p, p *= point[i]; }\n      ans *= y;\n\
+    \    }\n    god[i] = ans;\n  }\n  vc<mint> Y = multipoint_evaluation_for_prefix_product<mint>(poly,\
+    \ point, CNT);\n  assert(god == Y);\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
+    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(100000) test();\n\
+    \  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"mod/modint.hpp\"\n#include \"random/base.hpp\"\n#include \"poly/multipoint_evaluation_for_prefix_product.hpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  int N = RNG(0, 10);\n  int M =\
@@ -1500,7 +1500,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/multipoint_prefix.test.cpp
   requiredBy: []
-  timestamp: '2026-10-27 03:13:48+09:00'
+  timestamp: '2026-10-30 00:22:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/multipoint_prefix.test.cpp

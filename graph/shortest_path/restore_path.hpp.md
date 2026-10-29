@@ -39,9 +39,9 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/restore_path.hpp
   requiredBy:
-  - graph/tree_diameter.hpp
   - graph/tree_center.hpp
   - graph/st_numbering.hpp
+  - graph/tree_diameter.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

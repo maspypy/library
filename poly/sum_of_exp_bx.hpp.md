@@ -772,9 +772,9 @@ data:
   isVerificationFile: false
   path: poly/sum_of_exp_bx.hpp
   requiredBy:
-  - poly/composition_f_ex.hpp
-  - poly/composition_f_ex_minus_1.hpp
   - poly/composition_f_1_minus_ex.hpp
+  - poly/composition_f_ex_minus_1.hpp
+  - poly/composition_f_ex.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

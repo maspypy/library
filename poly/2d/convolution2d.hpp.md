@@ -355,9 +355,9 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/fps_inv_2d.test.cpp
-  - test/1_mytest/fps_exp_2d.test.cpp
   - test/1_mytest/conv2d.test.cpp
+  - test/1_mytest/fps_exp_2d.test.cpp
+  - test/1_mytest/fps_inv_2d.test.cpp
 documentation_of: poly/2d/convolution2d.hpp
 layout: document
 redirect_from:

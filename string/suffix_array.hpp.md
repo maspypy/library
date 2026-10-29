@@ -447,25 +447,25 @@ data:
   isVerificationFile: false
   path: string/suffix_array.hpp
   requiredBy:
-  - string/longest_common_substring.hpp
-  - string/basic_substring_structure.hpp
-  - string/sort_substrings.hpp
-  - string/many_string_compare.hpp
-  - string/lex_max_suffix_for_all_prefix.hpp
   - string/substring_shortest_border.hpp
+  - string/many_string_compare.hpp
   - string/suffix_tree.hpp
+  - string/longest_common_substring.hpp
   - string/suffix_lcp_change.hpp
+  - string/lex_max_suffix_for_all_prefix.hpp
+  - string/sort_substrings.hpp
+  - string/basic_substring_structure.hpp
   timestamp: '2026-10-24 10:08:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/longest_common_substr.test.cpp
   - test/1_mytest/suffix_lcp_change.test.cpp
   - test/1_mytest/lex_minmax_suffix.test.cpp
-  - test/3_yukicoder/2361.test.cpp
+  - test/1_mytest/longest_common_substr.test.cpp
   - test/2_library_checker/string/longest_common_substring.test.cpp
-  - test/2_library_checker/string/suffix_array_vec.test.cpp
-  - test/2_library_checker/string/suffix_array.test.cpp
   - test/2_library_checker/string/number_of_substrings.test.cpp
+  - test/2_library_checker/string/suffix_array.test.cpp
+  - test/2_library_checker/string/suffix_array_vec.test.cpp
+  - test/3_yukicoder/2361.test.cpp
 documentation_of: string/suffix_array.hpp
 layout: document
 redirect_from:

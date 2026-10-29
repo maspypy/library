@@ -573,9 +573,9 @@ data:
     }\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate\
     \ <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint> f, vc<mint>\
     \ g) {\n  assert(!g.empty() && g[0] != 0);\n  if (SPARSE || count_terms(g) < 200)\
-    \ return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n\
-    \  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n#line 1 \"poly/ntt_doubling.hpp\"\
-    \n// Source: https://github.com/maspypy/library/blob/main/poly/ntt_doubling.hpp\n\
+    \ return fps_div_sparse(move(f), g);\n  int n = len(f);\n  g.resize(n);\n  g =\
+    \ fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n\
+    #line 1 \"poly/ntt_doubling.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/ntt_doubling.hpp\n\
     \n#line 1 \"poly/ntt.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/ntt.hpp\n\
     \ntemplate <class mint>\nvoid ntt(vector<mint>& a, bool inverse) {\n  assert(mint::can_ntt());\n\
     \  const int rank2 = mint::ntt_info().fi;\n  const u32 mod = mint::get_mod();\n\
@@ -1466,20 +1466,21 @@ data:
     }\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate\
     \ <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint> f, vc<mint>\
     \ g) {\n  assert(!g.empty() && g[0] != 0);\n  if (SPARSE || count_terms(g) < 200)\
-    \ return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n\
-    \  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n#line 5 \"linalg/blackbox/vandermonde.hpp\"\
-    \n\n// transpose = 0\uFF1Ag[p] = sum pow(ap,q) f[q]\n// transpose = 1\uFF1Ag[p]\
-    \ = sum pow(aq,p) f[q]\n// (false, false) = multipoint eval\n// (false, true)\
-    \ = multipoint interpolate\n// (true, false) = sum of rationals\n// (true, true)\
-    \ = partial frac decomposition (fps -> coefs)\ntemplate <typename mint>\nvc<mint>\
-    \ vandermonde(vc<mint> f, vc<mint> A, bool transpose, bool inverse) {\n  if (len(f)\
-    \ == 0) return vc<mint>();\n  int N = len(f);\n  if (!transpose) {\n    if (!inverse)\
-    \ { return multipoint_eval(f, A); }\n    if (inverse) { return multipoint_interpolate(A,\
-    \ f); }\n  }\n  if (!inverse) {\n    auto [num, den] = sum_of_rationals_1<mint>(A,\
-    \ f);\n    num.resize(N);\n    return fps_div(num, den);\n  }\n  SubproductTree<mint>\
-    \ X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n  g.resize(N + 1);\n  f = convolution<mint>(f,\
-    \ g);\n  f.resize(N);\n  reverse(all(f));\n  reverse(all(g));\n  FOR(i, len(g)\
-    \ - 1) g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n  auto num = X.evaluation(f);\n\
+    \ return fps_div_sparse(move(f), g);\n  int n = len(f);\n  g.resize(n);\n  g =\
+    \ fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n\
+    #line 5 \"linalg/blackbox/vandermonde.hpp\"\n\n// transpose = 0\uFF1Ag[p] = sum\
+    \ pow(ap,q) f[q]\n// transpose = 1\uFF1Ag[p] = sum pow(aq,p) f[q]\n// (false,\
+    \ false) = multipoint eval\n// (false, true) = multipoint interpolate\n// (true,\
+    \ false) = sum of rationals\n// (true, true) = partial frac decomposition (fps\
+    \ -> coefs)\ntemplate <typename mint>\nvc<mint> vandermonde(vc<mint> f, vc<mint>\
+    \ A, bool transpose, bool inverse) {\n  if (len(f) == 0) return vc<mint>();\n\
+    \  int N = len(f);\n  if (!transpose) {\n    if (!inverse) { return multipoint_eval(f,\
+    \ A); }\n    if (inverse) { return multipoint_interpolate(A, f); }\n  }\n  if\
+    \ (!inverse) {\n    auto [num, den] = sum_of_rationals_1<mint>(A, f);\n    num.resize(N);\n\
+    \    return fps_div(num, den);\n  }\n  SubproductTree<mint> X(A);\n  vc<mint>\
+    \ g = X.T[1]; // prod(1-ax)\n  g.resize(N + 1);\n  f = convolution<mint>(f, g);\n\
+    \  f.resize(N);\n  reverse(all(f));\n  reverse(all(g));\n  FOR(i, len(g) - 1)\
+    \ g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n  auto num = X.evaluation(f);\n\
     \  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n  FOR(i, len(A)) B[i] =\
     \ num[i] / den[i];\n  return B;\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/linalg/blackbox/vandermonde.hpp\n\
@@ -1519,7 +1520,7 @@ data:
   isVerificationFile: false
   path: linalg/blackbox/vandermonde.hpp
   requiredBy: []
-  timestamp: '2026-10-27 03:13:48+09:00'
+  timestamp: '2026-10-30 00:22:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/vandermonde.test.cpp

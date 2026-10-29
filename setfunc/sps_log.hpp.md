@@ -209,9 +209,9 @@ data:
   isVerificationFile: false
   path: setfunc/sps_log.hpp
   requiredBy:
+  - graph/count/count_biconnected_subgraph.hpp
   - graph/count/count_connected_subgraph.hpp
   - graph/count/count_bridgeless_subgraph.hpp
-  - graph/count/count_biconnected_subgraph.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

@@ -173,8 +173,8 @@ data:
   timestamp: '2026-10-25 14:31:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/enumerate_labeled_tree.test.cpp
   - test/1_mytest/prufer.test.cpp
+  - test/1_mytest/enumerate_labeled_tree.test.cpp
 documentation_of: graph/prufer_code.hpp
 layout: document
 redirect_from:

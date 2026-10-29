@@ -47,11 +47,11 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2293.test.cpp
+  - test/3_yukicoder/1641.test.cpp
   - test/3_yukicoder/1602.test.cpp
+  - test/3_yukicoder/2293.test.cpp
   - test/3_yukicoder/2294.test.cpp
   - test/3_yukicoder/1790.test.cpp
-  - test/3_yukicoder/1641.test.cpp
 documentation_of: alg/monoid/xor.hpp
 layout: document
 redirect_from:

@@ -149,8 +149,8 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/184.test.cpp
   - test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
+  - test/3_yukicoder/184.test.cpp
 documentation_of: linalg/xor/vector_space.hpp
 layout: document
 redirect_from:

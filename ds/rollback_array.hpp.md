@@ -51,15 +51,15 @@ data:
   isVerificationFile: false
   path: ds/rollback_array.hpp
   requiredBy:
-  - ds/unionfind/rollback_unionfind.hpp
   - ds/unionfind/rollback_potentialized_unionfind.hpp
+  - ds/unionfind/rollback_unionfind.hpp
   - ds/segtree/rollback_lazy_segtree.hpp
   timestamp: '2026-10-27 03:17:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2293.test.cpp
   - test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
   - test/2_library_checker/data_structure/add_remove_query.test.cpp
+  - test/3_yukicoder/2293.test.cpp
 documentation_of: ds/rollback_array.hpp
 layout: document
 redirect_from:

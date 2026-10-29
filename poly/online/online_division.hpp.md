@@ -222,14 +222,14 @@ data:
   path: poly/online/online_division.hpp
   requiredBy:
   - poly/online/online_log.hpp
-  - poly/online/online_pow.hpp
   - poly/online/online_inv.hpp
+  - poly/online/online_pow.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/online_division.test.cpp
-  - test/1_mytest/online_pow.test.cpp
   - test/1_mytest/online_log.test.cpp
+  - test/1_mytest/online_pow.test.cpp
   - test/1_mytest/online_inv.test.cpp
 documentation_of: poly/online/online_division.hpp
 layout: document

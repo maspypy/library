@@ -62,8 +62,8 @@ data:
   timestamp: '2026-10-24 09:51:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1760.test.cpp
   - test/2_library_checker/convolution/lcm_convolution.test.cpp
+  - test/3_yukicoder/1760.test.cpp
 documentation_of: nt/lcm_convolution.hpp
 layout: document
 redirect_from:

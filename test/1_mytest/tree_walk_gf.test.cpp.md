@@ -680,9 +680,13 @@ data:
     \ = depth[b] - depth[c];\n    if (k > d_ac + d_bc) return -1;\n    if (k <= d_ac)\
     \ return LA(a, k);\n    return LA(b, d_ac + d_bc - k);\n  }\n\n  vc<int> collect_child(int\
     \ v) const {\n    vc<int> res;\n    for (int k = LID[v] + 1; k < RID[v];) {\n\
-    \      res.eb(V[k]), k = RID[V[k]];\n    }\n    return res;\n  }\n\n  vc<int>\
-    \ collect_subtree(int v) const {\n    return {V.begin() + LID[v], V.begin() +\
-    \ RID[v]};\n  }\n\n  vc<int> collect_light(int v) const {\n    static_assert(HLD);\n\
+    \      res.eb(V[k]), k = RID[V[k]];\n    }\n    return res;\n  }\n  void collect_child(int\
+    \ v, vc<int> &buf) const {\n    buf.clear();\n    for (int k = LID[v] + 1; k <\
+    \ RID[v];) {\n      buf.eb(V[k]), k = RID[V[k]];\n    }\n  }\n\n  template <typename\
+    \ F>\n  void for_each_child(int v, const F &f, bool rev) const {\n    for (int\
+    \ k = LID[v] + 1; k < RID[v];) {\n      f(V[k]), k = RID[V[k]];\n    }\n  }\n\n\
+    \  vc<int> collect_subtree(int v) const {\n    return {V.begin() + LID[v], V.begin()\
+    \ + RID[v]};\n  }\n\n  vc<int> collect_light(int v) const {\n    static_assert(HLD);\n\
     \    vc<int> res;\n    for (int k = LID[v] + 1; k < RID[v];) {\n      if (head[V[k]]\
     \ == V[k]) res.eb(V[k]);\n      k = RID[V[k]];\n    }\n    return res;\n  }\n\n\
     \  vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge) const {\n\
@@ -1815,23 +1819,24 @@ data:
     }\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate\
     \ <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint> f, vc<mint>\
     \ g) {\n  assert(!g.empty() && g[0] != 0);\n  if (SPARSE || count_terms(g) < 200)\
-    \ return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n\
-    \  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n#line 7 \"test/1_mytest/tree_walk_gf.test.cpp\"\
-    \n\nusing mint = modint998;\n\ntemplate <bool ALLOW_LOOP>\nvoid test() {\n  FOR(N,\
-    \ 1, 30) {\n    FOR(50) {\n      Graph<int, 0> G(N);\n      vv(mint, mat, N, N);\n\
-    \      for (auto& [a, b]: random_tree(N)) {\n        G.add(a, b);\n        mat[a][b]\
-    \ = RNG(0, mint::get_mod());\n        mat[b][a] = RNG(0, mint::get_mod());\n \
-    \     }\n      G.build();\n      if (ALLOW_LOOP) { FOR(v, N) mat[v][v] = RNG(mint::get_mod());\
-    \ }\n      int s = RNG(0, N), t = RNG(0, N);\n      int LIM = 200;\n      vc<mint>\
-    \ ANS(LIM + 1);\n      vc<mint> dp(N);\n      dp[s] = 1;\n      FOR(k, LIM) {\n\
-    \        ANS[k] = dp[t];\n        vc<mint> newdp(N);\n        FOR(a, N) FOR(b,\
-    \ N) newdp[b] += dp[a] * mat[a][b];\n        swap(dp, newdp);\n        ANS[k +\
-    \ 1] = dp[t];\n      }\n      auto [f, g] = tree_walk_generating_function<ALLOW_LOOP,\
-    \ mint>(\n          G, s, t, [&](int i, int j) -> mint { return mat[i][j]; });\n\
-    \      f.resize(LIM + 1);\n      g.resize(LIM + 1);\n      f = fps_div(f, g);\n\
-    \      assert(f == ANS);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
-    \ >> a >> b;\n  cout << a + b << '\\n';\n}\n\nsigned main() {\n  test<0>();\n\
-    \  test<1>();\n  solve();\n  return 0;\n}\n"
+    \ return fps_div_sparse(move(f), g);\n  int n = len(f);\n  g.resize(n);\n  g =\
+    \ fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n\
+    #line 7 \"test/1_mytest/tree_walk_gf.test.cpp\"\n\nusing mint = modint998;\n\n\
+    template <bool ALLOW_LOOP>\nvoid test() {\n  FOR(N, 1, 30) {\n    FOR(50) {\n\
+    \      Graph<int, 0> G(N);\n      vv(mint, mat, N, N);\n      for (auto& [a, b]:\
+    \ random_tree(N)) {\n        G.add(a, b);\n        mat[a][b] = RNG(0, mint::get_mod());\n\
+    \        mat[b][a] = RNG(0, mint::get_mod());\n      }\n      G.build();\n   \
+    \   if (ALLOW_LOOP) { FOR(v, N) mat[v][v] = RNG(mint::get_mod()); }\n      int\
+    \ s = RNG(0, N), t = RNG(0, N);\n      int LIM = 200;\n      vc<mint> ANS(LIM\
+    \ + 1);\n      vc<mint> dp(N);\n      dp[s] = 1;\n      FOR(k, LIM) {\n      \
+    \  ANS[k] = dp[t];\n        vc<mint> newdp(N);\n        FOR(a, N) FOR(b, N) newdp[b]\
+    \ += dp[a] * mat[a][b];\n        swap(dp, newdp);\n        ANS[k + 1] = dp[t];\n\
+    \      }\n      auto [f, g] = tree_walk_generating_function<ALLOW_LOOP, mint>(\n\
+    \          G, s, t, [&](int i, int j) -> mint { return mat[i][j]; });\n      f.resize(LIM\
+    \ + 1);\n      g.resize(LIM + 1);\n      f = fps_div(f, g);\n      assert(f ==\
+    \ ANS);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
+    \ << a + b << '\\n';\n}\n\nsigned main() {\n  test<0>();\n  test<1>();\n  solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/random_graph.hpp\"\n#include \"graph/tree_walk_generating_function.hpp\"\
     \n#include \"poly/fps_div.hpp\"\n\nusing mint = modint998;\n\ntemplate <bool ALLOW_LOOP>\n\
@@ -1878,7 +1883,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/tree_walk_gf.test.cpp
   requiredBy: []
-  timestamp: '2026-10-27 03:13:48+09:00'
+  timestamp: '2026-10-30 00:22:59+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/tree_walk_gf.test.cpp

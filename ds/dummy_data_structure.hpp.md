@@ -89,20 +89,20 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1332.test.cpp
-  - test/3_yukicoder/919.test.cpp
-  - test/3_yukicoder/924.test.cpp
-  - test/3_yukicoder/1625_2.test.cpp
-  - test/3_yukicoder/1919_2.test.cpp
-  - test/3_yukicoder/2859.test.cpp
-  - test/3_yukicoder/1600_2.test.cpp
-  - test/3_yukicoder/2065.test.cpp
-  - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
-  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
+  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
   - test/2_library_checker/string/prefix_substring_lcs.test.cpp
+  - test/3_yukicoder/1600_2.test.cpp
+  - test/3_yukicoder/1919_2.test.cpp
+  - test/3_yukicoder/1332.test.cpp
+  - test/3_yukicoder/924.test.cpp
+  - test/3_yukicoder/919.test.cpp
+  - test/3_yukicoder/1625_2.test.cpp
+  - test/3_yukicoder/2065.test.cpp
+  - test/3_yukicoder/2859.test.cpp
 documentation_of: ds/dummy_data_structure.hpp
 layout: document
 redirect_from:

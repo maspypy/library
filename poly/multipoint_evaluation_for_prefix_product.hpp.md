@@ -1222,22 +1222,23 @@ data:
     }\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate\
     \ <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint> f, vc<mint>\
     \ g) {\n  assert(!g.empty() && g[0] != 0);\n  if (SPARSE || count_terms(g) < 200)\
-    \ return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n\
-    \  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n#line 5 \"poly/multipoint_evaluation_for_prefix_product.hpp\"\
-    \n\n// F[0](point[i]) ... F[CNT[i]-1](point[i])\ntemplate <typename mint>\nvc<mint>\
-    \ multipoint_evaluation_for_prefix_product(vvc<mint> F, vc<mint> point, vc<int>\
-    \ CNT) {\n  int N = len(point);\n  if (N == 0) return {};\n  auto I = argsort(CNT);\n\
-    \  point = rearrange(point, I), CNT = rearrange(CNT, I);\n  vvc<mint> G1, G2;\n\
-    \  vvvc<mint> L(N), R(N);\n  FOR(i, N) {\n    vc<mint> f{mint(1), -point[i]};\n\
-    \    L[i].eb(f), R[i].eb(f), G2.eb(f);\n  }\n  int K = 0;\n  for (auto& f: F)\
-    \ reverse(all(f));\n  FOR(i, CNT[0]) { G1.eb(F[i]), K += len(F[i]) - 1; }\n  FOR(j,\
-    \ N - 1) {\n    FOR(k, CNT[j], CNT[j + 1]) {\n      vc<mint> g(len(F[k]));\n \
-    \     g.back() = 1;\n      L[j].eb(F[k]), R[j + 1].eb(g), K += len(g) - 1;\n \
-    \   }\n  }\n  Typical_Divide_Conquer<mint> TDC(N);\n  FOR(i, N - 1) TDC.set_L(i,\
-    \ convolution_all<mint>(L[i]));\n  FOR(i, 1, N) TDC.set_R(i, convolution_all<mint>(R[i]));\n\
-    \  vc<mint> g1 = convolution_all<mint>(G1);\n  vc<mint> g2 = convolution_all<mint>(G2);\n\
-    \  g1.resize(K + 1), g2.resize(K + 1);\n  vc<mint> ANS = TDC.calc(K, fps_div<mint>(g1,\
-    \ g2));\n  I = argsort(I);\n  ANS = rearrange(ANS, I);\n  return ANS;\n}\n"
+    \ return fps_div_sparse(move(f), g);\n  int n = len(f);\n  g.resize(n);\n  g =\
+    \ fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n\
+    #line 5 \"poly/multipoint_evaluation_for_prefix_product.hpp\"\n\n// F[0](point[i])\
+    \ ... F[CNT[i]-1](point[i])\ntemplate <typename mint>\nvc<mint> multipoint_evaluation_for_prefix_product(vvc<mint>\
+    \ F, vc<mint> point, vc<int> CNT) {\n  int N = len(point);\n  if (N == 0) return\
+    \ {};\n  auto I = argsort(CNT);\n  point = rearrange(point, I), CNT = rearrange(CNT,\
+    \ I);\n  vvc<mint> G1, G2;\n  vvvc<mint> L(N), R(N);\n  FOR(i, N) {\n    vc<mint>\
+    \ f{mint(1), -point[i]};\n    L[i].eb(f), R[i].eb(f), G2.eb(f);\n  }\n  int K\
+    \ = 0;\n  for (auto& f: F) reverse(all(f));\n  FOR(i, CNT[0]) { G1.eb(F[i]), K\
+    \ += len(F[i]) - 1; }\n  FOR(j, N - 1) {\n    FOR(k, CNT[j], CNT[j + 1]) {\n \
+    \     vc<mint> g(len(F[k]));\n      g.back() = 1;\n      L[j].eb(F[k]), R[j +\
+    \ 1].eb(g), K += len(g) - 1;\n    }\n  }\n  Typical_Divide_Conquer<mint> TDC(N);\n\
+    \  FOR(i, N - 1) TDC.set_L(i, convolution_all<mint>(L[i]));\n  FOR(i, 1, N) TDC.set_R(i,\
+    \ convolution_all<mint>(R[i]));\n  vc<mint> g1 = convolution_all<mint>(G1);\n\
+    \  vc<mint> g2 = convolution_all<mint>(G2);\n  g1.resize(K + 1), g2.resize(K +\
+    \ 1);\n  vc<mint> ANS = TDC.calc(K, fps_div<mint>(g1, g2));\n  I = argsort(I);\n\
+    \  ANS = rearrange(ANS, I);\n  return ANS;\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/poly/multipoint_evaluation_for_prefix_product.hpp\n\
     #include \"poly/typical_divide_conquer.hpp\"\n#include \"poly/convolution_all.hpp\"\
     \n#include \"poly/fps_div.hpp\"\n\n// F[0](point[i]) ... F[CNT[i]-1](point[i])\n\
@@ -1274,7 +1275,7 @@ data:
   isVerificationFile: false
   path: poly/multipoint_evaluation_for_prefix_product.hpp
   requiredBy: []
-  timestamp: '2026-10-27 03:13:48+09:00'
+  timestamp: '2026-10-30 00:22:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/multipoint_prefix.test.cpp

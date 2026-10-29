@@ -143,8 +143,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/dirichlet.test.cpp
-  - test/2_library_checker/number_theory/dirichlet_inv.test.cpp
   - test/2_library_checker/number_theory/dirichlet.test.cpp
+  - test/2_library_checker/number_theory/dirichlet_inv.test.cpp
 documentation_of: nt/dirichlet.hpp
 layout: document
 redirect_from:

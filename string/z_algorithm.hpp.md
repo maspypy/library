@@ -63,21 +63,21 @@ data:
   isVerificationFile: false
   path: string/z_algorithm.hpp
   requiredBy:
-  - string/periods.hpp
-  - string/find_runs.hpp
-  - string/non_dominated_suffix.hpp
-  - string/is_substring.hpp
   - seq/interpolate_periodic_sequence.hpp
+  - string/is_substring.hpp
+  - string/non_dominated_suffix.hpp
+  - string/find_runs.hpp
+  - string/periods.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/is_substring.test.cpp
-  - test/3_yukicoder/2626_2.test.cpp
+  - test/2_library_checker/string/zalgorithm.test.cpp
+  - test/2_library_checker/string/run_enumerate_vec.test.cpp
+  - test/2_library_checker/string/run_enumerate.test.cpp
   - test/3_yukicoder/1848.test.cpp
   - test/3_yukicoder/2858.test.cpp
-  - test/2_library_checker/string/run_enumerate_vec.test.cpp
-  - test/2_library_checker/string/zalgorithm.test.cpp
-  - test/2_library_checker/string/run_enumerate.test.cpp
+  - test/3_yukicoder/2626_2.test.cpp
 documentation_of: string/z_algorithm.hpp
 layout: document
 redirect_from:
