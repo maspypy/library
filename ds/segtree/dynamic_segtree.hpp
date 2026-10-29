@@ -36,9 +36,15 @@ struct Dynamic_SegTree {
 
   np new_node(const vc<X> &dat) {
     assert(L0 == 0 && R0 == len(dat));
+    return new_node([&](int i) -> X { return dat[i]; });
+  }
+
+  template <typename F>
+  np new_node(const F &f) {
+    assert(L0 == 0);
     auto dfs = [&](auto &dfs, ll l, ll r) -> np {
       if (l == r) return nullptr;
-      if (r == l + 1) return new_node(dat[l]);
+      if (r == l + 1) return new_node(f(l));
       ll m = (l + r) / 2;
       np l_root = dfs(dfs, l, m), r_root = dfs(dfs, m, r);
       X x = MX::op(l_root->x, r_root->x);
@@ -46,7 +52,7 @@ struct Dynamic_SegTree {
       root->l = l_root, root->r = r_root;
       return root;
     };
-    return dfs(dfs, 0, len(dat));
+    return dfs(dfs, 0, R0);
   }
 
   X prod(np root, ll l, ll r) {

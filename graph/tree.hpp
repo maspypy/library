@@ -141,6 +141,19 @@ struct Tree {
     }
     return res;
   }
+  void collect_child(int v, vc<int> &buf) const {
+    buf.clear();
+    for (int k = LID[v] + 1; k < RID[v];) {
+      buf.eb(V[k]), k = RID[V[k]];
+    }
+  }
+
+  template <typename F>
+  void for_each_child(int v, const F &f, bool rev) const {
+    for (int k = LID[v] + 1; k < RID[v];) {
+      f(V[k]), k = RID[V[k]];
+    }
+  }
 
   vc<int> collect_subtree(int v) const {
     return {V.begin() + LID[v], V.begin() + RID[v]};

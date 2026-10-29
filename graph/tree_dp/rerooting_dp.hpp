@@ -35,10 +35,12 @@ struct Rerooting_DP {
     dp.assign(N, id);
     dp_subtree.assign(N, id);
     dp_parent.assign(N, id);
+    vc<int> ch;
     FOR_R(i, N) {
       int v = tree.V[i];
       Data X = id;
-      for (int c : tree.collect_child(v)) {
+      tree.collect_child(v, ch);
+      for (int c : ch) {
         dp[c] = X;
         dp_parent[c] = f_ve(dp_subtree[c], c, v);
         X = f_ee(X, dp_parent[c]);
@@ -47,7 +49,7 @@ struct Rerooting_DP {
     }
     FOR(i, N) {
       int v = tree.V[i];
-      auto ch = tree.collect_child(v);
+      tree.collect_child(v, ch);
 
       Data X = id;
       if (tree.parent[v] != -1) {

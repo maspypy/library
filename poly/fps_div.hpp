@@ -26,7 +26,7 @@ vc<mint> fps_div_sparse(vc<mint> f, const vc<mint>& g) {
 template <typename mint, bool SPARSE = false>
 vc<mint> fps_div(vc<mint> f, vc<mint> g) {
   assert(!g.empty() && g[0] != 0);
-  if (SPARSE || count_terms(g) < 200) return fps_div_sparse(f, g);
+  if (SPARSE || count_terms(g) < 200) return fps_div_sparse(move(f), g);
   int n = len(f);
   g.resize(n);
   g = fps_inv<mint>(g);
