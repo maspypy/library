@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/xor/transpose.hpp
     title: linalg/xor/transpose.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
     title: test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/184.test.cpp
     title: test/3_yukicoder/184.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/linalg/xor/vector_space.hpp
@@ -38,8 +38,8 @@ data:
     \u5408\u8868\u793A\u3082\u7BA1\u7406\nnormalize=true : \u7C21\u7D04\u968E\u6BB5\
     \u5F62\u3092\u7DAD\u6301\nnormalize=false: \u968E\u6BB5\u5F62\uFF08\u4E09\u89D2\
     \u5316\uFF09\u306E\u307F\u7DAD\u6301\u3002\u5C11\u3057\u9AD8\u901F\n*/\ntemplate\
-    \ <typename UINT, int MAX_DIM>\nstruct Vector_Space {\n  static_assert(is_same_v<UINT,\
-    \ u32> || is_same_v<UINT, u64> ||\n                is_same_v<UINT, u128>);\n \
+    \ <typename UINT, int MAX_DIM>\nstruct Vector_Space {\n  static_assert(\n    \
+    \  is_same_v<UINT, u32> || is_same_v<UINT, u64> || is_same_v<UINT, u128>);\n \
     \ int dim;\n  array<UINT, MAX_DIM> dat;\n  bool norm;\n\n  Vector_Space() : dim(0),\
     \ dat{}, norm(1) {}\n\n  vc<UINT> to_vec() {\n    vc<UINT> ANS;\n    FOR_R(i,\
     \ MAX_DIM) if (dat[i]) ANS.eb(dat[i]);\n    return ANS;\n  }\n\n  int size() {\
@@ -63,29 +63,30 @@ data:
     \   normalize();\n    UINT res = xor_val;\n    for (auto&& x : dat) chmax(res,\
     \ res ^ x);\n    return res;\n  }\n\n  UINT get_min(UINT xor_val = 0) {\n    normalize();\n\
     \    UINT res = xor_val;\n    for (auto&& x : dat) chmin(res, res ^ x);\n    return\
-    \ res;\n  }\n\n  static Vector_Space merge(Vector_Space x, Vector_Space y,\n \
-    \                           bool keep_normalized = false) {\n    if (len(x) <\
-    \ len(y)) swap(x, y);\n    for (auto v : y.dat) {\n      x.add_element(v, keep_normalized);\n\
-    \    }\n    return x;\n  }\n\n  static Vector_Space intersection(Vector_Space&\
-    \ x, Vector_Space& y) {\n    // \u3068\u308A\u3042\u3048\u305A\n    static_assert(is_same_v<UINT,\
-    \ u32>);\n    Vector_Space<u64, MAX_DIM * 2> z;\n    for (auto v : x.dat) {\n\
-    \      if (v) z.add_element(v | static_cast<u64>(v) << MAX_DIM);\n    }\n    for\
-    \ (auto v : y.dat) {\n      if (v) z.add_element(static_cast<u64>(v) << MAX_DIM);\n\
-    \    }\n    Vector_Space<UINT, MAX_DIM> ANS;\n    for (auto& v : z.dat) {\n  \
-    \    if (v <= u32(-1)) ANS.add_element(v);\n    }\n    return ANS;\n  }\n\n  static\
-    \ array<UINT, MAX_DIM> transpose(array<UINT, MAX_DIM> A) {\n    constexpr int\
-    \ L = numeric_limits<UINT>::digits;\n    array<UINT, L> B{};\n    FOR(i, MAX_DIM)\
-    \ B[i] = A[i];\n    int LOG = 0;\n    while ((1 << LOG) < L) ++LOG;\n    int width\
-    \ = 1 << LOG;\n    UINT mask = -1;\n    FOR(t, LOG) {\n      width >>= 1;\n  \
-    \    mask = mask ^ (mask >> width);\n      FOR(i, 1 << t) {\n        FOR(j, width)\
-    \ {\n          UINT* x = &B[width * (2 * i + 0) + j];\n          UINT* y = &B[width\
-    \ * (2 * i + 1) + j];\n          *x = ((*y << width) & mask) ^ *x;\n         \
-    \ *y = ((*x & mask) >> width) ^ *y;\n          *x = ((*y << width) & mask) ^ *x;\n\
-    \        }\n      }\n    }\n    FOR(i, MAX_DIM) A[i] = B[i];\n    return A;\n\
-    \  }\n\n  Vector_Space orthogonal_space(bool keep_normalize = false) {\n    normalize();\n\
-    \    array<UINT, MAX_DIM> T = transpose(dat);\n    Vector_Space ANS;\n    FOR_R(j,\
-    \ MAX_DIM) {\n      if (T[j] >> j & 1) continue;\n      ANS.add_element((UINT(1)\
-    \ << j) | T[j], keep_normalize);\n    }\n    return ANS;\n  }\n};\n"
+    \ res;\n  }\n\n  static Vector_Space merge(\n      Vector_Space x, Vector_Space\
+    \ y, bool keep_normalized = false) {\n    if (len(x) < len(y)) swap(x, y);\n \
+    \   for (auto v : y.dat) {\n      x.add_element(v, keep_normalized);\n    }\n\
+    \    return x;\n  }\n\n  static Vector_Space intersection(Vector_Space& x, Vector_Space&\
+    \ y) {\n    // \u3068\u308A\u3042\u3048\u305A\n    static_assert(is_same_v<UINT,\
+    \ u32>);\n    static_assert(1 <= MAX_DIM && MAX_DIM <= 32);\n    Vector_Space<u64,\
+    \ MAX_DIM * 2> z;\n    for (auto v : x.dat) {\n      if (v) z.add_element(v |\
+    \ static_cast<u64>(v) << MAX_DIM);\n    }\n    for (auto v : y.dat) {\n      if\
+    \ (v) z.add_element(static_cast<u64>(v) << MAX_DIM);\n    }\n    Vector_Space<UINT,\
+    \ MAX_DIM> ANS;\n    for (auto& v : z.dat) {\n      if (v < (u64(1) << MAX_DIM))\
+    \ ANS.add_element(v);\n    }\n    return ANS;\n  }\n\n  static array<UINT, MAX_DIM>\
+    \ transpose(array<UINT, MAX_DIM> A) {\n    constexpr int L = numeric_limits<UINT>::digits;\n\
+    \    array<UINT, L> B{};\n    FOR(i, MAX_DIM) B[i] = A[i];\n    int LOG = 0;\n\
+    \    while ((1 << LOG) < L) ++LOG;\n    int width = 1 << LOG;\n    UINT mask =\
+    \ -1;\n    FOR(t, LOG) {\n      width >>= 1;\n      mask = mask ^ (mask >> width);\n\
+    \      FOR(i, 1 << t) {\n        FOR(j, width) {\n          UINT* x = &B[width\
+    \ * (2 * i + 0) + j];\n          UINT* y = &B[width * (2 * i + 1) + j];\n    \
+    \      *x = ((*y << width) & mask) ^ *x;\n          *y = ((*x & mask) >> width)\
+    \ ^ *y;\n          *x = ((*y << width) & mask) ^ *x;\n        }\n      }\n   \
+    \ }\n    FOR(i, MAX_DIM) A[i] = B[i];\n    return A;\n  }\n\n  Vector_Space orthogonal_space(bool\
+    \ keep_normalize = false) {\n    normalize();\n    array<UINT, MAX_DIM> T = transpose(dat);\n\
+    \    Vector_Space ANS;\n    FOR_R(j, MAX_DIM) {\n      if (T[j] >> j & 1) continue;\n\
+    \      ANS.add_element((UINT(1) << j) | T[j], keep_normalize);\n    }\n    return\
+    \ ANS;\n  }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/linalg/xor/vector_space.hpp\n\
     #include \"linalg/xor/transpose.hpp\"\n\n/*\n\u4F7F\u3044\u5206\u3051\u65B9\u91DD\
     \nVector_Space: \u7DDA\u5F62\u7A7A\u9593\u305D\u306E\u3082\u306E\u3092\u7BA1\u7406\
@@ -93,13 +94,13 @@ data:
     \u793A\u3082\u7BA1\u7406\nnormalize=true : \u7C21\u7D04\u968E\u6BB5\u5F62\u3092\
     \u7DAD\u6301\nnormalize=false: \u968E\u6BB5\u5F62\uFF08\u4E09\u89D2\u5316\uFF09\
     \u306E\u307F\u7DAD\u6301\u3002\u5C11\u3057\u9AD8\u901F\n*/\ntemplate <typename\
-    \ UINT, int MAX_DIM>\nstruct Vector_Space {\n  static_assert(is_same_v<UINT, u32>\
-    \ || is_same_v<UINT, u64> ||\n                is_same_v<UINT, u128>);\n  int dim;\n\
-    \  array<UINT, MAX_DIM> dat;\n  bool norm;\n\n  Vector_Space() : dim(0), dat{},\
-    \ norm(1) {}\n\n  vc<UINT> to_vec() {\n    vc<UINT> ANS;\n    FOR_R(i, MAX_DIM)\
-    \ if (dat[i]) ANS.eb(dat[i]);\n    return ANS;\n  }\n\n  int size() { return dim;\
-    \ }\n  UINT add_element(UINT v, bool keep_normalized = false) {\n    FOR_R(i,\
-    \ MAX_DIM) { chmin(v, v ^ dat[i]); }\n    if (v == 0) return 0;\n    int k = topbit(v);\n\
+    \ UINT, int MAX_DIM>\nstruct Vector_Space {\n  static_assert(\n      is_same_v<UINT,\
+    \ u32> || is_same_v<UINT, u64> || is_same_v<UINT, u128>);\n  int dim;\n  array<UINT,\
+    \ MAX_DIM> dat;\n  bool norm;\n\n  Vector_Space() : dim(0), dat{}, norm(1) {}\n\
+    \n  vc<UINT> to_vec() {\n    vc<UINT> ANS;\n    FOR_R(i, MAX_DIM) if (dat[i])\
+    \ ANS.eb(dat[i]);\n    return ANS;\n  }\n\n  int size() { return dim; }\n  UINT\
+    \ add_element(UINT v, bool keep_normalized = false) {\n    FOR_R(i, MAX_DIM) {\
+    \ chmin(v, v ^ dat[i]); }\n    if (v == 0) return 0;\n    int k = topbit(v);\n\
     \    if (keep_normalized) {\n      assert(norm);\n      FOR(i, k + 1, MAX_DIM)\
     \ chmin(dat[i], dat[i] ^ v);\n    } else {\n      norm = false;\n    }\n    dat[k]\
     \ = v;\n    ++dim;\n    return v;\n  }\n  void normalize() {\n    if (norm) return;\n\
@@ -118,36 +119,37 @@ data:
     \    for (auto&& x : dat) chmax(res, res ^ x);\n    return res;\n  }\n\n  UINT\
     \ get_min(UINT xor_val = 0) {\n    normalize();\n    UINT res = xor_val;\n   \
     \ for (auto&& x : dat) chmin(res, res ^ x);\n    return res;\n  }\n\n  static\
-    \ Vector_Space merge(Vector_Space x, Vector_Space y,\n                       \
-    \     bool keep_normalized = false) {\n    if (len(x) < len(y)) swap(x, y);\n\
-    \    for (auto v : y.dat) {\n      x.add_element(v, keep_normalized);\n    }\n\
-    \    return x;\n  }\n\n  static Vector_Space intersection(Vector_Space& x, Vector_Space&\
-    \ y) {\n    // \u3068\u308A\u3042\u3048\u305A\n    static_assert(is_same_v<UINT,\
-    \ u32>);\n    Vector_Space<u64, MAX_DIM * 2> z;\n    for (auto v : x.dat) {\n\
-    \      if (v) z.add_element(v | static_cast<u64>(v) << MAX_DIM);\n    }\n    for\
-    \ (auto v : y.dat) {\n      if (v) z.add_element(static_cast<u64>(v) << MAX_DIM);\n\
-    \    }\n    Vector_Space<UINT, MAX_DIM> ANS;\n    for (auto& v : z.dat) {\n  \
-    \    if (v <= u32(-1)) ANS.add_element(v);\n    }\n    return ANS;\n  }\n\n  static\
-    \ array<UINT, MAX_DIM> transpose(array<UINT, MAX_DIM> A) {\n    constexpr int\
-    \ L = numeric_limits<UINT>::digits;\n    array<UINT, L> B{};\n    FOR(i, MAX_DIM)\
-    \ B[i] = A[i];\n    int LOG = 0;\n    while ((1 << LOG) < L) ++LOG;\n    int width\
-    \ = 1 << LOG;\n    UINT mask = -1;\n    FOR(t, LOG) {\n      width >>= 1;\n  \
-    \    mask = mask ^ (mask >> width);\n      FOR(i, 1 << t) {\n        FOR(j, width)\
-    \ {\n          UINT* x = &B[width * (2 * i + 0) + j];\n          UINT* y = &B[width\
-    \ * (2 * i + 1) + j];\n          *x = ((*y << width) & mask) ^ *x;\n         \
-    \ *y = ((*x & mask) >> width) ^ *y;\n          *x = ((*y << width) & mask) ^ *x;\n\
-    \        }\n      }\n    }\n    FOR(i, MAX_DIM) A[i] = B[i];\n    return A;\n\
-    \  }\n\n  Vector_Space orthogonal_space(bool keep_normalize = false) {\n    normalize();\n\
-    \    array<UINT, MAX_DIM> T = transpose(dat);\n    Vector_Space ANS;\n    FOR_R(j,\
-    \ MAX_DIM) {\n      if (T[j] >> j & 1) continue;\n      ANS.add_element((UINT(1)\
-    \ << j) | T[j], keep_normalize);\n    }\n    return ANS;\n  }\n};\n"
+    \ Vector_Space merge(\n      Vector_Space x, Vector_Space y, bool keep_normalized\
+    \ = false) {\n    if (len(x) < len(y)) swap(x, y);\n    for (auto v : y.dat) {\n\
+    \      x.add_element(v, keep_normalized);\n    }\n    return x;\n  }\n\n  static\
+    \ Vector_Space intersection(Vector_Space& x, Vector_Space& y) {\n    // \u3068\
+    \u308A\u3042\u3048\u305A\n    static_assert(is_same_v<UINT, u32>);\n    static_assert(1\
+    \ <= MAX_DIM && MAX_DIM <= 32);\n    Vector_Space<u64, MAX_DIM * 2> z;\n    for\
+    \ (auto v : x.dat) {\n      if (v) z.add_element(v | static_cast<u64>(v) << MAX_DIM);\n\
+    \    }\n    for (auto v : y.dat) {\n      if (v) z.add_element(static_cast<u64>(v)\
+    \ << MAX_DIM);\n    }\n    Vector_Space<UINT, MAX_DIM> ANS;\n    for (auto& v\
+    \ : z.dat) {\n      if (v < (u64(1) << MAX_DIM)) ANS.add_element(v);\n    }\n\
+    \    return ANS;\n  }\n\n  static array<UINT, MAX_DIM> transpose(array<UINT, MAX_DIM>\
+    \ A) {\n    constexpr int L = numeric_limits<UINT>::digits;\n    array<UINT, L>\
+    \ B{};\n    FOR(i, MAX_DIM) B[i] = A[i];\n    int LOG = 0;\n    while ((1 << LOG)\
+    \ < L) ++LOG;\n    int width = 1 << LOG;\n    UINT mask = -1;\n    FOR(t, LOG)\
+    \ {\n      width >>= 1;\n      mask = mask ^ (mask >> width);\n      FOR(i, 1\
+    \ << t) {\n        FOR(j, width) {\n          UINT* x = &B[width * (2 * i + 0)\
+    \ + j];\n          UINT* y = &B[width * (2 * i + 1) + j];\n          *x = ((*y\
+    \ << width) & mask) ^ *x;\n          *y = ((*x & mask) >> width) ^ *y;\n     \
+    \     *x = ((*y << width) & mask) ^ *x;\n        }\n      }\n    }\n    FOR(i,\
+    \ MAX_DIM) A[i] = B[i];\n    return A;\n  }\n\n  Vector_Space orthogonal_space(bool\
+    \ keep_normalize = false) {\n    normalize();\n    array<UINT, MAX_DIM> T = transpose(dat);\n\
+    \    Vector_Space ANS;\n    FOR_R(j, MAX_DIM) {\n      if (T[j] >> j & 1) continue;\n\
+    \      ANS.add_element((UINT(1) << j) | T[j], keep_normalize);\n    }\n    return\
+    \ ANS;\n  }\n};\n"
   dependsOn:
   - linalg/xor/transpose.hpp
   isVerificationFile: false
   path: linalg/xor/vector_space.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-10-30 00:38:32+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
   - test/3_yukicoder/184.test.cpp
