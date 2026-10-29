@@ -131,7 +131,7 @@ struct Dynamic_SegTree_Sparse {
       update(c);
       return c;
     }
-    ll m = (l + r) / 2;
+    ll m = midpoint(l, r);
     if (i < m) {
       if (node[c].idx < i) swap(node[c].idx, i), swap(node[c].x, x);
       node[c].ch[0] = set_rec(node[c].ch[0], l, m, i, x);
@@ -152,7 +152,7 @@ struct Dynamic_SegTree_Sparse {
       update(c);
       return c;
     }
-    ll m = (l + r) / 2;
+    ll m = midpoint(l, r);
     if (i < m) {
       if (node[c].idx < i) swap(node[c].idx, i), swap(node[c].x, x);
       node[c].ch[0] = multiply_rec(node[c].ch[0], l, m, i, x);
@@ -172,7 +172,7 @@ struct Dynamic_SegTree_Sparse {
       x = MX::op(x, node[c].prod);
       return;
     }
-    ll m = (l + r) / 2;
+    ll m = midpoint(l, r);
     prod_rec(node[c].ch[0], l, m, ql, qr, x);
     if (ql <= (node[c].idx) && (node[c].idx) < qr) x = MX::op(x, node[c].x);
     prod_rec(node[c].ch[1], m, r, ql, qr, x);
@@ -185,7 +185,7 @@ struct Dynamic_SegTree_Sparse {
       x = MX::op(x, node[c].prod);
       return R0;
     }
-    ll m = (l + r) / 2;
+    ll m = midpoint(l, r);
     ll k = max_right_rec(node[c].ch[0], check, l, m, ql, x);
     if (k != R0) return k;
     if (ql <= node[c].idx) {
@@ -202,7 +202,7 @@ struct Dynamic_SegTree_Sparse {
       x = MX::op(node[c].prod, x);
       return L0;
     }
-    ll m = (l + r) / 2;
+    ll m = midpoint(l, r);
     ll k = min_left_rec(node[c].ch[1], check, m, r, qr, x);
     if (k != L0) return k;
     if (node[c].idx < qr) {
