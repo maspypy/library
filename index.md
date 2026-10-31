@@ -798,6 +798,9 @@ data:
     - icon: ':warning:'
       path: flow/dynamic_mcf_on_line.hpp
       title: flow/dynamic_mcf_on_line.hpp
+    - icon: ':warning:'
+      path: flow/gomory_hu_tree.hpp
+      title: flow/gomory_hu_tree.hpp
     - icon: ':heavy_check_mark:'
       path: flow/hungarian.hpp
       title: flow/hungarian.hpp

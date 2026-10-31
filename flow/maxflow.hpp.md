@@ -12,6 +12,9 @@ data:
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
   - icon: ':warning:'
+    path: flow/gomory_hu_tree.hpp
+    title: flow/gomory_hu_tree.hpp
+  - icon: ':warning:'
     path: flow/k_ary_optimization.hpp
     title: flow/k_ary_optimization.hpp
   - icon: ':warning:'
@@ -344,6 +347,7 @@ data:
   isVerificationFile: false
   path: flow/maxflow.hpp
   requiredBy:
+  - flow/gomory_hu_tree.hpp
   - flow/binary_optimization.hpp
   - flow/k_ary_optimization.hpp
   - graph/dag_path_cover.hpp

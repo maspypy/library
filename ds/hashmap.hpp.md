@@ -24,6 +24,9 @@ data:
     path: flow/bipartite_matching.hpp
     title: flow/bipartite_matching.hpp
   - icon: ':warning:'
+    path: flow/gomory_hu_tree.hpp
+    title: flow/gomory_hu_tree.hpp
+  - icon: ':warning:'
     path: flow/k_ary_optimization.hpp
     title: flow/k_ary_optimization.hpp
   - icon: ':warning:'
@@ -1085,6 +1088,7 @@ data:
   - other/dice.hpp
   - flow/maxflow.hpp
   - flow/longest_shortest_path.hpp
+  - flow/gomory_hu_tree.hpp
   - flow/bipartite_matching.hpp
   - flow/binary_optimization.hpp
   - flow/k_ary_optimization.hpp
