@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/segtree/range_min.hpp
 
 // 2026/11/04 AI generated.
 

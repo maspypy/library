@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/flow/gomory_hu_tree.hpp
 #include "graph/base.hpp"
 #include "flow/maxflow.hpp"
 
