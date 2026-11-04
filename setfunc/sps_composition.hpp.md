@@ -127,8 +127,8 @@ data:
   isVerificationFile: false
   path: setfunc/sps_composition.hpp
   requiredBy:
-  - graph/count/count_biconnected_subgraph.hpp
   - graph/count/count_connected_subgraph.hpp
+  - graph/count/count_biconnected_subgraph.hpp
   - graph/count/count_bridgeless_subgraph.hpp
   - graph/tutte_polynomial.hpp
   - setfunc/sps_log.hpp

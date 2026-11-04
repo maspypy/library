@@ -56,7 +56,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/number_of_substrings2.test.cpp
   requiredBy: []
-  timestamp: '2026-10-30 00:34:21+09:00'
+  timestamp: '2026-11-04 21:27:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/string/number_of_substrings2.test.cpp

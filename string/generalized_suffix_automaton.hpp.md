@@ -109,7 +109,7 @@ data:
   isVerificationFile: false
   path: string/generalized_suffix_automaton.hpp
   requiredBy: []
-  timestamp: '2026-10-30 00:34:21+09:00'
+  timestamp: '2026-11-04 21:27:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/generalized_suffix_automaton.hpp

@@ -77,8 +77,8 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/data_structure/static_range_inversions_mo2.test.cpp
   - test/2_library_checker/data_structure/static_range_mode_query.test.cpp
+  - test/2_library_checker/data_structure/static_range_inversions_mo2.test.cpp
 documentation_of: ds/offline_query/rollback_mo.hpp
 layout: document
 redirect_from:

@@ -1610,10 +1610,10 @@ data:
   - test/1_mytest/compositional_inverset.test.cpp
   - test/1_mytest/count_labeled_bridgeless.test.cpp
   - test/1_mytest/count_labeled_biconnected.test.cpp
-  - test/2_library_checker/polynomial/compositional_inverse.test.cpp
-  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
   - test/3_yukicoder/3619.test.cpp
   - test/3_yukicoder/3621.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse.test.cpp
 documentation_of: poly/compositional_inverse.hpp
 layout: document
 redirect_from:

@@ -151,10 +151,10 @@ data:
   path: geo/angle_sort.hpp
   requiredBy:
   - geo/rotating_swaps.hpp
-  - geo/minkowski_sum.hpp
   - geo/polygon_triangulation.hpp
-  - geo/max_norm_sum.hpp
   - geo/convex_polygon_dp_order.hpp
+  - geo/minkowski_sum.hpp
+  - geo/max_norm_sum.hpp
   - geo/count_points_in_triangles.hpp
   - graph/planar_graph.hpp
   - random/random_polygon.hpp
@@ -164,10 +164,10 @@ data:
   - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/qoj5443.test.cpp
   - test/1_mytest/count_points_in_triangles.test.cpp
-  - test/2_library_checker/geometry/sort_points_by_argument.test.cpp
-  - test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/3_yukicoder/1777.test.cpp
+  - test/2_library_checker/geometry/sort_points_by_argument.test.cpp
+  - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
+  - test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
 documentation_of: geo/angle_sort.hpp
 layout: document
 redirect_from:

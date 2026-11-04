@@ -632,6 +632,12 @@ data:
       path: ds/segtree/range_assignment_segtree.hpp
       title: ds/segtree/range_assignment_segtree.hpp
     - icon: ':warning:'
+      path: ds/segtree/range_max.hpp
+      title: ds/segtree/range_max.hpp
+    - icon: ':warning:'
+      path: ds/segtree/range_min.hpp
+      title: ds/segtree/range_min.hpp
+    - icon: ':warning:'
       path: ds/segtree/rollback_lazy_segtree.hpp
       title: ds/segtree/rollback_lazy_segtree.hpp
     - icon: ':question:'

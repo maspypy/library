@@ -16,8 +16,10 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/flow/gomory_hu_tree.hpp
+  bundledCode: "#line 1 \"flow/gomory_hu_tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/flow/gomory_hu_tree.hpp\n\
+    #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
     #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
     \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
     \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
@@ -314,7 +316,7 @@ data:
     \   print(\"edges (frm, to, cap, flow)\");\n    SHOW(N, len(indptr));\n    FOR(v,\
     \ N) {\n      FOR(i, indptr[v], indptr[v + 1]) {\n        Edge& e = edges[i];\n\
     \        Cap f = init_cap[i] - e.cap;\n        SHOW(i, v, e.to, e.cap, f);\n \
-    \     }\n    }\n#endif\n  }\n};\n#line 3 \"flow/gomory_hu_tree.hpp\"\n\n// \u4EFB\
+    \     }\n    }\n#endif\n  }\n};\n#line 4 \"flow/gomory_hu_tree.hpp\"\n\n// \u4EFB\
     \u610F\u306E\u30AB\u30C3\u30C8\u304C infty<T> \u672A\u6E80\u3067\u3042\u308B\u3068\
     \u3044\u3046\u524D\u63D0\ntemplate <typename T>\nGraph<T, 0> gomory_hu_tree(const\
     \ Graph<T, 0> &G) {\n  int N = G.N;\n  vc<int> par(N, -1);\n  vc<T> wt(N);\n \
@@ -325,9 +327,10 @@ data:
     \    if (par[t] != -1 && cut[par[t]] == 0) {\n      par[s] = par[t], par[t] =\
     \ s, wt[s] = wt[t], wt[t] = val;\n    }\n  }\n  Graph<T, 0> ANS(N);\n  FOR(v,\
     \ 1, N) ANS.add(par[v], v, wt[v]);\n  ANS.build();\n  return ANS;\n}\n"
-  code: "#include \"graph/base.hpp\"\n#include \"flow/maxflow.hpp\"\n\n// \u4EFB\u610F\
-    \u306E\u30AB\u30C3\u30C8\u304C infty<T> \u672A\u6E80\u3067\u3042\u308B\u3068\u3044\
-    \u3046\u524D\u63D0\ntemplate <typename T>\nGraph<T, 0> gomory_hu_tree(const Graph<T,\
+  code: "// Source: https://github.com/maspypy/library/blob/main/flow/gomory_hu_tree.hpp\n\
+    #include \"graph/base.hpp\"\n#include \"flow/maxflow.hpp\"\n\n// \u4EFB\u610F\u306E\
+    \u30AB\u30C3\u30C8\u304C infty<T> \u672A\u6E80\u3067\u3042\u308B\u3068\u3044\u3046\
+    \u524D\u63D0\ntemplate <typename T>\nGraph<T, 0> gomory_hu_tree(const Graph<T,\
     \ 0> &G) {\n  int N = G.N;\n  vc<int> par(N, -1);\n  vc<T> wt(N);\n  FOR(v, 1,\
     \ N) par[v] = 0;\n\n  FOR(s, 1, N) {\n    int t = par[s];\n    MaxFlow<T> F(N,\
     \ s, t);\n    for (auto &e : G.edges) {\n      F.add(e.frm, e.to, e.cost, e.cost);\n\
@@ -343,7 +346,7 @@ data:
   isVerificationFile: false
   path: flow/gomory_hu_tree.hpp
   requiredBy: []
-  timestamp: '2026-10-31 12:39:23+09:00'
+  timestamp: '2026-11-04 21:27:18+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: flow/gomory_hu_tree.hpp

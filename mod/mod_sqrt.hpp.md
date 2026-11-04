@@ -160,8 +160,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/count_bipartite.test.cpp
-  - test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/2_library_checker/number_theory/sqrt_mod.test.cpp
 documentation_of: mod/mod_sqrt.hpp
 layout: document

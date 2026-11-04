@@ -104,7 +104,7 @@ data:
   isVerificationFile: false
   path: string/suffix_automaton.hpp
   requiredBy: []
-  timestamp: '2026-10-30 00:34:21+09:00'
+  timestamp: '2026-11-04 21:27:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/string/number_of_substrings2.test.cpp

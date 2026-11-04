@@ -234,8 +234,8 @@ data:
   timestamp: '2026-10-30 00:34:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1775.test.cpp
   - test/3_yukicoder/1776.test.cpp
+  - test/3_yukicoder/1775.test.cpp
 documentation_of: graph/find_path_through_specified.hpp
 layout: document
 redirect_from:

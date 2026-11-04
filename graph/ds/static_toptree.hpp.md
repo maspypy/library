@@ -207,10 +207,10 @@ data:
     \      res.eb(V[k]), k = RID[V[k]];\n    }\n    return res;\n  }\n  void collect_child(int\
     \ v, vc<int> &buf) const {\n    buf.clear();\n    for (int k = LID[v] + 1; k <\
     \ RID[v];) {\n      buf.eb(V[k]), k = RID[V[k]];\n    }\n  }\n\n  template <typename\
-    \ F>\n  void for_each_child(int v, const F &f, bool rev) const {\n    for (int\
-    \ k = LID[v] + 1; k < RID[v];) {\n      f(V[k]), k = RID[V[k]];\n    }\n  }\n\n\
-    \  vc<int> collect_subtree(int v) const {\n    return {V.begin() + LID[v], V.begin()\
-    \ + RID[v]};\n  }\n\n  vc<int> collect_light(int v) const {\n    static_assert(HLD);\n\
+    \ F>\n  void for_each_child(int v, const F &f) const {\n    for (int k = LID[v]\
+    \ + 1; k < RID[v];) {\n      f(V[k]), k = RID[V[k]];\n    }\n  }\n\n  vc<int>\
+    \ collect_subtree(int v) const {\n    return {V.begin() + LID[v], V.begin() +\
+    \ RID[v]};\n  }\n\n  vc<int> collect_light(int v) const {\n    static_assert(HLD);\n\
     \    vc<int> res;\n    for (int k = LID[v] + 1; k < RID[v];) {\n      if (head[V[k]]\
     \ == V[k]) res.eb(V[k]);\n      k = RID[V[k]];\n    }\n    return res;\n  }\n\n\
     \  vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge) const {\n\
@@ -385,21 +385,21 @@ data:
   isVerificationFile: false
   path: graph/ds/static_toptree.hpp
   requiredBy:
+  - graph/characteristic_poly_of_tree_adjacency_matrix.hpp
   - graph/count_matching_on_tree.hpp
+  - graph/ds/dynamic_tree_dp.hpp
   - graph/ds/dynamic_rerooting_tree_dp.hpp
   - graph/ds/distance_sum.hpp
-  - graph/ds/dynamic_tree_dp.hpp
-  - graph/characteristic_poly_of_tree_adjacency_matrix.hpp
   - graph/tree_walk_generating_function.hpp
-  timestamp: '2026-10-30 00:34:21+09:00'
+  timestamp: '2026-11-04 21:27:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/tree_walk_gf.test.cpp
-  - test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
-  - test/3_yukicoder/2258.test.cpp
   - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
+  - test/3_yukicoder/2258.test.cpp
+  - test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
+  - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
 documentation_of: graph/ds/static_toptree.hpp
 layout: document
 redirect_from:
