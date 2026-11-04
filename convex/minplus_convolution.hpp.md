@@ -94,10 +94,10 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/minplus_convex.test.cpp
   - test/1_mytest/minplus_conv_triple.test.cpp
-  - test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp
+  - test/1_mytest/minplus_convex.test.cpp
   - test/2_library_checker/convolution/minplus_convolution_conv_arb.test.cpp
+  - test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp
 documentation_of: convex/minplus_convolution.hpp
 layout: document
 redirect_from:

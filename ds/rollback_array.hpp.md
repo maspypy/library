@@ -51,9 +51,9 @@ data:
   isVerificationFile: false
   path: ds/rollback_array.hpp
   requiredBy:
-  - ds/segtree/rollback_lazy_segtree.hpp
   - ds/unionfind/rollback_potentialized_unionfind.hpp
   - ds/unionfind/rollback_unionfind.hpp
+  - ds/segtree/rollback_lazy_segtree.hpp
   timestamp: '2026-10-27 03:17:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

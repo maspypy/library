@@ -721,9 +721,9 @@ data:
   timestamp: '2026-11-04 21:27:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/tree_walk_gf.test.cpp
-  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
+  - test/3_yukicoder/2587.test.cpp
+  - test/1_mytest/tree_walk_gf.test.cpp
 documentation_of: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
 layout: document
 redirect_from:

@@ -112,8 +112,8 @@ data:
   isVerificationFile: false
   path: setfunc/sps_exp.hpp
   requiredBy:
-  - graph/count/count_tree_subgraph.hpp
   - graph/count/count_bridgeless_subgraph.hpp
+  - graph/count/count_tree_subgraph.hpp
   - graph/tutte_polynomial.hpp
   - linalg/hafnian.hpp
   timestamp: '2026-10-15 19:54:56+09:00'

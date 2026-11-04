@@ -42,8 +42,8 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/summin_assign.test.cpp
   - test/1_mytest/summin_add.test.cpp
+  - test/1_mytest/summin_assign.test.cpp
 documentation_of: alg/monoid/summin.hpp
 layout: document
 redirect_from:
