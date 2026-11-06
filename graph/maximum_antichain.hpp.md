@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/bipartite_matching.hpp
     title: flow/bipartite_matching.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -387,7 +387,7 @@ data:
     \ 5 \"flow/bipartite_matching.hpp\"\n\ntemplate <typename GT>\nstruct Bipartite_Matching\
     \ {\n  int N;\n  GT& G;\n  vc<int> color;\n  vc<int> dist, match;\n  vc<int> vis;\n\
     \n  Bipartite_Matching(GT& G) : N(G.N), G(G), dist(G.N, -1), match(G.N, -1) {\n\
-    \    color = bipartite_vertex_coloring(G);\n    if (N > 0) assert(!color.empty());\n\
+    \    color = bipartite_vertex_coloring(G, true);\n    if (N > 0) assert(!color.empty());\n\
     \    while (1) {\n      bfs();\n      vis.assign(N, false);\n      int flow =\
     \ 0;\n      FOR(v, N) if (!color[v] && match[v] == -1 && dfs(v))++ flow;\n   \
     \   if (!flow) break;\n    }\n  }\n\n  Bipartite_Matching(GT& G, vc<int> color)\n\
@@ -477,7 +477,7 @@ data:
   isVerificationFile: false
   path: graph/maximum_antichain.hpp
   requiredBy: []
-  timestamp: '2026-10-30 00:34:21+09:00'
+  timestamp: '2026-11-06 20:40:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/2251_2.test.cpp
