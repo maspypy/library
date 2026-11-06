@@ -277,7 +277,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/nth_element_from_sorted_matrix.hpp
       title: convex/nth_element_from_sorted_matrix.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: convex/path_independent_set.hpp
       title: convex/path_independent_set.hpp
     - icon: ':heavy_check_mark:'
@@ -3173,7 +3173,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/nimber_log.test.cpp
       title: test/1_mytest/nimber_log.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/non_adj.test.cpp
       title: test/1_mytest/non_adj.test.cpp
     - icon: ':heavy_check_mark:'

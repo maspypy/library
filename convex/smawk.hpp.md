@@ -29,12 +29,12 @@ data:
     \ x = X[len(YY) - 1];\n        if (!better(x, py, y)) break;\n        YY.pop_back();\n\
     \      }\n      if (len(YY) < len(X)) YY.eb(y);\n    }\n\n    vc<int> XX;\n  \
     \  for (int i = 1; i < len(X); i += 2) XX.eb(X[i]);\n\n    vc<int> II = dfs(dfs,\
-    \ XX, YY);\n    vc<int> I(N);\n    FOR(i, len(II)) I[i + i + 1] = II[i];\n\n \
-    \   int p = 0;\n    for (int i = 0; i < N; i += 2) {\n      int lim = (i + 1 ==\
-    \ N ? Y.back() : I[i + 1]);\n      int best = Y[p];\n      while (Y[p] < lim)\
-    \ {\n        ++p;\n        if (better(X[i], best, Y[p])) best = Y[p];\n      }\n\
-    \      I[i] = best;\n    }\n    return I;\n  };\n\n  vc<int> X(H), Y(W);\n  iota(all(X),\
-    \ 0), iota(all(Y), 0);\n  return dfs(dfs, X, Y);\n}\n"
+    \ move(XX), move(YY));\n    vc<int> I(N);\n    FOR(i, len(II)) I[i + i + 1] =\
+    \ II[i];\n\n    int p = 0;\n    for (int i = 0; i < N; i += 2) {\n      int lim\
+    \ = (i + 1 == N ? Y.back() : I[i + 1]);\n      int best = Y[p];\n      while (Y[p]\
+    \ < lim) {\n        ++p;\n        if (better(X[i], best, Y[p])) best = Y[p];\n\
+    \      }\n      I[i] = best;\n    }\n    return I;\n  };\n\n  vc<int> X(H), Y(W);\n\
+    \  iota(all(X), 0), iota(all(Y), 0);\n  return dfs(dfs, X, Y);\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/convex/smawk.hpp\n\
     \n// \u5404\u884C\u306E\u6700\u9069\u5217\u3092\u6C42\u3081\u308B.\n// better(i,j,k):\
     \ \u884C i \u306B\u304A\u3044\u3066\u5217 k \u304C\u5217 j \u3088\u308A\u826F\u3044\
@@ -46,18 +46,18 @@ data:
     \ x = X[len(YY) - 1];\n        if (!better(x, py, y)) break;\n        YY.pop_back();\n\
     \      }\n      if (len(YY) < len(X)) YY.eb(y);\n    }\n\n    vc<int> XX;\n  \
     \  for (int i = 1; i < len(X); i += 2) XX.eb(X[i]);\n\n    vc<int> II = dfs(dfs,\
-    \ XX, YY);\n    vc<int> I(N);\n    FOR(i, len(II)) I[i + i + 1] = II[i];\n\n \
-    \   int p = 0;\n    for (int i = 0; i < N; i += 2) {\n      int lim = (i + 1 ==\
-    \ N ? Y.back() : I[i + 1]);\n      int best = Y[p];\n      while (Y[p] < lim)\
-    \ {\n        ++p;\n        if (better(X[i], best, Y[p])) best = Y[p];\n      }\n\
-    \      I[i] = best;\n    }\n    return I;\n  };\n\n  vc<int> X(H), Y(W);\n  iota(all(X),\
-    \ 0), iota(all(Y), 0);\n  return dfs(dfs, X, Y);\n}"
+    \ move(XX), move(YY));\n    vc<int> I(N);\n    FOR(i, len(II)) I[i + i + 1] =\
+    \ II[i];\n\n    int p = 0;\n    for (int i = 0; i < N; i += 2) {\n      int lim\
+    \ = (i + 1 == N ? Y.back() : I[i + 1]);\n      int best = Y[p];\n      while (Y[p]\
+    \ < lim) {\n        ++p;\n        if (better(X[i], best, Y[p])) best = Y[p];\n\
+    \      }\n      I[i] = best;\n    }\n    return I;\n  };\n\n  vc<int> X(H), Y(W);\n\
+    \  iota(all(X), 0), iota(all(Y), 0);\n  return dfs(dfs, X, Y);\n}"
   dependsOn: []
   isVerificationFile: false
   path: convex/smawk.hpp
   requiredBy:
   - convex/monge/monge_dp_update.hpp
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-11-06 22:43:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/952.test.cpp

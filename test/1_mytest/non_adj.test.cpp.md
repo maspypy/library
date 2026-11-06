@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/path_independent_set.hpp
     title: convex/path_independent_set.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -139,30 +139,19 @@ data:
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif  // MASPY_TEMPLATE_BODY\n\
     #line 1 \"convex/path_independent_set.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/convex/path_independent_set.hpp\n\
     \n// https://atcoder.jp/contests/joisc2018/tasks/joisc2018_j\n// https://atcoder.jp/contests/abc464/tasks/abc464_g\n\
-    // \u96A3\u63A5\u3059\u308B\u3082\u306E\u306F\u9078\u3079\u306A\u3044, k \u500B\
-    \u9078\u3093\u3060\u3068\u304D\u306E\u6700\u9069\u89E3\u3092\u5168 k \u3067\u5217\
-    \u6319\ntemplate <typename T, bool MINIMIZE>\nstruct Path_Independent_Set {\n\
-    \  int N;\n  vc<T> ANS;\n  vc<pair<int, int>> history;\n\n  Path_Independent_Set(vc<T>&\
-    \ A) { calc(A); }\n\n  void calc(vc<T> A) {\n    if (MINIMIZE) {\n      for (auto&\
-    \ x : A) x = -x;\n    }\n    N = len(A);\n    vc<bool> rest(N + 2, 1);\n    rest[0]\
-    \ = rest[N + 1] = 0;\n    vc<pair<int, int>> range(N + 2);\n    vc<int> left(N\
-    \ + 2), right(N + 2);\n    vc<T> val(N + 2);\n    pq_max<pair<T, int>> que;\n\
-    \    FOR(i, N + 2) { left[i] = i - 1, right[i] = i + 1; }\n    FOR(i, N) {\n \
-    \     val[i + 1] = A[i], range[i + 1] = {i, i + 1};\n      que.emplace(val[i +\
-    \ 1], i + 1);\n    }\n\n    ANS = {0};\n    while (len(que)) {\n      auto [add,\
-    \ i] = POP(que);\n      if (!rest[i]) continue;\n      ANS.eb(ANS.back() + add);\n\
-    \      int L = left[i], R = right[i];\n      history.eb(range[i]);\n      if (1\
-    \ <= L) {\n        right[left[L]] = i, left[i] = left[L];\n      }\n      if (R\
-    \ <= N) {\n        left[right[R]] = i, right[i] = right[R];\n      }\n      if\
-    \ (rest[L] && rest[R]) {\n        val[i] = val[L] + val[R] - val[i];\n       \
-    \ que.emplace(val[i], i);\n        range[i] = {range[L].fi, range[R].se};\n  \
-    \    } else {\n        rest[i] = 0;\n      }\n      rest[L] = rest[R] = 0;\n \
-    \   }\n\n    if (MINIMIZE) {\n      for (auto& x : ANS) x = -x;\n    }\n  }\n\n\
-    \  vc<T> get_ANS() { return ANS; }\n  vc<int> restore(int n) {\n    vc<int> F(N\
-    \ + 1);\n    FOR(i, n) {\n      auto [a, b] = history[i];\n      F[a]++, F[b]--;\n\
-    \    }\n    F = cumsum<int>(F, 0);\n    vc<int> I;\n    FOR(i, N) if (F[i] & 1)\
-    \ I.eb(i);\n    return I;\n  }\n};\n#line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
-    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    // return: (val,i,j), \u9802\u70B9\u91CD\u307F\u306E\u548C\u3068 2 \u70B9\ntemplate\
+    \ <typename T, bool MINIMIZE>\nvc<tuple<T, int, int>>(vc<T> A) {\n  vc<tuple<T,\
+    \ int, int>> dat;\n  if constexpr (!MINIMIZE) {\n    for (auto& x : A) x = -x;\n\
+    \  }\n  dat.clear();\n  N = len(A);\n  vc<int> st;\n  FOR(i, N) {\n    st.eb(i);\n\
+    \    while (len(st) >= 3) {\n      int a = st[len(st) - 3], b = st[len(st) - 2],\
+    \ c = st[len(st) - 1];\n      if (A[a] > A[c]) break;\n      if (len(st) >= 4\
+    \ && A[st[len(st) - 4]] < A[b]) break;\n      dat.eb(A[a] + A[b], a, b);\n   \
+    \   st[len(st) - 3] = c;\n      st.pop_back(), st.pop_back();\n    }\n  }\n  while\
+    \ (len(st) >= 2) {\n    int b = POP(st);\n    int a = POP(st);\n    dat.eb(A[a]\
+    \ + A[b], a, b);\n  }\n  sort(all(dat));\n  if (!MINIMIZE) {\n    for (auto& [x,\
+    \ a, b] : dat) x = -x;\n  }\n  return dat;\n}\n#line 1 \"random/base.hpp\"\n//\
+    \ Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\nu64\
+    \ RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
@@ -209,8 +198,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/non_adj.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-06 22:43:05+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/non_adj.test.cpp
 layout: document
