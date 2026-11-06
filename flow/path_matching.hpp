@@ -1,18 +1,16 @@
 // Source: https://github.com/maspypy/library/blob/main/convex/path_independent_set.hpp
 
-// https://atcoder.jp/contests/joisc2018/tasks/joisc2018_j
-// https://atcoder.jp/contests/abc464/tasks/abc464_g
+// https://info.atcoder.jp/entry/algorithm_lectures/matching_on_path
 // return: (val,i,j), 頂点重みの和と 2 点
 template <typename T, bool MINIMIZE>
-vc<tuple<T, int, int>>(vc<T> A) {
+vc<tuple<T, int, int>> path_matching(vc<T> A) {
   vc<tuple<T, int, int>> dat;
   if constexpr (!MINIMIZE) {
     for (auto& x : A) x = -x;
   }
   dat.clear();
-  N = len(A);
   vc<int> st;
-  FOR(i, N) {
+  FOR(i, len(A)) {
     st.eb(i);
     while (len(st) >= 3) {
       int a = st[len(st) - 3], b = st[len(st) - 2], c = st[len(st) - 1];
