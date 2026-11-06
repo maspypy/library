@@ -299,8 +299,8 @@ data:
   isVerificationFile: false
   path: convex/line_min_function.hpp
   requiredBy:
-  - convex/lattice_point_sum_polynomial_pq.hpp
   - convex/lattice_point_count.hpp
+  - convex/lattice_point_sum_polynomial_pq.hpp
   - convex/lattice_point_sum_polynomial.hpp
   - convex/lower_integer_hull.hpp
   timestamp: '2026-10-27 15:41:25+09:00'

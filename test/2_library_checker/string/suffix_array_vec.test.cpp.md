@@ -4,19 +4,19 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
   - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
   - icon: ':question:'
@@ -25,14 +25,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/suffixarray
@@ -284,46 +284,45 @@ data:
     \ Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/2_library_checker/string/suffix_array_vec.test.cpp\"\
     \n\r\n#line 1 \"string/suffix_array.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/suffix_array.hpp\n\
     #line 1 \"ds/index_compression.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/index_compression.hpp\n\
-    template <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  int mi, ma;\n\
-    \  vc<T> dat;\n  vc<T> build(vc<int> X) {\n    mi = 0, ma = -1;\n    if (!X.empty())\
-    \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
-    \ : X) dat[x - mi + 1]++;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n  \
-    \  for (auto& x : X) {\n      x = dat[x - mi]++;\n    }\n    FOR_R(i, 1, len(dat))\
-    \ dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return X;\n  }\n  int size() const\
-    \ { return len(dat); }\n  int val_to_idx(T x) const { return dat[clamp<ll>(x -\
-    \ mi, 0, ma - mi + 1)]; }\n  int idx_to_val(int i) const { return dat[i]; }\n\
-    };\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL {\n  int mi,\
-    \ ma;\n  vc<T> dat;\n  vc<T> build(vc<T> X) {\n    mi = 0, ma = -1;\n    if (!X.empty())\
+    template <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  bool built\
+    \ = false;\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<int> X) {\n    mi =\
+    \ 0, ma = -1;\n    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma\
+    \ - mi + 2, 0);\n    for (auto& x : X) dat[x - mi + 1]++;\n    FOR(i, len(dat)\
+    \ - 1) dat[i + 1] += dat[i];\n    for (auto& x : X) {\n      x = dat[x - mi]++;\n\
+    \    }\n    FOR_R(i, 1, len(dat)) dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return\
+    \ X;\n  }\n  int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma -\
+    \ mi + 1)]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL\
+    \ {\n  bool built = false;\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<T> X)\
+    \ {\n    assert(!built);\n    built = true;\n    mi = 0, ma = -1;\n    if (!X.empty())\
     \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
     \ : X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n\
     \    for (auto& x : X) {\n      x = dat[x - mi];\n    }\n    return X;\n  }\n\
-    \  int size() const { return len(dat); }\n  int val_to_idx(T x) const { return\
-    \ dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }\n  int idx_to_val(int i) const { return\
-    \ dat[i]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE\
-    \ {\n  vc<T> dat;\n  vc<int> build(const vc<T>& X) {\n    dat.reserve(len(X));\n\
+    \  int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];\
+    \ }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE {\n  vc<T>\
+    \ dat;\n  vc<int> build(const vc<T>& X) {\n    assert(!built);\n    built = true;\n\
+    \    dat.reserve(len(X));\n    vc<pair<T, int>> tmp(len(X));\n    FOR(i, len(X))\
+    \ tmp[i] = {X[i], i};\n    sort(all(tmp));\n    vc<int> ANS(len(X));\n    for\
+    \ (auto [x, j] : tmp) {\n      if (dat.empty() || dat.back() != x) dat.eb(x);\n\
+    \      ANS[j] = len(dat) - 1;\n    }\n    return ANS;\n  }\n  int size() const\
+    \ { return len(dat); }\n  int val_to_idx(T x) const { return LB(dat, x); }\n \
+    \ int idx_to_val(int i) const { return dat[i]; }\n};\n\ntemplate <typename T>\n\
+    struct Index_Compression_DISTINCT_LARGE {\n  bool built = false;\n  vc<T> dat;\n\
+    \  vc<int> build(vc<T> X) {\n    assert(!built);\n    built = true;\n    dat.reserve(len(X));\n\
     \    vc<pair<T, int>> tmp(len(X));\n    FOR(i, len(X)) tmp[i] = {X[i], i};\n \
     \   sort(all(tmp));\n    vc<int> ANS(len(X));\n    for (auto [x, j] : tmp) {\n\
-    \      if (dat.empty() || dat.back() != x) dat.eb(x);\n      ANS[j] = len(dat)\
-    \ - 1;\n    }\n    return ANS;\n  }\n  int size() const { return len(dat); }\n\
-    \  int val_to_idx(T x) const { return LB(dat, x); }\n  int idx_to_val(int i) const\
-    \ { return dat[i]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_DISTINCT_LARGE\
-    \ {\n  vc<T> dat;\n  vc<int> build(vc<T> X) {\n    dat.reserve(len(X));\n    vc<pair<T,\
-    \ int>> tmp(len(X));\n    FOR(i, len(X)) tmp[i] = {X[i], i};\n    sort(all(tmp));\n\
-    \    vc<int> ANS(len(X));\n    for (auto [x, j] : tmp) {\n      dat.eb(x);\n \
-    \     ANS[j] = len(dat) - 1;\n    }\n    return ANS;\n  }\n  int size() const\
-    \ { return len(dat); }\n  int val_to_idx(T x) const { return LB(dat, x); }\n \
-    \ int idx_to_val(int i) const { return dat[i]; }\n};\n\ntemplate <typename T,\
-    \ bool SMALL>\nusing Index_Compression_DISTINCT =\n    typename std::conditional<SMALL,\
-    \ Index_Compression_DISTINCT_SMALL<T>,\n                              Index_Compression_DISTINCT_LARGE<T>>::type;\n\
-    template <typename T, bool SMALL>\nusing Index_Compression_SAME =\n    typename\
-    \ std::conditional<SMALL, Index_Compression_SAME_SMALL<T>,\n                 \
-    \             Index_Compression_SAME_LARGE<T>>::type;\n\n// SAME: [2,3,2] -> [0,1,0]\n\
-    // DISTINCT: [2,2,3] -> [0,2,1]\n// build \u3067\u5217\u3092\u5727\u7E2E\u3057\
-    \u3066\u304F\u308C\u308B. \u305D\u306E\u3042\u3068\n// (x): lower_bound(X,x) \u3092\
-    \u304B\u3048\u3059\ntemplate <typename T, bool SAME, bool SMALL>\nusing Index_Compression\
-    \ =\n    typename std::conditional<SAME, Index_Compression_SAME<T, SMALL>,\n \
-    \                             Index_Compression_DISTINCT<T, SMALL>>::type;\n#line\
-    \ 1 \"alg/monoid/min.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n\
+    \      dat.eb(x);\n      ANS[j] = len(dat) - 1;\n    }\n    return ANS;\n  }\n\
+    \  int size() const { return len(dat); }\n  int val_to_idx(T x) const { return\
+    \ LB(dat, x); }\n  int idx_to_val(int i) const { return dat[i]; }\n};\n\ntemplate\
+    \ <typename T, bool SMALL>\nusing Index_Compression_DISTINCT =\n    typename std::conditional<SMALL,\
+    \ Index_Compression_DISTINCT_SMALL<T>,\n        Index_Compression_DISTINCT_LARGE<T>>::type;\n\
+    template <typename T, bool SMALL>\nusing Index_Compression_SAME = typename std::conditional<SMALL,\n\
+    \    Index_Compression_SAME_SMALL<T>, Index_Compression_SAME_LARGE<T>>::type;\n\
+    \n// SAME: [2,3,2] -> [0,1,0]\n// DISTINCT: [2,2,3] -> [0,2,1]\n// build \u3067\
+    \u5217\u3092\u5727\u7E2E\u3057\u3066\u304F\u308C\u308B. \u305D\u306E\u3042\u3068\
+    \n// (x): lower_bound(X,x) \u3092\u304B\u3048\u3059\ntemplate <typename T, bool\
+    \ SAME, bool SMALL>\nusing Index_Compression =\n    typename std::conditional<SAME,\
+    \ Index_Compression_SAME<T, SMALL>,\n        Index_Compression_DISTINCT<T, SMALL>>::type;\n\
+    #line 1 \"alg/monoid/min.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n\
     // require: all values x satisfy x < infty<E>\ntemplate <typename E>\nstruct Monoid_Min\
     \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
     \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
@@ -590,8 +589,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/suffix_array_vec.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-06 18:46:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/string/suffix_array_vec.test.cpp
 layout: document

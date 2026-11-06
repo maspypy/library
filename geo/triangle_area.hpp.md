@@ -44,8 +44,8 @@ data:
   path: geo/triangle_area.hpp
   requiredBy:
   - geo/incircle.hpp
-  - geo/delaunay_triangulation_of_convex_polygon.hpp
   - geo/outcircle.hpp
+  - geo/delaunay_triangulation_of_convex_polygon.hpp
   - geo/minimum_enclosing_circle.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC

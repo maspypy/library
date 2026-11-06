@@ -1327,8 +1327,8 @@ data:
   timestamp: '2026-10-30 00:22:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/slice_rational_fps.test.cpp
   - test/2_library_checker/polynomial/slice_rational.test.cpp
+  - test/1_mytest/slice_rational_fps.test.cpp
 documentation_of: poly/slice_rational_fps.hpp
 layout: document
 redirect_from:

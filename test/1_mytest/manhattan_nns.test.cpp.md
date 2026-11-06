@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/minidx.hpp
     title: alg/monoid/minidx.hpp
   - icon: ':question:'

@@ -36,8 +36,8 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/substring_abundant.test.cpp
   - test/1_mytest/run_length.test.cpp
+  - test/1_mytest/substring_abundant.test.cpp
 documentation_of: string/run_length.hpp
 layout: document
 redirect_from:

@@ -55,8 +55,8 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/2627.test.cpp
   - test/3_yukicoder/2276.test.cpp
+  - test/3_yukicoder/2627.test.cpp
   - test/1_mytest/fibonacci_search.test.cpp
 documentation_of: other/fibonacci_search.hpp
 layout: document

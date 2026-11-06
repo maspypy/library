@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1919.test.cpp
     title: test/3_yukicoder/1919.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1919_2.test.cpp
     title: test/3_yukicoder/1919_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -68,22 +68,22 @@ data:
   path: alg/monoid/add_pair.hpp
   requiredBy:
   - convex/slope_trick/slope_trick_super.hpp
-  - alg/acted_monoid/cntsum_add.hpp
   - alg/acted_monoid/cntsum_affine.hpp
+  - alg/acted_monoid/cntsum_add.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
   - test/3_yukicoder/2627.test.cpp
-  - test/3_yukicoder/749.test.cpp
+  - test/3_yukicoder/255.test.cpp
   - test/3_yukicoder/235.test.cpp
   - test/3_yukicoder/1919.test.cpp
   - test/3_yukicoder/1919_2.test.cpp
-  - test/3_yukicoder/255.test.cpp
-  - test/1_mytest/cf702_F_splay.test.cpp
-  - test/1_mytest/mo_on_tree.test.cpp
+  - test/3_yukicoder/749.test.cpp
   - test/1_mytest/cf702_F.test.cpp
+  - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/slope_super.test.cpp
-  - test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
+  - test/1_mytest/cf702_F_splay.test.cpp
 documentation_of: alg/monoid/add_pair.hpp
 layout: document
 redirect_from:

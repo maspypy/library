@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - icon: ':warning:'
@@ -18,19 +18,19 @@ data:
     path: string/prefix_substring_LCS.hpp
     title: string/prefix_substring_LCS.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
   - icon: ':heavy_check_mark:'
@@ -39,19 +39,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1332.test.cpp
     title: test/3_yukicoder/1332.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1625_2.test.cpp
     title: test/3_yukicoder/1625_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1919_2.test.cpp
     title: test/3_yukicoder/1919_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2065.test.cpp
     title: test/3_yukicoder/2065.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2859.test.cpp
     title: test/3_yukicoder/2859.test.cpp
   - icon: ':heavy_check_mark:'
@@ -60,9 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/924.test.cpp
     title: test/3_yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/bit_vector.hpp
@@ -100,28 +100,28 @@ data:
   isVerificationFile: false
   path: ds/bit_vector.hpp
   requiredBy:
-  - string/prefix_substring_LCS.hpp
-  - graph/ds/tree_wavelet_matrix.hpp
-  - ds/wavelet_matrix/wavelet_matrix.hpp
   - ds/wavelet_matrix/wavelet_matrix_old.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
+  - ds/wavelet_matrix/wavelet_matrix.hpp
+  - string/prefix_substring_LCS.hpp
+  - graph/ds/tree_wavelet_matrix.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/1332.test.cpp
-  - test/3_yukicoder/919.test.cpp
-  - test/3_yukicoder/1600_2.test.cpp
-  - test/3_yukicoder/2065.test.cpp
-  - test/3_yukicoder/924.test.cpp
-  - test/3_yukicoder/1625_2.test.cpp
-  - test/3_yukicoder/2859.test.cpp
-  - test/3_yukicoder/1919_2.test.cpp
-  - test/2_library_checker/string/prefix_substring_lcs.test.cpp
-  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
-  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
+  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
+  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
+  - test/2_library_checker/string/prefix_substring_lcs.test.cpp
+  - test/3_yukicoder/1625_2.test.cpp
+  - test/3_yukicoder/924.test.cpp
+  - test/3_yukicoder/2065.test.cpp
+  - test/3_yukicoder/2859.test.cpp
+  - test/3_yukicoder/919.test.cpp
+  - test/3_yukicoder/1919_2.test.cpp
+  - test/3_yukicoder/1600_2.test.cpp
+  - test/3_yukicoder/1332.test.cpp
 documentation_of: ds/bit_vector.hpp
 layout: document
 redirect_from:

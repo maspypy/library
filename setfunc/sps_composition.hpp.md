@@ -128,10 +128,10 @@ data:
   path: setfunc/sps_composition.hpp
   requiredBy:
   - setfunc/sps_log.hpp
+  - graph/tutte_polynomial.hpp
+  - graph/count/count_connected_subgraph.hpp
   - graph/count/count_bridgeless_subgraph.hpp
   - graph/count/count_biconnected_subgraph.hpp
-  - graph/count/count_connected_subgraph.hpp
-  - graph/tutte_polynomial.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

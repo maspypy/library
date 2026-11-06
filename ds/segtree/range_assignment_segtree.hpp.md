@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':question:'
@@ -222,8 +222,8 @@ data:
   timestamp: '2026-10-24 07:57:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/range_assign.test.cpp
   - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
+  - test/1_mytest/range_assign.test.cpp
 documentation_of: ds/segtree/range_assignment_segtree.hpp
 layout: document
 redirect_from:

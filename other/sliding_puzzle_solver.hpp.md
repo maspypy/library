@@ -4,19 +4,19 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedRequiredBy: []
@@ -146,46 +146,45 @@ data:
     \  return 64 * idx + topbit(dat[idx]);\n  }\n\n  string to_string() {\n    string\
     \ out;\n    FOR(i, N) out += '0' + (dat[i / 64] >> (i & 63) & 1);\n    return\
     \ out;\n  }\n};\n#line 1 \"ds/index_compression.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/index_compression.hpp\n\
-    template <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  int mi, ma;\n\
-    \  vc<T> dat;\n  vc<T> build(vc<int> X) {\n    mi = 0, ma = -1;\n    if (!X.empty())\
-    \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
-    \ : X) dat[x - mi + 1]++;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n  \
-    \  for (auto& x : X) {\n      x = dat[x - mi]++;\n    }\n    FOR_R(i, 1, len(dat))\
-    \ dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return X;\n  }\n  int size() const\
-    \ { return len(dat); }\n  int val_to_idx(T x) const { return dat[clamp<ll>(x -\
-    \ mi, 0, ma - mi + 1)]; }\n  int idx_to_val(int i) const { return dat[i]; }\n\
-    };\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL {\n  int mi,\
-    \ ma;\n  vc<T> dat;\n  vc<T> build(vc<T> X) {\n    mi = 0, ma = -1;\n    if (!X.empty())\
+    template <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  bool built\
+    \ = false;\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<int> X) {\n    mi =\
+    \ 0, ma = -1;\n    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma\
+    \ - mi + 2, 0);\n    for (auto& x : X) dat[x - mi + 1]++;\n    FOR(i, len(dat)\
+    \ - 1) dat[i + 1] += dat[i];\n    for (auto& x : X) {\n      x = dat[x - mi]++;\n\
+    \    }\n    FOR_R(i, 1, len(dat)) dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return\
+    \ X;\n  }\n  int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma -\
+    \ mi + 1)]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL\
+    \ {\n  bool built = false;\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<T> X)\
+    \ {\n    assert(!built);\n    built = true;\n    mi = 0, ma = -1;\n    if (!X.empty())\
     \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
     \ : X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n\
     \    for (auto& x : X) {\n      x = dat[x - mi];\n    }\n    return X;\n  }\n\
-    \  int size() const { return len(dat); }\n  int val_to_idx(T x) const { return\
-    \ dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }\n  int idx_to_val(int i) const { return\
-    \ dat[i]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE\
-    \ {\n  vc<T> dat;\n  vc<int> build(const vc<T>& X) {\n    dat.reserve(len(X));\n\
+    \  int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];\
+    \ }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE {\n  vc<T>\
+    \ dat;\n  vc<int> build(const vc<T>& X) {\n    assert(!built);\n    built = true;\n\
+    \    dat.reserve(len(X));\n    vc<pair<T, int>> tmp(len(X));\n    FOR(i, len(X))\
+    \ tmp[i] = {X[i], i};\n    sort(all(tmp));\n    vc<int> ANS(len(X));\n    for\
+    \ (auto [x, j] : tmp) {\n      if (dat.empty() || dat.back() != x) dat.eb(x);\n\
+    \      ANS[j] = len(dat) - 1;\n    }\n    return ANS;\n  }\n  int size() const\
+    \ { return len(dat); }\n  int val_to_idx(T x) const { return LB(dat, x); }\n \
+    \ int idx_to_val(int i) const { return dat[i]; }\n};\n\ntemplate <typename T>\n\
+    struct Index_Compression_DISTINCT_LARGE {\n  bool built = false;\n  vc<T> dat;\n\
+    \  vc<int> build(vc<T> X) {\n    assert(!built);\n    built = true;\n    dat.reserve(len(X));\n\
     \    vc<pair<T, int>> tmp(len(X));\n    FOR(i, len(X)) tmp[i] = {X[i], i};\n \
     \   sort(all(tmp));\n    vc<int> ANS(len(X));\n    for (auto [x, j] : tmp) {\n\
-    \      if (dat.empty() || dat.back() != x) dat.eb(x);\n      ANS[j] = len(dat)\
-    \ - 1;\n    }\n    return ANS;\n  }\n  int size() const { return len(dat); }\n\
-    \  int val_to_idx(T x) const { return LB(dat, x); }\n  int idx_to_val(int i) const\
-    \ { return dat[i]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_DISTINCT_LARGE\
-    \ {\n  vc<T> dat;\n  vc<int> build(vc<T> X) {\n    dat.reserve(len(X));\n    vc<pair<T,\
-    \ int>> tmp(len(X));\n    FOR(i, len(X)) tmp[i] = {X[i], i};\n    sort(all(tmp));\n\
-    \    vc<int> ANS(len(X));\n    for (auto [x, j] : tmp) {\n      dat.eb(x);\n \
-    \     ANS[j] = len(dat) - 1;\n    }\n    return ANS;\n  }\n  int size() const\
-    \ { return len(dat); }\n  int val_to_idx(T x) const { return LB(dat, x); }\n \
-    \ int idx_to_val(int i) const { return dat[i]; }\n};\n\ntemplate <typename T,\
-    \ bool SMALL>\nusing Index_Compression_DISTINCT =\n    typename std::conditional<SMALL,\
-    \ Index_Compression_DISTINCT_SMALL<T>,\n                              Index_Compression_DISTINCT_LARGE<T>>::type;\n\
-    template <typename T, bool SMALL>\nusing Index_Compression_SAME =\n    typename\
-    \ std::conditional<SMALL, Index_Compression_SAME_SMALL<T>,\n                 \
-    \             Index_Compression_SAME_LARGE<T>>::type;\n\n// SAME: [2,3,2] -> [0,1,0]\n\
-    // DISTINCT: [2,2,3] -> [0,2,1]\n// build \u3067\u5217\u3092\u5727\u7E2E\u3057\
-    \u3066\u304F\u308C\u308B. \u305D\u306E\u3042\u3068\n// (x): lower_bound(X,x) \u3092\
-    \u304B\u3048\u3059\ntemplate <typename T, bool SAME, bool SMALL>\nusing Index_Compression\
-    \ =\n    typename std::conditional<SAME, Index_Compression_SAME<T, SMALL>,\n \
-    \                             Index_Compression_DISTINCT<T, SMALL>>::type;\n#line\
-    \ 4 \"seq/inversion.hpp\"\n\ntemplate <typename T>\nll inversion(const vc<T>&\
+    \      dat.eb(x);\n      ANS[j] = len(dat) - 1;\n    }\n    return ANS;\n  }\n\
+    \  int size() const { return len(dat); }\n  int val_to_idx(T x) const { return\
+    \ LB(dat, x); }\n  int idx_to_val(int i) const { return dat[i]; }\n};\n\ntemplate\
+    \ <typename T, bool SMALL>\nusing Index_Compression_DISTINCT =\n    typename std::conditional<SMALL,\
+    \ Index_Compression_DISTINCT_SMALL<T>,\n        Index_Compression_DISTINCT_LARGE<T>>::type;\n\
+    template <typename T, bool SMALL>\nusing Index_Compression_SAME = typename std::conditional<SMALL,\n\
+    \    Index_Compression_SAME_SMALL<T>, Index_Compression_SAME_LARGE<T>>::type;\n\
+    \n// SAME: [2,3,2] -> [0,1,0]\n// DISTINCT: [2,2,3] -> [0,2,1]\n// build \u3067\
+    \u5217\u3092\u5727\u7E2E\u3057\u3066\u304F\u308C\u308B. \u305D\u306E\u3042\u3068\
+    \n// (x): lower_bound(X,x) \u3092\u304B\u3048\u3059\ntemplate <typename T, bool\
+    \ SAME, bool SMALL>\nusing Index_Compression =\n    typename std::conditional<SAME,\
+    \ Index_Compression_SAME<T, SMALL>,\n        Index_Compression_DISTINCT<T, SMALL>>::type;\n\
+    #line 4 \"seq/inversion.hpp\"\n\ntemplate <typename T>\nll inversion(const vc<T>&\
     \ A) {\n  int N = len(A);\n  if (A.empty()) return 0;\n  ll ANS = 0;\n  FenwickTree_01\
     \ bit(N);\n  auto I = argsort(A);\n  for (auto& i : I) {\n    ANS += bit.sum_all()\
     \ - bit.sum(i);\n    bit.add(i, 1);\n  }\n  return ANS;\n}\n\n// i \u756A\u76EE\
@@ -379,7 +378,7 @@ data:
   isVerificationFile: false
   path: other/sliding_puzzle_solver.hpp
   requiredBy: []
-  timestamp: '2026-10-27 03:23:51+09:00'
+  timestamp: '2026-11-06 18:46:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: other/sliding_puzzle_solver.hpp

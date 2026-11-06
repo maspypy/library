@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -203,15 +203,15 @@ data:
   isVerificationFile: false
   path: graph/block_cut.hpp
   requiredBy:
-  - graph/is_cactus.hpp
   - graph/st_numbering.hpp
+  - graph/is_cactus.hpp
   timestamp: '2026-10-30 00:34:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1326.test.cpp
-  - test/4_aoj/GRL_3_A.test.cpp
   - test/2_library_checker/graph/st_numbering.test.cpp
   - test/2_library_checker/graph/biconnected_component.test.cpp
+  - test/3_yukicoder/1326.test.cpp
+  - test/4_aoj/GRL_3_A.test.cpp
 documentation_of: graph/block_cut.hpp
 layout: document
 redirect_from:

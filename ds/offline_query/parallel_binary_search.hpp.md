@@ -59,8 +59,8 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/3314.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_pbs.test.cpp
+  - test/3_yukicoder/3314.test.cpp
 documentation_of: ds/offline_query/parallel_binary_search.hpp
 layout: document
 redirect_from:

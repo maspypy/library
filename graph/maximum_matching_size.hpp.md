@@ -97,10 +97,10 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/tutte.test.cpp
-  - test/1_mytest/matching_line_graph.test.cpp
-  - test/1_mytest/matching.test.cpp
   - test/2_library_checker/graph/general_matching.test.cpp
+  - test/1_mytest/tutte.test.cpp
+  - test/1_mytest/matching.test.cpp
+  - test/1_mytest/matching_line_graph.test.cpp
 documentation_of: graph/maximum_matching_size.hpp
 layout: document
 redirect_from:

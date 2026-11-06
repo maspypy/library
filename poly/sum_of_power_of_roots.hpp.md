@@ -387,8 +387,8 @@ data:
   isVerificationFile: false
   path: poly/sum_of_power_of_roots.hpp
   requiredBy:
-  - poly/composed_sum.hpp
   - poly/composed_product.hpp
+  - poly/composed_sum.hpp
   timestamp: '2026-10-30 00:22:59+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

@@ -56,9 +56,9 @@ data:
   timestamp: '2026-10-24 10:08:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/4_aoj/DSL_2_F.test.cpp
   - test/1_mytest/rbst_am_persistent.test.cpp
   - test/1_mytest/rbst_am.test.cpp
+  - test/4_aoj/DSL_2_F.test.cpp
 documentation_of: alg/acted_monoid/min_assign.hpp
 layout: document
 redirect_from:

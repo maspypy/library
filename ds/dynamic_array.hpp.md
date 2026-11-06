@@ -90,8 +90,8 @@ data:
   isVerificationFile: false
   path: ds/dynamic_array.hpp
   requiredBy:
-  - string/aho_corasick_for_general_trie.hpp
   - ds/unionfind/dynamic_unionfind.hpp
+  - string/aho_corasick_for_general_trie.hpp
   timestamp: '2026-10-30 01:10:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
