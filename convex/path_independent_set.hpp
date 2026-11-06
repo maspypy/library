@@ -2,70 +2,35 @@
 
 // https://atcoder.jp/contests/joisc2018/tasks/joisc2018_j
 // https://atcoder.jp/contests/abc464/tasks/abc464_g
-// 隣接するものは選べない, k 個選んだときの最適解を全 k で列挙
+// return: (val,i,j), 頂点重みの和と 2 点
 template <typename T, bool MINIMIZE>
-struct Path_Independent_Set {
-  int N;
-  vc<T> ANS;
-  vc<pair<int, int>> history;
-
-  Path_Independent_Set(vc<T>& A) { calc(A); }
-
-  void calc(vc<T> A) {
-    if (MINIMIZE) {
-      for (auto& x : A) x = -x;
-    }
-    N = len(A);
-    vc<bool> rest(N + 2, 1);
-    rest[0] = rest[N + 1] = 0;
-    vc<pair<int, int>> range(N + 2);
-    vc<int> left(N + 2), right(N + 2);
-    vc<T> val(N + 2);
-    pq_max<pair<T, int>> que;
-    FOR(i, N + 2) { left[i] = i - 1, right[i] = i + 1; }
-    FOR(i, N) {
-      val[i + 1] = A[i], range[i + 1] = {i, i + 1};
-      que.emplace(val[i + 1], i + 1);
-    }
-
-    ANS = {0};
-    while (len(que)) {
-      auto [add, i] = POP(que);
-      if (!rest[i]) continue;
-      ANS.eb(ANS.back() + add);
-      int L = left[i], R = right[i];
-      history.eb(range[i]);
-      if (1 <= L) {
-        right[left[L]] = i, left[i] = left[L];
-      }
-      if (R <= N) {
-        left[right[R]] = i, right[i] = right[R];
-      }
-      if (rest[L] && rest[R]) {
-        val[i] = val[L] + val[R] - val[i];
-        que.emplace(val[i], i);
-        range[i] = {range[L].fi, range[R].se};
-      } else {
-        rest[i] = 0;
-      }
-      rest[L] = rest[R] = 0;
-    }
-
-    if (MINIMIZE) {
-      for (auto& x : ANS) x = -x;
+vc<tuple<T, int, int>>(vc<T> A) {
+  vc<tuple<T, int, int>> dat;
+  if constexpr (!MINIMIZE) {
+    for (auto& x : A) x = -x;
+  }
+  dat.clear();
+  N = len(A);
+  vc<int> st;
+  FOR(i, N) {
+    st.eb(i);
+    while (len(st) >= 3) {
+      int a = st[len(st) - 3], b = st[len(st) - 2], c = st[len(st) - 1];
+      if (A[a] > A[c]) break;
+      if (len(st) >= 4 && A[st[len(st) - 4]] < A[b]) break;
+      dat.eb(A[a] + A[b], a, b);
+      st[len(st) - 3] = c;
+      st.pop_back(), st.pop_back();
     }
   }
-
-  vc<T> get_ANS() { return ANS; }
-  vc<int> restore(int n) {
-    vc<int> F(N + 1);
-    FOR(i, n) {
-      auto [a, b] = history[i];
-      F[a]++, F[b]--;
-    }
-    F = cumsum<int>(F, 0);
-    vc<int> I;
-    FOR(i, N) if (F[i] & 1) I.eb(i);
-    return I;
+  while (len(st) >= 2) {
+    int b = POP(st);
+    int a = POP(st);
+    dat.eb(A[a] + A[b], a, b);
   }
-};
+  sort(all(dat));
+  if (!MINIMIZE) {
+    for (auto& [x, a, b] : dat) x = -x;
+  }
+  return dat;
+}

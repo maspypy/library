@@ -25,7 +25,7 @@ vc<int> smawk(int H, int W, F better) {
     vc<int> XX;
     for (int i = 1; i < len(X); i += 2) XX.eb(X[i]);
 
-    vc<int> II = dfs(dfs, XX, YY);
+    vc<int> II = dfs(dfs, move(XX), move(YY));
     vc<int> I(N);
     FOR(i, len(II)) I[i + i + 1] = II[i];
 
