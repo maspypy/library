@@ -277,9 +277,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/nth_element_from_sorted_matrix.hpp
       title: convex/nth_element_from_sorted_matrix.hpp
-    - icon: ':x:'
-      path: convex/path_independent_set.hpp
-      title: convex/path_independent_set.hpp
     - icon: ':heavy_check_mark:'
       path: convex/smawk.hpp
       title: convex/smawk.hpp
@@ -834,6 +831,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/min_cost_matching_on_line.hpp
       title: flow/min_cost_matching_on_line.hpp
+    - icon: ':warning:'
+      path: flow/path_matching.hpp
+      title: flow/path_matching.hpp
     - icon: ':heavy_check_mark:'
       path: flow/rank_maximal_bipartite_matching.hpp
       title: flow/rank_maximal_bipartite_matching.hpp

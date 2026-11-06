@@ -492,9 +492,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/nimber_log.test.cpp
     title: test/1_mytest/nimber_log.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/non_adj.test.cpp
-    title: test/1_mytest/non_adj.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/nth_element_from_sorted_lists.test.cpp
     title: test/1_mytest/nth_element_from_sorted_lists.test.cpp
@@ -1166,7 +1163,6 @@ data:
   - test/1_mytest/minmax_add.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/rbst_am.test.cpp
-  - test/1_mytest/non_adj.test.cpp
   - test/1_mytest/independent_set_knapsack.test.cpp
   - test/1_mytest/lex_minmax_suffix.test.cpp
   - test/1_mytest/online_log.test.cpp
