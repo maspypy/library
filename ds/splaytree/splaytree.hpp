@@ -223,7 +223,7 @@ struct SplayTree {
   void push_from_root(np c) {
     buf.clear();
     while (c->p) buf.eb(c), c = c->p;
-    v->push();
+    c->push();
     FOR_R(i, len(buf)) buf[i]->push();
     return;
   }
