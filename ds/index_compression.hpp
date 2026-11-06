@@ -1,6 +1,7 @@
 // Source: https://github.com/maspypy/library/blob/main/ds/index_compression.hpp
 template <typename T>
 struct Index_Compression_DISTINCT_SMALL {
+  static_assert(std::is_same_v<T, int>);
   bool built = false;
   int mi, ma;
   vc<T> dat;
@@ -17,11 +18,16 @@ struct Index_Compression_DISTINCT_SMALL {
     dat[0] = 0;
     return X;
   }
-  int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }
+  int val_to_idx(T x) const {
+    if (x <= mi) return dat[0];
+    if (x > ma) return dat.back();
+    return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];
+  }
 };
 
 template <typename T>
 struct Index_Compression_SAME_SMALL {
+  static_assert(std::is_same_v<T, int>);
   bool built = false;
   int mi, ma;
   vc<T> dat;
@@ -38,7 +44,11 @@ struct Index_Compression_SAME_SMALL {
     }
     return X;
   }
-  int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }
+  int val_to_idx(T x) const {
+    if (x <= mi) return dat[0];
+    if (x > ma) return dat.back();
+    return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];
+  }
 };
 
 template <typename T>
