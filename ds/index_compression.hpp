@@ -1,6 +1,7 @@
 // Source: https://github.com/maspypy/library/blob/main/ds/index_compression.hpp
 template <typename T>
 struct Index_Compression_DISTINCT_SMALL {
+  bool built = false;
   int mi, ma;
   vc<T> dat;
   vc<T> build(vc<int> X) {
@@ -16,16 +17,17 @@ struct Index_Compression_DISTINCT_SMALL {
     dat[0] = 0;
     return X;
   }
-  int size() const { return len(dat); }
   int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }
-  int idx_to_val(int i) const { return dat[i]; }
 };
 
 template <typename T>
 struct Index_Compression_SAME_SMALL {
+  bool built = false;
   int mi, ma;
   vc<T> dat;
   vc<T> build(vc<T> X) {
+    assert(!built);
+    built = true;
     mi = 0, ma = -1;
     if (!X.empty()) mi = MIN(X), ma = MAX(X);
     dat.assign(ma - mi + 2, 0);
@@ -36,15 +38,15 @@ struct Index_Compression_SAME_SMALL {
     }
     return X;
   }
-  int size() const { return len(dat); }
   int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }
-  int idx_to_val(int i) const { return dat[i]; }
 };
 
 template <typename T>
 struct Index_Compression_SAME_LARGE {
   vc<T> dat;
   vc<int> build(const vc<T>& X) {
+    assert(!built);
+    built = true;
     dat.reserve(len(X));
     vc<pair<T, int>> tmp(len(X));
     FOR(i, len(X)) tmp[i] = {X[i], i};
@@ -63,8 +65,11 @@ struct Index_Compression_SAME_LARGE {
 
 template <typename T>
 struct Index_Compression_DISTINCT_LARGE {
+  bool built = false;
   vc<T> dat;
   vc<int> build(vc<T> X) {
+    assert(!built);
+    built = true;
     dat.reserve(len(X));
     vc<pair<T, int>> tmp(len(X));
     FOR(i, len(X)) tmp[i] = {X[i], i};
@@ -84,11 +89,10 @@ struct Index_Compression_DISTINCT_LARGE {
 template <typename T, bool SMALL>
 using Index_Compression_DISTINCT =
     typename std::conditional<SMALL, Index_Compression_DISTINCT_SMALL<T>,
-                              Index_Compression_DISTINCT_LARGE<T>>::type;
+        Index_Compression_DISTINCT_LARGE<T>>::type;
 template <typename T, bool SMALL>
-using Index_Compression_SAME =
-    typename std::conditional<SMALL, Index_Compression_SAME_SMALL<T>,
-                              Index_Compression_SAME_LARGE<T>>::type;
+using Index_Compression_SAME = typename std::conditional<SMALL,
+    Index_Compression_SAME_SMALL<T>, Index_Compression_SAME_LARGE<T>>::type;
 
 // SAME: [2,3,2] -> [0,1,0]
 // DISTINCT: [2,2,3] -> [0,2,1]
@@ -97,4 +101,4 @@ using Index_Compression_SAME =
 template <typename T, bool SAME, bool SMALL>
 using Index_Compression =
     typename std::conditional<SAME, Index_Compression_SAME<T, SMALL>,
-                              Index_Compression_DISTINCT<T, SMALL>>::type;
+        Index_Compression_DISTINCT<T, SMALL>>::type;
