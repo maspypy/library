@@ -9,15 +9,19 @@ struct SplayTree {
   using X = typename Node::value_type;
   using A = typename Node::operator_type;
 
+  vc<np> buf;
+
   void free_subtree(np c) {
     if (!c) return;
-    auto dfs = [&](auto &dfs, np c) -> void {
-      if (c->l) dfs(dfs, c->l);
-      if (c->r) dfs(dfs, c->r);
+    buf.clear();
+    buf.eb(c);
+    while (len(buf)) {
+      auto c = POP(buf);
+      if (c->l) buf.eb(c->l);
+      if (c->r) buf.eb(c->r);
       c->p = c->l = c->r = nullptr;
       pool.destroy(c);
-    };
-    dfs(dfs, c);
+    }
   }
 
   void reset() { pool.reset(); }
@@ -118,14 +122,20 @@ struct SplayTree {
 
   vc<X> get_all(const np &root) {
     vc<X> res;
-    auto dfs = [&](auto &dfs, np root) -> void {
-      if (!root) return;
-      root->push();
-      dfs(dfs, root->l);
-      res.eb(root->get());
-      dfs(dfs, root->r);
-    };
-    dfs(dfs, root);
+    if (root) res.reserve(root->size);
+    buf.clear();
+
+    np c = root;
+    while (c || len(buf)) {
+      while (c) {
+        c->push();
+        buf.eb(c);
+        c = c->l;
+      }
+      c = POP(buf);
+      res.eb(c->get());
+      c = c->r;
+    }
     return res;
   }
 
@@ -211,12 +221,11 @@ struct SplayTree {
   }
 
   void push_from_root(np c) {
-    if (!c->p) {
-      c->push();
-      return;
-    }
-    push_from_root(c->p);
-    c->push();
+    buf.clear();
+    while (c->p) buf.eb(c), c = c->p;
+    v->push();
+    FOR_R(i, len(buf)) buf[i]->push();
+    return;
   }
 
   void splay(Node *me, bool push_from_root_done) {
