@@ -6,6 +6,8 @@ struct Index_Compression_DISTINCT_SMALL {
   int mi, ma;
   vc<T> dat;
   vc<T> build(vc<int> X) {
+    assert(!built);
+    built = true;
     mi = 0, ma = -1;
     if (!X.empty()) mi = MIN(X), ma = MAX(X);
     dat.assign(ma - mi + 2, 0);
@@ -53,6 +55,7 @@ struct Index_Compression_SAME_SMALL {
 
 template <typename T>
 struct Index_Compression_SAME_LARGE {
+  bool built = false;
   vc<T> dat;
   vc<int> build(const vc<T>& X) {
     assert(!built);
