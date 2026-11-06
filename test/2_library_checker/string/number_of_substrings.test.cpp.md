@@ -4,19 +4,19 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
   - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
   - icon: ':question:'
@@ -25,14 +25,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/number_of_substrings
@@ -284,25 +284,28 @@ data:
     \ Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/2_library_checker/string/number_of_substrings.test.cpp\"\
     \n\r\n#line 1 \"string/suffix_array.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/suffix_array.hpp\n\
     #line 1 \"ds/index_compression.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/index_compression.hpp\n\
-    template <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  bool built\
-    \ = false;\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<int> X) {\n    mi =\
-    \ 0, ma = -1;\n    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma\
-    \ - mi + 2, 0);\n    for (auto& x : X) dat[x - mi + 1]++;\n    FOR(i, len(dat)\
-    \ - 1) dat[i + 1] += dat[i];\n    for (auto& x : X) {\n      x = dat[x - mi]++;\n\
-    \    }\n    FOR_R(i, 1, len(dat)) dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return\
-    \ X;\n  }\n  int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma -\
-    \ mi + 1)]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL\
-    \ {\n  bool built = false;\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<T> X)\
-    \ {\n    assert(!built);\n    built = true;\n    mi = 0, ma = -1;\n    if (!X.empty())\
+    template <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  static_assert(std::is_same_v<T,\
+    \ int>);\n  bool built = false;\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<int>\
+    \ X) {\n    assert(!built);\n    built = true;\n    mi = 0, ma = -1;\n    if (!X.empty())\
+    \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
+    \ : X) dat[x - mi + 1]++;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n  \
+    \  for (auto& x : X) {\n      x = dat[x - mi]++;\n    }\n    FOR_R(i, 1, len(dat))\
+    \ dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return X;\n  }\n  int val_to_idx(T\
+    \ x) const {\n    if (x <= mi) return dat[0];\n    if (x > ma) return dat.back();\n\
+    \    return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];\n  }\n};\n\ntemplate <typename\
+    \ T>\nstruct Index_Compression_SAME_SMALL {\n  static_assert(std::is_same_v<T,\
+    \ int>);\n  bool built = false;\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<T>\
+    \ X) {\n    assert(!built);\n    built = true;\n    mi = 0, ma = -1;\n    if (!X.empty())\
     \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
     \ : X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n\
     \    for (auto& x : X) {\n      x = dat[x - mi];\n    }\n    return X;\n  }\n\
-    \  int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];\
-    \ }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE {\n  vc<T>\
-    \ dat;\n  vc<int> build(const vc<T>& X) {\n    assert(!built);\n    built = true;\n\
-    \    dat.reserve(len(X));\n    vc<pair<T, int>> tmp(len(X));\n    FOR(i, len(X))\
-    \ tmp[i] = {X[i], i};\n    sort(all(tmp));\n    vc<int> ANS(len(X));\n    for\
-    \ (auto [x, j] : tmp) {\n      if (dat.empty() || dat.back() != x) dat.eb(x);\n\
+    \  int val_to_idx(T x) const {\n    if (x <= mi) return dat[0];\n    if (x > ma)\
+    \ return dat.back();\n    return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];\n  }\n\
+    };\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE {\n  bool built\
+    \ = false;\n  vc<T> dat;\n  vc<int> build(const vc<T>& X) {\n    assert(!built);\n\
+    \    built = true;\n    dat.reserve(len(X));\n    vc<pair<T, int>> tmp(len(X));\n\
+    \    FOR(i, len(X)) tmp[i] = {X[i], i};\n    sort(all(tmp));\n    vc<int> ANS(len(X));\n\
+    \    for (auto [x, j] : tmp) {\n      if (dat.empty() || dat.back() != x) dat.eb(x);\n\
     \      ANS[j] = len(dat) - 1;\n    }\n    return ANS;\n  }\n  int size() const\
     \ { return len(dat); }\n  int val_to_idx(T x) const { return LB(dat, x); }\n \
     \ int idx_to_val(int i) const { return dat[i]; }\n};\n\ntemplate <typename T>\n\
@@ -589,8 +592,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/number_of_substrings.test.cpp
   requiredBy: []
-  timestamp: '2026-11-06 18:46:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-06 18:54:57+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/string/number_of_substrings.test.cpp
 layout: document

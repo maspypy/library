@@ -2,28 +2,28 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/offline_query/coefficient_query_2d.hpp
     title: ds/offline_query/coefficient_query_2d.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - icon: ':warning:'
     path: other/sliding_puzzle_solver.hpp
     title: other/sliding_puzzle_solver.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   - icon: ':warning:'
     path: string/basic_substring_structure.hpp
     title: string/basic_substring_structure.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/lex_max_suffix_for_all_prefix.hpp
     title: string/lex_max_suffix_for_all_prefix.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
   - icon: ':warning:'
@@ -35,114 +35,117 @@ data:
   - icon: ':warning:'
     path: string/substring_shortest_border.hpp
     title: string/substring_shortest_border.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_lcp_change.hpp
     title: string/suffix_lcp_change.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/index_compression.test.cpp
     title: test/1_mytest/index_compression.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/lex_minmax_suffix.test.cpp
     title: test/1_mytest/lex_minmax_suffix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/longest_common_substr.test.cpp
     title: test/1_mytest/longest_common_substr.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/suffix_lcp_change.test.cpp
     title: test/1_mytest/suffix_lcp_change.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/longest_common_substring.test.cpp
     title: test/2_library_checker/string/longest_common_substring.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/number_of_substrings.test.cpp
     title: test/2_library_checker/string/number_of_substrings.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/suffix_array.test.cpp
     title: test/2_library_checker/string/suffix_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/suffix_array_vec.test.cpp
     title: test/2_library_checker/string/suffix_array_vec.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1490.test.cpp
     title: test/3_yukicoder/1490.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1625_2.test.cpp
     title: test/3_yukicoder/1625_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1838.test.cpp
     title: test/3_yukicoder/1838.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1919_2.test.cpp
     title: test/3_yukicoder/1919_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2859.test.cpp
     title: test/3_yukicoder/2859.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/694.test.cpp
     title: test/3_yukicoder/694.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_2_A.test.cpp
     title: test/4_aoj/ALDS1_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_5.test.cpp
     title: test/4_aoj/ALDS1_5.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/index_compression.hpp
   bundledCode: "#line 1 \"ds/index_compression.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/index_compression.hpp\n\
-    template <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  bool built\
-    \ = false;\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<int> X) {\n    mi =\
-    \ 0, ma = -1;\n    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma\
-    \ - mi + 2, 0);\n    for (auto& x : X) dat[x - mi + 1]++;\n    FOR(i, len(dat)\
-    \ - 1) dat[i + 1] += dat[i];\n    for (auto& x : X) {\n      x = dat[x - mi]++;\n\
-    \    }\n    FOR_R(i, 1, len(dat)) dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return\
-    \ X;\n  }\n  int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma -\
-    \ mi + 1)]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL\
-    \ {\n  bool built = false;\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<T> X)\
-    \ {\n    assert(!built);\n    built = true;\n    mi = 0, ma = -1;\n    if (!X.empty())\
+    template <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  static_assert(std::is_same_v<T,\
+    \ int>);\n  bool built = false;\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<int>\
+    \ X) {\n    assert(!built);\n    built = true;\n    mi = 0, ma = -1;\n    if (!X.empty())\
+    \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
+    \ : X) dat[x - mi + 1]++;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n  \
+    \  for (auto& x : X) {\n      x = dat[x - mi]++;\n    }\n    FOR_R(i, 1, len(dat))\
+    \ dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return X;\n  }\n  int val_to_idx(T\
+    \ x) const {\n    if (x <= mi) return dat[0];\n    if (x > ma) return dat.back();\n\
+    \    return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];\n  }\n};\n\ntemplate <typename\
+    \ T>\nstruct Index_Compression_SAME_SMALL {\n  static_assert(std::is_same_v<T,\
+    \ int>);\n  bool built = false;\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<T>\
+    \ X) {\n    assert(!built);\n    built = true;\n    mi = 0, ma = -1;\n    if (!X.empty())\
     \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
     \ : X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n\
     \    for (auto& x : X) {\n      x = dat[x - mi];\n    }\n    return X;\n  }\n\
-    \  int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];\
-    \ }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE {\n  vc<T>\
-    \ dat;\n  vc<int> build(const vc<T>& X) {\n    assert(!built);\n    built = true;\n\
-    \    dat.reserve(len(X));\n    vc<pair<T, int>> tmp(len(X));\n    FOR(i, len(X))\
-    \ tmp[i] = {X[i], i};\n    sort(all(tmp));\n    vc<int> ANS(len(X));\n    for\
-    \ (auto [x, j] : tmp) {\n      if (dat.empty() || dat.back() != x) dat.eb(x);\n\
+    \  int val_to_idx(T x) const {\n    if (x <= mi) return dat[0];\n    if (x > ma)\
+    \ return dat.back();\n    return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];\n  }\n\
+    };\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE {\n  bool built\
+    \ = false;\n  vc<T> dat;\n  vc<int> build(const vc<T>& X) {\n    assert(!built);\n\
+    \    built = true;\n    dat.reserve(len(X));\n    vc<pair<T, int>> tmp(len(X));\n\
+    \    FOR(i, len(X)) tmp[i] = {X[i], i};\n    sort(all(tmp));\n    vc<int> ANS(len(X));\n\
+    \    for (auto [x, j] : tmp) {\n      if (dat.empty() || dat.back() != x) dat.eb(x);\n\
     \      ANS[j] = len(dat) - 1;\n    }\n    return ANS;\n  }\n  int size() const\
     \ { return len(dat); }\n  int val_to_idx(T x) const { return LB(dat, x); }\n \
     \ int idx_to_val(int i) const { return dat[i]; }\n};\n\ntemplate <typename T>\n\
@@ -163,25 +166,28 @@ data:
     \ SAME, bool SMALL>\nusing Index_Compression =\n    typename std::conditional<SAME,\
     \ Index_Compression_SAME<T, SMALL>,\n        Index_Compression_DISTINCT<T, SMALL>>::type;\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/ds/index_compression.hpp\n\
-    template <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  bool built\
-    \ = false;\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<int> X) {\n    mi =\
-    \ 0, ma = -1;\n    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma\
-    \ - mi + 2, 0);\n    for (auto& x : X) dat[x - mi + 1]++;\n    FOR(i, len(dat)\
-    \ - 1) dat[i + 1] += dat[i];\n    for (auto& x : X) {\n      x = dat[x - mi]++;\n\
-    \    }\n    FOR_R(i, 1, len(dat)) dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return\
-    \ X;\n  }\n  int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma -\
-    \ mi + 1)]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL\
-    \ {\n  bool built = false;\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<T> X)\
-    \ {\n    assert(!built);\n    built = true;\n    mi = 0, ma = -1;\n    if (!X.empty())\
+    template <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  static_assert(std::is_same_v<T,\
+    \ int>);\n  bool built = false;\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<int>\
+    \ X) {\n    assert(!built);\n    built = true;\n    mi = 0, ma = -1;\n    if (!X.empty())\
+    \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
+    \ : X) dat[x - mi + 1]++;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n  \
+    \  for (auto& x : X) {\n      x = dat[x - mi]++;\n    }\n    FOR_R(i, 1, len(dat))\
+    \ dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return X;\n  }\n  int val_to_idx(T\
+    \ x) const {\n    if (x <= mi) return dat[0];\n    if (x > ma) return dat.back();\n\
+    \    return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];\n  }\n};\n\ntemplate <typename\
+    \ T>\nstruct Index_Compression_SAME_SMALL {\n  static_assert(std::is_same_v<T,\
+    \ int>);\n  bool built = false;\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<T>\
+    \ X) {\n    assert(!built);\n    built = true;\n    mi = 0, ma = -1;\n    if (!X.empty())\
     \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
     \ : X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n\
     \    for (auto& x : X) {\n      x = dat[x - mi];\n    }\n    return X;\n  }\n\
-    \  int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];\
-    \ }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE {\n  vc<T>\
-    \ dat;\n  vc<int> build(const vc<T>& X) {\n    assert(!built);\n    built = true;\n\
-    \    dat.reserve(len(X));\n    vc<pair<T, int>> tmp(len(X));\n    FOR(i, len(X))\
-    \ tmp[i] = {X[i], i};\n    sort(all(tmp));\n    vc<int> ANS(len(X));\n    for\
-    \ (auto [x, j] : tmp) {\n      if (dat.empty() || dat.back() != x) dat.eb(x);\n\
+    \  int val_to_idx(T x) const {\n    if (x <= mi) return dat[0];\n    if (x > ma)\
+    \ return dat.back();\n    return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];\n  }\n\
+    };\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE {\n  bool built\
+    \ = false;\n  vc<T> dat;\n  vc<int> build(const vc<T>& X) {\n    assert(!built);\n\
+    \    built = true;\n    dat.reserve(len(X));\n    vc<pair<T, int>> tmp(len(X));\n\
+    \    FOR(i, len(X)) tmp[i] = {X[i], i};\n    sort(all(tmp));\n    vc<int> ANS(len(X));\n\
+    \    for (auto [x, j] : tmp) {\n      if (dat.empty() || dat.back() != x) dat.eb(x);\n\
     \      ANS[j] = len(dat) - 1;\n    }\n    return ANS;\n  }\n  int size() const\
     \ { return len(dat); }\n  int val_to_idx(T x) const { return LB(dat, x); }\n \
     \ int idx_to_val(int i) const { return dat[i]; }\n};\n\ntemplate <typename T>\n\
@@ -219,8 +225,8 @@ data:
   - string/many_string_compare.hpp
   - string/sort_substrings.hpp
   - seq/inversion.hpp
-  timestamp: '2026-11-06 18:46:26+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-11-06 18:54:57+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp

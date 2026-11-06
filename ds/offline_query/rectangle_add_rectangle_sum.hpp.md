@@ -4,26 +4,26 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/offline_query/coefficient_query_2d.hpp
     title: ds/offline_query/coefficient_query_2d.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1490.test.cpp
     title: test/3_yukicoder/1490.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/offline_query/rectangle_add_rectangle_sum.hpp
@@ -31,25 +31,28 @@ data:
     \ https://github.com/maspypy/library/blob/main/ds/offline_query/rectangle_add_rectangle_sum.hpp\n\
     #line 1 \"ds/offline_query/coefficient_query_2d.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/offline_query/coefficient_query_2d.hpp\n\
     #line 1 \"ds/index_compression.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/index_compression.hpp\n\
-    template <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  bool built\
-    \ = false;\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<int> X) {\n    mi =\
-    \ 0, ma = -1;\n    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma\
-    \ - mi + 2, 0);\n    for (auto& x : X) dat[x - mi + 1]++;\n    FOR(i, len(dat)\
-    \ - 1) dat[i + 1] += dat[i];\n    for (auto& x : X) {\n      x = dat[x - mi]++;\n\
-    \    }\n    FOR_R(i, 1, len(dat)) dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return\
-    \ X;\n  }\n  int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma -\
-    \ mi + 1)]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL\
-    \ {\n  bool built = false;\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<T> X)\
-    \ {\n    assert(!built);\n    built = true;\n    mi = 0, ma = -1;\n    if (!X.empty())\
+    template <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  static_assert(std::is_same_v<T,\
+    \ int>);\n  bool built = false;\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<int>\
+    \ X) {\n    assert(!built);\n    built = true;\n    mi = 0, ma = -1;\n    if (!X.empty())\
+    \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
+    \ : X) dat[x - mi + 1]++;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n  \
+    \  for (auto& x : X) {\n      x = dat[x - mi]++;\n    }\n    FOR_R(i, 1, len(dat))\
+    \ dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return X;\n  }\n  int val_to_idx(T\
+    \ x) const {\n    if (x <= mi) return dat[0];\n    if (x > ma) return dat.back();\n\
+    \    return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];\n  }\n};\n\ntemplate <typename\
+    \ T>\nstruct Index_Compression_SAME_SMALL {\n  static_assert(std::is_same_v<T,\
+    \ int>);\n  bool built = false;\n  int mi, ma;\n  vc<T> dat;\n  vc<T> build(vc<T>\
+    \ X) {\n    assert(!built);\n    built = true;\n    mi = 0, ma = -1;\n    if (!X.empty())\
     \ mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x\
     \ : X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n\
     \    for (auto& x : X) {\n      x = dat[x - mi];\n    }\n    return X;\n  }\n\
-    \  int val_to_idx(T x) const { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];\
-    \ }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE {\n  vc<T>\
-    \ dat;\n  vc<int> build(const vc<T>& X) {\n    assert(!built);\n    built = true;\n\
-    \    dat.reserve(len(X));\n    vc<pair<T, int>> tmp(len(X));\n    FOR(i, len(X))\
-    \ tmp[i] = {X[i], i};\n    sort(all(tmp));\n    vc<int> ANS(len(X));\n    for\
-    \ (auto [x, j] : tmp) {\n      if (dat.empty() || dat.back() != x) dat.eb(x);\n\
+    \  int val_to_idx(T x) const {\n    if (x <= mi) return dat[0];\n    if (x > ma)\
+    \ return dat.back();\n    return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];\n  }\n\
+    };\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE {\n  bool built\
+    \ = false;\n  vc<T> dat;\n  vc<int> build(const vc<T>& X) {\n    assert(!built);\n\
+    \    built = true;\n    dat.reserve(len(X));\n    vc<pair<T, int>> tmp(len(X));\n\
+    \    FOR(i, len(X)) tmp[i] = {X[i], i};\n    sort(all(tmp));\n    vc<int> ANS(len(X));\n\
+    \    for (auto [x, j] : tmp) {\n      if (dat.empty() || dat.back() != x) dat.eb(x);\n\
     \      ANS[j] = len(dat) - 1;\n    }\n    return ANS;\n  }\n  int size() const\
     \ { return len(dat); }\n  int val_to_idx(T x) const { return LB(dat, x); }\n \
     \ int idx_to_val(int i) const { return dat[i]; }\n};\n\ntemplate <typename T>\n\
@@ -214,8 +217,8 @@ data:
   isVerificationFile: false
   path: ds/offline_query/rectangle_add_rectangle_sum.hpp
   requiredBy: []
-  timestamp: '2026-11-06 18:46:26+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-11-06 18:54:57+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - test/3_yukicoder/1490.test.cpp
