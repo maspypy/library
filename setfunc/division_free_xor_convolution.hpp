@@ -1,3 +1,5 @@
+#include "poly/convolution.hpp"
+
 // Source: https://github.com/maspypy/library/blob/main/setfunc/division_free_xor_convolution.hpp
 // https://uoj.ac/contest/103/problem/1015
 template <typename T>

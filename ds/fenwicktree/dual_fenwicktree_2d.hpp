@@ -72,25 +72,32 @@ struct Dual_FenwickTree_2D {
     E val = G::id();
     int i = xtoi(x);
     assert(keyX[i] == x);
-    while (i < N) { val = G::op(val, get_i(i, y)), i = nxt(i); }
+    while (i < N) {
+      val = G::op(val, get_i(i, y)), i = nxt(i);
+    }
     return val;
   }
 
   void apply(XY lx, XY rx, XY ly, XY ry, E val) {
     int L = xtoi(lx) - 1, R = xtoi(rx) - 1;
     E neg = G::inverse(val);
-    while (L < R) { apply_i(R, ly, ry, val), R = prev(R); }
-    while (R < L) { apply_i(L, ly, ry, neg), L = prev(L); }
+    while (L < R) {
+      apply_i(R, ly, ry, val), R = prev(R);
+    }
+    while (R < L) {
+      apply_i(L, ly, ry, neg), L = prev(L);
+    }
   }
 
-private:
+ private:
   E get_i(int i, XY y) {
     E val = G::id();
     int LID = indptr[i], n = indptr[i + 1] - indptr[i];
     auto it = keyY.begin() + LID;
     int j = lower_bound(it, it + n, y) - it;
-    vc<int> Y_sub = {it, it + n};
-    while (j < n) { val = G::op(val, dat[LID + j]), j = nxt(j); }
+    while (j < n) {
+      val = G::op(val, dat[LID + j]), j = nxt(j);
+    }
     return val;
   }
 
@@ -100,7 +107,11 @@ private:
     auto it = keyY.begin() + LID;
     int L = lower_bound(it, it + n, ly) - it - 1;
     int R = lower_bound(it, it + n, ry) - it - 1;
-    while (L < R) { dat[LID + R] = G::op(val, dat[LID + R]), R = prev(R); }
-    while (R < L) { dat[LID + L] = G::op(neg, dat[LID + L]), L = prev(L); }
+    while (L < R) {
+      dat[LID + R] = G::op(val, dat[LID + R]), R = prev(R);
+    }
+    while (R < L) {
+      dat[LID + L] = G::op(neg, dat[LID + L]), L = prev(L);
+    }
   }
 };

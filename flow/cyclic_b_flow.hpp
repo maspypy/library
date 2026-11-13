@@ -8,7 +8,7 @@ template <typename CAP, typename COST>
 COST cyclic_b_flow(vc<CAP> supply, vc<COST> cost) {
   const int N = len(supply);
   if (N == 0) return 0;
-  assert(SUM(supply) == 0);
+  assert(SUM<CAP>(supply) == 0);
   auto f = [&](ll x) -> ll {
     // N-1 → 0 の移動が x
     ll res = abs(x) * cost.back();

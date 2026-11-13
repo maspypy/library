@@ -78,7 +78,7 @@ struct Longest_Shortest_Path {
     }
     add(s, t, L), add(t, s, -L);
     resG.build();
-    vc<T> dist = dijkstra<ll>(resG, s).fi;
+    vc<T> dist = dijkstra<T>(resG, s).fi;
     FOR(x, N) pot[x] += dist[x];
     return pot;
   }

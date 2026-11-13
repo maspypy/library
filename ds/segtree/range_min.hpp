@@ -1,5 +1,7 @@
 // Source: https://github.com/maspypy/library/blob/main/ds/segtree/range_min.hpp
 
+#include "alg/monoid/min.hpp"
+
 // 2026/11/04 AI generated.
 
 #if defined(__x86_64__) && (defined(__GNUC__) || defined(__clang__))
@@ -13,6 +15,7 @@ template <typename T>
 struct Range_Min {
   static_assert(is_same_v<T, int> || is_same_v<T, ll>);
   using value_type = T;
+  using MX = Monoid_Min<T>;
 
   static constexpr T INF = infty<T>;
   static constexpr int B = 64 / sizeof(T);

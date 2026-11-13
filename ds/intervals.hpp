@@ -148,6 +148,7 @@ struct Intervals {
   template <typename F>
   void enumerate_range(X L, X R, F f, bool ERASE = false) {
     assert(LLIM <= L && L <= R && R <= RLIM);
+    if (L == R) return;
     if (!ERASE) {
       auto it = prev(dat.upper_bound(L));
       while ((*it).fi < R) {
