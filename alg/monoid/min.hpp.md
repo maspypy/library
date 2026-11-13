@@ -20,6 +20,12 @@ data:
   - icon: ':warning:'
     path: ds/range_mex_change.hpp
     title: ds/range_mex_change.hpp
+  - icon: ':warning:'
+    path: ds/segtree/range_max.hpp
+    title: ds/segtree/range_max.hpp
+  - icon: ':warning:'
+    path: ds/segtree/range_min.hpp
+    title: ds/segtree/range_min.hpp
   - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
@@ -210,6 +216,8 @@ data:
   path: alg/monoid/min.hpp
   requiredBy:
   - ds/range_mex_change.hpp
+  - ds/segtree/range_max.hpp
+  - ds/segtree/range_min.hpp
   - string/basic_substring_structure.hpp
   - string/suffix_lcp_change.hpp
   - string/lex_max_suffix_for_all_prefix.hpp

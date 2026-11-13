@@ -289,7 +289,7 @@ data:
     \ pot[a] - pot[b];\n      resG.add(a, b, x);\n    };\n    for (auto& e : G.edges())\
     \ {\n      if (e.cap > e.flow) add(e.frm, e.to, e.cost);\n      if (e.flow > 0)\
     \ add(e.to, e.frm, -e.cost);\n    }\n    add(s, t, L), add(t, s, -L);\n    resG.build();\n\
-    \    vc<T> dist = dijkstra<ll>(resG, s).fi;\n    FOR(x, N) pot[x] += dist[x];\n\
+    \    vc<T> dist = dijkstra<T>(resG, s).fi;\n    FOR(x, N) pot[x] += dist[x];\n\
     \    return pot;\n  }\n\n  // \u5909\u66F4\u5F8C\u306E\u9577\u3055\n  vc<T> get_edges()\
     \ {\n    get_potentials();\n    vc<T> res;\n    for (auto [frm, to, length, cost]\
     \ : dat) {\n      res.eb(max<T>(length, pot[to] - pot[frm]));\n    }\n    return\
@@ -325,7 +325,7 @@ data:
     \ a, int b, T x) -> void {\n      x = x + pot[a] - pot[b];\n      resG.add(a,\
     \ b, x);\n    };\n    for (auto& e : G.edges()) {\n      if (e.cap > e.flow) add(e.frm,\
     \ e.to, e.cost);\n      if (e.flow > 0) add(e.to, e.frm, -e.cost);\n    }\n  \
-    \  add(s, t, L), add(t, s, -L);\n    resG.build();\n    vc<T> dist = dijkstra<ll>(resG,\
+    \  add(s, t, L), add(t, s, -L);\n    resG.build();\n    vc<T> dist = dijkstra<T>(resG,\
     \ s).fi;\n    FOR(x, N) pot[x] += dist[x];\n    return pot;\n  }\n\n  // \u5909\
     \u66F4\u5F8C\u306E\u9577\u3055\n  vc<T> get_edges() {\n    get_potentials();\n\
     \    vc<T> res;\n    for (auto [frm, to, length, cost] : dat) {\n      res.eb(max<T>(length,\
@@ -338,7 +338,7 @@ data:
   isVerificationFile: false
   path: flow/longest_shortest_path.hpp
   requiredBy: []
-  timestamp: '2026-10-30 00:34:21+09:00'
+  timestamp: '2026-11-13 14:14:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: flow/longest_shortest_path.hpp

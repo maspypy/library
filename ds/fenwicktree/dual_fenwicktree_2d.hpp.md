@@ -46,20 +46,21 @@ data:
     \ < N) {\n        if (last_y[ix] == y) break;\n        last_y[ix] = y, keyY[prog[ix]++]\
     \ = y, ix = nxt(ix);\n      }\n    }\n  }\n\n  E get(XY x, XY y) {\n    E val\
     \ = G::id();\n    int i = xtoi(x);\n    assert(keyX[i] == x);\n    while (i <\
-    \ N) { val = G::op(val, get_i(i, y)), i = nxt(i); }\n    return val;\n  }\n\n\
-    \  void apply(XY lx, XY rx, XY ly, XY ry, E val) {\n    int L = xtoi(lx) - 1,\
-    \ R = xtoi(rx) - 1;\n    E neg = G::inverse(val);\n    while (L < R) { apply_i(R,\
-    \ ly, ry, val), R = prev(R); }\n    while (R < L) { apply_i(L, ly, ry, neg), L\
-    \ = prev(L); }\n  }\n\nprivate:\n  E get_i(int i, XY y) {\n    E val = G::id();\n\
-    \    int LID = indptr[i], n = indptr[i + 1] - indptr[i];\n    auto it = keyY.begin()\
-    \ + LID;\n    int j = lower_bound(it, it + n, y) - it;\n    vc<int> Y_sub = {it,\
-    \ it + n};\n    while (j < n) { val = G::op(val, dat[LID + j]), j = nxt(j); }\n\
-    \    return val;\n  }\n\n  void apply_i(int i, XY ly, XY ry, E val) {\n    E neg\
-    \ = G::inverse(val);\n    int LID = indptr[i], n = indptr[i + 1] - indptr[i];\n\
-    \    auto it = keyY.begin() + LID;\n    int L = lower_bound(it, it + n, ly) -\
-    \ it - 1;\n    int R = lower_bound(it, it + n, ry) - it - 1;\n    while (L < R)\
-    \ { dat[LID + R] = G::op(val, dat[LID + R]), R = prev(R); }\n    while (R < L)\
-    \ { dat[LID + L] = G::op(neg, dat[LID + L]), L = prev(L); }\n  }\n};\n"
+    \ N) {\n      val = G::op(val, get_i(i, y)), i = nxt(i);\n    }\n    return val;\n\
+    \  }\n\n  void apply(XY lx, XY rx, XY ly, XY ry, E val) {\n    int L = xtoi(lx)\
+    \ - 1, R = xtoi(rx) - 1;\n    E neg = G::inverse(val);\n    while (L < R) {\n\
+    \      apply_i(R, ly, ry, val), R = prev(R);\n    }\n    while (R < L) {\n   \
+    \   apply_i(L, ly, ry, neg), L = prev(L);\n    }\n  }\n\n private:\n  E get_i(int\
+    \ i, XY y) {\n    E val = G::id();\n    int LID = indptr[i], n = indptr[i + 1]\
+    \ - indptr[i];\n    auto it = keyY.begin() + LID;\n    int j = lower_bound(it,\
+    \ it + n, y) - it;\n    while (j < n) {\n      val = G::op(val, dat[LID + j]),\
+    \ j = nxt(j);\n    }\n    return val;\n  }\n\n  void apply_i(int i, XY ly, XY\
+    \ ry, E val) {\n    E neg = G::inverse(val);\n    int LID = indptr[i], n = indptr[i\
+    \ + 1] - indptr[i];\n    auto it = keyY.begin() + LID;\n    int L = lower_bound(it,\
+    \ it + n, ly) - it - 1;\n    int R = lower_bound(it, it + n, ry) - it - 1;\n \
+    \   while (L < R) {\n      dat[LID + R] = G::op(val, dat[LID + R]), R = prev(R);\n\
+    \    }\n    while (R < L) {\n      dat[LID + L] = G::op(neg, dat[LID + L]), L\
+    \ = prev(L);\n    }\n  }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/ds/fenwicktree/dual_fenwicktree_2d.hpp\n\
     #include \"alg/monoid/add.hpp\"\n\ntemplate <typename Monoid, typename XY, bool\
     \ SMALL_X = false>\nstruct Dual_FenwickTree_2D {\n  using G = Monoid;\n  using\
@@ -84,27 +85,27 @@ data:
     \  XY y = Y[i];\n      while (ix < N) {\n        if (last_y[ix] == y) break;\n\
     \        last_y[ix] = y, keyY[prog[ix]++] = y, ix = nxt(ix);\n      }\n    }\n\
     \  }\n\n  E get(XY x, XY y) {\n    E val = G::id();\n    int i = xtoi(x);\n  \
-    \  assert(keyX[i] == x);\n    while (i < N) { val = G::op(val, get_i(i, y)), i\
-    \ = nxt(i); }\n    return val;\n  }\n\n  void apply(XY lx, XY rx, XY ly, XY ry,\
-    \ E val) {\n    int L = xtoi(lx) - 1, R = xtoi(rx) - 1;\n    E neg = G::inverse(val);\n\
-    \    while (L < R) { apply_i(R, ly, ry, val), R = prev(R); }\n    while (R < L)\
-    \ { apply_i(L, ly, ry, neg), L = prev(L); }\n  }\n\nprivate:\n  E get_i(int i,\
-    \ XY y) {\n    E val = G::id();\n    int LID = indptr[i], n = indptr[i + 1] -\
-    \ indptr[i];\n    auto it = keyY.begin() + LID;\n    int j = lower_bound(it, it\
-    \ + n, y) - it;\n    vc<int> Y_sub = {it, it + n};\n    while (j < n) { val =\
-    \ G::op(val, dat[LID + j]), j = nxt(j); }\n    return val;\n  }\n\n  void apply_i(int\
-    \ i, XY ly, XY ry, E val) {\n    E neg = G::inverse(val);\n    int LID = indptr[i],\
-    \ n = indptr[i + 1] - indptr[i];\n    auto it = keyY.begin() + LID;\n    int L\
-    \ = lower_bound(it, it + n, ly) - it - 1;\n    int R = lower_bound(it, it + n,\
-    \ ry) - it - 1;\n    while (L < R) { dat[LID + R] = G::op(val, dat[LID + R]),\
-    \ R = prev(R); }\n    while (R < L) { dat[LID + L] = G::op(neg, dat[LID + L]),\
-    \ L = prev(L); }\n  }\n};\n"
+    \  assert(keyX[i] == x);\n    while (i < N) {\n      val = G::op(val, get_i(i,\
+    \ y)), i = nxt(i);\n    }\n    return val;\n  }\n\n  void apply(XY lx, XY rx,\
+    \ XY ly, XY ry, E val) {\n    int L = xtoi(lx) - 1, R = xtoi(rx) - 1;\n    E neg\
+    \ = G::inverse(val);\n    while (L < R) {\n      apply_i(R, ly, ry, val), R =\
+    \ prev(R);\n    }\n    while (R < L) {\n      apply_i(L, ly, ry, neg), L = prev(L);\n\
+    \    }\n  }\n\n private:\n  E get_i(int i, XY y) {\n    E val = G::id();\n   \
+    \ int LID = indptr[i], n = indptr[i + 1] - indptr[i];\n    auto it = keyY.begin()\
+    \ + LID;\n    int j = lower_bound(it, it + n, y) - it;\n    while (j < n) {\n\
+    \      val = G::op(val, dat[LID + j]), j = nxt(j);\n    }\n    return val;\n \
+    \ }\n\n  void apply_i(int i, XY ly, XY ry, E val) {\n    E neg = G::inverse(val);\n\
+    \    int LID = indptr[i], n = indptr[i + 1] - indptr[i];\n    auto it = keyY.begin()\
+    \ + LID;\n    int L = lower_bound(it, it + n, ly) - it - 1;\n    int R = lower_bound(it,\
+    \ it + n, ry) - it - 1;\n    while (L < R) {\n      dat[LID + R] = G::op(val,\
+    \ dat[LID + R]), R = prev(R);\n    }\n    while (R < L) {\n      dat[LID + L]\
+    \ = G::op(neg, dat[LID + L]), L = prev(L);\n    }\n  }\n};\n"
   dependsOn:
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: ds/fenwicktree/dual_fenwicktree_2d.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-11-13 14:14:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/rect_add_pt_get.test.cpp

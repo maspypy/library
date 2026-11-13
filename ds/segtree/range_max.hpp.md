@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':question:'
+    path: alg/monoid/min.hpp
+    title: alg/monoid/min.hpp
   - icon: ':warning:'
     path: ds/segtree/range_min.hpp
     title: ds/segtree/range_min.hpp
@@ -14,17 +17,23 @@ data:
     - https://github.com/maspypy/library/blob/main/ds/segtree/range_max.hpp
   bundledCode: "#line 1 \"ds/segtree/range_max.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/range_max.hpp\n\
     #line 1 \"ds/segtree/range_min.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/range_min.hpp\n\
-    \n// 2026/11/04 AI generated.\n\n#if defined(__x86_64__) && (defined(__GNUC__)\
-    \ || defined(__clang__))\n#include <immintrin.h>\n#define RANGE_MIN_AVX2 1\n#else\n\
-    #define RANGE_MIN_AVX2 0\n#endif\n\ntemplate <typename T>\nstruct Range_Min {\n\
-    \  static_assert(is_same_v<T, int> || is_same_v<T, ll>);\n  using value_type =\
-    \ T;\n\n  static constexpr T INF = infty<T>;\n  static constexpr int B = 64 /\
-    \ sizeof(T);\n\n  struct alignas(64) Block {\n    T a[B];\n  };\n  static_assert(sizeof(Block)\
-    \ == 64);\n\n  int n = 0;\n\n private:\n  vc<vc<Block>> dat;\n  bool use_avx2\
-    \ = false;\n\n  static T reduce_scalar(const T* p) {\n    T x = INF;\n    for\
-    \ (int j = 0; j < B; ++j) x = min(x, p[j]);\n    return x;\n  }\n\n  static T\
-    \ range_scalar(const T* p, int l, int r) {\n    T x = INF;\n    for (int j = l;\
-    \ j < r; ++j) x = min(x, p[j]);\n    return x;\n  }\n\n#if RANGE_MIN_AVX2\n  __attribute__((target(\"\
+    \n#line 1 \"alg/monoid/min.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/min.hpp\n\
+    // require: all values x satisfy x < infty<E>\ntemplate <typename E>\nstruct Monoid_Min\
+    \ {\n  using X = E;\n  using value_type = X;\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
+    \ return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 4 \"\
+    ds/segtree/range_min.hpp\"\n\n// 2026/11/04 AI generated.\n\n#if defined(__x86_64__)\
+    \ && (defined(__GNUC__) || defined(__clang__))\n#include <immintrin.h>\n#define\
+    \ RANGE_MIN_AVX2 1\n#else\n#define RANGE_MIN_AVX2 0\n#endif\n\ntemplate <typename\
+    \ T>\nstruct Range_Min {\n  static_assert(is_same_v<T, int> || is_same_v<T, ll>);\n\
+    \  using value_type = T;\n  using MX = Monoid_Min<T>;\n\n  static constexpr T\
+    \ INF = infty<T>;\n  static constexpr int B = 64 / sizeof(T);\n\n  struct alignas(64)\
+    \ Block {\n    T a[B];\n  };\n  static_assert(sizeof(Block) == 64);\n\n  int n\
+    \ = 0;\n\n private:\n  vc<vc<Block>> dat;\n  bool use_avx2 = false;\n\n  static\
+    \ T reduce_scalar(const T* p) {\n    T x = INF;\n    for (int j = 0; j < B; ++j)\
+    \ x = min(x, p[j]);\n    return x;\n  }\n\n  static T range_scalar(const T* p,\
+    \ int l, int r) {\n    T x = INF;\n    for (int j = l; j < r; ++j) x = min(x,\
+    \ p[j]);\n    return x;\n  }\n\n#if RANGE_MIN_AVX2\n  __attribute__((target(\"\
     avx2\"))) static __m256i min64(__m256i a, __m256i b) {\n    return _mm256_blendv_epi8(a,\
     \ b, _mm256_cmpgt_epi64(a, b));\n  }\n\n  __attribute__((target(\"avx2\"))) static\
     \ T reduce_avx2(const T* p) {\n    if constexpr (is_same_v<T, int>) {\n      __m256i\
@@ -164,10 +173,11 @@ data:
     \ seg.min_left([&](T x) { return check(-x); }, R);\n  }\n};\n"
   dependsOn:
   - ds/segtree/range_min.hpp
+  - alg/monoid/min.hpp
   isVerificationFile: false
   path: ds/segtree/range_max.hpp
   requiredBy: []
-  timestamp: '2026-11-04 21:29:24+09:00'
+  timestamp: '2026-11-13 14:14:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/segtree/range_max.hpp

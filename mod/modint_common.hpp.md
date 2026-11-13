@@ -422,6 +422,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
+  - icon: ':warning:'
+    path: setfunc/division_free_xor_convolution.hpp
+    title: setfunc/division_free_xor_convolution.hpp
   - icon: ':heavy_check_mark:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
@@ -1595,6 +1598,7 @@ data:
   - poly/composition_f_x_plus_1x.hpp
   - setfunc/power_projection_of_sps.hpp
   - setfunc/sps_log.hpp
+  - setfunc/division_free_xor_convolution.hpp
   - convex/lattice_point_sum_polynomial_pq.hpp
   - convex/lattice_point_sum_polynomial.hpp
   - mod/dynamic_modint_64.hpp

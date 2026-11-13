@@ -14,7 +14,7 @@ data:
     /*\n\u5186\u74B0\u4E0A\u306E MCF\u3002\ncost[i]\uFF1Ai \u2192 i+1 \u306E\u30B3\
     \u30B9\u30C8\nhttps://atcoder.jp/contests/dwango2015-prelims/tasks/dwango2015_prelims_4\n\
     */\ntemplate <typename CAP, typename COST>\nCOST cyclic_b_flow(vc<CAP> supply,\
-    \ vc<COST> cost) {\n  const int N = len(supply);\n  if (N == 0) return 0;\n  assert(SUM(supply)\
+    \ vc<COST> cost) {\n  const int N = len(supply);\n  if (N == 0) return 0;\n  assert(SUM<CAP>(supply)\
     \ == 0);\n  auto f = [&](ll x) -> ll {\n    // N-1 \u2192 0 \u306E\u79FB\u52D5\
     \u304C x\n    ll res = abs(x) * cost.back();\n    FOR(i, N - 1) {\n      // \u53F3\
     \u306B\u51FA\u308B\u91CF\u306F\uFF1F\n      x += supply[i];\n      res += abs(x)\
@@ -26,7 +26,7 @@ data:
     /*\n\u5186\u74B0\u4E0A\u306E MCF\u3002\ncost[i]\uFF1Ai \u2192 i+1 \u306E\u30B3\
     \u30B9\u30C8\nhttps://atcoder.jp/contests/dwango2015-prelims/tasks/dwango2015_prelims_4\n\
     */\ntemplate <typename CAP, typename COST>\nCOST cyclic_b_flow(vc<CAP> supply,\
-    \ vc<COST> cost) {\n  const int N = len(supply);\n  if (N == 0) return 0;\n  assert(SUM(supply)\
+    \ vc<COST> cost) {\n  const int N = len(supply);\n  if (N == 0) return 0;\n  assert(SUM<CAP>(supply)\
     \ == 0);\n  auto f = [&](ll x) -> ll {\n    // N-1 \u2192 0 \u306E\u79FB\u52D5\
     \u304C x\n    ll res = abs(x) * cost.back();\n    FOR(i, N - 1) {\n      // \u53F3\
     \u306B\u51FA\u308B\u91CF\u306F\uFF1F\n      x += supply[i];\n      res += abs(x)\
@@ -38,7 +38,7 @@ data:
   isVerificationFile: false
   path: flow/cyclic_b_flow.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-11-13 14:14:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: flow/cyclic_b_flow.hpp

@@ -298,30 +298,30 @@ data:
     \ < N) {\n        if (last_y[ix] == y) break;\n        last_y[ix] = y, keyY[prog[ix]++]\
     \ = y, ix = nxt(ix);\n      }\n    }\n  }\n\n  E get(XY x, XY y) {\n    E val\
     \ = G::id();\n    int i = xtoi(x);\n    assert(keyX[i] == x);\n    while (i <\
-    \ N) { val = G::op(val, get_i(i, y)), i = nxt(i); }\n    return val;\n  }\n\n\
-    \  void apply(XY lx, XY rx, XY ly, XY ry, E val) {\n    int L = xtoi(lx) - 1,\
-    \ R = xtoi(rx) - 1;\n    E neg = G::inverse(val);\n    while (L < R) { apply_i(R,\
-    \ ly, ry, val), R = prev(R); }\n    while (R < L) { apply_i(L, ly, ry, neg), L\
-    \ = prev(L); }\n  }\n\nprivate:\n  E get_i(int i, XY y) {\n    E val = G::id();\n\
-    \    int LID = indptr[i], n = indptr[i + 1] - indptr[i];\n    auto it = keyY.begin()\
-    \ + LID;\n    int j = lower_bound(it, it + n, y) - it;\n    vc<int> Y_sub = {it,\
-    \ it + n};\n    while (j < n) { val = G::op(val, dat[LID + j]), j = nxt(j); }\n\
-    \    return val;\n  }\n\n  void apply_i(int i, XY ly, XY ry, E val) {\n    E neg\
-    \ = G::inverse(val);\n    int LID = indptr[i], n = indptr[i + 1] - indptr[i];\n\
-    \    auto it = keyY.begin() + LID;\n    int L = lower_bound(it, it + n, ly) -\
-    \ it - 1;\n    int R = lower_bound(it, it + n, ry) - it - 1;\n    while (L < R)\
-    \ { dat[LID + R] = G::op(val, dat[LID + R]), R = prev(R); }\n    while (R < L)\
-    \ { dat[LID + L] = G::op(neg, dat[LID + L]), L = prev(L); }\n  }\n};\n#line 7\
-    \ \"test/2_library_checker/data_structure/rect_add_pt_get.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N, Q);\n  using T = tuple<int, int, int, int, int>;\n  VEC(T, dat, N);\n\
-    \  vc<T> QUERY;\n  vc<int> X, Y;\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n\
-    \      LL(a, b, c, d, x);\n      QUERY.eb(a, b, c, d, x);\n    }\n    if (t ==\
-    \ 1) {\n      LL(x, y);\n      X.eb(x), Y.eb(y);\n      QUERY.eb(x, y, -1, -1,\
-    \ -1);\n    }\n  }\n\n  Dual_FenwickTree_2D<Monoid_Add<ll>, int, false> bit(X,\
-    \ Y);\n\n  for (auto& [a, b, c, d, x]: dat) bit.apply(a, c, b, d, x);\n  for (auto&\
-    \ [a, b, c, d, x]: QUERY) {\n    if (x == -1) {\n      ll ans = bit.get(a, b);\n\
-    \      print(ans);\n    } else {\n      bit.apply(a, c, b, d, x);\n    }\n  }\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ N) {\n      val = G::op(val, get_i(i, y)), i = nxt(i);\n    }\n    return val;\n\
+    \  }\n\n  void apply(XY lx, XY rx, XY ly, XY ry, E val) {\n    int L = xtoi(lx)\
+    \ - 1, R = xtoi(rx) - 1;\n    E neg = G::inverse(val);\n    while (L < R) {\n\
+    \      apply_i(R, ly, ry, val), R = prev(R);\n    }\n    while (R < L) {\n   \
+    \   apply_i(L, ly, ry, neg), L = prev(L);\n    }\n  }\n\n private:\n  E get_i(int\
+    \ i, XY y) {\n    E val = G::id();\n    int LID = indptr[i], n = indptr[i + 1]\
+    \ - indptr[i];\n    auto it = keyY.begin() + LID;\n    int j = lower_bound(it,\
+    \ it + n, y) - it;\n    while (j < n) {\n      val = G::op(val, dat[LID + j]),\
+    \ j = nxt(j);\n    }\n    return val;\n  }\n\n  void apply_i(int i, XY ly, XY\
+    \ ry, E val) {\n    E neg = G::inverse(val);\n    int LID = indptr[i], n = indptr[i\
+    \ + 1] - indptr[i];\n    auto it = keyY.begin() + LID;\n    int L = lower_bound(it,\
+    \ it + n, ly) - it - 1;\n    int R = lower_bound(it, it + n, ry) - it - 1;\n \
+    \   while (L < R) {\n      dat[LID + R] = G::op(val, dat[LID + R]), R = prev(R);\n\
+    \    }\n    while (R < L) {\n      dat[LID + L] = G::op(neg, dat[LID + L]), L\
+    \ = prev(L);\n    }\n  }\n};\n#line 7 \"test/2_library_checker/data_structure/rect_add_pt_get.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  using T = tuple<int, int, int, int, int>;\n\
+    \  VEC(T, dat, N);\n  vc<T> QUERY;\n  vc<int> X, Y;\n  FOR(Q) {\n    INT(t);\n\
+    \    if (t == 0) {\n      LL(a, b, c, d, x);\n      QUERY.eb(a, b, c, d, x);\n\
+    \    }\n    if (t == 1) {\n      LL(x, y);\n      X.eb(x), Y.eb(y);\n      QUERY.eb(x,\
+    \ y, -1, -1, -1);\n    }\n  }\n\n  Dual_FenwickTree_2D<Monoid_Add<ll>, int, false>\
+    \ bit(X, Y);\n\n  for (auto& [a, b, c, d, x]: dat) bit.apply(a, c, b, d, x);\n\
+    \  for (auto& [a, b, c, d, x]: QUERY) {\n    if (x == -1) {\n      ll ans = bit.get(a,\
+    \ b);\n      print(ans);\n    } else {\n      bit.apply(a, c, b, d, x);\n    }\n\
+    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_add_point_get\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/fenwicktree/dual_fenwicktree_2d.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  using T = tuple<int, int, int, int, int>;\n\
@@ -341,7 +341,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/rect_add_pt_get.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
+  timestamp: '2026-11-13 14:14:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/rect_add_pt_get.test.cpp
