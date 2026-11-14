@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
@@ -103,11 +103,11 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/579.test.cpp
-  - test/3_yukicoder/541.test.cpp
-  - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/1397.test.cpp
-  - test/3_yukicoder/1561.test.cpp
   - test/3_yukicoder/1881.test.cpp
+  - test/3_yukicoder/578.test.cpp
+  - test/3_yukicoder/541.test.cpp
+  - test/3_yukicoder/1561.test.cpp
   - test/1_mytest/tdpc_grid_dp.test.cpp
 documentation_of: random/hash_vector.hpp
 layout: document

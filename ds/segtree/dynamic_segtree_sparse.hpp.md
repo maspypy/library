@@ -5,40 +5,40 @@ data:
   - icon: ':warning:'
     path: ds/my_multiset.hpp
     title: ds/my_multiset.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/rmq/range_add_range_max.hpp
     title: ds/rmq/range_add_range_max.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/dynamic_segtree_sparse.test.cpp
     title: test/1_mytest/dynamic_segtree_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_add_range_max.test.cpp
     title: test/1_mytest/range_add_range_max.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
     title: test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1649_2.test.cpp
     title: test/3_yukicoder/1649_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1826_2.test.cpp
     title: test/3_yukicoder/1826_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2242.test.cpp
     title: test/3_yukicoder/2242.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2627.test.cpp
     title: test/3_yukicoder/2627.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/789_3.test.cpp
     title: test/3_yukicoder/789_3.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/671/D
@@ -94,38 +94,39 @@ data:
     \   return int(node.size()) - 1;\n    }\n  }\n\n  int set_rec(int c, ll l, ll\
     \ r, ll i, X x) {\n    if (c == NIL) return new_node(i, x);\n    c = clone(c);\n\
     \    if (node[c].idx == i) {\n      node[c].x = x;\n      update(c);\n      return\
-    \ c;\n    }\n    ll m = midpoint(l, r);\n    if (i < m) {\n      if (node[c].idx\
+    \ c;\n    }\n    ll m = l + (i128(r) - l) / 2;\n    if (i < m) {\n      if (node[c].idx\
     \ < i) swap(node[c].idx, i), swap(node[c].x, x);\n      node[c].ch[0] = set_rec(node[c].ch[0],\
     \ l, m, i, x);\n    }\n    if (m <= i) {\n      if (i < node[c].idx) swap(node[c].idx,\
     \ i), swap(node[c].x, x);\n      node[c].ch[1] = set_rec(node[c].ch[1], m, r,\
     \ i, x);\n    }\n    update(c);\n    return c;\n  }\n\n  int multiply_rec(int\
     \ c, ll l, ll r, ll i, X x) {\n    if (c == NIL) return new_node(i, x);\n    c\
     \ = clone(c);\n    if (node[c].idx == i) {\n      node[c].x = MX::op(node[c].x,\
-    \ x);\n      update(c);\n      return c;\n    }\n    ll m = midpoint(l, r);\n\
-    \    if (i < m) {\n      if (node[c].idx < i) swap(node[c].idx, i), swap(node[c].x,\
+    \ x);\n      update(c);\n      return c;\n    }\n    ll m = l + (i128(r) - l)\
+    \ / 2;\n    if (i < m) {\n      if (node[c].idx < i) swap(node[c].idx, i), swap(node[c].x,\
     \ x);\n      node[c].ch[0] = multiply_rec(node[c].ch[0], l, m, i, x);\n    }\n\
     \    if (m <= i) {\n      if (i < node[c].idx) swap(node[c].idx, i), swap(node[c].x,\
     \ x);\n      node[c].ch[1] = multiply_rec(node[c].ch[1], m, r, i, x);\n    }\n\
     \    update(c);\n    return c;\n  }\n\n  void prod_rec(int c, ll l, ll r, ll ql,\
     \ ll qr, X &x) {\n    chmax(ql, l), chmin(qr, r);\n    if (ql >= qr || c == NIL)\
     \ return;\n    if (l == ql && r == qr) {\n      x = MX::op(x, node[c].prod);\n\
-    \      return;\n    }\n    ll m = midpoint(l, r);\n    prod_rec(node[c].ch[0],\
+    \      return;\n    }\n    ll m = l + (i128(r) - l) / 2;\n    prod_rec(node[c].ch[0],\
     \ l, m, ql, qr, x);\n    if (ql <= (node[c].idx) && (node[c].idx) < qr) x = MX::op(x,\
     \ node[c].x);\n    prod_rec(node[c].ch[1], m, r, ql, qr, x);\n  }\n\n  template\
     \ <typename F>\n  ll max_right_rec(int c, const F &check, ll l, ll r, ll ql, X\
     \ &x) {\n    if (c == NIL || r <= ql) return R0;\n    if (ql <= l && check(MX::op(x,\
     \ node[c].prod))) {\n      x = MX::op(x, node[c].prod);\n      return R0;\n  \
-    \  }\n    ll m = midpoint(l, r);\n    ll k = max_right_rec(node[c].ch[0], check,\
-    \ l, m, ql, x);\n    if (k != R0) return k;\n    if (ql <= node[c].idx) {\n  \
-    \    x = MX::op(x, node[c].x);\n      if (!check(x)) return node[c].idx;\n   \
-    \ }\n    return max_right_rec(node[c].ch[1], check, m, r, ql, x);\n  }\n\n  template\
-    \ <typename F>\n  ll min_left_rec(int c, const F &check, ll l, ll r, ll qr, X\
-    \ &x) {\n    if (c == NIL || qr <= l) return L0;\n    if (r <= qr && check(MX::op(node[c].prod,\
-    \ x))) {\n      x = MX::op(node[c].prod, x);\n      return L0;\n    }\n    ll\
-    \ m = midpoint(l, r);\n    ll k = min_left_rec(node[c].ch[1], check, m, r, qr,\
-    \ x);\n    if (k != L0) return k;\n    if (node[c].idx < qr) {\n      x = MX::op(node[c].x,\
-    \ x);\n      if (!check(x)) return node[c].idx + 1;\n    }\n    return min_left_rec(node[c].ch[0],\
-    \ check, l, m, qr, x);\n  }\n};\n"
+    \  }\n    ll m = l + (i128(r) - l) / 2;\n    ll k = max_right_rec(node[c].ch[0],\
+    \ check, l, m, ql, x);\n    if (k != R0) return k;\n    if (ql <= node[c].idx)\
+    \ {\n      x = MX::op(x, node[c].x);\n      if (!check(x)) return node[c].idx;\n\
+    \    }\n    return max_right_rec(node[c].ch[1], check, m, r, ql, x);\n  }\n\n\
+    \  template <typename F>\n  ll min_left_rec(int c, const F &check, ll l, ll r,\
+    \ ll qr, X &x) {\n    if (c == NIL || qr <= l) return L0;\n    if (r <= qr &&\
+    \ check(MX::op(node[c].prod, x))) {\n      x = MX::op(node[c].prod, x);\n    \
+    \  return L0;\n    }\n    ll m = l + (i128(r) - l) / 2;\n    ll k = min_left_rec(node[c].ch[1],\
+    \ check, m, r, qr, x);\n    if (k != L0) return k;\n    if (node[c].idx < qr)\
+    \ {\n      x = MX::op(node[c].x, x);\n      if (!check(x)) return node[c].idx\
+    \ + 1;\n    }\n    return min_left_rec(node[c].ch[0], check, l, m, qr, x);\n \
+    \ }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/ds/segtree/dynamic_segtree_sparse.hpp\n\
     \n// \u5E38\u306B\u307B\u3068\u3093\u3069\u306E\u8981\u7D20\u304C id \u3067\u3042\
     \u308B\u3053\u3068\u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\u52D5\
@@ -177,54 +178,55 @@ data:
     \   return int(node.size()) - 1;\n    }\n  }\n\n  int set_rec(int c, ll l, ll\
     \ r, ll i, X x) {\n    if (c == NIL) return new_node(i, x);\n    c = clone(c);\n\
     \    if (node[c].idx == i) {\n      node[c].x = x;\n      update(c);\n      return\
-    \ c;\n    }\n    ll m = midpoint(l, r);\n    if (i < m) {\n      if (node[c].idx\
+    \ c;\n    }\n    ll m = l + (i128(r) - l) / 2;\n    if (i < m) {\n      if (node[c].idx\
     \ < i) swap(node[c].idx, i), swap(node[c].x, x);\n      node[c].ch[0] = set_rec(node[c].ch[0],\
     \ l, m, i, x);\n    }\n    if (m <= i) {\n      if (i < node[c].idx) swap(node[c].idx,\
     \ i), swap(node[c].x, x);\n      node[c].ch[1] = set_rec(node[c].ch[1], m, r,\
     \ i, x);\n    }\n    update(c);\n    return c;\n  }\n\n  int multiply_rec(int\
     \ c, ll l, ll r, ll i, X x) {\n    if (c == NIL) return new_node(i, x);\n    c\
     \ = clone(c);\n    if (node[c].idx == i) {\n      node[c].x = MX::op(node[c].x,\
-    \ x);\n      update(c);\n      return c;\n    }\n    ll m = midpoint(l, r);\n\
-    \    if (i < m) {\n      if (node[c].idx < i) swap(node[c].idx, i), swap(node[c].x,\
+    \ x);\n      update(c);\n      return c;\n    }\n    ll m = l + (i128(r) - l)\
+    \ / 2;\n    if (i < m) {\n      if (node[c].idx < i) swap(node[c].idx, i), swap(node[c].x,\
     \ x);\n      node[c].ch[0] = multiply_rec(node[c].ch[0], l, m, i, x);\n    }\n\
     \    if (m <= i) {\n      if (i < node[c].idx) swap(node[c].idx, i), swap(node[c].x,\
     \ x);\n      node[c].ch[1] = multiply_rec(node[c].ch[1], m, r, i, x);\n    }\n\
     \    update(c);\n    return c;\n  }\n\n  void prod_rec(int c, ll l, ll r, ll ql,\
     \ ll qr, X &x) {\n    chmax(ql, l), chmin(qr, r);\n    if (ql >= qr || c == NIL)\
     \ return;\n    if (l == ql && r == qr) {\n      x = MX::op(x, node[c].prod);\n\
-    \      return;\n    }\n    ll m = midpoint(l, r);\n    prod_rec(node[c].ch[0],\
+    \      return;\n    }\n    ll m = l + (i128(r) - l) / 2;\n    prod_rec(node[c].ch[0],\
     \ l, m, ql, qr, x);\n    if (ql <= (node[c].idx) && (node[c].idx) < qr) x = MX::op(x,\
     \ node[c].x);\n    prod_rec(node[c].ch[1], m, r, ql, qr, x);\n  }\n\n  template\
     \ <typename F>\n  ll max_right_rec(int c, const F &check, ll l, ll r, ll ql, X\
     \ &x) {\n    if (c == NIL || r <= ql) return R0;\n    if (ql <= l && check(MX::op(x,\
     \ node[c].prod))) {\n      x = MX::op(x, node[c].prod);\n      return R0;\n  \
-    \  }\n    ll m = midpoint(l, r);\n    ll k = max_right_rec(node[c].ch[0], check,\
-    \ l, m, ql, x);\n    if (k != R0) return k;\n    if (ql <= node[c].idx) {\n  \
-    \    x = MX::op(x, node[c].x);\n      if (!check(x)) return node[c].idx;\n   \
-    \ }\n    return max_right_rec(node[c].ch[1], check, m, r, ql, x);\n  }\n\n  template\
-    \ <typename F>\n  ll min_left_rec(int c, const F &check, ll l, ll r, ll qr, X\
-    \ &x) {\n    if (c == NIL || qr <= l) return L0;\n    if (r <= qr && check(MX::op(node[c].prod,\
-    \ x))) {\n      x = MX::op(node[c].prod, x);\n      return L0;\n    }\n    ll\
-    \ m = midpoint(l, r);\n    ll k = min_left_rec(node[c].ch[1], check, m, r, qr,\
-    \ x);\n    if (k != L0) return k;\n    if (node[c].idx < qr) {\n      x = MX::op(node[c].x,\
-    \ x);\n      if (!check(x)) return node[c].idx + 1;\n    }\n    return min_left_rec(node[c].ch[0],\
-    \ check, l, m, qr, x);\n  }\n};\n"
+    \  }\n    ll m = l + (i128(r) - l) / 2;\n    ll k = max_right_rec(node[c].ch[0],\
+    \ check, l, m, ql, x);\n    if (k != R0) return k;\n    if (ql <= node[c].idx)\
+    \ {\n      x = MX::op(x, node[c].x);\n      if (!check(x)) return node[c].idx;\n\
+    \    }\n    return max_right_rec(node[c].ch[1], check, m, r, ql, x);\n  }\n\n\
+    \  template <typename F>\n  ll min_left_rec(int c, const F &check, ll l, ll r,\
+    \ ll qr, X &x) {\n    if (c == NIL || qr <= l) return L0;\n    if (r <= qr &&\
+    \ check(MX::op(node[c].prod, x))) {\n      x = MX::op(node[c].prod, x);\n    \
+    \  return L0;\n    }\n    ll m = l + (i128(r) - l) / 2;\n    ll k = min_left_rec(node[c].ch[1],\
+    \ check, m, r, qr, x);\n    if (k != L0) return k;\n    if (node[c].idx < qr)\
+    \ {\n      x = MX::op(node[c].x, x);\n      if (!check(x)) return node[c].idx\
+    \ + 1;\n    }\n    return min_left_rec(node[c].ch[0], check, l, m, qr, x);\n \
+    \ }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/segtree/dynamic_segtree_sparse.hpp
   requiredBy:
   - ds/rmq/range_add_range_max.hpp
   - ds/my_multiset.hpp
-  timestamp: '2026-10-30 00:41:15+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-11-14 12:23:55+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
+  - test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
+  - test/3_yukicoder/2627.test.cpp
   - test/3_yukicoder/1826_2.test.cpp
   - test/3_yukicoder/1649_2.test.cpp
-  - test/3_yukicoder/2627.test.cpp
-  - test/3_yukicoder/789_3.test.cpp
   - test/3_yukicoder/2242.test.cpp
+  - test/3_yukicoder/789_3.test.cpp
   - test/1_mytest/range_add_range_max.test.cpp
   - test/1_mytest/dynamic_segtree_sparse.test.cpp
 documentation_of: ds/segtree/dynamic_segtree_sparse.hpp

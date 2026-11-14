@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   _extendedRequiredBy:
@@ -71,8 +71,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/graph/common_interval_decomposition.test.cpp
-  - test/3_yukicoder/1234.test.cpp
   - test/3_yukicoder/1270.test.cpp
+  - test/3_yukicoder/1234.test.cpp
   - test/3_yukicoder/1720.test.cpp
   - test/1_mytest/range_add_range_min.test.cpp
   - test/4_aoj/DSL_2_H.test.cpp

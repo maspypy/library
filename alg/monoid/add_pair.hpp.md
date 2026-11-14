@@ -39,15 +39,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/255.test.cpp
     title: test/3_yukicoder/255.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2627.test.cpp
     title: test/3_yukicoder/2627.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/749.test.cpp
     title: test/3_yukicoder/749.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/alg/monoid/add_pair.hpp
@@ -71,19 +71,19 @@ data:
   - alg/acted_monoid/cntsum_affine.hpp
   - alg/acted_monoid/cntsum_add.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
-  - test/3_yukicoder/255.test.cpp
-  - test/3_yukicoder/1919_2.test.cpp
   - test/3_yukicoder/2627.test.cpp
+  - test/3_yukicoder/255.test.cpp
   - test/3_yukicoder/235.test.cpp
   - test/3_yukicoder/1919.test.cpp
+  - test/3_yukicoder/1919_2.test.cpp
   - test/3_yukicoder/749.test.cpp
-  - test/1_mytest/mo_on_tree.test.cpp
-  - test/1_mytest/cf702_F_splay.test.cpp
   - test/1_mytest/cf702_F.test.cpp
+  - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/slope_super.test.cpp
+  - test/1_mytest/cf702_F_splay.test.cpp
 documentation_of: alg/monoid/add_pair.hpp
 layout: document
 redirect_from:

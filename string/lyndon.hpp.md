@@ -51,8 +51,8 @@ data:
   isVerificationFile: false
   path: string/lyndon.hpp
   requiredBy:
-  - string/non_dominated_suffix.hpp
   - string/lex_min_suffix_for_all_prefix.hpp
+  - string/non_dominated_suffix.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -116,8 +116,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/string/eertree.test.cpp
-  - test/3_yukicoder/2606.test.cpp
   - test/3_yukicoder/263.test.cpp
+  - test/3_yukicoder/2606.test.cpp
   - test/3_yukicoder/465.test.cpp
   - test/1_mytest/palindrome_decomposition_dp.test.cpp
 documentation_of: string/palindromic_tree.hpp

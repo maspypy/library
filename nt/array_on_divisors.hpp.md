@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -254,8 +254,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1728.test.cpp
-  - test/3_yukicoder/2578.test.cpp
   - test/3_yukicoder/2264.test.cpp
+  - test/3_yukicoder/2578.test.cpp
 documentation_of: nt/array_on_divisors.hpp
 layout: document
 redirect_from:

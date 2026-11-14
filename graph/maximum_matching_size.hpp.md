@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -99,8 +99,8 @@ data:
   verifiedWith:
   - test/2_library_checker/graph/general_matching.test.cpp
   - test/1_mytest/tutte.test.cpp
-  - test/1_mytest/matching_line_graph.test.cpp
   - test/1_mytest/matching.test.cpp
+  - test/1_mytest/matching_line_graph.test.cpp
 documentation_of: graph/maximum_matching_size.hpp
 layout: document
 redirect_from:

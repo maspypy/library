@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
@@ -310,8 +310,8 @@ data:
   isVerificationFile: false
   path: nt/three_square.hpp
   requiredBy:
-  - nt/four_square.hpp
   - nt/three_triangular.hpp
+  - nt/four_square.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

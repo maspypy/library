@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -60,8 +60,8 @@ data:
   verifiedWith:
   - test/1_mytest/monotone_minima.test.cpp
   - test/1_mytest/smawk.test.cpp
-  - test/1_mytest/check_monge.test.cpp
   - test/1_mytest/monge_shortest_path.test.cpp
+  - test/1_mytest/check_monge.test.cpp
 documentation_of: random/random_monge.hpp
 layout: document
 redirect_from:
