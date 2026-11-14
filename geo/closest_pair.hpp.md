@@ -226,8 +226,8 @@ data:
   timestamp: '2026-10-27 15:41:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/geometry/closest_pair_dc.test.cpp
   - test/2_library_checker/geometry/closest_pair.test.cpp
+  - test/2_library_checker/geometry/closest_pair_dc.test.cpp
   - test/4_aoj/CGL_5_A.test.cpp
 documentation_of: geo/closest_pair.hpp
 layout: document

@@ -301,15 +301,16 @@ data:
     \ = (i + 1 == N ? Y.back() : I[i + 1]);\n      int best = Y[p];\n      while (Y[p]\
     \ < lim) {\n        ++p;\n        if (better(X[i], best, Y[p])) best = Y[p];\n\
     \      }\n      I[i] = best;\n    }\n    return I;\n  };\n\n  vc<int> X(H), Y(W);\n\
-    \  iota(all(X), 0), iota(all(Y), 0);\n  return dfs(dfs, X, Y);\n}\n#line 7 \"\
-    test/1_mytest/smawk.test.cpp\"\n\nvoid test() {\n  FOR(H, 0, 30) FOR(W, 1, 30)\
-    \ {\n    FOR(1000) {\n      auto A = random_monge_matrix(H, W);\n\n      auto\
-    \ better = [&](int i, int j, int k) -> bool {\n        return A[i][j] > A[i][k];\n\
-    \      };\n\n      vc<int> got = smawk(H, W, better);\n\n      vc<int> expected(H);\n\
-    \      FOR(i, H) {\n        expected[i] = 0;\n        FOR(j, 1, W) {\n       \
-    \   if (A[i][expected[i]] > A[i][j]) expected[i] = j;\n        }\n      }\n\n\
-    \      assert(got == expected);\n    }\n  }\n}\n\nvoid solve() {\n  INT(a, b);\n\
-    \  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \  iota(all(X), 0), iota(all(Y), 0);\n  return dfs(dfs, move(X), move(Y));\n}\n\
+    #line 7 \"test/1_mytest/smawk.test.cpp\"\n\nvoid test() {\n  FOR(H, 0, 30) FOR(W,\
+    \ 1, 30) {\n    FOR(1000) {\n      auto A = random_monge_matrix(H, W);\n\n   \
+    \   auto better = [&](int i, int j, int k) -> bool {\n        return A[i][j] >\
+    \ A[i][k];\n      };\n\n      vc<int> got = smawk(H, W, better);\n\n      vc<int>\
+    \ expected(H);\n      FOR(i, H) {\n        expected[i] = 0;\n        FOR(j, 1,\
+    \ W) {\n          if (A[i][expected[i]] > A[i][j]) expected[i] = j;\n        }\n\
+    \      }\n\n      assert(got == expected);\n    }\n  }\n}\n\nvoid solve() {\n\
+    \  INT(a, b);\n  print(a + b);\n}\n\nsigned main() {\n  test();\n  solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"random/random_monge.hpp\"\n#include\
     \ \"convex/smawk.hpp\"\n\nvoid test() {\n  FOR(H, 0, 30) FOR(W, 1, 30) {\n   \
@@ -329,7 +330,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/smawk.test.cpp
   requiredBy: []
-  timestamp: '2026-11-06 22:43:05+09:00'
+  timestamp: '2026-11-14 12:09:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/smawk.test.cpp

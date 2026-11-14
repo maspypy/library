@@ -142,8 +142,8 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/number_theory/dirichlet.test.cpp
   - test/2_library_checker/number_theory/dirichlet_inv.test.cpp
+  - test/2_library_checker/number_theory/dirichlet.test.cpp
   - test/1_mytest/dirichlet.test.cpp
 documentation_of: nt/dirichlet.hpp
 layout: document

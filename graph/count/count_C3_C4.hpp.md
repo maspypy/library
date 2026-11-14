@@ -193,8 +193,8 @@ data:
   timestamp: '2026-10-30 00:34:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/find_C4.test.cpp
   - test/1_mytest/count_P3P4P5.test.cpp
+  - test/1_mytest/find_C4.test.cpp
 documentation_of: graph/count/count_C3_C4.hpp
 layout: document
 redirect_from:

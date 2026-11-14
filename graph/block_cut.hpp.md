@@ -203,8 +203,8 @@ data:
   isVerificationFile: false
   path: graph/block_cut.hpp
   requiredBy:
-  - graph/st_numbering.hpp
   - graph/is_cactus.hpp
+  - graph/st_numbering.hpp
   timestamp: '2026-10-30 00:34:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -85,8 +85,8 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/string/run_enumerate.test.cpp
   - test/2_library_checker/string/run_enumerate_vec.test.cpp
+  - test/2_library_checker/string/run_enumerate.test.cpp
 documentation_of: string/find_runs.hpp
 layout: document
 redirect_from:

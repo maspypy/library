@@ -215,73 +215,73 @@ data:
   isVerificationFile: false
   path: alg/monoid/min.hpp
   requiredBy:
-  - ds/range_mex_change.hpp
-  - ds/segtree/range_max.hpp
   - ds/segtree/range_min.hpp
+  - ds/segtree/range_max.hpp
+  - ds/range_mex_change.hpp
+  - graph/minimum_spanning_tree.hpp
+  - graph/ds/range_edge_connected_component_query.hpp
+  - graph/compress_tree.hpp
+  - graph/fast_lca.hpp
+  - geo/range_closest_pair_query.hpp
+  - string/many_string_compare.hpp
   - string/basic_substring_structure.hpp
-  - string/suffix_lcp_change.hpp
   - string/lex_max_suffix_for_all_prefix.hpp
-  - string/suffix_array.hpp
-  - string/suffix_tree.hpp
+  - string/suffix_lcp_change.hpp
   - string/substring_shortest_border.hpp
   - string/longest_common_substring.hpp
-  - string/many_string_compare.hpp
+  - string/suffix_array.hpp
   - string/sort_substrings.hpp
-  - alg/acted_monoid/max_min.hpp
-  - alg/acted_monoid/min_max.hpp
+  - string/suffix_tree.hpp
+  - seq/common_interval_decomposition.hpp
   - alg/acted_monoid/min_assign.hpp
   - alg/acted_monoid/min_min.hpp
   - alg/acted_monoid/min_add.hpp
-  - graph/compress_tree.hpp
-  - graph/ds/range_edge_connected_component_query.hpp
-  - graph/minimum_spanning_tree.hpp
-  - graph/fast_lca.hpp
-  - geo/range_closest_pair_query.hpp
-  - seq/common_interval_decomposition.hpp
+  - alg/acted_monoid/max_min.hpp
+  - alg/acted_monoid/min_max.hpp
   timestamp: '2026-10-24 10:08:11+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
-  - test/2_library_checker/data_structure/staticrmq_dc.test.cpp
-  - test/2_library_checker/data_structure/staticrmq_seg.test.cpp
+  - test/2_library_checker/graph/common_interval_decomposition.test.cpp
   - test/2_library_checker/data_structure/staticrmq_x.test.cpp
+  - test/2_library_checker/data_structure/staticrmq_seg.test.cpp
+  - test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
+  - test/2_library_checker/data_structure/staticrmq_dst.test.cpp
+  - test/2_library_checker/data_structure/staticrmq_dc.test.cpp
   - test/2_library_checker/data_structure/staticrmq.test.cpp
   - test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
-  - test/2_library_checker/data_structure/staticrmq_dst.test.cpp
+  - test/2_library_checker/tree/mst.test.cpp
+  - test/2_library_checker/tree/lca_fast.test.cpp
+  - test/2_library_checker/string/longest_common_substring.test.cpp
   - test/2_library_checker/string/number_of_substrings.test.cpp
   - test/2_library_checker/string/suffix_array.test.cpp
-  - test/2_library_checker/string/longest_common_substring.test.cpp
   - test/2_library_checker/string/suffix_array_vec.test.cpp
-  - test/2_library_checker/tree/lca_fast.test.cpp
-  - test/2_library_checker/tree/mst.test.cpp
-  - test/2_library_checker/graph/common_interval_decomposition.test.cpp
-  - test/3_yukicoder/1270.test.cpp
-  - test/3_yukicoder/913.test.cpp
-  - test/3_yukicoder/1600.test.cpp
   - test/3_yukicoder/1234.test.cpp
-  - test/3_yukicoder/1720.test.cpp
-  - test/3_yukicoder/2935.test.cpp
   - test/3_yukicoder/1600_2.test.cpp
-  - test/3_yukicoder/1212.test.cpp
   - test/3_yukicoder/2361.test.cpp
-  - test/1_mytest/rbst_am_persistent.test.cpp
-  - test/1_mytest/min_max.test.cpp
-  - test/1_mytest/suffix_lcp_change.test.cpp
-  - test/1_mytest/rbst_am.test.cpp
+  - test/3_yukicoder/1212.test.cpp
+  - test/3_yukicoder/2935.test.cpp
+  - test/3_yukicoder/1600.test.cpp
+  - test/3_yukicoder/1270.test.cpp
+  - test/3_yukicoder/1720.test.cpp
+  - test/3_yukicoder/913.test.cpp
   - test/1_mytest/lex_minmax_suffix.test.cpp
-  - test/1_mytest/min_min.test.cpp
-  - test/1_mytest/dynamic_segtree_sparse.test.cpp
   - test/1_mytest/longest_common_substr.test.cpp
+  - test/1_mytest/suffix_lcp_change.test.cpp
   - test/1_mytest/range_closest_pair.test.cpp
-  - test/1_mytest/max_min.test.cpp
+  - test/1_mytest/rbst_am_persistent.test.cpp
   - test/1_mytest/seg2d.test.cpp
-  - test/1_mytest/range_add_range_min.test.cpp
+  - test/1_mytest/dynamic_segtree_sparse.test.cpp
+  - test/1_mytest/min_min.test.cpp
   - test/1_mytest/rbst_test.test.cpp
-  - test/4_aoj/GRL_2_A.test.cpp
+  - test/1_mytest/max_min.test.cpp
+  - test/1_mytest/min_max.test.cpp
+  - test/1_mytest/range_add_range_min.test.cpp
+  - test/1_mytest/rbst_am.test.cpp
+  - test/4_aoj/1508_2.test.cpp
+  - test/4_aoj/1508.test.cpp
   - test/4_aoj/DSL_2_H.test.cpp
   - test/4_aoj/DSL_2_F.test.cpp
-  - test/4_aoj/1508.test.cpp
-  - test/4_aoj/1508_2.test.cpp
+  - test/4_aoj/GRL_2_A.test.cpp
 documentation_of: alg/monoid/min.hpp
 layout: document
 redirect_from:

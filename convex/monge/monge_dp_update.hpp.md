@@ -48,13 +48,13 @@ data:
     \ = (i + 1 == N ? Y.back() : I[i + 1]);\n      int best = Y[p];\n      while (Y[p]\
     \ < lim) {\n        ++p;\n        if (better(X[i], best, Y[p])) best = Y[p];\n\
     \      }\n      I[i] = best;\n    }\n    return I;\n  };\n\n  vc<int> X(H), Y(W);\n\
-    \  iota(all(X), 0), iota(all(Y), 0);\n  return dfs(dfs, X, Y);\n}\n#line 5 \"\
-    convex/monge/monge_dp_update.hpp\"\n\ntemplate <typename T, typename F>\nvc<T>\
-    \ monge_dp_update(int N, vc<T>& dp, F f) {\n  assert(len(dp) == N + 1);\n\n  auto\
-    \ better = [&](int i, int j, int k) -> bool {\n    if (i <= k) return false;\n\
-    \    if (i <= j) return true;\n    return dp[j] + f(j, i) > dp[k] + f(k, i);\n\
-    \  };\n\n  vc<int> I = monotone_minima(N + 1, N + 1, better);\n  // vc<int> I\
-    \ = smawk(N + 1, N + 1, better);\n\n  vc<T> newdp(N + 1, infty<T>);\n  FOR(j,\
+    \  iota(all(X), 0), iota(all(Y), 0);\n  return dfs(dfs, move(X), move(Y));\n}\n\
+    #line 5 \"convex/monge/monge_dp_update.hpp\"\n\ntemplate <typename T, typename\
+    \ F>\nvc<T> monge_dp_update(int N, vc<T>& dp, F f) {\n  assert(len(dp) == N +\
+    \ 1);\n\n  auto better = [&](int i, int j, int k) -> bool {\n    if (i <= k) return\
+    \ false;\n    if (i <= j) return true;\n    return dp[j] + f(j, i) > dp[k] + f(k,\
+    \ i);\n  };\n\n  vc<int> I = monotone_minima(N + 1, N + 1, better);\n  // vc<int>\
+    \ I = smawk(N + 1, N + 1, better);\n\n  vc<T> newdp(N + 1, infty<T>);\n  FOR(j,\
     \ N + 1) {\n    int i = I[j];\n    if (i < j) newdp[j] = dp[i] + f(i, j);\n  }\n\
     \  return newdp;\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/convex/monge/monge_dp_update.hpp\n\
@@ -72,7 +72,7 @@ data:
   isVerificationFile: false
   path: convex/monge/monge_dp_update.hpp
   requiredBy: []
-  timestamp: '2026-11-06 22:43:05+09:00'
+  timestamp: '2026-11-14 12:09:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/952.test.cpp

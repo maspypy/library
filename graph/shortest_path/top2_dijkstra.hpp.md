@@ -140,7 +140,7 @@ data:
     \  int N = G.N;\n  using Mono = Monoid_Min2<T, int>;\n  using Data = typename\
     \ Mono::Data;\n  vc<Data> dist(N, Mono::id());\n  pq_min<tuple<T, int, int>> que;\
     \  // \u8DDD\u96E2\u3001\u753A\u3001\u8272\n\n  auto upd = [&](int v, int c, T\
-    \ x) -> void {\n    if (dist[v].add_element(x, c)) que.emplace(x, v, c);\n  };\n\
+    \ x) -> void {\n    if (dist[v].add_element(c, x)) que.emplace(x, v, c);\n  };\n\
     \n  for (auto& v : vs) {\n    upd(v, v, 0);\n  }\n\n  while (len(que)) {\n   \
     \ auto [dv, v, c] = POP(que);\n    bool ok = 0;\n    auto& e = dist[v];\n    if\
     \ (e.min1 == dv && e.key1 == c) ok = 1;\n    if (e.min2 == dv && e.key2 == c)\
@@ -154,7 +154,7 @@ data:
     \  int N = G.N;\n  using Mono = Monoid_Min2<T, int>;\n  using Data = typename\
     \ Mono::Data;\n  vc<Data> dist(N, Mono::id());\n  pq_min<tuple<T, int, int>> que;\
     \  // \u8DDD\u96E2\u3001\u753A\u3001\u8272\n\n  auto upd = [&](int v, int c, T\
-    \ x) -> void {\n    if (dist[v].add_element(x, c)) que.emplace(x, v, c);\n  };\n\
+    \ x) -> void {\n    if (dist[v].add_element(c, x)) que.emplace(x, v, c);\n  };\n\
     \n  for (auto& v : vs) {\n    upd(v, v, 0);\n  }\n\n  while (len(que)) {\n   \
     \ auto [dv, v, c] = POP(que);\n    bool ok = 0;\n    auto& e = dist[v];\n    if\
     \ (e.min1 == dv && e.key1 == c) ok = 1;\n    if (e.min2 == dv && e.key2 == c)\
@@ -167,7 +167,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/top2_dijkstra.hpp
   requiredBy: []
-  timestamp: '2026-10-30 00:34:21+09:00'
+  timestamp: '2026-11-14 12:09:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/shortest_path/top2_dijkstra.hpp

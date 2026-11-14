@@ -34,7 +34,7 @@ data:
     \ = (i + 1 == N ? Y.back() : I[i + 1]);\n      int best = Y[p];\n      while (Y[p]\
     \ < lim) {\n        ++p;\n        if (better(X[i], best, Y[p])) best = Y[p];\n\
     \      }\n      I[i] = best;\n    }\n    return I;\n  };\n\n  vc<int> X(H), Y(W);\n\
-    \  iota(all(X), 0), iota(all(Y), 0);\n  return dfs(dfs, X, Y);\n}\n"
+    \  iota(all(X), 0), iota(all(Y), 0);\n  return dfs(dfs, move(X), move(Y));\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/convex/smawk.hpp\n\
     \n// \u5404\u884C\u306E\u6700\u9069\u5217\u3092\u6C42\u3081\u308B.\n// better(i,j,k):\
     \ \u884C i \u306B\u304A\u3044\u3066\u5217 k \u304C\u5217 j \u3088\u308A\u826F\u3044\
@@ -51,13 +51,13 @@ data:
     \ = (i + 1 == N ? Y.back() : I[i + 1]);\n      int best = Y[p];\n      while (Y[p]\
     \ < lim) {\n        ++p;\n        if (better(X[i], best, Y[p])) best = Y[p];\n\
     \      }\n      I[i] = best;\n    }\n    return I;\n  };\n\n  vc<int> X(H), Y(W);\n\
-    \  iota(all(X), 0), iota(all(Y), 0);\n  return dfs(dfs, X, Y);\n}"
+    \  iota(all(X), 0), iota(all(Y), 0);\n  return dfs(dfs, move(X), move(Y));\n}"
   dependsOn: []
   isVerificationFile: false
   path: convex/smawk.hpp
   requiredBy:
   - convex/monge/monge_dp_update.hpp
-  timestamp: '2026-11-06 22:43:05+09:00'
+  timestamp: '2026-11-14 12:09:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/952.test.cpp
