@@ -44,5 +44,5 @@ vc<int> smawk(int H, int W, F better) {
 
   vc<int> X(H), Y(W);
   iota(all(X), 0), iota(all(Y), 0);
-  return dfs(dfs, X, Y);
+  return dfs(dfs, move(X), move(Y));
 }

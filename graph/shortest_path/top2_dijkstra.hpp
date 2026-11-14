@@ -13,7 +13,7 @@ vc<typename Monoid_Min2<T, int>::Data> top2_dijkstra(GT& G, vc<int> vs) {
   pq_min<tuple<T, int, int>> que;  // 距離、町、色
 
   auto upd = [&](int v, int c, T x) -> void {
-    if (dist[v].add_element(x, c)) que.emplace(x, v, c);
+    if (dist[v].add_element(c, x)) que.emplace(x, v, c);
   };
 
   for (auto& v : vs) {
