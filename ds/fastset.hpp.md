@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sortable_array.hpp
     title: ds/sortable_array.hpp
   - icon: ':warning:'
@@ -47,7 +47,7 @@ data:
   - icon: ':warning:'
     path: string/enumerate_occurrences.hpp
     title: string/enumerate_occurrences.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -75,10 +75,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2809.test.cpp
     title: test/3_yukicoder/2809.test.cpp
   - icon: ':heavy_check_mark:'
@@ -87,9 +87,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2636.test.cpp
     title: test/4_aoj/2636.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/fastset.hpp
@@ -209,37 +209,37 @@ data:
   isVerificationFile: false
   path: ds/fastset.hpp
   requiredBy:
-  - other/cuboid_union_volume.hpp
-  - ds/segtree/range_assignment_segtree.hpp
-  - ds/segtree/range_add_make_decreasing.hpp
-  - ds/segtree/range_add_make_increasing.hpp
-  - ds/segtree/sortable_segtree.hpp
-  - ds/incremental_rectangle_union.hpp
-  - ds/intervals.hpp
-  - ds/sortable_array.hpp
   - bigint/redundant_binary_number.hpp
-  - string/enumerate_occurrences.hpp
-  - string/suffix_tree.hpp
-  - graph/compress_tree.hpp
+  - ds/incremental_rectangle_union.hpp
+  - ds/sortable_array.hpp
+  - ds/intervals.hpp
+  - ds/segtree/range_add_make_decreasing.hpp
+  - ds/segtree/sortable_segtree.hpp
+  - ds/segtree/range_add_make_increasing.hpp
+  - ds/segtree/range_assignment_segtree.hpp
   - graph/ds/incremental_centroid.hpp
   - graph/toposort.hpp
   - graph/all_cycle_common_vertices.hpp
+  - graph/compress_tree.hpp
   - geo/delaunay_triangulation_of_convex_polygon.hpp
+  - string/enumerate_occurrences.hpp
+  - string/suffix_tree.hpp
+  - other/cuboid_union_volume.hpp
   timestamp: '2026-11-16 13:02:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/data_structure/sort_segtree.test.cpp
-  - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
-  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem.test.cpp
-  - test/3_yukicoder/2809.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree.test.cpp
+  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   - test/3_yukicoder/2361.test.cpp
-  - test/1_mytest/all_cycle_common_vertex.test.cpp
-  - test/1_mytest/decremental_fastset.test.cpp
-  - test/1_mytest/sortable_array.test.cpp
+  - test/3_yukicoder/2809.test.cpp
   - test/1_mytest/range_assign.test.cpp
-  - test/4_aoj/2636.test.cpp
+  - test/1_mytest/decremental_fastset.test.cpp
+  - test/1_mytest/all_cycle_common_vertex.test.cpp
+  - test/1_mytest/sortable_array.test.cpp
   - test/4_aoj/2251_1.test.cpp
+  - test/4_aoj/2636.test.cpp
 documentation_of: ds/fastset.hpp
 layout: document
 redirect_from:

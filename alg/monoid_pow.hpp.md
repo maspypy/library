@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/functional_graph.hpp
     title: graph/functional_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -51,7 +51,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1211.test.cpp
     title: test/3_yukicoder/1211.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1242.test.cpp
     title: test/3_yukicoder/1242.test.cpp
   - icon: ':x:'
@@ -104,26 +104,26 @@ data:
   requiredBy:
   - ds/segtree/range_assignment_segtree.hpp
   - ds/segtree/greedy_subtract_segtree.hpp
-  - convex/lattice_point_sum_polynomial_pq.hpp
+  - graph/functional_graph.hpp
   - convex/lattice_point_sum_polynomial.hpp
+  - convex/lattice_point_sum_polynomial_pq.hpp
   - mod/floor_sum_of_linear_polynomial.hpp
   - mod/floor_sum_of_linear_polynomial_pq.hpp
   - mod/floor_monoid_product.hpp
-  - graph/functional_graph.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   - test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
-  - test/3_yukicoder/1242.test.cpp
-  - test/3_yukicoder/2362.test.cpp
   - test/3_yukicoder/2122.test.cpp
+  - test/3_yukicoder/2362.test.cpp
+  - test/3_yukicoder/1242.test.cpp
   - test/3_yukicoder/1211.test.cpp
+  - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/floor_sum_of_polynomial.test.cpp
-  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
-  - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/floor_sum_of_polynomial_pq.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
 documentation_of: alg/monoid_pow.hpp
 layout: document
 redirect_from:

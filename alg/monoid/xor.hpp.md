@@ -6,7 +6,7 @@ data:
     path: setfunc/boolean_range_add_point_get.hpp
     title: setfunc/boolean_range_add_point_get.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1602.test.cpp
     title: test/3_yukicoder/1602.test.cpp
   - icon: ':x:'
@@ -47,11 +47,11 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/1790.test.cpp
-  - test/3_yukicoder/1602.test.cpp
   - test/3_yukicoder/2294.test.cpp
-  - test/3_yukicoder/2293.test.cpp
+  - test/3_yukicoder/1602.test.cpp
+  - test/3_yukicoder/1790.test.cpp
   - test/3_yukicoder/1641.test.cpp
+  - test/3_yukicoder/2293.test.cpp
 documentation_of: alg/monoid/xor.hpp
 layout: document
 redirect_from:

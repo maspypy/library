@@ -24,7 +24,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1211.test.cpp
     title: test/3_yukicoder/1211.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1242.test.cpp
     title: test/3_yukicoder/1242.test.cpp
   - icon: ':x:'
@@ -32,7 +32,7 @@ data:
     title: test/3_yukicoder/2122.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/graph/functional_graph.hpp
@@ -476,10 +476,10 @@ data:
   path: graph/functional_graph.hpp
   requiredBy: []
   timestamp: '2026-11-16 13:02:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/1242.test.cpp
   - test/3_yukicoder/2122.test.cpp
+  - test/3_yukicoder/1242.test.cpp
   - test/3_yukicoder/1211.test.cpp
 documentation_of: graph/functional_graph.hpp
 layout: document

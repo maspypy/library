@@ -15,7 +15,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1216.test.cpp
     title: test/3_yukicoder/1216.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1216_2.test.cpp
     title: test/3_yukicoder/1216_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -177,9 +177,9 @@ data:
   verifiedWith:
   - test/2_library_checker/data_structure/point_add_rectangle_sum_bit2d.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
-  - test/3_yukicoder/1216.test.cpp
-  - test/3_yukicoder/1919.test.cpp
   - test/3_yukicoder/1216_2.test.cpp
+  - test/3_yukicoder/1919.test.cpp
+  - test/3_yukicoder/1216.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree_2d.hpp
 layout: document
 redirect_from:
