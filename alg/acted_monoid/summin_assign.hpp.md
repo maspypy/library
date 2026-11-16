@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/summin.hpp
     title: alg/monoid/summin.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/summin_assign.test.cpp
     title: test/1_mytest/summin_assign.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/alg/acted_monoid/summin_assign.hpp
@@ -30,7 +30,7 @@ data:
     \  using value_type = X;\n  static X op(X x, X y) { return (y == none_val ? x\
     \ : y); }\n  static constexpr X id() { return none_val; }\n  static constexpr\
     \ bool commute = false;\n};\n#line 4 \"alg/acted_monoid/summin_assign.hpp\"\n\n\
-    template <typename E>\nstruct ActedMonoid_SumMin_Assign {\n  static_assert(is_save_v<E,\
+    template <typename E>\nstruct ActedMonoid_SumMin_Assign {\n  static_assert(is_same_v<E,\
     \ int> || is_same_v<E, ll>);\n  using Monoid_X = Monoid_SumMin<E>;\n  using Monoid_A\
     \ = Monoid_Assign<ll>;\n  using X = typename Monoid_X::value_type;\n  using A\
     \ = typename Monoid_A::value_type;\n  static constexpr X act(const X& x, const\
@@ -38,7 +38,7 @@ data:
     \ {E(size) * a, a};\n  }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/summin_assign.hpp\n\
     #include \"alg/monoid/summin.hpp\"\n#include \"alg/monoid/assign.hpp\"\n\ntemplate\
-    \ <typename E>\nstruct ActedMonoid_SumMin_Assign {\n  static_assert(is_save_v<E,\
+    \ <typename E>\nstruct ActedMonoid_SumMin_Assign {\n  static_assert(is_same_v<E,\
     \ int> || is_same_v<E, ll>);\n  using Monoid_X = Monoid_SumMin<E>;\n  using Monoid_A\
     \ = Monoid_Assign<ll>;\n  using X = typename Monoid_X::value_type;\n  using A\
     \ = typename Monoid_A::value_type;\n  static constexpr X act(const X& x, const\
@@ -50,8 +50,8 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/summin_assign.hpp
   requiredBy: []
-  timestamp: '2026-11-17 04:45:12+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-11-17 05:18:35+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/summin_assign.test.cpp
 documentation_of: alg/acted_monoid/summin_assign.hpp

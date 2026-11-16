@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/summax_assign.hpp
     title: alg/acted_monoid/summax_assign.hpp
   - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
   - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/dynamic_lazy_segtree.hpp
     title: ds/segtree/dynamic_lazy_segtree.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -162,7 +162,7 @@ data:
     \  using value_type = X;\n  static X op(X x, X y) { return (y == none_val ? x\
     \ : y); }\n  static constexpr X id() { return none_val; }\n  static constexpr\
     \ bool commute = false;\n};\n#line 4 \"alg/acted_monoid/summax_assign.hpp\"\n\n\
-    template <typename E>\nstruct ActedMonoid_SumMax_Assign {\n  static_assert(is_save_v<E,\
+    template <typename E>\nstruct ActedMonoid_SumMax_Assign {\n  static_assert(is_same_v<E,\
     \ int> || is_same_v<E, ll>);\n  using Monoid_X = Monoid_SumMax<E>;\n  using Monoid_A\
     \ = Monoid_Assign<E>;\n  using X = typename Monoid_X::value_type;\n  using A =\
     \ typename Monoid_A::value_type;\n  static constexpr X act(const X& x, const A&\
@@ -366,8 +366,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
   requiredBy: []
-  timestamp: '2026-11-17 05:04:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-17 05:18:35+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
 layout: document

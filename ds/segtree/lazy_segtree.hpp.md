@@ -57,13 +57,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/summax_add.test.cpp
     title: test/1_mytest/summax_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/summax_assign.test.cpp
     title: test/1_mytest/summax_assign.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/summin_add.test.cpp
     title: test/1_mytest/summin_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/summin_assign.test.cpp
     title: test/1_mytest/summin_assign.test.cpp
   - icon: ':heavy_check_mark:'

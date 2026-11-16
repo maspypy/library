@@ -60,13 +60,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/summax_add.hpp
       title: alg/acted_monoid/summax_add.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/summax_assign.hpp
       title: alg/acted_monoid/summax_assign.hpp
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/summin_add.hpp
       title: alg/acted_monoid/summin_add.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/summin_assign.hpp
       title: alg/acted_monoid/summin_assign.hpp
   - name: alg/acted_set
@@ -189,10 +189,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/rolling_hash.hpp
       title: alg/monoid/rolling_hash.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/summax.hpp
       title: alg/monoid/summax.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/summin.hpp
       title: alg/monoid/summin.hpp
     - icon: ':heavy_check_mark:'
@@ -601,7 +601,7 @@ data:
     - icon: ':warning:'
       path: ds/segtree/dynamic_dual_segtree.hpp
       title: ds/segtree/dynamic_dual_segtree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/dynamic_lazy_segtree.hpp
       title: ds/segtree/dynamic_lazy_segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -2930,10 +2930,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/dyadic_rational.test.cpp
       title: test/1_mytest/dyadic_rational.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/dynamic_lazy_segtree.test.cpp
       title: test/1_mytest/dynamic_lazy_segtree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
       title: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3383,13 +3383,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/summax_add.test.cpp
       title: test/1_mytest/summax_add.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/summax_assign.test.cpp
       title: test/1_mytest/summax_assign.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/summin_add.test.cpp
       title: test/1_mytest/summin_add.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/summin_assign.test.cpp
       title: test/1_mytest/summin_assign.test.cpp
     - icon: ':heavy_check_mark:'
