@@ -1,38 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2507.test.cpp
     title: test/3_yukicoder/2507.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/graph/count/count_cycle.hpp
   bundledCode: "#line 1 \"graph/count/count_cycle.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/count/count_cycle.hpp\n\
     #line 1 \"enumerate/bits.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/enumerate/bits.hpp\n\
     template <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L, int\
-    \ R, F&& f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L : b._Find_next(L));\n\
-    \  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n\ntemplate <typename\
-    \ UINT, typename F>\ninline void enumerate_all_bit(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
-    \  while (s) {\n    f(lowbit(s));\n    s &= s - 1;\n  }\n}\n\ntemplate <typename\
-    \ UINT, bool inc_empty, typename F>\ninline void enumerate_all_subset(UINT s,\
-    \ F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n  for (UINT t = s; t;\
-    \ t = (t - 1) & s) f(t);\n  if constexpr (inc_empty) f(0);\n}\n#line 1 \"graph/base.hpp\"\
-    \n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n#line\
-    \ 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \ R, F&& f) {\n  if (L >= len(b)) return;\n  bool end = false;\n  int p = (b[L]\
+    \ ? L : b._Find_next(L));\n  while (p < R) {\n    f(p, end);\n    if (end) break;\n\
+    \    p = b._Find_next(p);\n  }\n}\n\ntemplate <typename UINT, typename F>\ninline\
+    \ void enumerate_all_bit(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
+    \  bool end = false;\n  while (s) {\n    f(lowbit(s), end);\n    if (end) break;\n\
+    \    s &= s - 1;\n  }\n}\n\ntemplate <typename UINT, bool inc_empty, typename\
+    \ F>\ninline void enumerate_all_subset(UINT s, F&& f) {\n  static_assert(is_unsigned<UINT>::value);\n\
+    \  bool end = false;\n  for (UINT t = s; t; t = (t - 1) & s) {\n    f(t, end);\n\
+    \    if (end) break;\n  }\n  if constexpr (inc_empty) {\n    if (!end) f(UINT(0),\
+    \ end);\n  }\n}\n#line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
     \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
     \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
     \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
@@ -48,12 +50,13 @@ data:
     \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
     \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
     \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
-    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
-    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
-    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
-    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
-    \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
-    \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    bool end = false;\n\
+    \    FOR(i, len(used)) {\n      if (used[i]) f(key[i], val[i], end);\n      if\
+    \ (end) break;\n    }\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64> key;\n  vc<Val>\
+    \ val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const u64 FIXED_RANDOM\
+    \ =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n  \
+    \  x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x =\
+    \ (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
@@ -170,8 +173,8 @@ data:
   isVerificationFile: false
   path: graph/count/count_cycle.hpp
   requiredBy: []
-  timestamp: '2026-10-30 00:34:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-16 12:41:54+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2507.test.cpp
 documentation_of: graph/count/count_cycle.hpp

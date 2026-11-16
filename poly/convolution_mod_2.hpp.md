@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_array.hpp
     title: ds/bit_array.hpp
   _extendedRequiredBy: []
@@ -160,24 +160,25 @@ data:
     \ _Find_next(int p) const { return next(p + 1); }\n\n  template <typename F>\n\
     \  void enumerate(int L, int R, F f) const {\n    assert(0 <= L && L <= R && R\
     \ <= N);\n    if (L == R) return;\n    int p = ((*this)[L] ? L : _Find_next(L));\n\
-    \    while (p < R) {\n      f(p);\n      p = _Find_next(p);\n    }\n  }\n\n  inline\
-    \ static string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
-    \ precompute();\n    string S;\n    for (u64 x : dat) {\n      FOR(i, 8) S +=\
-    \ TO_STR[(x >> (8 * i) & 255)];\n    }\n    S.resize(N);\n    return S;\n  }\n\
-    \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
-    \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  void prefix_xor_sum()\
-    \ {\n    int carry = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry\
-    \ = __builtin_parityll(a);\n      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n\
-    \      a ^= a << (1 << 2);\n      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n\
-    \      a ^= a << (1 << 5);\n    }\n    resize(N);\n  }\n};\n#line 4 \"poly/convolution_mod_2.hpp\"\
-    \n\n__attribute__((target(\"pclmul\"))) void clmul_naive(\n    const u64* a, int\
-    \ n, const u64* b, int m, u64* c) {\n  // c[0, n+m) \u306F\u3042\u3089\u304B\u3058\
-    \u3081 0 \u3068\u3059\u308B\n  FOR(i, n) FOR(j, m) {\n    __m128i A = _mm_set_epi64x(0,\
-    \ a[i]);\n    __m128i B = _mm_set_epi64x(0, b[j]);\n    __m128i C = _mm_clmulepi64_si128(A,\
-    \ B, 0x00);\n    alignas(16) u64 w[2];\n    _mm_store_si128((__m128i*)w, C);\n\
-    \    c[i + j] ^= w[0];\n    c[i + j + 1] ^= w[1];\n  }\n}\n\n// a,b: n limbs,\
-    \ n \u306F 2 \u51AA\n// c: 2n limbs, \u547C\u3073\u51FA\u3057\u6642\u70B9\u3067\
-    \u5168\u90E8 0\n// scratch \u306F 4n limbs \u3042\u308C\u3070\u5341\u5206\n__attribute__((target(\"\
+    \    bool end = false;\n    while (p < R) {\n      f(p, end);\n      if (end)\
+    \ return;\n      p = _Find_next(p);\n    }\n  }\n\n  inline static string TO_STR[256];\n\
+    \  string to_string() const {\n    if (TO_STR[0].empty()) precompute();\n    string\
+    \ S;\n    for (u64 x : dat) {\n      FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)];\n\
+    \    }\n    S.resize(N);\n    return S;\n  }\n\n  static void precompute() {\n\
+    \    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n\
+    \      TO_STR[s] = x;\n    }\n  }\n\n  void prefix_xor_sum() {\n    int carry\
+    \ = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry = __builtin_parityll(a);\n\
+    \      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n\
+    \      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n\
+    \    }\n    resize(N);\n  }\n};\n#line 4 \"poly/convolution_mod_2.hpp\"\n\n__attribute__((target(\"\
+    pclmul\"))) void clmul_naive(\n    const u64* a, int n, const u64* b, int m, u64*\
+    \ c) {\n  // c[0, n+m) \u306F\u3042\u3089\u304B\u3058\u3081 0 \u3068\u3059\u308B\
+    \n  FOR(i, n) FOR(j, m) {\n    __m128i A = _mm_set_epi64x(0, a[i]);\n    __m128i\
+    \ B = _mm_set_epi64x(0, b[j]);\n    __m128i C = _mm_clmulepi64_si128(A, B, 0x00);\n\
+    \    alignas(16) u64 w[2];\n    _mm_store_si128((__m128i*)w, C);\n    c[i + j]\
+    \ ^= w[0];\n    c[i + j + 1] ^= w[1];\n  }\n}\n\n// a,b: n limbs, n \u306F 2 \u51AA\
+    \n// c: 2n limbs, \u547C\u3073\u51FA\u3057\u6642\u70B9\u3067\u5168\u90E8 0\n//\
+    \ scratch \u306F 4n limbs \u3042\u308C\u3070\u5341\u5206\n__attribute__((target(\"\
     pclmul\"))) void clmul_karatsuba_rec(\n    const u64* a, const u64* b, u64* c,\
     \ int n, u64* scratch) {\n  constexpr int TH = 32;\n  if (n <= TH) {\n    clmul_naive(a,\
     \ n, b, n, c);\n    return;\n  }\n  int m = n / 2;\n  clmul_karatsuba_rec(a, b,\
@@ -229,7 +230,7 @@ data:
   isVerificationFile: false
   path: poly/convolution_mod_2.hpp
   requiredBy: []
-  timestamp: '2026-10-23 11:03:42+09:00'
+  timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: poly/convolution_mod_2.hpp

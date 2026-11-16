@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_array.hpp
     title: ds/bit_array.hpp
   _extendedRequiredBy: []
@@ -163,19 +163,20 @@ data:
     \ _Find_next(int p) const { return next(p + 1); }\n\n  template <typename F>\n\
     \  void enumerate(int L, int R, F f) const {\n    assert(0 <= L && L <= R && R\
     \ <= N);\n    if (L == R) return;\n    int p = ((*this)[L] ? L : _Find_next(L));\n\
-    \    while (p < R) {\n      f(p);\n      p = _Find_next(p);\n    }\n  }\n\n  inline\
-    \ static string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
-    \ precompute();\n    string S;\n    for (u64 x : dat) {\n      FOR(i, 8) S +=\
-    \ TO_STR[(x >> (8 * i) & 255)];\n    }\n    S.resize(N);\n    return S;\n  }\n\
-    \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
-    \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  void prefix_xor_sum()\
-    \ {\n    int carry = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry\
-    \ = __builtin_parityll(a);\n      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n\
-    \      a ^= a << (1 << 2);\n      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n\
-    \      a ^= a << (1 << 5);\n    }\n    resize(N);\n  }\n};\n#line 3 \"graph/bitset/bfs_bitset.hpp\"\
-    \n\n// \u5BC6\u30B0\u30E9\u30D5\u306E\u91CD\u307F\u306A\u3057\u6700\u77ED\u8DEF\
-    \u554F\u984C\n// 01 \u884C\u5217\u3092 vc<bitset> \u306E\u5F62\u3067\u6E21\u3059\
-    \n// O(N^2/w)\n// \u53C2\u8003\uFF1A(4000,4000) \u3092 4000 \u56DE\u3067 2 \u79D2\
+    \    bool end = false;\n    while (p < R) {\n      f(p, end);\n      if (end)\
+    \ return;\n      p = _Find_next(p);\n    }\n  }\n\n  inline static string TO_STR[256];\n\
+    \  string to_string() const {\n    if (TO_STR[0].empty()) precompute();\n    string\
+    \ S;\n    for (u64 x : dat) {\n      FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)];\n\
+    \    }\n    S.resize(N);\n    return S;\n  }\n\n  static void precompute() {\n\
+    \    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n\
+    \      TO_STR[s] = x;\n    }\n  }\n\n  void prefix_xor_sum() {\n    int carry\
+    \ = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry = __builtin_parityll(a);\n\
+    \      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n\
+    \      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n\
+    \    }\n    resize(N);\n  }\n};\n#line 3 \"graph/bitset/bfs_bitset.hpp\"\n\n//\
+    \ \u5BC6\u30B0\u30E9\u30D5\u306E\u91CD\u307F\u306A\u3057\u6700\u77ED\u8DEF\u554F\
+    \u984C\n// 01 \u884C\u5217\u3092 vc<bitset> \u306E\u5F62\u3067\u6E21\u3059\n//\
+    \ O(N^2/w)\n// \u53C2\u8003\uFF1A(4000,4000) \u3092 4000 \u56DE\u3067 2 \u79D2\
     \u4EE5\u5185\uFF1F\ntemplate <typename BITSET>\nvc<int> bfs_bitset(vc<BITSET>&\
     \ G, int s) {\n  const int N = len(G);\n  assert(0 <= s && s < N);\n  vc<int>\
     \ dist(N, infty<int>);\n  BITSET unused, que;\n  if constexpr (is_same_v<BITSET,\
@@ -204,7 +205,7 @@ data:
   isVerificationFile: false
   path: graph/bitset/bfs_bitset.hpp
   requiredBy: []
-  timestamp: '2026-10-23 11:03:42+09:00'
+  timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1400.test.cpp

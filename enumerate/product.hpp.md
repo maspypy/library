@@ -2,47 +2,49 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/labeled_tree.hpp
     title: enumerate/labeled_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/enumerate_labeled_tree.test.cpp
     title: test/1_mytest/enumerate_labeled_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/enumerate_products.test.cpp
     title: test/1_mytest/enumerate_products.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/fibonacci_search.test.cpp
     title: test/1_mytest/fibonacci_search.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/prufer.test.cpp
     title: test/1_mytest/prufer.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/enumerate/product.hpp
   bundledCode: "#line 1 \"enumerate/product.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/enumerate/product.hpp\n\
     \n// [0, A0) x [0, A1) x ...\ntemplate <typename F>\nvoid enumerate_product(const\
-    \ vc<int>& A, F query) {\n  int N = len(A);\n  auto dfs = [&](auto& dfs, vc<int>&\
-    \ p) -> void {\n    int n = len(p);\n    if (n == N) return query(p);\n    FOR(x,\
-    \ A[n]) {\n      p.eb(x);\n      dfs(dfs, p);\n      p.pop_back();\n    }\n  };\n\
-    \  vc<int> p;\n  dfs(dfs, p);\n}\n"
+    \ vc<int>& A, F query) {\n  int N = len(A);\n  bool end = false;\n  auto dfs =\
+    \ [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n    if (n == N) return\
+    \ query(p, end);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs, p);\n   \
+    \   p.pop_back();\n      if (end) return;\n    }\n  };\n  vc<int> p;\n  dfs(dfs,\
+    \ p);\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/enumerate/product.hpp\n\
     \n// [0, A0) x [0, A1) x ...\ntemplate <typename F>\nvoid enumerate_product(const\
-    \ vc<int>& A, F query) {\n  int N = len(A);\n  auto dfs = [&](auto& dfs, vc<int>&\
-    \ p) -> void {\n    int n = len(p);\n    if (n == N) return query(p);\n    FOR(x,\
-    \ A[n]) {\n      p.eb(x);\n      dfs(dfs, p);\n      p.pop_back();\n    }\n  };\n\
-    \  vc<int> p;\n  dfs(dfs, p);\n}\n"
+    \ vc<int>& A, F query) {\n  int N = len(A);\n  bool end = false;\n  auto dfs =\
+    \ [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n    if (n == N) return\
+    \ query(p, end);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs, p);\n   \
+    \   p.pop_back();\n      if (end) return;\n    }\n  };\n  vc<int> p;\n  dfs(dfs,\
+    \ p);\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: enumerate/product.hpp
   requiredBy:
   - enumerate/labeled_tree.hpp
-  timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-16 12:41:54+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/fibonacci_search.test.cpp
   - test/1_mytest/enumerate_labeled_tree.test.cpp

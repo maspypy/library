@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/triangle.hpp
     title: enumerate/triangle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_triangles
@@ -288,12 +288,13 @@ data:
     \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
     \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
     \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
-    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
-    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
-    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
-    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
-    \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
-    \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    bool end = false;\n\
+    \    FOR(i, len(used)) {\n      if (used[i]) f(key[i], val[i], end);\n      if\
+    \ (end) break;\n    }\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64> key;\n  vc<Val>\
+    \ val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const u64 FIXED_RANDOM\
+    \ =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n  \
+    \  x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x =\
+    \ (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
@@ -381,11 +382,12 @@ data:
     \u6B21\u6570\u6BD4\u8F03\u3060\u3051\u3060\u3068 DAG \u306B\u306A\u3089\u305A\u3001\
     \u30B5\u30A4\u30AF\u30EB\u304C\u3067\u304D\u3066\u3057\u307E\u3046\n    if (mp(G.deg(e.frm),\
     \ e.frm) < mp(G.deg(e.to), e.to))\n      add(e.frm, e.to);\n    else\n      add(e.to,\
-    \ e.frm);\n  }\n  H.build();\n\n  vc<bool> table(N);\n  FOR(a, N) {\n    for (auto&&\
-    \ e : H[a]) {\n      table[e.to] = 1;\n    }\n    for (auto&& e : H[a]) {\n  \
-    \    int b = e.to;\n      for (auto&& f : H[b]) {\n        int c = f.to;\n   \
-    \     if (table[c]) query(a, b, c);\n      }\n    }\n    for (auto&& e : H[a])\
-    \ {\n      table[e.to] = 0;\n    }\n  }\n}\n#line 5 \"test/2_library_checker/graph/enumerate_triangles.test.cpp\"\
+    \ e.frm);\n  }\n  H.build();\n\n  bool end = false;\n  vc<bool> table(N);\n  FOR(a,\
+    \ N) {\n    for (auto&& e : H[a]) {\n      table[e.to] = 1;\n    }\n    for (auto&&\
+    \ e : H[a]) {\n      int b = e.to;\n      for (auto&& f : H[b]) {\n        int\
+    \ c = f.to;\n        if (table[c]) {\n          query(a, b, c, end);\n       \
+    \   if (end) return;\n        }\n      }\n    }\n    for (auto&& e : H[a]) {\n\
+    \      table[e.to] = 0;\n    }\n  }\n}\n#line 5 \"test/2_library_checker/graph/enumerate_triangles.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  VEC(int, A, N);\r\n  Graph G(N);\r\n\
     \  G.read_graph(M, 0, 0);\r\n  i128 sum = 0;\r\n  auto query\r\n      = [&](int\
     \ a, int b, int c) -> void { sum += i128(A[a]) * A[b] * A[c]; };\r\n  enumerate_triangle(G,\
@@ -407,8 +409,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/enumerate_triangles.test.cpp
   requiredBy: []
-  timestamp: '2026-10-30 00:34:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-16 12:41:54+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/enumerate_triangles.test.cpp
 layout: document

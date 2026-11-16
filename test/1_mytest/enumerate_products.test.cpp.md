@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -143,10 +143,11 @@ data:
     #line 3 \"test/1_mytest/enumerate_products.test.cpp\"\n\n#line 1 \"enumerate/product.hpp\"\
     \n// Source: https://github.com/maspypy/library/blob/main/enumerate/product.hpp\n\
     \n// [0, A0) x [0, A1) x ...\ntemplate <typename F>\nvoid enumerate_product(const\
-    \ vc<int>& A, F query) {\n  int N = len(A);\n  auto dfs = [&](auto& dfs, vc<int>&\
-    \ p) -> void {\n    int n = len(p);\n    if (n == N) return query(p);\n    FOR(x,\
-    \ A[n]) {\n      p.eb(x);\n      dfs(dfs, p);\n      p.pop_back();\n    }\n  };\n\
-    \  vc<int> p;\n  dfs(dfs, p);\n}\n#line 1 \"mod/modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint.hpp\n\
+    \ vc<int>& A, F query) {\n  int N = len(A);\n  bool end = false;\n  auto dfs =\
+    \ [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n    if (n == N) return\
+    \ query(p, end);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs, p);\n   \
+    \   p.pop_back();\n      if (end) return;\n    }\n  };\n  vc<int> p;\n  dfs(dfs,\
+    \ p);\n}\n#line 1 \"mod/modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint.hpp\n\
     #line 1 \"mod/modint_common.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint_common.hpp\n\
     \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
     \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
@@ -262,8 +263,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enumerate_products.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-16 12:41:54+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/enumerate_products.test.cpp
 layout: document

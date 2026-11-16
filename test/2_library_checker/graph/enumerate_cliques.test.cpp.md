@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/clique.hpp
     title: enumerate/clique.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_cliques
@@ -293,12 +293,13 @@ data:
     \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
     \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
     \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
-    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
-    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
-    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
-    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
-    \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
-    \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    bool end = false;\n\
+    \    FOR(i, len(used)) {\n      if (used[i]) f(key[i], val[i], end);\n      if\
+    \ (end) break;\n    }\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64> key;\n  vc<Val>\
+    \ val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const u64 FIXED_RANDOM\
+    \ =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n  \
+    \  x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x =\
+    \ (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
@@ -464,25 +465,25 @@ data:
     #line 1 \"enumerate/clique.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/enumerate/clique.hpp\n\
     // N2^{sqrt(2m)}\n// https://www.slideshare.net/wata_orz/ss-12131479\ntemplate\
     \ <typename Gr, typename F>\nvoid enumerate_clique(const Gr& G, F query) {\n \
-    \ int N = G.N;\n  auto deg = G.deg_array();\n  vc<bool> done(N);\n  vv(int, can,\
-    \ N, N);\n  for (auto&& e : G.edges) {\n    can[e.frm][e.to] = can[e.to][e.frm]\
+    \ bool end = false;\n  int N = G.N;\n  auto deg = G.deg_array();\n  vc<bool> done(N);\n\
+    \  vv(int, can, N, N);\n  for (auto&& e : G.edges) {\n    can[e.frm][e.to] = can[e.to][e.frm]\
     \ = 1;\n  }\n\n  FOR(N) {\n    // \u6B21\u6570\u6700\u5C0F\u306E\u9802\u70B9\u306E\
     \u8FD1\u508D\u3092\u8ABF\u3079\u308B\n    int v = -1;\n    int min_d = N;\n  \
     \  FOR(i, N) if (!done[i] && chmin(min_d, deg[i])) v = i;\n\n    vc<int> nbd;\n\
     \    for (auto&& e : G[v])\n      if (!done[e.to]) nbd.eb(e.to);\n    vc<int>\
-    \ C = {v};\n\n    auto dfs = [&](auto& dfs, int k) -> void {\n      query(C);\n\
-    \      FOR(i, k, len(nbd)) {\n        bool ok = 1;\n        for (auto&& x : C)\
-    \ {\n          if (!can[x][nbd[i]]) {\n            ok = 0;\n            break;\n\
-    \          }\n        }\n        if (ok) {\n          C.eb(nbd[i]);\n        \
-    \  dfs(dfs, i + 1);\n          C.pop_back();\n        }\n      }\n    };\n\n \
-    \   dfs(dfs, 0);\n    done[v] = 1;\n    for (auto&& x : nbd) deg[x]--;\n  }\n\
-    }\n#line 8 \"test/2_library_checker/graph/enumerate_cliques.test.cpp\"\n\nusing\
-    \ mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n  VEC(mint, X, N);\n  mint\
-    \ ANS = 0;\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\n  auto f = [&](vc<int>\
-    \ C) -> void {\n    mint p = 1;\n    for (auto&& i: C) p *= X[i];\n    ANS +=\
-    \ p;\n  };\n  enumerate_clique(G, f);\n  print(ANS);\n}\n\nsigned main() {\n \
-    \ cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\
-    \n  return 0;\n}\n"
+    \ C = {v};\n\n    auto dfs = [&](auto& dfs, int k) -> void {\n      query(C, end);\n\
+    \      if (end) return;\n      FOR(i, k, len(nbd)) {\n        bool ok = 1;\n \
+    \       for (auto&& x : C) {\n          if (!can[x][nbd[i]]) {\n            ok\
+    \ = 0;\n            break;\n          }\n        }\n        if (ok) {\n      \
+    \    C.eb(nbd[i]);\n          dfs(dfs, i + 1);\n          C.pop_back();\n    \
+    \      if (end) return;\n        }\n      }\n    };\n\n    dfs(dfs, 0);\n    done[v]\
+    \ = 1;\n    for (auto&& x : nbd) deg[x]--;\n  }\n}\n#line 8 \"test/2_library_checker/graph/enumerate_cliques.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n  VEC(mint, X, N);\n\
+    \  mint ANS = 0;\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\n  auto f\
+    \ = [&](vc<int> C) -> void {\n    mint p = 1;\n    for (auto&& i: C) p *= X[i];\n\
+    \    ANS += p;\n  };\n  enumerate_clique(G, f);\n  print(ANS);\n}\n\nsigned main()\
+    \ {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T)\
+    \ solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_cliques\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/base.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"enumerate/clique.hpp\"\n\nusing mint\
@@ -503,8 +504,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/enumerate_cliques.test.cpp
   requiredBy: []
-  timestamp: '2026-10-30 00:34:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-16 12:41:54+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/enumerate_cliques.test.cpp
 layout: document

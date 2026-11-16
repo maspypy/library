@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   _extendedRequiredBy: []
@@ -90,12 +90,13 @@ data:
     \ }\n\n  template <typename F>\n  ll min_left(np root, F check, ll R) {\n    assert(root\
     \ && L0 <= R && R <= R0 && check(MX::id()));\n    X x = MX::id();\n    return\
     \ min_left_rec(root, check, L0, R0, R, x);\n  }\n\n  // f(idx, val)\n  template\
-    \ <typename F>\n  void enumerate(np root, F f) {\n    auto dfs = [&](auto &dfs,\
-    \ np c, ll l, ll r, A a) -> void {\n      if (!c) return;\n      if (r - l ==\
-    \ 1) {\n        f(l, AM::act(c->x, a, 1));\n        return;\n      }\n      ll\
-    \ m = (l + r) / 2;\n      a = MA::op(c->lazy, a);\n      dfs(dfs, c->l, l, m,\
-    \ a);\n      dfs(dfs, c->r, m, r, a);\n    };\n    dfs(dfs, root, L0, R0, MA::id());\n\
-    \  }\n\n  void reset() { pool.reset(); }\n\n  // root[l:r) \u3092 apply(other[l:r),a)\
+    \ <typename F>\n  void enumerate(np root, F f) {\n    bool end = false;\n    auto\
+    \ dfs = [&](auto &dfs, np c, ll l, ll r, A a) -> void {\n      if (!c) return;\n\
+    \      if (r - l == 1) {\n        f(l, AM::act(c->x, a, 1), end);\n        return;\n\
+    \      }\n      ll m = (l + r) / 2;\n      a = MA::op(c->lazy, a);\n      dfs(dfs,\
+    \ c->l, l, m, a);\n      if (end) return;\n      dfs(dfs, c->r, m, r, a);\n  \
+    \    if (end) return;\n    };\n    dfs(dfs, root, L0, R0, MA::id());\n  }\n\n\
+    \  void reset() { pool.reset(); }\n\n  // root[l:r) \u3092 apply(other[l:r),a)\
     \ \u3067\u4E0A\u66F8\u304D\u3057\u305F\u3082\u306E\u3092\u8FD4\u3059\n  np copy_interval(np\
     \ root, np other, ll l, ll r, A a) {\n    if (root == other) return root;\n  \
     \  root = clone(root);\n    copy_interval_rec(root, other, L0, R0, l, r, a);\n\
@@ -195,12 +196,13 @@ data:
     \ }\n\n  template <typename F>\n  ll min_left(np root, F check, ll R) {\n    assert(root\
     \ && L0 <= R && R <= R0 && check(MX::id()));\n    X x = MX::id();\n    return\
     \ min_left_rec(root, check, L0, R0, R, x);\n  }\n\n  // f(idx, val)\n  template\
-    \ <typename F>\n  void enumerate(np root, F f) {\n    auto dfs = [&](auto &dfs,\
-    \ np c, ll l, ll r, A a) -> void {\n      if (!c) return;\n      if (r - l ==\
-    \ 1) {\n        f(l, AM::act(c->x, a, 1));\n        return;\n      }\n      ll\
-    \ m = (l + r) / 2;\n      a = MA::op(c->lazy, a);\n      dfs(dfs, c->l, l, m,\
-    \ a);\n      dfs(dfs, c->r, m, r, a);\n    };\n    dfs(dfs, root, L0, R0, MA::id());\n\
-    \  }\n\n  void reset() { pool.reset(); }\n\n  // root[l:r) \u3092 apply(other[l:r),a)\
+    \ <typename F>\n  void enumerate(np root, F f) {\n    bool end = false;\n    auto\
+    \ dfs = [&](auto &dfs, np c, ll l, ll r, A a) -> void {\n      if (!c) return;\n\
+    \      if (r - l == 1) {\n        f(l, AM::act(c->x, a, 1), end);\n        return;\n\
+    \      }\n      ll m = (l + r) / 2;\n      a = MA::op(c->lazy, a);\n      dfs(dfs,\
+    \ c->l, l, m, a);\n      if (end) return;\n      dfs(dfs, c->r, m, r, a);\n  \
+    \    if (end) return;\n    };\n    dfs(dfs, root, L0, R0, MA::id());\n  }\n\n\
+    \  void reset() { pool.reset(); }\n\n  // root[l:r) \u3092 apply(other[l:r),a)\
     \ \u3067\u4E0A\u66F8\u304D\u3057\u305F\u3082\u306E\u3092\u8FD4\u3059\n  np copy_interval(np\
     \ root, np other, ll l, ll r, A a) {\n    if (root == other) return root;\n  \
     \  root = clone(root);\n    copy_interval_rec(root, other, L0, R0, l, r, a);\n\
@@ -270,7 +272,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/dynamic_lazy_segtree.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp

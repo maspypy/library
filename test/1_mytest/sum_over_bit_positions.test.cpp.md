@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_array.hpp
     title: ds/bit_array.hpp
   - icon: ':heavy_check_mark:'
@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -289,18 +289,18 @@ data:
     \ _Find_next(int p) const { return next(p + 1); }\n\n  template <typename F>\n\
     \  void enumerate(int L, int R, F f) const {\n    assert(0 <= L && L <= R && R\
     \ <= N);\n    if (L == R) return;\n    int p = ((*this)[L] ? L : _Find_next(L));\n\
-    \    while (p < R) {\n      f(p);\n      p = _Find_next(p);\n    }\n  }\n\n  inline\
-    \ static string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
-    \ precompute();\n    string S;\n    for (u64 x : dat) {\n      FOR(i, 8) S +=\
-    \ TO_STR[(x >> (8 * i) & 255)];\n    }\n    S.resize(N);\n    return S;\n  }\n\
-    \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
-    \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  void prefix_xor_sum()\
-    \ {\n    int carry = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry\
-    \ = __builtin_parityll(a);\n      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n\
-    \      a ^= a << (1 << 2);\n      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n\
-    \      a ^= a << (1 << 5);\n    }\n    resize(N);\n  }\n};\n#line 1 \"random/base.hpp\"\
-    \n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\n\
-    u64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \    bool end = false;\n    while (p < R) {\n      f(p, end);\n      if (end)\
+    \ return;\n      p = _Find_next(p);\n    }\n  }\n\n  inline static string TO_STR[256];\n\
+    \  string to_string() const {\n    if (TO_STR[0].empty()) precompute();\n    string\
+    \ S;\n    for (u64 x : dat) {\n      FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)];\n\
+    \    }\n    S.resize(N);\n    return S;\n  }\n\n  static void precompute() {\n\
+    \    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n\
+    \      TO_STR[s] = x;\n    }\n  }\n\n  void prefix_xor_sum() {\n    int carry\
+    \ = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry = __builtin_parityll(a);\n\
+    \      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n\
+    \      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n\
+    \    }\n    resize(N);\n  }\n};\n#line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
@@ -454,21 +454,22 @@ data:
     \ _Find_next(int p) const { return next(p + 1); }\n\n  template <typename F>\n\
     \  void enumerate(int L, int R, F f) const {\n    assert(0 <= L && L <= R && R\
     \ <= N);\n    if (L == R) return;\n    int p = ((*this)[L] ? L : _Find_next(L));\n\
-    \    while (p < R) {\n      f(p);\n      p = _Find_next(p);\n    }\n  }\n\n  inline\
-    \ static string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
-    \ precompute();\n    string S;\n    for (u64 x : dat) {\n      FOR(i, 8) S +=\
-    \ TO_STR[(x >> (8 * i) & 255)];\n    }\n    S.resize(N);\n    return S;\n  }\n\
-    \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
-    \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  void prefix_xor_sum()\
-    \ {\n    int carry = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry\
-    \ = __builtin_parityll(a);\n      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n\
-    \      a ^= a << (1 << 2);\n      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n\
-    \      a ^= a << (1 << 5);\n    }\n    resize(N);\n  }\n};\n#line 3 \"ds/sum_over_bit_positions.hpp\"\
-    \n\n// https://qoj.ac/contest/1784/problem/9244\n// sum bitset[i]*wt[i]\n// T\
-    \ \u306F 11bit sum \u304C\u304A\u3055\u307E\u308C\u3070 ok\n// (N=Q=100000:0.9\
-    \ sec)\ntemplate <typename T, int MAXSIZE>\nstruct Sum_Over_Bit_Positions {\n\
-    \  int N;\n  vc<T> base;\n  static T table[MAXSIZE / 64 * 6 + 10][1 << 11];\n\n\
-    \  template <typename F>\n  Sum_Over_Bit_Positions(int N, F f) : N(N) {\n    base.resize(N);\n\
+    \    bool end = false;\n    while (p < R) {\n      f(p, end);\n      if (end)\
+    \ return;\n      p = _Find_next(p);\n    }\n  }\n\n  inline static string TO_STR[256];\n\
+    \  string to_string() const {\n    if (TO_STR[0].empty()) precompute();\n    string\
+    \ S;\n    for (u64 x : dat) {\n      FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)];\n\
+    \    }\n    S.resize(N);\n    return S;\n  }\n\n  static void precompute() {\n\
+    \    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n\
+    \      TO_STR[s] = x;\n    }\n  }\n\n  void prefix_xor_sum() {\n    int carry\
+    \ = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry = __builtin_parityll(a);\n\
+    \      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n\
+    \      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n\
+    \    }\n    resize(N);\n  }\n};\n#line 3 \"ds/sum_over_bit_positions.hpp\"\n\n\
+    // https://qoj.ac/contest/1784/problem/9244\n// sum bitset[i]*wt[i]\n// T \u306F\
+    \ 11bit sum \u304C\u304A\u3055\u307E\u308C\u3070 ok\n// (N=Q=100000:0.9 sec)\n\
+    template <typename T, int MAXSIZE>\nstruct Sum_Over_Bit_Positions {\n  int N;\n\
+    \  vc<T> base;\n  static T table[MAXSIZE / 64 * 6 + 10][1 << 11];\n\n  template\
+    \ <typename F>\n  Sum_Over_Bit_Positions(int N, F f) : N(N) {\n    base.resize(N);\n\
     \    assert(0 <= N && N <= MAXSIZE);\n    int NB = (N + 63) / 64;\n    FOR(block,\
     \ NB) {\n      FOR(k, 6) {\n        int b = 6 * block + k;\n        FOR(i, 11)\
     \ {\n          int idx = 64 * block + 11 * k + i;\n          T x = 0;\n      \
@@ -513,7 +514,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/sum_over_bit_positions.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
+  timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/sum_over_bit_positions.test.cpp

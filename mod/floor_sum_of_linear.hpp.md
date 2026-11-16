@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/range_freq_of_linear.hpp
     title: mod/range_freq_of_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
@@ -36,7 +36,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2066.test.cpp
     title: test/3_yukicoder/2066.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2266.test.cpp
     title: test/3_yukicoder/2266.test.cpp
   - icon: ':heavy_check_mark:'
@@ -45,9 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2440.test.cpp
     title: test/3_yukicoder/2440.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/mod/floor_sum_of_linear.hpp
@@ -82,7 +82,7 @@ data:
   - mod/range_freq_of_linear.hpp
   - mod/mod_sum_of_linear.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
   - test/2_library_checker/number_theory/sum_of_floor_of_linear.test.cpp

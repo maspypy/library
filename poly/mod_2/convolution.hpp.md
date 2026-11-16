@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_array.hpp
     title: ds/bit_array.hpp
   _extendedRequiredBy:
@@ -166,17 +166,18 @@ data:
     \ _Find_next(int p) const { return next(p + 1); }\n\n  template <typename F>\n\
     \  void enumerate(int L, int R, F f) const {\n    assert(0 <= L && L <= R && R\
     \ <= N);\n    if (L == R) return;\n    int p = ((*this)[L] ? L : _Find_next(L));\n\
-    \    while (p < R) {\n      f(p);\n      p = _Find_next(p);\n    }\n  }\n\n  inline\
-    \ static string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
-    \ precompute();\n    string S;\n    for (u64 x : dat) {\n      FOR(i, 8) S +=\
-    \ TO_STR[(x >> (8 * i) & 255)];\n    }\n    S.resize(N);\n    return S;\n  }\n\
-    \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
-    \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  void prefix_xor_sum()\
-    \ {\n    int carry = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry\
-    \ = __builtin_parityll(a);\n      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n\
-    \      a ^= a << (1 << 2);\n      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n\
-    \      a ^= a << (1 << 5);\n    }\n    resize(N);\n  }\n};\n#line 5 \"poly/mod_2/convolution.hpp\"\
-    \n\nconstexpr int CLMUL_TH = 8;\n\n__attribute__((target(\"pclmul\"))) void clmul_naive(\n\
+    \    bool end = false;\n    while (p < R) {\n      f(p, end);\n      if (end)\
+    \ return;\n      p = _Find_next(p);\n    }\n  }\n\n  inline static string TO_STR[256];\n\
+    \  string to_string() const {\n    if (TO_STR[0].empty()) precompute();\n    string\
+    \ S;\n    for (u64 x : dat) {\n      FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)];\n\
+    \    }\n    S.resize(N);\n    return S;\n  }\n\n  static void precompute() {\n\
+    \    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n\
+    \      TO_STR[s] = x;\n    }\n  }\n\n  void prefix_xor_sum() {\n    int carry\
+    \ = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry = __builtin_parityll(a);\n\
+    \      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n\
+    \      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n\
+    \    }\n    resize(N);\n  }\n};\n#line 5 \"poly/mod_2/convolution.hpp\"\n\nconstexpr\
+    \ int CLMUL_TH = 8;\n\n__attribute__((target(\"pclmul\"))) void clmul_naive(\n\
     \    const u64* a, int n, const u64* b, int m, u64* c) {\n  FOR(i, n) FOR(j, m)\
     \ {\n    __m128i A = _mm_set_epi64x(0, a[i]);\n    __m128i B = _mm_set_epi64x(0,\
     \ b[j]);\n    __m128i C = _mm_clmulepi64_si128(A, B, 0x00);\n\n    alignas(16)\
@@ -251,7 +252,7 @@ data:
   requiredBy:
   - poly/mod_2/fps_inv.hpp
   - poly/mod_2/power_projection.hpp
-  timestamp: '2026-10-23 11:03:42+09:00'
+  timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: poly/mod_2/convolution.hpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_array.hpp
     title: ds/bit_array.hpp
   _extendedRequiredBy: []
@@ -160,20 +160,21 @@ data:
     \ _Find_next(int p) const { return next(p + 1); }\n\n  template <typename F>\n\
     \  void enumerate(int L, int R, F f) const {\n    assert(0 <= L && L <= R && R\
     \ <= N);\n    if (L == R) return;\n    int p = ((*this)[L] ? L : _Find_next(L));\n\
-    \    while (p < R) {\n      f(p);\n      p = _Find_next(p);\n    }\n  }\n\n  inline\
-    \ static string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
-    \ precompute();\n    string S;\n    for (u64 x : dat) {\n      FOR(i, 8) S +=\
-    \ TO_STR[(x >> (8 * i) & 255)];\n    }\n    S.resize(N);\n    return S;\n  }\n\
-    \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
-    \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  void prefix_xor_sum()\
-    \ {\n    int carry = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry\
-    \ = __builtin_parityll(a);\n      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n\
-    \      a ^= a << (1 << 2);\n      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n\
-    \      a ^= a << (1 << 5);\n    }\n    resize(N);\n  }\n};\n#line 3 \"linalg/bitset/det.hpp\"\
-    \n\ntemplate <typename BS>\nbool det(vc<BS> A) {\n  int N = len(A);\n  FOR(i,\
-    \ N) {\n    FOR(k, i + 1, N) if (A[k][i]) {\n      swap(A[k], A[i]);\n      break;\n\
-    \    }\n    if (!A[i][i]) return 0;\n    FOR(k, i + 1, N) {\n      if (A[k][i])\
-    \ { A[k] ^= A[i]; }\n    }\n  }\n  return 1;\n}\n"
+    \    bool end = false;\n    while (p < R) {\n      f(p, end);\n      if (end)\
+    \ return;\n      p = _Find_next(p);\n    }\n  }\n\n  inline static string TO_STR[256];\n\
+    \  string to_string() const {\n    if (TO_STR[0].empty()) precompute();\n    string\
+    \ S;\n    for (u64 x : dat) {\n      FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)];\n\
+    \    }\n    S.resize(N);\n    return S;\n  }\n\n  static void precompute() {\n\
+    \    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n\
+    \      TO_STR[s] = x;\n    }\n  }\n\n  void prefix_xor_sum() {\n    int carry\
+    \ = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry = __builtin_parityll(a);\n\
+    \      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n\
+    \      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n\
+    \    }\n    resize(N);\n  }\n};\n#line 3 \"linalg/bitset/det.hpp\"\n\ntemplate\
+    \ <typename BS>\nbool det(vc<BS> A) {\n  int N = len(A);\n  FOR(i, N) {\n    FOR(k,\
+    \ i + 1, N) if (A[k][i]) {\n      swap(A[k], A[i]);\n      break;\n    }\n   \
+    \ if (!A[i][i]) return 0;\n    FOR(k, i + 1, N) {\n      if (A[k][i]) { A[k] ^=\
+    \ A[i]; }\n    }\n  }\n  return 1;\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/linalg/bitset/det.hpp\n\
     #include \"ds/bit_array.hpp\"\n\ntemplate <typename BS>\nbool det(vc<BS> A) {\n\
     \  int N = len(A);\n  FOR(i, N) {\n    FOR(k, i + 1, N) if (A[k][i]) {\n     \
@@ -185,7 +186,7 @@ data:
   isVerificationFile: false
   path: linalg/bitset/det.hpp
   requiredBy: []
-  timestamp: '2026-10-23 11:03:42+09:00'
+  timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: linalg/bitset/det.hpp

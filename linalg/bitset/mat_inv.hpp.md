@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_array.hpp
     title: ds/bit_array.hpp
   _extendedRequiredBy: []
@@ -163,23 +163,24 @@ data:
     \ _Find_next(int p) const { return next(p + 1); }\n\n  template <typename F>\n\
     \  void enumerate(int L, int R, F f) const {\n    assert(0 <= L && L <= R && R\
     \ <= N);\n    if (L == R) return;\n    int p = ((*this)[L] ? L : _Find_next(L));\n\
-    \    while (p < R) {\n      f(p);\n      p = _Find_next(p);\n    }\n  }\n\n  inline\
-    \ static string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
-    \ precompute();\n    string S;\n    for (u64 x : dat) {\n      FOR(i, 8) S +=\
-    \ TO_STR[(x >> (8 * i) & 255)];\n    }\n    S.resize(N);\n    return S;\n  }\n\
-    \n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i,\
-    \ 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\n  void prefix_xor_sum()\
-    \ {\n    int carry = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry\
-    \ = __builtin_parityll(a);\n      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n\
-    \      a ^= a << (1 << 2);\n      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n\
-    \      a ^= a << (1 << 5);\n    }\n    resize(N);\n  }\n};\n#line 3 \"linalg/bitset/mat_inv.hpp\"\
-    \n\n// det = 0 \u306E\u5834\u5408\u306B\u306F empty \u3092\u304B\u3048\u3059\n\
-    template <typename BS>\nvc<BS> mat_inv(vc<BS> A) {\n  int N = len(A);\n  vc<BS>\
-    \ B(N);\n  if constexpr (is_same_v<BS, Bit_Array>) { FOR(i, N) B[i] = BS(N); }\n\
-    \  FOR(i, N) B[i][i] = 1;\n  FOR(i, N) {\n    FOR(k, i + 1, N) if (A[k][i]) {\n\
-    \      swap(A[k], A[i]);\n      swap(B[k], B[i]);\n      break;\n    }\n    if\
-    \ (!A[i][i]) return {};\n    FOR(k, N) {\n      if (i == k) continue;\n      if\
-    \ (A[k][i]) {\n        if constexpr (is_same_v<BS, Bit_Array>) {\n          A[k].xor_suffix(i,\
+    \    bool end = false;\n    while (p < R) {\n      f(p, end);\n      if (end)\
+    \ return;\n      p = _Find_next(p);\n    }\n  }\n\n  inline static string TO_STR[256];\n\
+    \  string to_string() const {\n    if (TO_STR[0].empty()) precompute();\n    string\
+    \ S;\n    for (u64 x : dat) {\n      FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)];\n\
+    \    }\n    S.resize(N);\n    return S;\n  }\n\n  static void precompute() {\n\
+    \    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n\
+    \      TO_STR[s] = x;\n    }\n  }\n\n  void prefix_xor_sum() {\n    int carry\
+    \ = 0;\n    for (u64 &a : dat) {\n      a ^= carry;\n      carry = __builtin_parityll(a);\n\
+    \      a ^= a << (1 << 0);\n      a ^= a << (1 << 1);\n      a ^= a << (1 << 2);\n\
+    \      a ^= a << (1 << 3);\n      a ^= a << (1 << 4);\n      a ^= a << (1 << 5);\n\
+    \    }\n    resize(N);\n  }\n};\n#line 3 \"linalg/bitset/mat_inv.hpp\"\n\n// det\
+    \ = 0 \u306E\u5834\u5408\u306B\u306F empty \u3092\u304B\u3048\u3059\ntemplate\
+    \ <typename BS>\nvc<BS> mat_inv(vc<BS> A) {\n  int N = len(A);\n  vc<BS> B(N);\n\
+    \  if constexpr (is_same_v<BS, Bit_Array>) { FOR(i, N) B[i] = BS(N); }\n  FOR(i,\
+    \ N) B[i][i] = 1;\n  FOR(i, N) {\n    FOR(k, i + 1, N) if (A[k][i]) {\n      swap(A[k],\
+    \ A[i]);\n      swap(B[k], B[i]);\n      break;\n    }\n    if (!A[i][i]) return\
+    \ {};\n    FOR(k, N) {\n      if (i == k) continue;\n      if (A[k][i]) {\n  \
+    \      if constexpr (is_same_v<BS, Bit_Array>) {\n          A[k].xor_suffix(i,\
     \ A[i]);\n          B[k] ^= B[i];\n        } else {\n          A[k] ^= A[i];\n\
     \          B[k] ^= B[i];\n        }\n      }\n    }\n  }\n  return B;\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/linalg/bitset/mat_inv.hpp\n\
@@ -198,7 +199,7 @@ data:
   isVerificationFile: false
   path: linalg/bitset/mat_inv.hpp
   requiredBy: []
-  timestamp: '2026-10-23 11:03:42+09:00'
+  timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp

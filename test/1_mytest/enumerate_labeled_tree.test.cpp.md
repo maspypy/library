@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/labeled_tree.hpp
     title: enumerate/labeled_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/prufer_code.hpp
     title: graph/prufer_code.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -154,12 +154,12 @@ data:
     \n// Source: https://github.com/maspypy/library/blob/main/enumerate/labeled_tree.hpp\n\
     #line 1 \"enumerate/product.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/enumerate/product.hpp\n\
     \n// [0, A0) x [0, A1) x ...\ntemplate <typename F>\nvoid enumerate_product(const\
-    \ vc<int>& A, F query) {\n  int N = len(A);\n  auto dfs = [&](auto& dfs, vc<int>&\
-    \ p) -> void {\n    int n = len(p);\n    if (n == N) return query(p);\n    FOR(x,\
-    \ A[n]) {\n      p.eb(x);\n      dfs(dfs, p);\n      p.pop_back();\n    }\n  };\n\
-    \  vc<int> p;\n  dfs(dfs, p);\n}\n#line 1 \"graph/prufer_code.hpp\"\n// Source:\
-    \ https://github.com/maspypy/library/blob/main/graph/prufer_code.hpp\n#line 1\
-    \ \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    \ vc<int>& A, F query) {\n  int N = len(A);\n  bool end = false;\n  auto dfs =\
+    \ [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n    if (n == N) return\
+    \ query(p, end);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs, p);\n   \
+    \   p.pop_back();\n      if (end) return;\n    }\n  };\n  vc<int> p;\n  dfs(dfs,\
+    \ p);\n}\n#line 1 \"graph/prufer_code.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/prufer_code.hpp\n\
+    #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
     #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
     \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
     \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
@@ -176,12 +176,13 @@ data:
     \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
     \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
     \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
-    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
-    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
-    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
-    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
-    \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
-    \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    bool end = false;\n\
+    \    FOR(i, len(used)) {\n      if (used[i]) f(key[i], val[i], end);\n      if\
+    \ (end) break;\n    }\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64> key;\n  vc<Val>\
+    \ val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const u64 FIXED_RANDOM\
+    \ =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n  \
+    \  x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x =\
+    \ (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
@@ -280,11 +281,12 @@ data:
     \ deg[code[i]]--;\n    leaf = (code[i] < p && deg[code[i]] == 1 ? code[i] : -1);\n\
     \  }\n  G.build();\n  return G;\n}\n#line 4 \"enumerate/labeled_tree.hpp\"\n\n\
     // f(pair<int,int>)\n// https://codeforces.com/contest/611/problem/H\ntemplate\
-    \ <typename F>\nvoid enumerate_labeled_tree(int N, F f) {\n  if (N == 1) {\n \
-    \   f(vc<pair<int, int>>{});\n    return;\n  }\n  enumerate_product(vc<int>(N\
-    \ - 2, N), [&](vc<int> A) -> void {\n    A.eb(N - 1);\n    Graph<int, 0> G = from_prufer_code(A);\n\
-    \    vc<pair<int, int>> AB;\n    for (auto& e: G.edges) AB.eb(e.frm, e.to);\n\
-    \    f(AB);\n  });\n}\n#line 1 \"ds/unionfind/unionfind.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\n\
+    \ <typename F>\nvoid enumerate_labeled_tree(int N, F f) {\n  bool end = false;\n\
+    \  if (N == 1) {\n    f(vc<pair<int, int>>{}, end);\n    return;\n  }\n  enumerate_product(vc<int>(N\
+    \ - 2, N), [&](vc<int> A, bool& end_inner) -> void {\n    A.eb(N - 1);\n    Graph<int,\
+    \ 0> G = from_prufer_code(A);\n    vc<pair<int, int>> AB;\n    for (auto& e :\
+    \ G.edges) AB.eb(e.frm, e.to);\n    f(AB, end);\n    end_inner = end;\n  });\n\
+    }\n#line 1 \"ds/unionfind/unionfind.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/unionfind/unionfind.hpp\n\
     \nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat;  // par or (-size)\n  UnionFind(int\
     \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
     \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int add_vertex() {\n    ++n_comp,\
@@ -325,8 +327,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enumerate_labeled_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-10-30 00:34:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-16 12:41:54+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/enumerate_labeled_tree.test.cpp
 layout: document

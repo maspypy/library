@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/dirichlet.hpp
     title: nt/dirichlet.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/integer_kth_root.hpp
     title: nt/integer_kth_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

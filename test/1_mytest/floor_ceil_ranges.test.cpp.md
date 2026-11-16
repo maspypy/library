@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/ceil_range.hpp
     title: enumerate/ceil_range.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -139,40 +139,42 @@ data:
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif  // MASPY_TEMPLATE_BODY\n\
     #line 1 \"enumerate/ceil_range.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/enumerate/ceil_range.hpp\n\
     // \u5546\u304C q \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\
-    \u9806\ntemplate <typename F>\nvoid ceil_range(ll N, F f) {\n  assert(N <= (1LL\
-    \ << 50));\n  ll sq = sqrtl(N);\n  ll prev = infty<ll>;\n  for (int q = 1; q <=\
-    \ sq; ++q) {\n    ll x = (N + q - 1) / q;\n    f(q, x, prev), prev = x;\n  }\n\
-    \  int n = (N <= sq * sq + sq ? sq : sq + 1);\n  if (N == sq * sq) --n;\n  for\
-    \ (int l = n; l >= 1; --l) {\n    f((N + l - 1) / l, l, l + 1);\n  }\n}\n#line\
-    \ 1 \"enumerate/floor_range.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/enumerate/floor_range.hpp\n\
+    \u9806\ntemplate <typename F>\nvoid ceil_range(ll N, F f) {\n  bool end = false;\n\
+    \  assert(N <= (1LL << 50));\n  ll sq = sqrtl(N);\n  ll prev = infty<ll>;\n  for\
+    \ (int q = 1; q <= sq; ++q) {\n    ll x = (N + q - 1) / q;\n    f(q, x, prev,\
+    \ end), prev = x;\n    if (end) return;\n  }\n  int n = (N <= sq * sq + sq ? sq\
+    \ : sq + 1);\n  if (N == sq * sq) --n;\n  for (int l = n; l >= 1; --l) {\n   \
+    \ f((N + l - 1) / l, l, l + 1, end);\n    if (end) return;\n  }\n}\n#line 1 \"\
+    enumerate/floor_range.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/enumerate/floor_range.hpp\n\
     // \u5546\u304C q \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\
     \u9806\ntemplate <typename F>\nvoid floor_range(u64 N, F f, bool Q_ASC = true,\
-    \ bool INCLUDE_Q_IS_0 = false) {\n  u64 sq = sqrtl(N);\n  u32 n = (sq * sq + sq\
-    \ <= N ? sq : sq - 1);\n  if (Q_ASC) {\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\n\
-    \    for (u32 q = 1; q <= n; ++q) {\n      f(q, N / (q + 1) + 1, N / q + 1);\n\
-    \    }\n    for (u32 l = sq; l >= 1; --l) {\n      f(N / l, l, l + 1);\n    }\n\
-    \  } else {\n    for (u32 l = 1; l <= sq; ++l) {\n      f(N / l, l, l + 1);\n\
-    \    }\n    for (u32 q = n; q >= 1; --q) {\n      f(q, N / (q + 1) + 1, N / q\
-    \ + 1);\n    }\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\n  }\n}\n#line\
-    \ 5 \"test/1_mytest/floor_ceil_ranges.test.cpp\"\n\nvoid test_floor() {\n  using\
-    \ T = tuple<ll, ll, ll>;\n  auto F = [&](ll N) -> vc<T> {\n    vc<T> dat;\n  \
-    \  auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q, l, r); };\n    floor_range(N,\
-    \ f);\n    return dat;\n  };\n  auto G = [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N\
-    \ + 1);\n    FOR(x, 1, N + 1) tmp[floor(N, x)].eb(x);\n    vc<T> dat;\n    FOR(x,\
-    \ 1, N + 1) {\n      if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n        ll\
-    \ hi = tmp[x].back();\n        dat.eb(x, lo, hi + 1);\n      }\n    }\n    return\
-    \ dat;\n  };\n  FOR(N, 1, 100) { assert(F(N) == G(N)); }\n}\n\nvoid test_ceil()\
-    \ {\n  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N) -> vc<T> {\n    vc<T>\
-    \ dat;\n    auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q, l, r); };\n   \
-    \ ceil_range(N, f);\n    return dat;\n  };\n  auto G = [&](ll N) -> vc<T> {\n\
-    \    vvc<ll> tmp(N + 1);\n    FOR(x, 1, N + 1) tmp[ceil(N, x)].eb(x);\n    vc<T>\
-    \ dat;\n    FOR(x, 1, N + 1) {\n      if (x == 1) {\n        dat.eb(x, N, infty<ll>);\n\
-    \        continue;\n      }\n      if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n\
-    \        ll hi = tmp[x].back();\n        dat.eb(x, lo, hi + 1);\n      }\n   \
-    \ }\n    return dat;\n  };\n  FOR(N, 1, 100) { assert(F(N) == G(N)); }\n}\n\n\
-    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
-    \nsigned main() {\n  test_floor();\n  test_ceil();\n  solve();\n\n  return 0;\n\
-    }\n"
+    \ bool INCLUDE_Q_IS_0 = false) {\n  bool end = false;\n  u64 sq = sqrtl(N);\n\
+    \  u32 n = (sq * sq + sq <= N ? sq : sq - 1);\n  if (Q_ASC) {\n    if (INCLUDE_Q_IS_0)\
+    \ f(0, N + 1, infty<ll>);\n    for (u32 q = 1; q <= n; ++q) {\n      f(q, N /\
+    \ (q + 1) + 1, N / q + 1, end);\n      if (end) return;\n    }\n    for (u32 l\
+    \ = sq; l >= 1; --l) {\n      f(N / l, l, l + 1, end);\n      if (end) return;\n\
+    \    }\n  } else {\n    for (u32 l = 1; l <= sq; ++l) {\n      f(N / l, l, l +\
+    \ 1, end);\n      if (end) return;\n    }\n    for (u32 q = n; q >= 1; --q) {\n\
+    \      f(q, N / (q + 1) + 1, N / q + 1, end);\n      if (end) return;\n    }\n\
+    \    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\n  }\n}\n#line 5 \"test/1_mytest/floor_ceil_ranges.test.cpp\"\
+    \n\nvoid test_floor() {\n  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N)\
+    \ -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q,\
+    \ l, r); };\n    floor_range(N, f);\n    return dat;\n  };\n  auto G = [&](ll\
+    \ N) -> vc<T> {\n    vvc<ll> tmp(N + 1);\n    FOR(x, 1, N + 1) tmp[floor(N, x)].eb(x);\n\
+    \    vc<T> dat;\n    FOR(x, 1, N + 1) {\n      if (len(tmp[x])) {\n        ll\
+    \ lo = tmp[x][0];\n        ll hi = tmp[x].back();\n        dat.eb(x, lo, hi +\
+    \ 1);\n      }\n    }\n    return dat;\n  };\n  FOR(N, 1, 100) { assert(F(N) ==\
+    \ G(N)); }\n}\n\nvoid test_ceil() {\n  using T = tuple<ll, ll, ll>;\n  auto F\
+    \ = [&](ll N) -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r) ->\
+    \ void { dat.eb(q, l, r); };\n    ceil_range(N, f);\n    return dat;\n  };\n \
+    \ auto G = [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N + 1);\n    FOR(x, 1, N + 1)\
+    \ tmp[ceil(N, x)].eb(x);\n    vc<T> dat;\n    FOR(x, 1, N + 1) {\n      if (x\
+    \ == 1) {\n        dat.eb(x, N, infty<ll>);\n        continue;\n      }\n    \
+    \  if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n        ll hi = tmp[x].back();\n\
+    \        dat.eb(x, lo, hi + 1);\n      }\n    }\n    return dat;\n  };\n  FOR(N,\
+    \ 1, 100) { assert(F(N) == G(N)); }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
+    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test_floor();\n\
+    \  test_ceil();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"enumerate/ceil_range.hpp\"\n#include \"enumerate/floor_range.hpp\"\
     \n\nvoid test_floor() {\n  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N)\
@@ -200,8 +202,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/floor_ceil_ranges.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-16 12:41:54+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/floor_ceil_ranges.test.cpp
 layout: document

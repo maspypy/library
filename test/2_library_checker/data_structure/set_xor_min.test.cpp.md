@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   - icon: ':question:'
@@ -300,22 +300,23 @@ data:
     \      pos = 0;\n    }\n    return s;\n  }\n};\n#line 3 \"ds/binary_trie.hpp\"\
     \n\n// \u975E\u6C38\u7D9A\u306A\u3089\u3070\u30012 * \u8981\u7D20\u6570 \u306E\
     \u30CE\u30FC\u30C9\u6570\ntemplate <int LOG, bool PERSISTENT, typename UINT =\
-    \ u64,\n          typename SIZE_TYPE = u32>\nstruct Binary_Trie {\n  using T =\
-    \ SIZE_TYPE;\n  static_assert(is_same_v<T, u32> || is_same_v<T, u64>);\n  static_assert(0\
-    \ < LOG && LOG <= numeric_limits<UINT>::digits);\n\n  struct Node {\n    int width;\n\
+    \ u64,\n    typename SIZE_TYPE = u32>\nstruct Binary_Trie {\n  using T = SIZE_TYPE;\n\
+    \  static_assert(is_same_v<T, u32> || is_same_v<T, u64>);\n  static_assert(0 <\
+    \ LOG && LOG <= numeric_limits<UINT>::digits);\n\n  struct Node {\n    int width;\n\
     \    UINT val;\n    T cnt;\n    Node *l, *r;\n  };\n\n  Node_Pool<Node> pool;\n\
     \  using np = Node *;\n\n  void reset() { pool.reset(); }\n\n  np new_root() {\
     \ return nullptr; }\n\n  np add(np root, UINT val, T cnt = 1) {\n    if (!root)\
     \ root = new_node(0, 0);\n    assert((val >> LOG) == 0);\n    return add_rec(root,\
     \ LOG, val, cnt);\n  }\n\n  // f(val, cnt)\n  template <typename F>\n  void enumerate(np\
-    \ root, F f) {\n    auto dfs = [&](auto &dfs, np root, UINT val, int ht) -> void\
-    \ {\n      if (ht == 0) {\n        f(val, root->cnt);\n        return;\n     \
-    \ }\n      np c = root->l;\n      if (c) {\n        dfs(dfs, c, val << (c->width)\
-    \ | (c->val), ht - (c->width));\n      }\n      c = root->r;\n      if (c) {\n\
-    \        dfs(dfs, c, val << (c->width) | (c->val), ht - (c->width));\n      }\n\
-    \    };\n    if (root) dfs(dfs, root, 0, LOG);\n  }\n\n  // xor_val \u3057\u305F\
-    \u3042\u3068\u306E\u5024\u3067\u6607\u9806 k \u756A\u76EE\n  UINT kth(np root,\
-    \ T k, UINT xor_val) {\n    assert(root && k < root->cnt);\n    return kth_rec(root,\
+    \ root, F f) {\n    bool end = false;\n    auto dfs = [&](auto &dfs, np root,\
+    \ UINT val, int ht) -> void {\n      if (ht == 0) {\n        f(val, root->cnt,\
+    \ end);\n        return;\n      }\n      np c = root->l;\n      if (c) {\n   \
+    \     dfs(dfs, c, val << (c->width) | (c->val), ht - (c->width));\n        if\
+    \ (end) return;\n      }\n      c = root->r;\n      if (c) {\n        dfs(dfs,\
+    \ c, val << (c->width) | (c->val), ht - (c->width));\n        if (end) return;\n\
+    \      }\n    };\n    if (root) dfs(dfs, root, 0, LOG);\n  }\n\n  // xor_val \u3057\
+    \u305F\u3042\u3068\u306E\u5024\u3067\u6607\u9806 k \u756A\u76EE\n  UINT kth(np\
+    \ root, T k, UINT xor_val) {\n    assert(root && k < root->cnt);\n    return kth_rec(root,\
     \ 0, k, LOG, xor_val) ^ xor_val;\n  }\n\n  // xor_val \u3057\u305F\u3042\u3068\
     \u306E\u5024\u3067\u6700\u5C0F\u5024\n  UINT min(np root, UINT xor_val) {\n  \
     \  assert(root && root->cnt);\n    return kth(root, 0, xor_val);\n  }\n\n  //\
@@ -374,12 +375,13 @@ data:
     \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
     \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
     \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
-    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(used))\
-    \ if (used[i]) f(key[i], val[i]);\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64>\
-    \ key;\n  vc<Val> val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const\
-    \ u64 FIXED_RANDOM =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n\
-    \    x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x\
-    \ = (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    bool end = false;\n\
+    \    FOR(i, len(used)) {\n      if (used[i]) f(key[i], val[i], end);\n      if\
+    \ (end) break;\n    }\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64> key;\n  vc<Val>\
+    \ val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const u64 FIXED_RANDOM\
+    \ =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n  \
+    \  x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x =\
+    \ (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
     \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
     \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
     \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
@@ -409,7 +411,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
+  timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/set_xor_min.test.cpp
