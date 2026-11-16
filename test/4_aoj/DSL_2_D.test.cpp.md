@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D
@@ -298,18 +298,18 @@ data:
     \ : y); }\n  static constexpr X id() { return none_val; }\n  static constexpr\
     \ bool commute = false;\n};\n#line 7 \"test/4_aoj/DSL_2_D.test.cpp\"\n\r\nvoid\
     \ solve() {\r\n  using Mono = Monoid_Assign<ll>;\r\n  LL(N, Q);\r\n  Dual_SegTree<Mono>\
-    \ seg(N);\r\n  FOR(Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(L, R, x);\r\
-    \n      seg.apply(L, ++R, x);\r\n    } else {\r\n      LL(i);\r\n      print(seg.get(i));\r\
-    \n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n\
-    }\r\n"
+    \ seg(N);\r\n  seg.apply(0, N, (1LL << 31) - 1);\r\n  FOR(Q) {\r\n    LL(t);\r\
+    \n    if (t == 0) {\r\n      LL(L, R, x);\r\n      seg.apply(L, ++R, x);\r\n \
+    \   } else {\r\n      LL(i);\r\n      print(seg.get(i));\r\n    }\r\n  }\r\n}\r\
+    \n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/segtree/dual_segtree.hpp\"\
     \r\n#include \"alg/monoid/assign.hpp\"\r\n\r\nvoid solve() {\r\n  using Mono =\
-    \ Monoid_Assign<ll>;\r\n  LL(N, Q);\r\n  Dual_SegTree<Mono> seg(N);\r\n  FOR(Q)\
-    \ {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(L, R, x);\r\n      seg.apply(L,\
-    \ ++R, x);\r\n    } else {\r\n      LL(i);\r\n      print(seg.get(i));\r\n   \
-    \ }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\
-    \n"
+    \ Monoid_Assign<ll>;\r\n  LL(N, Q);\r\n  Dual_SegTree<Mono> seg(N);\r\n  seg.apply(0,\
+    \ N, (1LL << 31) - 1);\r\n  FOR(Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n  \
+    \    LL(L, R, x);\r\n      seg.apply(L, ++R, x);\r\n    } else {\r\n      LL(i);\r\
+    \n      print(seg.get(i));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -318,8 +318,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DSL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2026-11-17 04:29:21+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-17 05:29:31+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/DSL_2_D.test.cpp
 layout: document

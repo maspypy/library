@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F
@@ -355,15 +355,15 @@ data:
     \ bool commute = false;\n};\n#line 4 \"alg/acted_monoid/min_assign.hpp\"\n\ntemplate\
     \ <typename E>\nstruct ActedMonoid_Min_Assign {\n  static_assert(is_same_v<E,\
     \ int> || is_same_v<E, ll>);\n  using Monoid_X = Monoid_Min<E>;\n  using Monoid_A\
-    \ = Monoid_Assign<E, none_val>;\n  using X = typename Monoid_X::value_type;\n\
-    \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X\
-    \ &x, const A &a, const ll &size) {\n    return (a == Monoid_A::none_val ? x :\
-    \ a);\n  }\n};\n#line 7 \"test/4_aoj/DSL_2_F.test.cpp\"\n\r\nvoid solve() {\r\n\
-    \  LL(N, Q);\r\n  using AM = ActedMonoid_Min_Assign<ll>;\r\n  vi seg_raw(N, (1LL\
-    \ << 31) - 1);\r\n  Lazy_SegTree<AM> seg(seg_raw);\r\n  FOR(Q) {\r\n    LL(t);\r\
-    \n    if (t == 0) {\r\n      LL(L, R, x);\r\n      seg.apply(L, ++R, x);\r\n \
-    \   } else {\r\n      LL(L, R);\r\n      print(seg.prod(L, ++R));\r\n    }\r\n\
-    \  }\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
+    \ = Monoid_Assign<E>;\n  using X = typename Monoid_X::value_type;\n  using A =\
+    \ typename Monoid_A::value_type;\n  static constexpr X act(const X &x, const A\
+    \ &a, const ll &size) {\n    return (a == Monoid_A::id() ? x : a);\n  }\n};\n\
+    #line 7 \"test/4_aoj/DSL_2_F.test.cpp\"\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n\
+    \  using AM = ActedMonoid_Min_Assign<ll>;\r\n  vi seg_raw(N, (1LL << 31) - 1);\r\
+    \n  Lazy_SegTree<AM> seg(seg_raw);\r\n  FOR(Q) {\r\n    LL(t);\r\n    if (t ==\
+    \ 0) {\r\n      LL(L, R, x);\r\n      seg.apply(L, ++R, x);\r\n    } else {\r\n\
+    \      LL(L, R);\r\n      print(seg.prod(L, ++R));\r\n    }\r\n  }\r\n}\r\n\r\n\
+    signed main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/segtree/lazy_segtree.hpp\"\
     \r\n#include \"alg/acted_monoid/min_assign.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N,\
@@ -382,8 +382,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DSL_2_F.test.cpp
   requiredBy: []
-  timestamp: '2026-11-17 05:04:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-17 05:39:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/DSL_2_F.test.cpp
 layout: document

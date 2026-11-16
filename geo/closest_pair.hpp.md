@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -227,8 +227,8 @@ data:
   timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/geometry/closest_pair_dc.test.cpp
   - test/2_library_checker/geometry/closest_pair.test.cpp
+  - test/2_library_checker/geometry/closest_pair_dc.test.cpp
   - test/4_aoj/CGL_5_A.test.cpp
 documentation_of: geo/closest_pair.hpp
 layout: document

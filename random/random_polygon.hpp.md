@@ -25,7 +25,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

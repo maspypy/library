@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_am.test.cpp
     title: test/1_mytest/rbst_am.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_am_persistent.test.cpp
     title: test/1_mytest/rbst_am_persistent.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_F.test.cpp
     title: test/4_aoj/DSL_2_F.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/alg/acted_monoid/min_assign.hpp
@@ -38,26 +38,24 @@ data:
     \ bool commute = false;\n};\n#line 4 \"alg/acted_monoid/min_assign.hpp\"\n\ntemplate\
     \ <typename E>\nstruct ActedMonoid_Min_Assign {\n  static_assert(is_same_v<E,\
     \ int> || is_same_v<E, ll>);\n  using Monoid_X = Monoid_Min<E>;\n  using Monoid_A\
-    \ = Monoid_Assign<E, none_val>;\n  using X = typename Monoid_X::value_type;\n\
-    \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X\
-    \ &x, const A &a, const ll &size) {\n    return (a == Monoid_A::none_val ? x :\
-    \ a);\n  }\n};\n"
+    \ = Monoid_Assign<E>;\n  using X = typename Monoid_X::value_type;\n  using A =\
+    \ typename Monoid_A::value_type;\n  static constexpr X act(const X &x, const A\
+    \ &a, const ll &size) {\n    return (a == Monoid_A::id() ? x : a);\n  }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/min_assign.hpp\n\
     #include \"alg/monoid/min.hpp\"\n#include \"alg/monoid/assign.hpp\"\n\ntemplate\
     \ <typename E>\nstruct ActedMonoid_Min_Assign {\n  static_assert(is_same_v<E,\
     \ int> || is_same_v<E, ll>);\n  using Monoid_X = Monoid_Min<E>;\n  using Monoid_A\
-    \ = Monoid_Assign<E, none_val>;\n  using X = typename Monoid_X::value_type;\n\
-    \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X\
-    \ &x, const A &a, const ll &size) {\n    return (a == Monoid_A::none_val ? x :\
-    \ a);\n  }\n};\n"
+    \ = Monoid_Assign<E>;\n  using X = typename Monoid_X::value_type;\n  using A =\
+    \ typename Monoid_A::value_type;\n  static constexpr X act(const X &x, const A\
+    \ &a, const ll &size) {\n    return (a == Monoid_A::id() ? x : a);\n  }\n};\n"
   dependsOn:
   - alg/monoid/min.hpp
   - alg/monoid/assign.hpp
   isVerificationFile: false
   path: alg/acted_monoid/min_assign.hpp
   requiredBy: []
-  timestamp: '2026-11-17 04:45:12+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-11-17 05:39:59+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/rbst_am_persistent.test.cpp
   - test/1_mytest/rbst_am.test.cpp

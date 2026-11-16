@@ -27,7 +27,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/min_add.hpp
       title: alg/acted_monoid/min_add.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/min_assign.hpp
       title: alg/acted_monoid/min_assign.hpp
     - icon: ':heavy_check_mark:'
@@ -120,7 +120,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/arithmetic_expression.hpp
       title: alg/monoid/arithmetic_expression.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/assign.hpp
       title: alg/monoid/assign.hpp
     - icon: ':heavy_check_mark:'
@@ -153,7 +153,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/maxplus_matrix.hpp
       title: alg/monoid/maxplus_matrix.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/min.hpp
       title: alg/monoid/min.hpp
     - icon: ':warning:'
@@ -372,7 +372,7 @@ data:
     - icon: ':warning:'
       path: ds/my_multiset.hpp
       title: ds/my_multiset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/node_pool.hpp
       title: ds/node_pool.hpp
     - icon: ':warning:'
@@ -540,7 +540,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/randomized_bst/rbst.hpp
       title: ds/randomized_bst/rbst.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/randomized_bst/rbst_acted_monoid.hpp
       title: ds/randomized_bst/rbst_acted_monoid.hpp
     - icon: ':heavy_check_mark:'
@@ -592,7 +592,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/beats_summinmax_chminchmax.hpp
       title: ds/segtree/beats_summinmax_chminchmax.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/dual_segtree.hpp
       title: ds/segtree/dual_segtree.hpp
     - icon: ':warning:'
@@ -613,7 +613,7 @@ data:
     - icon: ':warning:'
       path: ds/segtree/greedy_subtract_segtree.hpp
       title: ds/segtree/greedy_subtract_segtree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/lazy_segtree.hpp
       title: ds/segtree/lazy_segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -1769,7 +1769,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: new_poly
@@ -1975,7 +1975,7 @@ data:
     - icon: ':warning:'
       path: other/greedy_coin_counter_example.hpp
       title: other/greedy_coin_counter_example.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -2311,7 +2311,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -3275,13 +3275,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/rbst.test.cpp
       title: test/1_mytest/rbst.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/rbst_am.test.cpp
       title: test/1_mytest/rbst_am.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/rbst_am_2.test.cpp
       title: test/1_mytest/rbst_am_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/rbst_am_persistent.test.cpp
       title: test/1_mytest/rbst_am_persistent.test.cpp
     - icon: ':heavy_check_mark:'
@@ -5247,13 +5247,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/4_aoj/DSL_2_C.test.cpp
       title: test/4_aoj/DSL_2_C.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/4_aoj/DSL_2_D.test.cpp
       title: test/4_aoj/DSL_2_D.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/4_aoj/DSL_2_E.test.cpp
       title: test/4_aoj/DSL_2_E.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/4_aoj/DSL_2_F.test.cpp
       title: test/4_aoj/DSL_2_F.test.cpp
     - icon: ':heavy_check_mark:'
