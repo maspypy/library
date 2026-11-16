@@ -10,6 +10,6 @@ struct ActedMonoid_Min_Assign {
   using X = typename Monoid_X::value_type;
   using A = typename Monoid_A::value_type;
   static constexpr X act(const X &x, const A &a, const ll &size) {
-    return (a == Monoid_A::Monoid_A::id() ? x : a);
+    return (a == Monoid_A::id() ? x : a);
   }
 };
