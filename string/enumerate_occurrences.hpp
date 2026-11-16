@@ -36,6 +36,7 @@ void enumerate_occurrences(STRING S, vc<STRING> T, F f) {
   FastSet FS(len(S));
   vc<int> nxt(len(S));
   vc<int> pos;
+  bool end = false;
   auto dfs = [&](auto& dfs, int h) -> void {
     auto path = tree.heavy_path_at(h);
     for (auto& v : path) {
@@ -72,7 +73,8 @@ void enumerate_occurrences(STRING S, vc<STRING> T, F f) {
           // [i-M+1,i]
           pos.eb(i - M + 1);
         }
-        f(t, pos);
+        f(t, pos, end);
+        assert(!end);  // 未対応
       }
     }
   };

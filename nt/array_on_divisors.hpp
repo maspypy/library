@@ -168,11 +168,15 @@ struct Array_on_Divisors {
     FOR(i, len(divs)) { dat[i] = f(divs[i]); }
   }
 
-  // (d, fd)
+  // (d, fd, end)
   // &fd で受け取れば代入とかもできます
   template <typename F>
   void enumerate(F f) {
-    FOR(i, len(divs)) { f(divs[i], dat[i]); }
+    bool end = false;
+    FOR(i, len(divs)) {
+      f(divs[i], dat[i], end);
+      if (end) break;
+    }
   }
 
   // n の約数全体

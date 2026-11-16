@@ -32,6 +32,10 @@ struct Array_on_Floor {
 
   template <typename F>
   void enumerate_all(F f) {
-    FOR(i, len(dat)) { f(get_floor(i), dat[i]); }
+    bool end = false;
+    FOR(i, len(dat)) {
+      f(get_floor(i), dat[i], end);
+      if (end) break;
+    }
   }
 };
