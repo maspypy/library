@@ -9,9 +9,6 @@ data:
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
   - icon: ':x:'
-    path: alg/acted_monoid/powersums_assign.hpp
-    title: alg/acted_monoid/powersums_assign.hpp
-  - icon: ':x:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
   - icon: ':x:'
@@ -39,13 +36,13 @@ data:
   - icon: ':x:'
     path: test/1_mytest/rbst_am_persistent.test.cpp
     title: test/1_mytest/rbst_am_persistent.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_monoid.test.cpp
     title: test/1_mytest/rbst_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_monoid_persistent.test.cpp
     title: test/1_mytest/rbst_monoid_persistent.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/splay_monoid.test.cpp
     title: test/1_mytest/splay_monoid.test.cpp
   - icon: ':x:'
@@ -54,9 +51,6 @@ data:
   - icon: ':x:'
     path: test/1_mytest/summin_assign.test.cpp
     title: test/1_mytest/summin_assign.test.cpp
-  - icon: ':x:'
-    path: test/3_yukicoder/1548.test.cpp
-    title: test/3_yukicoder/1548.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/2292.test.cpp
     title: test/3_yukicoder/2292.test.cpp
@@ -71,19 +65,19 @@ data:
     title: test/4_aoj/DSL_2_I.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp
   bundledCode: "#line 1 \"alg/monoid/assign.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
     \ntemplate <typename X>\nstruct Monoid_Assign {\n  static_assert(is_same_v<X,\
-    \ int> || is_same_v<X, ll>);\n  static constexpr X none_val = numeric_limits<T>::max();\n\
+    \ int> || is_same_v<X, ll>);\n  static constexpr X none_val = numeric_limits<X>::max();\n\
     \  using value_type = X;\n  static X op(X x, X y) { return (y == none_val ? x\
     \ : y); }\n  static constexpr X id() { return none_val; }\n  static constexpr\
     \ bool commute = false;\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
     \ntemplate <typename X>\nstruct Monoid_Assign {\n  static_assert(is_same_v<X,\
-    \ int> || is_same_v<X, ll>);\n  static constexpr X none_val = numeric_limits<T>::max();\n\
+    \ int> || is_same_v<X, ll>);\n  static constexpr X none_val = numeric_limits<X>::max();\n\
     \  using value_type = X;\n  static X op(X x, X y) { return (y == none_val ? x\
     \ : y); }\n  static constexpr X id() { return none_val; }\n  static constexpr\
     \ bool commute = false;\n};\n"
@@ -91,31 +85,29 @@ data:
   isVerificationFile: false
   path: alg/monoid/assign.hpp
   requiredBy:
-  - alg/acted_monoid/summin_assign.hpp
-  - alg/acted_monoid/summax_assign.hpp
-  - alg/acted_monoid/max_assign.hpp
-  - alg/acted_monoid/sum_assign.hpp
   - alg/acted_monoid/min_assign.hpp
-  - alg/acted_monoid/powersums_assign.hpp
-  timestamp: '2026-11-17 04:07:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  - alg/acted_monoid/max_assign.hpp
+  - alg/acted_monoid/summax_assign.hpp
+  - alg/acted_monoid/summin_assign.hpp
+  - alg/acted_monoid/sum_assign.hpp
+  timestamp: '2026-11-17 04:29:21+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2292.test.cpp
-  - test/3_yukicoder/1548.test.cpp
-  - test/1_mytest/rbst_am_persistent.test.cpp
-  - test/1_mytest/rbst_am.test.cpp
   - test/1_mytest/max_assign.test.cpp
-  - test/1_mytest/rbst_monoid.test.cpp
-  - test/1_mytest/summin_assign.test.cpp
-  - test/1_mytest/summax_assign.test.cpp
-  - test/1_mytest/rbst_monoid_persistent.test.cpp
-  - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/1_mytest/splay_monoid.test.cpp
-  - test/1_mytest/dynamic_lazy_segtree.test.cpp
+  - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/1_mytest/range_assign.test.cpp
-  - test/4_aoj/DSL_2_D.test.cpp
+  - test/1_mytest/rbst_am_persistent.test.cpp
+  - test/1_mytest/summax_assign.test.cpp
+  - test/1_mytest/dynamic_lazy_segtree.test.cpp
+  - test/1_mytest/rbst_monoid_persistent.test.cpp
+  - test/1_mytest/summin_assign.test.cpp
+  - test/1_mytest/rbst_monoid.test.cpp
+  - test/1_mytest/rbst_am.test.cpp
   - test/4_aoj/DSL_2_F.test.cpp
   - test/4_aoj/DSL_2_I.test.cpp
+  - test/4_aoj/DSL_2_D.test.cpp
 documentation_of: alg/monoid/assign.hpp
 layout: document
 redirect_from:

@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_monoid.hpp
     title: ds/splaytree/splaytree_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -154,7 +154,7 @@ data:
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif  // MASPY_TEMPLATE_BODY\n\
     #line 1 \"alg/monoid/assign.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
     \ntemplate <typename X>\nstruct Monoid_Assign {\n  static_assert(is_same_v<X,\
-    \ int> || is_same_v<X, ll>);\n  static constexpr X none_val = numeric_limits<T>::max();\n\
+    \ int> || is_same_v<X, ll>);\n  static constexpr X none_val = numeric_limits<X>::max();\n\
     \  using value_type = X;\n  static X op(X x, X y) { return (y == none_val ? x\
     \ : y); }\n  static constexpr X id() { return none_val; }\n  static constexpr\
     \ bool commute = false;\n};\n#line 1 \"mod/modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint.hpp\n\
@@ -437,12 +437,12 @@ data:
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
     \  return l + RNG_64() % (r - l);\n}\n#line 7 \"test/1_mytest/splay_monoid.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  using Mono = Monoid_Assign<int,\
-    \ -1>;\n\n  SplayTree_Monoid<Mono> X;\n  FOR(1000) {\n    X.reset();\n    int\
-    \ N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N)\
-    \ A[i] = RNG(0, 100);\n    auto root = X.new_node(A);\n\n    FOR(Q) {\n      vc<int>\
-    \ cand = {0, 1, 2, 3, 4, 5};\n      int t = cand[RNG(0, len(cand))];\n      if\
-    \ (t == 0) {\n        int i = RNG(0, N);\n        assert(A[i] == X.get(root, i));\n\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  using Mono = Monoid_Assign<int>;\n\
+    \n  SplayTree_Monoid<Mono> X;\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1,\
+    \ 20);\n    int Q = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(0,\
+    \ 100);\n    auto root = X.new_node(A);\n\n    FOR(Q) {\n      vc<int> cand =\
+    \ {0, 1, 2, 3, 4, 5};\n      int t = cand[RNG(0, len(cand))];\n      if (t ==\
+    \ 0) {\n        int i = RNG(0, N);\n        assert(A[i] == X.get(root, i));\n\
     \      }\n      if (t == 1) {\n        int i = RNG(0, N);\n        int x = RNG(0,\
     \ 100);\n        X.set(root, i, x);\n        A[i] = x;\n      }\n      if (t ==\
     \ 2) {\n        int i = RNG(0, N);\n        int x = RNG(0, 100);\n        X.multiply(root,\
@@ -459,7 +459,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"alg/monoid/assign.hpp\"\n#include \"mod/modint.hpp\"\n#include \"\
     ds/splaytree/splaytree_monoid.hpp\"\n#include \"random/base.hpp\"\n\nusing mint\
-    \ = modint998;\n\nvoid test() {\n  using Mono = Monoid_Assign<int, -1>;\n\n  SplayTree_Monoid<Mono>\
+    \ = modint998;\n\nvoid test() {\n  using Mono = Monoid_Assign<int>;\n\n  SplayTree_Monoid<Mono>\
     \ X;\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q = RNG(1,\
     \ 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(0, 100);\n    auto root\
     \ = X.new_node(A);\n\n    FOR(Q) {\n      vc<int> cand = {0, 1, 2, 3, 4, 5};\n\
@@ -490,8 +490,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/splay_monoid.test.cpp
   requiredBy: []
-  timestamp: '2026-11-17 04:07:43+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-17 04:29:21+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/splay_monoid.test.cpp
 layout: document

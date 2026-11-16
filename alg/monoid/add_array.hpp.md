@@ -1,17 +1,11 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':x:'
-    path: alg/acted_monoid/powersums_assign.hpp
-    title: alg/acted_monoid/powersums_assign.hpp
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/3_yukicoder/1548.test.cpp
-    title: test/3_yukicoder/1548.test.cpp
-  _isVerificationFailed: true
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/alg/monoid/add_array.hpp
@@ -34,12 +28,10 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/add_array.hpp
-  requiredBy:
-  - alg/acted_monoid/powersums_assign.hpp
+  requiredBy: []
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/3_yukicoder/1548.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/monoid/add_array.hpp
 layout: document
 redirect_from:

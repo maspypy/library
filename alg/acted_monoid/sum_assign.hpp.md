@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   _extendedRequiredBy: []
@@ -33,29 +33,31 @@ data:
     \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
     };\n#line 1 \"alg/monoid/assign.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
     \ntemplate <typename X>\nstruct Monoid_Assign {\n  static_assert(is_same_v<X,\
-    \ int> || is_same_v<X, ll>);\n  static constexpr X none_val = numeric_limits<T>::max();\n\
+    \ int> || is_same_v<X, ll>);\n  static constexpr X none_val = numeric_limits<X>::max();\n\
     \  using value_type = X;\n  static X op(X x, X y) { return (y == none_val ? x\
     \ : y); }\n  static constexpr X id() { return none_val; }\n  static constexpr\
     \ bool commute = false;\n};\n#line 4 \"alg/acted_monoid/sum_assign.hpp\"\n\ntemplate\
-    \ <typename E, E none_val>\nstruct ActedMonoid_Sum_Assign {\n  using Monoid_X\
-    \ = Monoid_Add<E>;\n  using Monoid_A = Monoid_Assign<E, none_val>;\n  using X\
-    \ = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
-    \  static constexpr X act(const X &x, const A &a, const ll &size) {\n    if (a\
-    \ == Monoid_A::id()) return x;\n    return a * E(size);\n  }\n};\n"
+    \ <typename E>\nstruct ActedMonoid_Sum_Assign {\n  static_assert(is_save_v<E,\
+    \ int> || is_same_v<E, ll>);\n  using Monoid_X = Monoid_Add<E>;\n  using Monoid_A\
+    \ = Monoid_Assign<E>;\n  using X = typename Monoid_X::value_type;\n  using A =\
+    \ typename Monoid_A::value_type;\n  static constexpr X act(const X &x, const A\
+    \ &a, const ll &size) {\n    if (a == Monoid_A::id()) return x;\n    return a\
+    \ * E(size);\n  }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/sum_assign.hpp\n\
     #include \"alg/monoid/add.hpp\"\n#include \"alg/monoid/assign.hpp\"\n\ntemplate\
-    \ <typename E, E none_val>\nstruct ActedMonoid_Sum_Assign {\n  using Monoid_X\
-    \ = Monoid_Add<E>;\n  using Monoid_A = Monoid_Assign<E, none_val>;\n  using X\
-    \ = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
-    \  static constexpr X act(const X &x, const A &a, const ll &size) {\n    if (a\
-    \ == Monoid_A::id()) return x;\n    return a * E(size);\n  }\n};\n"
+    \ <typename E>\nstruct ActedMonoid_Sum_Assign {\n  static_assert(is_save_v<E,\
+    \ int> || is_same_v<E, ll>);\n  using Monoid_X = Monoid_Add<E>;\n  using Monoid_A\
+    \ = Monoid_Assign<E>;\n  using X = typename Monoid_X::value_type;\n  using A =\
+    \ typename Monoid_A::value_type;\n  static constexpr X act(const X &x, const A\
+    \ &a, const ll &size) {\n    if (a == Monoid_A::id()) return x;\n    return a\
+    \ * E(size);\n  }\n};\n"
   dependsOn:
   - alg/monoid/add.hpp
   - alg/monoid/assign.hpp
   isVerificationFile: false
   path: alg/acted_monoid/sum_assign.hpp
   requiredBy: []
-  timestamp: '2026-11-17 04:07:43+09:00'
+  timestamp: '2026-11-17 04:29:21+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2292.test.cpp

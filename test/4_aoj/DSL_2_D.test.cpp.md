@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   - icon: ':question:'
@@ -293,26 +293,23 @@ data:
     \ a);\n    if (k < size) has_laz[k] = true;\n  }\n};\n#line 1 \"alg/monoid/assign.hpp\"\
     \n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
     \ntemplate <typename X>\nstruct Monoid_Assign {\n  static_assert(is_same_v<X,\
-    \ int> || is_same_v<X, ll>);\n  static constexpr X none_val = numeric_limits<T>::max();\n\
+    \ int> || is_same_v<X, ll>);\n  static constexpr X none_val = numeric_limits<X>::max();\n\
     \  using value_type = X;\n  static X op(X x, X y) { return (y == none_val ? x\
     \ : y); }\n  static constexpr X id() { return none_val; }\n  static constexpr\
     \ bool commute = false;\n};\n#line 7 \"test/4_aoj/DSL_2_D.test.cpp\"\n\r\nvoid\
-    \ solve() {\r\n  using Mono = Monoid_Assign<ll, (1LL << 31) - 1>;\r\n  LL(N, Q);\r\
-    \n  Dual_SegTree<Mono> seg(N);\r\n  FOR(Q) {\r\n    LL(t);\r\n    if (t == 0)\
-    \ {\r\n      LL(L, R, x);\r\n      seg.apply(L, ++R, x);\r\n    } else {\r\n \
-    \     LL(i);\r\n      print(seg.get(i));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main()\
-    \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n\
+    \ solve() {\r\n  using Mono = Monoid_Assign<ll>;\r\n  LL(N, Q);\r\n  Dual_SegTree<Mono>\
+    \ seg(N);\r\n  FOR(Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(L, R, x);\r\
+    \n      seg.apply(L, ++R, x);\r\n    } else {\r\n      LL(i);\r\n      print(seg.get(i));\r\
+    \n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n\
     }\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/segtree/dual_segtree.hpp\"\
     \r\n#include \"alg/monoid/assign.hpp\"\r\n\r\nvoid solve() {\r\n  using Mono =\
-    \ Monoid_Assign<ll, (1LL << 31) - 1>;\r\n  LL(N, Q);\r\n  Dual_SegTree<Mono> seg(N);\r\
-    \n  FOR(Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(L, R, x);\r\n    \
-    \  seg.apply(L, ++R, x);\r\n    } else {\r\n      LL(i);\r\n      print(seg.get(i));\r\
-    \n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
-    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ Monoid_Assign<ll>;\r\n  LL(N, Q);\r\n  Dual_SegTree<Mono> seg(N);\r\n  FOR(Q)\
+    \ {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(L, R, x);\r\n      seg.apply(L,\
+    \ ++R, x);\r\n    } else {\r\n      LL(i);\r\n      print(seg.get(i));\r\n   \
+    \ }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\
+    \n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -321,7 +318,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DSL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2026-11-17 04:07:43+09:00'
+  timestamp: '2026-11-17 04:29:21+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/DSL_2_D.test.cpp

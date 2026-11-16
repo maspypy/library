@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/summax_assign.hpp
     title: alg/acted_monoid/summax_assign.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   - icon: ':question:'
@@ -154,16 +154,16 @@ data:
     \ constexpr X id() { return {E(0), -infty<E>}; }\n  static constexpr bool commute\
     \ = 1;\n};\n#line 1 \"alg/monoid/assign.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
     \ntemplate <typename X>\nstruct Monoid_Assign {\n  static_assert(is_same_v<X,\
-    \ int> || is_same_v<X, ll>);\n  static constexpr X none_val = numeric_limits<T>::max();\n\
+    \ int> || is_same_v<X, ll>);\n  static constexpr X none_val = numeric_limits<X>::max();\n\
     \  using value_type = X;\n  static X op(X x, X y) { return (y == none_val ? x\
     \ : y); }\n  static constexpr X id() { return none_val; }\n  static constexpr\
     \ bool commute = false;\n};\n#line 4 \"alg/acted_monoid/summax_assign.hpp\"\n\n\
-    template <typename E, E none_val>\nstruct ActedMonoid_SumMax_Assign {\n  using\
-    \ Monoid_X = Monoid_SumMax<E>;\n  using Monoid_A = Monoid_Assign<E, none_val>;\n\
-    \  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
-    \  static constexpr X act(const X& x, const A& a, const ll& size) {\n    if (a\
-    \ == Monoid_A::id()) return x;\n    return {E(size) * a, a};\n  }\n};\n#line 1\
-    \ \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    template <typename E>\nstruct ActedMonoid_SumMax_Assign {\n  static_assert(is_save_v<E,\
+    \ int> || is_same_v<E, ll>);\n  using Monoid_X = Monoid_SumMax<E>;\n  using Monoid_A\
+    \ = Monoid_Assign<E>;\n  using X = typename Monoid_X::value_type;\n  using A =\
+    \ typename Monoid_A::value_type;\n  static constexpr X act(const X& x, const A&\
+    \ a, const ll& size) {\n    if (a == Monoid_A::id()) return x;\n    return {E(size)\
+    \ * a, a};\n  }\n};\n#line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
     \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
@@ -274,7 +274,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/summax_assign.test.cpp
   requiredBy: []
-  timestamp: '2026-11-17 04:07:43+09:00'
+  timestamp: '2026-11-17 04:29:21+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/summax_assign.test.cpp
