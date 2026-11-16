@@ -17,7 +17,9 @@ void solve() {
   vc<mint> f(LIM);
   FOR(i, LIM) {
     vc<mint> newdp(S);
-    for (auto&& [a, b]: edges) { newdp[b] += dp[a]; }
+    for (auto&& [a, b] : edges) {
+      newdp[b] += dp[a];
+    }
     swap(dp, newdp);
     f[i] = dp[1];
   }
@@ -27,11 +29,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
