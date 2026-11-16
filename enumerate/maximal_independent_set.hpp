@@ -21,12 +21,12 @@ void enumerate_maximal_independent_set(const GT& G, F f) {
     }
     int min_deg = infty<int>;
     int v = -1;
-    enumerate_bits_64(V, [&](int i, bool) -> void {
+    enumerate_all_bit(V, [&](int i, bool) -> void {
       int d = popcnt(V & adj[i]);
       if (chmin(min_deg, d)) v = i;
     });
     u64 cand = (V & adj[v]) | u64(1) << v;
-    enumerate_bits_64(cand, [&](int v, bool& end_inner) -> void {
+    enumerate_all_bit(cand, [&](int v, bool& end_inner) -> void {
       dfs(dfs, I | u64(1) << v, V & (~(u64(1) << v)) & ~(adj[v]));
       end_inner = end;
     });
