@@ -8,7 +8,7 @@
 
 void solve() {
   LL(N, Q);
-  using AM = ActedMonoid_Sum_Assign<ll, 12345>;
+  using AM = ActedMonoid_Sum_Assign<ll>;
   Lazy_SegTree<AM> seg(N);
   FOR(Q) {
     LL(t, L, R);
@@ -23,13 +23,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }

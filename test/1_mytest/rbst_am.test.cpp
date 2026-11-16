@@ -5,7 +5,7 @@
 #include "random/base.hpp"
 
 void test() {
-  using AM = ActedMonoid_Min_Assign<int, -1>;
+  using AM = ActedMonoid_Min_Assign<int>;
   using MonoX = typename AM::Monoid_X;
 
   RBST_ActedMonoid<AM, false> X;

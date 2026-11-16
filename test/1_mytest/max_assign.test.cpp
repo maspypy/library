@@ -8,7 +8,7 @@ void test() {
   int N = RNG(1, 100);
   vc<int> A(N);
   FOR(i, N) A[i] = RNG(1, 100);
-  Lazy_SegTree<ActedMonoid_Max_Assign<int, -1>> seg(A);
+  Lazy_SegTree<ActedMonoid_Max_Assign<int>> seg(A);
   int Q = RNG(1, 100);
   FOR(Q) {
     ll t = RNG(0, 2);

@@ -7,7 +7,7 @@
 
 void solve() {
   LL(N, Q);
-  using AM = ActedMonoid_Min_Assign<ll, -1>;
+  using AM = ActedMonoid_Min_Assign<ll>;
   vi seg_raw(N, (1LL << 31) - 1);
   Lazy_SegTree<AM> seg(seg_raw);
   FOR(Q) {
@@ -23,13 +23,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }

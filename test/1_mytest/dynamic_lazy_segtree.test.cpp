@@ -5,7 +5,7 @@
 #include "random/base.hpp"
 
 void test() {
-  using AM = ActedMonoid_SumMax_Assign<int, -1>;
+  using AM = ActedMonoid_SumMax_Assign<int>;
   using P = typename AM::X;
 
   FOR(1000) {

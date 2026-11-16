@@ -31,8 +31,8 @@ PROB gen(int N, int Q) {
 
 vi sol_1(PROB p) {
   vi ANS;
-  Lazy_SegTree<ActedMonoid_Sum_Assign<ll, -1>> seg(p.INIT);
-  for (auto& [l, r, x]: p.QUERY) {
+  Lazy_SegTree<ActedMonoid_Sum_Assign<ll>> seg(p.INIT);
+  for (auto& [l, r, x] : p.QUERY) {
     if (x == -1) {
       ANS.eb(seg.prod(l, r));
     } else {
@@ -45,7 +45,7 @@ vi sol_1(PROB p) {
 vi sol_2(PROB p) {
   vi ANS;
   Range_Assignment_SegTree<Monoid_Add<ll>> seg(p.INIT);
-  for (auto& [l, r, x]: p.QUERY) {
+  for (auto& [l, r, x] : p.QUERY) {
     if (x == -1) {
       ANS.eb(seg.prod(l, r));
     } else {
