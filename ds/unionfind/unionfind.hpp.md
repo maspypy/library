@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
   - icon: ':heavy_check_mark:'
@@ -50,7 +50,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/blackbox/unionfind.hpp
     title: graph/blackbox/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_poly_of_tree_adjacency_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -65,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/euler_walk.hpp
     title: graph/euler_walk.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/functional_graph.hpp
     title: graph/functional_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -86,7 +86,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   - icon: ':warning:'
@@ -258,13 +258,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1745.test.cpp
     title: test/3_yukicoder/1745.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1911.test.cpp
     title: test/3_yukicoder/1911.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1983.test.cpp
     title: test/3_yukicoder/1983.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
@@ -273,7 +273,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2296.test.cpp
     title: test/3_yukicoder/2296.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
   - icon: ':heavy_check_mark:'

@@ -15,15 +15,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1983.test.cpp
     title: test/3_yukicoder/1983.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/529.test.cpp
     title: test/3_yukicoder/529.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_3_B.test.cpp
     title: test/4_aoj/GRL_3_B.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/graph/two_edge_component.hpp
@@ -168,7 +168,7 @@ data:
   path: graph/two_edge_component.hpp
   requiredBy: []
   timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/graph/two_edge_component.test.cpp
   - test/3_yukicoder/1983.test.cpp

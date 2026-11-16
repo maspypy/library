@@ -39,11 +39,11 @@ data:
     \     k = 0;\n    }\n    if (m == 0) return;\n    FOR(i, k, len(dat[m])) {\n \
     \     u64 x = dat[m][i];\n      x = (x << 1) | 1;\n      dfs(dfs, m, i + 1, now\
     \ | x << (2 * now_e), now_e + m);\n      if (end) return;\n    }\n    dfs(dfs,\
-    \ m - 1, 0, now, now_e);\n  };\n  dfs(dfs, floor<int>(n - 1, 2), 0, 0, 0);\n\n\
-    \  // \u91CD\u5FC3\u304C 2 \u3064\u306E\u5834\u5408\n  if (2 * m == n) {\n   \
-    \ FOR(i, len(dat[m])) {\n      FOR(j, i) {\n        u64 x = dat[m][i], y = dat[m][j];\n\
-    \        y = (y << 1) | 1;\n        f(decode(x | (y << (2 * (m - 1)))), end);\n\
-    \        if (end) return;\n      }\n    }\n  }\n}\n"
+    \ m - 1, 0, now, now_e);\n  };\n  dfs(dfs, floor<int>(n - 1, 2), 0, 0, 0);\n \
+    \ if (end) return;\n  // \u91CD\u5FC3\u304C 2 \u3064\u306E\u5834\u5408\n  if (2\
+    \ * m == n) {\n    FOR(i, len(dat[m])) {\n      FOR(j, i) {\n        u64 x = dat[m][i],\
+    \ y = dat[m][j];\n        y = (y << 1) | 1;\n        f(decode(x | (y << (2 * (m\
+    \ - 1)))), end);\n        if (end) return;\n      }\n    }\n  }\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/enumerate/asymmetric_unlabeled_tree.hpp\n\
     \n// \u975E\u81EA\u660E\u306A\u81EA\u5DF1\u540C\u578B\u304C\u5B58\u5728\u3057\u306A\
     \u3044 unlabeled unrooted trees \u3092\u540C\u578B\u3092\u9664\u3044\u3066\u5217\
@@ -72,16 +72,16 @@ data:
     \     k = 0;\n    }\n    if (m == 0) return;\n    FOR(i, k, len(dat[m])) {\n \
     \     u64 x = dat[m][i];\n      x = (x << 1) | 1;\n      dfs(dfs, m, i + 1, now\
     \ | x << (2 * now_e), now_e + m);\n      if (end) return;\n    }\n    dfs(dfs,\
-    \ m - 1, 0, now, now_e);\n  };\n  dfs(dfs, floor<int>(n - 1, 2), 0, 0, 0);\n\n\
-    \  // \u91CD\u5FC3\u304C 2 \u3064\u306E\u5834\u5408\n  if (2 * m == n) {\n   \
-    \ FOR(i, len(dat[m])) {\n      FOR(j, i) {\n        u64 x = dat[m][i], y = dat[m][j];\n\
-    \        y = (y << 1) | 1;\n        f(decode(x | (y << (2 * (m - 1)))), end);\n\
-    \        if (end) return;\n      }\n    }\n  }\n}\n"
+    \ m - 1, 0, now, now_e);\n  };\n  dfs(dfs, floor<int>(n - 1, 2), 0, 0, 0);\n \
+    \ if (end) return;\n  // \u91CD\u5FC3\u304C 2 \u3064\u306E\u5834\u5408\n  if (2\
+    \ * m == n) {\n    FOR(i, len(dat[m])) {\n      FOR(j, i) {\n        u64 x = dat[m][i],\
+    \ y = dat[m][j];\n        y = (y << 1) | 1;\n        f(decode(x | (y << (2 * (m\
+    \ - 1)))), end);\n        if (end) return;\n      }\n    }\n  }\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: enumerate/asymmetric_unlabeled_tree.hpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
+  timestamp: '2026-11-16 16:23:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: enumerate/asymmetric_unlabeled_tree.hpp

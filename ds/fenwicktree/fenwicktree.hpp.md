@@ -35,7 +35,7 @@ data:
   - icon: ':warning:'
     path: graph/ds/range_edge_connected_component_query.hpp
     title: graph/ds/range_edge_connected_component_query.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abeliangroup.hpp
     title: graph/ds/tree_abeliangroup.hpp
   - icon: ':warning:'
@@ -132,7 +132,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1311.test.cpp
     title: test/3_yukicoder/1311.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1326.test.cpp
     title: test/3_yukicoder/1326.test.cpp
   - icon: ':heavy_check_mark:'
@@ -174,9 +174,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_G.test.cpp
     title: test/4_aoj/DSL_2_G.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/fenwicktree/fenwicktree.hpp
@@ -331,7 +331,7 @@ data:
   - seq/inversion.hpp
   - seq/factorial_digit_system.hpp
   timestamp: '2026-10-25 14:30:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem_2.test.cpp

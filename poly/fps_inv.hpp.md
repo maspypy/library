@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -13,19 +13,19 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -95,7 +95,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/2d/fps_pow_1_2d.hpp
     title: poly/2d/fps_pow_1_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':warning:'
@@ -131,7 +131,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/find_roots_of_polynomial.hpp
     title: poly/find_roots_of_polynomial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
   - icon: ':heavy_check_mark:'
@@ -155,7 +155,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
   - icon: ':heavy_check_mark:'
@@ -519,7 +519,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2097.test.cpp
     title: test/3_yukicoder/2097.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
@@ -540,7 +540,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
   - icon: ':heavy_check_mark:'
@@ -573,9 +573,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/poly/fps_inv.hpp
@@ -980,7 +980,7 @@ data:
   - seq/famous/partition_number.hpp
   - seq/sum_of_powers.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/other/find_linear_recurrence.test.cpp
   - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp

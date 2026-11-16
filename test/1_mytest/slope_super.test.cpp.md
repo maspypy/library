@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
   - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_trick_super.hpp
     title: convex/slope_trick/slope_trick_super.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   - icon: ':heavy_check_mark:'

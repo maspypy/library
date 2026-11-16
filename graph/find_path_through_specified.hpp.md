@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/GF2.hpp
     title: nt/GF2.hpp
   - icon: ':question:'
@@ -15,15 +15,15 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1775.test.cpp
     title: test/3_yukicoder/1775.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1776.test.cpp
     title: test/3_yukicoder/1776.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/graph/find_path_through_specified.hpp
@@ -233,7 +233,7 @@ data:
   path: graph/find_path_through_specified.hpp
   requiredBy: []
   timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1775.test.cpp
   - test/3_yukicoder/1776.test.cpp

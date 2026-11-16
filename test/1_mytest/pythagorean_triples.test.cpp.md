@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/pythagorean_triple.hpp
     title: nt/pythagorean_triple.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -141,14 +141,15 @@ data:
     \u30FBLIM = 10^8\uFF1A\u5168\u90E8 2.71*10^8 \u500B, 0.53sec\nhttps://codeforces.com/contest/60/problem/D\n\
     */\ntemplate <bool coprime_only, typename F>\nvoid enumerate_pythagorean_triple(int\
     \ LIM, F f) {\n  vc<tuple<int, int, int>> que;\n  auto add = [&](int a, int b,\
-    \ int c) -> void {\n    if (c <= LIM) que.eb(a, b, c);\n  };\n  add(3, 4, 5);\n\
-    \  while (len(que)) {\n    auto [a, b, c] = POP(que);\n    add(a - 2 * b + 2 *\
-    \ c, 2 * a - b + 2 * c, 2 * a - 2 * b + 3 * c);\n    add(a + 2 * b + 2 * c, 2\
-    \ * a + b + 2 * c, 2 * a + 2 * b + 3 * c);\n    add(-a + 2 * b + 2 * c, -2 * a\
-    \ + b + 2 * c, -2 * a + 2 * b + 3 * c);\n    if constexpr (coprime_only) {\n \
-    \     f(min(a, b), max(a, b), c);\n    } else {\n      int x = min(a, b), y =\
-    \ max(a, b), z = c;\n      while (z <= LIM) {\n        f(x, y, z);\n        x\
-    \ += min(a, b), y += max(a, b), z += c;\n      }\n    }\n  }\n}\n#line 6 \"test/1_mytest/pythagorean_triples.test.cpp\"\
+    \ int c) -> void {\n    if (c <= LIM) que.eb(a, b, c);\n  };\n  bool end = false;\n\
+    \  add(3, 4, 5);\n  while (len(que)) {\n    auto [a, b, c] = POP(que);\n    add(a\
+    \ - 2 * b + 2 * c, 2 * a - b + 2 * c, 2 * a - 2 * b + 3 * c);\n    add(a + 2 *\
+    \ b + 2 * c, 2 * a + b + 2 * c, 2 * a + 2 * b + 3 * c);\n    add(-a + 2 * b +\
+    \ 2 * c, -2 * a + b + 2 * c, -2 * a + 2 * b + 3 * c);\n    if constexpr (coprime_only)\
+    \ {\n      f(min(a, b), max(a, b), c, end);\n      if (end) return;\n    } else\
+    \ {\n      int x = min(a, b), y = max(a, b), z = c;\n      while (z <= LIM) {\n\
+    \        f(x, y, z, end);\n        if (end) return;\n        x += min(a, b), y\
+    \ += max(a, b), z += c;\n      }\n    }\n  }\n}\n#line 6 \"test/1_mytest/pythagorean_triples.test.cpp\"\
     \n\nvoid test() {\n  int LIM = 10000;\n  int A = 0, B = 0;\n  FOR(y, 1, LIM) {\n\
     \    FOR(x, 1, y) {\n      int z = sqrtl(x * x + y * y);\n      if (z > LIM) break;\n\
     \      if (x * x + y * y != z * z) continue;\n      A += 1;\n      B += gcd(x,\
@@ -179,8 +180,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/pythagorean_triples.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-16 16:23:07+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/pythagorean_triples.test.cpp
 layout: document

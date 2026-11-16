@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':question:'
@@ -491,10 +491,10 @@ data:
     \ + 1) * int(B)) - w * int(B);\n      u64 erase_bits = seg[0][w] & (full_mask(hi)\
     \ & ~full_mask(lo));\n      u64 bits = erase_bits;\n      while (bits) {\n   \
     \     int k = lowbit(bits);\n        f(w * int(B) + k, end);\n        bits ^=\
-    \ u64(1) << k;\n        if (end) return;\n      }\n      seg[0][w] ^= erase_bits;\n\
-    \      if (!seg[0][w]) propagate_empty_word(w);\n      x = next(min(r, (w + 1)\
-    \ * int(B)));\n    }\n  }\n\n  void reset() {\n    int x = next(0);\n    while\
-    \ (x < n) {\n      int w = x / B;\n      seg[0][w] = 0;\n      propagate_empty_word(w);\n\
+    \ u64(1) << k;\n        assert(!end);  // \u672A\u5BFE\u5FDC\n      }\n      seg[0][w]\
+    \ ^= erase_bits;\n      if (!seg[0][w]) propagate_empty_word(w);\n      x = next(min(r,\
+    \ (w + 1) * int(B)));\n    }\n  }\n\n  void reset() {\n    int x = next(0);\n\
+    \    while (x < n) {\n      int w = x / B;\n      seg[0][w] = 0;\n      propagate_empty_word(w);\n\
     \      x = next(min(n, (w + 1) * int(B)));\n    }\n  }\n\n  string to_string()\
     \ {\n    string s(n, '?');\n    for (int i = 0; i < n; ++i) s[i] = ((*this)[i]\
     \ ? '1' : '0');\n    return s;\n  }\n\n private:\n  // seg[0][w] \u304C 0 \u306B\
@@ -564,7 +564,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   requiredBy: []
-  timestamp: '2026-11-16 13:29:55+09:00'
+  timestamp: '2026-11-16 16:23:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_set_range_composite.test.cpp

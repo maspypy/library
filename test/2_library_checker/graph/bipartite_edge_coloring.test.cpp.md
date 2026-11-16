@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
   - icon: ':heavy_check_mark:'

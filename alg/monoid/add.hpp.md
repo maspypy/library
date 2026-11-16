@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsum_add.hpp
     title: alg/acted_monoid/cntsum_add.hpp
   - icon: ':heavy_check_mark:'
@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_add.hpp
     title: alg/acted_monoid/sum_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_affine.hpp
     title: alg/acted_monoid/sum_affine.hpp
   - icon: ':heavy_check_mark:'
@@ -56,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/dual_fenwicktree_2d.hpp
     title: ds/fenwicktree/dual_fenwicktree_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':heavy_check_mark:'
@@ -119,10 +119,10 @@ data:
   - icon: ':warning:'
     path: graph/ds/range_edge_connected_component_query.hpp
     title: graph/ds/range_edge_connected_component_query.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abeliangroup.hpp
     title: graph/ds/tree_abeliangroup.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/functional_graph.hpp
     title: graph/functional_graph.hpp
   - icon: ':warning:'
@@ -372,7 +372,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1311.test.cpp
     title: test/3_yukicoder/1311.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1326.test.cpp
     title: test/3_yukicoder/1326.test.cpp
   - icon: ':heavy_check_mark:'
@@ -408,7 +408,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2065.test.cpp
     title: test/3_yukicoder/2065.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
@@ -426,10 +426,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2338.test.cpp
     title: test/3_yukicoder/2338.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2342.test.cpp
     title: test/3_yukicoder/2342.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/235.test.cpp
     title: test/3_yukicoder/235.test.cpp
   - icon: ':heavy_check_mark:'

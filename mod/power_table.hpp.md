@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_x_plus_1x.hpp
     title: poly/composition_f_x_plus_1x.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':heavy_check_mark:'
@@ -183,7 +183,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
   - icon: ':heavy_check_mark:'
@@ -195,9 +195,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3621.test.cpp
     title: test/3_yukicoder/3621.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/mod/power_table.hpp
@@ -262,7 +262,7 @@ data:
   - seq/famous/eulerian_number.hpp
   - seq/famous/faulhaber.hpp
   timestamp: '2026-10-24 09:51:44+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
   - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp

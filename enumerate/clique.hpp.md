@@ -27,8 +27,8 @@ data:
     \       for (auto&& x : C) {\n          if (!can[x][nbd[i]]) {\n            ok\
     \ = 0;\n            break;\n          }\n        }\n        if (ok) {\n      \
     \    C.eb(nbd[i]);\n          dfs(dfs, i + 1);\n          C.pop_back();\n    \
-    \      if (end) return;\n        }\n      }\n    };\n\n    dfs(dfs, 0);\n    done[v]\
-    \ = 1;\n    for (auto&& x : nbd) deg[x]--;\n  }\n}\n"
+    \      if (end) return;\n        }\n      }\n    };\n\n    dfs(dfs, 0);\n    if\
+    \ (end) return;\n    done[v] = 1;\n    for (auto&& x : nbd) deg[x]--;\n  }\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/enumerate/clique.hpp\n\
     // N2^{sqrt(2m)}\n// https://www.slideshare.net/wata_orz/ss-12131479\ntemplate\
     \ <typename Gr, typename F>\nvoid enumerate_clique(const Gr& G, F query) {\n \
@@ -43,13 +43,13 @@ data:
     \       for (auto&& x : C) {\n          if (!can[x][nbd[i]]) {\n            ok\
     \ = 0;\n            break;\n          }\n        }\n        if (ok) {\n      \
     \    C.eb(nbd[i]);\n          dfs(dfs, i + 1);\n          C.pop_back();\n    \
-    \      if (end) return;\n        }\n      }\n    };\n\n    dfs(dfs, 0);\n    done[v]\
-    \ = 1;\n    for (auto&& x : nbd) deg[x]--;\n  }\n}\n"
+    \      if (end) return;\n        }\n      }\n    };\n\n    dfs(dfs, 0);\n    if\
+    \ (end) return;\n    done[v] = 1;\n    for (auto&& x : nbd) deg[x]--;\n  }\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: enumerate/clique.hpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
+  timestamp: '2026-11-16 16:23:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/graph/enumerate_cliques.test.cpp

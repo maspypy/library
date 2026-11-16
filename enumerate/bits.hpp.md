@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: enumerate/maximal_independent_set.hpp
+    title: enumerate/maximal_independent_set.hpp
   - icon: ':question:'
     path: enumerate/partition.hpp
     title: enumerate/partition.hpp
@@ -99,6 +102,7 @@ data:
   - setfunc/online/online_or_convolution.hpp
   - setfunc/boolean_range_add_point_get.hpp
   - knapsack/subset_sum.hpp
+  - enumerate/maximal_independent_set.hpp
   - enumerate/partition.hpp
   - graph/steiner_tree.hpp
   - graph/minimum_hamiltonian_cycle.hpp

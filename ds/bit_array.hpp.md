@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/sum_over_bit_positions.hpp
     title: ds/sum_over_bit_positions.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/bipartite_matching_dense.hpp
     title: flow/bipartite_matching_dense.hpp
   - icon: ':heavy_check_mark:'
@@ -81,10 +81,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1421.test.cpp
     title: test/3_yukicoder/1421.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2490.test.cpp
     title: test/3_yukicoder/2490.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2626_2.test.cpp
     title: test/3_yukicoder/2626_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -93,15 +93,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/421.test.cpp
     title: test/3_yukicoder/421.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/421_2.test.cpp
     title: test/3_yukicoder/421_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/4_2.test.cpp
     title: test/3_yukicoder/4_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/bit_array.hpp
@@ -443,7 +443,7 @@ data:
   - linalg/bitset/matrix_pow.hpp
   - flow/bipartite_matching_dense.hpp
   timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
   - test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp

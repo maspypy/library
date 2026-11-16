@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modfast.hpp
     title: mod/modfast.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/power_table.hpp
     title: mod/power_table.hpp
   - icon: ':heavy_check_mark:'
@@ -98,7 +98,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_x_plus_1x.hpp
     title: poly/composition_f_x_plus_1x.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':heavy_check_mark:'
@@ -294,7 +294,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
   - icon: ':heavy_check_mark:'

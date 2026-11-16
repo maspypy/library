@@ -476,13 +476,14 @@ data:
     \       for (auto&& x : C) {\n          if (!can[x][nbd[i]]) {\n            ok\
     \ = 0;\n            break;\n          }\n        }\n        if (ok) {\n      \
     \    C.eb(nbd[i]);\n          dfs(dfs, i + 1);\n          C.pop_back();\n    \
-    \      if (end) return;\n        }\n      }\n    };\n\n    dfs(dfs, 0);\n    done[v]\
-    \ = 1;\n    for (auto&& x : nbd) deg[x]--;\n  }\n}\n#line 8 \"test/2_library_checker/graph/enumerate_cliques.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n  VEC(mint, X, N);\n\
-    \  mint ANS = 0;\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\n  auto f\
-    \ = [&](const vc<int>& C, bool) -> void {\n    mint p = 1;\n    for (auto&& i\
-    \ : C) p *= X[i];\n    ANS += p;\n  };\n  enumerate_clique(G, f);\n  print(ANS);\n\
-    }\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \      if (end) return;\n        }\n      }\n    };\n\n    dfs(dfs, 0);\n    if\
+    \ (end) return;\n    done[v] = 1;\n    for (auto&& x : nbd) deg[x]--;\n  }\n}\n\
+    #line 8 \"test/2_library_checker/graph/enumerate_cliques.test.cpp\"\n\nusing mint\
+    \ = modint998;\n\nvoid solve() {\n  LL(N, M);\n  VEC(mint, X, N);\n  mint ANS\
+    \ = 0;\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\n  auto f = [&](const\
+    \ vc<int>& C, bool) -> void {\n    mint p = 1;\n    for (auto&& i : C) p *= X[i];\n\
+    \    ANS += p;\n  };\n  enumerate_clique(G, f);\n  print(ANS);\n}\n\nsigned main()\
+    \ {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_cliques\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/base.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"enumerate/clique.hpp\"\n\nusing mint\
@@ -502,7 +503,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/enumerate_cliques.test.cpp
   requiredBy: []
-  timestamp: '2026-11-16 13:41:10+09:00'
+  timestamp: '2026-11-16 16:23:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/enumerate_cliques.test.cpp

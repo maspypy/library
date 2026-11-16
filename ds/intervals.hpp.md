@@ -59,10 +59,10 @@ data:
     \ + 1) * int(B)) - w * int(B);\n      u64 erase_bits = seg[0][w] & (full_mask(hi)\
     \ & ~full_mask(lo));\n      u64 bits = erase_bits;\n      while (bits) {\n   \
     \     int k = lowbit(bits);\n        f(w * int(B) + k, end);\n        bits ^=\
-    \ u64(1) << k;\n        if (end) return;\n      }\n      seg[0][w] ^= erase_bits;\n\
-    \      if (!seg[0][w]) propagate_empty_word(w);\n      x = next(min(r, (w + 1)\
-    \ * int(B)));\n    }\n  }\n\n  void reset() {\n    int x = next(0);\n    while\
-    \ (x < n) {\n      int w = x / B;\n      seg[0][w] = 0;\n      propagate_empty_word(w);\n\
+    \ u64(1) << k;\n        assert(!end);  // \u672A\u5BFE\u5FDC\n      }\n      seg[0][w]\
+    \ ^= erase_bits;\n      if (!seg[0][w]) propagate_empty_word(w);\n      x = next(min(r,\
+    \ (w + 1) * int(B)));\n    }\n  }\n\n  void reset() {\n    int x = next(0);\n\
+    \    while (x < n) {\n      int w = x / B;\n      seg[0][w] = 0;\n      propagate_empty_word(w);\n\
     \      x = next(min(n, (w + 1) * int(B)));\n    }\n  }\n\n  string to_string()\
     \ {\n    string s(n, '?');\n    for (int i = 0; i < n; ++i) s[i] = ((*this)[i]\
     \ ? '1' : '0');\n    return s;\n  }\n\n private:\n  // seg[0][w] \u304C 0 \u306B\
@@ -103,8 +103,8 @@ data:
     \  void merge_at(int p) {\n    if (p <= 0 || RLIM <= p) return;\n    int q = ss.prev(p\
     \ - 1);\n    if (dat[p] == dat[q]) {\n      if (dat[p] != none_val) --total_num;\n\
     \      ss.erase(p);\n    }\n  }\n\n  vc<T> get_all() {\n    vc<T> res(RLIM, none_val);\n\
-    \    enumerate_all([&](int a, int b, T t) -> void { FOR(i, a, b) res[i] = t; });\n\
-    \    return res;\n  }\n};\n\n// https://codeforces.com/contest/1638/problem/E\n\
+    \    enumerate_all([&](int a, int b, T t, bool) -> void {\n      FOR(i, a, b)\
+    \ res[i] = t;\n    });\n    return res;\n  }\n};\n\n// https://codeforces.com/contest/1638/problem/E\n\
     // \u6301\u3064\u5024\u306E\u30BF\u30A4\u30D7 T\u3001\u5EA7\u6A19\u30BF\u30A4\u30D7\
     \ X\n// \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u3067\u306F T none_val \u3092\
     \u6307\u5B9A\u3059\u308B\n// \u5148\u8AAD\u307F\u53EF\u80FD\u306A\u3089\u5EA7\u5727\
@@ -178,8 +178,8 @@ data:
     \  void merge_at(int p) {\n    if (p <= 0 || RLIM <= p) return;\n    int q = ss.prev(p\
     \ - 1);\n    if (dat[p] == dat[q]) {\n      if (dat[p] != none_val) --total_num;\n\
     \      ss.erase(p);\n    }\n  }\n\n  vc<T> get_all() {\n    vc<T> res(RLIM, none_val);\n\
-    \    enumerate_all([&](int a, int b, T t) -> void { FOR(i, a, b) res[i] = t; });\n\
-    \    return res;\n  }\n};\n\n// https://codeforces.com/contest/1638/problem/E\n\
+    \    enumerate_all([&](int a, int b, T t, bool) -> void {\n      FOR(i, a, b)\
+    \ res[i] = t;\n    });\n    return res;\n  }\n};\n\n// https://codeforces.com/contest/1638/problem/E\n\
     // \u6301\u3064\u5024\u306E\u30BF\u30A4\u30D7 T\u3001\u5EA7\u6A19\u30BF\u30A4\u30D7\
     \ X\n// \u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u3067\u306F T none_val \u3092\
     \u6307\u5B9A\u3059\u308B\n// \u5148\u8AAD\u307F\u53EF\u80FD\u306A\u3089\u5EA7\u5727\
@@ -223,7 +223,7 @@ data:
   isVerificationFile: false
   path: ds/intervals.hpp
   requiredBy: []
-  timestamp: '2026-11-16 13:02:54+09:00'
+  timestamp: '2026-11-16 16:23:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/intervals.hpp

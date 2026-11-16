@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':heavy_check_mark:'
@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   - icon: ':heavy_check_mark:'

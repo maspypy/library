@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -13,22 +13,22 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/power_table.hpp
     title: mod/power_table.hpp
   - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -126,7 +126,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
   - icon: ':heavy_check_mark:'
@@ -138,9 +138,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3621.test.cpp
     title: test/3_yukicoder/3621.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/poly/poly_taylor_shift.hpp
@@ -476,7 +476,7 @@ data:
   - linalg/det_A_plus_xB.hpp
   - seq/famous/stirling_number_1.hpp
   timestamp: '2026-10-24 09:51:44+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp

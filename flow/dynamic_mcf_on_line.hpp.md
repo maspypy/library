@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
