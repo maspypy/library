@@ -158,12 +158,12 @@ data:
     \  using value_type = X;\n  static X op(X x, X y) { return (y == none_val ? x\
     \ : y); }\n  static constexpr X id() { return none_val; }\n  static constexpr\
     \ bool commute = false;\n};\n#line 4 \"alg/acted_monoid/max_assign.hpp\"\n\ntemplate\
-    \ <typename E, E none_val>\nstruct ActedMonoid_Max_Assign {\n  static_assert(is_save_v<E,\
+    \ <typename E>\nstruct ActedMonoid_Max_Assign {\n  static_assert(is_same_v<E,\
     \ int> || is_same_v<E, ll>);\n  using Monoid_X = Monoid_Max<E>;\n  using Monoid_A\
-    \ = Monoid_Assign<E, none_val>;\n  using X = typename Monoid_X::value_type;\n\
-    \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X\
-    \ &x, const A &a, const ll &size) {\n    return (a == Monoid_A::none_val ? x :\
-    \ a);\n  }\n};\n#line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \ = Monoid_Assign<E>;\n  using X = typename Monoid_X::value_type;\n  using A =\
+    \ typename Monoid_A::value_type;\n  static constexpr X act(const X &x, const A\
+    \ &a, const ll &size) {\n    return (a == Monoid_A::id() ? x : a);\n  }\n};\n\
+    #line 1 \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
     \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                          .count()) *\n                  10150724397891781847ULL;\n\
@@ -272,7 +272,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/max_assign.test.cpp
   requiredBy: []
-  timestamp: '2026-11-17 04:29:21+09:00'
+  timestamp: '2026-11-17 04:45:12+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/max_assign.test.cpp

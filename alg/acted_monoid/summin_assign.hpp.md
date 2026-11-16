@@ -32,25 +32,25 @@ data:
     \ bool commute = false;\n};\n#line 4 \"alg/acted_monoid/summin_assign.hpp\"\n\n\
     template <typename E>\nstruct ActedMonoid_SumMin_Assign {\n  static_assert(is_save_v<E,\
     \ int> || is_same_v<E, ll>);\n  using Monoid_X = Monoid_SumMin<E>;\n  using Monoid_A\
-    \ = Monoid_Assign<ll, none_val>;\n  using X = typename Monoid_X::value_type;\n\
-    \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X&\
-    \ x, const A& a, const ll& size) {\n    if (a == Monoid_A::id()) return x;\n \
-    \   return {E(size) * a, a};\n  }\n};\n"
+    \ = Monoid_Assign<ll>;\n  using X = typename Monoid_X::value_type;\n  using A\
+    \ = typename Monoid_A::value_type;\n  static constexpr X act(const X& x, const\
+    \ A& a, const ll& size) {\n    if (a == Monoid_A::id()) return x;\n    return\
+    \ {E(size) * a, a};\n  }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/summin_assign.hpp\n\
     #include \"alg/monoid/summin.hpp\"\n#include \"alg/monoid/assign.hpp\"\n\ntemplate\
     \ <typename E>\nstruct ActedMonoid_SumMin_Assign {\n  static_assert(is_save_v<E,\
     \ int> || is_same_v<E, ll>);\n  using Monoid_X = Monoid_SumMin<E>;\n  using Monoid_A\
-    \ = Monoid_Assign<ll, none_val>;\n  using X = typename Monoid_X::value_type;\n\
-    \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X&\
-    \ x, const A& a, const ll& size) {\n    if (a == Monoid_A::id()) return x;\n \
-    \   return {E(size) * a, a};\n  }\n};\n"
+    \ = Monoid_Assign<ll>;\n  using X = typename Monoid_X::value_type;\n  using A\
+    \ = typename Monoid_A::value_type;\n  static constexpr X act(const X& x, const\
+    \ A& a, const ll& size) {\n    if (a == Monoid_A::id()) return x;\n    return\
+    \ {E(size) * a, a};\n  }\n};\n"
   dependsOn:
   - alg/monoid/summin.hpp
   - alg/monoid/assign.hpp
   isVerificationFile: false
   path: alg/acted_monoid/summin_assign.hpp
   requiredBy: []
-  timestamp: '2026-11-17 04:29:21+09:00'
+  timestamp: '2026-11-17 04:45:12+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/summin_assign.test.cpp
