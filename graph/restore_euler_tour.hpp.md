@@ -53,11 +53,12 @@ data:
     \ i & 63;\n    u64 x = dat[a] >> b;\n    if (x != 0) return 64 * a + b + lowbit(x);\n\
     \    a = X.next(a + 1);\n    return (a == n ? N : 64 * a + lowbit(dat[a]));\n\
     \  }\n\n  // [l, r)\n  template <typename F>\n  void enumerate(int l, int r, F&&\
-    \ f) {\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\n  }\n\n  string\
-    \ to_string() {\n    string S(N, '.');\n    FOR(i, N) S[i] = '0' + (dat[i / 64]\
-    \ >> (i & 63) & 1);\n    return S;\n  }\n};\n#line 3 \"graph/restore_euler_tour.hpp\"\
-    \n\n// \u672A\u77E5\u306E\u6728\u306E euler tour \u306E\u9802\u70B9\u5217\u304C\
-    \ -1 \u8FBC\u307F\u3067\u4E0E\u3048\u3089\u308C\u308B\n// https://codeforces.com/problemset/problem/1053/E\n\
+    \ f) {\n    bool end = false;\n    for (int x = next(l); x < r; x = next(x + 1))\
+    \ {\n      f(x, end);\n      if (end) return;\n    }\n  }\n\n  string to_string()\
+    \ {\n    string S(N, '.');\n    FOR(i, N) S[i] = '0' + (dat[i / 64] >> (i & 63)\
+    \ & 1);\n    return S;\n  }\n};\n#line 3 \"graph/restore_euler_tour.hpp\"\n\n\
+    // \u672A\u77E5\u306E\u6728\u306E euler tour \u306E\u9802\u70B9\u5217\u304C -1\
+    \ \u8FBC\u307F\u3067\u4E0E\u3048\u3089\u308C\u308B\n// https://codeforces.com/problemset/problem/1053/E\n\
     // \u59CB\u70B9\u304C 0 \u3068\u306F\u9650\u308A\u307E\u305B\u3093\nvc<int> restore_euler_tour(int\
     \ N, vc<int> A) {\n  if (N == 1) return {0};\n  assert(len(A) == N + N - 1);\n\
     \  if (A[0] == -1) A[0] = A.back();\n  if (A.back() == -1) A.back() = A[0];\n\
@@ -178,7 +179,7 @@ data:
   isVerificationFile: false
   path: graph/restore_euler_tour.hpp
   requiredBy: []
-  timestamp: '2026-10-22 01:32:06+09:00'
+  timestamp: '2026-11-16 13:02:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/restore_euler_tour.hpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':question:'
@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/sortable_array.test.cpp
     title: test/1_mytest/sortable_array.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2809.test.cpp
     title: test/3_yukicoder/2809.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/sortable_array.hpp
@@ -59,25 +59,26 @@ data:
     \ l <= r && r <= n);\n    return next(l) < r;\n  }\n\n  // [l, r). erase=true\
     \ \u306E\u3068\u304D\u3001callback \u5185\u304B\u3089 this \u3092\u5909\u66F4\u3057\
     \u3066\u306F\u3044\u3051\u306A\u3044\u3002\n  template <typename F>\n  void enumerate(int\
-    \ l, int r, F f, bool erase = false) {\n    assert(0 <= l && l <= r && r <= n);\n\
-    \    if (!erase) {\n      for (int x = next(l); x < r; x = next(x + 1)) f(x);\n\
+    \ l, int r, F f, bool erase = false) {\n    bool end = false;\n    assert(0 <=\
+    \ l && l <= r && r <= n);\n    if (!erase) {\n      for (int x = next(l); x <\
+    \ r; x = next(x + 1)) {\n        f(x, end);\n        if (end) return;\n      }\n\
     \      return;\n    }\n    for (int x = next(l); x < r;) {\n      int w = x /\
     \ B;\n      int lo = max(l, w * int(B)) - w * int(B);\n      int hi = min(r, (w\
     \ + 1) * int(B)) - w * int(B);\n      u64 erase_bits = seg[0][w] & (full_mask(hi)\
     \ & ~full_mask(lo));\n      u64 bits = erase_bits;\n      while (bits) {\n   \
-    \     int k = lowbit(bits);\n        f(w * int(B) + k);\n        bits ^= u64(1)\
-    \ << k;\n      }\n      seg[0][w] ^= erase_bits;\n      if (!seg[0][w]) propagate_empty_word(w);\n\
-    \      x = next(min(r, (w + 1) * int(B)));\n    }\n  }\n\n  void reset() {\n \
-    \   int x = next(0);\n    while (x < n) {\n      int w = x / B;\n      seg[0][w]\
-    \ = 0;\n      propagate_empty_word(w);\n      x = next(min(n, (w + 1) * int(B)));\n\
-    \    }\n  }\n\n  string to_string() {\n    string s(n, '?');\n    for (int i =\
-    \ 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n\n private:\n\
-    \  // seg[0][w] \u304C 0 \u306B\u306A\u3063\u305F\u5F8C\u306B\u547C\u3076\u3002\
-    \n  void propagate_empty_word(int i) {\n    for (int h = 1; h < log; ++h) {\n\
-    \      u64& y = seg[h][i / B];\n      u64 mask = u64(1) << (i % B);\n      y ^=\
-    \ mask;\n      if (y) break;\n      i /= B;\n    }\n  }\n};\n#line 1 \"ds/node_pool.hpp\"\
-    \n// Source: https://github.com/maspypy/library/blob/main/ds/node_pool.hpp\n//\
-    \ \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\
+    \     int k = lowbit(bits);\n        f(w * int(B) + k, end);\n        bits ^=\
+    \ u64(1) << k;\n        if (end) return;\n      }\n      seg[0][w] ^= erase_bits;\n\
+    \      if (!seg[0][w]) propagate_empty_word(w);\n      x = next(min(r, (w + 1)\
+    \ * int(B)));\n    }\n  }\n\n  void reset() {\n    int x = next(0);\n    while\
+    \ (x < n) {\n      int w = x / B;\n      seg[0][w] = 0;\n      propagate_empty_word(w);\n\
+    \      x = next(min(n, (w + 1) * int(B)));\n    }\n  }\n\n  string to_string()\
+    \ {\n    string s(n, '?');\n    for (int i = 0; i < n; ++i) s[i] = ((*this)[i]\
+    \ ? '1' : '0');\n    return s;\n  }\n\n private:\n  // seg[0][w] \u304C 0 \u306B\
+    \u306A\u3063\u305F\u5F8C\u306B\u547C\u3076\u3002\n  void propagate_empty_word(int\
+    \ i) {\n    for (int h = 1; h < log; ++h) {\n      u64& y = seg[h][i / B];\n \
+    \     u64 mask = u64(1) << (i % B);\n      y ^= mask;\n      if (y) break;\n \
+    \     i /= B;\n    }\n  }\n};\n#line 1 \"ds/node_pool.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/node_pool.hpp\n\
+    // \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\
     \u6E08\u307F chunk \u3092\u518D\u5229\u7528\u3059\u308B\ntemplate <class Node>\n\
     struct Node_Pool {\n  union Slot {\n    Node node;\n    Slot* next;\n\n    Slot()\
     \ {}\n    ~Slot() {}\n  };\n  using np = Node*;\n\n  static constexpr int CHUNK_SIZE\
@@ -236,8 +237,8 @@ data:
   isVerificationFile: false
   path: ds/sortable_array.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-16 13:02:54+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2809.test.cpp
   - test/1_mytest/sortable_array.test.cpp

@@ -209,8 +209,8 @@ data:
   verifiedWith:
   - test/1_mytest/polygon_triangulation.test.cpp
   - test/4_aoj/CGL_2_C.test.cpp
-  - test/4_aoj/CGL_7_B.test.cpp
   - test/4_aoj/CGL_2_B.test.cpp
+  - test/4_aoj/CGL_7_B.test.cpp
   - test/4_aoj/CGL_2_D.test.cpp
 documentation_of: geo/cross_point.hpp
 layout: document

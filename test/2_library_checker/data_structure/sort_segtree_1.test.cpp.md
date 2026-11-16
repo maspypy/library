@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':question:'
@@ -320,59 +320,61 @@ data:
     \ l <= r && r <= n);\n    return next(l) < r;\n  }\n\n  // [l, r). erase=true\
     \ \u306E\u3068\u304D\u3001callback \u5185\u304B\u3089 this \u3092\u5909\u66F4\u3057\
     \u3066\u306F\u3044\u3051\u306A\u3044\u3002\n  template <typename F>\n  void enumerate(int\
-    \ l, int r, F f, bool erase = false) {\n    assert(0 <= l && l <= r && r <= n);\n\
-    \    if (!erase) {\n      for (int x = next(l); x < r; x = next(x + 1)) f(x);\n\
+    \ l, int r, F f, bool erase = false) {\n    bool end = false;\n    assert(0 <=\
+    \ l && l <= r && r <= n);\n    if (!erase) {\n      for (int x = next(l); x <\
+    \ r; x = next(x + 1)) {\n        f(x, end);\n        if (end) return;\n      }\n\
     \      return;\n    }\n    for (int x = next(l); x < r;) {\n      int w = x /\
     \ B;\n      int lo = max(l, w * int(B)) - w * int(B);\n      int hi = min(r, (w\
     \ + 1) * int(B)) - w * int(B);\n      u64 erase_bits = seg[0][w] & (full_mask(hi)\
     \ & ~full_mask(lo));\n      u64 bits = erase_bits;\n      while (bits) {\n   \
-    \     int k = lowbit(bits);\n        f(w * int(B) + k);\n        bits ^= u64(1)\
-    \ << k;\n      }\n      seg[0][w] ^= erase_bits;\n      if (!seg[0][w]) propagate_empty_word(w);\n\
-    \      x = next(min(r, (w + 1) * int(B)));\n    }\n  }\n\n  void reset() {\n \
-    \   int x = next(0);\n    while (x < n) {\n      int w = x / B;\n      seg[0][w]\
-    \ = 0;\n      propagate_empty_word(w);\n      x = next(min(n, (w + 1) * int(B)));\n\
-    \    }\n  }\n\n  string to_string() {\n    string s(n, '?');\n    for (int i =\
-    \ 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n\n private:\n\
-    \  // seg[0][w] \u304C 0 \u306B\u306A\u3063\u305F\u5F8C\u306B\u547C\u3076\u3002\
-    \n  void propagate_empty_word(int i) {\n    for (int h = 1; h < log; ++h) {\n\
-    \      u64& y = seg[h][i / B];\n      u64 mask = u64(1) << (i % B);\n      y ^=\
-    \ mask;\n      if (y) break;\n      i /= B;\n    }\n  }\n};\n#line 1 \"ds/segtree/segtree.hpp\"\
-    \n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/segtree.hpp\n\
-    \ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X =\
-    \ typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log,\
-    \ size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
-    \ F>\n  SegTree(int n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v)\
-    \ { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return\
-    \ MX::id(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int\
-    \ i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
-    \ F f) {\n    n = m, log = 0;\n    while ((1 << log) < n) ++log;\n    size = 1\
-    \ << log;\n    dat.assign(size << 1, MX::id());\n    FOR(i, n) dat[size + i] =\
-    \ f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  X get(int i) const { return\
-    \ dat[size + i]; }\n  vc<X> get_all() const { return {dat.begin() + size, dat.begin()\
-    \ + size + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2\
-    \ * i + 1]); }\n  void set(int i, const X& x) {\n    assert(0 <= i && i < n);\n\
-    \    dat[i += size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int\
-    \ i, const X& x) {\n    assert(0 <= i && i < n);\n    i += size;\n    dat[i] =\
-    \ Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n  X prod(int\
-    \ L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n    X vl = Monoid::id(),\
-    \ vr = Monoid::id();\n    L += size, R += size;\n    while (L < R) {\n      if\
-    \ (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R],\
-    \ vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n\
-    \  vc<int> prod_ids(int L, int R) const {\n    assert(0 <= L && L <= R && R <=\
-    \ n);\n    vc<int> I, J;\n    L += size, R += size;\n    while (L < R) {\n   \
-    \   if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n      L >>= 1, R >>= 1;\n\
-    \    }\n    reverse(all(J));\n    concat(I, J);\n    return I;\n  }\n\n  X prod_all()\
-    \ const { return dat[1]; }\n\n  template <class F>\n  int max_right(F check, int\
-    \ L) const {\n    assert(0 <= L && L <= n && check(Monoid::id()));\n    if (L\
-    \ == n) return n;\n    L += size;\n    X sm = Monoid::id();\n    do {\n      while\
-    \ (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L]))) {\n       \
-    \ while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
-    \ dat[L]))) {\n            sm = Monoid::op(sm, dat[L++]);\n          }\n     \
-    \   }\n        return L - size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n\
-    \    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class F>\n  int\
-    \ min_left(F check, int R) const {\n    assert(0 <= R && R <= n && check(Monoid::id()));\n\
-    \    if (R == 0) return 0;\n    R += size;\n    X sm = Monoid::id();\n    do {\n\
-    \      --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
+    \     int k = lowbit(bits);\n        f(w * int(B) + k, end);\n        bits ^=\
+    \ u64(1) << k;\n        if (end) return;\n      }\n      seg[0][w] ^= erase_bits;\n\
+    \      if (!seg[0][w]) propagate_empty_word(w);\n      x = next(min(r, (w + 1)\
+    \ * int(B)));\n    }\n  }\n\n  void reset() {\n    int x = next(0);\n    while\
+    \ (x < n) {\n      int w = x / B;\n      seg[0][w] = 0;\n      propagate_empty_word(w);\n\
+    \      x = next(min(n, (w + 1) * int(B)));\n    }\n  }\n\n  string to_string()\
+    \ {\n    string s(n, '?');\n    for (int i = 0; i < n; ++i) s[i] = ((*this)[i]\
+    \ ? '1' : '0');\n    return s;\n  }\n\n private:\n  // seg[0][w] \u304C 0 \u306B\
+    \u306A\u3063\u305F\u5F8C\u306B\u547C\u3076\u3002\n  void propagate_empty_word(int\
+    \ i) {\n    for (int h = 1; h < log; ++h) {\n      u64& y = seg[h][i / B];\n \
+    \     u64 mask = u64(1) << (i % B);\n      y ^= mask;\n      if (y) break;\n \
+    \     i /= B;\n    }\n  }\n};\n#line 1 \"ds/segtree/segtree.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/ds/segtree/segtree.hpp\n\ntemplate\
+    \ <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X = typename\
+    \ MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\
+    \n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename F>\n  SegTree(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n\
+    \  void build(int m) {\n    build(m, [](int i) -> X { return MX::id(); });\n \
+    \ }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return\
+    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n =\
+    \ m, log = 0;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
+    \ << 1, MX::id());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size)\
+    \ update(i);\n  }\n\n  X get(int i) const { return dat[size + i]; }\n  vc<X> get_all()\
+    \ const { return {dat.begin() + size, dat.begin() + size + n}; }\n\n  void update(int\
+    \ i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n  void set(int i, const\
+    \ X& x) {\n    assert(0 <= i && i < n);\n    dat[i += size] = x;\n    while (i\
+    \ >>= 1) update(i);\n  }\n\n  void multiply(int i, const X& x) {\n    assert(0\
+    \ <= i && i < n);\n    i += size;\n    dat[i] = Monoid::op(dat[i], x);\n    while\
+    \ (i >>= 1) update(i);\n  }\n\n  X prod(int L, int R) const {\n    assert(0 <=\
+    \ L && L <= R && R <= n);\n    X vl = Monoid::id(), vr = Monoid::id();\n    L\
+    \ += size, R += size;\n    while (L < R) {\n      if (L & 1) vl = Monoid::op(vl,\
+    \ dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1,\
+    \ R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n  vc<int> prod_ids(int\
+    \ L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n    vc<int> I, J;\n\
+    \    L += size, R += size;\n    while (L < R) {\n      if (L & 1) I.eb(L++);\n\
+    \      if (R & 1) J.eb(--R);\n      L >>= 1, R >>= 1;\n    }\n    reverse(all(J));\n\
+    \    concat(I, J);\n    return I;\n  }\n\n  X prod_all() const { return dat[1];\
+    \ }\n\n  template <class F>\n  int max_right(F check, int L) const {\n    assert(0\
+    \ <= L && L <= n && check(Monoid::id()));\n    if (L == n) return n;\n    L +=\
+    \ size;\n    X sm = Monoid::id();\n    do {\n      while (L % 2 == 0) L >>= 1;\n\
+    \      if (!check(Monoid::op(sm, dat[L]))) {\n        while (L < size) {\n   \
+    \       L = 2 * L;\n          if (check(Monoid::op(sm, dat[L]))) {\n         \
+    \   sm = Monoid::op(sm, dat[L++]);\n          }\n        }\n        return L -\
+    \ size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n    } while ((L & -L)\
+    \ != L);\n    return n;\n  }\n\n  template <class F>\n  int min_left(F check,\
+    \ int R) const {\n    assert(0 <= R && R <= n && check(Monoid::id()));\n    if\
+    \ (R == 0) return 0;\n    R += size;\n    X sm = Monoid::id();\n    do {\n   \
+    \   --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
     \ sm))) {\n        while (R < size) {\n          R = 2 * R + 1;\n          if\
     \ (check(Monoid::op(dat[R], sm))) {\n            sm = Monoid::op(dat[R--], sm);\n\
     \          }\n        }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R],\
@@ -625,7 +627,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
+  timestamp: '2026-11-16 13:02:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/sort_segtree_1.test.cpp

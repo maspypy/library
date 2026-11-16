@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/csr.hpp
     title: ds/csr.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':question:'
@@ -180,37 +180,37 @@ data:
     \      res.eb(V[k]), k = RID[V[k]];\n    }\n    return res;\n  }\n  void collect_child(int\
     \ v, vc<int> &buf) const {\n    buf.clear();\n    for (int k = LID[v] + 1; k <\
     \ RID[v];) {\n      buf.eb(V[k]), k = RID[V[k]];\n    }\n  }\n\n  template <typename\
-    \ F>\n  void for_each_child(int v, const F &f) const {\n    for (int k = LID[v]\
-    \ + 1; k < RID[v];) {\n      f(V[k]), k = RID[V[k]];\n    }\n  }\n\n  vc<int>\
-    \ collect_subtree(int v) const {\n    return {V.begin() + LID[v], V.begin() +\
-    \ RID[v]};\n  }\n\n  vc<int> collect_light(int v) const {\n    static_assert(HLD);\n\
-    \    vc<int> res;\n    for (int k = LID[v] + 1; k < RID[v];) {\n      if (head[V[k]]\
-    \ == V[k]) res.eb(V[k]);\n      k = RID[V[k]];\n    }\n    return res;\n  }\n\n\
-    \  vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge) const {\n\
-    \    static_assert(HLD);\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\"\
-    \u533A\u9593\u5217\u3002\n    vc<pair<int, int>> up, down;\n    while (1) {\n\
-    \      if (head[u] == head[v]) break;\n      if (LID[u] < LID[v]) {\n        down.eb(LID[head[v]],\
-    \ LID[v]);\n        v = parent[head[v]];\n      } else {\n        up.eb(LID[u],\
-    \ LID[head[u]]);\n        u = parent[head[u]];\n      }\n    }\n    if (LID[u]\
-    \ < LID[v]) down.eb(LID[u] + edge, LID[v]);\n    elif (LID[v] + edge <= LID[u])\
-    \ up.eb(LID[u], LID[v] + edge);\n    reverse(all(down));\n    up.insert(up.end(),\
-    \ all(down));\n    return up;\n  }\n\n  // \u8FBA\u306E\u5217\u306E\u60C5\u5831\
-    \ (frm,to,str)\n  // str = \"heavy_up\", \"heavy_down\", \"light_up\", \"light_down\"\
-    \n  vc<tuple<int, int, string>> get_path_decomposition_detail(\n      int u, int\
-    \ v) const {\n    static_assert(HLD);\n    vc<tuple<int, int, string>> up, down;\n\
-    \    while (1) {\n      if (head[u] == head[v]) break;\n      if (LID[u] < LID[v])\
-    \ {\n        if (v != head[v]) down.eb(head[v], v, \"heavy_down\"), v = head[v];\n\
-    \        down.eb(parent[v], v, \"light_down\"), v = parent[v];\n      } else {\n\
-    \        if (u != head[u]) up.eb(u, head[u], \"heavy_up\"), u = head[u];\n   \
-    \     up.eb(u, parent[u], \"light_up\"), u = parent[u];\n      }\n    }\n    if\
-    \ (LID[u] < LID[v]) down.eb(u, v, \"heavy_down\");\n    elif (LID[v] < LID[u])\
-    \ up.eb(u, v, \"heavy_up\");\n    reverse(all(down));\n    concat(up, down);\n\
-    \    return up;\n  }\n\n  vc<int> restore_path(int u, int v) const {\n    vc<int>\
-    \ L, R;\n    while (depth[u] > depth[v]) L.eb(u), u = parent[u];\n    while (depth[u]\
-    \ < depth[v]) R.eb(v), v = parent[v];\n    while (u != v) L.eb(u), R.eb(v), u\
-    \ = parent[u], v = parent[v];\n    L.eb(u);\n    while (len(R)) L.eb(POP(R));\n\
-    \    return L;\n  }\n\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A.\
-    \ \u7A7A\u306A\u3089\u3070 {-1,-1}.\n  // https://codeforces.com/problemset/problem/500/G\n\
+    \ F>\n  void enumerate_child(int v, const F &f) const {\n    bool end = false;\n\
+    \    for (int k = LID[v] + 1; k < RID[v];) {\n      f(V[k], end), k = RID[V[k]];\n\
+    \      if (end) return;\n    }\n  }\n\n  vc<int> collect_subtree(int v) const\
+    \ {\n    return {V.begin() + LID[v], V.begin() + RID[v]};\n  }\n\n  vc<int> collect_light(int\
+    \ v) const {\n    static_assert(HLD);\n    vc<int> res;\n    for (int k = LID[v]\
+    \ + 1; k < RID[v];) {\n      if (head[V[k]] == V[k]) res.eb(V[k]);\n      k =\
+    \ RID[V[k]];\n    }\n    return res;\n  }\n\n  vc<pair<int, int>> get_path_decomposition(int\
+    \ u, int v, bool edge) const {\n    static_assert(HLD);\n    // [\u59CB\u70B9\
+    , \u7D42\u70B9] \u306E\"\u9589\"\u533A\u9593\u5217\u3002\n    vc<pair<int, int>>\
+    \ up, down;\n    while (1) {\n      if (head[u] == head[v]) break;\n      if (LID[u]\
+    \ < LID[v]) {\n        down.eb(LID[head[v]], LID[v]);\n        v = parent[head[v]];\n\
+    \      } else {\n        up.eb(LID[u], LID[head[u]]);\n        u = parent[head[u]];\n\
+    \      }\n    }\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\n  \
+    \  elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\n    reverse(all(down));\n\
+    \    up.insert(up.end(), all(down));\n    return up;\n  }\n\n  // \u8FBA\u306E\
+    \u5217\u306E\u60C5\u5831 (frm,to,str)\n  // str = \"heavy_up\", \"heavy_down\"\
+    , \"light_up\", \"light_down\"\n  vc<tuple<int, int, string>> get_path_decomposition_detail(\n\
+    \      int u, int v) const {\n    static_assert(HLD);\n    vc<tuple<int, int,\
+    \ string>> up, down;\n    while (1) {\n      if (head[u] == head[v]) break;\n\
+    \      if (LID[u] < LID[v]) {\n        if (v != head[v]) down.eb(head[v], v, \"\
+    heavy_down\"), v = head[v];\n        down.eb(parent[v], v, \"light_down\"), v\
+    \ = parent[v];\n      } else {\n        if (u != head[u]) up.eb(u, head[u], \"\
+    heavy_up\"), u = head[u];\n        up.eb(u, parent[u], \"light_up\"), u = parent[u];\n\
+    \      }\n    }\n    if (LID[u] < LID[v]) down.eb(u, v, \"heavy_down\");\n   \
+    \ elif (LID[v] < LID[u]) up.eb(u, v, \"heavy_up\");\n    reverse(all(down));\n\
+    \    concat(up, down);\n    return up;\n  }\n\n  vc<int> restore_path(int u, int\
+    \ v) const {\n    vc<int> L, R;\n    while (depth[u] > depth[v]) L.eb(u), u =\
+    \ parent[u];\n    while (depth[u] < depth[v]) R.eb(v), v = parent[v];\n    while\
+    \ (u != v) L.eb(u), R.eb(v), u = parent[u], v = parent[v];\n    L.eb(u);\n   \
+    \ while (len(R)) L.eb(POP(R));\n    return L;\n  }\n\n  // path [a,b] \u3068 [c,d]\
+    \ \u306E\u4EA4\u308F\u308A. \u7A7A\u306A\u3089\u3070 {-1,-1}.\n  // https://codeforces.com/problemset/problem/500/G\n\
     \  pair<int, int> path_intersection(int a, int b, int c, int d) const {\n    static_assert(HLD);\n\
     \    int ab = LCA(a, b), ac = LCA(a, c), ad = LCA(a, d);\n    int bc = LCA(b,\
     \ c), bd = LCA(b, d), cd = LCA(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
@@ -316,34 +316,35 @@ data:
     \ l <= r && r <= n);\n    return next(l) < r;\n  }\n\n  // [l, r). erase=true\
     \ \u306E\u3068\u304D\u3001callback \u5185\u304B\u3089 this \u3092\u5909\u66F4\u3057\
     \u3066\u306F\u3044\u3051\u306A\u3044\u3002\n  template <typename F>\n  void enumerate(int\
-    \ l, int r, F f, bool erase = false) {\n    assert(0 <= l && l <= r && r <= n);\n\
-    \    if (!erase) {\n      for (int x = next(l); x < r; x = next(x + 1)) f(x);\n\
+    \ l, int r, F f, bool erase = false) {\n    bool end = false;\n    assert(0 <=\
+    \ l && l <= r && r <= n);\n    if (!erase) {\n      for (int x = next(l); x <\
+    \ r; x = next(x + 1)) {\n        f(x, end);\n        if (end) return;\n      }\n\
     \      return;\n    }\n    for (int x = next(l); x < r;) {\n      int w = x /\
     \ B;\n      int lo = max(l, w * int(B)) - w * int(B);\n      int hi = min(r, (w\
     \ + 1) * int(B)) - w * int(B);\n      u64 erase_bits = seg[0][w] & (full_mask(hi)\
     \ & ~full_mask(lo));\n      u64 bits = erase_bits;\n      while (bits) {\n   \
-    \     int k = lowbit(bits);\n        f(w * int(B) + k);\n        bits ^= u64(1)\
-    \ << k;\n      }\n      seg[0][w] ^= erase_bits;\n      if (!seg[0][w]) propagate_empty_word(w);\n\
-    \      x = next(min(r, (w + 1) * int(B)));\n    }\n  }\n\n  void reset() {\n \
-    \   int x = next(0);\n    while (x < n) {\n      int w = x / B;\n      seg[0][w]\
-    \ = 0;\n      propagate_empty_word(w);\n      x = next(min(n, (w + 1) * int(B)));\n\
-    \    }\n  }\n\n  string to_string() {\n    string s(n, '?');\n    for (int i =\
-    \ 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n\n private:\n\
-    \  // seg[0][w] \u304C 0 \u306B\u306A\u3063\u305F\u5F8C\u306B\u547C\u3076\u3002\
-    \n  void propagate_empty_word(int i) {\n    for (int h = 1; h < log; ++h) {\n\
-    \      u64& y = seg[h][i / B];\n      u64 mask = u64(1) << (i % B);\n      y ^=\
-    \ mask;\n      if (y) break;\n      i /= B;\n    }\n  }\n};\n#line 1 \"ds/csr.hpp\"\
-    \n// Source: https://github.com/maspypy/library/blob/main/ds/csr.hpp\n\ntemplate\
-    \ <typename T>\nstruct CSR {\n  int n;\n  bool prepared;\n  vc<int> ptr;\n  vc<int>\
-    \ I;\n  vc<T> dat;\n\n  CSR(int n = 0) : n(n), prepared(false) {}\n  void reserve(int\
-    \ n) { dat.reserve(n); }\n\n  void add(int i, const T& x) {\n    assert(0 <= i\
-    \ && i < n && !prepared);\n    I.eb(i), dat.eb(x);\n  }\n\n  void build() {\n\
-    \    assert(!prepared);\n    prepared = 1;\n    ptr.assign(n + 1, 0);\n    for\
-    \ (auto& i : I) ptr[1 + i]++;\n    FOR(i, len(ptr) - 1) ptr[i + 1] += ptr[i];\n\
-    \    vc<T> tmp(len(dat));\n    FOR(k, len(dat)) {\n      int i = I[k];\n     \
-    \ tmp[ptr[i]++] = dat[k];\n    }\n    swap(dat, tmp);\n    ptr.pop_back();\n \
-    \   ptr.insert(ptr.begin(), 0);\n    I.clear();\n  }\n\n  struct range {\n   \
-    \ T *first, *last;\n    T* begin() const { return first; }\n    T* end() const\
+    \     int k = lowbit(bits);\n        f(w * int(B) + k, end);\n        bits ^=\
+    \ u64(1) << k;\n        if (end) return;\n      }\n      seg[0][w] ^= erase_bits;\n\
+    \      if (!seg[0][w]) propagate_empty_word(w);\n      x = next(min(r, (w + 1)\
+    \ * int(B)));\n    }\n  }\n\n  void reset() {\n    int x = next(0);\n    while\
+    \ (x < n) {\n      int w = x / B;\n      seg[0][w] = 0;\n      propagate_empty_word(w);\n\
+    \      x = next(min(n, (w + 1) * int(B)));\n    }\n  }\n\n  string to_string()\
+    \ {\n    string s(n, '?');\n    for (int i = 0; i < n; ++i) s[i] = ((*this)[i]\
+    \ ? '1' : '0');\n    return s;\n  }\n\n private:\n  // seg[0][w] \u304C 0 \u306B\
+    \u306A\u3063\u305F\u5F8C\u306B\u547C\u3076\u3002\n  void propagate_empty_word(int\
+    \ i) {\n    for (int h = 1; h < log; ++h) {\n      u64& y = seg[h][i / B];\n \
+    \     u64 mask = u64(1) << (i % B);\n      y ^= mask;\n      if (y) break;\n \
+    \     i /= B;\n    }\n  }\n};\n#line 1 \"ds/csr.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/csr.hpp\n\
+    \ntemplate <typename T>\nstruct CSR {\n  int n;\n  bool prepared;\n  vc<int> ptr;\n\
+    \  vc<int> I;\n  vc<T> dat;\n\n  CSR(int n = 0) : n(n), prepared(false) {}\n \
+    \ void reserve(int n) { dat.reserve(n); }\n\n  void add(int i, const T& x) {\n\
+    \    assert(0 <= i && i < n && !prepared);\n    I.eb(i), dat.eb(x);\n  }\n\n \
+    \ void build() {\n    assert(!prepared);\n    prepared = 1;\n    ptr.assign(n\
+    \ + 1, 0);\n    for (auto& i : I) ptr[1 + i]++;\n    FOR(i, len(ptr) - 1) ptr[i\
+    \ + 1] += ptr[i];\n    vc<T> tmp(len(dat));\n    FOR(k, len(dat)) {\n      int\
+    \ i = I[k];\n      tmp[ptr[i]++] = dat[k];\n    }\n    swap(dat, tmp);\n    ptr.pop_back();\n\
+    \    ptr.insert(ptr.begin(), 0);\n    I.clear();\n  }\n\n  struct range {\n  \
+    \  T *first, *last;\n    T* begin() const { return first; }\n    T* end() const\
     \ { return last; }\n    bool empty() const { return first == last; }\n    int\
     \ size() const { return last - first; }\n  };\n\n  range operator[](int i) {\n\
     \    assert(prepared);\n    return range{dat.data() + ptr[i], dat.data() + ptr[i\
@@ -407,7 +408,7 @@ data:
   isVerificationFile: false
   path: string/enumerate_occurrences.hpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
+  timestamp: '2026-11-16 13:02:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/enumerate_occurrences.hpp

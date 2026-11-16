@@ -512,37 +512,37 @@ data:
     \      res.eb(V[k]), k = RID[V[k]];\n    }\n    return res;\n  }\n  void collect_child(int\
     \ v, vc<int> &buf) const {\n    buf.clear();\n    for (int k = LID[v] + 1; k <\
     \ RID[v];) {\n      buf.eb(V[k]), k = RID[V[k]];\n    }\n  }\n\n  template <typename\
-    \ F>\n  void for_each_child(int v, const F &f) const {\n    for (int k = LID[v]\
-    \ + 1; k < RID[v];) {\n      f(V[k]), k = RID[V[k]];\n    }\n  }\n\n  vc<int>\
-    \ collect_subtree(int v) const {\n    return {V.begin() + LID[v], V.begin() +\
-    \ RID[v]};\n  }\n\n  vc<int> collect_light(int v) const {\n    static_assert(HLD);\n\
-    \    vc<int> res;\n    for (int k = LID[v] + 1; k < RID[v];) {\n      if (head[V[k]]\
-    \ == V[k]) res.eb(V[k]);\n      k = RID[V[k]];\n    }\n    return res;\n  }\n\n\
-    \  vc<pair<int, int>> get_path_decomposition(int u, int v, bool edge) const {\n\
-    \    static_assert(HLD);\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\"\
-    \u533A\u9593\u5217\u3002\n    vc<pair<int, int>> up, down;\n    while (1) {\n\
-    \      if (head[u] == head[v]) break;\n      if (LID[u] < LID[v]) {\n        down.eb(LID[head[v]],\
-    \ LID[v]);\n        v = parent[head[v]];\n      } else {\n        up.eb(LID[u],\
-    \ LID[head[u]]);\n        u = parent[head[u]];\n      }\n    }\n    if (LID[u]\
-    \ < LID[v]) down.eb(LID[u] + edge, LID[v]);\n    elif (LID[v] + edge <= LID[u])\
-    \ up.eb(LID[u], LID[v] + edge);\n    reverse(all(down));\n    up.insert(up.end(),\
-    \ all(down));\n    return up;\n  }\n\n  // \u8FBA\u306E\u5217\u306E\u60C5\u5831\
-    \ (frm,to,str)\n  // str = \"heavy_up\", \"heavy_down\", \"light_up\", \"light_down\"\
-    \n  vc<tuple<int, int, string>> get_path_decomposition_detail(\n      int u, int\
-    \ v) const {\n    static_assert(HLD);\n    vc<tuple<int, int, string>> up, down;\n\
-    \    while (1) {\n      if (head[u] == head[v]) break;\n      if (LID[u] < LID[v])\
-    \ {\n        if (v != head[v]) down.eb(head[v], v, \"heavy_down\"), v = head[v];\n\
-    \        down.eb(parent[v], v, \"light_down\"), v = parent[v];\n      } else {\n\
-    \        if (u != head[u]) up.eb(u, head[u], \"heavy_up\"), u = head[u];\n   \
-    \     up.eb(u, parent[u], \"light_up\"), u = parent[u];\n      }\n    }\n    if\
-    \ (LID[u] < LID[v]) down.eb(u, v, \"heavy_down\");\n    elif (LID[v] < LID[u])\
-    \ up.eb(u, v, \"heavy_up\");\n    reverse(all(down));\n    concat(up, down);\n\
-    \    return up;\n  }\n\n  vc<int> restore_path(int u, int v) const {\n    vc<int>\
-    \ L, R;\n    while (depth[u] > depth[v]) L.eb(u), u = parent[u];\n    while (depth[u]\
-    \ < depth[v]) R.eb(v), v = parent[v];\n    while (u != v) L.eb(u), R.eb(v), u\
-    \ = parent[u], v = parent[v];\n    L.eb(u);\n    while (len(R)) L.eb(POP(R));\n\
-    \    return L;\n  }\n\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A.\
-    \ \u7A7A\u306A\u3089\u3070 {-1,-1}.\n  // https://codeforces.com/problemset/problem/500/G\n\
+    \ F>\n  void enumerate_child(int v, const F &f) const {\n    bool end = false;\n\
+    \    for (int k = LID[v] + 1; k < RID[v];) {\n      f(V[k], end), k = RID[V[k]];\n\
+    \      if (end) return;\n    }\n  }\n\n  vc<int> collect_subtree(int v) const\
+    \ {\n    return {V.begin() + LID[v], V.begin() + RID[v]};\n  }\n\n  vc<int> collect_light(int\
+    \ v) const {\n    static_assert(HLD);\n    vc<int> res;\n    for (int k = LID[v]\
+    \ + 1; k < RID[v];) {\n      if (head[V[k]] == V[k]) res.eb(V[k]);\n      k =\
+    \ RID[V[k]];\n    }\n    return res;\n  }\n\n  vc<pair<int, int>> get_path_decomposition(int\
+    \ u, int v, bool edge) const {\n    static_assert(HLD);\n    // [\u59CB\u70B9\
+    , \u7D42\u70B9] \u306E\"\u9589\"\u533A\u9593\u5217\u3002\n    vc<pair<int, int>>\
+    \ up, down;\n    while (1) {\n      if (head[u] == head[v]) break;\n      if (LID[u]\
+    \ < LID[v]) {\n        down.eb(LID[head[v]], LID[v]);\n        v = parent[head[v]];\n\
+    \      } else {\n        up.eb(LID[u], LID[head[u]]);\n        u = parent[head[u]];\n\
+    \      }\n    }\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\n  \
+    \  elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\n    reverse(all(down));\n\
+    \    up.insert(up.end(), all(down));\n    return up;\n  }\n\n  // \u8FBA\u306E\
+    \u5217\u306E\u60C5\u5831 (frm,to,str)\n  // str = \"heavy_up\", \"heavy_down\"\
+    , \"light_up\", \"light_down\"\n  vc<tuple<int, int, string>> get_path_decomposition_detail(\n\
+    \      int u, int v) const {\n    static_assert(HLD);\n    vc<tuple<int, int,\
+    \ string>> up, down;\n    while (1) {\n      if (head[u] == head[v]) break;\n\
+    \      if (LID[u] < LID[v]) {\n        if (v != head[v]) down.eb(head[v], v, \"\
+    heavy_down\"), v = head[v];\n        down.eb(parent[v], v, \"light_down\"), v\
+    \ = parent[v];\n      } else {\n        if (u != head[u]) up.eb(u, head[u], \"\
+    heavy_up\"), u = head[u];\n        up.eb(u, parent[u], \"light_up\"), u = parent[u];\n\
+    \      }\n    }\n    if (LID[u] < LID[v]) down.eb(u, v, \"heavy_down\");\n   \
+    \ elif (LID[v] < LID[u]) up.eb(u, v, \"heavy_up\");\n    reverse(all(down));\n\
+    \    concat(up, down);\n    return up;\n  }\n\n  vc<int> restore_path(int u, int\
+    \ v) const {\n    vc<int> L, R;\n    while (depth[u] > depth[v]) L.eb(u), u =\
+    \ parent[u];\n    while (depth[u] < depth[v]) R.eb(v), v = parent[v];\n    while\
+    \ (u != v) L.eb(u), R.eb(v), u = parent[u], v = parent[v];\n    L.eb(u);\n   \
+    \ while (len(R)) L.eb(POP(R));\n    return L;\n  }\n\n  // path [a,b] \u3068 [c,d]\
+    \ \u306E\u4EA4\u308F\u308A. \u7A7A\u306A\u3089\u3070 {-1,-1}.\n  // https://codeforces.com/problemset/problem/500/G\n\
     \  pair<int, int> path_intersection(int a, int b, int c, int d) const {\n    static_assert(HLD);\n\
     \    int ab = LCA(a, b), ac = LCA(a, c), ad = LCA(a, d);\n    int bc = LCA(b,\
     \ c), bd = LCA(b, d), cd = LCA(c, d);\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^\
@@ -642,7 +642,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/ancestor_closed_set_knapsack.test.cpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
+  timestamp: '2026-11-16 13:02:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/ancestor_closed_set_knapsack.test.cpp

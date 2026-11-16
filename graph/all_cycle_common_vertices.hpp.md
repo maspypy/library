@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':question:'
@@ -297,29 +297,31 @@ data:
     \ l <= r && r <= n);\n    return next(l) < r;\n  }\n\n  // [l, r). erase=true\
     \ \u306E\u3068\u304D\u3001callback \u5185\u304B\u3089 this \u3092\u5909\u66F4\u3057\
     \u3066\u306F\u3044\u3051\u306A\u3044\u3002\n  template <typename F>\n  void enumerate(int\
-    \ l, int r, F f, bool erase = false) {\n    assert(0 <= l && l <= r && r <= n);\n\
-    \    if (!erase) {\n      for (int x = next(l); x < r; x = next(x + 1)) f(x);\n\
+    \ l, int r, F f, bool erase = false) {\n    bool end = false;\n    assert(0 <=\
+    \ l && l <= r && r <= n);\n    if (!erase) {\n      for (int x = next(l); x <\
+    \ r; x = next(x + 1)) {\n        f(x, end);\n        if (end) return;\n      }\n\
     \      return;\n    }\n    for (int x = next(l); x < r;) {\n      int w = x /\
     \ B;\n      int lo = max(l, w * int(B)) - w * int(B);\n      int hi = min(r, (w\
     \ + 1) * int(B)) - w * int(B);\n      u64 erase_bits = seg[0][w] & (full_mask(hi)\
     \ & ~full_mask(lo));\n      u64 bits = erase_bits;\n      while (bits) {\n   \
-    \     int k = lowbit(bits);\n        f(w * int(B) + k);\n        bits ^= u64(1)\
-    \ << k;\n      }\n      seg[0][w] ^= erase_bits;\n      if (!seg[0][w]) propagate_empty_word(w);\n\
-    \      x = next(min(r, (w + 1) * int(B)));\n    }\n  }\n\n  void reset() {\n \
-    \   int x = next(0);\n    while (x < n) {\n      int w = x / B;\n      seg[0][w]\
-    \ = 0;\n      propagate_empty_word(w);\n      x = next(min(n, (w + 1) * int(B)));\n\
-    \    }\n  }\n\n  string to_string() {\n    string s(n, '?');\n    for (int i =\
-    \ 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\n    return s;\n  }\n\n private:\n\
-    \  // seg[0][w] \u304C 0 \u306B\u306A\u3063\u305F\u5F8C\u306B\u547C\u3076\u3002\
-    \n  void propagate_empty_word(int i) {\n    for (int h = 1; h < log; ++h) {\n\
-    \      u64& y = seg[h][i / B];\n      u64 mask = u64(1) << (i % B);\n      y ^=\
-    \ mask;\n      if (y) break;\n      i /= B;\n    }\n  }\n};\n#line 4 \"graph/toposort.hpp\"\
-    \n\n// \u8F9E\u66F8\u9806\u6700\u5C0F\u306E toposort \u3092\u8FD4\u3059\ntemplate\
-    \ <typename GT>\nvc<int> toposort(GT& G) {\n  static_assert(GT::is_directed);\n\
-    \  assert(G.is_prepared());\n  const int N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n\
-    \  FastSet que(N);\n  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n\
-    \  while (1) {\n    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v),\
-    \ V.eb(v);\n    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
+    \     int k = lowbit(bits);\n        f(w * int(B) + k, end);\n        bits ^=\
+    \ u64(1) << k;\n        if (end) return;\n      }\n      seg[0][w] ^= erase_bits;\n\
+    \      if (!seg[0][w]) propagate_empty_word(w);\n      x = next(min(r, (w + 1)\
+    \ * int(B)));\n    }\n  }\n\n  void reset() {\n    int x = next(0);\n    while\
+    \ (x < n) {\n      int w = x / B;\n      seg[0][w] = 0;\n      propagate_empty_word(w);\n\
+    \      x = next(min(n, (w + 1) * int(B)));\n    }\n  }\n\n  string to_string()\
+    \ {\n    string s(n, '?');\n    for (int i = 0; i < n; ++i) s[i] = ((*this)[i]\
+    \ ? '1' : '0');\n    return s;\n  }\n\n private:\n  // seg[0][w] \u304C 0 \u306B\
+    \u306A\u3063\u305F\u5F8C\u306B\u547C\u3076\u3002\n  void propagate_empty_word(int\
+    \ i) {\n    for (int h = 1; h < log; ++h) {\n      u64& y = seg[h][i / B];\n \
+    \     u64 mask = u64(1) << (i % B);\n      y ^= mask;\n      if (y) break;\n \
+    \     i /= B;\n    }\n  }\n};\n#line 4 \"graph/toposort.hpp\"\n\n// \u8F9E\u66F8\
+    \u9806\u6700\u5C0F\u306E toposort \u3092\u8FD4\u3059\ntemplate <typename GT>\n\
+    vc<int> toposort(GT& G) {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n\
+    \  const int N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n  FastSet\
+    \ que(N);\n  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n  while\
+    \ (1) {\n    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v), V.eb(v);\n\
+    \    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
     \    }\n  }\n  return (len(V) < N ? vc<int>{} : V);\n}\n\n// inv_perm=true: inv\
     \ perm \u304C\u8F9E\u66F8\u6700\u5C0F\uFF08\u5404\u30A4\u30F3\u30C7\u30C3\u30AF\
     \u30B9\u306E\u73FE\u308C\u308B\u5834\u6240\u306E\u5217\u304C\u6700\u5C0F\uFF09\
@@ -546,7 +548,7 @@ data:
   isVerificationFile: false
   path: graph/all_cycle_common_vertices.hpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
+  timestamp: '2026-11-16 13:02:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/all_cycle_common_vertex.test.cpp

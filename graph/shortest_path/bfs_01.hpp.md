@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/tree_diameter.test.cpp
     title: test/2_library_checker/tree/tree_diameter.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1718.test.cpp
     title: test/3_yukicoder/1718.test.cpp
   - icon: ':x:'
@@ -198,19 +198,19 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/bfs_01.hpp
   requiredBy:
-  - graph/tree_diameter.hpp
-  - graph/tree_center.hpp
   - graph/tree_walk_generating_function.hpp
   - graph/st_numbering.hpp
+  - graph/tree_diameter.hpp
+  - graph/tree_center.hpp
   timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/tree/tree_diameter.test.cpp
   - test/2_library_checker/graph/st_numbering.test.cpp
-  - test/3_yukicoder/1718.test.cpp
+  - test/2_library_checker/tree/tree_diameter.test.cpp
   - test/3_yukicoder/2587.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
+  - test/3_yukicoder/1718.test.cpp
   - test/3_yukicoder/1868.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
 documentation_of: graph/shortest_path/bfs_01.hpp
 layout: document
