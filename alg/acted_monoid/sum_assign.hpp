@@ -4,7 +4,7 @@
 
 template <typename E>
 struct ActedMonoid_Sum_Assign {
-  static_assert(is_save_v<E, int> || is_same_v<E, ll>);
+  static_assert(is_same_v<E, int> || is_same_v<E, ll>);
   using Monoid_X = Monoid_Add<E>;
   using Monoid_A = Monoid_Assign<E>;
   using X = typename Monoid_X::value_type;
