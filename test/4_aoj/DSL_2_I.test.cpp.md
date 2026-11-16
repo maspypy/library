@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_I
@@ -281,16 +281,17 @@ data:
     \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
     \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
     };\n#line 1 \"alg/monoid/assign.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
-    \ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
-    \ = X;\n  static X op(X x, X y) { return (y == X(none_val) ? x : y); }\n  static\
-    \ constexpr X id() { return X(none_val); }\n  static constexpr bool commute =\
-    \ false;\n};\n#line 4 \"alg/acted_monoid/sum_assign.hpp\"\n\ntemplate <typename\
-    \ E, E none_val>\nstruct ActedMonoid_Sum_Assign {\n  using Monoid_X = Monoid_Add<E>;\n\
-    \  using Monoid_A = Monoid_Assign<E, none_val>;\n  using X = typename Monoid_X::value_type;\n\
-    \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X\
-    \ &x, const A &a, const ll &size) {\n    if (a == Monoid_A::id()) return x;\n\
-    \    return a * E(size);\n  }\n};\n#line 1 \"ds/segtree/lazy_segtree.hpp\"\n//\
-    \ Source: https://github.com/maspypy/library/blob/main/ds/segtree/lazy_segtree.hpp\n\
+    \ntemplate <typename X>\nstruct Monoid_Assign {\n  static_assert(is_same_v<X,\
+    \ int> || is_same_v<X, ll>);\n  static constexpr X none_val = numeric_limits<T>::max();\n\
+    \  using value_type = X;\n  static X op(X x, X y) { return (y == none_val ? x\
+    \ : y); }\n  static constexpr X id() { return none_val; }\n  static constexpr\
+    \ bool commute = false;\n};\n#line 4 \"alg/acted_monoid/sum_assign.hpp\"\n\ntemplate\
+    \ <typename E, E none_val>\nstruct ActedMonoid_Sum_Assign {\n  using Monoid_X\
+    \ = Monoid_Add<E>;\n  using Monoid_A = Monoid_Assign<E, none_val>;\n  using X\
+    \ = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
+    \  static constexpr X act(const X &x, const A &a, const ll &size) {\n    if (a\
+    \ == Monoid_A::id()) return x;\n    return a * E(size);\n  }\n};\n#line 1 \"ds/segtree/lazy_segtree.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/lazy_segtree.hpp\n\
     \ntemplate <typename ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n\
     \  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using\
     \ X = typename MX::value_type;\n  using A = typename MA::value_type;\n  int n,\
@@ -385,8 +386,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DSL_2_I.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-17 04:07:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/DSL_2_I.test.cpp
 layout: document

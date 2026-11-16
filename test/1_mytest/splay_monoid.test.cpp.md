@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree_monoid.hpp
     title: ds/splaytree/splaytree_monoid.hpp
   - icon: ':question:'
@@ -22,14 +22,14 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -153,10 +153,11 @@ data:
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif  // MASPY_TEMPLATE_BODY\n\
     #line 1 \"alg/monoid/assign.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
-    \ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
-    \ = X;\n  static X op(X x, X y) { return (y == X(none_val) ? x : y); }\n  static\
-    \ constexpr X id() { return X(none_val); }\n  static constexpr bool commute =\
-    \ false;\n};\n#line 1 \"mod/modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint.hpp\n\
+    \ntemplate <typename X>\nstruct Monoid_Assign {\n  static_assert(is_same_v<X,\
+    \ int> || is_same_v<X, ll>);\n  static constexpr X none_val = numeric_limits<T>::max();\n\
+    \  using value_type = X;\n  static X op(X x, X y) { return (y == none_val ? x\
+    \ : y); }\n  static constexpr X id() { return none_val; }\n  static constexpr\
+    \ bool commute = false;\n};\n#line 1 \"mod/modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint.hpp\n\
     #line 1 \"mod/modint_common.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint_common.hpp\n\
     \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
     \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
@@ -489,8 +490,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/splay_monoid.test.cpp
   requiredBy: []
-  timestamp: '2026-11-06 20:42:15+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-17 04:07:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/splay_monoid.test.cpp
 layout: document

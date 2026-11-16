@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/max_assign.test.cpp
     title: test/1_mytest/max_assign.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/alg/acted_monoid/max_assign.hpp
@@ -25,15 +25,16 @@ data:
     \ op(const X &x, const X &y) noexcept { return max(x, y); }\n  static constexpr\
     \ X id() { return -infty<E>; }\n  static constexpr bool commute = true;\n};\n\
     #line 1 \"alg/monoid/assign.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
-    \ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
-    \ = X;\n  static X op(X x, X y) { return (y == X(none_val) ? x : y); }\n  static\
-    \ constexpr X id() { return X(none_val); }\n  static constexpr bool commute =\
-    \ false;\n};\n#line 4 \"alg/acted_monoid/max_assign.hpp\"\n\ntemplate <typename\
-    \ E, E none_val>\nstruct ActedMonoid_Max_Assign {\n  using Monoid_X = Monoid_Max<E>;\n\
-    \  using Monoid_A = Monoid_Assign<E, none_val>;\n  using X = typename Monoid_X::value_type;\n\
-    \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X\
-    \ &x, const A &a, const ll &size) {\n    return (a == none_val ? x : a);\n  }\n\
-    };\n"
+    \ntemplate <typename X>\nstruct Monoid_Assign {\n  static_assert(is_same_v<X,\
+    \ int> || is_same_v<X, ll>);\n  static constexpr X none_val = numeric_limits<T>::max();\n\
+    \  using value_type = X;\n  static X op(X x, X y) { return (y == none_val ? x\
+    \ : y); }\n  static constexpr X id() { return none_val; }\n  static constexpr\
+    \ bool commute = false;\n};\n#line 4 \"alg/acted_monoid/max_assign.hpp\"\n\ntemplate\
+    \ <typename E, E none_val>\nstruct ActedMonoid_Max_Assign {\n  using Monoid_X\
+    \ = Monoid_Max<E>;\n  using Monoid_A = Monoid_Assign<E, none_val>;\n  using X\
+    \ = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
+    \  static constexpr X act(const X &x, const A &a, const ll &size) {\n    return\
+    \ (a == none_val ? x : a);\n  }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/alg/acted_monoid/max_assign.hpp\n\
     #include \"alg/monoid/max.hpp\"\n#include \"alg/monoid/assign.hpp\"\n\ntemplate\
     \ <typename E, E none_val>\nstruct ActedMonoid_Max_Assign {\n  using Monoid_X\
@@ -47,8 +48,8 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/max_assign.hpp
   requiredBy: []
-  timestamp: '2026-10-24 10:08:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-17 04:07:43+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/max_assign.test.cpp
 documentation_of: alg/acted_monoid/max_assign.hpp

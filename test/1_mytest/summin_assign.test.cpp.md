@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/summin_assign.hpp
     title: alg/acted_monoid/summin_assign.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/summin.hpp
     title: alg/monoid/summin.hpp
   - icon: ':question:'
@@ -16,14 +16,14 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -153,19 +153,20 @@ data:
     \ min(x.se, y.se)}; }\n  static X from_element(E x) { return {x, x}; }\n  static\
     \ constexpr X id() { return {E(0), infty<E>}; }\n  static constexpr bool commute\
     \ = true;\n};\n#line 1 \"alg/monoid/assign.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
-    \ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
-    \ = X;\n  static X op(X x, X y) { return (y == X(none_val) ? x : y); }\n  static\
-    \ constexpr X id() { return X(none_val); }\n  static constexpr bool commute =\
-    \ false;\n};\n#line 4 \"alg/acted_monoid/summin_assign.hpp\"\n\ntemplate <typename\
-    \ E, ll none_val>\nstruct ActedMonoid_SumMin_Assign {\n  using Monoid_X = Monoid_SumMin<E>;\n\
-    \  using Monoid_A = Monoid_Assign<ll, none_val>;\n  using X = typename Monoid_X::value_type;\n\
-    \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X&\
-    \ x, const A& a, const ll& size) {\n    if (a == Monoid_A::id()) return x;\n \
-    \   return {E(size) * a, a};\n  }\n};\n#line 1 \"random/base.hpp\"\n// Source:\
-    \ https://github.com/maspypy/library/blob/main/random/base.hpp\n\nu64 RNG_64()\
-    \ {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n     \
-    \                 chrono::high_resolution_clock::now().time_since_epoch())\n \
-    \                         .count()) *\n                  10150724397891781847ULL;\n\
+    \ntemplate <typename X>\nstruct Monoid_Assign {\n  static_assert(is_same_v<X,\
+    \ int> || is_same_v<X, ll>);\n  static constexpr X none_val = numeric_limits<T>::max();\n\
+    \  using value_type = X;\n  static X op(X x, X y) { return (y == none_val ? x\
+    \ : y); }\n  static constexpr X id() { return none_val; }\n  static constexpr\
+    \ bool commute = false;\n};\n#line 4 \"alg/acted_monoid/summin_assign.hpp\"\n\n\
+    template <typename E, ll none_val>\nstruct ActedMonoid_SumMin_Assign {\n  using\
+    \ Monoid_X = Monoid_SumMin<E>;\n  using Monoid_A = Monoid_Assign<ll, none_val>;\n\
+    \  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
+    \  static constexpr X act(const X& x, const A& a, const ll& size) {\n    if (a\
+    \ == Monoid_A::id()) return x;\n    return {E(size) * a, a};\n  }\n};\n#line 1\
+    \ \"random/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/random/base.hpp\n\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                      chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                          .count()) *\n                  10150724397891781847ULL;\n\
     \  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) {\n  assert(lim\
     \ > 0);\n  return RNG_64() % lim;\n}\n\nll RNG(ll l, ll r) {\n  assert(l < r);\n\
     \  return l + RNG_64() % (r - l);\n}\n#line 1 \"ds/segtree/lazy_segtree.hpp\"\n\
@@ -273,8 +274,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/summin_assign.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-17 04:07:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/summin_assign.test.cpp
 layout: document

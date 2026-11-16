@@ -2,89 +2,91 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/max_assign.hpp
     title: alg/acted_monoid/max_assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
   - icon: ':x:'
     path: alg/acted_monoid/powersums_assign.hpp
     title: alg/acted_monoid/powersums_assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/summax_assign.hpp
     title: alg/acted_monoid/summax_assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/summin_assign.hpp
     title: alg/acted_monoid/summin_assign.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/dynamic_lazy_segtree.test.cpp
     title: test/1_mytest/dynamic_lazy_segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
     title: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/max_assign.test.cpp
     title: test/1_mytest/max_assign.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/rbst_am.test.cpp
     title: test/1_mytest/rbst_am.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/rbst_am_persistent.test.cpp
     title: test/1_mytest/rbst_am_persistent.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/rbst_monoid.test.cpp
     title: test/1_mytest/rbst_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/rbst_monoid_persistent.test.cpp
     title: test/1_mytest/rbst_monoid_persistent.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/splay_monoid.test.cpp
     title: test/1_mytest/splay_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/summax_assign.test.cpp
     title: test/1_mytest/summax_assign.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/summin_assign.test.cpp
     title: test/1_mytest/summin_assign.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/1548.test.cpp
     title: test/3_yukicoder/1548.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2292.test.cpp
     title: test/3_yukicoder/2292.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DSL_2_D.test.cpp
     title: test/4_aoj/DSL_2_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DSL_2_F.test.cpp
     title: test/4_aoj/DSL_2_F.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DSL_2_I.test.cpp
     title: test/4_aoj/DSL_2_I.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp
   bundledCode: "#line 1 \"alg/monoid/assign.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
-    \ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
-    \ = X;\n  static X op(X x, X y) { return (y == X(none_val) ? x : y); }\n  static\
-    \ constexpr X id() { return X(none_val); }\n  static constexpr bool commute =\
-    \ false;\n};\n"
+    \ntemplate <typename X>\nstruct Monoid_Assign {\n  static_assert(is_same_v<X,\
+    \ int> || is_same_v<X, ll>);\n  static constexpr X none_val = numeric_limits<T>::max();\n\
+    \  using value_type = X;\n  static X op(X x, X y) { return (y == none_val ? x\
+    \ : y); }\n  static constexpr X id() { return none_val; }\n  static constexpr\
+    \ bool commute = false;\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
-    \ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
-    \ = X;\n  static X op(X x, X y) { return (y == X(none_val) ? x : y); }\n  static\
-    \ constexpr X id() { return X(none_val); }\n  static constexpr bool commute =\
-    \ false;\n};\n"
+    \ntemplate <typename X>\nstruct Monoid_Assign {\n  static_assert(is_same_v<X,\
+    \ int> || is_same_v<X, ll>);\n  static constexpr X none_val = numeric_limits<T>::max();\n\
+    \  using value_type = X;\n  static X op(X x, X y) { return (y == none_val ? x\
+    \ : y); }\n  static constexpr X id() { return none_val; }\n  static constexpr\
+    \ bool commute = false;\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/assign.hpp
@@ -95,8 +97,8 @@ data:
   - alg/acted_monoid/sum_assign.hpp
   - alg/acted_monoid/min_assign.hpp
   - alg/acted_monoid/powersums_assign.hpp
-  timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2026-11-17 04:07:43+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2292.test.cpp
   - test/3_yukicoder/1548.test.cpp

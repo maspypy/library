@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/randomized_bst/rbst_acted_monoid.hpp
     title: ds/randomized_bst/rbst_acted_monoid.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -156,15 +156,17 @@ data:
     \ &x, const X &y) noexcept { return min(x, y); }\n  static constexpr X id() {\
     \ return infty<E>; }\n  static constexpr bool commute = true;\n};\n#line 1 \"\
     alg/monoid/assign.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp\n\
-    \ntemplate <typename X, int none_val>\nstruct Monoid_Assign {\n  using value_type\
-    \ = X;\n  static X op(X x, X y) { return (y == X(none_val) ? x : y); }\n  static\
-    \ constexpr X id() { return X(none_val); }\n  static constexpr bool commute =\
-    \ false;\n};\n#line 4 \"alg/acted_monoid/min_assign.hpp\"\n\ntemplate <typename\
-    \ E, E none_val>\nstruct ActedMonoid_Min_Assign {\n  using Monoid_X = Monoid_Min<E>;\n\
-    \  using Monoid_A = Monoid_Assign<E, none_val>;\n  using X = typename Monoid_X::value_type;\n\
-    \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X\
-    \ &x, const A &a, const ll &size) {\n    return (a == none_val ? x : a);\n  }\n\
-    };\n#line 1 \"ds/randomized_bst/rbst_acted_monoid.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/randomized_bst/rbst_acted_monoid.hpp\n\
+    \ntemplate <typename X>\nstruct Monoid_Assign {\n  static_assert(is_same_v<X,\
+    \ int> || is_same_v<X, ll>);\n  static constexpr X none_val = numeric_limits<T>::max();\n\
+    \  using value_type = X;\n  static X op(X x, X y) { return (y == none_val ? x\
+    \ : y); }\n  static constexpr X id() { return none_val; }\n  static constexpr\
+    \ bool commute = false;\n};\n#line 4 \"alg/acted_monoid/min_assign.hpp\"\n\ntemplate\
+    \ <typename E, E none_val>\nstruct ActedMonoid_Min_Assign {\n  using Monoid_X\
+    \ = Monoid_Min<E>;\n  using Monoid_A = Monoid_Assign<E, none_val>;\n  using X\
+    \ = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
+    \  static constexpr X act(const X &x, const A &a, const ll &size) {\n    return\
+    \ (a == none_val ? x : a);\n  }\n};\n#line 1 \"ds/randomized_bst/rbst_acted_monoid.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/ds/randomized_bst/rbst_acted_monoid.hpp\n\
     #line 1 \"ds/node_pool.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/node_pool.hpp\n\
     // \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\
     \u6E08\u307F chunk \u3092\u518D\u5229\u7528\u3059\u308B\ntemplate <class Node>\n\
@@ -390,8 +392,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_am_persistent.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-17 04:07:43+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_am_persistent.test.cpp
 layout: document

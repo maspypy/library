@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: ds/segtree/greedy_subtract_segtree.hpp
     title: ds/segtree/greedy_subtract_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
   - icon: ':heavy_check_mark:'
@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
   - icon: ':heavy_check_mark:'
@@ -60,9 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2362.test.cpp
     title: test/3_yukicoder/2362.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/alg/monoid_pow.hpp
@@ -111,7 +111,7 @@ data:
   - mod/floor_monoid_product.hpp
   - graph/functional_graph.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   - test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp

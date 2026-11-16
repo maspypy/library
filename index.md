@@ -12,7 +12,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/max_add.hpp
       title: alg/acted_monoid/max_add.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: alg/acted_monoid/max_assign.hpp
       title: alg/acted_monoid/max_assign.hpp
     - icon: ':heavy_check_mark:'
@@ -27,7 +27,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/min_add.hpp
       title: alg/acted_monoid/min_add.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: alg/acted_monoid/min_assign.hpp
       title: alg/acted_monoid/min_assign.hpp
     - icon: ':heavy_check_mark:'
@@ -54,7 +54,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/sum_affine.hpp
       title: alg/acted_monoid/sum_affine.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: alg/acted_monoid/sum_assign.hpp
       title: alg/acted_monoid/sum_assign.hpp
     - icon: ':heavy_check_mark:'
@@ -63,13 +63,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/summax_add.hpp
       title: alg/acted_monoid/summax_add.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: alg/acted_monoid/summax_assign.hpp
       title: alg/acted_monoid/summax_assign.hpp
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/summin_add.hpp
       title: alg/acted_monoid/summin_add.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: alg/acted_monoid/summin_assign.hpp
       title: alg/acted_monoid/summin_assign.hpp
   - name: alg/acted_set
@@ -85,12 +85,12 @@ data:
     - icon: ':warning:'
       path: alg/default_prod.hpp
       title: alg/default_prod.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid_pow.hpp
       title: alg/monoid_pow.hpp
   - name: alg/monoid
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':x:'
@@ -123,7 +123,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/arithmetic_expression.hpp
       title: alg/monoid/arithmetic_expression.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: alg/monoid/assign.hpp
       title: alg/monoid/assign.hpp
     - icon: ':heavy_check_mark:'
@@ -144,7 +144,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/lcm.hpp
       title: alg/monoid/lcm.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/max.hpp
       title: alg/monoid/max.hpp
     - icon: ':warning:'
@@ -156,7 +156,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/maxplus_matrix.hpp
       title: alg/monoid/maxplus_matrix.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/min.hpp
       title: alg/monoid/min.hpp
     - icon: ':warning:'
@@ -192,10 +192,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/rolling_hash.hpp
       title: alg/monoid/rolling_hash.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/summax.hpp
       title: alg/monoid/summax.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/summin.hpp
       title: alg/monoid/summin.hpp
     - icon: ':heavy_check_mark:'
@@ -348,7 +348,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/dynamic_array.hpp
       title: ds/dynamic_array.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
     - icon: ':heavy_check_mark:'
@@ -375,7 +375,7 @@ data:
     - icon: ':warning:'
       path: ds/my_multiset.hpp
       title: ds/my_multiset.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/node_pool.hpp
       title: ds/node_pool.hpp
     - icon: ':warning:'
@@ -543,7 +543,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/randomized_bst/rbst.hpp
       title: ds/randomized_bst/rbst.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/randomized_bst/rbst_acted_monoid.hpp
       title: ds/randomized_bst/rbst_acted_monoid.hpp
     - icon: ':heavy_check_mark:'
@@ -552,7 +552,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/randomized_bst/rbst_commutative_monoid.hpp
       title: ds/randomized_bst/rbst_commutative_monoid.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/randomized_bst/rbst_monoid.hpp
       title: ds/randomized_bst/rbst_monoid.hpp
   - name: ds/rmq
@@ -595,7 +595,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/beats_summinmax_chminchmax.hpp
       title: ds/segtree/beats_summinmax_chminchmax.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/segtree/dual_segtree.hpp
       title: ds/segtree/dual_segtree.hpp
     - icon: ':warning:'
@@ -604,7 +604,7 @@ data:
     - icon: ':warning:'
       path: ds/segtree/dynamic_dual_segtree.hpp
       title: ds/segtree/dynamic_dual_segtree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/segtree/dynamic_lazy_segtree.hpp
       title: ds/segtree/dynamic_lazy_segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -628,7 +628,7 @@ data:
     - icon: ':warning:'
       path: ds/segtree/range_add_make_increasing.hpp
       title: ds/segtree/range_add_make_increasing.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/segtree/range_assignment_segtree.hpp
       title: ds/segtree/range_assignment_segtree.hpp
     - icon: ':warning:'
@@ -640,7 +640,7 @@ data:
     - icon: ':warning:'
       path: ds/segtree/rollback_lazy_segtree.hpp
       title: ds/segtree/rollback_lazy_segtree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/segtree/segtree.hpp
       title: ds/segtree/segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -674,7 +674,7 @@ data:
       title: ds/sparse_table/xor_disjoint_sparse_table.hpp
   - name: ds/splaytree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/splaytree/splaytree.hpp
       title: ds/splaytree/splaytree.hpp
     - icon: ':heavy_check_mark:'
@@ -689,7 +689,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/splaytree/splaytree_commutative_monoid.hpp
       title: ds/splaytree/splaytree_commutative_monoid.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/splaytree/splaytree_monoid.hpp
       title: ds/splaytree/splaytree_monoid.hpp
   - name: ds/unionfind
@@ -2314,7 +2314,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -2933,10 +2933,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/dyadic_rational.test.cpp
       title: test/1_mytest/dyadic_rational.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/dynamic_lazy_segtree.test.cpp
       title: test/1_mytest/dynamic_lazy_segtree.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
       title: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3095,7 +3095,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/matching_ve.test.cpp
       title: test/1_mytest/matching_ve.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/max_assign.test.cpp
       title: test/1_mytest/max_assign.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3176,9 +3176,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/nimber_log.test.cpp
       title: test/1_mytest/nimber_log.test.cpp
-    - icon: ':x:'
-      path: test/1_mytest/non_adj.test.cpp
-      title: test/1_mytest/non_adj.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/nth_element_from_sorted_lists.test.cpp
       title: test/1_mytest/nth_element_from_sorted_lists.test.cpp
@@ -3269,7 +3266,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/range_add_range_min.test.cpp
       title: test/1_mytest/range_add_range_min.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/range_assign.test.cpp
       title: test/1_mytest/range_assign.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3281,25 +3278,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/rbst.test.cpp
       title: test/1_mytest/rbst.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/rbst_am.test.cpp
       title: test/1_mytest/rbst_am.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/rbst_am_2.test.cpp
       title: test/1_mytest/rbst_am_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/rbst_am_persistent.test.cpp
       title: test/1_mytest/rbst_am_persistent.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/rbst_commutative_persistent.test.cpp
       title: test/1_mytest/rbst_commutative_persistent.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/rbst_monoid.test.cpp
       title: test/1_mytest/rbst_monoid.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/rbst_monoid_2.test.cpp
       title: test/1_mytest/rbst_monoid_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/rbst_monoid_persistent.test.cpp
       title: test/1_mytest/rbst_monoid_persistent.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3365,7 +3362,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/splay_cm.test.cpp
       title: test/1_mytest/splay_cm.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/splay_monoid.test.cpp
       title: test/1_mytest/splay_monoid.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3389,13 +3386,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/summax_add.test.cpp
       title: test/1_mytest/summax_add.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/summax_assign.test.cpp
       title: test/1_mytest/summax_assign.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/summin_add.test.cpp
       title: test/1_mytest/summin_add.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/summin_assign.test.cpp
       title: test/1_mytest/summin_assign.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4846,7 +4843,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2288.test.cpp
       title: test/3_yukicoder/2288.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/3_yukicoder/2292.test.cpp
       title: test/3_yukicoder/2292.test.cpp
     - icon: ':heavy_check_mark:'
@@ -5256,13 +5253,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/4_aoj/DSL_2_C.test.cpp
       title: test/4_aoj/DSL_2_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/4_aoj/DSL_2_D.test.cpp
       title: test/4_aoj/DSL_2_D.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/4_aoj/DSL_2_E.test.cpp
       title: test/4_aoj/DSL_2_E.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/4_aoj/DSL_2_F.test.cpp
       title: test/4_aoj/DSL_2_F.test.cpp
     - icon: ':heavy_check_mark:'
@@ -5271,7 +5268,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/4_aoj/DSL_2_H.test.cpp
       title: test/4_aoj/DSL_2_H.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/4_aoj/DSL_2_I.test.cpp
       title: test/4_aoj/DSL_2_I.test.cpp
     - icon: ':heavy_check_mark:'

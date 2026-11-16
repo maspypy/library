@@ -17,7 +17,7 @@ data:
   - icon: ':warning:'
     path: ds/rmq/range_add_range_minidx.hpp
     title: ds/rmq/range_add_range_minidx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
   - icon: ':heavy_check_mark:'
@@ -84,7 +84,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_add_range_min.test.cpp
     title: test/1_mytest/range_add_range_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
   - icon: ':heavy_check_mark:'
@@ -186,9 +186,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP2_3_B.test.cpp
     title: test/4_aoj/ITP2_3_B.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/segtree/segtree.hpp
@@ -330,7 +330,7 @@ data:
   - geo/manhattan_nns.hpp
   - flow/dynamic_mcf_on_line.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/data_structure/sort_segtree.test.cpp
   - test/2_library_checker/data_structure/sort_segtree_1.test.cpp

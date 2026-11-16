@@ -1446,7 +1446,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2288.test.cpp
     title: test/3_yukicoder/2288.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2292.test.cpp
     title: test/3_yukicoder/2292.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1854,13 +1854,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_C.test.cpp
     title: test/4_aoj/DSL_2_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DSL_2_D.test.cpp
     title: test/4_aoj/DSL_2_D.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_E.test.cpp
     title: test/4_aoj/DSL_2_E.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DSL_2_F.test.cpp
     title: test/4_aoj/DSL_2_F.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1869,7 +1869,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_H.test.cpp
     title: test/4_aoj/DSL_2_H.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DSL_2_I.test.cpp
     title: test/4_aoj/DSL_2_I.test.cpp
   - icon: ':heavy_check_mark:'

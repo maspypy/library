@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/EGZ.hpp
     title: nt/EGZ.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
