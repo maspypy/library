@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/hafnian_of_matrix
@@ -448,13 +448,13 @@ data:
     \    }\n    for (int s = 0; s < (1 << i); ++s) {\n      for (int j = 0; j < i;\
     \ ++j) {\n        int j0 = 2 * j + 0, j1 = 2 * j + 1;\n        cyc[s | 1 << i]\
     \ += dp[K * s + j0] * mat[B][j0];\n        cyc[s | 1 << i] += dp[K * s + j1] *\
-    \ mat[B][j1];\n        enumerate_all_bit<u32>((1 << i) - 1 - s, [&](int k) ->\
-    \ void {\n          int k0 = 2 * k + 0, k1 = 2 * k + 1;\n          int t = s |\
-    \ 1 << k;\n          dp[K * t + k0] += dp[K * s + j0] * mat[j0][k1];\n       \
-    \   dp[K * t + k0] += dp[K * s + j1] * mat[j1][k1];\n          dp[K * t + k1]\
-    \ += dp[K * s + j0] * mat[j0][k0];\n          dp[K * t + k1] += dp[K * s + j1]\
-    \ * mat[j1][k0];\n        });\n      }\n    }\n  }\n  return sps_exp<mint, LIM>(cyc).back();\n\
-    }\n#line 6 \"test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp\"\
+    \ mat[B][j1];\n        enumerate_all_bit<u32>((1 << i) - 1 - s, [&](int k, bool)\
+    \ -> void {\n          int k0 = 2 * k + 0, k1 = 2 * k + 1;\n          int t =\
+    \ s | 1 << k;\n          dp[K * t + k0] += dp[K * s + j0] * mat[j0][k1];\n   \
+    \       dp[K * t + k0] += dp[K * s + j1] * mat[j1][k1];\n          dp[K * t +\
+    \ k1] += dp[K * s + j0] * mat[j0][k0];\n          dp[K * t + k1] += dp[K * s +\
+    \ j1] * mat[j1][k0];\n        });\n      }\n    }\n  }\n  return sps_exp<mint,\
+    \ LIM>(cyc).back();\n}\n#line 6 \"test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp\"\
     \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, B, N,\
     \ N);\r\n  auto ANS = hafnian(B);\r\n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\
     \n  solve();\r\n\r\n  return 0;\r\n}\r\n"
@@ -477,8 +477,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-16 13:41:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
 layout: document

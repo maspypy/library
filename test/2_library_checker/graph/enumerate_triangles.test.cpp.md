@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/triangle.hpp
     title: enumerate/triangle.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_triangles
@@ -389,17 +389,17 @@ data:
     \   if (end) return;\n        }\n      }\n    }\n    for (auto&& e : H[a]) {\n\
     \      table[e.to] = 0;\n    }\n  }\n}\n#line 5 \"test/2_library_checker/graph/enumerate_triangles.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  VEC(int, A, N);\r\n  Graph G(N);\r\n\
-    \  G.read_graph(M, 0, 0);\r\n  i128 sum = 0;\r\n  auto query\r\n      = [&](int\
-    \ a, int b, int c) -> void { sum += i128(A[a]) * A[b] * A[c]; };\r\n  enumerate_triangle(G,\
-    \ query);\r\n  int ANS = sum % 998244353;\r\n  print(ANS);\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \  G.read_graph(M, 0, 0);\r\n  i128 sum = 0;\r\n  auto query = [&](int a, int\
+    \ b, int c, bool) -> void {\r\n    sum += i128(A[a]) * A[b] * A[c];\r\n  };\r\n\
+    \  enumerate_triangle(G, query);\r\n  int ANS = sum % 998244353;\r\n  print(ANS);\r\
+    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_triangles\"\r\
     \n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"enumerate/triangle.hpp\"\
     \r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  VEC(int, A, N);\r\n  Graph G(N);\r\n\
-    \  G.read_graph(M, 0, 0);\r\n  i128 sum = 0;\r\n  auto query\r\n      = [&](int\
-    \ a, int b, int c) -> void { sum += i128(A[a]) * A[b] * A[c]; };\r\n  enumerate_triangle(G,\
-    \ query);\r\n  int ANS = sum % 998244353;\r\n  print(ANS);\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \  G.read_graph(M, 0, 0);\r\n  i128 sum = 0;\r\n  auto query = [&](int a, int\
+    \ b, int c, bool) -> void {\r\n    sum += i128(A[a]) * A[b] * A[c];\r\n  };\r\n\
+    \  enumerate_triangle(G, query);\r\n  int ANS = sum % 998244353;\r\n  print(ANS);\r\
+    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -409,8 +409,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/enumerate_triangles.test.cpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-16 13:41:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/enumerate_triangles.test.cpp
 layout: document

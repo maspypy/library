@@ -277,13 +277,13 @@ data:
     \      f(q, N / (q + 1) + 1, N / q + 1, end);\n      if (end) return;\n    }\n\
     \    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\n  }\n}\n#line 5 \"test/2_library_checker/number_theory/enumerate_quotients.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  vi ANS;\n  2 * sqrt(N) + 10;\n  ANS.reserve(2\
-    \ * sqrt(N) + 10);\n  floor_range(N, [&](ll q, ll l, ll r) -> void { ANS.eb(q);\
+    \ * sqrt(N) + 10);\n  floor_range(N, [&](ll q, ll l, ll r, bool) -> void { ANS.eb(q);\
     \ });\n  print(len(ANS));\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n \
     \ return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"enumerate/floor_range.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  vi ANS;\n  2 * sqrt(N) + 10;\n  ANS.reserve(2\
-    \ * sqrt(N) + 10);\n  floor_range(N, [&](ll q, ll l, ll r) -> void { ANS.eb(q);\
+    \ * sqrt(N) + 10);\n  floor_range(N, [&](ll q, ll l, ll r, bool) -> void { ANS.eb(q);\
     \ });\n  print(len(ANS));\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n \
     \ return 0;\n}"
   dependsOn:
@@ -293,7 +293,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/enumerate_quotients.test.cpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
+  timestamp: '2026-11-16 13:41:10+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/enumerate_quotients.test.cpp

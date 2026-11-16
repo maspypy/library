@@ -18,12 +18,12 @@ data:
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/linalg/hafnian.hpp
@@ -108,13 +108,13 @@ data:
     \    }\n    for (int s = 0; s < (1 << i); ++s) {\n      for (int j = 0; j < i;\
     \ ++j) {\n        int j0 = 2 * j + 0, j1 = 2 * j + 1;\n        cyc[s | 1 << i]\
     \ += dp[K * s + j0] * mat[B][j0];\n        cyc[s | 1 << i] += dp[K * s + j1] *\
-    \ mat[B][j1];\n        enumerate_all_bit<u32>((1 << i) - 1 - s, [&](int k) ->\
-    \ void {\n          int k0 = 2 * k + 0, k1 = 2 * k + 1;\n          int t = s |\
-    \ 1 << k;\n          dp[K * t + k0] += dp[K * s + j0] * mat[j0][k1];\n       \
-    \   dp[K * t + k0] += dp[K * s + j1] * mat[j1][k1];\n          dp[K * t + k1]\
-    \ += dp[K * s + j0] * mat[j0][k0];\n          dp[K * t + k1] += dp[K * s + j1]\
-    \ * mat[j1][k0];\n        });\n      }\n    }\n  }\n  return sps_exp<mint, LIM>(cyc).back();\n\
-    }\n"
+    \ mat[B][j1];\n        enumerate_all_bit<u32>((1 << i) - 1 - s, [&](int k, bool)\
+    \ -> void {\n          int k0 = 2 * k + 0, k1 = 2 * k + 1;\n          int t =\
+    \ s | 1 << k;\n          dp[K * t + k0] += dp[K * s + j0] * mat[j0][k1];\n   \
+    \       dp[K * t + k0] += dp[K * s + j1] * mat[j1][k1];\n          dp[K * t +\
+    \ k1] += dp[K * s + j0] * mat[j0][k0];\n          dp[K * t + k1] += dp[K * s +\
+    \ j1] * mat[j1][k0];\n        });\n      }\n    }\n  }\n  return sps_exp<mint,\
+    \ LIM>(cyc).back();\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/linalg/hafnian.hpp\n\
     #include \"setfunc/sps_exp.hpp\"\n#include \"enumerate/bits.hpp\"\n\n// \u96A3\
     \u63A5\u884C\u5217\u306B\u5BFE\u3057\u3066\u5B8C\u5168\u30DE\u30C3\u30C1\u30F3\
@@ -128,12 +128,12 @@ data:
     \  for (int j = 0; j < i; ++j) {\n        int j0 = 2 * j + 0, j1 = 2 * j + 1;\n\
     \        cyc[s | 1 << i] += dp[K * s + j0] * mat[B][j0];\n        cyc[s | 1 <<\
     \ i] += dp[K * s + j1] * mat[B][j1];\n        enumerate_all_bit<u32>((1 << i)\
-    \ - 1 - s, [&](int k) -> void {\n          int k0 = 2 * k + 0, k1 = 2 * k + 1;\n\
-    \          int t = s | 1 << k;\n          dp[K * t + k0] += dp[K * s + j0] * mat[j0][k1];\n\
-    \          dp[K * t + k0] += dp[K * s + j1] * mat[j1][k1];\n          dp[K * t\
-    \ + k1] += dp[K * s + j0] * mat[j0][k0];\n          dp[K * t + k1] += dp[K * s\
-    \ + j1] * mat[j1][k0];\n        });\n      }\n    }\n  }\n  return sps_exp<mint,\
-    \ LIM>(cyc).back();\n}\n"
+    \ - 1 - s, [&](int k, bool) -> void {\n          int k0 = 2 * k + 0, k1 = 2 *\
+    \ k + 1;\n          int t = s | 1 << k;\n          dp[K * t + k0] += dp[K * s\
+    \ + j0] * mat[j0][k1];\n          dp[K * t + k0] += dp[K * s + j1] * mat[j1][k1];\n\
+    \          dp[K * t + k1] += dp[K * s + j0] * mat[j0][k0];\n          dp[K * t\
+    \ + k1] += dp[K * s + j1] * mat[j1][k0];\n        });\n      }\n    }\n  }\n \
+    \ return sps_exp<mint, LIM>(cyc).back();\n}\n"
   dependsOn:
   - setfunc/sps_exp.hpp
   - setfunc/subset_convolution.hpp
@@ -143,8 +143,8 @@ data:
   isVerificationFile: false
   path: linalg/hafnian.hpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-11-16 13:41:10+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
 documentation_of: linalg/hafnian.hpp
