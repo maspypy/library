@@ -14,7 +14,17 @@ import subprocess
 import sys
 from typing import Any
 
+# Tests import this runner by filename; CI runs it as a standalone script.
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from continue_verify import validate_state, load
+
 TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S %z"
+VERIFY_GROUPS = ("yukicoder", "other")
+
+
+def group_of(path: pathlib.Path) -> str:
+    return "yukicoder" if path.as_posix().startswith("test/3_yukicoder/") else "other"
+
 # Cache/network orchestration changes should not invalidate every previously
 # verified testcase. Only semantic compilation/expansion inputs go here.
 # If this runner starts changing verification semantics, explicitly invalidate
@@ -28,11 +38,16 @@ PIPELINE_FILES = (
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--group", choices=VERIFY_GROUPS, required=True)
     parser.add_argument("--shard", type=int, required=True)
     parser.add_argument("--shards", type=int, required=True)
     parser.add_argument("--jobs", type=int, default=2)
     parser.add_argument("--timeout", type=float, default=570)
     parser.add_argument("--output-dir", type=pathlib.Path, required=True)
+    parser.add_argument("--previous-state", type=pathlib.Path)
+    parser.add_argument("--previous-run-id", type=int, default=0)
+    parser.add_argument("--origin-sha", default="")
+    parser.add_argument("--round", type=int, default=0)
     return parser.parse_args()
 
 
@@ -85,26 +100,40 @@ def adjust_pipeline_timestamps(
 
 def write_outputs(
     output_dir: pathlib.Path,
+    group: str,
     shard: int,
     shards: int,
     selected_files: list[pathlib.Path],
     verify_exit_code: int,
+    *,
+    statuses: dict[str, str] | None = None,
+    rate_limited: bool = False,
+    infrastructure_error: bool = False,
+    attempted_files: int = 0,
 ) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     timestamp_path = pathlib.Path(".verify-helper/timestamps.remote.json")
     timestamps = load_timestamp_file(timestamp_path)
-    (output_dir / f"timestamps-{shard}.json").write_text(
+    (output_dir / f"timestamps-{group}-{shard}.json").write_text(
         json.dumps(timestamps, sort_keys=True, indent=0) + "\n"
     )
 
     manifest = {
+        "group": group,
         "shard": shard,
         "shards": shards,
         "selected_files": len(selected_files),
         "verify_exit_code": verify_exit_code,
+        "rate_limited": rate_limited,
+        "infrastructure_error": infrastructure_error,
+        "attempted_files": attempted_files,
     }
-    (output_dir / f"complete-{shard}.json").write_text(
+    (output_dir / f"states-{group}-{shard}.json").write_text(
+        json.dumps({"group": group, "shard": shard, "statuses": statuses or {}},
+                   sort_keys=True, indent=2) + "\n"
+    )
+    (output_dir / f"complete-{group}-{shard}.json").write_text(
         json.dumps(manifest, sort_keys=True, indent=2) + "\n"
     )
 
@@ -210,6 +239,40 @@ def verification_environment() -> dict[str, str]:
     env["PATH"] = str(shim.parent) + os.pathsep + env.get("PATH", "")
     return env
 
+def read_trace(path: pathlib.Path) -> dict[str, str]:
+    statuses: dict[str, str] = {}
+    if not path.exists():
+        return statuses
+    for line in path.read_text().splitlines():
+        record = json.loads(line)
+        name, status = record["path"], record["status"]
+        if status not in ("ac", "failed", "ignored", "error") or name in statuses:
+            raise RuntimeError(f"invalid or duplicate verify trace: {name}")
+        statuses[name] = status
+    return statuses
+
+
+def prior_failures(args: argparse.Namespace, selected: list[pathlib.Path]) -> dict[str, str]:
+    if args.round == 0:
+        if args.previous_state is not None:
+            raise ValueError("fresh run cannot receive previous state")
+        return {}
+    if args.previous_state is None or not args.origin_sha or not args.previous_run_id:
+        raise ValueError("continuation is missing required previous state")
+    previous = load(args.previous_state)
+    validate_state(previous, origin=args.origin_sha,
+                   round_number=args.round - 1,
+                   previous_run_id=args.previous_run_id)
+    result: dict[str, str] = {}
+    for path in selected:
+        status = previous["statuses"].get(path.as_posix())
+        if status is None:
+            raise ValueError(f"continuation does not contain previous file: {path}")
+        if status in ("failed", "ignored"):
+            result[path.as_posix()] = status
+    return result
+
+
 def main() -> int:
     args = parse_args()
     if args.shards <= 0:
@@ -220,8 +283,12 @@ def main() -> int:
         raise ValueError("--jobs must be positive")
 
     files = sorted(pathlib.Path("test").rglob("*.test.cpp"))
-    selected = [path for path in files if shard_of(
-        path, args.shards) == args.shard]
+    selected = [path for path in files if
+                group_of(path) == args.group and
+                shard_of(path, args.shards) == args.shard]
+
+    previous_skips = prior_failures(args, selected)
+    to_run = [path for path in selected if path.as_posix() not in previous_skips]
 
     timestamp_path = pathlib.Path(".verify-helper/timestamps.remote.json")
     pipeline_time = pipeline_timestamp()
@@ -229,45 +296,66 @@ def main() -> int:
         timestamp_path, selected, pipeline_time, before_verify=True
     )
 
-    print(f"shard {args.shard}/{args.shards}: {len(selected)} files", flush=True)
-    for path in selected:
+    print(f"group {args.group}, shard {args.shard}/{args.shards}: "
+          f"{len(selected)} files, {len(previous_skips)} previous failures ignored "
+          f"for this continuation", flush=True)
+    for path in to_run:
         print(path, flush=True)
 
-    if selected:
-        remove_incomplete_yukicoder_caches(selected)
-        restore_yukicoder_testcases(selected)
+    trace_path = pathlib.Path(".verify-helper") / f"trace-{args.group}-{args.shard}.jsonl"
+    trace_path.unlink(missing_ok=True)
+    circuit_path = pathlib.Path(".verify-helper/yukicoder-429.block")
+    circuit_path.unlink(missing_ok=True)
+    if to_run:
+        remove_incomplete_yukicoder_caches(to_run)
+        restore_yukicoder_testcases(to_run)
         env = verification_environment()
+        env["VERIFY_TRACE_FILE"] = str(trace_path.resolve())
         command = [
-            "oj-verify",
-            "run",
-            "-j",
-            str(args.jobs),
-            "--timeout",
-            str(args.timeout),
-            *map(str, selected),
+            sys.executable, str(pathlib.Path(__file__).with_name("verify_trace.py")),
+            "run", "-j", str(args.jobs), "--timeout", str(args.timeout),
+            *map(str, to_run),
         ]
         result = subprocess.run(command, check=False, env=env)
-        verify_exit_code = result.returncode
+        verifier_exit = result.returncode
     else:
-        verify_exit_code = 0
+        verifier_exit = 0
 
-    # Successful records are raised to the pipeline's commit time, so this
-    # one-time invalidation does not repeat on later commits.
+    # Also enforce dependency timestamps at the end of the run.
     adjust_pipeline_timestamps(
         timestamp_path, selected, pipeline_time, before_verify=False
     )
-    collect_yukicoder_testcases(selected)
+    collect_yukicoder_testcases(to_run)
 
-    # This is written only after oj-verify returned normally. The finalize job
-    # rejects a shard whose completion manifest is missing.
+    trace = read_trace(trace_path)
+    selected_for_verifier = {p.as_posix() for p in to_run}
+    if any(name not in selected_for_verifier for name in trace):
+        raise RuntimeError("verification trace contains unexpected file")
+    timestamps = load_timestamp_file(timestamp_path)
+    states: dict[str, str] = {}
+    for path in selected:
+        name = path.as_posix()
+        if name in timestamps:
+            states[name] = "ac"
+        elif name in previous_skips:
+            states[name] = previous_skips[name]
+        else:
+            state = trace.get(name, "pending")
+            states[name] = "failed" if state == "error" else (
+                "pending" if state == "ac" else state)
+
+    infrastructure_error = ("error" in trace.values() or verifier_exit not in (0, 1) or
+                            (verifier_exit == 1 and "failed" not in trace.values()))
+    # A failed result is never silently made successful just because the next
+    # continuation round skipped it.
+    overall_exit = verifier_exit or (1 if "failed" in states.values() else 0)
     write_outputs(
-        args.output_dir,
-        args.shard,
-        args.shards,
-        selected,
-        verify_exit_code,
+        args.output_dir, args.group, args.shard, args.shards, selected,
+        overall_exit, statuses=states, rate_limited=circuit_path.exists(),
+        infrastructure_error=infrastructure_error,
+        attempted_files=len(trace),
     )
-    return verify_exit_code
+    return overall_exit
 
 
 if __name__ == "__main__":

@@ -6,7 +6,7 @@
 void solve() {
   LL(N, M);
   i128 ANS = 0;
-  auto f = [&](ll q, ll l, ll r) -> void {
+  auto f = [&](ll q, ll l, ll r, bool end) -> void {
     ll lo = max(l, 1LL);
     ll hi = min(r - 1, M);
     if (lo > hi) return;

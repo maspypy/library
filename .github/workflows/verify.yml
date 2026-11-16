@@ -2,9 +2,32 @@ name: verify
 
 on:
   push:
+  workflow_dispatch:
+    inputs:
+      continuation:
+        description: "Internal: continue a bounded verification session"
+        type: boolean
+        default: false
+      previous_run_id:
+        description: "Internal: GitHub Actions run ID carrying verification state"
+        type: string
+        default: ""
+      origin_sha:
+        description: "Internal: source commit used by the original verification"
+        type: string
+        default: ""
+      round:
+        description: "Internal: continuation round (maximum 3)"
+        type: number
+        default: 0
+      target:
+        description: "Internal: verify only the group with pending work"
+        type: choice
+        options: [both, yukicoder, other]
+        default: both
 
-# Run at most one verifier for each branch. A later push is queued instead of
-# racing with timestamp commits from the current run.
+# Serialize branch updates and continuations. The GITHUB_TOKEN timestamp push
+# is not another push-triggered run; only guarded workflow_dispatch can resume.
 concurrency:
   group: verify-${{ github.ref }}
   cancel-in-progress: false
@@ -15,90 +38,100 @@ env:
   VERIFY_TIMEOUT: 570
 
 jobs:
-  verify:
+  prepare:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    strategy:
-      fail-fast: false
-      # Bound concurrent CI runners while yukicoder rate limiting persists.
-      max-parallel: 4
-      matrix:
-        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-
+      actions: read
+    outputs:
+      origin_sha: ${{ steps.source.outputs.origin_sha }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Download previous verification state
+        if: inputs.continuation == true
+        uses: actions/download-artifact@v4
         with:
-          python-version: "3.12"
+          name: verify-continuation-state
+          run-id: ${{ inputs.previous_run_id }}
+          github-token: ${{ github.token }}
+          path: .verify-helper/previous
 
-      - name: Install dependencies
-        run: |
-          python -m pip install -U online-judge-verify-helper
-          python -m pip install "setuptools<81"
-
-      - name: Test yukicoder download shim (offline)
-        if: matrix.shard == 0
-        run: python -m unittest discover -s .github/tests -p "test_*.py"
-
-      - name: Restore downloaded test cases
-        id: testcase_restore
-        uses: actions/cache/restore@v4
-        with:
-          path: .verify-helper/testcases
-          key: oj-cases-v3-${{ runner.os }}-shard-${{ matrix.shard }}-bootstrap
-          restore-keys: |
-            oj-cases-v3-${{ runner.os }}-shard-${{ matrix.shard }}-
-
-      - name: Restore legacy cache for first-run migration
-        if: steps.testcase_restore.outputs.cache-matched-key == ''
-        uses: actions/cache/restore@v4
-        with:
-          path: .verify-helper/cache
-          key: oj-verify-${{ runner.os }}-shard-${{ matrix.shard }}-${{ hashFiles('test/**/*.test.cpp') }}
-          restore-keys: |
-            oj-verify-${{ runner.os }}-shard-${{ matrix.shard }}-
-
-      - name: Run verification shard
+      - name: Check continuation source and authorization
+        id: source
         env:
-          YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
-          DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
+          CONTINUATION: ${{ inputs.continuation == true }}
+          PREVIOUS_RUN_ID: ${{ inputs.previous_run_id }}
+          ORIGIN_SHA: ${{ inputs.origin_sha }}
+          CONTINUATION_ROUND: ${{ inputs.round || 0 }}
+          CONTINUATION_TARGET: ${{ inputs.target || 'both' }}
         run: |
-          python .github/scripts/run_verify_shard.py \
-            --shard "${{ matrix.shard }}" \
-            --shards "$VERIFY_SHARDS" \
-            --jobs "$VERIFY_JOBS" \
-            --timeout "$VERIFY_TIMEOUT" \
-            --output-dir verify-shard-output
+          arguments=()
+          if [[ "$CONTINUATION" == "true" ]]; then arguments+=(--continuation); fi
+          python .github/scripts/continue_verify.py prepare \
+            --round "$CONTINUATION_ROUND" \
+            --previous-run-id "${PREVIOUS_RUN_ID:-0}" \
+            --origin-sha "$ORIGIN_SHA" \
+            --target "$CONTINUATION_TARGET" \
+            --previous-state .verify-helper/previous/verification-state.json \
+            "${arguments[@]}"
 
-      - name: Save downloaded test cases even when verification failed
-        if: ${{ always() && hashFiles('.verify-helper/testcases/**/*') != '' && steps.testcase_restore.outputs.cache-matched-key != format('oj-cases-v3-{0}-shard-{1}-{2}', runner.os, matrix.shard, hashFiles('.verify-helper/testcases/**/*')) }}
-        uses: actions/cache/save@v4
-        with:
-          path: .verify-helper/testcases
-          key: oj-cases-v3-${{ runner.os }}-shard-${{ matrix.shard }}-${{ hashFiles('.verify-helper/testcases/**/*') }}
+  verify_yukicoder:
+    needs: prepare
+    if: needs.prepare.result == 'success' && (inputs.continuation != true || inputs.target == 'both' || inputs.target == 'yukicoder')
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    uses: ./.github/workflows/verify-shard.yml
+    with:
+      group: yukicoder
+      shard: ${{ matrix.shard }}
+      shards: 16
+      jobs: 2
+      timeout: 570
+      continuation: ${{ inputs.continuation == true }}
+      previous_run_id: ${{ inputs.previous_run_id || '' }}
+      origin_sha: ${{ needs.prepare.outputs.origin_sha }}
+      round: ${{ inputs.round || 0 }}
+    secrets:
+      YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
+      DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
 
-      - name: Upload shard timestamps
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: verify-shard-${{ matrix.shard }}
-          path: verify-shard-output/
-          if-no-files-found: error
-          retention-days: 1
+  verify_other:
+    needs: prepare
+    if: needs.prepare.result == 'success' && (inputs.continuation != true || inputs.target == 'both' || inputs.target == 'other')
+    strategy:
+      fail-fast: false
+      max-parallel: 12
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    uses: ./.github/workflows/verify-shard.yml
+    with:
+      group: other
+      shard: ${{ matrix.shard }}
+      shards: 16
+      jobs: 2
+      timeout: 570
+      continuation: ${{ inputs.continuation == true }}
+      previous_run_id: ${{ inputs.previous_run_id || '' }}
+      origin_sha: ${{ needs.prepare.outputs.origin_sha }}
+      round: ${{ inputs.round || 0 }}
+    secrets:
+      YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
+      DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
 
   finalize:
     runs-on: ubuntu-latest
-    needs: verify
-    if: always()
+    needs: [prepare, verify_yukicoder, verify_other]
+    if: always() && needs.prepare.result == 'success'
     permissions:
       contents: write
-      actions: read
+      actions: write
 
     steps:
       - name: Checkout branch
@@ -117,19 +150,72 @@ jobs:
           python -m pip install -U online-judge-verify-helper
           python -m pip install "setuptools<81"
 
-      - name: Download all shard timestamps
+      - name: Download verification results
         uses: actions/download-artifact@v4
         with:
-          pattern: verify-shard-*
+          pattern: verify-*-shard-*
           path: verify-shards
           merge-multiple: true
 
-      - name: Merge timestamps
+      - name: Download previous verification state
+        if: inputs.continuation == true
+        uses: actions/download-artifact@v4
+        with:
+          name: verify-continuation-state
+          run-id: ${{ inputs.previous_run_id }}
+          github-token: ${{ github.token }}
+          path: .verify-helper/previous
+
+      - name: Verify that the tested source is still current
+        env:
+          ORIGIN_SHA: ${{ needs.prepare.outputs.origin_sha }}
         run: |
+          git diff --quiet "$ORIGIN_SHA" HEAD -- . \
+            ':(exclude).verify-helper/timestamps.remote.json'
+
+      - name: Merge timestamps and continuation statuses
+        id: summary
+        env:
+          CI_CONTINUATION: ${{ inputs.continuation == true }}
+          CI_TARGET: ${{ inputs.target || 'both' }}
+          CI_ROUND: ${{ inputs.round || 0 }}
+          CI_PREVIOUS_RUN_ID: ${{ inputs.previous_run_id }}
+          ORIGIN_SHA: ${{ needs.prepare.outputs.origin_sha }}
+          CI_RUN_ID: ${{ github.run_id }}
+        run: |
+          groups=(yukicoder other)
+          previous=()
+          if [[ "$CI_CONTINUATION" == "true" ]]; then
+            previous=(--previous-state .verify-helper/previous/verification-state.json)
+            if [[ "$CI_TARGET" != "both" ]]; then groups=("$CI_TARGET"); fi
+          fi
           python .github/scripts/merge_verify_timestamps.py \
             --input-dir verify-shards \
-            --output .verify-helper/timestamps.remote.json \
-            --shards "$VERIFY_SHARDS"
+            --output .verify-helper/timestamps.merged.json \
+            --baseline .verify-helper/timestamps.remote.json \
+            --shards "$VERIFY_SHARDS" \
+            --groups "${groups[@]}"
+          python .github/scripts/continue_verify.py summarize \
+            --input-dir verify-shards \
+            --output .verify-helper/verification-state.json \
+            --shards "$VERIFY_SHARDS" \
+            --origin-sha "$ORIGIN_SHA" \
+            --round "$CI_ROUND" \
+            --run-id "$CI_RUN_ID" \
+            --previous-run-id "${CI_PREVIOUS_RUN_ID:-0}" \
+            --target "$CI_TARGET" \
+            "${previous[@]}"
+          mv .verify-helper/timestamps.merged.json .verify-helper/timestamps.remote.json
+
+      - name: Upload session state for the next round
+        uses: actions/upload-artifact@v4
+        with:
+          name: verify-continuation-state
+          path: .verify-helper/verification-state.json
+          # upload-artifact v4 otherwise drops files inside dot-directories.
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
 
       - name: Commit verification timestamps
         env:
@@ -150,3 +236,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_PAT: ${{ secrets.GH_PAT }}
         run: oj-verify docs -j "$VERIFY_JOBS"
+
+      - name: Continue unfinished verification, if safe
+        if: steps.summary.outputs.retry_target != 'none'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python .github/scripts/continue_verify.py dispatch \
+            --state .verify-helper/verification-state.json \
+            --branch "$GITHUB_REF_NAME"
+
+      - name: Keep failed and pending cases visible as CI failure
+        run: |
+          python .github/scripts/continue_verify.py assert-final \
+            --state .verify-helper/verification-state.json

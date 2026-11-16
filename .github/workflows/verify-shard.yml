@@ -1,0 +1,139 @@
+name: verify shard
+
+on:
+  workflow_call:
+    inputs:
+      group:
+        required: true
+        type: string
+      shard:
+        required: true
+        type: number
+      shards:
+        required: true
+        type: number
+      jobs:
+        required: true
+        type: number
+      timeout:
+        required: true
+        type: number
+      continuation:
+        required: true
+        type: boolean
+      previous_run_id:
+        required: true
+        type: string
+      origin_sha:
+        required: true
+        type: string
+      round:
+        required: true
+        type: number
+    secrets:
+      YUKICODER_TOKEN:
+        required: false
+      DROPBOX_TOKEN:
+        required: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install -U online-judge-verify-helper
+          python -m pip install "setuptools<81"
+
+      - name: Test yukicoder download shim (offline)
+        if: inputs.group == 'yukicoder' && inputs.shard == 0 && inputs.continuation != true
+        run: python -m unittest discover -s .github/tests -p "test_*.py"
+
+      - name: Restore downloaded yukicoder cases
+        if: inputs.group == 'yukicoder'
+        id: testcase_restore
+        uses: actions/cache/restore@v4
+        with:
+          path: .verify-helper/testcases
+          # Same key namespace as the single-pool workflow: no cache migration.
+          key: oj-cases-v3-${{ runner.os }}-shard-${{ inputs.shard }}-bootstrap
+          restore-keys: |
+            oj-cases-v3-${{ runner.os }}-shard-${{ inputs.shard }}-
+
+      - name: Restore legacy cache for yukicoder migration
+        if: inputs.group == 'yukicoder' && steps.testcase_restore.outputs.cache-matched-key == ''
+        uses: actions/cache/restore@v4
+        with:
+          path: .verify-helper/cache
+          key: oj-verify-${{ runner.os }}-shard-${{ inputs.shard }}-${{ hashFiles('test/**/*.test.cpp') }}
+          restore-keys: |
+            oj-verify-${{ runner.os }}-shard-${{ inputs.shard }}-
+
+      - name: Restore previous continuation results
+        if: inputs.continuation == true
+        uses: actions/download-artifact@v4
+        with:
+          name: verify-continuation-state
+          run-id: ${{ inputs.previous_run_id }}
+          github-token: ${{ github.token }}
+          path: .verify-helper/previous
+
+      - name: Run verification shard
+        env:
+          YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
+          DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
+          CI_CONTINUATION: ${{ inputs.continuation }}
+          CI_PREVIOUS_RUN_ID: ${{ inputs.previous_run_id }}
+          CI_ORIGIN_SHA: ${{ inputs.origin_sha }}
+          CI_ROUND: ${{ inputs.round }}
+          CI_GROUP: ${{ inputs.group }}
+          CI_SHARD: ${{ inputs.shard }}
+          CI_SHARDS: ${{ inputs.shards }}
+          CI_JOBS: ${{ inputs.jobs }}
+          CI_TIMEOUT: ${{ inputs.timeout }}
+        run: |
+          previous=()
+          if [[ "$CI_CONTINUATION" == "true" ]]; then
+            previous=(--previous-state .verify-helper/previous/verification-state.json)
+          fi
+          python .github/scripts/run_verify_shard.py \
+            --group "$CI_GROUP" \
+            --shard "$CI_SHARD" \
+            --shards "$CI_SHARDS" \
+            --jobs "$CI_JOBS" \
+            --timeout "$CI_TIMEOUT" \
+            --origin-sha "$CI_ORIGIN_SHA" \
+            --round "$CI_ROUND" \
+            --previous-run-id "${CI_PREVIOUS_RUN_ID:-0}" \
+            --output-dir verify-shard-output \
+            "${previous[@]}"
+
+      - name: Save completed yukicoder cases even on failed verification
+        if: ${{ always() && inputs.group == 'yukicoder' && hashFiles('.verify-helper/testcases/**/*') != '' && steps.testcase_restore.outputs.cache-matched-key != format('oj-cases-v3-{0}-shard-{1}-{2}', runner.os, inputs.shard, hashFiles('.verify-helper/testcases/**/*')) }}
+        uses: actions/cache/save@v4
+        with:
+          path: .verify-helper/testcases
+          key: oj-cases-v3-${{ runner.os }}-shard-${{ inputs.shard }}-${{ hashFiles('.verify-helper/testcases/**/*') }}
+
+      - name: Upload group/shard timestamps
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: verify-${{ inputs.group }}-shard-${{ inputs.shard }}
+          path: verify-shard-output/
+          if-no-files-found: error
+          retention-days: 1

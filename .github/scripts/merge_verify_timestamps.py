@@ -9,6 +9,12 @@ import pathlib
 from typing import Any
 
 TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S %z"
+VERIFY_GROUPS = ("yukicoder", "other")
+
+
+def group_of(path: pathlib.Path) -> str:
+    return "yukicoder" if path.as_posix().startswith("test/3_yukicoder/") else "other"
+
 
 
 def parse_args() -> argparse.Namespace:
@@ -16,6 +22,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--input-dir", type=pathlib.Path, required=True)
     parser.add_argument("--output", type=pathlib.Path, required=True)
     parser.add_argument("--shards", type=int, required=True)
+    parser.add_argument("--groups", choices=VERIFY_GROUPS, nargs="+", required=True)
+    parser.add_argument("--baseline", type=pathlib.Path)
     return parser.parse_args()
 
 
@@ -47,29 +55,40 @@ def main() -> None:
         raise ValueError("--shards must be positive")
 
     merged: dict[str, str] = {}
-    merged_time: dict[str, datetime.datetime] = {}
+    # In a continuation targeting only one group, keep the untouched group's
+    # previously verified timestamps. Replacing the whole JSON would lose ACs.
+    if args.baseline and args.baseline.exists():
+        base = load_json_object(args.baseline)
+        for name, value in base.items():
+            if not isinstance(name, str) or not isinstance(value, str):
+                raise ValueError("invalid baseline timestamp")
+            parse_timestamp(value, args.baseline, name)
+            if group_of(pathlib.Path(name)) not in args.groups:
+                merged[name] = value
+    for group in args.groups:
+        for shard in range(args.shards):
+            manifest_path = args.input_dir / f"complete-{group}-{shard}.json"
+            timestamp_path = args.input_dir / f"timestamps-{group}-{shard}.json"
 
-    for shard in range(args.shards):
-        manifest_path = args.input_dir / f"complete-{shard}.json"
-        timestamp_path = args.input_dir / f"timestamps-{shard}.json"
+            manifest = load_json_object(manifest_path)
+            if (manifest.get("group") != group or manifest.get("shard") != shard
+                    or manifest.get("shards") != args.shards):
+                raise RuntimeError(f"invalid completion manifest: {manifest_path}")
+            if not isinstance(manifest.get("verify_exit_code"), int):
+                raise RuntimeError(f"missing verify exit code: {manifest_path}")
 
-        manifest = load_json_object(manifest_path)
-        if manifest.get("shard") != shard or manifest.get("shards") != args.shards:
-            raise RuntimeError(f"invalid completion manifest: {manifest_path}")
-        if not isinstance(manifest.get("verify_exit_code"), int):
-            raise RuntimeError(f"missing verify exit code: {manifest_path}")
-
-        timestamps = load_json_object(timestamp_path)
-        for test, value in timestamps.items():
-            if not isinstance(test, str) or not isinstance(value, str):
-                raise RuntimeError(
-                    f"invalid timestamp entry in {timestamp_path}")
-            current_time = parse_timestamp(value, timestamp_path, test)
-            # Only the owning shard is authoritative. Otherwise an old success
-            # from another shard can resurrect a failed forced rerun.
-            if shard_of(pathlib.Path(test), args.shards) == shard:
-                merged[test] = value
-                merged_time[test] = current_time
+            timestamps = load_json_object(timestamp_path)
+            for test, value in timestamps.items():
+                if not isinstance(test, str) or not isinstance(value, str):
+                    raise RuntimeError(
+                        f"invalid timestamp entry in {timestamp_path}")
+                parse_timestamp(value, timestamp_path, test)
+                # Only the owning group AND shard can publish a test's state.
+                # This matters when a failed test was removed from its owner
+                # but stale success records remain in the other 31 artifacts.
+                path = pathlib.Path(test)
+                if group_of(path) == group and shard_of(path, args.shards) == shard:
+                    merged[test] = value
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(merged, sort_keys=True, indent=0) + "\n")
