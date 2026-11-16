@@ -478,8 +478,8 @@ data:
   timestamp: '2026-11-16 13:02:54+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/3_yukicoder/2122.test.cpp
   - test/3_yukicoder/1242.test.cpp
+  - test/3_yukicoder/2122.test.cpp
   - test/3_yukicoder/1211.test.cpp
 documentation_of: graph/functional_graph.hpp
 layout: document

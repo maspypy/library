@@ -204,8 +204,8 @@ data:
   isVerificationFile: false
   path: graph/block_cut.hpp
   requiredBy:
-  - graph/is_cactus.hpp
   - graph/st_numbering.hpp
+  - graph/is_cactus.hpp
   timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
