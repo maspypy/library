@@ -71,7 +71,11 @@ struct Decremental_FastSet {
   // [l, r)
   template <typename F>
   void enumerate(int l, int r, F&& f) {
-    for (int x = next(l); x < r; x = next(x + 1)) f(x);
+    bool end = false;
+    for (int x = next(l); x < r; x = next(x + 1)) {
+      f(x, end);
+      if (end) return;
+    }
   }
 
   string to_string() {

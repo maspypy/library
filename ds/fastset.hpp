@@ -124,9 +124,13 @@ struct FastSet {
   // [l, r). erase=true のとき、callback 内から this を変更してはいけない。
   template <typename F>
   void enumerate(int l, int r, F f, bool erase = false) {
+    bool end = false;
     assert(0 <= l && l <= r && r <= n);
     if (!erase) {
-      for (int x = next(l); x < r; x = next(x + 1)) f(x);
+      for (int x = next(l); x < r; x = next(x + 1)) {
+        f(x, end);
+        if (end) return;
+      }
       return;
     }
     for (int x = next(l); x < r;) {
@@ -137,8 +141,9 @@ struct FastSet {
       u64 bits = erase_bits;
       while (bits) {
         int k = lowbit(bits);
-        f(w * int(B) + k);
+        f(w * int(B) + k, end);
         bits ^= u64(1) << k;
+        if (end) return;
       }
       seg[0][w] ^= erase_bits;
       if (!seg[0][w]) propagate_empty_word(w);

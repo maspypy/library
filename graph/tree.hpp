@@ -149,9 +149,11 @@ struct Tree {
   }
 
   template <typename F>
-  void for_each_child(int v, const F &f) const {
+  void enumerate_child(int v, const F &f) const {
+    bool end = false;
     for (int k = LID[v] + 1; k < RID[v];) {
-      f(V[k]), k = RID[V[k]];
+      f(V[k], end), k = RID[V[k]];
+      if (end) return;
     }
   }
 

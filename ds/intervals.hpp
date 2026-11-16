@@ -43,11 +43,13 @@ struct Intervals_Fast {
   void enumerate_range(int L, int R, F f, bool ERASE = false) {
     assert(LLIM <= L && L <= R && R <= RLIM);
     if (L == R) return;
+    bool end = false;
     if (!ERASE) {
       int l = ss.prev(L);
       while (l < R) {
         int r = ss.next(l + 1);
-        f(max(l, L), min(r, R), dat[l]);
+        f(max(l, L), min(r, R), dat[l], end);
+        if (end) return;
         l = r;
       }
       return;
@@ -69,7 +71,8 @@ struct Intervals_Fast {
     while (p < R) {
       int q = ss.next(p + 1);
       T x = dat[p];
-      f(p, q, x);
+      f(p, q, x, end);
+      assert(!end);  // 未対応
       if (dat[p] != none_val) --total_num, total_len -= q - p;
       ss.erase(p);
       p = q;
@@ -80,7 +83,7 @@ struct Intervals_Fast {
 
   void set(int L, int R, T t) {
     if (L == R) return;
-    enumerate_range(L, R, [](int l, int r, T x) -> void {}, true);
+    enumerate_range(L, R, [](int l, int r, T x, bool) -> void {}, true);
     ss.insert(L);
     dat[L] = t;
     if (t != none_val) total_num++, total_len += R - L;
@@ -144,17 +147,19 @@ struct Intervals {
     return {l, r, tl};
   }
 
-  // [L, R) 内の全データの取得 f(l, r, t)
+  // [L, R) 内の全データの取得 f(l, r, t, end)
   template <typename F>
   void enumerate_range(X L, X R, F f, bool ERASE = false) {
     assert(LLIM <= L && L <= R && R <= RLIM);
     if (L == R) return;
+    bool end = false;
     if (!ERASE) {
       auto it = prev(dat.upper_bound(L));
       while ((*it).fi < R) {
         auto it2 = next(it);
-        f(max((*it).fi, L), min((*it2).fi, R), (*it).se);
+        f(max((*it).fi, L), min((*it2).fi, R), (*it).se, end);
         it = it2;
+        if (end) break;
       }
       return;
     }
@@ -175,7 +180,8 @@ struct Intervals {
       if ((*p).fi >= R) break;
       auto q = next(p);
       T t = (*p).se;
-      f((*p).fi, (*q).fi, t);
+      f((*p).fi, (*q).fi, t, end);
+      assert(!end);  // 未対応
       if (t != none_val) --total_num, total_len -= (*q).fi - (*p).fi;
       p = dat.erase(p);
     }
@@ -185,7 +191,7 @@ struct Intervals {
   void set(X L, X R, T t) {
     assert(L <= R);
     if (L == R) return;
-    enumerate_range(L, R, [](int l, int r, T x) -> void {}, true);
+    enumerate_range(L, R, [](int l, int r, T x, bool) -> void {}, true);
     dat[L] = t;
     if (t != none_val) total_num++, total_len += R - L;
     merge_at(L);
