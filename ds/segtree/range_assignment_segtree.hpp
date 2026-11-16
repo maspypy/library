@@ -76,7 +76,7 @@ struct Range_Assignment_SegTree {
     vc<int> I;
     if (has_left) I.eb(a);
     I.eb(l);
-    cut.enumerate(l + 1, r, [&](int i) { I.eb(i); }, true);
+    cut.enumerate(l + 1, r, [&](int i, bool) { I.eb(i); }, true);
 
     if (has_right) I.eb(r);
 

@@ -11,7 +11,7 @@ void test() {
   FOR(N, 1, 10) {
     vc<mint> P = partition_number<mint>(N);
     set<vc<int>> ss;
-    auto f = [&](vc<int>& P) -> void {
+    auto f = [&](vc<int>& P, bool) -> void {
       assert(SUM<int>(P) == N);
       assert(!ss.count(P));
       ss.insert(P);
@@ -22,11 +22,11 @@ void test() {
   FOR(N, 1, 10) {
     FOR(LIM_len, 10) FOR(LIM_val, 10) {
       int a = 0;
-      auto f = [&](vc<int>& P) -> void {
+      auto f = [&](vc<int>& P, bool) -> void {
         if (len(P) <= LIM_len && MAX(P) <= LIM_val) ++a;
       };
       int b = 0;
-      auto g = [&](vc<int>& P) -> void {
+      auto g = [&](vc<int>& P, bool) -> void {
         assert(len(P) <= LIM_len && MAX(P) <= LIM_val);
         ++b;
       };

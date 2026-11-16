@@ -14,7 +14,7 @@ void test(int n) {
   ・GF(A)=A
   これが示されれば、個数が等しいことは知っているので全単射がいえる
   */
-  enumerate_product(vc<int>(n - 1, n), [&](vc<int> A) -> void {
+  enumerate_product(vc<int>(n - 1, n), [&](vc<int> A, bool) -> void {
     if (n >= 2 && A.back() != n - 1) return;
     Graph<int, 0> G = from_prufer_code(A);
     UnionFind uf(n);

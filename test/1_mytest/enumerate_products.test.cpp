@@ -9,7 +9,7 @@ using mint = modint998;
 void test() {
   {
     vvc<int> res;
-    auto f = [&](vc<int> A) -> void { res.eb(A); };
+    auto f = [&](vc<int> A, bool) -> void { res.eb(A); };
     enumerate_product(vc<int>(2, 3), f);
     assert(len(res) == 9);
     assert(res[0] == vc<int>({0, 0}));
@@ -24,7 +24,7 @@ void test() {
   }
   {
     int cnt = 0;
-    auto f = [&](vc<int> A) -> void { ++cnt; };
+    auto f = [&](vc<int> A, bool) -> void { ++cnt; };
     enumerate_product(vc<int>(4, 3), f);
     assert(cnt == 81);
   }

@@ -30,7 +30,7 @@ void test() {
   }
   // [0,1,2]
   FOR(N, 1, 13) {
-    enumerate_product(vc<int>(N, 3), [&](vc<int> A) -> void {
+    enumerate_product(vc<int>(N, 3), [&](vc<int> A, bool) -> void {
       auto f = [&](int i) -> int { return A[i]; };
       auto [y, i] = fibonacci_search<int, true>(f, 0, N);
       assert(0 <= i && i < N);
