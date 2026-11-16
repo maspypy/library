@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/setfunc/division_free_xor_convolution.hpp
 #include "poly/convolution.hpp"
 
 // Source: https://github.com/maspypy/library/blob/main/setfunc/division_free_xor_convolution.hpp

@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/hashset.hpp
 
 template <typename KEY>
 struct HashSet {

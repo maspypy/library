@@ -1,4 +1,4 @@
-// Source: https://github.com/maspypy/library/blob/main/convex/path_independent_set.hpp
+// Source: https://github.com/maspypy/library/blob/main/flow/path_matching.hpp
 
 // https://info.atcoder.jp/entry/algorithm_lectures/matching_on_path
 // return: (val,i,j), 頂点重みの和と 2 点
