@@ -19,8 +19,8 @@ vc<T> count_cycle(GT& G) {
     }
     const u32 mask = (u32(1) << v) - 1;
     for (u32 s = 0; s < (u32(1) << v); ++s) {
-      enumerate_all_bit(s, [&](int a) -> void {
-        enumerate_all_bit(nbd[a] & mask & (~s), [&](int b) -> void {
+      enumerate_all_bit(s, [&](int a, bool) -> void {
+        enumerate_all_bit(nbd[a] & mask & (~s), [&](int b, bool) -> void {
           dp[v * (s | 1 << b) + b] += dp[v * s + a];
         });
         if (popcnt(s) >= 2 && nbd[a] >> v & 1) cyc[s | 1 << v] += dp[v * s + a];

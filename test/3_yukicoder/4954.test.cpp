@@ -6,19 +6,12 @@
 void solve() {
   LL(N);
   ll ANS = 0;
-  auto f = [&](ll q, ll l, ll r) -> void { ++ANS; };
+  auto f = [&](ll q, ll l, ll r, bool) -> void { ++ANS; };
   floor_range(N, f);
   print(ANS);
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }
