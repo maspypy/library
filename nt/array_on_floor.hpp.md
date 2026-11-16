@@ -55,8 +55,8 @@ data:
   isVerificationFile: false
   path: nt/array_on_floor.hpp
   requiredBy:
-  - nt/mertens.hpp
   - nt/range_rational_count.hpp
+  - nt/mertens.hpp
   timestamp: '2026-11-16 13:22:31+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
