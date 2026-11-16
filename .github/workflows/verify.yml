@@ -21,6 +21,8 @@ jobs:
       contents: read
     strategy:
       fail-fast: false
+      # Bound concurrent CI runners while yukicoder rate limiting persists.
+      max-parallel: 4
       matrix:
         shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
 
@@ -40,8 +42,22 @@ jobs:
           python -m pip install -U online-judge-verify-helper
           python -m pip install "setuptools<81"
 
+      - name: Test yukicoder download shim (offline)
+        if: matrix.shard == 0
+        run: python -m unittest discover -s .github/tests -p "test_*.py"
+
       - name: Restore downloaded test cases
-        uses: actions/cache@v4
+        id: testcase_restore
+        uses: actions/cache/restore@v4
+        with:
+          path: .verify-helper/testcases
+          key: oj-cases-v3-${{ runner.os }}-shard-${{ matrix.shard }}-bootstrap
+          restore-keys: |
+            oj-cases-v3-${{ runner.os }}-shard-${{ matrix.shard }}-
+
+      - name: Restore legacy cache for first-run migration
+        if: steps.testcase_restore.outputs.cache-matched-key == ''
+        uses: actions/cache/restore@v4
         with:
           path: .verify-helper/cache
           key: oj-verify-${{ runner.os }}-shard-${{ matrix.shard }}-${{ hashFiles('test/**/*.test.cpp') }}
@@ -59,6 +75,13 @@ jobs:
             --jobs "$VERIFY_JOBS" \
             --timeout "$VERIFY_TIMEOUT" \
             --output-dir verify-shard-output
+
+      - name: Save downloaded test cases even when verification failed
+        if: ${{ always() && hashFiles('.verify-helper/testcases/**/*') != '' && steps.testcase_restore.outputs.cache-matched-key != format('oj-cases-v3-{0}-shard-{1}-{2}', runner.os, matrix.shard, hashFiles('.verify-helper/testcases/**/*')) }}
+        uses: actions/cache/save@v4
+        with:
+          path: .verify-helper/testcases
+          key: oj-cases-v3-${{ runner.os }}-shard-${{ matrix.shard }}-${{ hashFiles('.verify-helper/testcases/**/*') }}
 
       - name: Upload shard timestamps
         if: always()

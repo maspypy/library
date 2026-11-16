@@ -5,14 +5,22 @@ import argparse
 import datetime
 import hashlib
 import json
+import os
 import pathlib
+import re
+import shutil
+import stat
 import subprocess
 import sys
 from typing import Any
 
 TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S %z"
+# Cache/network orchestration changes should not invalidate every previously
+# verified testcase. Only semantic compilation/expansion inputs go here.
+# If this runner starts changing verification semantics, explicitly invalidate
+# timestamps in that change instead of silently re-downloading all judges.
 PIPELINE_FILES = (
-    ".verify-helper/config.toml", ".github/scripts/run_verify_shard.py",
+    ".verify-helper/config.toml",
     "scripts/expander.py", "scripts/shrink.py", "shell/verify-expanded-g++",
     "shell/verify-pipeline-g++", "shell/verify-shrunk-g++",
 )
@@ -101,6 +109,107 @@ def write_outputs(
     )
 
 
+
+def _complete_testcase_pairs(directory: pathlib.Path) -> bool:
+    if not directory.is_dir():
+        return False
+    inputs = {p.relative_to(directory).with_suffix("")
+              for p in directory.rglob("*.in") if p.is_file()}
+    outputs = {p.relative_to(directory).with_suffix("")
+               for p in directory.rglob("*.out") if p.is_file()}
+    return bool(inputs) and inputs == outputs
+
+
+def yukicoder_cache_paths(selected: list[pathlib.Path]):
+    pattern = re.compile(r'\bPROBLEM\s+"(https://yukicoder\.me/[^"\s]+)"')
+    visited: set[str] = set()
+    for source in selected:
+        if not source.as_posix().startswith("test/3_yukicoder/"):
+            continue
+        match = pattern.search(source.read_text(errors="replace"))
+        if match is None:
+            continue
+        url = match.group(1)
+        if url in visited:
+            continue
+        visited.add(url)
+        hash_name = hashlib.md5(url.encode()).hexdigest()
+        current = pathlib.Path(".verify-helper/cache") / hash_name / "test"
+        saved = pathlib.Path(".verify-helper/testcases") / hash_name / "test"
+        yield url, current, saved
+
+
+def remove_incomplete_yukicoder_caches(selected: list[pathlib.Path]) -> None:
+    # A nonempty `test` directory prevents oj-verify from downloading again.
+    for url, current, _ in yukicoder_cache_paths(selected):
+        if current.exists() and not _complete_testcase_pairs(current):
+            print(f"discarding incomplete yukicoder cache: {url}", flush=True)
+            if current.is_dir():
+                shutil.rmtree(current)
+            else:
+                current.unlink()
+
+
+def restore_yukicoder_testcases(selected: list[pathlib.Path]) -> None:
+    for url, current, saved in yukicoder_cache_paths(selected):
+        if current.exists():
+            continue
+        if not (saved / ".download-complete").is_file():
+            continue
+        if not _complete_testcase_pairs(saved):
+            print(f"ignoring corrupt saved yukicoder cases: {url}", flush=True)
+            continue
+        current.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(saved, current)
+
+
+def collect_yukicoder_testcases(selected: list[pathlib.Path]) -> None:
+    # Copy only proven-complete downloads or tests that passed verification.
+    # Compiled binaries and other judges' caches are never persisted here.
+    timestamps = load_timestamp_file(pathlib.Path(
+        ".verify-helper/timestamps.remote.json"))
+    verified_urls = set()
+    pattern = re.compile(r'\bPROBLEM\s+"(https://yukicoder\.me/[^"\s]+)"')
+    for source in selected:
+        if source.as_posix() not in timestamps:
+            continue
+        match = pattern.search(source.read_text(errors="replace"))
+        if match:
+            verified_urls.add(match.group(1))
+    for url, current, saved in yukicoder_cache_paths(selected):
+        if not _complete_testcase_pairs(current):
+            continue
+        if not (current / ".download-complete").is_file() and url not in verified_urls:
+            continue
+        if saved.exists():
+            if (saved / ".download-complete").is_file() and _complete_testcase_pairs(saved):
+                continue
+            print(f"replacing incomplete saved yukicoder cache: {url}", flush=True)
+            if saved.is_dir():
+                shutil.rmtree(saved)
+            else:
+                saved.unlink()
+        saved.parent.mkdir(parents=True, exist_ok=True)
+        # Source is immutable after a successful download, as downloads are
+        # atomically published by the oj shim. Store only the test directory.
+        shutil.copytree(current, saved)
+        if not (saved / ".download-complete").exists():
+            (saved / ".download-complete").write_text("verified\n")
+
+
+def verification_environment() -> dict[str, str]:
+    real_oj = shutil.which("oj")
+    if real_oj is None:
+        raise RuntimeError("cannot find real oj executable")
+    shim = pathlib.Path(__file__).with_name("oj").resolve()
+    shim.chmod(shim.stat().st_mode | stat.S_IXUSR)
+    env = os.environ.copy()
+    env["VERIFY_REAL_OJ"] = real_oj
+    env["VERIFY_YUKICODER_CIRCUIT"] = str(pathlib.Path(
+        ".verify-helper/yukicoder-429.block").resolve())
+    env["PATH"] = str(shim.parent) + os.pathsep + env.get("PATH", "")
+    return env
+
 def main() -> int:
     args = parse_args()
     if args.shards <= 0:
@@ -125,6 +234,9 @@ def main() -> int:
         print(path, flush=True)
 
     if selected:
+        remove_incomplete_yukicoder_caches(selected)
+        restore_yukicoder_testcases(selected)
+        env = verification_environment()
         command = [
             "oj-verify",
             "run",
@@ -134,7 +246,7 @@ def main() -> int:
             str(args.timeout),
             *map(str, selected),
         ]
-        result = subprocess.run(command, check=False)
+        result = subprocess.run(command, check=False, env=env)
         verify_exit_code = result.returncode
     else:
         verify_exit_code = 0
@@ -144,6 +256,7 @@ def main() -> int:
     adjust_pipeline_timestamps(
         timestamp_path, selected, pipeline_time, before_verify=False
     )
+    collect_yukicoder_testcases(selected)
 
     # This is written only after oj-verify returned normally. The finalize job
     # rejects a shard whose completion manifest is missing.

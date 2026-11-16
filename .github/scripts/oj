@@ -1,0 +1,151 @@
+#!/usr/bin/env python3
+"""oj shim for robust yukicoder testcase downloads inside verify jobs.
+
+Only `oj download` for yukicoder is intercepted. All other oj commands
+are forwarded verbatim. Successful yukicoder downloads are published only
+after the complete command has succeeded, avoiding poisoned cache entries.
+"""
+from __future__ import annotations
+
+import os
+import pathlib
+import random
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+import time
+from urllib.parse import urlsplit
+
+
+def _yukicoder_download(argv: list[str]) -> bool:
+    if not argv or argv[0] != "download":
+        return False
+    for arg in argv[1:]:
+        if urlsplit(arg).hostname == "yukicoder.me":
+            return True
+    return False
+
+
+def _directory_option(argv: list[str]) -> int | None:
+    for i, arg in enumerate(argv[:-1]):
+        if arg in ("-d", "--directory"):
+            return i + 1
+    return None
+
+
+def _has_complete_pairs(directory: pathlib.Path) -> bool:
+    if not directory.is_dir():
+        return False
+    input_stems = {
+        path.relative_to(directory).with_suffix("")
+        for path in directory.rglob("*.in") if path.is_file()
+    }
+    output_stems = {
+        path.relative_to(directory).with_suffix("")
+        for path in directory.rglob("*.out") if path.is_file()
+    }
+    return bool(input_stems) and input_stems == output_stems
+
+
+def _attempt(command: list[str]) -> tuple[int, bool]:
+    proc = subprocess.run(
+        command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+        text=True, errors="replace", check=False,
+    )
+    text = proc.stdout or ""
+    sys.stdout.write(text)
+    sys.stdout.flush()
+    is_429 = bool(re.search(r"\b429\b[^\n]*Too Many Requests", text, re.I))
+    return proc.returncode, is_429
+
+
+def _delays() -> list[float]:
+    values = os.environ.get("VERIFY_YUKICODER_RETRY_SECONDS", "")
+    delays = [float(value) for value in values.split(",") if value.strip()]
+    if any(not 0 <= delay <= 600 for delay in delays) or len(delays) > 5:
+        raise ValueError("VERIFY_YUKICODER_RETRY_SECONDS must be <=5 delays in [0,600]")
+    return delays
+
+
+def main(argv: list[str]) -> int:
+    real_oj = os.environ.get("VERIFY_REAL_OJ")
+    if not real_oj:
+        print("oj shim: VERIFY_REAL_OJ is not set", file=sys.stderr)
+        return 2
+    command = [real_oj, *argv]
+    if not _yukicoder_download(argv):
+        return subprocess.call(command)
+
+    destination_index = _directory_option(argv)
+    if destination_index is None:
+        # The verification helper always supplies -d. Do not intercept
+        # unfamiliar invocations.
+        return subprocess.call(command)
+    destination = pathlib.Path(argv[destination_index])
+    circuit_name = os.environ.get("VERIFY_YUKICODER_CIRCUIT")
+    circuit = pathlib.Path(circuit_name) if circuit_name else None
+    if circuit is not None and circuit.exists():
+        print("oj shim: previous yukicoder HTTP 429 persists; "
+              "suppressing further requests in this shard", file=sys.stderr)
+        return 75
+
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    # A 1GB/hour server-side quota cannot be repaired by short retries.
+    # Default is fail-fast on 429, with optional controlled retries.
+    delays = _delays()
+    for attempt in range(len(delays) + 1):
+        temporary = pathlib.Path(tempfile.mkdtemp(
+            prefix=f".{destination.name}.partial-", dir=destination.parent,
+        ))
+        try:
+            new_argv = argv.copy()
+            new_argv[destination_index] = str(temporary)
+            code, is_429 = _attempt([real_oj, *new_argv])
+            if code == 0:
+                if not _has_complete_pairs(temporary):
+                    print("oj shim: download returned success without matched "
+                          "*.in/*.out testcase files", file=sys.stderr)
+                    return 1
+                (temporary / ".download-complete").write_text("ok\n")
+                if destination.exists():
+                    if _has_complete_pairs(destination):
+                        # Another process filled the cache while we downloaded.
+                        return 0
+                    if destination.is_dir():
+                        shutil.rmtree(destination)
+                    else:
+                        destination.unlink()
+                # Same filesystem; new testcase directory becomes visible
+                # atomically. Incomplete downloads stay in .partial-* folders.
+                temporary.replace(destination)
+                return 0
+            if not is_429:
+                return code
+        finally:
+            if temporary.exists():
+                shutil.rmtree(temporary)
+
+        if attempt < len(delays):
+            delay = delays[attempt]
+            delay += random.uniform(0, min(5, delay * 0.2))
+            print(f"oj shim: yukicoder HTTP 429, retrying after "
+                  f"{delay:.1f}s ({attempt + 1}/{len(delays)})", file=sys.stderr)
+            time.sleep(delay)
+        else:
+            print("oj shim: persistent yukicoder HTTP 429; "
+                  "stopping further downloads for this shard", file=sys.stderr)
+            if circuit is not None:
+                circuit.parent.mkdir(parents=True, exist_ok=True)
+                circuit.write_text("429 Too Many Requests\n")
+            return 75
+    return 75
+
+
+if __name__ == "__main__":
+    try:
+        sys.exit(main(sys.argv[1:]))
+    except (OSError, ValueError) as exc:
+        print(f"oj shim: {exc}", file=sys.stderr)
+        sys.exit(2)
