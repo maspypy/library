@@ -73,7 +73,7 @@ void enumerate_asymmetric_unlabeled_tree(int n, F f) {
     dfs(dfs, m - 1, 0, now, now_e);
   };
   dfs(dfs, floor<int>(n - 1, 2), 0, 0, 0);
-
+  if (end) return;
   // 重心が 2 つの場合
   if (2 * m == n) {
     FOR(i, len(dat[m])) {

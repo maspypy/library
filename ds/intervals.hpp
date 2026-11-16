@@ -107,7 +107,9 @@ struct Intervals_Fast {
 
   vc<T> get_all() {
     vc<T> res(RLIM, none_val);
-    enumerate_all([&](int a, int b, T t) -> void { FOR(i, a, b) res[i] = t; });
+    enumerate_all([&](int a, int b, T t, bool) -> void {
+      FOR(i, a, b) res[i] = t;
+    });
     return res;
   }
 };

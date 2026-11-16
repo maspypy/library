@@ -1,5 +1,7 @@
 // Source: https://github.com/maspypy/library/blob/main/enumerate/maximal_independent_set.hpp
 
+#include "enumerate/bits.hpp"
+
 // 3^(N/3). 極大.
 // https://atcoder.jp/contests/jag2014autumn/tasks/icpc2014autumn_i
 template <typename GT, typename F>
@@ -19,7 +21,7 @@ void enumerate_maximal_independent_set(const GT& G, F f) {
     }
     int min_deg = infty<int>;
     int v = -1;
-    enumerate_bits_64(V, [&](int i) -> void {
+    enumerate_bits_64(V, [&](int i, bool) -> void {
       int d = popcnt(V & adj[i]);
       if (chmin(min_deg, d)) v = i;
     });

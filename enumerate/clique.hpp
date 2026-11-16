@@ -44,6 +44,7 @@ void enumerate_clique(const Gr& G, F query) {
     };
 
     dfs(dfs, 0);
+    if (end) return;
     done[v] = 1;
     for (auto&& x : nbd) deg[x]--;
   }

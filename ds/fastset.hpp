@@ -143,7 +143,7 @@ struct FastSet {
         int k = lowbit(bits);
         f(w * int(B) + k, end);
         bits ^= u64(1) << k;
-        if (end) return;
+        assert(!end);  // 未対応
       }
       seg[0][w] ^= erase_bits;
       if (!seg[0][w]) propagate_empty_word(w);

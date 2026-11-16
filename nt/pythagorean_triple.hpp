@@ -12,6 +12,7 @@ void enumerate_pythagorean_triple(int LIM, F f) {
   auto add = [&](int a, int b, int c) -> void {
     if (c <= LIM) que.eb(a, b, c);
   };
+  bool end = false;
   add(3, 4, 5);
   while (len(que)) {
     auto [a, b, c] = POP(que);
@@ -19,11 +20,13 @@ void enumerate_pythagorean_triple(int LIM, F f) {
     add(a + 2 * b + 2 * c, 2 * a + b + 2 * c, 2 * a + 2 * b + 3 * c);
     add(-a + 2 * b + 2 * c, -2 * a + b + 2 * c, -2 * a + 2 * b + 3 * c);
     if constexpr (coprime_only) {
-      f(min(a, b), max(a, b), c);
+      f(min(a, b), max(a, b), c, end);
+      if (end) return;
     } else {
       int x = min(a, b), y = max(a, b), z = c;
       while (z <= LIM) {
-        f(x, y, z);
+        f(x, y, z, end);
+        if (end) return;
         x += min(a, b), y += max(a, b), z += c;
       }
     }
