@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2507.test.cpp
     title: test/3_yukicoder/2507.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/graph/count/count_cycle.hpp
@@ -145,11 +145,11 @@ data:
     \n  vc<T> cyc(1 << N);\n  for (int v = 0; v < N; ++v) {\n    vc<T> dp(v << v);\n\
     \    for (int w = 0; w < v; ++w) {\n      if (nbd[v] >> w & 1) dp[(v << w) + w]\
     \ = 1;\n    }\n    const u32 mask = (u32(1) << v) - 1;\n    for (u32 s = 0; s\
-    \ < (u32(1) << v); ++s) {\n      enumerate_all_bit(s, [&](int a) -> void {\n \
-    \       enumerate_all_bit(nbd[a] & mask & (~s), [&](int b) -> void {\n       \
-    \   dp[v * (s | 1 << b) + b] += dp[v * s + a];\n        });\n        if (popcnt(s)\
-    \ >= 2 && nbd[a] >> v & 1) cyc[s | 1 << v] += dp[v * s + a];\n      });\n    }\n\
-    \  }\n  for (auto& x : cyc) x /= T(2);\n  return cyc;\n}\n"
+    \ < (u32(1) << v); ++s) {\n      enumerate_all_bit(s, [&](int a, bool) -> void\
+    \ {\n        enumerate_all_bit(nbd[a] & mask & (~s), [&](int b, bool) -> void\
+    \ {\n          dp[v * (s | 1 << b) + b] += dp[v * s + a];\n        });\n     \
+    \   if (popcnt(s) >= 2 && nbd[a] >> v & 1) cyc[s | 1 << v] += dp[v * s + a];\n\
+    \      });\n    }\n  }\n  for (auto& x : cyc) x /= T(2);\n  return cyc;\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/graph/count/count_cycle.hpp\n\
     #include \"enumerate/bits.hpp\"\n#include \"graph/base.hpp\"\n\n// \u9802\u70B9\
     \u96C6\u5408\u3054\u3068\u306B\u30B5\u30A4\u30AF\u30EB\u3092\u6570\u3048\u308B\
@@ -161,11 +161,11 @@ data:
     \ ++v) {\n    vc<T> dp(v << v);\n    for (int w = 0; w < v; ++w) {\n      if (nbd[v]\
     \ >> w & 1) dp[(v << w) + w] = 1;\n    }\n    const u32 mask = (u32(1) << v) -\
     \ 1;\n    for (u32 s = 0; s < (u32(1) << v); ++s) {\n      enumerate_all_bit(s,\
-    \ [&](int a) -> void {\n        enumerate_all_bit(nbd[a] & mask & (~s), [&](int\
-    \ b) -> void {\n          dp[v * (s | 1 << b) + b] += dp[v * s + a];\n       \
-    \ });\n        if (popcnt(s) >= 2 && nbd[a] >> v & 1) cyc[s | 1 << v] += dp[v\
-    \ * s + a];\n      });\n    }\n  }\n  for (auto& x : cyc) x /= T(2);\n  return\
-    \ cyc;\n}\n"
+    \ [&](int a, bool) -> void {\n        enumerate_all_bit(nbd[a] & mask & (~s),\
+    \ [&](int b, bool) -> void {\n          dp[v * (s | 1 << b) + b] += dp[v * s +\
+    \ a];\n        });\n        if (popcnt(s) >= 2 && nbd[a] >> v & 1) cyc[s | 1 <<\
+    \ v] += dp[v * s + a];\n      });\n    }\n  }\n  for (auto& x : cyc) x /= T(2);\n\
+    \  return cyc;\n}\n"
   dependsOn:
   - enumerate/bits.hpp
   - graph/base.hpp
@@ -173,8 +173,8 @@ data:
   isVerificationFile: false
   path: graph/count/count_cycle.hpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-11-17 03:35:31+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2507.test.cpp
 documentation_of: graph/count/count_cycle.hpp

@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/array_on_floor.hpp
     title: nt/array_on_floor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2266.test.cpp
     title: test/3_yukicoder/2266.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/nt/mertens.hpp
@@ -87,24 +87,24 @@ data:
     \  }\n}\n#line 5 \"nt/mertens.hpp\"\n\ntemplate <typename T>\nstruct Mertens {\n\
     \  Array_on_Floor<T> sum;\n  Mertens() {}\n  Mertens(u64 N, u64 K = -1) { build(N,\
     \ K); }\n  void build(u64 N, u64 K = -1) {\n    sum = Array_on_Floor<T>(N);\n\
-    \    if (K == u64(-1)) { K = pow(N, 0.67); }\n    vc<T> A = mobius_table<T>(K);\n\
+    \    if (K == u64(-1)) {\n      K = pow(N, 0.67);\n    }\n    vc<T> A = mobius_table<T>(K);\n\
     \    FOR(k, 1, K) A[k + 1] += A[k];\n    FOR(i, len(sum)) {\n      u64 n = sum.get_floor(i);\n\
     \      if (n <= K) {\n        sum.dat[i] = A[n];\n        continue;\n      }\n\
-    \      T ans = 1;\n      floor_range(n, [&](u64 q, u64 l, u64 r) -> void {\n \
-    \       if (q == n) return;\n        ans -= sum[q] * T(r - l);\n      });\n  \
-    \    sum.dat[i] = ans;\n    }\n  }\n  T operator[](u64 n) { return sum[n]; }\n\
+    \      T ans = 1;\n      floor_range(n, [&](u64 q, u64 l, u64 r, bool) -> void\
+    \ {\n        if (q == n) return;\n        ans -= sum[q] * T(r - l);\n      });\n\
+    \      sum.dat[i] = ans;\n    }\n  }\n  T operator[](u64 n) { return sum[n]; }\n\
     };\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/nt/mertens.hpp\n\
     #include \"nt/array_on_floor.hpp\"\n#include \"nt/mobius_table.hpp\"\n#include\
     \ \"enumerate/floor_range.hpp\"\n\ntemplate <typename T>\nstruct Mertens {\n \
     \ Array_on_Floor<T> sum;\n  Mertens() {}\n  Mertens(u64 N, u64 K = -1) { build(N,\
     \ K); }\n  void build(u64 N, u64 K = -1) {\n    sum = Array_on_Floor<T>(N);\n\
-    \    if (K == u64(-1)) { K = pow(N, 0.67); }\n    vc<T> A = mobius_table<T>(K);\n\
+    \    if (K == u64(-1)) {\n      K = pow(N, 0.67);\n    }\n    vc<T> A = mobius_table<T>(K);\n\
     \    FOR(k, 1, K) A[k + 1] += A[k];\n    FOR(i, len(sum)) {\n      u64 n = sum.get_floor(i);\n\
     \      if (n <= K) {\n        sum.dat[i] = A[n];\n        continue;\n      }\n\
-    \      T ans = 1;\n      floor_range(n, [&](u64 q, u64 l, u64 r) -> void {\n \
-    \       if (q == n) return;\n        ans -= sum[q] * T(r - l);\n      });\n  \
-    \    sum.dat[i] = ans;\n    }\n  }\n  T operator[](u64 n) { return sum[n]; }\n\
+    \      T ans = 1;\n      floor_range(n, [&](u64 q, u64 l, u64 r, bool) -> void\
+    \ {\n        if (q == n) return;\n        ans -= sum[q] * T(r - l);\n      });\n\
+    \      sum.dat[i] = ans;\n    }\n  }\n  T operator[](u64 n) { return sum[n]; }\n\
     };\n"
   dependsOn:
   - nt/array_on_floor.hpp
@@ -116,8 +116,8 @@ data:
   path: nt/mertens.hpp
   requiredBy:
   - nt/range_rational_count.hpp
-  timestamp: '2026-11-16 15:34:21+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-11-17 03:35:31+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2266.test.cpp
 documentation_of: nt/mertens.hpp
