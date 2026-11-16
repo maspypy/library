@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/summin_add.hpp
     title: alg/acted_monoid/summin_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_trick_1.hpp
     title: convex/slope_trick/slope_trick_1.hpp
   - icon: ':heavy_check_mark:'
@@ -339,7 +339,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1038.test.cpp
     title: test/3_yukicoder/1038.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1077_2.test.cpp
     title: test/3_yukicoder/1077_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -492,9 +492,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp
@@ -564,7 +564,7 @@ data:
   - seq/factorial_digit_system.hpp
   - flow/dynamic_mcf_on_line.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp

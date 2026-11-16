@@ -56,10 +56,10 @@ data:
   - icon: ':question:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/multiplicative_sum.hpp
     title: nt/multiplicative_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/prime_sum.hpp
     title: nt/prime_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -71,7 +71,7 @@ data:
   - icon: ':x:'
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/spf_table.hpp
     title: nt/spf_table.hpp
   - icon: ':question:'
@@ -234,7 +234,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1262.test.cpp
     title: test/3_yukicoder/1262.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1276.test.cpp
     title: test/3_yukicoder/1276.test.cpp
   - icon: ':heavy_check_mark:'
@@ -270,7 +270,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1875.test.cpp
     title: test/3_yukicoder/1875.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1881.test.cpp
     title: test/3_yukicoder/1881.test.cpp
   - icon: ':heavy_check_mark:'

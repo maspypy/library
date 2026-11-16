@@ -12,12 +12,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/114.test.cpp
     title: test/3_yukicoder/114.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/graph/steiner_tree.hpp
@@ -145,15 +145,15 @@ data:
     \ 0);\n\n  // \u30BF\u30FC\u30DF\u30CA\u30EB\u96C6\u5408, root -> cost\n  vv(T,\
     \ DP, 1 << K, N, infty<T>);\n  FOR(v, N) DP[0][v] = v_wt[v];\n\n  // 2 * t or\
     \ 2 * eid + 1\n  vv(int, par, 1 << K, N, -1);\n\n  for (int s = 1; s < (1 << K);\
-    \ ++s) {\n    auto& dp = DP[s];\n    enumerate_all_bit<u32>(s, [&](int k) -> void\
-    \ {\n      int v = S[k];\n      chmin(dp[v], DP[s ^ 1 << k][v]);\n    });\n  \
-    \  for (u32 t = s & (s - 1); t; t = (t - 1) & s) {\n      FOR(v, N) {\n      \
-    \  if (chmin(dp[v], DP[t][v] + DP[s ^ t][v] - v_wt[v])) par[s][v] = 2 * t;\n \
-    \     }\n    }\n    // \u6839\u306E\u79FB\u52D5\u3092 dijkstra \u3067\n    pq_min<pair<T,\
-    \ int>> que;\n    FOR(v, N) que.emplace(dp[v], v);\n    while (!que.empty()) {\n\
-    \      auto [dv, v] = POP(que);\n      if (dv != dp[v]) continue;\n      for (auto&&\
-    \ e : G[v]) {\n        if (chmin(dp[e.to], dv + e.cost + v_wt[e.to])) {\n    \
-    \      par[s][e.to] = 2 * e.id + 1;\n          que.emplace(dp[e.to], e.to);\n\
+    \ ++s) {\n    auto& dp = DP[s];\n    enumerate_all_bit<u32>(s, [&](int k, bool)\
+    \ -> void {\n      int v = S[k];\n      chmin(dp[v], DP[s ^ 1 << k][v]);\n   \
+    \ });\n    for (u32 t = s & (s - 1); t; t = (t - 1) & s) {\n      FOR(v, N) {\n\
+    \        if (chmin(dp[v], DP[t][v] + DP[s ^ t][v] - v_wt[v])) par[s][v] = 2 *\
+    \ t;\n      }\n    }\n    // \u6839\u306E\u79FB\u52D5\u3092 dijkstra \u3067\n\
+    \    pq_min<pair<T, int>> que;\n    FOR(v, N) que.emplace(dp[v], v);\n    while\
+    \ (!que.empty()) {\n      auto [dv, v] = POP(que);\n      if (dv != dp[v]) continue;\n\
+    \      for (auto&& e : G[v]) {\n        if (chmin(dp[e.to], dv + e.cost + v_wt[e.to]))\
+    \ {\n          par[s][e.to] = 2 * e.id + 1;\n          que.emplace(dp[e.to], e.to);\n\
     \        }\n      }\n    }\n  }\n\n  // \u5FA9\u5143\u3059\u308B\n  vc<bool> used_v(N),\
     \ used_e(M);\n  vc<int> v_to_k(N, -1);\n  FOR(k, K) v_to_k[S[k]] = k;\n\n  vc<pair<int,\
     \ int>> que;\n  int root = min_element(all(DP.back())) - DP.back().begin();\n\
@@ -178,15 +178,15 @@ data:
     \ 0);\n\n  // \u30BF\u30FC\u30DF\u30CA\u30EB\u96C6\u5408, root -> cost\n  vv(T,\
     \ DP, 1 << K, N, infty<T>);\n  FOR(v, N) DP[0][v] = v_wt[v];\n\n  // 2 * t or\
     \ 2 * eid + 1\n  vv(int, par, 1 << K, N, -1);\n\n  for (int s = 1; s < (1 << K);\
-    \ ++s) {\n    auto& dp = DP[s];\n    enumerate_all_bit<u32>(s, [&](int k) -> void\
-    \ {\n      int v = S[k];\n      chmin(dp[v], DP[s ^ 1 << k][v]);\n    });\n  \
-    \  for (u32 t = s & (s - 1); t; t = (t - 1) & s) {\n      FOR(v, N) {\n      \
-    \  if (chmin(dp[v], DP[t][v] + DP[s ^ t][v] - v_wt[v])) par[s][v] = 2 * t;\n \
-    \     }\n    }\n    // \u6839\u306E\u79FB\u52D5\u3092 dijkstra \u3067\n    pq_min<pair<T,\
-    \ int>> que;\n    FOR(v, N) que.emplace(dp[v], v);\n    while (!que.empty()) {\n\
-    \      auto [dv, v] = POP(que);\n      if (dv != dp[v]) continue;\n      for (auto&&\
-    \ e : G[v]) {\n        if (chmin(dp[e.to], dv + e.cost + v_wt[e.to])) {\n    \
-    \      par[s][e.to] = 2 * e.id + 1;\n          que.emplace(dp[e.to], e.to);\n\
+    \ ++s) {\n    auto& dp = DP[s];\n    enumerate_all_bit<u32>(s, [&](int k, bool)\
+    \ -> void {\n      int v = S[k];\n      chmin(dp[v], DP[s ^ 1 << k][v]);\n   \
+    \ });\n    for (u32 t = s & (s - 1); t; t = (t - 1) & s) {\n      FOR(v, N) {\n\
+    \        if (chmin(dp[v], DP[t][v] + DP[s ^ t][v] - v_wt[v])) par[s][v] = 2 *\
+    \ t;\n      }\n    }\n    // \u6839\u306E\u79FB\u52D5\u3092 dijkstra \u3067\n\
+    \    pq_min<pair<T, int>> que;\n    FOR(v, N) que.emplace(dp[v], v);\n    while\
+    \ (!que.empty()) {\n      auto [dv, v] = POP(que);\n      if (dv != dp[v]) continue;\n\
+    \      for (auto&& e : G[v]) {\n        if (chmin(dp[e.to], dv + e.cost + v_wt[e.to]))\
+    \ {\n          par[s][e.to] = 2 * e.id + 1;\n          que.emplace(dp[e.to], e.to);\n\
     \        }\n      }\n    }\n  }\n\n  // \u5FA9\u5143\u3059\u308B\n  vc<bool> used_v(N),\
     \ used_e(M);\n  vc<int> v_to_k(N, -1);\n  FOR(k, K) v_to_k[S[k]] = k;\n\n  vc<pair<int,\
     \ int>> que;\n  int root = min_element(all(DP.back())) - DP.back().begin();\n\
@@ -208,8 +208,8 @@ data:
   isVerificationFile: false
   path: graph/steiner_tree.hpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-11-17 02:53:18+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/114.test.cpp
 documentation_of: graph/steiner_tree.hpp

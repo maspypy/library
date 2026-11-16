@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/pythagorean_triple.hpp
     title: nt/pythagorean_triple.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -153,35 +153,36 @@ data:
     \n\nvoid test() {\n  int LIM = 10000;\n  int A = 0, B = 0;\n  FOR(y, 1, LIM) {\n\
     \    FOR(x, 1, y) {\n      int z = sqrtl(x * x + y * y);\n      if (z > LIM) break;\n\
     \      if (x * x + y * y != z * z) continue;\n      A += 1;\n      B += gcd(x,\
-    \ y) == 1;\n    }\n  }\n  enumerate_pythagorean_triple<false>(LIM, [&](int a,\
-    \ int b, int c) -> void {\n    assert(0 <= a && a <= b && b <= c && c <= LIM &&\
-    \ a * a + b * b == c * c);\n    --A;\n  });\n  enumerate_pythagorean_triple<true>(LIM,\
-    \ [&](int a, int b, int c) -> void {\n    assert(0 <= a && a <= b && b <= c &&\
-    \ c <= LIM && a * a + b * b == c * c);\n    assert(gcd(a, b) == 1);\n    --B;\n\
-    \  });\n  assert(A == 0 && B == 0);\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
-    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \  return 0;\n}\n"
+    \ y) == 1;\n    }\n  }\n  enumerate_pythagorean_triple<false>(\n      LIM, [&](int\
+    \ a, int b, int c, bool) -> void {\n        assert(\n            0 <= a && a <=\
+    \ b && b <= c && c <= LIM && a * a + b * b == c * c);\n        --A;\n      });\n\
+    \  enumerate_pythagorean_triple<true>(\n      LIM, [&](int a, int b, int c, bool)\
+    \ -> void {\n        assert(\n            0 <= a && a <= b && b <= c && c <= LIM\
+    \ && a * a + b * b == c * c);\n        assert(gcd(a, b) == 1);\n        --B;\n\
+    \      });\n  assert(A == 0 && B == 0);\n}\n\nvoid solve() {\n  int a, b;\n  cin\
+    \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n \
+    \ solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n\n#include \"nt/pythagorean_triple.hpp\"\n\nvoid test() {\n\
     \  int LIM = 10000;\n  int A = 0, B = 0;\n  FOR(y, 1, LIM) {\n    FOR(x, 1, y)\
     \ {\n      int z = sqrtl(x * x + y * y);\n      if (z > LIM) break;\n      if\
     \ (x * x + y * y != z * z) continue;\n      A += 1;\n      B += gcd(x, y) == 1;\n\
-    \    }\n  }\n  enumerate_pythagorean_triple<false>(LIM, [&](int a, int b, int\
-    \ c) -> void {\n    assert(0 <= a && a <= b && b <= c && c <= LIM && a * a + b\
-    \ * b == c * c);\n    --A;\n  });\n  enumerate_pythagorean_triple<true>(LIM, [&](int\
-    \ a, int b, int c) -> void {\n    assert(0 <= a && a <= b && b <= c && c <= LIM\
-    \ && a * a + b * b == c * c);\n    assert(gcd(a, b) == 1);\n    --B;\n  });\n\
-    \  assert(A == 0 && B == 0);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
-    \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \  return 0;\n}"
+    \    }\n  }\n  enumerate_pythagorean_triple<false>(\n      LIM, [&](int a, int\
+    \ b, int c, bool) -> void {\n        assert(\n            0 <= a && a <= b &&\
+    \ b <= c && c <= LIM && a * a + b * b == c * c);\n        --A;\n      });\n  enumerate_pythagorean_triple<true>(\n\
+    \      LIM, [&](int a, int b, int c, bool) -> void {\n        assert(\n      \
+    \      0 <= a && a <= b && b <= c && c <= LIM && a * a + b * b == c * c);\n  \
+    \      assert(gcd(a, b) == 1);\n        --B;\n      });\n  assert(A == 0 && B\
+    \ == 0);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b\
+    \ << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - nt/pythagorean_triple.hpp
   isVerificationFile: true
   path: test/1_mytest/pythagorean_triples.test.cpp
   requiredBy: []
-  timestamp: '2026-11-16 16:23:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-17 02:53:18+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/pythagorean_triples.test.cpp
 layout: document

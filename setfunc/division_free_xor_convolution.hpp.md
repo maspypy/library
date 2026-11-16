@@ -34,7 +34,9 @@ data:
     links:
     - https://github.com/maspypy/library/blob/main/setfunc/division_free_xor_convolution.hpp
     - https://uoj.ac/contest/103/problem/1015
-  bundledCode: "#line 1 \"poly/convolution.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/convolution.hpp\n\
+  bundledCode: "#line 1 \"setfunc/division_free_xor_convolution.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/setfunc/division_free_xor_convolution.hpp\n\
+    #line 1 \"poly/convolution.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/convolution.hpp\n\
     #line 1 \"mod/modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint.hpp\n\
     #line 1 \"mod/modint_common.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint_common.hpp\n\
     \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
@@ -302,7 +304,7 @@ data:
     \  if (mint::can_ntt()) {\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
     \ b);\n    return convolution_ntt(a, b);\n  }\n  if (min(n, m) <= 200) return\
     \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
-    #line 2 \"setfunc/division_free_xor_convolution.hpp\"\n\n// Source: https://github.com/maspypy/library/blob/main/setfunc/division_free_xor_convolution.hpp\n\
+    #line 3 \"setfunc/division_free_xor_convolution.hpp\"\n\n// Source: https://github.com/maspypy/library/blob/main/setfunc/division_free_xor_convolution.hpp\n\
     // https://uoj.ac/contest/103/problem/1015\ntemplate <typename T>\nvc<T> division_free_xor_convolution(vc<T>\
     \ a, vc<T> b) {\n  int K = topbit(len(a));\n  int n = len(a);\n  SHOW(a);\n  SHOW(b);\n\
     \  // y = x + 1\n  // x = y - 1\n  // supseset zeta\n  for (int i = 1; i != n;\
@@ -325,7 +327,8 @@ data:
     \ = 1; i != n; i <<= 1) {\n    for (int j = 0; j != n; j += i << 1) {\n      for\
     \ (int k = 0; k != i; k++) {\n        a[j + k] += a[i + j + k];\n      }\n   \
     \ }\n  }\n  return a;\n}\n"
-  code: "#include \"poly/convolution.hpp\"\n\n// Source: https://github.com/maspypy/library/blob/main/setfunc/division_free_xor_convolution.hpp\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/setfunc/division_free_xor_convolution.hpp\n\
+    #include \"poly/convolution.hpp\"\n\n// Source: https://github.com/maspypy/library/blob/main/setfunc/division_free_xor_convolution.hpp\n\
     // https://uoj.ac/contest/103/problem/1015\ntemplate <typename T>\nvc<T> division_free_xor_convolution(vc<T>\
     \ a, vc<T> b) {\n  int K = topbit(len(a));\n  int n = len(a);\n  SHOW(a);\n  SHOW(b);\n\
     \  // y = x + 1\n  // x = y - 1\n  // supseset zeta\n  for (int i = 1; i != n;\
@@ -360,7 +363,7 @@ data:
   isVerificationFile: false
   path: setfunc/division_free_xor_convolution.hpp
   requiredBy: []
-  timestamp: '2026-11-13 14:14:25+09:00'
+  timestamp: '2026-11-17 02:58:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: setfunc/division_free_xor_convolution.hpp

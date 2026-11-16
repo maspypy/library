@@ -24,12 +24,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1575.test.cpp
     title: test/3_yukicoder/1575.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1881.test.cpp
     title: test/3_yukicoder/1881.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/nt/spf_table.hpp
@@ -68,7 +68,7 @@ data:
   - nt/all_lcm.hpp
   - mod/modfast.hpp
   timestamp: '2026-10-24 09:51:44+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1411.test.cpp
   - test/3_yukicoder/1881.test.cpp

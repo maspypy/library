@@ -22,10 +22,10 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
   - icon: ':heavy_check_mark:'
@@ -61,7 +61,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':question:'

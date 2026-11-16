@@ -33,15 +33,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/totient_sum.test.cpp
     title: test/2_library_checker/number_theory/totient_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1276.test.cpp
     title: test/3_yukicoder/1276.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1781.test.cpp
     title: test/3_yukicoder/1781.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/nt/prime_sum.hpp
@@ -116,7 +116,7 @@ data:
   - nt/prime_sum_mod6.hpp
   - nt/count_by_factor_type.hpp
   timestamp: '2026-10-24 09:51:44+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/number_theory/counting_primes.test.cpp
   - test/2_library_checker/number_theory/totient_sum.test.cpp

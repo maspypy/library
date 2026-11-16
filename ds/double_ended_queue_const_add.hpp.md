@@ -2,16 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_trick_1.hpp
     title: convex/slope_trick/slope_trick_1.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1077_2.test.cpp
     title: test/3_yukicoder/1077_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/double_ended_queue_const_add.hpp
@@ -97,7 +97,7 @@ data:
   requiredBy:
   - convex/slope_trick/slope_trick_1.hpp
   timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1077_2.test.cpp
 documentation_of: ds/double_ended_queue_const_add.hpp

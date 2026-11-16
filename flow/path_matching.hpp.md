@@ -8,9 +8,9 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links:
-    - https://github.com/maspypy/library/blob/main/convex/path_independent_set.hpp
+    - https://github.com/maspypy/library/blob/main/flow/path_matching.hpp
     - https://info.atcoder.jp/entry/algorithm_lectures/matching_on_path
-  bundledCode: "#line 1 \"flow/path_matching.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/convex/path_independent_set.hpp\n\
+  bundledCode: "#line 1 \"flow/path_matching.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/flow/path_matching.hpp\n\
     \n// https://info.atcoder.jp/entry/algorithm_lectures/matching_on_path\n// return:\
     \ (val,i,j), \u9802\u70B9\u91CD\u307F\u306E\u548C\u3068 2 \u70B9\ntemplate <typename\
     \ T, bool MINIMIZE>\nvc<tuple<T, int, int>> path_matching(vc<T> A) {\n  vc<tuple<T,\
@@ -23,7 +23,7 @@ data:
     \ {\n    int b = POP(st);\n    int a = POP(st);\n    dat.eb(A[a] + A[b], a, b);\n\
     \  }\n  sort(all(dat));\n  if (!MINIMIZE) {\n    for (auto& [x, a, b] : dat) x\
     \ = -x;\n  }\n  return dat;\n}\n"
-  code: "// Source: https://github.com/maspypy/library/blob/main/convex/path_independent_set.hpp\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/flow/path_matching.hpp\n\
     \n// https://info.atcoder.jp/entry/algorithm_lectures/matching_on_path\n// return:\
     \ (val,i,j), \u9802\u70B9\u91CD\u307F\u306E\u548C\u3068 2 \u70B9\ntemplate <typename\
     \ T, bool MINIMIZE>\nvc<tuple<T, int, int>> path_matching(vc<T> A) {\n  vc<tuple<T,\
@@ -40,7 +40,7 @@ data:
   isVerificationFile: false
   path: flow/path_matching.hpp
   requiredBy: []
-  timestamp: '2026-11-06 23:04:21+09:00'
+  timestamp: '2026-11-17 02:58:38+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: flow/path_matching.hpp

@@ -317,7 +317,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/st_numbering.hpp
     title: graph/st_numbering.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -389,7 +389,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modfast.hpp
     title: mod/modfast.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/array_on_divisors.hpp
     title: nt/array_on_divisors.hpp
   - icon: ':heavy_check_mark:'
@@ -714,7 +714,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1069.test.cpp
     title: test/3_yukicoder/1069.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/114.test.cpp
     title: test/3_yukicoder/114.test.cpp
   - icon: ':heavy_check_mark:'
@@ -762,7 +762,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1344.test.cpp
     title: test/3_yukicoder/1344.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1383.test.cpp
     title: test/3_yukicoder/1383.test.cpp
   - icon: ':heavy_check_mark:'
@@ -816,10 +816,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1718.test.cpp
     title: test/3_yukicoder/1718.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1726.test.cpp
     title: test/3_yukicoder/1726.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1728.test.cpp
     title: test/3_yukicoder/1728.test.cpp
   - icon: ':heavy_check_mark:'
@@ -864,7 +864,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1868.test.cpp
     title: test/3_yukicoder/1868.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1881.test.cpp
     title: test/3_yukicoder/1881.test.cpp
   - icon: ':heavy_check_mark:'
@@ -888,7 +888,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2258.test.cpp
     title: test/3_yukicoder/2258.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2264.test.cpp
     title: test/3_yukicoder/2264.test.cpp
   - icon: ':heavy_check_mark:'
