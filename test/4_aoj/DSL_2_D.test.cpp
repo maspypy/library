@@ -9,6 +9,7 @@ void solve() {
   using Mono = Monoid_Assign<ll>;
   LL(N, Q);
   Dual_SegTree<Mono> seg(N);
+  seg.apply(0, N, (1LL << 31) - 1);
   FOR(Q) {
     LL(t);
     if (t == 0) {
