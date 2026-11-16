@@ -8,7 +8,7 @@ void solve() {
   vi ANS;
   2 * sqrt(N) + 10;
   ANS.reserve(2 * sqrt(N) + 10);
-  floor_range(N, [&](ll q, ll l, ll r) -> void { ANS.eb(q); });
+  floor_range(N, [&](ll q, ll l, ll r, bool) -> void { ANS.eb(q); });
   print(len(ANS));
   print(ANS);
 }

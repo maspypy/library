@@ -9,8 +9,9 @@ void solve() {
   Graph G(N);
   G.read_graph(M, 0, 0);
   i128 sum = 0;
-  auto query
-      = [&](int a, int b, int c) -> void { sum += i128(A[a]) * A[b] * A[c]; };
+  auto query = [&](int a, int b, int c, bool) -> void {
+    sum += i128(A[a]) * A[b] * A[c];
+  };
   enumerate_triangle(G, query);
   int ANS = sum % 998244353;
   print(ANS);

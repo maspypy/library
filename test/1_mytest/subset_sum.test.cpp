@@ -22,10 +22,10 @@ void test() {
           assert(I5.empty());
           continue;
         }
-        for (vc<int> I: {I1, I2, I3, I4, I5}) {
+        for (vc<int> I : {I1, I2, I3, I4, I5}) {
           FOR(i, len(I) - 1) assert(I[i] != I[i + 1]);
           int sm = 0;
-          for (auto& i: I) sm += A[i];
+          for (auto& i : I) sm += A[i];
           assert(sm == s);
         }
       }

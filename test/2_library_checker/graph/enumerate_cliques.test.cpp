@@ -15,9 +15,9 @@ void solve() {
   Graph<int, 0> G(N);
   G.read_graph(M, 0, 0);
 
-  auto f = [&](vc<int> C) -> void {
+  auto f = [&](const vc<int>& C, bool) -> void {
     mint p = 1;
-    for (auto&& i: C) p *= X[i];
+    for (auto&& i : C) p *= X[i];
     ANS += p;
   };
   enumerate_clique(G, f);
@@ -25,11 +25,7 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
+  solve();
 
   return 0;
 }
