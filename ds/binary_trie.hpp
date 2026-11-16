@@ -3,7 +3,7 @@
 
 // 非永続ならば、2 * 要素数 のノード数
 template <int LOG, bool PERSISTENT, typename UINT = u64,
-          typename SIZE_TYPE = u32>
+    typename SIZE_TYPE = u32>
 struct Binary_Trie {
   using T = SIZE_TYPE;
   static_assert(is_same_v<T, u32> || is_same_v<T, u64>);
@@ -32,18 +32,21 @@ struct Binary_Trie {
   // f(val, cnt)
   template <typename F>
   void enumerate(np root, F f) {
+    bool end = false;
     auto dfs = [&](auto &dfs, np root, UINT val, int ht) -> void {
       if (ht == 0) {
-        f(val, root->cnt);
+        f(val, root->cnt, end);
         return;
       }
       np c = root->l;
       if (c) {
         dfs(dfs, c, val << (c->width) | (c->val), ht - (c->width));
+        if (end) return;
       }
       c = root->r;
       if (c) {
         dfs(dfs, c, val << (c->width) | (c->val), ht - (c->width));
+        if (end) return;
       }
     };
     if (root) dfs(dfs, root, 0, LOG);

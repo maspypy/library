@@ -14,10 +14,11 @@ N = 100 (190569292) : 15600 ms
 template <typename F>
 void enumerate_partition(int N, F query, int LIM_len = -1, int LIM_val = -1) {
   assert(N >= 0);
+  bool end = false;
   auto dfs = [&](auto self, vc<int> &p, int sum) -> void {
+    if (end) return;
     if (sum == N) {
-      query(p);
-      return;
+      return query(p, end);
     }
     if (LIM_len != -1 && len(p) == LIM_len) return;
     int nxt = (len(p) == 0 ? N : p.back());
@@ -27,6 +28,7 @@ void enumerate_partition(int N, F query, int LIM_len = -1, int LIM_val = -1) {
     FOR3_R(x, 1, nxt + 1) {
       p.back() = x;
       self(self, p, sum + x);
+      if (end) break;
     }
     p.pop_back();
   };
@@ -43,16 +45,19 @@ void enumerate_partition(int N, F query, int LIM_len = -1, int LIM_val = -1) {
 template <typename F>
 void enumerate_set_partition(int N, F f) {
   vc<u32> S;
+  bool end = false;
   auto dfs = [&](auto &dfs, u32 rest) -> void {
+    if (end) return;
     if (rest == 0) {
-      return f(S);
+      return f(S, end);
     }
     int a = lowbit(rest);
     rest -= u32(1) << a;
-    enumerate_all_subset<u32, true>(rest, [&](u32 s) -> void {
+    enumerate_all_subset<u32, true>(rest, [&](u32 s, bool &end_inner) -> void {
       S.eb(s | 1 << a);
       dfs(dfs, rest - s);
       POP(S);
+      end_inner = end;
     });
   };
   dfs(dfs, (u32(1) << N) - 1);

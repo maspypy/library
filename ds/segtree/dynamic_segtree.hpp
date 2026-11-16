@@ -95,18 +95,20 @@ struct Dynamic_SegTree {
   template <typename F>
   void enumerate(np root, F f) {
     if (!root) return;
+    bool end = false;
     auto dfs = [&](auto &dfs, np c, ll l, ll r) -> void {
       if (!c) return;
       if (r - l == 1) {
-        f(l, c->x);
+        f(l, c->x, end);
         return;
       }
       ll m = (l + r) / 2;
       dfs(dfs, c->l, l, m);
+      if (end) return;
       dfs(dfs, c->r, m, r);
+      if (end) return;
     };
     dfs(dfs, root, L0, R0);
-    return;
   }
 
   void reset() { pool.reset(); }

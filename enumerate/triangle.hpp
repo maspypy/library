@@ -21,6 +21,7 @@ void enumerate_triangle(const Gr& G, F query) {
   }
   H.build();
 
+  bool end = false;
   vc<bool> table(N);
   FOR(a, N) {
     for (auto&& e : H[a]) {
@@ -30,7 +31,10 @@ void enumerate_triangle(const Gr& G, F query) {
       int b = e.to;
       for (auto&& f : H[b]) {
         int c = f.to;
-        if (table[c]) query(a, b, c);
+        if (table[c]) {
+          query(a, b, c, end);
+          if (end) return;
+        }
       }
     }
     for (auto&& e : H[a]) {

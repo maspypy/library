@@ -47,7 +47,11 @@ struct HashMap {
   // f(key, val)
   template <typename F>
   void enumerate_all(F f) {
-    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);
+    bool end = false;
+    FOR(i, len(used)) {
+      if (used[i]) f(key[i], val[i], end);
+      if (end) break;
+    }
   }
 
  private:

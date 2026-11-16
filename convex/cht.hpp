@@ -68,7 +68,7 @@ template <typename T>
 using CHT_Max = Line_Container<T, false>;
 
 /*
-long long / double で動くと思う。クエリあたり O(log N)
+long long / double で動く。クエリあたり O(log N)
 ・add(a, b, i=-1)：ax + by の追加 (index=i)
 ・get_max(x,y)：(ax + by,i)
 ・get_min(x,y)：(ax + by,i)
@@ -90,6 +90,11 @@ struct CHT_XY {
     empty = true;
     cht_min.clear();
     cht_max.clear();
+    MP.clear();
+    amax = -infty<T>, amin = infty<T>;
+    bmax = -infty<T>, bmin = infty<T>;
+    amax_idx = -1, amin_idx = -1;
+    bmax_idx = -1, bmin_idx = -1;
   }
   void add(T a, T b, int i = -1) {
     empty = false;

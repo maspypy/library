@@ -39,7 +39,9 @@ struct Double_Ended_Queue_Const_Add {
 
   T pop_max() {
     assert(!dat.empty());
-    if (len(dat) <= 2) { return POP(dat) + add; }
+    if (len(dat) <= 2) {
+      return POP(dat) + add;
+    }
     swap(dat[1], dat.back());
     T res = POP(dat);
     down(1);
@@ -48,10 +50,14 @@ struct Double_Ended_Queue_Const_Add {
 
   template <typename F>
   void enumerate_all(F f) {
-    for (auto& x: dat) f(x + add);
+    bool end = false;
+    for (auto& x : dat) {
+      f(x + add, end);
+      if (end) return;
+    }
   }
 
-private:
+ private:
   inline int parent(int i) { return (i - 4 + (i & 3)) / 2; }
 
   void down(int i) {
@@ -84,9 +90,13 @@ private:
     int i = len(dat) - 1;
     if (2 <= i && i % 2 == 0) {
       int p = parent(i) ^ 1;
-      if (dat[p] < dat[i]) { swap(dat[i], dat[p]), i = p; }
+      if (dat[p] < dat[i]) {
+        swap(dat[i], dat[p]), i = p;
+      }
     }
-    if (i % 2 == 1 && dat[i] < dat[i - 1]) { swap(dat[i - 1], dat[i]), --i; }
+    if (i % 2 == 1 && dat[i] < dat[i - 1]) {
+      swap(dat[i - 1], dat[i]), --i;
+    }
     if (i % 2 == 0) {
       while (i >= 2) {
         int p = parent(i);

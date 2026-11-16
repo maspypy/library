@@ -2,9 +2,11 @@
 template <typename BS, typename F>
 void enumerate_bits_bitset(BS& b, int L, int R, F&& f) {
   if (L >= len(b)) return;
+  bool end = false;
   int p = (b[L] ? L : b._Find_next(L));
   while (p < R) {
-    f(p);
+    f(p, end);
+    if (end) break;
     p = b._Find_next(p);
   }
 }
@@ -12,8 +14,10 @@ void enumerate_bits_bitset(BS& b, int L, int R, F&& f) {
 template <typename UINT, typename F>
 inline void enumerate_all_bit(UINT s, F&& f) {
   static_assert(is_unsigned<UINT>::value);
+  bool end = false;
   while (s) {
-    f(lowbit(s));
+    f(lowbit(s), end);
+    if (end) break;
     s &= s - 1;
   }
 }
@@ -21,6 +25,12 @@ inline void enumerate_all_bit(UINT s, F&& f) {
 template <typename UINT, bool inc_empty, typename F>
 inline void enumerate_all_subset(UINT s, F&& f) {
   static_assert(is_unsigned<UINT>::value);
-  for (UINT t = s; t; t = (t - 1) & s) f(t);
-  if constexpr (inc_empty) f(0);
+  bool end = false;
+  for (UINT t = s; t; t = (t - 1) & s) {
+    f(t, end);
+    if (end) break;
+  }
+  if constexpr (inc_empty) {
+    if (!end) f(UINT(0), end);
+  }
 }

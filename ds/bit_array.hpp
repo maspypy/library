@@ -403,8 +403,10 @@ struct Bit_Array {
     assert(0 <= L && L <= R && R <= N);
     if (L == R) return;
     int p = ((*this)[L] ? L : _Find_next(L));
+    bool end = false;
     while (p < R) {
-      f(p);
+      f(p, end);
+      if (end) return;
       p = _Find_next(p);
     }
   }

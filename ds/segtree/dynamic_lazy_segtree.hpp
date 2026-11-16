@@ -99,16 +99,19 @@ struct Dynamic_Lazy_SegTree {
   // f(idx, val)
   template <typename F>
   void enumerate(np root, F f) {
+    bool end = false;
     auto dfs = [&](auto &dfs, np c, ll l, ll r, A a) -> void {
       if (!c) return;
       if (r - l == 1) {
-        f(l, AM::act(c->x, a, 1));
+        f(l, AM::act(c->x, a, 1), end);
         return;
       }
       ll m = (l + r) / 2;
       a = MA::op(c->lazy, a);
       dfs(dfs, c->l, l, m, a);
+      if (end) return;
       dfs(dfs, c->r, m, r, a);
+      if (end) return;
     };
     dfs(dfs, root, L0, R0, MA::id());
   }

@@ -55,9 +55,10 @@ void enumerate_unlabeled_tree(int n, F f) {
     return edge;
   };
 
+  bool end = false;
   auto dfs = [&](auto& dfs, int m, int k, u64 now, int now_e) -> void {
     if (now_e == n - 1) {
-      f(decode(now));
+      f(decode(now), end);
       return;
     }
     if (now_e + m >= n) {
@@ -69,10 +70,12 @@ void enumerate_unlabeled_tree(int n, F f) {
       u64 x = dat[m][i];
       x = (x << 1) | 1;
       dfs(dfs, m, i, now | x << (2 * now_e), now_e + m);
+      if (end) return;
     }
     dfs(dfs, m - 1, 0, now, now_e);
   };
   dfs(dfs, floor<int>(n - 1, 2), 0, 0, 0);
+  if (end) return;
 
   // 重心が 2 つの場合
   if (2 * m == n) {
@@ -80,7 +83,8 @@ void enumerate_unlabeled_tree(int n, F f) {
       FOR(j, i + 1) {
         u64 x = dat[m][i], y = dat[m][j];
         y = (y << 1) | 1;
-        f(decode(x | (y << (2 * (m - 1)))));
+        f(decode(x | (y << (2 * (m - 1)))), end);
+        if (end) return;
       }
     }
   }
@@ -136,5 +140,9 @@ void enumerate_unlabeled_rooted_tree(int n, F f) {
     return edge;
   };
 
-  for (auto& x : dat[n]) f(decode(x));
+  bool end = false;
+  for (auto& x : dat[n]) {
+    f(decode(x), end);
+    if (end) return;
+  }
 }

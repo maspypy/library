@@ -3,6 +3,7 @@
 // https://www.slideshare.net/wata_orz/ss-12131479
 template <typename Gr, typename F>
 void enumerate_clique(const Gr& G, F query) {
+  bool end = false;
   int N = G.N;
   auto deg = G.deg_array();
   vc<bool> done(N);
@@ -23,7 +24,8 @@ void enumerate_clique(const Gr& G, F query) {
     vc<int> C = {v};
 
     auto dfs = [&](auto& dfs, int k) -> void {
-      query(C);
+      query(C, end);
+      if (end) return;
       FOR(i, k, len(nbd)) {
         bool ok = 1;
         for (auto&& x : C) {
@@ -36,6 +38,7 @@ void enumerate_clique(const Gr& G, F query) {
           C.eb(nbd[i]);
           dfs(dfs, i + 1);
           C.pop_back();
+          if (end) return;
         }
       }
     };

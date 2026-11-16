@@ -4,14 +4,16 @@
 template <typename F>
 void enumerate_multiset(int N, int K, F query) {
   vc<int> A(K);
+  bool end = false;
   auto dfs = [&](auto& dfs, int p, int s) -> void {
     if (p == K) {
-      if (s == 0) query(A);
+      if (s == 0) query(A, end);
       return;
     }
     FOR(x, s + 1) {
       A[p] = x;
       dfs(dfs, p + 1, s - x);
+      if (end) break;
     }
   };
   dfs(dfs, 0, N);

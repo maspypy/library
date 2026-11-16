@@ -11,9 +11,10 @@ void enumerate_maximal_independent_set(const GT& G, F f) {
     adj[e.frm] |= u64(1) << e.to;
     adj[e.to] |= u64(1) << e.frm;
   }
+  bool end = false;
   auto dfs = [&](auto& dfs, u64 I, u64 V) -> void {
     if (V == 0) {
-      f(I);
+      f(I, end);
       return;
     }
     int min_deg = infty<int>;
@@ -23,8 +24,9 @@ void enumerate_maximal_independent_set(const GT& G, F f) {
       if (chmin(min_deg, d)) v = i;
     });
     u64 cand = (V & adj[v]) | u64(1) << v;
-    enumerate_bits_64(cand, [&](int v) -> void {
+    enumerate_bits_64(cand, [&](int v, bool& end_inner) -> void {
       dfs(dfs, I | u64(1) << v, V & (~(u64(1) << v)) & ~(adj[v]));
+      end_inner = end;
     });
   };
   u64 FULL = 0;
