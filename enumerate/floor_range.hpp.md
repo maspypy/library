@@ -9,10 +9,10 @@ data:
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/floor_ceil_ranges.test.cpp
     title: test/1_mytest/floor_ceil_ranges.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/enumerate_quotients.test.cpp
     title: test/2_library_checker/number_theory/enumerate_quotients.test.cpp
   - icon: ':x:'
@@ -21,7 +21,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1276.test.cpp
     title: test/3_yukicoder/1276.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1573.test.cpp
     title: test/3_yukicoder/1573.test.cpp
   - icon: ':x:'
@@ -32,7 +32,7 @@ data:
     title: test/3_yukicoder/4954.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/enumerate/floor_range.hpp
@@ -41,33 +41,35 @@ data:
     \u9806\ntemplate <typename F>\nvoid floor_range(u64 N, F f, bool Q_ASC = true,\
     \ bool INCLUDE_Q_IS_0 = false) {\n  bool end = false;\n  u64 sq = sqrtl(N);\n\
     \  u32 n = (sq * sq + sq <= N ? sq : sq - 1);\n  if (Q_ASC) {\n    if (INCLUDE_Q_IS_0)\
-    \ f(0, N + 1, infty<ll>);\n    for (u32 q = 1; q <= n; ++q) {\n      f(q, N /\
-    \ (q + 1) + 1, N / q + 1, end);\n      if (end) return;\n    }\n    for (u32 l\
-    \ = sq; l >= 1; --l) {\n      f(N / l, l, l + 1, end);\n      if (end) return;\n\
-    \    }\n  } else {\n    for (u32 l = 1; l <= sq; ++l) {\n      f(N / l, l, l +\
-    \ 1, end);\n      if (end) return;\n    }\n    for (u32 q = n; q >= 1; --q) {\n\
-    \      f(q, N / (q + 1) + 1, N / q + 1, end);\n      if (end) return;\n    }\n\
-    \    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\n  }\n}\n"
+    \ f(0, N + 1, infty<ll>, end);\n    if (end) return;\n    for (u32 q = 1; q <=\
+    \ n; ++q) {\n      f(q, N / (q + 1) + 1, N / q + 1, end);\n      if (end) return;\n\
+    \    }\n    for (u32 l = sq; l >= 1; --l) {\n      f(N / l, l, l + 1, end);\n\
+    \      if (end) return;\n    }\n  } else {\n    for (u32 l = 1; l <= sq; ++l)\
+    \ {\n      f(N / l, l, l + 1, end);\n      if (end) return;\n    }\n    for (u32\
+    \ q = n; q >= 1; --q) {\n      f(q, N / (q + 1) + 1, N / q + 1, end);\n      if\
+    \ (end) return;\n    }\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>, end);\n\
+    \  }\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/enumerate/floor_range.hpp\n\
     // \u5546\u304C q \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\
     \u9806\ntemplate <typename F>\nvoid floor_range(u64 N, F f, bool Q_ASC = true,\
     \ bool INCLUDE_Q_IS_0 = false) {\n  bool end = false;\n  u64 sq = sqrtl(N);\n\
     \  u32 n = (sq * sq + sq <= N ? sq : sq - 1);\n  if (Q_ASC) {\n    if (INCLUDE_Q_IS_0)\
-    \ f(0, N + 1, infty<ll>);\n    for (u32 q = 1; q <= n; ++q) {\n      f(q, N /\
-    \ (q + 1) + 1, N / q + 1, end);\n      if (end) return;\n    }\n    for (u32 l\
-    \ = sq; l >= 1; --l) {\n      f(N / l, l, l + 1, end);\n      if (end) return;\n\
-    \    }\n  } else {\n    for (u32 l = 1; l <= sq; ++l) {\n      f(N / l, l, l +\
-    \ 1, end);\n      if (end) return;\n    }\n    for (u32 q = n; q >= 1; --q) {\n\
-    \      f(q, N / (q + 1) + 1, N / q + 1, end);\n      if (end) return;\n    }\n\
-    \    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\n  }\n}\n"
+    \ f(0, N + 1, infty<ll>, end);\n    if (end) return;\n    for (u32 q = 1; q <=\
+    \ n; ++q) {\n      f(q, N / (q + 1) + 1, N / q + 1, end);\n      if (end) return;\n\
+    \    }\n    for (u32 l = sq; l >= 1; --l) {\n      f(N / l, l, l + 1, end);\n\
+    \      if (end) return;\n    }\n  } else {\n    for (u32 l = 1; l <= sq; ++l)\
+    \ {\n      f(N / l, l, l + 1, end);\n      if (end) return;\n    }\n    for (u32\
+    \ q = n; q >= 1; --q) {\n      f(q, N / (q + 1) + 1, N / q + 1, end);\n      if\
+    \ (end) return;\n    }\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>, end);\n\
+    \  }\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: enumerate/floor_range.hpp
   requiredBy:
   - nt/range_rational_count.hpp
   - nt/mertens.hpp
-  timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-11-16 15:34:21+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/number_theory/enumerate_quotients.test.cpp
   - test/3_yukicoder/1260.test.cpp

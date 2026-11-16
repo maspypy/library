@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
   - icon: ':question:'
@@ -81,23 +81,23 @@ data:
     \u9806\ntemplate <typename F>\nvoid floor_range(u64 N, F f, bool Q_ASC = true,\
     \ bool INCLUDE_Q_IS_0 = false) {\n  bool end = false;\n  u64 sq = sqrtl(N);\n\
     \  u32 n = (sq * sq + sq <= N ? sq : sq - 1);\n  if (Q_ASC) {\n    if (INCLUDE_Q_IS_0)\
-    \ f(0, N + 1, infty<ll>);\n    for (u32 q = 1; q <= n; ++q) {\n      f(q, N /\
-    \ (q + 1) + 1, N / q + 1, end);\n      if (end) return;\n    }\n    for (u32 l\
-    \ = sq; l >= 1; --l) {\n      f(N / l, l, l + 1, end);\n      if (end) return;\n\
-    \    }\n  } else {\n    for (u32 l = 1; l <= sq; ++l) {\n      f(N / l, l, l +\
-    \ 1, end);\n      if (end) return;\n    }\n    for (u32 q = n; q >= 1; --q) {\n\
-    \      f(q, N / (q + 1) + 1, N / q + 1, end);\n      if (end) return;\n    }\n\
-    \    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\n  }\n}\n#line 5 \"nt/mertens.hpp\"\
-    \n\ntemplate <typename T>\nstruct Mertens {\n  Array_on_Floor<T> sum;\n  Mertens()\
-    \ {}\n  Mertens(u64 N, u64 K = -1) { build(N, K); }\n  void build(u64 N, u64 K\
-    \ = -1) {\n    sum = Array_on_Floor<T>(N);\n    if (K == u64(-1)) { K = pow(N,\
-    \ 0.67); }\n    vc<T> A = mobius_table<T>(K);\n    FOR(k, 1, K) A[k + 1] += A[k];\n\
-    \    FOR(i, len(sum)) {\n      u64 n = sum.get_floor(i);\n      if (n <= K) {\n\
-    \        sum.dat[i] = A[n];\n        continue;\n      }\n      T ans = 1;\n  \
-    \    floor_range(n, [&](u64 q, u64 l, u64 r) -> void {\n        if (q == n) return;\n\
-    \        ans -= sum[q] * T(r - l);\n      });\n      sum.dat[i] = ans;\n    }\n\
-    \  }\n  T operator[](u64 n) { return sum[n]; }\n};\n#line 1 \"mod/floor_sum_of_linear.hpp\"\
-    \n// Source: https://github.com/maspypy/library/blob/main/mod/floor_sum_of_linear.hpp\n\
+    \ f(0, N + 1, infty<ll>, end);\n    if (end) return;\n    for (u32 q = 1; q <=\
+    \ n; ++q) {\n      f(q, N / (q + 1) + 1, N / q + 1, end);\n      if (end) return;\n\
+    \    }\n    for (u32 l = sq; l >= 1; --l) {\n      f(N / l, l, l + 1, end);\n\
+    \      if (end) return;\n    }\n  } else {\n    for (u32 l = 1; l <= sq; ++l)\
+    \ {\n      f(N / l, l, l + 1, end);\n      if (end) return;\n    }\n    for (u32\
+    \ q = n; q >= 1; --q) {\n      f(q, N / (q + 1) + 1, N / q + 1, end);\n      if\
+    \ (end) return;\n    }\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>, end);\n\
+    \  }\n}\n#line 5 \"nt/mertens.hpp\"\n\ntemplate <typename T>\nstruct Mertens {\n\
+    \  Array_on_Floor<T> sum;\n  Mertens() {}\n  Mertens(u64 N, u64 K = -1) { build(N,\
+    \ K); }\n  void build(u64 N, u64 K = -1) {\n    sum = Array_on_Floor<T>(N);\n\
+    \    if (K == u64(-1)) { K = pow(N, 0.67); }\n    vc<T> A = mobius_table<T>(K);\n\
+    \    FOR(k, 1, K) A[k + 1] += A[k];\n    FOR(i, len(sum)) {\n      u64 n = sum.get_floor(i);\n\
+    \      if (n <= K) {\n        sum.dat[i] = A[n];\n        continue;\n      }\n\
+    \      T ans = 1;\n      floor_range(n, [&](u64 q, u64 l, u64 r) -> void {\n \
+    \       if (q == n) return;\n        ans -= sum[q] * T(r - l);\n      });\n  \
+    \    sum.dat[i] = ans;\n    }\n  }\n  T operator[](u64 n) { return sum[n]; }\n\
+    };\n#line 1 \"mod/floor_sum_of_linear.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/floor_sum_of_linear.hpp\n\
     \n// sum_{x in [L,R)} floor(ax + b, mod)\n// I \u306F\u7BC4\u56F2\u5185\u3067\
     \ ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u7A0B\
     \u5EA6\ntemplate <typename O = i128, typename I = long long>\nO floor_sum_of_linear(I\
@@ -169,7 +169,7 @@ data:
   isVerificationFile: false
   path: nt/range_rational_count.hpp
   requiredBy: []
-  timestamp: '2026-11-16 13:22:31+09:00'
+  timestamp: '2026-11-16 15:34:21+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2266.test.cpp

@@ -7,16 +7,16 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/labeled_tree.hpp
     title: enumerate/labeled_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/prufer_code.hpp
     title: graph/prufer_code.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -299,23 +299,25 @@ data:
     \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
     \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 6 \"test/1_mytest/enumerate_labeled_tree.test.cpp\"\
     \n\nvoid test(ll N) {\n  vvc<pair<int, int>> dat;\n  enumerate_labeled_tree(N,\
-    \ [&](vc<pair<int, int>> G) -> void {\n    assert(len(G) == N - 1);\n    UnionFind\
-    \ uf(N);\n    for (auto& [a, b]: G) { uf.merge(a, b); }\n    assert(uf.n_comp\
-    \ == 1);\n    for (auto& [a, b]: G) {\n      if (a > b) swap(a, b);\n    }\n \
-    \   sort(all(G));\n    dat.eb(G);\n  });\n  ll K = 1;\n  FOR(N - 2) K *= N;\n\
-    \  assert(len(dat) == K);\n  UNIQUE(dat);\n  assert(len(dat) == K);\n}\n\nvoid\
-    \ solve() {\n  int x, y;\n  cin >> x >> y;\n  cout << x + y << \"\\n\";\n}\n\n\
-    signed main() {\n  FOR(N, 1, 8) test(N);\n  solve();\n  return 0;\n}\n"
+    \ [&](vc<pair<int, int>> G, bool) -> void {\n    assert(len(G) == N - 1);\n  \
+    \  UnionFind uf(N);\n    for (auto& [a, b] : G) {\n      uf.merge(a, b);\n   \
+    \ }\n    assert(uf.n_comp == 1);\n    for (auto& [a, b] : G) {\n      if (a >\
+    \ b) swap(a, b);\n    }\n    sort(all(G));\n    dat.eb(G);\n  });\n  ll K = 1;\n\
+    \  FOR(N - 2) K *= N;\n  assert(len(dat) == K);\n  UNIQUE(dat);\n  assert(len(dat)\
+    \ == K);\n}\n\nvoid solve() {\n  int x, y;\n  cin >> x >> y;\n  cout << x + y\
+    \ << \"\\n\";\n}\n\nsigned main() {\n  FOR(N, 1, 8) test(N);\n  solve();\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"enumerate/labeled_tree.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\
     \n\nvoid test(ll N) {\n  vvc<pair<int, int>> dat;\n  enumerate_labeled_tree(N,\
-    \ [&](vc<pair<int, int>> G) -> void {\n    assert(len(G) == N - 1);\n    UnionFind\
-    \ uf(N);\n    for (auto& [a, b]: G) { uf.merge(a, b); }\n    assert(uf.n_comp\
-    \ == 1);\n    for (auto& [a, b]: G) {\n      if (a > b) swap(a, b);\n    }\n \
-    \   sort(all(G));\n    dat.eb(G);\n  });\n  ll K = 1;\n  FOR(N - 2) K *= N;\n\
-    \  assert(len(dat) == K);\n  UNIQUE(dat);\n  assert(len(dat) == K);\n}\n\nvoid\
-    \ solve() {\n  int x, y;\n  cin >> x >> y;\n  cout << x + y << \"\\n\";\n}\n\n\
-    signed main() {\n  FOR(N, 1, 8) test(N);\n  solve();\n  return 0;\n}"
+    \ [&](vc<pair<int, int>> G, bool) -> void {\n    assert(len(G) == N - 1);\n  \
+    \  UnionFind uf(N);\n    for (auto& [a, b] : G) {\n      uf.merge(a, b);\n   \
+    \ }\n    assert(uf.n_comp == 1);\n    for (auto& [a, b] : G) {\n      if (a >\
+    \ b) swap(a, b);\n    }\n    sort(all(G));\n    dat.eb(G);\n  });\n  ll K = 1;\n\
+    \  FOR(N - 2) K *= N;\n  assert(len(dat) == K);\n  UNIQUE(dat);\n  assert(len(dat)\
+    \ == K);\n}\n\nvoid solve() {\n  int x, y;\n  cin >> x >> y;\n  cout << x + y\
+    \ << \"\\n\";\n}\n\nsigned main() {\n  FOR(N, 1, 8) test(N);\n  solve();\n  return\
+    \ 0;\n}"
   dependsOn:
   - my_template.hpp
   - enumerate/labeled_tree.hpp
@@ -327,8 +329,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enumerate_labeled_tree.test.cpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-16 15:34:21+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/enumerate_labeled_tree.test.cpp
 layout: document

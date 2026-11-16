@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
   - icon: ':question:'
@@ -77,22 +77,23 @@ data:
     \u9806\ntemplate <typename F>\nvoid floor_range(u64 N, F f, bool Q_ASC = true,\
     \ bool INCLUDE_Q_IS_0 = false) {\n  bool end = false;\n  u64 sq = sqrtl(N);\n\
     \  u32 n = (sq * sq + sq <= N ? sq : sq - 1);\n  if (Q_ASC) {\n    if (INCLUDE_Q_IS_0)\
-    \ f(0, N + 1, infty<ll>);\n    for (u32 q = 1; q <= n; ++q) {\n      f(q, N /\
-    \ (q + 1) + 1, N / q + 1, end);\n      if (end) return;\n    }\n    for (u32 l\
-    \ = sq; l >= 1; --l) {\n      f(N / l, l, l + 1, end);\n      if (end) return;\n\
-    \    }\n  } else {\n    for (u32 l = 1; l <= sq; ++l) {\n      f(N / l, l, l +\
-    \ 1, end);\n      if (end) return;\n    }\n    for (u32 q = n; q >= 1; --q) {\n\
-    \      f(q, N / (q + 1) + 1, N / q + 1, end);\n      if (end) return;\n    }\n\
-    \    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\n  }\n}\n#line 5 \"nt/mertens.hpp\"\
-    \n\ntemplate <typename T>\nstruct Mertens {\n  Array_on_Floor<T> sum;\n  Mertens()\
-    \ {}\n  Mertens(u64 N, u64 K = -1) { build(N, K); }\n  void build(u64 N, u64 K\
-    \ = -1) {\n    sum = Array_on_Floor<T>(N);\n    if (K == u64(-1)) { K = pow(N,\
-    \ 0.67); }\n    vc<T> A = mobius_table<T>(K);\n    FOR(k, 1, K) A[k + 1] += A[k];\n\
-    \    FOR(i, len(sum)) {\n      u64 n = sum.get_floor(i);\n      if (n <= K) {\n\
-    \        sum.dat[i] = A[n];\n        continue;\n      }\n      T ans = 1;\n  \
-    \    floor_range(n, [&](u64 q, u64 l, u64 r) -> void {\n        if (q == n) return;\n\
-    \        ans -= sum[q] * T(r - l);\n      });\n      sum.dat[i] = ans;\n    }\n\
-    \  }\n  T operator[](u64 n) { return sum[n]; }\n};\n"
+    \ f(0, N + 1, infty<ll>, end);\n    if (end) return;\n    for (u32 q = 1; q <=\
+    \ n; ++q) {\n      f(q, N / (q + 1) + 1, N / q + 1, end);\n      if (end) return;\n\
+    \    }\n    for (u32 l = sq; l >= 1; --l) {\n      f(N / l, l, l + 1, end);\n\
+    \      if (end) return;\n    }\n  } else {\n    for (u32 l = 1; l <= sq; ++l)\
+    \ {\n      f(N / l, l, l + 1, end);\n      if (end) return;\n    }\n    for (u32\
+    \ q = n; q >= 1; --q) {\n      f(q, N / (q + 1) + 1, N / q + 1, end);\n      if\
+    \ (end) return;\n    }\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>, end);\n\
+    \  }\n}\n#line 5 \"nt/mertens.hpp\"\n\ntemplate <typename T>\nstruct Mertens {\n\
+    \  Array_on_Floor<T> sum;\n  Mertens() {}\n  Mertens(u64 N, u64 K = -1) { build(N,\
+    \ K); }\n  void build(u64 N, u64 K = -1) {\n    sum = Array_on_Floor<T>(N);\n\
+    \    if (K == u64(-1)) { K = pow(N, 0.67); }\n    vc<T> A = mobius_table<T>(K);\n\
+    \    FOR(k, 1, K) A[k + 1] += A[k];\n    FOR(i, len(sum)) {\n      u64 n = sum.get_floor(i);\n\
+    \      if (n <= K) {\n        sum.dat[i] = A[n];\n        continue;\n      }\n\
+    \      T ans = 1;\n      floor_range(n, [&](u64 q, u64 l, u64 r) -> void {\n \
+    \       if (q == n) return;\n        ans -= sum[q] * T(r - l);\n      });\n  \
+    \    sum.dat[i] = ans;\n    }\n  }\n  T operator[](u64 n) { return sum[n]; }\n\
+    };\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/nt/mertens.hpp\n\
     #include \"nt/array_on_floor.hpp\"\n#include \"nt/mobius_table.hpp\"\n#include\
     \ \"enumerate/floor_range.hpp\"\n\ntemplate <typename T>\nstruct Mertens {\n \
@@ -115,7 +116,7 @@ data:
   path: nt/mertens.hpp
   requiredBy:
   - nt/range_rational_count.hpp
-  timestamp: '2026-11-16 13:22:31+09:00'
+  timestamp: '2026-11-16 15:34:21+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2266.test.cpp
