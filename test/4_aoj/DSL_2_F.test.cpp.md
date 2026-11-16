@@ -359,23 +359,19 @@ data:
     \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X\
     \ &x, const A &a, const ll &size) {\n    return (a == Monoid_A::none_val ? x :\
     \ a);\n  }\n};\n#line 7 \"test/4_aoj/DSL_2_F.test.cpp\"\n\r\nvoid solve() {\r\n\
-    \  LL(N, Q);\r\n  using AM = ActedMonoid_Min_Assign<ll, -1>;\r\n  vi seg_raw(N,\
-    \ (1LL << 31) - 1);\r\n  Lazy_SegTree<AM> seg(seg_raw);\r\n  FOR(Q) {\r\n    LL(t);\r\
-    \n    if (t == 0) {\r\n      LL(L, R, x);\r\n      seg.apply(L, ++R, x);\r\n \
-    \   } else {\r\n      LL(L, R);\r\n      print(seg.prod(L, ++R));\r\n    }\r\n\
-    \  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
-    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/segtree/lazy_segtree.hpp\"\
-    \r\n#include \"alg/acted_monoid/min_assign.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N,\
-    \ Q);\r\n  using AM = ActedMonoid_Min_Assign<ll, -1>;\r\n  vi seg_raw(N, (1LL\
+    \  LL(N, Q);\r\n  using AM = ActedMonoid_Min_Assign<ll>;\r\n  vi seg_raw(N, (1LL\
     \ << 31) - 1);\r\n  Lazy_SegTree<AM> seg(seg_raw);\r\n  FOR(Q) {\r\n    LL(t);\r\
     \n    if (t == 0) {\r\n      LL(L, R, x);\r\n      seg.apply(L, ++R, x);\r\n \
     \   } else {\r\n      LL(L, R);\r\n      print(seg.prod(L, ++R));\r\n    }\r\n\
-    \  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
-    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \  }\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
+  code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_F\"\
+    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/segtree/lazy_segtree.hpp\"\
+    \r\n#include \"alg/acted_monoid/min_assign.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N,\
+    \ Q);\r\n  using AM = ActedMonoid_Min_Assign<ll>;\r\n  vi seg_raw(N, (1LL << 31)\
+    \ - 1);\r\n  Lazy_SegTree<AM> seg(seg_raw);\r\n  FOR(Q) {\r\n    LL(t);\r\n  \
+    \  if (t == 0) {\r\n      LL(L, R, x);\r\n      seg.apply(L, ++R, x);\r\n    }\
+    \ else {\r\n      LL(L, R);\r\n      print(seg.prod(L, ++R));\r\n    }\r\n  }\r\
+    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -386,7 +382,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DSL_2_F.test.cpp
   requiredBy: []
-  timestamp: '2026-11-17 04:45:12+09:00'
+  timestamp: '2026-11-17 05:04:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/DSL_2_F.test.cpp

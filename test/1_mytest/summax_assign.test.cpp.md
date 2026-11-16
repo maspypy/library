@@ -239,31 +239,31 @@ data:
     \ k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = 0;\n    apply_at(2 * k,\
     \ laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k] = MA::id();\n  }\n};\n#line\
     \ 6 \"test/1_mytest/summax_assign.test.cpp\"\n\nvoid test() {\n  int N = RNG(1,\
-    \ 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n  using AM = ActedMonoid_SumMax_Assign<ll,\
-    \ -1>;\n  using Mono = typename AM::Monoid_X;\n  Lazy_SegTree<AM> seg(\n     \
-    \ N, [&](int i) -> Mono::value_type { return Mono::from_element(A[i]); });\n \
-    \ int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n\
-    \    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    if (t == 1)\
-    \ {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) A[i] = x;\n      seg.apply(L,\
-    \ R, x);\n    }\n    if (t == 2) {\n      vc<int> B = {A.begin() + L, A.begin()\
-    \ + R};\n      auto [sm, mx] = seg.prod(L, R);\n      assert(sm == SUM<ll>(B));\n\
-    \      assert(mx == MAX(B));\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n \
-    \ cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(100)\
-    \ test();\n  solve();\n\n  return 0;\n}\n"
+    \ 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n  using AM = ActedMonoid_SumMax_Assign<ll>;\n\
+    \  using Mono = typename AM::Monoid_X;\n  Lazy_SegTree<AM> seg(\n      N, [&](int\
+    \ i) -> Mono::value_type { return Mono::from_element(A[i]); });\n  int Q = RNG(1,\
+    \ 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n    ll R =\
+    \ RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    if (t == 1) {\n      ll\
+    \ x = RNG(1, 100);\n      FOR(i, L, R) A[i] = x;\n      seg.apply(L, R, x);\n\
+    \    }\n    if (t == 2) {\n      vc<int> B = {A.begin() + L, A.begin() + R};\n\
+    \      auto [sm, mx] = seg.prod(L, R);\n      assert(sm == SUM<ll>(B));\n    \
+    \  assert(mx == MAX(B));\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
+    \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(100) test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"alg/acted_monoid/summax_assign.hpp\"\n#include \"random/base.hpp\"\
     \n#include \"ds/segtree/lazy_segtree.hpp\"\n\nvoid test() {\n  int N = RNG(1,\
-    \ 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n  using AM = ActedMonoid_SumMax_Assign<ll,\
-    \ -1>;\n  using Mono = typename AM::Monoid_X;\n  Lazy_SegTree<AM> seg(\n     \
-    \ N, [&](int i) -> Mono::value_type { return Mono::from_element(A[i]); });\n \
-    \ int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n\
-    \    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    if (t == 1)\
-    \ {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) A[i] = x;\n      seg.apply(L,\
-    \ R, x);\n    }\n    if (t == 2) {\n      vc<int> B = {A.begin() + L, A.begin()\
-    \ + R};\n      auto [sm, mx] = seg.prod(L, R);\n      assert(sm == SUM<ll>(B));\n\
-    \      assert(mx == MAX(B));\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n \
-    \ cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(100)\
-    \ test();\n  solve();\n\n  return 0;\n}"
+    \ 100);\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n  using AM = ActedMonoid_SumMax_Assign<ll>;\n\
+    \  using Mono = typename AM::Monoid_X;\n  Lazy_SegTree<AM> seg(\n      N, [&](int\
+    \ i) -> Mono::value_type { return Mono::from_element(A[i]); });\n  int Q = RNG(1,\
+    \ 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L = RNG(0, N);\n    ll R =\
+    \ RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n    if (t == 1) {\n      ll\
+    \ x = RNG(1, 100);\n      FOR(i, L, R) A[i] = x;\n      seg.apply(L, R, x);\n\
+    \    }\n    if (t == 2) {\n      vc<int> B = {A.begin() + L, A.begin() + R};\n\
+    \      auto [sm, mx] = seg.prod(L, R);\n      assert(sm == SUM<ll>(B));\n    \
+    \  assert(mx == MAX(B));\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
+    \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(100) test();\n\
+    \  solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - alg/acted_monoid/summax_assign.hpp
@@ -274,7 +274,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/summax_assign.test.cpp
   requiredBy: []
-  timestamp: '2026-11-17 04:29:21+09:00'
+  timestamp: '2026-11-17 05:04:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/summax_assign.test.cpp

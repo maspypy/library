@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/max_assign.hpp
     title: alg/acted_monoid/max_assign.hpp
   - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -239,9 +239,9 @@ data:
     \ k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = 0;\n    apply_at(2 * k,\
     \ laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k] = MA::id();\n  }\n};\n#line\
     \ 6 \"test/1_mytest/max_assign.test.cpp\"\n\nvoid test() {\n  int N = RNG(1, 100);\n\
-    \  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n  Lazy_SegTree<ActedMonoid_Max_Assign<int,\
-    \ -1>> seg(A);\n  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n  \
-    \  ll L = RNG(0, N);\n    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n\
+    \  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n  Lazy_SegTree<ActedMonoid_Max_Assign<int>>\
+    \ seg(A);\n  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L\
+    \ = RNG(0, N);\n    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n\
     \    if (t == 1) {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) A[i] = x;\n\
     \      seg.apply(L, R, x);\n    }\n    if (t == 2) {\n      vc<int> B = {A.begin()\
     \ + L, A.begin() + R};\n      assert(seg.prod(L, R) == MAX(B));\n    }\n  }\n\
@@ -252,9 +252,9 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"alg/acted_monoid/max_assign.hpp\"\n#include \"random/base.hpp\"\n\
     #include \"ds/segtree/lazy_segtree.hpp\"\n\nvoid test() {\n  int N = RNG(1, 100);\n\
-    \  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n  Lazy_SegTree<ActedMonoid_Max_Assign<int,\
-    \ -1>> seg(A);\n  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n  \
-    \  ll L = RNG(0, N);\n    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n\
+    \  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(1, 100);\n  Lazy_SegTree<ActedMonoid_Max_Assign<int>>\
+    \ seg(A);\n  int Q = RNG(1, 100);\n  FOR(Q) {\n    ll t = RNG(0, 2);\n    ll L\
+    \ = RNG(0, N);\n    ll R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n\
     \    if (t == 1) {\n      ll x = RNG(1, 100);\n      FOR(i, L, R) A[i] = x;\n\
     \      seg.apply(L, R, x);\n    }\n    if (t == 2) {\n      vc<int> B = {A.begin()\
     \ + L, A.begin() + R};\n      assert(seg.prod(L, R) == MAX(B));\n    }\n  }\n\
@@ -272,8 +272,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/max_assign.test.cpp
   requiredBy: []
-  timestamp: '2026-11-17 04:45:12+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-17 05:04:25+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/max_assign.test.cpp
 layout: document

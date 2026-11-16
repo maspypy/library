@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -421,13 +421,13 @@ data:
     \ 1 << 30)); }\n  FOR(Q) {\n    int t = RNG(0, 2);\n    int l = RNG(0, N), r =\
     \ RNG(0, N);\n    int x = RNG(0, 1 << 30);\n    if (l > r) swap(l, r);\n    ++r;\n\
     \    if (t == 0) p.QUERY.eb(l, r, x);\n    if (t == 1) p.QUERY.eb(l, r, -1);\n\
-    \  }\n  return p;\n}\n\nvi sol_1(PROB p) {\n  vi ANS;\n  Lazy_SegTree<ActedMonoid_Sum_Assign<ll,\
-    \ -1>> seg(p.INIT);\n  for (auto& [l, r, x]: p.QUERY) {\n    if (x == -1) {\n\
-    \      ANS.eb(seg.prod(l, r));\n    } else {\n      seg.apply(l, r, x);\n    }\n\
-    \  }\n  return ANS;\n}\n\nvi sol_2(PROB p) {\n  vi ANS;\n  Range_Assignment_SegTree<Monoid_Add<ll>>\
-    \ seg(p.INIT);\n  for (auto& [l, r, x]: p.QUERY) {\n    if (x == -1) {\n     \
-    \ ANS.eb(seg.prod(l, r));\n    } else {\n      seg.assign(l, r, x);\n    }\n \
-    \ }\n  return ANS;\n}\n\nvoid test() {\n  int N = 1 << 22, Q = 1 << 22;\n  PROB\
+    \  }\n  return p;\n}\n\nvi sol_1(PROB p) {\n  vi ANS;\n  Lazy_SegTree<ActedMonoid_Sum_Assign<ll>>\
+    \ seg(p.INIT);\n  for (auto& [l, r, x] : p.QUERY) {\n    if (x == -1) {\n    \
+    \  ANS.eb(seg.prod(l, r));\n    } else {\n      seg.apply(l, r, x);\n    }\n \
+    \ }\n  return ANS;\n}\n\nvi sol_2(PROB p) {\n  vi ANS;\n  Range_Assignment_SegTree<Monoid_Add<ll>>\
+    \ seg(p.INIT);\n  for (auto& [l, r, x] : p.QUERY) {\n    if (x == -1) {\n    \
+    \  ANS.eb(seg.prod(l, r));\n    } else {\n      seg.assign(l, r, x);\n    }\n\
+    \  }\n  return ANS;\n}\n\nvoid test() {\n  int N = 1 << 22, Q = 1 << 22;\n  PROB\
     \ p = gen(N, Q);\n  double a = clock();\n  vi A = sol_1(p);\n  double b = clock();\n\
     \  vi B = sol_2(p);\n  double c = clock();\n  a = (b - a) / CLOCKS_PER_SEC;\n\
     \  b = (c - b) / CLOCKS_PER_SEC;\n  assert(A == B);\n  // cout << a << \"\\n\"\
@@ -443,11 +443,11 @@ data:
     \   int t = RNG(0, 2);\n    int l = RNG(0, N), r = RNG(0, N);\n    int x = RNG(0,\
     \ 1 << 30);\n    if (l > r) swap(l, r);\n    ++r;\n    if (t == 0) p.QUERY.eb(l,\
     \ r, x);\n    if (t == 1) p.QUERY.eb(l, r, -1);\n  }\n  return p;\n}\n\nvi sol_1(PROB\
-    \ p) {\n  vi ANS;\n  Lazy_SegTree<ActedMonoid_Sum_Assign<ll, -1>> seg(p.INIT);\n\
-    \  for (auto& [l, r, x]: p.QUERY) {\n    if (x == -1) {\n      ANS.eb(seg.prod(l,\
+    \ p) {\n  vi ANS;\n  Lazy_SegTree<ActedMonoid_Sum_Assign<ll>> seg(p.INIT);\n \
+    \ for (auto& [l, r, x] : p.QUERY) {\n    if (x == -1) {\n      ANS.eb(seg.prod(l,\
     \ r));\n    } else {\n      seg.apply(l, r, x);\n    }\n  }\n  return ANS;\n}\n\
     \nvi sol_2(PROB p) {\n  vi ANS;\n  Range_Assignment_SegTree<Monoid_Add<ll>> seg(p.INIT);\n\
-    \  for (auto& [l, r, x]: p.QUERY) {\n    if (x == -1) {\n      ANS.eb(seg.prod(l,\
+    \  for (auto& [l, r, x] : p.QUERY) {\n    if (x == -1) {\n      ANS.eb(seg.prod(l,\
     \ r));\n    } else {\n      seg.assign(l, r, x);\n    }\n  }\n  return ANS;\n\
     }\n\nvoid test() {\n  int N = 1 << 22, Q = 1 << 22;\n  PROB p = gen(N, Q);\n \
     \ double a = clock();\n  vi A = sol_1(p);\n  double b = clock();\n  vi B = sol_2(p);\n\
@@ -470,8 +470,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_assign.test.cpp
   requiredBy: []
-  timestamp: '2026-11-17 04:45:12+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-17 05:04:25+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/range_assign.test.cpp
 layout: document

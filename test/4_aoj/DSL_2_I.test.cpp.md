@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_I
@@ -360,22 +360,18 @@ data:
     \ k) {\n    if (!has_laz[k]) return;\n    has_laz[k] = 0;\n    apply_at(2 * k,\
     \ laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k] = MA::id();\n  }\n};\n#line\
     \ 8 \"test/4_aoj/DSL_2_I.test.cpp\"\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  using\
-    \ AM = ActedMonoid_Sum_Assign<ll, 12345>;\r\n  Lazy_SegTree<AM> seg(N);\r\n  FOR(Q)\
-    \ {\r\n    LL(t, L, R);\r\n    ++R;\r\n    if (t == 0) {\r\n      LL(x);\r\n \
-    \     seg.apply(L, R, x);\r\n    } else {\r\n      print(seg.prod(L, R));\r\n\
-    \    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
-    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ AM = ActedMonoid_Sum_Assign<ll>;\r\n  Lazy_SegTree<AM> seg(N);\r\n  FOR(Q) {\r\
+    \n    LL(t, L, R);\r\n    ++R;\r\n    if (t == 0) {\r\n      LL(x);\r\n      seg.apply(L,\
+    \ R, x);\r\n    } else {\r\n      print(seg.prod(L, R));\r\n    }\r\n  }\r\n}\r\
+    \n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_I\"\
     \r\n\r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include\
     \ \"alg/acted_monoid/sum_assign.hpp\"\r\n#include \"ds/segtree/lazy_segtree.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  using AM = ActedMonoid_Sum_Assign<ll,\
-    \ 12345>;\r\n  Lazy_SegTree<AM> seg(N);\r\n  FOR(Q) {\r\n    LL(t, L, R);\r\n\
-    \    ++R;\r\n    if (t == 0) {\r\n      LL(x);\r\n      seg.apply(L, R, x);\r\n\
-    \    } else {\r\n      print(seg.prod(L, R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
-    \ << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    \r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  using AM = ActedMonoid_Sum_Assign<ll>;\r\
+    \n  Lazy_SegTree<AM> seg(N);\r\n  FOR(Q) {\r\n    LL(t, L, R);\r\n    ++R;\r\n\
+    \    if (t == 0) {\r\n      LL(x);\r\n      seg.apply(L, R, x);\r\n    } else\
+    \ {\r\n      print(seg.prod(L, R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main()\
+    \ {\r\n  solve();\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -386,8 +382,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DSL_2_I.test.cpp
   requiredBy: []
-  timestamp: '2026-11-17 04:45:12+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-17 05:04:25+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/DSL_2_I.test.cpp
 layout: document
