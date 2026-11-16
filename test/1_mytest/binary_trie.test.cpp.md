@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -242,21 +242,21 @@ data:
     \    FOR(1000) {\n      int t = RNG(0, 5);\n      if (t == 0) {  // add\n    \
     \    int x = RNG(0, 1 << LOG);\n        A.eb(x);\n        root = X.add(root, x);\n\
     \      }\n      if (t == 1) {  // get all\n        sort(all(A));\n        vc<int>\
-    \ B;\n        X.enumerate(root, [&](int k, int cnt) -> void { FOR(cnt) B.eb(k);\
-    \ });\n        assert(A == B);\n      }\n      if (t == 2 && len(A)) {  // erase\n\
-    \        int k = RNG(len(A));\n        int x = A[k];\n        swap(A[k], A.back());\n\
-    \        A.pop_back();\n        X.add(root, x, -1);\n      }\n      if (t == 3\
-    \ && len(A)) {  // kth\n        int k = RNG(len(A));\n        int xor_val = RNG(0,\
-    \ 1 << LOG);\n        vc<int> B;\n        for (auto&& x : A) B.eb(x ^ xor_val);\n\
-    \        sort(all(B));\n        assert(B[k] == int(X.kth(root, k, xor_val)));\n\
-    \      }\n      if (t == 4) {  // freq\n        int lo = RNG(0, 1 << LOG);\n \
-    \       int hi = RNG(0, 1 << LOG);\n        int xor_val = RNG(0, 1 << LOG);\n\
-    \        if (lo > hi) swap(lo, hi);\n        ++hi;\n        u32 cnt = 0;\n   \
-    \     for (auto&& x : A) {\n          int y = x ^ xor_val;\n          if (lo <=\
-    \ y && y < hi) ++cnt;\n        }\n        assert(cnt == X.count(root, lo, hi,\
-    \ xor_val));\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
-    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \n  return 0;\n}\n"
+    \ B;\n        X.enumerate(root, [&](int k, int cnt, bool) -> void {\n        \
+    \  FOR(cnt) B.eb(k);\n        });\n        assert(A == B);\n      }\n      if\
+    \ (t == 2 && len(A)) {  // erase\n        int k = RNG(len(A));\n        int x\
+    \ = A[k];\n        swap(A[k], A.back());\n        A.pop_back();\n        X.add(root,\
+    \ x, -1);\n      }\n      if (t == 3 && len(A)) {  // kth\n        int k = RNG(len(A));\n\
+    \        int xor_val = RNG(0, 1 << LOG);\n        vc<int> B;\n        for (auto&&\
+    \ x : A) B.eb(x ^ xor_val);\n        sort(all(B));\n        assert(B[k] == int(X.kth(root,\
+    \ k, xor_val)));\n      }\n      if (t == 4) {  // freq\n        int lo = RNG(0,\
+    \ 1 << LOG);\n        int hi = RNG(0, 1 << LOG);\n        int xor_val = RNG(0,\
+    \ 1 << LOG);\n        if (lo > hi) swap(lo, hi);\n        ++hi;\n        u32 cnt\
+    \ = 0;\n        for (auto&& x : A) {\n          int y = x ^ xor_val;\n       \
+    \   if (lo <= y && y < hi) ++cnt;\n        }\n        assert(cnt == X.count(root,\
+    \ lo, hi, xor_val));\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
+    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"ds/binary_trie.hpp\"\n#include \"random/base.hpp\"\n\nvoid test()\
     \ {\n  const int LOG = 5;\n  static Binary_Trie<LOG, false> X;\n\n  FOR(100) {\n\
@@ -264,21 +264,21 @@ data:
     \ {\n      int t = RNG(0, 5);\n      if (t == 0) {  // add\n        int x = RNG(0,\
     \ 1 << LOG);\n        A.eb(x);\n        root = X.add(root, x);\n      }\n    \
     \  if (t == 1) {  // get all\n        sort(all(A));\n        vc<int> B;\n    \
-    \    X.enumerate(root, [&](int k, int cnt) -> void { FOR(cnt) B.eb(k); });\n \
-    \       assert(A == B);\n      }\n      if (t == 2 && len(A)) {  // erase\n  \
-    \      int k = RNG(len(A));\n        int x = A[k];\n        swap(A[k], A.back());\n\
-    \        A.pop_back();\n        X.add(root, x, -1);\n      }\n      if (t == 3\
-    \ && len(A)) {  // kth\n        int k = RNG(len(A));\n        int xor_val = RNG(0,\
-    \ 1 << LOG);\n        vc<int> B;\n        for (auto&& x : A) B.eb(x ^ xor_val);\n\
-    \        sort(all(B));\n        assert(B[k] == int(X.kth(root, k, xor_val)));\n\
-    \      }\n      if (t == 4) {  // freq\n        int lo = RNG(0, 1 << LOG);\n \
-    \       int hi = RNG(0, 1 << LOG);\n        int xor_val = RNG(0, 1 << LOG);\n\
-    \        if (lo > hi) swap(lo, hi);\n        ++hi;\n        u32 cnt = 0;\n   \
-    \     for (auto&& x : A) {\n          int y = x ^ xor_val;\n          if (lo <=\
-    \ y && y < hi) ++cnt;\n        }\n        assert(cnt == X.count(root, lo, hi,\
-    \ xor_val));\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
-    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \n  return 0;\n}\n"
+    \    X.enumerate(root, [&](int k, int cnt, bool) -> void {\n          FOR(cnt)\
+    \ B.eb(k);\n        });\n        assert(A == B);\n      }\n      if (t == 2 &&\
+    \ len(A)) {  // erase\n        int k = RNG(len(A));\n        int x = A[k];\n \
+    \       swap(A[k], A.back());\n        A.pop_back();\n        X.add(root, x, -1);\n\
+    \      }\n      if (t == 3 && len(A)) {  // kth\n        int k = RNG(len(A));\n\
+    \        int xor_val = RNG(0, 1 << LOG);\n        vc<int> B;\n        for (auto&&\
+    \ x : A) B.eb(x ^ xor_val);\n        sort(all(B));\n        assert(B[k] == int(X.kth(root,\
+    \ k, xor_val)));\n      }\n      if (t == 4) {  // freq\n        int lo = RNG(0,\
+    \ 1 << LOG);\n        int hi = RNG(0, 1 << LOG);\n        int xor_val = RNG(0,\
+    \ 1 << LOG);\n        if (lo > hi) swap(lo, hi);\n        ++hi;\n        u32 cnt\
+    \ = 0;\n        for (auto&& x : A) {\n          int y = x ^ xor_val;\n       \
+    \   if (lo <= y && y < hi) ++cnt;\n        }\n        assert(cnt == X.count(root,\
+    \ lo, hi, xor_val));\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
+    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - ds/binary_trie.hpp
@@ -287,8 +287,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/binary_trie.test.cpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-16 13:29:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/binary_trie.test.cpp
 layout: document

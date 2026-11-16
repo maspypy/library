@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -309,10 +309,10 @@ data:
     \    X y = dat[cut.prev(r)];\n      dat[r] = y;\n      right = monoid_pow<MX>(y,\
     \ b - r);\n    }\n\n    X mid = monoid_pow<MX>(x, r - l);\n\n    vc<int> I;\n\
     \    if (has_left) I.eb(a);\n    I.eb(l);\n    cut.enumerate(l + 1, r, [&](int\
-    \ i) { I.eb(i); }, true);\n\n    if (has_right) I.eb(r);\n\n    // \u3053\u3053\
-    \u3067 I \u306F strictly increasing\n    dat[l] = x;\n    cut.insert(l);\n   \
-    \ if (has_right) cut.insert(r);\n\n    seg.set_many_sorted(move(I), [&](int i)\
-    \ -> X {\n      if (has_left && i == a) return left;\n      if (i == l) return\
+    \ i, bool) { I.eb(i); }, true);\n\n    if (has_right) I.eb(r);\n\n    // \u3053\
+    \u3053\u3067 I \u306F strictly increasing\n    dat[l] = x;\n    cut.insert(l);\n\
+    \    if (has_right) cut.insert(r);\n\n    seg.set_many_sorted(move(I), [&](int\
+    \ i) -> X {\n      if (has_left && i == a) return left;\n      if (i == l) return\
     \ mid;\n      if (has_right && i == r) return right;\n      return MX::id();\n\
     \    });\n  }\n\n  vc<X> get_all() {\n    vc<X> ANS(n);\n    int p = 0;\n    while\
     \ (p < n) {\n      int q = cut.next(p + 1);\n      FOR(i, p, q) ANS[i] = dat[p];\n\
@@ -468,8 +468,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_assign.test.cpp
   requiredBy: []
-  timestamp: '2026-11-16 13:02:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-16 13:29:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/range_assign.test.cpp
 layout: document

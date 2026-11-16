@@ -358,9 +358,9 @@ data:
     \ Tree<decltype(G)> tree(G);\n\n  vc<int> TID(n, -1);\n  FOR(i, len(T)) { TID[trie.words[i]]\
     \ = i; }\n  CSR<int> csr(n);\n  {\n    int v = 0;\n    FOR(i, len(S)) {\n    \
     \  v = trie.nodes[v].nxt[S[i] - off];\n      csr.add(v, i);\n    }\n  }\n  csr.build();\n\
-    \n  FastSet FS(len(S));\n  vc<int> nxt(len(S));\n  vc<int> pos;\n  auto dfs =\
-    \ [&](auto& dfs, int h) -> void {\n    auto path = tree.heavy_path_at(h);\n  \
-    \  for (auto& v : path) {\n      for (auto& e : G[v]) {\n        if (tree.head[e.to]\
+    \n  FastSet FS(len(S));\n  vc<int> nxt(len(S));\n  vc<int> pos;\n  bool end =\
+    \ false;\n  auto dfs = [&](auto& dfs, int h) -> void {\n    auto path = tree.heavy_path_at(h);\n\
+    \    for (auto& v : path) {\n      for (auto& e : G[v]) {\n        if (tree.head[e.to]\
     \ != h) dfs(dfs, e.to);\n      }\n    }\n\n    FS.reset();\n    auto ins = [&](int\
     \ i) -> void {\n      int a = FS.prev(i), b = FS.next(i);\n      if (a != -1)\
     \ nxt[a] = i;\n      nxt[i] = b;\n      FS.insert(i);\n    };\n    auto ins_v\
@@ -370,8 +370,8 @@ data:
     \      FOR(i, L, R) ins_v(tree.V[i]);\n      prv = v;\n\n      int t = TID[v];\n\
     \      if (t != -1) {\n        int M = len(T[t]);\n        pos.clear();\n    \
     \    for (int i = FS.next(0); i < len(S); i = nxt[i]) {\n          // [i-M+1,i]\n\
-    \          pos.eb(i - M + 1);\n        }\n        f(t, pos);\n      }\n    }\n\
-    \  };\n  dfs(dfs, 0);\n}\n"
+    \          pos.eb(i - M + 1);\n        }\n        f(t, pos, end);\n        assert(!end);\
+    \  // \u672A\u5BFE\u5FDC\n      }\n    }\n  };\n  dfs(dfs, 0);\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/string/enumerate_occurrences.hpp\n\
     \n#include \"graph/tree.hpp\"\n#include \"string/trie.hpp\"\n#include \"ds/fastset.hpp\"\
     \n#include \"ds/csr.hpp\"\n\n// T[i] distinct \u304C\u5FC5\u8981\n// T[i] \u304C\
@@ -384,9 +384,9 @@ data:
     \ Tree<decltype(G)> tree(G);\n\n  vc<int> TID(n, -1);\n  FOR(i, len(T)) { TID[trie.words[i]]\
     \ = i; }\n  CSR<int> csr(n);\n  {\n    int v = 0;\n    FOR(i, len(S)) {\n    \
     \  v = trie.nodes[v].nxt[S[i] - off];\n      csr.add(v, i);\n    }\n  }\n  csr.build();\n\
-    \n  FastSet FS(len(S));\n  vc<int> nxt(len(S));\n  vc<int> pos;\n  auto dfs =\
-    \ [&](auto& dfs, int h) -> void {\n    auto path = tree.heavy_path_at(h);\n  \
-    \  for (auto& v : path) {\n      for (auto& e : G[v]) {\n        if (tree.head[e.to]\
+    \n  FastSet FS(len(S));\n  vc<int> nxt(len(S));\n  vc<int> pos;\n  bool end =\
+    \ false;\n  auto dfs = [&](auto& dfs, int h) -> void {\n    auto path = tree.heavy_path_at(h);\n\
+    \    for (auto& v : path) {\n      for (auto& e : G[v]) {\n        if (tree.head[e.to]\
     \ != h) dfs(dfs, e.to);\n      }\n    }\n\n    FS.reset();\n    auto ins = [&](int\
     \ i) -> void {\n      int a = FS.prev(i), b = FS.next(i);\n      if (a != -1)\
     \ nxt[a] = i;\n      nxt[i] = b;\n      FS.insert(i);\n    };\n    auto ins_v\
@@ -396,8 +396,8 @@ data:
     \      FOR(i, L, R) ins_v(tree.V[i]);\n      prv = v;\n\n      int t = TID[v];\n\
     \      if (t != -1) {\n        int M = len(T[t]);\n        pos.clear();\n    \
     \    for (int i = FS.next(0); i < len(S); i = nxt[i]) {\n          // [i-M+1,i]\n\
-    \          pos.eb(i - M + 1);\n        }\n        f(t, pos);\n      }\n    }\n\
-    \  };\n  dfs(dfs, 0);\n}"
+    \          pos.eb(i - M + 1);\n        }\n        f(t, pos, end);\n        assert(!end);\
+    \  // \u672A\u5BFE\u5FDC\n      }\n    }\n  };\n  dfs(dfs, 0);\n}"
   dependsOn:
   - graph/tree.hpp
   - graph/base.hpp
@@ -408,7 +408,7 @@ data:
   isVerificationFile: false
   path: string/enumerate_occurrences.hpp
   requiredBy: []
-  timestamp: '2026-11-16 13:02:54+09:00'
+  timestamp: '2026-11-16 13:22:31+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/enumerate_occurrences.hpp

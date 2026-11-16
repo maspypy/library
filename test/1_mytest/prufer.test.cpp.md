@@ -7,13 +7,13 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/prufer_code.hpp
     title: graph/prufer_code.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -395,7 +395,7 @@ data:
     \  \u3053\u308C\u304C\u793A\u3055\u308C\u308C\u3070\u3001\u500B\u6570\u304C\u7B49\
     \u3057\u3044\u3053\u3068\u306F\u77E5\u3063\u3066\u3044\u308B\u306E\u3067\u5168\
     \u5358\u5C04\u304C\u3044\u3048\u308B\n  */\n  enumerate_product(vc<int>(n - 1,\
-    \ n), [&](vc<int> A) -> void {\n    if (n >= 2 && A.back() != n - 1) return;\n\
+    \ n), [&](vc<int> A, bool) -> void {\n    if (n >= 2 && A.back() != n - 1) return;\n\
     \    Graph<int, 0> G = from_prufer_code(A);\n    UnionFind uf(n);\n    for (auto&\
     \ e : G.edges) assert(uf.merge(e.frm, e.to));\n    assert(uf.n_comp == 1);\n \
     \   vc<int> B = to_prufer_code(G);\n    assert(A == B);\n  });\n}\n\nvoid solve()\
@@ -409,8 +409,8 @@ data:
     \u304C\u793A\u3055\u308C\u308C\u3070\u3001\u500B\u6570\u304C\u7B49\u3057\u3044\
     \u3053\u3068\u306F\u77E5\u3063\u3066\u3044\u308B\u306E\u3067\u5168\u5358\u5C04\
     \u304C\u3044\u3048\u308B\n  */\n  enumerate_product(vc<int>(n - 1, n), [&](vc<int>\
-    \ A) -> void {\n    if (n >= 2 && A.back() != n - 1) return;\n    Graph<int, 0>\
-    \ G = from_prufer_code(A);\n    UnionFind uf(n);\n    for (auto& e : G.edges)\
+    \ A, bool) -> void {\n    if (n >= 2 && A.back() != n - 1) return;\n    Graph<int,\
+    \ 0> G = from_prufer_code(A);\n    UnionFind uf(n);\n    for (auto& e : G.edges)\
     \ assert(uf.merge(e.frm, e.to));\n    assert(uf.n_comp == 1);\n    vc<int> B =\
     \ to_prufer_code(G);\n    assert(A == B);\n  });\n}\n\nvoid solve() {\n  int x,\
     \ y;\n  cin >> x >> y;\n  cout << x + y << \"\\n\";\n}\n\nsigned main() {\n  FOR(n,\
@@ -425,8 +425,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/prufer.test.cpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-16 13:29:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/prufer.test.cpp
 layout: document

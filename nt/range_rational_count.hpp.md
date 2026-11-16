@@ -47,8 +47,9 @@ data:
     \    if (d <= t) return d - 1;\n    return dat.size() - u32(double(N) / d);\n\
     \  }\n\n  // dat[i] \u306B\u5BFE\u5FDC\u3059\u308B floor\n  u64 get_floor(u32\
     \ i) { return (i < t ? 1 + i : double(N) / (t + sq - i)); }\n\n  template <typename\
-    \ F>\n  void enumerate_all(F f) {\n    FOR(i, len(dat)) { f(get_floor(i), dat[i]);\
-    \ }\n  }\n};\n#line 1 \"nt/mobius_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/mobius_table.hpp\n\
+    \ F>\n  void enumerate_all(F f) {\n    bool end = false;\n    FOR(i, len(dat))\
+    \ {\n      f(get_floor(i), dat[i], end);\n      if (end) break;\n    }\n  }\n\
+    };\n#line 1 \"nt/mobius_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/mobius_table.hpp\n\
     #line 1 \"nt/zeta.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/zeta.hpp\n\
     #line 1 \"nt/prime_table.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/nt/prime_table.hpp\n\
     \ntemplate <typename T = int>\nvc<T> prime_table(int LIM) {\n  assert(LIM <= infty<int>);\n\
@@ -168,7 +169,7 @@ data:
   isVerificationFile: false
   path: nt/range_rational_count.hpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
+  timestamp: '2026-11-16 13:22:31+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2266.test.cpp

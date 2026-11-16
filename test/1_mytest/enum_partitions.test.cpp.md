@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: enumerate/partition.hpp
     title: enumerate/partition.hpp
   - icon: ':question:'
@@ -43,14 +43,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -524,12 +524,12 @@ data:
     \ >= 2\n    if (n >= k) dp[n][k] += dp[n - k][k];\n  }\n  return dp;\n}\n#line\
     \ 7 \"test/1_mytest/enum_partitions.test.cpp\"\n\nusing mint = modint998;\n\n\
     void test() {\n  FOR(N, 1, 10) {\n    vc<mint> P = partition_number<mint>(N);\n\
-    \    set<vc<int>> ss;\n    auto f = [&](vc<int>& P) -> void {\n      assert(SUM<int>(P)\
+    \    set<vc<int>> ss;\n    auto f = [&](vc<int>& P, bool) -> void {\n      assert(SUM<int>(P)\
     \ == N);\n      assert(!ss.count(P));\n      ss.insert(P);\n    };\n    enumerate_partition<decltype(f)>(N,\
     \ f);\n    assert(P[N] == len(ss));\n  }\n  FOR(N, 1, 10) {\n    FOR(LIM_len,\
-    \ 10) FOR(LIM_val, 10) {\n      int a = 0;\n      auto f = [&](vc<int>& P) ->\
-    \ void {\n        if (len(P) <= LIM_len && MAX(P) <= LIM_val) ++a;\n      };\n\
-    \      int b = 0;\n      auto g = [&](vc<int>& P) -> void {\n        assert(len(P)\
+    \ 10) FOR(LIM_val, 10) {\n      int a = 0;\n      auto f = [&](vc<int>& P, bool)\
+    \ -> void {\n        if (len(P) <= LIM_len && MAX(P) <= LIM_val) ++a;\n      };\n\
+    \      int b = 0;\n      auto g = [&](vc<int>& P, bool) -> void {\n        assert(len(P)\
     \ <= LIM_len && MAX(P) <= LIM_val);\n        ++b;\n      };\n      enumerate_partition<decltype(f)>(N,\
     \ f);\n      enumerate_partition<decltype(g)>(N, g, LIM_len, LIM_val);\n     \
     \ assert(a == b);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
@@ -539,12 +539,12 @@ data:
     \n#include \"random/base.hpp\"\n\n#include \"enumerate/partition.hpp\"\n#include\
     \ \"seq/famous/partition_number.hpp\"\n\nusing mint = modint998;\n\nvoid test()\
     \ {\n  FOR(N, 1, 10) {\n    vc<mint> P = partition_number<mint>(N);\n    set<vc<int>>\
-    \ ss;\n    auto f = [&](vc<int>& P) -> void {\n      assert(SUM<int>(P) == N);\n\
-    \      assert(!ss.count(P));\n      ss.insert(P);\n    };\n    enumerate_partition<decltype(f)>(N,\
+    \ ss;\n    auto f = [&](vc<int>& P, bool) -> void {\n      assert(SUM<int>(P)\
+    \ == N);\n      assert(!ss.count(P));\n      ss.insert(P);\n    };\n    enumerate_partition<decltype(f)>(N,\
     \ f);\n    assert(P[N] == len(ss));\n  }\n  FOR(N, 1, 10) {\n    FOR(LIM_len,\
-    \ 10) FOR(LIM_val, 10) {\n      int a = 0;\n      auto f = [&](vc<int>& P) ->\
-    \ void {\n        if (len(P) <= LIM_len && MAX(P) <= LIM_val) ++a;\n      };\n\
-    \      int b = 0;\n      auto g = [&](vc<int>& P) -> void {\n        assert(len(P)\
+    \ 10) FOR(LIM_val, 10) {\n      int a = 0;\n      auto f = [&](vc<int>& P, bool)\
+    \ -> void {\n        if (len(P) <= LIM_len && MAX(P) <= LIM_val) ++a;\n      };\n\
+    \      int b = 0;\n      auto g = [&](vc<int>& P, bool) -> void {\n        assert(len(P)\
     \ <= LIM_len && MAX(P) <= LIM_val);\n        ++b;\n      };\n      enumerate_partition<decltype(f)>(N,\
     \ f);\n      enumerate_partition<decltype(g)>(N, g, LIM_len, LIM_val);\n     \
     \ assert(a == b);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
@@ -569,8 +569,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enum_partitions.test.cpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-16 13:29:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/enum_partitions.test.cpp
 layout: document

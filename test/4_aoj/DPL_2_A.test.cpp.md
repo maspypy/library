@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_2_A
@@ -498,19 +498,19 @@ data:
     \  n -= 1;\n  const int full = (1 << n) - 1;\n  vv(T, dp, 1 << n, n, infty<T>);\n\
     \  FOR(v, n) chmin(dp[1 << v][v], dist[n][v]);\n  for (int s = 0; s < (1 << n);\
     \ ++s) {\n    FOR(frm, n) if (dp[s][frm] < infty<T>) {\n      enumerate_all_bit<u32>(full\
-    \ - s, [&](int to) -> void {\n        int t = s | 1 << to;\n        T cost = dist[frm][to];\n\
-    \        if (cost < infty<T>) chmin(dp[t][to], dp[s][frm] + cost);\n      });\n\
-    \    }\n  }\n  int s = (1 << n) - 1;\n  T res = infty<T>;\n  int best_v = -1;\n\
-    \  FOR(v, n) if (dist[v][n] < infty<T> && dp[s][v] < infty<T>) {\n    if (chmin(res,\
-    \ dp[s][v] + dist[v][n])) best_v = v;\n  }\n  if (res == infty<T>) return {-1,\
-    \ {}};\n  vc<int> C = {n, best_v};\n  int t = s;\n  while (len(C) <= n) {\n  \
-    \  int to = C.back();\n    int frm = [&]() -> int {\n      FOR(frm, n) {\n   \
-    \     int s = t ^ (1 << to);\n        T inf = infty<T>;\n        if (dp[s][frm]\
-    \ < inf && dist[frm][to] < inf &&\n            dp[s][frm] + dist[frm][to] == dp[t][to])\n\
-    \          return frm;\n      }\n      return -1;\n    }();\n    C.eb(frm);\n\
-    \    t ^= 1 << to;\n  }\n  reverse(all(C));\n  return {res, C};\n}\n#line 7 \"\
-    test/4_aoj/DPL_2_A.test.cpp\"\n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 1>\
-    \ G(N);\n  G.read_graph(M, 1, 0);\n  print(minimum_hamiltonian_cycle<int>(G).fi);\n\
+    \ - s, [&](int to, bool end) -> void {\n        int t = s | 1 << to;\n       \
+    \ T cost = dist[frm][to];\n        if (cost < infty<T>) chmin(dp[t][to], dp[s][frm]\
+    \ + cost);\n      });\n    }\n  }\n  int s = (1 << n) - 1;\n  T res = infty<T>;\n\
+    \  int best_v = -1;\n  FOR(v, n) if (dist[v][n] < infty<T> && dp[s][v] < infty<T>)\
+    \ {\n    if (chmin(res, dp[s][v] + dist[v][n])) best_v = v;\n  }\n  if (res ==\
+    \ infty<T>) return {-1, {}};\n  vc<int> C = {n, best_v};\n  int t = s;\n  while\
+    \ (len(C) <= n) {\n    int to = C.back();\n    int frm = [&]() -> int {\n    \
+    \  FOR(frm, n) {\n        int s = t ^ (1 << to);\n        T inf = infty<T>;\n\
+    \        if (dp[s][frm] < inf && dist[frm][to] < inf &&\n            dp[s][frm]\
+    \ + dist[frm][to] == dp[t][to])\n          return frm;\n      }\n      return\
+    \ -1;\n    }();\n    C.eb(frm);\n    t ^= 1 << to;\n  }\n  reverse(all(C));\n\
+    \  return {res, C};\n}\n#line 7 \"test/4_aoj/DPL_2_A.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(N, M);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 1, 0);\n  print(minimum_hamiltonian_cycle<int>(G).fi);\n\
     }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_2_A\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/base.hpp\"\
@@ -527,8 +527,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DPL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-16 13:29:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/DPL_2_A.test.cpp
 layout: document

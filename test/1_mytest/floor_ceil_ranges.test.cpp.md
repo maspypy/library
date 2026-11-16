@@ -158,19 +158,19 @@ data:
     \      f(q, N / (q + 1) + 1, N / q + 1, end);\n      if (end) return;\n    }\n\
     \    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\n  }\n}\n#line 5 \"test/1_mytest/floor_ceil_ranges.test.cpp\"\
     \n\nvoid test_floor() {\n  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N)\
-    \ -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q,\
-    \ l, r); };\n    floor_range(N, f);\n    return dat;\n  };\n  auto G = [&](ll\
-    \ N) -> vc<T> {\n    vvc<ll> tmp(N + 1);\n    FOR(x, 1, N + 1) tmp[floor(N, x)].eb(x);\n\
-    \    vc<T> dat;\n    FOR(x, 1, N + 1) {\n      if (len(tmp[x])) {\n        ll\
-    \ lo = tmp[x][0];\n        ll hi = tmp[x].back();\n        dat.eb(x, lo, hi +\
-    \ 1);\n      }\n    }\n    return dat;\n  };\n  FOR(N, 1, 100) { assert(F(N) ==\
-    \ G(N)); }\n}\n\nvoid test_ceil() {\n  using T = tuple<ll, ll, ll>;\n  auto F\
-    \ = [&](ll N) -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r) ->\
-    \ void { dat.eb(q, l, r); };\n    ceil_range(N, f);\n    return dat;\n  };\n \
-    \ auto G = [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N + 1);\n    FOR(x, 1, N + 1)\
-    \ tmp[ceil(N, x)].eb(x);\n    vc<T> dat;\n    FOR(x, 1, N + 1) {\n      if (x\
-    \ == 1) {\n        dat.eb(x, N, infty<ll>);\n        continue;\n      }\n    \
-    \  if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n        ll hi = tmp[x].back();\n\
+    \ -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r, bool) -> void\
+    \ { dat.eb(q, l, r); };\n    floor_range(N, f);\n    return dat;\n  };\n  auto\
+    \ G = [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N + 1);\n    FOR(x, 1, N + 1) tmp[floor(N,\
+    \ x)].eb(x);\n    vc<T> dat;\n    FOR(x, 1, N + 1) {\n      if (len(tmp[x])) {\n\
+    \        ll lo = tmp[x][0];\n        ll hi = tmp[x].back();\n        dat.eb(x,\
+    \ lo, hi + 1);\n      }\n    }\n    return dat;\n  };\n  FOR(N, 1, 100) { assert(F(N)\
+    \ == G(N)); }\n}\n\nvoid test_ceil() {\n  using T = tuple<ll, ll, ll>;\n  auto\
+    \ F = [&](ll N) -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r,\
+    \ bool) -> void { dat.eb(q, l, r); };\n    ceil_range(N, f);\n    return dat;\n\
+    \  };\n  auto G = [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N + 1);\n    FOR(x, 1,\
+    \ N + 1) tmp[ceil(N, x)].eb(x);\n    vc<T> dat;\n    FOR(x, 1, N + 1) {\n    \
+    \  if (x == 1) {\n        dat.eb(x, N, infty<ll>);\n        continue;\n      }\n\
+    \      if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n        ll hi = tmp[x].back();\n\
     \        dat.eb(x, lo, hi + 1);\n      }\n    }\n    return dat;\n  };\n  FOR(N,\
     \ 1, 100) { assert(F(N) == G(N)); }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
     \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test_floor();\n\
@@ -178,19 +178,19 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"enumerate/ceil_range.hpp\"\n#include \"enumerate/floor_range.hpp\"\
     \n\nvoid test_floor() {\n  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N)\
-    \ -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q,\
-    \ l, r); };\n    floor_range(N, f);\n    return dat;\n  };\n  auto G = [&](ll\
-    \ N) -> vc<T> {\n    vvc<ll> tmp(N + 1);\n    FOR(x, 1, N + 1) tmp[floor(N, x)].eb(x);\n\
-    \    vc<T> dat;\n    FOR(x, 1, N + 1) {\n      if (len(tmp[x])) {\n        ll\
-    \ lo = tmp[x][0];\n        ll hi = tmp[x].back();\n        dat.eb(x, lo, hi +\
-    \ 1);\n      }\n    }\n    return dat;\n  };\n  FOR(N, 1, 100) { assert(F(N) ==\
-    \ G(N)); }\n}\n\nvoid test_ceil() {\n  using T = tuple<ll, ll, ll>;\n  auto F\
-    \ = [&](ll N) -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r) ->\
-    \ void { dat.eb(q, l, r); };\n    ceil_range(N, f);\n    return dat;\n  };\n \
-    \ auto G = [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N + 1);\n    FOR(x, 1, N + 1)\
-    \ tmp[ceil(N, x)].eb(x);\n    vc<T> dat;\n    FOR(x, 1, N + 1) {\n      if (x\
-    \ == 1) {\n        dat.eb(x, N, infty<ll>);\n        continue;\n      }\n    \
-    \  if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n        ll hi = tmp[x].back();\n\
+    \ -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r, bool) -> void\
+    \ { dat.eb(q, l, r); };\n    floor_range(N, f);\n    return dat;\n  };\n  auto\
+    \ G = [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N + 1);\n    FOR(x, 1, N + 1) tmp[floor(N,\
+    \ x)].eb(x);\n    vc<T> dat;\n    FOR(x, 1, N + 1) {\n      if (len(tmp[x])) {\n\
+    \        ll lo = tmp[x][0];\n        ll hi = tmp[x].back();\n        dat.eb(x,\
+    \ lo, hi + 1);\n      }\n    }\n    return dat;\n  };\n  FOR(N, 1, 100) { assert(F(N)\
+    \ == G(N)); }\n}\n\nvoid test_ceil() {\n  using T = tuple<ll, ll, ll>;\n  auto\
+    \ F = [&](ll N) -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r,\
+    \ bool) -> void { dat.eb(q, l, r); };\n    ceil_range(N, f);\n    return dat;\n\
+    \  };\n  auto G = [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N + 1);\n    FOR(x, 1,\
+    \ N + 1) tmp[ceil(N, x)].eb(x);\n    vc<T> dat;\n    FOR(x, 1, N + 1) {\n    \
+    \  if (x == 1) {\n        dat.eb(x, N, infty<ll>);\n        continue;\n      }\n\
+    \      if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n        ll hi = tmp[x].back();\n\
     \        dat.eb(x, lo, hi + 1);\n      }\n    }\n    return dat;\n  };\n  FOR(N,\
     \ 1, 100) { assert(F(N) == G(N)); }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
     \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test_floor();\n\
@@ -202,7 +202,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/floor_ceil_ranges.test.cpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
+  timestamp: '2026-11-16 13:29:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/floor_ceil_ranges.test.cpp

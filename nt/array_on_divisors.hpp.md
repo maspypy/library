@@ -175,14 +175,15 @@ data:
     \ / mod) {\n        FOR(j, mod - k) {\n          dat[mod * i + j + k] = ADD(dat[mod\
     \ * i + j + k], dat[mod * i + j]);\n        }\n      }\n      k *= (e + 1);\n\
     \    }\n  }\n\n  template <typename F>\n  void set(F f) {\n    FOR(i, len(divs))\
-    \ { dat[i] = f(divs[i]); }\n  }\n\n  // (d, fd)\n  // &fd \u3067\u53D7\u3051\u53D6\
-    \u308C\u3070\u4EE3\u5165\u3068\u304B\u3082\u3067\u304D\u307E\u3059\n  template\
-    \ <typename F>\n  void enumerate(F f) {\n    FOR(i, len(divs)) { f(divs[i], dat[i]);\
-    \ }\n  }\n\n  // n \u306E\u7D04\u6570\u5168\u4F53\n  vi get_divisors(ll n) {\n\
-    \    assert(divs.back() % n == 0);\n    vi dp = {1};\n    for (auto& [p, f] :\
-    \ pf) {\n      ll e = 0;\n      while (n % p == 0) n /= p, ++e;\n      ll m =\
-    \ len(dp);\n      FOR(i, m) {\n        ll x = dp[i];\n        FOR(j, 1, e + 1)\
-    \ x *= p, dp.eb(x);\n      }\n    }\n    return dp;\n  }\n};\n"
+    \ { dat[i] = f(divs[i]); }\n  }\n\n  // (d, fd, end)\n  // &fd \u3067\u53D7\u3051\
+    \u53D6\u308C\u3070\u4EE3\u5165\u3068\u304B\u3082\u3067\u304D\u307E\u3059\n  template\
+    \ <typename F>\n  void enumerate(F f) {\n    bool end = false;\n    FOR(i, len(divs))\
+    \ {\n      f(divs[i], dat[i], end);\n      if (end) break;\n    }\n  }\n\n  //\
+    \ n \u306E\u7D04\u6570\u5168\u4F53\n  vi get_divisors(ll n) {\n    assert(divs.back()\
+    \ % n == 0);\n    vi dp = {1};\n    for (auto& [p, f] : pf) {\n      ll e = 0;\n\
+    \      while (n % p == 0) n /= p, ++e;\n      ll m = len(dp);\n      FOR(i, m)\
+    \ {\n        ll x = dp[i];\n        FOR(j, 1, e + 1) x *= p, dp.eb(x);\n     \
+    \ }\n    }\n    return dp;\n  }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/nt/array_on_divisors.hpp\n\
     #include \"nt/factor.hpp\"\n#include \"ds/hashmap.hpp\"\n\ntemplate <typename\
     \ T>\nstruct Array_on_Divisors {\n  vc<pair<ll, int>> pf;\n  vc<ll> divs;\n  vc<T>\
@@ -234,14 +235,15 @@ data:
     \ / mod) {\n        FOR(j, mod - k) {\n          dat[mod * i + j + k] = ADD(dat[mod\
     \ * i + j + k], dat[mod * i + j]);\n        }\n      }\n      k *= (e + 1);\n\
     \    }\n  }\n\n  template <typename F>\n  void set(F f) {\n    FOR(i, len(divs))\
-    \ { dat[i] = f(divs[i]); }\n  }\n\n  // (d, fd)\n  // &fd \u3067\u53D7\u3051\u53D6\
-    \u308C\u3070\u4EE3\u5165\u3068\u304B\u3082\u3067\u304D\u307E\u3059\n  template\
-    \ <typename F>\n  void enumerate(F f) {\n    FOR(i, len(divs)) { f(divs[i], dat[i]);\
-    \ }\n  }\n\n  // n \u306E\u7D04\u6570\u5168\u4F53\n  vi get_divisors(ll n) {\n\
-    \    assert(divs.back() % n == 0);\n    vi dp = {1};\n    for (auto& [p, f] :\
-    \ pf) {\n      ll e = 0;\n      while (n % p == 0) n /= p, ++e;\n      ll m =\
-    \ len(dp);\n      FOR(i, m) {\n        ll x = dp[i];\n        FOR(j, 1, e + 1)\
-    \ x *= p, dp.eb(x);\n      }\n    }\n    return dp;\n  }\n};\n"
+    \ { dat[i] = f(divs[i]); }\n  }\n\n  // (d, fd, end)\n  // &fd \u3067\u53D7\u3051\
+    \u53D6\u308C\u3070\u4EE3\u5165\u3068\u304B\u3082\u3067\u304D\u307E\u3059\n  template\
+    \ <typename F>\n  void enumerate(F f) {\n    bool end = false;\n    FOR(i, len(divs))\
+    \ {\n      f(divs[i], dat[i], end);\n      if (end) break;\n    }\n  }\n\n  //\
+    \ n \u306E\u7D04\u6570\u5168\u4F53\n  vi get_divisors(ll n) {\n    assert(divs.back()\
+    \ % n == 0);\n    vi dp = {1};\n    for (auto& [p, f] : pf) {\n      ll e = 0;\n\
+    \      while (n % p == 0) n /= p, ++e;\n      ll m = len(dp);\n      FOR(i, m)\
+    \ {\n        ll x = dp[i];\n        FOR(j, 1, e + 1) x *= p, dp.eb(x);\n     \
+    \ }\n    }\n    return dp;\n  }\n};\n"
   dependsOn:
   - nt/factor.hpp
   - random/base.hpp
@@ -251,7 +253,7 @@ data:
   isVerificationFile: false
   path: nt/array_on_divisors.hpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
+  timestamp: '2026-11-16 13:22:31+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1728.test.cpp

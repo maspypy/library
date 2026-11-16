@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/multiset.hpp
     title: enumerate/multiset.hpp
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -143,23 +143,23 @@ data:
     \ end);\n      return;\n    }\n    FOR(x, s + 1) {\n      A[p] = x;\n      dfs(dfs,\
     \ p + 1, s - x);\n      if (end) break;\n    }\n  };\n  dfs(dfs, 0, N);\n}\n#line\
     \ 5 \"test/1_mytest/enumerate_multisets.test.cpp\"\n\nvoid test() {\n  {\n   \
-    \ vvc<int> res;\n    auto f = [&](vc<int> A) -> void { res.eb(A); };\n    enumerate_multiset(2,\
-    \ 3, f);\n    assert(len(res) == 6);\n    assert(res[0] == vc<int>({0, 0, 2}));\n\
-    \    assert(res[1] == vc<int>({0, 1, 1}));\n    assert(res[2] == vc<int>({0, 2,\
-    \ 0}));\n    assert(res[3] == vc<int>({1, 0, 1}));\n    assert(res[4] == vc<int>({1,\
-    \ 1, 0}));\n    assert(res[5] == vc<int>({2, 0, 0}));\n  }\n  {\n    int cnt =\
-    \ 0;\n    auto f = [&](vc<int> A) -> void { ++cnt; };\n    enumerate_multiset(4,\
-    \ 3, f);\n    assert(cnt == 15);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
-    \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n \
-    \ solve();\n  return 0;\n}\n"
+    \ vvc<int> res;\n    auto f = [&](vc<int> A, bool) -> void { res.eb(A); };\n \
+    \   enumerate_multiset(2, 3, f);\n    assert(len(res) == 6);\n    assert(res[0]\
+    \ == vc<int>({0, 0, 2}));\n    assert(res[1] == vc<int>({0, 1, 1}));\n    assert(res[2]\
+    \ == vc<int>({0, 2, 0}));\n    assert(res[3] == vc<int>({1, 0, 1}));\n    assert(res[4]\
+    \ == vc<int>({1, 1, 0}));\n    assert(res[5] == vc<int>({2, 0, 0}));\n  }\n  {\n\
+    \    int cnt = 0;\n    auto f = [&](vc<int> A, bool) -> void { ++cnt; };\n   \
+    \ enumerate_multiset(4, 3, f);\n    assert(cnt == 15);\n  }\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"enumerate/multiset.hpp\"\n\nvoid test() {\n  {\n    vvc<int> res;\n\
-    \    auto f = [&](vc<int> A) -> void { res.eb(A); };\n    enumerate_multiset(2,\
+    \    auto f = [&](vc<int> A, bool) -> void { res.eb(A); };\n    enumerate_multiset(2,\
     \ 3, f);\n    assert(len(res) == 6);\n    assert(res[0] == vc<int>({0, 0, 2}));\n\
     \    assert(res[1] == vc<int>({0, 1, 1}));\n    assert(res[2] == vc<int>({0, 2,\
     \ 0}));\n    assert(res[3] == vc<int>({1, 0, 1}));\n    assert(res[4] == vc<int>({1,\
     \ 1, 0}));\n    assert(res[5] == vc<int>({2, 0, 0}));\n  }\n  {\n    int cnt =\
-    \ 0;\n    auto f = [&](vc<int> A) -> void { ++cnt; };\n    enumerate_multiset(4,\
+    \ 0;\n    auto f = [&](vc<int> A, bool) -> void { ++cnt; };\n    enumerate_multiset(4,\
     \ 3, f);\n    assert(cnt == 15);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
     \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n \
     \ solve();\n  return 0;\n}\n"
@@ -169,8 +169,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enumerate_multisets.test.cpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-16 13:29:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/enumerate_multisets.test.cpp
 layout: document

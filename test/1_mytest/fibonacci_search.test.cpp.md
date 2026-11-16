@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/fibonacci_search.hpp
     title: other/fibonacci_search.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -168,8 +168,8 @@ data:
     \ A[i]; };\n      auto [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0\
     \ <= i && i < N);\n      if (0 < i) assert(A[i] <= A[i - 1]);\n      if (i + 1\
     \ < N) assert(A[i] <= A[i + 1]);\n    }\n  }\n  // [0,1,2]\n  FOR(N, 1, 13) {\n\
-    \    enumerate_product(vc<int>(N, 3), [&](vc<int> A) -> void {\n      auto f =\
-    \ [&](int i) -> int { return A[i]; };\n      auto [y, i] = fibonacci_search<int,\
+    \    enumerate_product(vc<int>(N, 3), [&](vc<int> A, bool) -> void {\n      auto\
+    \ f = [&](int i) -> int { return A[i]; };\n      auto [y, i] = fibonacci_search<int,\
     \ true>(f, 0, N);\n      assert(0 <= i && i < N);\n      if (0 < i) assert(A[i]\
     \ <= A[i - 1]);\n      if (i + 1 < N) assert(A[i] <= A[i + 1]);\n    });\n  }\n\
     }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
@@ -186,8 +186,8 @@ data:
     \ [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0 <= i && i < N);\n\
     \      if (0 < i) assert(A[i] <= A[i - 1]);\n      if (i + 1 < N) assert(A[i]\
     \ <= A[i + 1]);\n    }\n  }\n  // [0,1,2]\n  FOR(N, 1, 13) {\n    enumerate_product(vc<int>(N,\
-    \ 3), [&](vc<int> A) -> void {\n      auto f = [&](int i) -> int { return A[i];\
-    \ };\n      auto [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0\
+    \ 3), [&](vc<int> A, bool) -> void {\n      auto f = [&](int i) -> int { return\
+    \ A[i]; };\n      auto [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0\
     \ <= i && i < N);\n      if (0 < i) assert(A[i] <= A[i - 1]);\n      if (i + 1\
     \ < N) assert(A[i] <= A[i + 1]);\n    });\n  }\n}\n\nvoid solve() {\n  int a,\
     \ b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
@@ -199,8 +199,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/fibonacci_search.test.cpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-16 13:29:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/fibonacci_search.test.cpp
 layout: document

@@ -276,11 +276,12 @@ data:
     \ (d <= t) return d - 1;\n    return dat.size() - u32(double(N) / d);\n  }\n\n\
     \  // dat[i] \u306B\u5BFE\u5FDC\u3059\u308B floor\n  u64 get_floor(u32 i) { return\
     \ (i < t ? 1 + i : double(N) / (t + sq - i)); }\n\n  template <typename F>\n \
-    \ void enumerate_all(F f) {\n    FOR(i, len(dat)) { f(get_floor(i), dat[i]); }\n\
-    \  }\n};\n#line 5 \"test/2_library_checker/number_theory/enumerate_quotients2.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  Array_on_Floor<int> A(N);\n  print(len(A));\n\
-    \  FOR(i, len(A)) print(A.get_floor(i));\n}\n\nsigned main() {\n  solve();\n \
-    \ return 0;\n}\n"
+    \ void enumerate_all(F f) {\n    bool end = false;\n    FOR(i, len(dat)) {\n \
+    \     f(get_floor(i), dat[i], end);\n      if (end) break;\n    }\n  }\n};\n#line\
+    \ 5 \"test/2_library_checker/number_theory/enumerate_quotients2.test.cpp\"\n\n\
+    void solve() {\n  LL(N);\n  Array_on_Floor<int> A(N);\n  print(len(A));\n  FOR(i,\
+    \ len(A)) print(A.get_floor(i));\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/array_on_floor.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  Array_on_Floor<int> A(N);\n  print(len(A));\n\
@@ -293,7 +294,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/enumerate_quotients2.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
+  timestamp: '2026-11-16 13:22:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/enumerate_quotients2.test.cpp

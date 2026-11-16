@@ -54,7 +54,7 @@ data:
     - icon: ':question:'
       path: alg/acted_monoid/sum_affine.hpp
       title: alg/acted_monoid/sum_affine.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/sum_assign.hpp
       title: alg/acted_monoid/sum_assign.hpp
     - icon: ':x:'
@@ -315,7 +315,7 @@ data:
       title: datetime/datetime.hpp
   - name: ds
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/binary_trie.hpp
       title: ds/binary_trie.hpp
     - icon: ':question:'
@@ -628,7 +628,7 @@ data:
     - icon: ':warning:'
       path: ds/segtree/range_add_make_increasing.hpp
       title: ds/segtree/range_add_make_increasing.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/range_assignment_segtree.hpp
       title: ds/segtree/range_assignment_segtree.hpp
     - icon: ':warning:'
@@ -745,7 +745,7 @@ data:
     - icon: ':warning:'
       path: enumerate/asymmetric_unlabeled_tree.hpp
       title: enumerate/asymmetric_unlabeled_tree.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: enumerate/bits.hpp
       title: enumerate/bits.hpp
     - icon: ':x:'
@@ -763,19 +763,19 @@ data:
     - icon: ':warning:'
       path: enumerate/maximal_independent_set.hpp
       title: enumerate/maximal_independent_set.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/multiset.hpp
       title: enumerate/multiset.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: enumerate/partition.hpp
       title: enumerate/partition.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: enumerate/product.hpp
       title: enumerate/product.hpp
     - icon: ':x:'
       path: enumerate/triangle.hpp
       title: enumerate/triangle.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/unlabeled_tree.hpp
       title: enumerate/unlabeled_tree.hpp
     - icon: ':x:'
@@ -1124,7 +1124,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_cost_cycle.hpp
       title: graph/minimum_cost_cycle.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/minimum_hamiltonian_cycle.hpp
       title: graph/minimum_hamiltonian_cycle.hpp
     - icon: ':heavy_check_mark:'
@@ -1142,7 +1142,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/planar_graph.hpp
       title: graph/planar_graph.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/prufer_code.hpp
       title: graph/prufer_code.hpp
     - icon: ':question:'
@@ -1472,7 +1472,7 @@ data:
     - icon: ':warning:'
       path: graph/tree_dp/subtree_diameter.hpp
       title: graph/tree_dp/subtree_diameter.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree_dp/subtree_hash.hpp
       title: graph/tree_dp/subtree_hash.hpp
   - name: heuristic
@@ -1969,7 +1969,7 @@ data:
     - icon: ':warning:'
       path: other/exp_search.hpp
       title: other/exp_search.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/fibonacci_search.hpp
       title: other/fibonacci_search.hpp
     - icon: ':warning:'
@@ -2473,7 +2473,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/famous/narayana.hpp
       title: seq/famous/narayana.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/famous/partition_number.hpp
       title: seq/famous/partition_number.hpp
     - icon: ':heavy_check_mark:'
@@ -2789,7 +2789,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/bigint.test.cpp
       title: test/1_mytest/bigint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/binary_trie.test.cpp
       title: test/1_mytest/binary_trie.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2942,19 +2942,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/dynamic_segtree_sparse.test.cpp
       title: test/1_mytest/dynamic_segtree_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/enum_partitions.test.cpp
       title: test/1_mytest/enum_partitions.test.cpp
     - icon: ':x:'
       path: test/1_mytest/enumerate_labeled_tree.test.cpp
       title: test/1_mytest/enumerate_labeled_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/enumerate_multisets.test.cpp
       title: test/1_mytest/enumerate_multisets.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/enumerate_products.test.cpp
       title: test/1_mytest/enumerate_products.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
       title: test/1_mytest/enumerate_unlabeled_tree.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2987,7 +2987,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/fenwick_raq.test.cpp
       title: test/1_mytest/fenwick_raq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/fibonacci_search.test.cpp
       title: test/1_mytest/fibonacci_search.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3251,7 +3251,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/product_of_one_pm_xn.test.cpp
       title: test/1_mytest/product_of_one_pm_xn.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/prufer.test.cpp
       title: test/1_mytest/prufer.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3269,7 +3269,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/range_add_range_min.test.cpp
       title: test/1_mytest/range_add_range_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/range_assign.test.cpp
       title: test/1_mytest/range_assign.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3611,7 +3611,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
       title: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
       title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -5235,7 +5235,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/4_aoj/DPL_1_H.test.cpp
       title: test/4_aoj/DPL_1_H.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/4_aoj/DPL_2_A.test.cpp
       title: test/4_aoj/DPL_2_A.test.cpp
     - icon: ':heavy_check_mark:'

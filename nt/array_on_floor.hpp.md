@@ -33,8 +33,9 @@ data:
     \    if (d <= t) return d - 1;\n    return dat.size() - u32(double(N) / d);\n\
     \  }\n\n  // dat[i] \u306B\u5BFE\u5FDC\u3059\u308B floor\n  u64 get_floor(u32\
     \ i) { return (i < t ? 1 + i : double(N) / (t + sq - i)); }\n\n  template <typename\
-    \ F>\n  void enumerate_all(F f) {\n    FOR(i, len(dat)) { f(get_floor(i), dat[i]);\
-    \ }\n  }\n};\n"
+    \ F>\n  void enumerate_all(F f) {\n    bool end = false;\n    FOR(i, len(dat))\
+    \ {\n      f(get_floor(i), dat[i], end);\n      if (end) break;\n    }\n  }\n\
+    };\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/nt/array_on_floor.hpp\n\
     // N=10 \u3060\u3068 dat = {dp[1], dp[2], dp[3], dp[5], dp[10]} \u307F\u305F\u3044\
     \u306B\u306A\u308B\n// hashmap \u3088\u308A\u6570\u500D\u9AD8\u901F\ntemplate\
@@ -47,15 +48,16 @@ data:
     \    if (d <= t) return d - 1;\n    return dat.size() - u32(double(N) / d);\n\
     \  }\n\n  // dat[i] \u306B\u5BFE\u5FDC\u3059\u308B floor\n  u64 get_floor(u32\
     \ i) { return (i < t ? 1 + i : double(N) / (t + sq - i)); }\n\n  template <typename\
-    \ F>\n  void enumerate_all(F f) {\n    FOR(i, len(dat)) { f(get_floor(i), dat[i]);\
-    \ }\n  }\n};"
+    \ F>\n  void enumerate_all(F f) {\n    bool end = false;\n    FOR(i, len(dat))\
+    \ {\n      f(get_floor(i), dat[i], end);\n      if (end) break;\n    }\n  }\n\
+    };"
   dependsOn: []
   isVerificationFile: false
   path: nt/array_on_floor.hpp
   requiredBy:
   - nt/range_rational_count.hpp
   - nt/mertens.hpp
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-11-16 13:22:31+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/number_theory/enumerate_quotients2.test.cpp

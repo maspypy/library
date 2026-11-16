@@ -12,15 +12,15 @@ data:
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
     title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/segtree/range_assignment_segtree.hpp
@@ -174,10 +174,10 @@ data:
     \    X y = dat[cut.prev(r)];\n      dat[r] = y;\n      right = monoid_pow<MX>(y,\
     \ b - r);\n    }\n\n    X mid = monoid_pow<MX>(x, r - l);\n\n    vc<int> I;\n\
     \    if (has_left) I.eb(a);\n    I.eb(l);\n    cut.enumerate(l + 1, r, [&](int\
-    \ i) { I.eb(i); }, true);\n\n    if (has_right) I.eb(r);\n\n    // \u3053\u3053\
-    \u3067 I \u306F strictly increasing\n    dat[l] = x;\n    cut.insert(l);\n   \
-    \ if (has_right) cut.insert(r);\n\n    seg.set_many_sorted(move(I), [&](int i)\
-    \ -> X {\n      if (has_left && i == a) return left;\n      if (i == l) return\
+    \ i, bool) { I.eb(i); }, true);\n\n    if (has_right) I.eb(r);\n\n    // \u3053\
+    \u3053\u3067 I \u306F strictly increasing\n    dat[l] = x;\n    cut.insert(l);\n\
+    \    if (has_right) cut.insert(r);\n\n    seg.set_many_sorted(move(I), [&](int\
+    \ i) -> X {\n      if (has_left && i == a) return left;\n      if (i == l) return\
     \ mid;\n      if (has_right && i == r) return right;\n      return MX::id();\n\
     \    });\n  }\n\n  vc<X> get_all() {\n    vc<X> ANS(n);\n    int p = 0;\n    while\
     \ (p < n) {\n      int q = cut.next(p + 1);\n      FOR(i, p, q) ANS[i] = dat[p];\n\
@@ -206,10 +206,10 @@ data:
     \    X y = dat[cut.prev(r)];\n      dat[r] = y;\n      right = monoid_pow<MX>(y,\
     \ b - r);\n    }\n\n    X mid = monoid_pow<MX>(x, r - l);\n\n    vc<int> I;\n\
     \    if (has_left) I.eb(a);\n    I.eb(l);\n    cut.enumerate(l + 1, r, [&](int\
-    \ i) { I.eb(i); }, true);\n\n    if (has_right) I.eb(r);\n\n    // \u3053\u3053\
-    \u3067 I \u306F strictly increasing\n    dat[l] = x;\n    cut.insert(l);\n   \
-    \ if (has_right) cut.insert(r);\n\n    seg.set_many_sorted(move(I), [&](int i)\
-    \ -> X {\n      if (has_left && i == a) return left;\n      if (i == l) return\
+    \ i, bool) { I.eb(i); }, true);\n\n    if (has_right) I.eb(r);\n\n    // \u3053\
+    \u3053\u3067 I \u306F strictly increasing\n    dat[l] = x;\n    cut.insert(l);\n\
+    \    if (has_right) cut.insert(r);\n\n    seg.set_many_sorted(move(I), [&](int\
+    \ i) -> X {\n      if (has_left && i == a) return left;\n      if (i == l) return\
     \ mid;\n      if (has_right && i == r) return right;\n      return MX::id();\n\
     \    });\n  }\n\n  vc<X> get_all() {\n    vc<X> ANS(n);\n    int p = 0;\n    while\
     \ (p < n) {\n      int q = cut.next(p + 1);\n      FOR(i, p, q) ANS[i] = dat[p];\n\
@@ -221,8 +221,8 @@ data:
   isVerificationFile: false
   path: ds/segtree/range_assignment_segtree.hpp
   requiredBy: []
-  timestamp: '2026-11-16 13:02:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2026-11-16 13:29:55+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   - test/1_mytest/range_assign.test.cpp

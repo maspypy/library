@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/bit_array.hpp
     title: ds/bit_array.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   - icon: ':x:'
