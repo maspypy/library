@@ -6,7 +6,7 @@
 #include "alg/monoid/assign.hpp"
 
 void solve() {
-  using Mono = Monoid_Assign<ll, (1LL << 31) - 1>;
+  using Mono = Monoid_Assign<ll>;
   LL(N, Q);
   Dual_SegTree<Mono> seg(N);
   FOR(Q) {
@@ -22,13 +22,7 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
+  solve();
 
   return 0;
 }

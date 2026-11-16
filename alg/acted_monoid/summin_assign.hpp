@@ -2,8 +2,9 @@
 #include "alg/monoid/summin.hpp"
 #include "alg/monoid/assign.hpp"
 
-template <typename E, ll none_val>
+template <typename E>
 struct ActedMonoid_SumMin_Assign {
+  static_assert(is_save_v<E, int> || is_same_v<E, ll>);
   using Monoid_X = Monoid_SumMin<E>;
   using Monoid_A = Monoid_Assign<ll, none_val>;
   using X = typename Monoid_X::value_type;

@@ -8,7 +8,7 @@
 using mint = modint998;
 
 void test() {
-  using Mono = Monoid_Assign<int, -1>;
+  using Mono = Monoid_Assign<int>;
   RBST_Monoid<Mono, true> X;
   using np = decltype(X)::np;
 
