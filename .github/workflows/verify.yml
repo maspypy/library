@@ -104,6 +104,9 @@ jobs:
 
   finalize:
     runs-on: ubuntu-latest
+    outputs:
+      state_saved: ${{ steps.state.outcome == 'success' }}
+      verified_sha: ${{ steps.commit.outputs.sha }}
     needs: [prepare, verify_all]
     if: always() && needs.prepare.result == 'success'
     permissions:
@@ -185,6 +188,7 @@ jobs:
           mv .verify-helper/timestamps.merged.json .verify-helper/timestamps.remote.json
 
       - name: Commit verification timestamps
+        id: commit
         env:
           BRANCH: ${{ github.ref_name }}
         run: |
@@ -197,14 +201,10 @@ jobs:
             git commit -m "[auto-verifier] verify commit $GITHUB_SHA"
             git push origin "HEAD:$BRANCH"
           fi
-
-      - name: Generate and publish documentation
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_PAT: ${{ secrets.GH_PAT }}
-        run: oj-verify docs -j "$VERIFY_JOBS"
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Upload session state for the next round
+        id: state
         uses: actions/upload-artifact@v4
         with:
           name: verify-continuation-state
@@ -227,3 +227,34 @@ jobs:
         run: |
           python .github/scripts/continue_verify.py assert-final \
             --state .verify-helper/verification-state.json
+
+  # oj-verify docs switches to gh-pages and rewrites the checkout.
+  # Keep it on a separate runner, after the state/dispatch/final verdict.
+  documentation:
+    needs: finalize
+    if: always() && needs.finalize.outputs.state_saved == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout verified commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ needs.finalize.outputs.verified_sha }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install -U online-judge-verify-helper
+          python -m pip install "setuptools<81"
+
+      - name: Generate and publish documentation
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: oj-verify docs -j "$VERIFY_JOBS"
