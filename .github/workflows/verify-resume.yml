@@ -1,0 +1,26 @@
+name: verify resume
+on:
+  schedule:
+    - cron: '7,17,27,37,47,57 * * * *'
+  workflow_dispatch:
+concurrency:
+  group: verify-resume
+  cancel-in-progress: false
+jobs:
+  resume:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Resume eligible latest verification
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python .github/scripts/resume_verify.py

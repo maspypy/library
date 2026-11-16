@@ -61,6 +61,10 @@ class ShimTests(unittest.TestCase):
         self.fake = self.root / "fake_oj"
         self.fake.write_text(FAKE_OJ)
         self.fake.chmod(self.fake.stat().st_mode | stat.S_IXUSR)
+        if os.name == "nt":
+            script = self.fake
+            self.fake = self.root / "fake_oj.cmd"
+            self.fake.write_text(f'@"{sys.executable}" "{script}" %*\n')
         self.dest = self.root / "cache" / "hash" / "test"
         self.count = self.root / "count"
         self.circuit = self.root / "circuit.block"
@@ -100,7 +104,7 @@ class ShimTests(unittest.TestCase):
         self.assertEqual(self.count_calls(), 2)
         self.assertFalse((self.dest / "orphan.in").exists())
         self.assertTrue((self.dest / "example.out").exists())
-        self.assertFalse(self.circuit.exists())
+        self.assertGreater(float(self.circuit.read_text()), 0)
 
     def test_429_persistent_opens_circuit(self):
         self.env["FAKE_OJ_MODE"] = "permanent_429"

@@ -6,12 +6,14 @@
 
 void test(ll N) {
   vvc<pair<int, int>> dat;
-  enumerate_labeled_tree(N, [&](vc<pair<int, int>> G) -> void {
+  enumerate_labeled_tree(N, [&](vc<pair<int, int>> G, bool) -> void {
     assert(len(G) == N - 1);
     UnionFind uf(N);
-    for (auto& [a, b]: G) { uf.merge(a, b); }
+    for (auto& [a, b] : G) {
+      uf.merge(a, b);
+    }
     assert(uf.n_comp == 1);
-    for (auto& [a, b]: G) {
+    for (auto& [a, b] : G) {
       if (a > b) swap(a, b);
     }
     sort(all(G));

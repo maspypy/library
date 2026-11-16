@@ -9,11 +9,11 @@ import pathlib
 from typing import Any
 
 TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S %z"
-VERIFY_GROUPS = ("yukicoder", "other")
+VERIFY_GROUPS = ("all",)
 
 
 def group_of(path: pathlib.Path) -> str:
-    return "yukicoder" if path.as_posix().startswith("test/3_yukicoder/") else "other"
+    return "all"
 
 
 

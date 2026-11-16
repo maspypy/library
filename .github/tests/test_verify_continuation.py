@@ -55,13 +55,14 @@ class Fixture(unittest.TestCase):
         return p
 
     def previous(self, statuses: dict[str, str], *, round_number=0,
-                 run_id=10, retry_target="both", blocked=None):
+                 run_id=10, retry_target="all", blocked=None):
         self.make_test_sources(statuses)
         return self.put_json("previous.json", {
-            "schema": 1, "origin_sha": ORIGIN, "run_id": run_id,
+            "schema": 2, "origin_sha": ORIGIN, "run_id": run_id,
             "round": round_number, "statuses": statuses,
-            "blocked": blocked or {"yukicoder": False, "other": False},
-            "retry_target": retry_target,
+            "blocked": blocked or {"all": False},
+            "retry_target": retry_target, "last_429": 1000 if "rate_limited" in statuses.values() else 0,
+            "not_before": 5200 if "rate_limited" in statuses.values() and "pending" not in statuses.values() else 0,
         })
 
     def make_test_sources(self, statuses: dict[str, str]):
@@ -78,14 +79,14 @@ class Fixture(unittest.TestCase):
             "group": group, "shard": shard, "shards": 16,
             "selected_files": len(statuses), "verify_exit_code": exit_code,
             "rate_limited": rate, "infrastructure_error": infra,
-            "attempted_files": attempts,
+            "attempted_files": attempts, "last_429": 1000 if rate else 0,
         })
         self.put_json(f"artifacts/states-{group}-{shard}.json", {
             "group": group, "shard": shard, "statuses": statuses,
         })
         self.put_json(f"artifacts/timestamps-{group}-{shard}.json", {})
 
-    def artifact_round(self, statuses: dict[str, str], groups=("yukicoder", "other"),
+    def artifact_round(self, statuses: dict[str, str], groups=("all",),
                        *, attempted_groups=(), blocked_groups=(), infra_groups=()):
         self.make_test_sources(statuses)
         for group in groups:
@@ -111,113 +112,131 @@ class Fixture(unittest.TestCase):
         return json.loads(args.output.read_text())
 
 
-class ContinuationDecisionTests(Fixture):
-    def test_failed_and_ignored_are_terminal_but_not_ac(self):
-        y = "test/3_yukicoder/y.test.cpp"
-        x = "test/2_library_checker/x.test.cpp"
-        q = "test/2_library_checker/unfinished.test.cpp"
-        self.artifact_round({y: "failed", x: "ac", q: "pending"},
-                            attempted_groups=("yukicoder", "other"))
-        state = self.summarize()
-        self.assertEqual(state["statuses"][y], "failed")
-        self.assertEqual(state["retry_target"], "other")
-        self.assertEqual(state["round"], 0)
 
-    def test_no_progress_is_not_retried(self):
-        pending = "test/2_library_checker/a.test.cpp"
-        previous = self.previous({pending: "pending"}, retry_target="other")
-        self.artifact_round({pending: "pending"}, groups=("other",))
-        now = self.summarize(round_number=1, target="other", previous=previous,
-                             previous_run_id=10, run_id=11)
-        self.assertEqual(now["retry_target"], "none")
+class Decisions(Fixture):
+    def check(self, statuses, old=None, round_number=0, infra=False):
+        previous = self.previous(old, round_number=round_number-1) if old else None
+        self.artifact_round(statuses, attempted_groups=("all",),
+                            blocked_groups=("all",) if "rate_limited" in statuses.values() else (),
+                            infra_groups=("all",) if infra else ())
+        return self.summarize(round_number=round_number, target="all",
+                              previous=previous, previous_run_id=10 if old else 0)
 
-    def test_only_pending_remaining_progress_triggers_retry(self):
-        failed = "test/2_library_checker/wa.test.cpp"
-        newly_done = "test/2_library_checker/now_ac.test.cpp"
-        pending = "test/2_library_checker/unreached.test.cpp"
-        previous = self.previous({failed: "failed", newly_done: "pending", pending: "pending"},
-                                 retry_target="other")
-        self.artifact_round({failed: "failed", newly_done: "ac", pending: "pending"},
-                            groups=("other",), attempted_groups=("other",))
-        current = self.summarize(round_number=1, target="other", previous=previous,
-                                 previous_run_id=10, run_id=11)
-        self.assertEqual(current["retry_target"], "other")
-        self.assertEqual(current["statuses"][failed], "failed")
-        self.assertEqual(current["round"], 1)
+    def test_pending_immediate_failed_preserved(self):
+        r = self.check({"test/a.test.cpp":"failed", "test/b.test.cpp":"pending"})
+        self.assertEqual((r["retry_target"], r["not_before"]), ("all",0))
 
-    def test_both_groups_resume_only_when_each_has_progress(self):
-        a = "test/3_yukicoder/a.test.cpp"
-        b = "test/2_library_checker/b.test.cpp"
-        c = "test/2_library_checker/c.test.cpp"
-        self.artifact_round({a: "pending", b: "pending", c: "ac"},
-                            attempted_groups=("yukicoder", "other"))
-        self.assertEqual(self.summarize()["retry_target"], "both")
+    def test_429_only_waits_70_minutes(self):
+        r = self.check({"test/3_yukicoder/a.test.cpp":"rate_limited"})
+        self.assertEqual((r["retry_target"], r["not_before"]), ("all",5200))
 
-    def test_rate_limit_blocks_yukicoder_but_not_other(self):
-        a = "test/3_yukicoder/a.test.cpp"
-        b = "test/2_library_checker/b.test.cpp"
-        self.artifact_round({a: "pending", b: "pending"},
-                            attempted_groups=("yukicoder", "other"),
-                            blocked_groups=("yukicoder",))
-        current = self.summarize()
-        self.assertTrue(current["blocked"]["yukicoder"])
-        self.assertEqual(current["retry_target"], "other")
+    def test_mixed_pending_does_not_wait(self):
+        r = self.check({"test/a.test.cpp":"pending", "test/3_yukicoder/a.test.cpp":"rate_limited"})
+        self.assertEqual((r["retry_target"],r["not_before"]),("all",0))
 
-    def test_infrastructure_error_prevents_auto_retry(self):
-        a = "test/2_library_checker/a.test.cpp"
-        self.artifact_round({a: "pending"}, attempted_groups=("other",),
-                            infra_groups=("other",))
-        self.assertEqual(self.summarize()["retry_target"], "none")
+    def test_no_progress_stops_including_repeated_429(self):
+        for value in ("pending","rate_limited"):
+            states={"test/a.test.cpp":value}
+            self.assertEqual(self.check(states, states, 1)["retry_target"],"none")
 
-    def test_continuation_does_not_lose_unselected_group(self):
-        yfail = "test/3_yukicoder/old-failure.test.cpp"
-        ypending = "test/3_yukicoder/remaining.test.cpp"
-        other = "test/2_library_checker/pending.test.cpp"
-        prior = self.previous({yfail: "failed", ypending: "pending", other: "pending"},
-                              retry_target="other", blocked={"yukicoder": True, "other": False})
-        self.artifact_round({other: "ac"}, groups=("other",), attempted_groups=("other",))
-        current = self.summarize(round_number=1, target="other", previous=prior,
-                                 previous_run_id=10, run_id=11)
-        self.assertEqual(current["statuses"][yfail], "failed")
-        self.assertEqual(current["statuses"][ypending], "pending")
-        self.assertTrue(current["blocked"]["yukicoder"])
-        self.assertEqual(current["retry_target"], "none")
+    def test_progress_then_delayed(self):
+        old={"test/a.test.cpp":"pending","test/b.test.cpp":"rate_limited"}
+        r=self.check({**old,"test/a.test.cpp":"ac"},old,1)
+        self.assertEqual((r["retry_target"],r["not_before"]),("all",5200))
 
-    def test_round_three_is_hard_cap(self):
-        a = "test/2_library_checker/a.test.cpp"
-        b = "test/2_library_checker/b.test.cpp"
-        prior = self.previous({a: "pending", b: "pending"},
-                              round_number=2, run_id=12, retry_target="other")
-        self.artifact_round({a: "ac", b: "pending"}, groups=("other",),
-                            attempted_groups=("other",))
-        current = self.summarize(round_number=3, target="other", previous=prior,
-                                 previous_run_id=12, run_id=13)
-        self.assertEqual(current["retry_target"], "none")
+    def test_cap_infrastructure_and_no_attempt_stop(self):
+        old={"test/a.test.cpp":"pending","test/b.test.cpp":"pending"}
+        self.assertEqual(self.check({**old,"test/a.test.cpp":"ac"},old,3)["retry_target"],"none")
+        self.assertEqual(self.check(old,infra=True)["retry_target"],"none")
+        self.assertEqual(self.check(old)["retry_target"],"none")
 
-    def test_reject_missing_owner_manifest_and_incomplete_status(self):
-        a = "test/2_library_checker/a.test.cpp"
-        self.artifact_round({a: "failed"})
-        path = self.root / "artifacts" / "complete-other-15.json"
-        path.unlink()
+    def test_terminal_regression_rejected(self):
+        with self.assertRaisesRegex(ValueError,"regressed"):
+            self.check({"test/a.test.cpp":"pending"},{"test/a.test.cpp":"failed"},1)
+
+    def test_missing_manifest_rejected(self):
+        self.artifact_round({"test/a.test.cpp":"ac"})
+        (self.root/"artifacts/complete-all-15.json").unlink()
         with self.assertRaises(FileNotFoundError):
             self.summarize()
-        self.artifact("other", 15, {})
-        owner = cont.shard_of(pathlib.Path(a), 16)
-        path = self.root / "artifacts" / f"states-other-{owner}.json"
-        self.put_json(path.relative_to(self.root), {"group": "other", "shard": owner,
-                                                    "statuses": {}})
-        with self.assertRaisesRegex(ValueError, "statuses incomplete"):
-            self.summarize()
 
-    def test_statuses_are_not_counted_as_success_if_failed(self):
-        a = "test/2_library_checker/a.test.cpp"
-        path = self.previous({a: "failed"})
-        with self.assertRaises(SystemExit) as err:
-            with contextlib.redirect_stderr(io.StringIO()):
-                cont.assert_final(types.SimpleNamespace(state=path))
-        self.assertEqual(err.exception.code, 1)
+    def test_wrong_identity_rejected(self):
+        state=json.loads(self.previous({"test/a.test.cpp":"failed"}).read_text())
+        with self.assertRaises(ValueError):
+            cont.validate_state(state,origin=ORIGIN,round_number=0,previous_run_id=11)
 
+    def test_rate_limited_is_not_success(self):
+        path=self.previous({"test/a.test.cpp":"rate_limited"})
+        with self.assertRaises(SystemExit):
+            cont.assert_final(types.SimpleNamespace(state=path))
 
+    def test_normal_push_rechecks_failure(self):
+        args=types.SimpleNamespace(round=0,previous_state=None)
+        self.assertEqual(runner.prior_failures(args,[pathlib.Path("test/a.test.cpp")]),{})
+
+    def test_continuation_skip_failed_and_cooldown(self):
+        states={"test/a.test.cpp":"failed","test/b.test.cpp":"rate_limited","test/c.test.cpp":"pending"}
+        args=types.SimpleNamespace(round=1,previous_state=self.previous(states),
+                                  origin_sha=ORIGIN,previous_run_id=10)
+        with mock.patch.object(runner.time,"time",return_value=5199):
+            self.assertEqual(set(runner.prior_failures(args,list(map(pathlib.Path,states)))),
+                             {"test/a.test.cpp","test/b.test.cpp"})
+        with mock.patch.object(runner.time,"time",return_value=5200):
+            self.assertEqual(set(runner.prior_failures(args,list(map(pathlib.Path,states)))),{"test/a.test.cpp"})
+
+class ScheduleTests(Fixture):
+    def setUp(self):
+        super().setUp()
+        import resume_verify
+        self.resume=resume_verify
+
+    def test_duplicate_and_new_push_stop(self):
+        history=[dict(id=12,run_number=12),dict(id=11,run_number=11),dict(id=10,run_number=10)]
+        with mock.patch.object(self.resume,"runs",return_value=history):
+            self.resume.check_predecessor(10,current=11)
+            with self.assertRaises(ValueError):
+                self.resume.check_predecessor(10,current=12)
+            with self.assertRaises(ValueError):
+                self.resume.check_predecessor(10)
+
+    def test_manual_rerun_stops(self):
+        with mock.patch.object(self.resume,"runs",return_value=[dict(id=10,run_number=10,run_attempt=2)]):
+            with self.assertRaises(ValueError):
+                self.resume.check_predecessor(10)
+
+    def test_due_boundary_and_dispatch_payload(self):
+        path=self.previous({"test/a.test.cpp":"rate_limited"})
+        requests=[]
+        class Response:
+            status=204
+            def __enter__(self): return self
+            def __exit__(self,*args): pass
+            def read(self): return json.dumps({"commit":{"sha":"b"*40}}).encode()
+        def request(req,timeout):
+            requests.append(req)
+            return Response()
+        args=types.SimpleNamespace(state=path,branch="main")
+        with mock.patch.object(cont,"unchanged_sources",return_value=True), \
+             mock.patch.object(self.resume,"check_predecessor"), \
+             mock.patch.object(cont.subprocess,"check_output",return_value="b"*40), \
+             mock.patch.object(cont.urllib.request,"urlopen",side_effect=request), \
+             mock.patch.dict(os.environ,{"GITHUB_TOKEN":"test","GITHUB_REPOSITORY":"test/repo"}):
+            with mock.patch.object(cont.time,"time",return_value=5199):
+                cont.dispatch(args)
+            self.assertEqual(requests,[])
+            with mock.patch.object(cont.time,"time",return_value=5200):
+                cont.dispatch(args)
+            self.assertEqual(len(requests),2)
+            payload=json.loads(requests[1].data)
+            self.assertEqual(payload["inputs"]["round"],"1")
+            self.assertEqual(payload["inputs"]["previous_run_id"],"10")
+
+    def test_running_or_cancelled_run_not_resumed(self):
+        for status,conclusion in (("in_progress",None),("completed","cancelled")):
+            with mock.patch.object(self.resume,"runs",return_value=[dict(id=10,status=status,conclusion=conclusion)]), \
+                 mock.patch.object(self.resume,"api") as api:
+                self.resume.main()
+                api.assert_not_called()
 class RunnerSkipTests(Fixture):
     def select_same_shard(self, n: int):
         selected = []
@@ -238,28 +257,28 @@ class RunnerSkipTests(Fixture):
         timestamp_path = self.put_json(".verify-helper/timestamps.remote.json", {})
 
         def fake_verification_one(command, check, env):
-            self.assertIn(str(fa), command)
-            self.assertIn(str(fb), command)
-            self.assertIn(str(ac), command)
+            self.assertIn(fa.as_posix(), command)
+            self.assertIn(fb.as_posix(), command)
+            self.assertIn(ac.as_posix(), command)
             trace = pathlib.Path(env["VERIFY_TRACE_FILE"])
             with trace.open("w") as stream:
                 for p, state in [(fa, "failed"), (fb, "failed"), (ac, "ac")]:
-                    stream.write(json.dumps({"path": str(p), "status": state}) + "\n")
-            timestamp_path.write_text(json.dumps({str(ac): TS}) + "\n")
+                    stream.write(json.dumps({"path": p.as_posix(), "status": state}) + "\n")
+            timestamp_path.write_text(json.dumps({ac.as_posix(): TS}) + "\n")
             return types.SimpleNamespace(returncode=1)
 
         def fake_verification_two(command, check, env):
-            self.assertNotIn(str(fa), command)
-            self.assertNotIn(str(fb), command)
-            self.assertIn(str(newer), command)
-            self.assertIn(str(latest), command)
+            self.assertNotIn(fa.as_posix(), command)
+            self.assertNotIn(fb.as_posix(), command)
+            self.assertIn(newer.as_posix(), command)
+            self.assertIn(latest.as_posix(), command)
             trace = pathlib.Path(env["VERIFY_TRACE_FILE"])
-            trace.write_text(json.dumps({"path": str(newer), "status": "ac"}) + "\n")
-            timestamp_path.write_text(json.dumps({str(ac): TS, str(newer): TS}) + "\n")
+            trace.write_text(json.dumps({"path": newer.as_posix(), "status": "ac"}) + "\n")
+            timestamp_path.write_text(json.dumps({ac.as_posix(): TS, newer.as_posix(): TS}) + "\n")
             return types.SimpleNamespace(returncode=0)
 
         def run(round_num, action):
-            args = ["run_verify_shard.py", "--group", "other", "--shard", "4",
+            args = ["run_verify_shard.py", "--group", "all", "--shard", "4",
                     "--shards", "16", "--output-dir", str(self.root / "artifacts"),
                     "--round", str(round_num), "--origin-sha", ORIGIN]
             if round_num:
@@ -275,18 +294,18 @@ class RunnerSkipTests(Fixture):
                 return runner.main()
 
         self.assertEqual(run(0, fake_verification_one), 1)
-        first = json.loads((self.root / "artifacts/states-other-4.json").read_text())
-        self.assertEqual(first["statuses"], {str(fa): "failed", str(fb): "failed",
-                                             str(ac): "ac", str(newer): "pending",
-                                             str(latest): "pending"})
+        first = json.loads((self.root / "artifacts/states-all-4.json").read_text())
+        self.assertEqual(first["statuses"], {fa.as_posix(): "failed", fb.as_posix(): "failed",
+                                             ac.as_posix(): "ac", newer.as_posix(): "pending",
+                                             latest.as_posix(): "pending"})
         self.previous(first["statuses"])
         self.assertEqual(run(1, fake_verification_two), 1)
-        second = json.loads((self.root / "artifacts/states-other-4.json").read_text())
-        self.assertEqual(second["statuses"], {str(fa): "failed", str(fb): "failed",
-                                              str(ac): "ac", str(newer): "ac",
-                                              str(latest): "pending"})
-        self.assertEqual(json.loads(timestamp_path.read_text()), {str(ac): TS, str(newer): TS})
-        self.assertEqual(json.loads((self.root / "artifacts/complete-other-4.json").read_text())
+        second = json.loads((self.root / "artifacts/states-all-4.json").read_text())
+        self.assertEqual(second["statuses"], {fa.as_posix(): "failed", fb.as_posix(): "failed",
+                                              ac.as_posix(): "ac", newer.as_posix(): "ac",
+                                              latest.as_posix(): "pending"})
+        self.assertEqual(json.loads(timestamp_path.read_text()), {ac.as_posix(): TS, newer.as_posix(): TS})
+        self.assertEqual(json.loads((self.root / "artifacts/complete-all-4.json").read_text())
                          ["attempted_files"], 1)
 
     def test_fresh_push_does_not_skip_known_failure(self):
@@ -296,7 +315,8 @@ class RunnerSkipTests(Fixture):
         self.assertEqual(runner.prior_failures(args, [a]), {})
 
 
-class GuardTests(Fixture):
+
+class SourceGuardTests(Fixture):
     def test_git_changed_code_stops_continuation_but_timestamps_are_ignored(self):
         with self.working_dir():
             subprocess.check_call(["git", "init", "-q"])
@@ -319,136 +339,74 @@ class GuardTests(Fixture):
             subprocess.check_call(["git", "commit", "-qm", "changed code"])
             self.assertFalse(cont.unchanged_sources(origin))
 
-    def test_state_identity_wrong_run_or_round_is_rejected(self):
-        state = json.loads(self.previous({"test/2_library_checker/a.test.cpp": "failed"}).read_text())
-        with self.assertRaisesRegex(ValueError, "mismatched"):
-            cont.validate_state(state, origin=ORIGIN, round_number=0, previous_run_id=11)
-        with self.assertRaisesRegex(ValueError, "mismatched"):
-            cont.validate_state(state, origin=ORIGIN, round_number=1, previous_run_id=10)
-
-    def test_bad_target_and_source_prevent_prepare(self):
-        path = self.previous({"test/2_library_checker/a.test.cpp": "failed"},
-                             retry_target="other")
-        args = types.SimpleNamespace(continuation=True, round=1, previous_run_id=10,
-                                     origin_sha=ORIGIN, target="yukicoder", previous_state=path)
-        with mock.patch.object(cont, "unchanged_sources", return_value=True):
-            with self.assertRaisesRegex(ValueError, "target differs"):
-                cont.prepare(args)
-        args.target = "other"
-        with mock.patch.object(cont, "unchanged_sources", return_value=False):
-            with self.assertRaisesRegex(ValueError, "source tree changed"):
-                cont.prepare(args)
-
-    def test_dispatch_emits_one_bounded_workflow_dispatch(self):
-        state = self.previous({"test/2_library_checker/a.test.cpp": "pending"},
-                              retry_target="other")
-        calls = []
-
-        class Resp:
-            status = 204
-            def __init__(self, data=None): self.data = data or {}
-            def __enter__(self): return self
-            def __exit__(self, *args): return False
-            def read(self): return json.dumps(self.data).encode()
-
-        def urlopen(req, timeout):
-            calls.append(req)
-            if len(calls) == 1:
-                return Resp({"commit": {"sha": "b" * 40}})
-            return Resp()
-
-        with mock.patch.object(cont, "unchanged_sources", return_value=True), \
-             mock.patch.object(cont.subprocess, "check_output", return_value="b" * 40), \
-             mock.patch.object(cont.urllib.request, "urlopen", side_effect=urlopen), \
-             mock.patch.dict(os.environ, {"GITHUB_TOKEN": "fake-token", "GITHUB_REPOSITORY": "maspypy/library"}):
-            with contextlib.redirect_stdout(io.StringIO()):
-                cont.dispatch(types.SimpleNamespace(state=state, branch="main"))
-        self.assertEqual(len(calls), 2)
-        self.assertTrue(calls[1].full_url.endswith("/actions/workflows/verify.yml/dispatches"))
-        payload = json.loads(calls[1].data)
-        self.assertEqual(payload["inputs"]["round"], "1")
-        self.assertEqual(payload["inputs"]["previous_run_id"], "10")
-        self.assertEqual(payload["inputs"]["origin_sha"], ORIGIN)
-        self.assertEqual(payload["inputs"]["target"], "other")
-        self.assertEqual(payload["ref"], "main")
-
-    def test_dispatch_noop_if_no_retry(self):
-        state = self.previous({}, retry_target="none")
-        with mock.patch.object(cont.urllib.request, "urlopen") as fn:
-            cont.dispatch(types.SimpleNamespace(state=state, branch="main"))
-            fn.assert_not_called()
 
 
-class MergeTests(Fixture):
-    def test_partial_merge_preserves_other_group_ac(self):
-        other = "test/2_library_checker/a.test.cpp"
-        yuki = "test/3_yukicoder/z.test.cpp"
-        self.artifact_round({other: "ac"}, groups=("other",), attempted_groups=("other",))
-        owner = cont.shard_of(pathlib.Path(other), 16)
-        self.put_json(f"artifacts/timestamps-other-{owner}.json", {other: TS})
-        self.put_json("baseline.json", {yuki: TS, other: "2023-01-01 00:00:00 +0000"})
-        script = SCRIPTS / "merge_verify_timestamps.py"
-        completed = subprocess.run([
-            sys.executable, str(script), "--input-dir", str(self.root / "artifacts"),
-            "--output", str(self.root / "merged.json"),
-            "--baseline", str(self.root / "baseline.json"),
-            "--shards", "16", "--groups", "other",
-        ], capture_output=True, text=True)
-        self.assertEqual(completed.returncode, 0, completed.stderr)
-        self.assertEqual(json.loads((self.root / "merged.json").read_text()),
-                         {yuki: TS, other: TS})
-
-    def test_missing_source_status_cannot_appear_ac(self):
-        missing = "test/2_library_checker/missing.test.cpp"
-        current = "test/2_library_checker/ok.test.cpp"
-        self.artifact_round({current: "ac"}, attempted_groups=("other",))
-        self.make_test_sources({missing: "pending"})
-        with self.assertRaisesRegex(ValueError, "state does not cover all"):
-            self.summarize()
-
-
-class TraceTests(Fixture):
-    def test_trace_records_attempted_statuses(self):
-        filename = self.root / "trace.jsonl"
-        with mock.patch.dict(os.environ, {"VERIFY_TRACE_FILE": str(filename)}):
-            tracer.record(pathlib.Path("test/foo.test.cpp"), "failed")
-            tracer.record(pathlib.Path("test/bar.test.cpp"), "ignored")
-        self.assertEqual([json.loads(x)["status"] for x in filename.read_text().splitlines()],
-                         ["failed", "ignored"])
-
-    def test_instrumented_verifier_uses_existing_upstream_verification(self):
-        file = self.root / "trace.jsonl"
-        package = types.ModuleType("onlinejudge_verify")
-        package.__path__ = []
-        module_main = types.ModuleType("onlinejudge_verify.main")
-        module_verify = types.ModuleType("onlinejudge_verify.verify")
-        observed = []
-
-        def fake_verify_file(path, **kwargs):
-            observed.append((str(path), kwargs))
-            if path.name == "a.test.cpp": return False
-            if path.name == "b.test.cpp": return True
-            return None
-
-        def fake_main(args):
-            for name in ("a.test.cpp", "b.test.cpp", "c.test.cpp"):
-                module_verify.verify_file(pathlib.Path(name), jobs=2)
-            self.assertEqual(args, ["run", "-j", "2"])
-
-        module_verify.verify_file = fake_verify_file
-        module_main.main = fake_main
-        package.main = module_main
-        package.verify = module_verify
-        with mock.patch.dict(sys.modules, {
-            "onlinejudge_verify": package, "onlinejudge_verify.main": module_main,
-            "onlinejudge_verify.verify": module_verify,
-        }), mock.patch.dict(os.environ, {"VERIFY_TRACE_FILE": str(file)}), \
-             mock.patch.object(sys, "argv", ["verify_trace.py", "run", "-j", "2"]):
+class TraceIsolationTests(Fixture):
+    def test_429_does_not_mask_other_wa_or_block_other_ac(self):
+        package=types.ModuleType("onlinejudge_verify")
+        package.__path__=[]
+        verifier=types.ModuleType("onlinejudge_verify.verify")
+        cli=types.ModuleType("onlinejudge_verify.main")
+        def verify(path,**kwargs):
+            if path.name=="limited.test.cpp":
+                pathlib.Path(os.environ["VERIFY_RATE_FILE"]).write_text("429")
+                return False
+            return path.name=="ok.test.cpp"
+        verifier.verify_file=verify
+        def main(args):
+            for n in ("limited","wa","ok"):
+                verifier.verify_file(pathlib.Path(f"test/{n}.test.cpp"))
+        cli.main=main
+        package.main=cli
+        package.verify=verifier
+        trace=self.root/"trace"
+        with mock.patch.dict(sys.modules,{"onlinejudge_verify":package,
+            "onlinejudge_verify.verify":verifier,"onlinejudge_verify.main":cli}), \
+            mock.patch.dict(os.environ,{"VERIFY_TRACE_FILE":str(trace)}):
             tracer.main()
-        self.assertEqual(len(observed), 3)
-        states = [json.loads(line)["status"] for line in file.read_text().splitlines()]
-        self.assertEqual(states, ["failed", "ac", "ignored"])
+        self.assertEqual(list(runner.read_trace(trace).values()),["rate_limited","failed","ac"])
 
+    def test_trace_exception_is_infrastructure_error(self):
+        package=types.ModuleType("onlinejudge_verify")
+        package.__path__=[]
+        verifier=types.ModuleType("onlinejudge_verify.verify")
+        cli=types.ModuleType("onlinejudge_verify.main")
+        verifier.verify_file=mock.Mock(side_effect=RuntimeError("broken helper"))
+        cli.main=lambda args: verifier.verify_file(pathlib.Path("test/a.test.cpp"))
+        package.main=cli
+        package.verify=verifier
+        trace=self.root/"trace"
+        with mock.patch.dict(sys.modules,{"onlinejudge_verify":package,
+            "onlinejudge_verify.verify":verifier,"onlinejudge_verify.main":cli}), \
+            mock.patch.dict(os.environ,{"VERIFY_TRACE_FILE":str(trace)}):
+            with self.assertRaises(RuntimeError):
+                tracer.main()
+        self.assertEqual(runner.read_trace(trace),{"test/a.test.cpp":"error"})
+
+class ArtifactResumeTests(Fixture):
+    def test_schedule_reads_real_zip_and_dispatches(self):
+        import resume_verify as resume
+        import zipfile
+        state=json.loads(self.previous({"test/a.test.cpp":"rate_limited"}).read_text())
+        buffer=io.BytesIO()
+        with zipfile.ZipFile(buffer,"w") as z:
+            z.writestr("verification-state.json",json.dumps(state))
+        with self.working_dir(), \
+             mock.patch.object(resume,"runs",return_value=[dict(id=10,status="completed",conclusion="failure")]), \
+             mock.patch.object(resume,"api",side_effect=[
+                 {"artifacts":[{"id":5,"name":"verify-continuation-state","expired":False}]},buffer.getvalue()]), \
+             mock.patch.dict(os.environ,{"GITHUB_REF_NAME":"main"}), \
+             mock.patch("continue_verify.dispatch") as dispatch:
+            resume.main()
+            self.assertEqual(json.loads(dispatch.call_args.args[0].state.read_text()),state)
+
+    def test_schedule_missing_artifact_does_not_dispatch(self):
+        import resume_verify as resume
+        with mock.patch.object(resume,"runs",return_value=[dict(id=10,status="completed",conclusion="failure")]), \
+             mock.patch.object(resume,"api",return_value={"artifacts":[]}), \
+             mock.patch("continue_verify.dispatch") as dispatch:
+            resume.main()
+            dispatch.assert_not_called()
 
 if __name__ == "__main__":
     unittest.main()

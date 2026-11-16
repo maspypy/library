@@ -29,12 +29,15 @@ def main() -> None:
     real_verify = verifier.verify_file
 
     def traced(path: pathlib.Path, **kwargs):
+        rate_file = pathlib.Path(os.environ["VERIFY_TRACE_FILE"] + ".rate")
+        rate_file.unlink(missing_ok=True)
+        os.environ["VERIFY_RATE_FILE"] = str(rate_file.resolve())
         try:
             result = real_verify(path, **kwargs)
         except BaseException:
             record(path, "error")
             raise
-        record(path, "ac" if result is True else "ignored" if result is None else "failed")
+        record(path, "ac" if result is True else "rate_limited" if rate_file.exists() else "failed")
         return result
 
     verifier.verify_file = traced

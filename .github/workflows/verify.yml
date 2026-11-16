@@ -23,7 +23,7 @@ on:
       target:
         description: "Internal: verify only the group with pending work"
         type: choice
-        options: [both, yukicoder, other]
+        options: [both, all]
         default: both
 
 # Serialize branch updates and continuations. The GITHUB_TOKEN timestamp push
@@ -63,6 +63,7 @@ jobs:
       - name: Check continuation source and authorization
         id: source
         env:
+          GITHUB_TOKEN: ${{ github.token }}
           CONTINUATION: ${{ inputs.continuation == true }}
           PREVIOUS_RUN_ID: ${{ inputs.previous_run_id }}
           ORIGIN_SHA: ${{ inputs.origin_sha }}
@@ -79,40 +80,16 @@ jobs:
             --previous-state .verify-helper/previous/verification-state.json \
             "${arguments[@]}"
 
-  verify_yukicoder:
+  verify_all:
     needs: prepare
-    if: needs.prepare.result == 'success' && (inputs.continuation != true || inputs.target == 'both' || inputs.target == 'yukicoder')
     strategy:
       fail-fast: false
-      max-parallel: 4
+      max-parallel: 8
       matrix:
         shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
     uses: ./.github/workflows/verify-shard.yml
     with:
-      group: yukicoder
-      shard: ${{ matrix.shard }}
-      shards: 16
-      jobs: 2
-      timeout: 570
-      continuation: ${{ inputs.continuation == true }}
-      previous_run_id: ${{ inputs.previous_run_id || '' }}
-      origin_sha: ${{ needs.prepare.outputs.origin_sha }}
-      round: ${{ inputs.round || 0 }}
-    secrets:
-      YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
-      DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
-
-  verify_other:
-    needs: prepare
-    if: needs.prepare.result == 'success' && (inputs.continuation != true || inputs.target == 'both' || inputs.target == 'other')
-    strategy:
-      fail-fast: false
-      max-parallel: 12
-      matrix:
-        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-    uses: ./.github/workflows/verify-shard.yml
-    with:
-      group: other
+      group: all
       shard: ${{ matrix.shard }}
       shards: 16
       jobs: 2
@@ -127,7 +104,7 @@ jobs:
 
   finalize:
     runs-on: ubuntu-latest
-    needs: [prepare, verify_yukicoder, verify_other]
+    needs: [prepare, verify_all]
     if: always() && needs.prepare.result == 'success'
     permissions:
       contents: write
@@ -183,7 +160,7 @@ jobs:
           ORIGIN_SHA: ${{ needs.prepare.outputs.origin_sha }}
           CI_RUN_ID: ${{ github.run_id }}
         run: |
-          groups=(yukicoder other)
+          groups=(all)
           previous=()
           if [[ "$CI_CONTINUATION" == "true" ]]; then
             previous=(--previous-state .verify-helper/previous/verification-state.json)
@@ -207,16 +184,6 @@ jobs:
             "${previous[@]}"
           mv .verify-helper/timestamps.merged.json .verify-helper/timestamps.remote.json
 
-      - name: Upload session state for the next round
-        uses: actions/upload-artifact@v4
-        with:
-          name: verify-continuation-state
-          path: .verify-helper/verification-state.json
-          # upload-artifact v4 otherwise drops files inside dot-directories.
-          include-hidden-files: true
-          if-no-files-found: error
-          retention-days: 7
-
       - name: Commit verification timestamps
         env:
           BRANCH: ${{ github.ref_name }}
@@ -236,6 +203,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_PAT: ${{ secrets.GH_PAT }}
         run: oj-verify docs -j "$VERIFY_JOBS"
+
+      - name: Upload session state for the next round
+        uses: actions/upload-artifact@v4
+        with:
+          name: verify-continuation-state
+          path: .verify-helper/verification-state.json
+          # upload-artifact v4 otherwise drops files inside dot-directories.
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 7
 
       - name: Continue unfinished verification, if safe
         if: steps.summary.outputs.retry_target != 'none'

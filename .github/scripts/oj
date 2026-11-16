@@ -69,6 +69,12 @@ def _delays() -> list[float]:
     return delays
 
 
+def mark_rate_limited() -> None:
+    filename = os.environ.get("VERIFY_RATE_FILE")
+    if filename:
+        pathlib.Path(filename).write_text("rate_limited\n")
+
+
 def main(argv: list[str]) -> int:
     real_oj = os.environ.get("VERIFY_REAL_OJ")
     if not real_oj:
@@ -87,6 +93,7 @@ def main(argv: list[str]) -> int:
     circuit_name = os.environ.get("VERIFY_YUKICODER_CIRCUIT")
     circuit = pathlib.Path(circuit_name) if circuit_name else None
     if circuit is not None and circuit.exists():
+        mark_rate_limited()
         print("oj shim: previous yukicoder HTTP 429 persists; "
               "suppressing further requests in this shard", file=sys.stderr)
         return 75
@@ -123,6 +130,10 @@ def main(argv: list[str]) -> int:
                 return 0
             if not is_429:
                 return code
+            mark_rate_limited()
+            if circuit is not None:
+                circuit.parent.mkdir(parents=True, exist_ok=True)
+                circuit.write_text(str(time.time()))
         finally:
             if temporary.exists():
                 shutil.rmtree(temporary)
@@ -138,7 +149,8 @@ def main(argv: list[str]) -> int:
                   "stopping further downloads for this shard", file=sys.stderr)
             if circuit is not None:
                 circuit.parent.mkdir(parents=True, exist_ok=True)
-                circuit.write_text("429 Too Many Requests\n")
+                # Preserve the timestamp of the actual HTTP response.
+                pass
             return 75
     return 75
 

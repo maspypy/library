@@ -6,7 +6,8 @@ void floor_range(u64 N, F f, bool Q_ASC = true, bool INCLUDE_Q_IS_0 = false) {
   u64 sq = sqrtl(N);
   u32 n = (sq * sq + sq <= N ? sq : sq - 1);
   if (Q_ASC) {
-    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);
+    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>, end);
+    if (end) return;
     for (u32 q = 1; q <= n; ++q) {
       f(q, N / (q + 1) + 1, N / q + 1, end);
       if (end) return;
@@ -24,6 +25,6 @@ void floor_range(u64 N, F f, bool Q_ASC = true, bool INCLUDE_Q_IS_0 = false) {
       f(q, N / (q + 1) + 1, N / q + 1, end);
       if (end) return;
     }
-    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);
+    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>, end);
   }
 }

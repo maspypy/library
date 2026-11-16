@@ -12,6 +12,7 @@ import shutil
 import stat
 import subprocess
 import sys
+import time
 from typing import Any
 
 # Tests import this runner by filename; CI runs it as a standalone script.
@@ -19,7 +20,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from continue_verify import validate_state, load
 
 TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S %z"
-VERIFY_GROUPS = ("yukicoder", "other")
+VERIFY_GROUPS = ("all",)
 
 
 def group_of(path: pathlib.Path) -> str:
@@ -110,6 +111,7 @@ def write_outputs(
     rate_limited: bool = False,
     infrastructure_error: bool = False,
     attempted_files: int = 0,
+    last_429: float = 0,
 ) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -128,6 +130,7 @@ def write_outputs(
         "rate_limited": rate_limited,
         "infrastructure_error": infrastructure_error,
         "attempted_files": attempted_files,
+        "last_429": last_429,
     }
     (output_dir / f"states-{group}-{shard}.json").write_text(
         json.dumps({"group": group, "shard": shard, "statuses": statuses or {}},
@@ -246,7 +249,7 @@ def read_trace(path: pathlib.Path) -> dict[str, str]:
     for line in path.read_text().splitlines():
         record = json.loads(line)
         name, status = record["path"], record["status"]
-        if status not in ("ac", "failed", "ignored", "error") or name in statuses:
+        if status not in ("ac", "failed", "rate_limited", "error") or name in statuses:
             raise RuntimeError(f"invalid or duplicate verify trace: {name}")
         statuses[name] = status
     return statuses
@@ -268,7 +271,7 @@ def prior_failures(args: argparse.Namespace, selected: list[pathlib.Path]) -> di
         status = previous["statuses"].get(path.as_posix())
         if status is None:
             raise ValueError(f"continuation does not contain previous file: {path}")
-        if status in ("failed", "ignored"):
+        if status == "failed" or (status == "rate_limited" and time.time() < previous["last_429"] + 4200):
             result[path.as_posix()] = status
     return result
 
@@ -284,7 +287,6 @@ def main() -> int:
 
     files = sorted(pathlib.Path("test").rglob("*.test.cpp"))
     selected = [path for path in files if
-                group_of(path) == args.group and
                 shard_of(path, args.shards) == args.shard]
 
     previous_skips = prior_failures(args, selected)
@@ -306,6 +308,9 @@ def main() -> int:
     trace_path.unlink(missing_ok=True)
     circuit_path = pathlib.Path(".verify-helper/yukicoder-429.block")
     circuit_path.unlink(missing_ok=True)
+    last_429 = load(args.previous_state)["last_429"] if args.previous_state else 0
+    if last_429 and time.time() < last_429 + 4200:
+        circuit_path.write_text(str(last_429))
     if to_run:
         remove_incomplete_yukicoder_caches(to_run)
         restore_yukicoder_testcases(to_run)
@@ -314,7 +319,7 @@ def main() -> int:
         command = [
             sys.executable, str(pathlib.Path(__file__).with_name("verify_trace.py")),
             "run", "-j", str(args.jobs), "--timeout", str(args.timeout),
-            *map(str, to_run),
+            *(p.as_posix() for p in to_run),
         ]
         result = subprocess.run(command, check=False, env=env)
         verifier_exit = result.returncode
@@ -345,15 +350,17 @@ def main() -> int:
                 "pending" if state == "ac" else state)
 
     infrastructure_error = ("error" in trace.values() or verifier_exit not in (0, 1) or
-                            (verifier_exit == 1 and "failed" not in trace.values()))
+                            (verifier_exit == 1 and not any(s in ("failed", "rate_limited") for s in trace.values())))
     # A failed result is never silently made successful just because the next
     # continuation round skipped it.
-    overall_exit = verifier_exit or (1 if "failed" in states.values() else 0)
+    if circuit_path.exists():
+        last_429 = max(last_429, float(circuit_path.read_text()))
+    overall_exit = verifier_exit or (1 if any(s != "ac" for s in states.values()) else 0)
     write_outputs(
         args.output_dir, args.group, args.shard, args.shards, selected,
         overall_exit, statuses=states, rate_limited=circuit_path.exists(),
         infrastructure_error=infrastructure_error,
-        attempted_files=len(trace),
+        attempted_files=len(trace), last_429=last_429,
     )
     return overall_exit
 

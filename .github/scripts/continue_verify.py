@@ -14,20 +14,21 @@ import pathlib
 import re
 import subprocess
 import sys
+import time
 import urllib.error
 import urllib.request
 from urllib.parse import quote
 from collections import Counter
 from typing import Any
 
-GROUPS = ("yukicoder", "other")
-STATUSES = ("ac", "failed", "pending", "ignored")
-SCHEMA = 1
+GROUPS = ("all",)
+STATUSES = ("ac", "failed", "pending", "rate_limited")
+SCHEMA = 2
 MAX_CONTINUATIONS = 3
 
 
 def group_of(path: pathlib.Path) -> str:
-    return "yukicoder" if path.as_posix().startswith("test/3_yukicoder/") else "other"
+    return "all"
 
 
 def shard_of(path: pathlib.Path, shards: int) -> int:
@@ -47,10 +48,22 @@ def validate_state(state: dict[str, Any], *, origin: str, round_number: int,
     if (state.get("schema") != SCHEMA or state.get("origin_sha") != origin or
             state.get("round") != round_number or state.get("run_id") != previous_run_id):
         raise ValueError("prior state has a mismatched schema, source, round, or run_id")
+    if type(round_number) is not int or not 0 <= round_number <= MAX_CONTINUATIONS:
+        raise ValueError("invalid round")
+    if type(previous_run_id) is not int or previous_run_id <= 0:
+        raise ValueError("invalid run ID")
+    last = state.get("last_429")
+    if type(last) not in (int, float) or not 0 <= last <= time.time() + 60:
+        raise ValueError("invalid 429 timestamp")
     statuses = state.get("statuses")
     blocked = state.get("blocked")
     if not isinstance(statuses, dict) or not isinstance(blocked, dict):
         raise ValueError("invalid previous verification state")
+    if "rate_limited" in statuses.values() and not last:
+        raise ValueError("rate-limited state requires a timestamp")
+    expected_due = last + 4200 if "rate_limited" in statuses.values() and "pending" not in statuses.values() else 0
+    if state.get("not_before") != expected_due or state.get("retry_target") not in ("none", "all"):
+        raise ValueError("invalid continuation decision")
     if set(blocked) != set(GROUPS) or not all(type(v) is bool for v in blocked.values()):
         raise ValueError("invalid blocked groups")
     for name, status in statuses.items():
@@ -95,6 +108,10 @@ def prepare(args: argparse.Namespace) -> None:
         # Only allow targets authorized by the preceding run's decision.
         if state.get("retry_target") != args.target:
             raise ValueError("target differs from previous retry decision")
+        from resume_verify import check_predecessor
+        check_predecessor(args.previous_run_id, current=int(os.environ["GITHUB_RUN_ID"]))
+        if state.get("retry_target") == "none" or time.time() < state.get("not_before", 0):
+            raise ValueError("unauthorized or premature continuation")
         origin = args.origin_sha
     else:
         if args.round != 0 or args.previous_run_id or args.origin_sha or args.target != "both":
@@ -122,6 +139,7 @@ def summarize(args: argparse.Namespace) -> None:
     blocked = dict(previous["blocked"]) if previous else dict.fromkeys(GROUPS, False)
     infrastructure_error = dict.fromkeys(GROUPS, False)
     attempts = Counter()
+    last_429 = previous["last_429"] if previous else 0
     for group in run_groups:
         # Previous results from this group are replaced, never resurrected.
         for name in list(statuses):
@@ -133,7 +151,8 @@ def summarize(args: argparse.Namespace) -> None:
             result = load(args.input_dir / f"states-{group}-{shard}.json")
             if (manifest.get("group") != group or manifest.get("shard") != shard or
                     manifest.get("shards") != args.shards or
-                    not isinstance(manifest.get("verify_exit_code"), int)):
+                    type(manifest.get("verify_exit_code")) is not int or
+                    type(manifest.get("infrastructure_error")) is not bool):
                 raise ValueError(f"invalid completion manifest for {group}:{shard}")
             if result.get("group") != group or result.get("shard") != shard:
                 raise ValueError(f"invalid test status file for {group}:{shard}")
@@ -147,6 +166,10 @@ def summarize(args: argparse.Namespace) -> None:
                         status not in STATUSES or name in statuses):
                     raise ValueError(f"unexpected or duplicate test status: {name!r}")
                 statuses[name] = status
+            stamp = manifest.get("last_429")
+            if type(stamp) not in (int, float) or not 0 <= stamp <= time.time() + 60:
+                raise ValueError("invalid 429 timestamp")
+            last_429 = max(last_429, stamp)
             blocked[group] |= manifest.get("rate_limited") is True
             infrastructure_error[group] |= manifest.get("infrastructure_error") is True
             count = manifest.get("attempted_files")
@@ -163,17 +186,19 @@ def summarize(args: argparse.Namespace) -> None:
         raise ValueError(f"state does not cover all test sources: "
                          f"missing={missing[:5]}, extra={extra[:5]}")
 
+    if previous and any(statuses.get(p) != v for p, v in previous["statuses"].items() if v in ("ac", "failed")):
+        raise ValueError("terminal result regressed")
     retry = []
     for group in run_groups:
-        pending = sum(status == "pending" for p, status in statuses.items()
+        pending = sum(status in ("pending", "rate_limited") for p, status in statuses.items()
                       if group_of(pathlib.Path(p)) == group)
         if previous:
-            old_pending = sum(status == "pending" for p, status in previous["statuses"].items()
+            old_pending = sum(status in ("pending", "rate_limited") for p, status in previous["statuses"].items()
                               if group_of(pathlib.Path(p)) == group)
             made_progress = 0 <= pending < old_pending
         else:
-            made_progress = attempts[group] > 0
-        if (pending > 0 and made_progress and not blocked[group] and
+            made_progress = any(s != "pending" for s in statuses.values())
+        if (pending > 0 and made_progress and
                 not infrastructure_error[group] and args.round < MAX_CONTINUATIONS):
             retry.append(group)
 
@@ -183,8 +208,12 @@ def summarize(args: argparse.Namespace) -> None:
         "run_id": args.run_id, "round": args.round,
         "statuses": dict(sorted(statuses.items())),
         "blocked": blocked,
+        "last_429": last_429,
+        "not_before": last_429 + 4200 if "rate_limited" in statuses.values() and "pending" not in statuses.values() else 0,
         "retry_target": target,
     }
+    validate_state(data, origin=args.origin_sha, round_number=args.round,
+                   previous_run_id=args.run_id)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(data, sort_keys=True, indent=2) + "\n", encoding="utf-8")
     counts = Counter(statuses.values())
@@ -197,8 +226,10 @@ def summarize(args: argparse.Namespace) -> None:
 
 def dispatch(args: argparse.Namespace) -> None:
     state = load(args.state)
+    validate_state(state, origin=state["origin_sha"], round_number=state["round"],
+                   previous_run_id=state["run_id"])
     target = state["retry_target"]
-    if target == "none":
+    if target == "none" or time.time() < state["not_before"]:
         print("no continuation needed")
         return
     if state["round"] >= MAX_CONTINUATIONS:
@@ -206,6 +237,8 @@ def dispatch(args: argparse.Namespace) -> None:
     if not unchanged_sources(state["origin_sha"]):
         print("source changed, not dispatching continuation")
         return
+    from resume_verify import check_predecessor
+    check_predecessor(state["run_id"])
     token = os.environ["GITHUB_TOKEN"]
     api = os.environ.get("GITHUB_API_URL", "https://api.github.com").rstrip("/")
     repository = os.environ["GITHUB_REPOSITORY"]
@@ -240,8 +273,8 @@ def dispatch(args: argparse.Namespace) -> None:
 def assert_final(args: argparse.Namespace) -> None:
     statuses = load(args.state)["statuses"]
     counts = Counter(statuses.values())
-    if counts["failed"] or counts["pending"]:
-        print(f"unresolved verification: failed={counts['failed']}, pending={counts['pending']}",
+    if counts["failed"] or counts["pending"] or counts["rate_limited"]:
+        print(f"unresolved verification: failed={counts['failed']}, pending={counts['pending']}, rate_limited={counts['rate_limited']}",
               file=sys.stderr)
         sys.exit(1)
 
