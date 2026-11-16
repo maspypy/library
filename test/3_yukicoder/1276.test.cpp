@@ -21,7 +21,7 @@ void solve() {
   mint ANS = 0;
   mint x = 0;  // a|b
 
-  auto f = [&](ll q, ll l, ll r) -> void {
+  auto f = [&](ll q, ll l, ll r, bool) -> void {
     x += mint(r - l) * q;
     // b|c かつ distinct
     ANS += mint(N - 2) * mint(r - l) * mint(q - 1);

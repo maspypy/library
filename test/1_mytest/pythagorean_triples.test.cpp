@@ -16,15 +16,19 @@ void test() {
       B += gcd(x, y) == 1;
     }
   }
-  enumerate_pythagorean_triple<false>(LIM, [&](int a, int b, int c) -> void {
-    assert(0 <= a && a <= b && b <= c && c <= LIM && a * a + b * b == c * c);
-    --A;
-  });
-  enumerate_pythagorean_triple<true>(LIM, [&](int a, int b, int c) -> void {
-    assert(0 <= a && a <= b && b <= c && c <= LIM && a * a + b * b == c * c);
-    assert(gcd(a, b) == 1);
-    --B;
-  });
+  enumerate_pythagorean_triple<false>(
+      LIM, [&](int a, int b, int c, bool) -> void {
+        assert(
+            0 <= a && a <= b && b <= c && c <= LIM && a * a + b * b == c * c);
+        --A;
+      });
+  enumerate_pythagorean_triple<true>(
+      LIM, [&](int a, int b, int c, bool) -> void {
+        assert(
+            0 <= a && a <= b && b <= c && c <= LIM && a * a + b * b == c * c);
+        assert(gcd(a, b) == 1);
+        --B;
+      });
   assert(A == 0 && B == 0);
 }
 

@@ -9,12 +9,12 @@ using mint = modint107;
 void solve() {
   mint ANS = 1;
   LL(N);
-  auto f = [&](vc<int> P) -> void {
+  auto f = [&](const vc<int>& P, bool) -> void {
     mint v = fact<mint>(N);
-    for (auto&& x: P) v *= inv<mint>(x) * (x % 2 == 0 ? mint(-1) : mint(1));
+    for (auto&& x : P) v *= inv<mint>(x) * (x % 2 == 0 ? mint(-1) : mint(1));
     vc<int> CNT(N + 1);
-    for (auto&& x: P) ++CNT[x];
-    for (auto&& x: CNT) v *= fact_inv<mint>(x);
+    for (auto&& x : P) ++CNT[x];
+    for (auto&& x : CNT) v *= fact_inv<mint>(x);
     ANS *= v;
   };
   enumerate_partition(N, f);

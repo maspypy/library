@@ -11,9 +11,9 @@ void solve() {
   VEC(pi, CD, M);
 
   FOR(2) {
-    for (auto&& [a, b]: AB) a = -a;
+    for (auto&& [a, b] : AB) a = -a;
     FOR(2) {
-      for (auto&& [a, b]: AB) b = -b;
+      for (auto&& [a, b] : AB) b = -b;
       HashMap<ll> MP(N * M);
       FOR(i, N) FOR(j, M) {
         auto [a, b] = AB[i];
@@ -21,7 +21,7 @@ void solve() {
         ll key = ((a - c) << 32) + (b - d);
         MP[key] += P[i];
       }
-      MP.enumerate_all([&](auto k, auto v) { chmax(ANS, v); });
+      MP.enumerate_all([&](auto k, auto v, bool) { chmax(ANS, v); });
     }
   }
   print(ANS);

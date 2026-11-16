@@ -18,7 +18,7 @@ void solve() {
   X.set_euler_phi();
 
   mint ANS = 0;
-  X.enumerate([&](int d, int phi) {
+  X.enumerate([&](int d, int phi, bool) {
     ll exp = 0;
     ll k = lcm / d;
     for (auto&& a : A) {

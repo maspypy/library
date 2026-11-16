@@ -20,7 +20,7 @@ tuple<T, vc<int>, vc<int>> steiner_tree(GT& G, vc<int> S, vc<T> v_wt = {}) {
 
   for (int s = 1; s < (1 << K); ++s) {
     auto& dp = DP[s];
-    enumerate_all_bit<u32>(s, [&](int k) -> void {
+    enumerate_all_bit<u32>(s, [&](int k, bool) -> void {
       int v = S[k];
       chmin(dp[v], DP[s ^ 1 << k][v]);
     });

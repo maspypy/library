@@ -10,7 +10,7 @@ void solve() {
   Graph<int> G(N);
   G.read_graph(M, 1);
   VEC(int, terminal, K);
-  for (auto&& v: terminal) --v;
+  for (auto&& v : terminal) --v;
 
   if (K <= 15) return print(get<0>(steiner_tree<int>(G, terminal)));
 
@@ -19,7 +19,6 @@ void solve() {
   FOR(v, N) if (!ss.count(v)) other.eb(v);
 
   UnionFind uf;
-  ll LIM = 100;
 
   auto edges = G.edges;
   sort(all(edges), [](auto& x, auto& y) { return x.cost < y.cost; });
@@ -27,7 +26,7 @@ void solve() {
   auto f = [&](ll s) -> int {
     uf.build(N);
     int mst = 0, merge = 0;
-    for (auto&& e: edges) {
+    for (auto&& e : edges) {
       int i = e.frm, j = e.to;
       if ((s >> i & 1) && (s >> j & 1)) {
         if (uf.merge(i, j)) {
@@ -42,7 +41,7 @@ void solve() {
 
   int ANS = infty<int>;
   ll t = 0;
-  for (auto&& x: terminal) t |= 1LL << x;
+  for (auto&& x : terminal) t |= 1LL << x;
 
   FOR(s, 1 << len(other)) {
     ll u = t;

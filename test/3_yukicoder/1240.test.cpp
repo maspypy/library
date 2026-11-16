@@ -16,7 +16,7 @@ void solve() {
 
   ll ANS = 0;
   FOR(i, N) {
-    auto f = [&](ll l, ll r) -> void {
+    auto f = [&](ll l, ll r, bool) -> void {
       l = LB(A, l);
       r = LB(A, r);
       chmax(l, i + 1);
@@ -36,11 +36,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }

@@ -35,8 +35,10 @@ struct Slope_Trick_1 {
     auto [x0, x1] = domain(f);
     assert(x0 <= x && x <= x1);
     i128 ans = f.min_f;
-    f.que_l.enumerate_all([&](ll l) -> void { ans += max<ll>(l - x, 0); });
-    f.que_r.enumerate_all([&](ll r) -> void { ans += max<ll>(x - r, 0); });
+    f.que_l.enumerate_all(
+        [&](ll l, bool) -> void { ans += max<ll>(l - x, 0); });
+    f.que_r.enumerate_all(
+        [&](ll r, bool) -> void { ans += max<ll>(x - r, 0); });
     return ans;
   }
 

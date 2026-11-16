@@ -22,7 +22,7 @@ void solve() {
   };
 
   FOR(x, 18) {
-    auto f = [&](vc<int> A) -> void {
+    auto f = [&](vc<int> A, bool) -> void {
       ll me = get(A);
       MP1[me] = len(TO1);
       TO1.eb(vc<int>());
@@ -65,23 +65,23 @@ void solve() {
         nxt.eb(dfs(dfs, B));
         return;
       }
-      for (auto&& x: TO1[A[p]]) {
+      for (auto&& x : TO1[A[p]]) {
         B[p] = x;
         gen(gen, p + 1, same && (x == A[p]));
       }
     };
     gen(gen, 0, true);
     vc<bool> used((nxt.empty() ? 0 : MAX(nxt)) + 2);
-    for (auto&& x: nxt) used[x] = 1;
+    for (auto&& x : nxt) used[x] = 1;
     int mex = 0;
     while (used[mex]) ++mex;
     return (MP2[h] = mex);
   };
 
   ll g = 0;
-  for (auto&& a: A) {
+  for (auto&& a : A) {
     map<int, vc<int>> G;
-    for (auto&& [p, e]: factor_by_spf(a, spf)) {
+    for (auto&& [p, e] : factor_by_spf(a, spf)) {
       if (p == 2) {
         if (e == 1) continue;
         G[2].eb(1);
@@ -89,11 +89,13 @@ void solve() {
       } else {
         // (p-1)p^{e-1}
         G[p].eb(e - 1);
-        for (auto&& [q, f]: factor_by_spf(p - 1, spf)) { G[q].eb(f); }
+        for (auto&& [q, f] : factor_by_spf(p - 1, spf)) {
+          G[q].eb(f);
+        }
       }
     }
     vc<int> B;
-    for (auto&& [p, E]: G) {
+    for (auto&& [p, E] : G) {
       sort(all(E));
       reverse(all(E));
       B.eb(MP1[get(E)]);

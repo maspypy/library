@@ -17,7 +17,7 @@ struct Range_Rational_Count {
     if (a == 0) return 0;
     // [0,a/b]
     u64 ans = 1;
-    floor_range(N, [&](u32 q, u32 l, u32 r) -> void {
+    floor_range(N, [&](u32 q, u32 l, u32 r, bool) -> void {
       ans += u64(M[q]) * floor_sum_of_linear<u64, u64>(l, r, a, 0, b);
     });
     // a/b

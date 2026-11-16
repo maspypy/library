@@ -32,7 +32,7 @@ void solve() {
   ll ANS = 0;
   // B = 1
   if (M == 1) ANS += find(N);
-  MP.enumerate_all([&](auto k, auto v) {
+  MP.enumerate_all([&](auto k, auto v, bool) {
     ll x = find(k);
     bool can = (i128(x) * (x + K) == k);
     if (can && M == 1) --ANS;
