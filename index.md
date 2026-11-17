@@ -162,7 +162,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/minidx.hpp
       title: alg/monoid/minidx.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/minmax.hpp
       title: alg/monoid/minmax.hpp
     - icon: ':heavy_check_mark:'
@@ -634,7 +634,7 @@ data:
     - icon: ':warning:'
       path: ds/segtree/range_min.hpp
       title: ds/segtree/range_min.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/segtree/range_minmax.hpp
       title: ds/segtree/range_minmax.hpp
     - icon: ':warning:'
@@ -1772,7 +1772,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
   - name: new_poly
@@ -5331,6 +5331,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/4_aoj/NTL_2_C.test.cpp
       title: test/4_aoj/NTL_2_C.test.cpp
+  - name: test/5_ai_generated_test
+    pages:
+    - icon: ':x:'
+      path: test/5_ai_generated_test/range_minmax.test.cpp
+      title: test/5_ai_generated_test/range_minmax.test.cpp
 layout: toppage
 ---
 ライブラリ整備を支援する / Support developping this library

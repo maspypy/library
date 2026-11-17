@@ -2562,9 +2562,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/5_ai_generated_test/range_minmax.test.cpp
+    title: test/5_ai_generated_test/range_minmax.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/my_template.hpp
@@ -2810,7 +2813,7 @@ data:
   - other/mhc_template_directory/main.cpp
   - test/2_library_checker/convolution/convolution_huge.test___.cpp
   timestamp: '2026-10-26 22:59:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/other/longest_increasing_subsequence.test.cpp
   - test/2_library_checker/other/twosat.test.cpp
@@ -3371,6 +3374,7 @@ data:
   - test/3_yukicoder/749.test.cpp
   - test/3_yukicoder/1357.test.cpp
   - test/3_yukicoder/1332.test.cpp
+  - test/5_ai_generated_test/range_minmax.test.cpp
   - test/1_mytest/three_triangular.test.cpp
   - test/1_mytest/maxidx_add.test.cpp
   - test/1_mytest/dyadic_rational.test.cpp

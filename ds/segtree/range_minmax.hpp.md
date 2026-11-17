@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/minmax.hpp
     title: alg/monoid/minmax.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/5_ai_generated_test/range_minmax.test.cpp
+    title: test/5_ai_generated_test/range_minmax.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/segtree/range_min.hpp
@@ -369,8 +372,9 @@ data:
   path: ds/segtree/range_minmax.hpp
   requiredBy: []
   timestamp: '2026-11-17 17:11:20+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/5_ai_generated_test/range_minmax.test.cpp
 documentation_of: ds/segtree/range_minmax.hpp
 layout: document
 redirect_from:
