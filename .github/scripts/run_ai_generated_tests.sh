@@ -3,7 +3,7 @@
 # Run from the repository root: bash .github/scripts/run_ai_generated_tests.sh
 set -euo pipefail
 
-TEST_ROOT="${1:-5_ai_generated_test}"
+TEST_ROOT="${1:-test/5_ai_generated_test}"
 CXX="${CXX:-g++}"
 TEST_TIMEOUT="${AI_TEST_TIMEOUT:-120}"
 
