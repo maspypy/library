@@ -1,0 +1,19 @@
+name: AI-generated standalone tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  standalone-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile and run AI-generated C++17 tests
+        shell: bash
+        run: bash .github/scripts/run_ai_generated_tests.sh
