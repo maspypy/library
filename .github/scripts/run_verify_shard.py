@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-from continue_verify import validate_state, load
 
 import argparse
 import datetime
@@ -18,6 +17,8 @@ from typing import Any
 
 # Tests import this runner by filename; CI runs it as a standalone script.
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from continue_verify import validate_state, load
+
 
 TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S %z"
 VERIFY_GROUPS = ("all",)
