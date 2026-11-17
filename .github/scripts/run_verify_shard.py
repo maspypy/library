@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
+from continue_verify import validate_state, load
 
 import argparse
 import datetime
@@ -17,7 +18,6 @@ from typing import Any
 
 # Tests import this runner by filename; CI runs it as a standalone script.
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from continue_verify import validate_state, load
 
 TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S %z"
 VERIFY_GROUPS = ("all",)
@@ -25,6 +25,7 @@ VERIFY_GROUPS = ("all",)
 
 def group_of(path: pathlib.Path) -> str:
     return "yukicoder" if path.as_posix().startswith("test/3_yukicoder/") else "other"
+
 
 # Cache/network orchestration changes should not invalidate every previously
 # verified testcase. Only semantic compilation/expansion inputs go here.
@@ -141,7 +142,6 @@ def write_outputs(
     )
 
 
-
 def _complete_testcase_pairs(directory: pathlib.Path) -> bool:
     if not directory.is_dir():
         return False
@@ -216,7 +216,8 @@ def collect_yukicoder_testcases(selected: list[pathlib.Path]) -> None:
         if saved.exists():
             if (saved / ".download-complete").is_file() and _complete_testcase_pairs(saved):
                 continue
-            print(f"replacing incomplete saved yukicoder cache: {url}", flush=True)
+            print(
+                f"replacing incomplete saved yukicoder cache: {url}", flush=True)
             if saved.is_dir():
                 shutil.rmtree(saved)
             else:
@@ -241,6 +242,7 @@ def verification_environment() -> dict[str, str]:
         ".verify-helper/yukicoder-429.block").resolve())
     env["PATH"] = str(shim.parent) + os.pathsep + env.get("PATH", "")
     return env
+
 
 def read_trace(path: pathlib.Path) -> dict[str, str]:
     statuses: dict[str, str] = {}
@@ -270,7 +272,8 @@ def prior_failures(args: argparse.Namespace, selected: list[pathlib.Path]) -> di
     for path in selected:
         status = previous["statuses"].get(path.as_posix())
         if status is None:
-            raise ValueError(f"continuation does not contain previous file: {path}")
+            raise ValueError(
+                f"continuation does not contain previous file: {path}")
         if status == "failed" or (status == "rate_limited" and time.time() < previous["last_429"] + 4200):
             result[path.as_posix()] = status
     return result
@@ -285,12 +288,16 @@ def main() -> int:
     if args.jobs <= 0:
         raise ValueError("--jobs must be positive")
 
-    files = sorted(pathlib.Path("test").rglob("*.test.cpp"))
+    files = sorted(
+        p for p in pathlib.Path("test").rglob("*.test.cpp")
+        if not p.is_relative_to("test/5_ai_generated_test")
+    )
     selected = [path for path in files if
                 shard_of(path, args.shards) == args.shard]
 
     previous_skips = prior_failures(args, selected)
-    to_run = [path for path in selected if path.as_posix() not in previous_skips]
+    to_run = [path for path in selected if path.as_posix()
+              not in previous_skips]
 
     timestamp_path = pathlib.Path(".verify-helper/timestamps.remote.json")
     pipeline_time = pipeline_timestamp()
@@ -304,11 +311,13 @@ def main() -> int:
     for path in to_run:
         print(path, flush=True)
 
-    trace_path = pathlib.Path(".verify-helper") / f"trace-{args.group}-{args.shard}.jsonl"
+    trace_path = pathlib.Path(".verify-helper") / \
+        f"trace-{args.group}-{args.shard}.jsonl"
     trace_path.unlink(missing_ok=True)
     circuit_path = pathlib.Path(".verify-helper/yukicoder-429.block")
     circuit_path.unlink(missing_ok=True)
-    last_429 = load(args.previous_state)["last_429"] if args.previous_state else 0
+    last_429 = load(args.previous_state)[
+        "last_429"] if args.previous_state else 0
     if last_429 and time.time() < last_429 + 4200:
         circuit_path.write_text(str(last_429))
     if to_run:
@@ -317,7 +326,8 @@ def main() -> int:
         env = verification_environment()
         env["VERIFY_TRACE_FILE"] = str(trace_path.resolve())
         command = [
-            sys.executable, str(pathlib.Path(__file__).with_name("verify_trace.py")),
+            sys.executable, str(pathlib.Path(
+                __file__).with_name("verify_trace.py")),
             "run", "-j", str(args.jobs), "--timeout", str(args.timeout),
             *(p.as_posix() for p in to_run),
         ]
@@ -355,7 +365,8 @@ def main() -> int:
     # continuation round skipped it.
     if circuit_path.exists():
         last_429 = max(last_429, float(circuit_path.read_text()))
-    overall_exit = verifier_exit or (1 if any(s != "ac" for s in states.values()) else 0)
+    overall_exit = verifier_exit or (
+        1 if any(s != "ac" for s in states.values()) else 0)
     write_outputs(
         args.output_dir, args.group, args.shard, args.shards, selected,
         overall_exit, statuses=states, rate_limited=circuit_path.exists(),

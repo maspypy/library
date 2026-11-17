@@ -1,0 +1,2 @@
+exclude:
+  - test/5_ai_generated_test
