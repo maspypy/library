@@ -15,9 +15,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP2_3_B.test.cpp
     title: test/4_aoj/ITP2_3_B.test.cpp
-  - icon: ':x:'
-    path: test/5_ai_generated_test/range_minmax.test.cpp
-    title: test/5_ai_generated_test/range_minmax.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -45,7 +42,6 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/5_ai_generated_test/range_minmax.test.cpp
   - test/1_mytest/minmax_add.test.cpp
   - test/4_aoj/ITP2_3_B.test.cpp
 documentation_of: alg/monoid/minmax.hpp

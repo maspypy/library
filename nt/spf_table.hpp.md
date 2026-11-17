@@ -70,9 +70,9 @@ data:
   timestamp: '2026-10-24 09:51:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/1575.test.cpp
   - test/3_yukicoder/1411.test.cpp
   - test/3_yukicoder/1881.test.cpp
-  - test/3_yukicoder/1575.test.cpp
   - test/1_mytest/modfast.test.cpp
 documentation_of: nt/spf_table.hpp
 layout: document

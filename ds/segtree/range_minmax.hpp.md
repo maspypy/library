@@ -5,10 +5,7 @@ data:
     path: alg/monoid/minmax.hpp
     title: alg/monoid/minmax.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/5_ai_generated_test/range_minmax.test.cpp
-    title: test/5_ai_generated_test/range_minmax.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -373,8 +370,7 @@ data:
   requiredBy: []
   timestamp: '2026-11-17 17:35:16+09:00'
   verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/5_ai_generated_test/range_minmax.test.cpp
+  verifiedWith: []
 documentation_of: ds/segtree/range_minmax.hpp
 layout: document
 redirect_from:

@@ -5331,11 +5331,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/4_aoj/NTL_2_C.test.cpp
       title: test/4_aoj/NTL_2_C.test.cpp
-  - name: test/5_ai_generated_test
-    pages:
-    - icon: ':x:'
-      path: test/5_ai_generated_test/range_minmax.test.cpp
-      title: test/5_ai_generated_test/range_minmax.test.cpp
 layout: toppage
 ---
 ライブラリ整備を支援する / Support developping this library
