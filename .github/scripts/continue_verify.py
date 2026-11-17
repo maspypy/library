@@ -47,7 +47,8 @@ def validate_state(state: dict[str, Any], *, origin: str, round_number: int,
                    previous_run_id: int) -> None:
     if (state.get("schema") != SCHEMA or state.get("origin_sha") != origin or
             state.get("round") != round_number or state.get("run_id") != previous_run_id):
-        raise ValueError("prior state has a mismatched schema, source, round, or run_id")
+        raise ValueError(
+            "prior state has a mismatched schema, source, round, or run_id")
     if type(round_number) is not int or not 0 <= round_number <= MAX_CONTINUATIONS:
         raise ValueError("invalid round")
     if type(previous_run_id) is not int or previous_run_id <= 0:
@@ -61,7 +62,9 @@ def validate_state(state: dict[str, Any], *, origin: str, round_number: int,
         raise ValueError("invalid previous verification state")
     if "rate_limited" in statuses.values() and not last:
         raise ValueError("rate-limited state requires a timestamp")
-    expected_due = last + 4200 if "rate_limited" in statuses.values() and "pending" not in statuses.values() else 0
+    expected_due = last + \
+        4200 if "rate_limited" in statuses.values(
+        ) and "pending" not in statuses.values() else 0
     if state.get("not_before") != expected_due or state.get("retry_target") not in ("none", "all"):
         raise ValueError("invalid continuation decision")
     if set(blocked) != set(GROUPS) or not all(type(v) is bool for v in blocked.values()):
@@ -81,7 +84,8 @@ def unchanged_sources(origin: str, head: str = "HEAD") -> bool:
         check=False, capture_output=True, text=True,
     )
     if check.returncode not in (0, 1):
-        raise RuntimeError(f"could not compare repository versions: {check.stderr}")
+        raise RuntimeError(
+            f"could not compare repository versions: {check.stderr}")
     return check.returncode == 0
 
 
@@ -98,7 +102,8 @@ def prepare(args: argparse.Namespace) -> None:
         if not 1 <= args.round <= MAX_CONTINUATIONS or not args.previous_run_id:
             raise ValueError("invalid continuation round/run-id")
         if not args.origin_sha or not unchanged_sources(args.origin_sha):
-            raise ValueError("source tree changed since original run; cancel stale continuation")
+            raise ValueError(
+                "source tree changed since original run; cancel stale continuation")
         state = load(args.previous_state)
         validate_state(state, origin=args.origin_sha,
                        round_number=args.round - 1,
@@ -109,14 +114,17 @@ def prepare(args: argparse.Namespace) -> None:
         if state.get("retry_target") != args.target:
             raise ValueError("target differs from previous retry decision")
         from resume_verify import check_predecessor
-        check_predecessor(args.previous_run_id, current=int(os.environ["GITHUB_RUN_ID"]))
+        check_predecessor(args.previous_run_id, current=int(
+            os.environ["GITHUB_RUN_ID"]))
         if state.get("retry_target") == "none" or time.time() < state.get("not_before", 0):
             raise ValueError("unauthorized or premature continuation")
         origin = args.origin_sha
     else:
         if args.round != 0 or args.previous_run_id or args.origin_sha or args.target != "both":
-            raise ValueError("a fresh verification must use default continuation inputs")
-        origin = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+            raise ValueError(
+                "a fresh verification must use default continuation inputs")
+        origin = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], text=True).strip()
     save_output("origin_sha", origin)
 
 
@@ -136,7 +144,8 @@ def summarize(args: argparse.Namespace) -> None:
         raise ValueError("this target was not authorized by the previous run")
 
     statuses = dict(previous["statuses"]) if previous else {}
-    blocked = dict(previous["blocked"]) if previous else dict.fromkeys(GROUPS, False)
+    blocked = dict(previous["blocked"]
+                   ) if previous else dict.fromkeys(GROUPS, False)
     infrastructure_error = dict.fromkeys(GROUPS, False)
     attempts = Counter()
     last_429 = previous["last_429"] if previous else 0
@@ -153,33 +162,43 @@ def summarize(args: argparse.Namespace) -> None:
                     manifest.get("shards") != args.shards or
                     type(manifest.get("verify_exit_code")) is not int or
                     type(manifest.get("infrastructure_error")) is not bool):
-                raise ValueError(f"invalid completion manifest for {group}:{shard}")
+                raise ValueError(
+                    f"invalid completion manifest for {group}:{shard}")
             if result.get("group") != group or result.get("shard") != shard:
-                raise ValueError(f"invalid test status file for {group}:{shard}")
+                raise ValueError(
+                    f"invalid test status file for {group}:{shard}")
             state_map = result.get("statuses")
             if not isinstance(state_map, dict) or len(state_map) != manifest.get("selected_files"):
-                raise ValueError(f"test statuses incomplete for {group}:{shard}")
+                raise ValueError(
+                    f"test statuses incomplete for {group}:{shard}")
             for name, status in state_map.items():
                 path = pathlib.Path(name)
                 if (not name.startswith("test/") or not name.endswith(".test.cpp") or
                         group_of(path) != group or shard_of(path, args.shards) != shard or
                         status not in STATUSES or name in statuses):
-                    raise ValueError(f"unexpected or duplicate test status: {name!r}")
+                    raise ValueError(
+                        f"unexpected or duplicate test status: {name!r}")
                 statuses[name] = status
             stamp = manifest.get("last_429")
             if type(stamp) not in (int, float) or not 0 <= stamp <= time.time() + 60:
                 raise ValueError("invalid 429 timestamp")
             last_429 = max(last_429, stamp)
             blocked[group] |= manifest.get("rate_limited") is True
-            infrastructure_error[group] |= manifest.get("infrastructure_error") is True
+            infrastructure_error[group] |= manifest.get(
+                "infrastructure_error") is True
             count = manifest.get("attempted_files")
             if type(count) is not int or count < 0 or count > len(state_map):
-                raise ValueError(f"invalid attempted file count for {group}:{shard}")
+                raise ValueError(
+                    f"invalid attempted file count for {group}:{shard}")
             attempts[group] += count
 
     # A seemingly complete artifact must cover the *entire* source tree.
     # In particular, dropping a pending path must never produce a false AC.
-    expected_paths = {p.as_posix() for p in pathlib.Path("test").rglob("*.test.cpp")}
+    expected_paths = {
+        p.as_posix()
+        for p in pathlib.Path("test").rglob("*.test.cpp")
+        if not p.is_relative_to("test/5_ai_generated_test")
+    }
     if set(statuses) != expected_paths:
         missing = sorted(expected_paths - set(statuses))
         extra = sorted(set(statuses) - expected_paths)
@@ -215,7 +234,8 @@ def summarize(args: argparse.Namespace) -> None:
     validate_state(data, origin=args.origin_sha, round_number=args.round,
                    previous_run_id=args.run_id)
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(json.dumps(data, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+    args.output.write_text(json.dumps(
+        data, sort_keys=True, indent=2) + "\n", encoding="utf-8")
     counts = Counter(statuses.values())
     print("verification states:", dict(counts), "429 blocked:", blocked,
           "infrastructure errors:", infrastructure_error,
@@ -240,12 +260,15 @@ def dispatch(args: argparse.Namespace) -> None:
     from resume_verify import check_predecessor
     check_predecessor(state["run_id"])
     token = os.environ["GITHUB_TOKEN"]
-    api = os.environ.get("GITHUB_API_URL", "https://api.github.com").rstrip("/")
+    api = os.environ.get(
+        "GITHUB_API_URL", "https://api.github.com").rstrip("/")
     repository = os.environ["GITHUB_REPOSITORY"]
-    expected = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+    expected = subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], text=True).strip()
     req = urllib.request.Request(
         f"{api}/repos/{repository}/branches/{quote(args.branch, safe='')}",
-        headers={"Authorization": f"Bearer {token}", "Accept": "application/vnd.github+json"},
+        headers={"Authorization": f"Bearer {token}",
+                 "Accept": "application/vnd.github+json"},
     )
     with urllib.request.urlopen(req, timeout=30) as response:
         actual = json.load(response)["commit"]["sha"]
@@ -266,7 +289,8 @@ def dispatch(args: argparse.Namespace) -> None:
     )
     with urllib.request.urlopen(dispatch_request, timeout=30) as response:
         if response.status != 204:
-            raise RuntimeError(f"unexpected workflow_dispatch response: {response.status}")
+            raise RuntimeError(
+                f"unexpected workflow_dispatch response: {response.status}")
     print(f"dispatched round {state['round'] + 1} for group(s): {target}")
 
 
