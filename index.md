@@ -635,6 +635,9 @@ data:
       path: ds/segtree/range_min.hpp
       title: ds/segtree/range_min.hpp
     - icon: ':warning:'
+      path: ds/segtree/range_minmax.hpp
+      title: ds/segtree/range_minmax.hpp
+    - icon: ':warning:'
       path: ds/segtree/rollback_lazy_segtree.hpp
       title: ds/segtree/rollback_lazy_segtree.hpp
     - icon: ':heavy_check_mark:'

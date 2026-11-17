@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minmax_add.hpp
     title: alg/acted_monoid/minmax_add.hpp
+  - icon: ':warning:'
+    path: ds/segtree/range_minmax.hpp
+    title: ds/segtree/range_minmax.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/minmax_add.test.cpp
@@ -34,6 +37,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/minmax.hpp
   requiredBy:
+  - ds/segtree/range_minmax.hpp
   - alg/acted_monoid/minmax_add.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
