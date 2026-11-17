@@ -1,4 +1,4 @@
-// Source: https://github.com/maspypy/library/blob/main/ds/segtree/range_min.hpp
+// Source: https://github.com/maspypy/library/blob/main/ds/segtree/range_minmax.hpp
 
 #include "alg/monoid/minmax.hpp"
 
