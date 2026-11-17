@@ -14,8 +14,8 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links:
-    - https://github.com/maspypy/library/blob/main/ds/segtree/range_min.hpp
-  bundledCode: "#line 1 \"ds/segtree/range_minmax.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/range_min.hpp\n\
+    - https://github.com/maspypy/library/blob/main/ds/segtree/range_minmax.hpp
+  bundledCode: "#line 1 \"ds/segtree/range_minmax.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/range_minmax.hpp\n\
     \n#line 1 \"alg/monoid/minmax.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/minmax.hpp\n\
     \ntemplate <class X>\nstruct Monoid_MinMax {\n  using P = pair<X, X>;\n  using\
     \ value_type = P;\n  static constexpr P op(const P x, const P y) noexcept {\n\
@@ -193,7 +193,7 @@ data:
     \         return descend_left(k, b * B + j, sm, check);\n          }\n       \
     \   sm = y;\n        }\n        i = b;\n      } else {\n        i /= B;\n    \
     \  }\n    }\n    return 0;\n  }\n};\n\n#undef RANGE_MINMAX_AVX2\n"
-  code: "// Source: https://github.com/maspypy/library/blob/main/ds/segtree/range_min.hpp\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/segtree/range_minmax.hpp\n\
     \n#include \"alg/monoid/minmax.hpp\"\n\n// 2026/11/17 AI generated.\n\n// Range_Min\
     \ / Range_Max \u3068\u540C\u3058 B \u5206\u6728\u3002\u5404\u30D6\u30ED\u30C3\u30AF\
     \u306F min 64B + max 64B\u3002\n// \u4F4D\u7F6E i \u306F Monoid_MinMax<T>::value_type\
@@ -371,7 +371,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/range_minmax.hpp
   requiredBy: []
-  timestamp: '2026-11-17 17:11:20+09:00'
+  timestamp: '2026-11-17 17:35:16+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/5_ai_generated_test/range_minmax.test.cpp

@@ -134,7 +134,7 @@ data:
     \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
     constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
     \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif  // MASPY_TEMPLATE_BODY\n\
-    #line 1 \"ds/segtree/range_minmax.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/range_min.hpp\n\
+    #line 1 \"ds/segtree/range_minmax.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/range_minmax.hpp\n\
     \n#line 1 \"alg/monoid/minmax.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/minmax.hpp\n\
     \ntemplate <class X>\nstruct Monoid_MinMax {\n  using P = pair<X, X>;\n  using\
     \ value_type = P;\n  static constexpr P op(const P x, const P y) noexcept {\n\
@@ -392,7 +392,7 @@ data:
   isVerificationFile: true
   path: test/5_ai_generated_test/range_minmax.test.cpp
   requiredBy: []
-  timestamp: '2026-11-17 17:21:19+09:00'
+  timestamp: '2026-11-17 17:35:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_ai_generated_test/range_minmax.test.cpp
