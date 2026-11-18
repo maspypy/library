@@ -6,6 +6,7 @@ template <typename ActedMonoid>
 struct Node_AM {
   using Monoid_A = typename ActedMonoid::Monoid_A;
   using Monoid_X = typename ActedMonoid::Monoid_X;
+  static_assert(Monoid_X::commute);
   using A = typename Monoid_A::value_type;
   using X = typename Monoid_X::value_type;
   using value_type = X;

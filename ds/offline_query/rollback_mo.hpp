@@ -9,12 +9,12 @@ struct Rollback_Mo {
 
   // reset 回数: O(sqrt)
   template <typename AL, typename AR, typename F1, typename F2, typename F3,
-            typename O>
-  void calc(AL add_left, AR add_right, F1 reset, F2 save, F3 rollback,
-            O query) {
+      typename O>
+  void calc(
+      AL add_left, AR add_right, F1 reset, F2 save, F3 rollback, O query) {
     const int Q = len(LR);
     if (Q == 0) return;
-    int N = 0;
+    int N = 1;
     for (auto &&[L, R] : LR) chmax(N, R);
     const int b_num = sqrt(Q);
     const int b_sz = ceil(N, b_num);
@@ -43,7 +43,7 @@ struct Rollback_Mo {
       auto &I = QID[iL];
       if (I.empty()) continue;
       sort(all(I),
-           [&](auto &a, auto &b) -> bool { return LR[a].se < LR[b].se; });
+          [&](auto &a, auto &b) -> bool { return LR[a].se < LR[b].se; });
       int LMAX = 0;
       for (auto &&qid : I) {
         auto [L, R] = LR[qid];

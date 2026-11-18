@@ -3,6 +3,7 @@
 
 template <typename R>
 vc<double> convolution_fft(const vc<R>& a, const vc<R>& b) {
+  if (a.empty() || b.empty()) return {};
   using C = CFFT::C;
   int need = (int)a.size() + (int)b.size() - 1;
   int nbase = 1;
@@ -30,6 +31,8 @@ vc<double> convolution_fft(const vc<R>& a, const vc<R>& b) {
   }
   CFFT::fft(fa, sz >> 1);
   vector<double> ret(need);
-  for (int i = 0; i < need; i++) { ret[i] = (i & 1 ? fa[i >> 1].y : fa[i >> 1].x); }
+  for (int i = 0; i < need; i++) {
+    ret[i] = (i & 1 ? fa[i >> 1].y : fa[i >> 1].x);
+  }
   return ret;
 }

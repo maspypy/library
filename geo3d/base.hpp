@@ -14,7 +14,7 @@ struct Point_3D {
   Point_3D operator*(T t) const { return {x * t, y * t, z * t}; }
   Point_3D operator/(T t) const { return {x / t, y / t, z / t}; }
   bool operator==(Point_3D p) const { return x == p.x && y == p.y && z == p.z; }
-  bool operator!=(Point_3D p) const { return x != p.x || y != p.y || z == p.z; }
+  bool operator!=(Point_3D p) const { return x != p.x || y != p.y || z != p.z; }
   Point_3D operator-() const { return {-x, -y, -z}; }
 
   bool is_parallel(Point_3D p) const {
@@ -25,7 +25,7 @@ struct Point_3D {
   double norm() { return sqrt(x * x + y * y + z * z); }
   Point_3D cross(Point_3D other) {
     return Point_3D(y * other.z - z * other.y, z * other.x - x * other.z,
-                    x * other.y - y * other.x);
+        x * other.y - y * other.x);
   }
 };
 
