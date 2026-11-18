@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':question:'
@@ -388,8 +388,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
-  - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/count_points_in_triangles.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
 documentation_of: geo/count_points_in_triangles.hpp
 layout: document
 redirect_from:

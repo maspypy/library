@@ -15,15 +15,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_B.test.cpp
     title: test/4_aoj/ITP1_11_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_C.test.cpp
     title: test/4_aoj/ITP1_11_C.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_D.test.cpp
     title: test/4_aoj/ITP1_11_D.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://atcoder.jp/contests/tenka1-2012-final/tasks/tenka1_2012_final_e
@@ -199,12 +199,12 @@ data:
   path: other/dice.hpp
   requiredBy: []
   timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/4_aoj/ITP1_11_D.test.cpp
   - test/4_aoj/ITP1_11_B.test.cpp
   - test/4_aoj/ITP1_11_C.test.cpp
   - test/4_aoj/ITP1_11_A.test.cpp
+  - test/4_aoj/ITP1_11_D.test.cpp
 documentation_of: other/dice.hpp
 layout: document
 redirect_from:

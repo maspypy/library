@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedVerifiedWith:
@@ -45,7 +45,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1838.test.cpp
     title: test/3_yukicoder/1838.test.cpp
   - icon: ':heavy_check_mark:'
@@ -57,9 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_5.test.cpp
     title: test/4_aoj/ALDS1_5.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/fenwicktree/fenwicktree_01.hpp
@@ -227,25 +227,25 @@ data:
   isVerificationFile: false
   path: ds/fenwicktree/fenwicktree_01.hpp
   requiredBy:
-  - graph/ds/range_edge_connected_component_query.hpp
-  - random/random_polygon.hpp
-  - geo/count_points_in_triangles.hpp
   - other/sliding_puzzle_solver.hpp
+  - random/random_polygon.hpp
+  - graph/ds/range_edge_connected_component_query.hpp
+  - geo/count_points_in_triangles.hpp
   - seq/inversion.hpp
   timestamp: '2026-10-25 14:30:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
-  - test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
-  - test/2_library_checker/data_structure/point_set_range_freq.test.cpp
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
+  - test/2_library_checker/data_structure/point_set_range_freq.test.cpp
+  - test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
+  - test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
   - test/3_yukicoder/694.test.cpp
   - test/3_yukicoder/1838.test.cpp
-  - test/1_mytest/polygon_triangulation.test.cpp
-  - test/1_mytest/fenwick01.test.cpp
   - test/1_mytest/count_points_in_triangles.test.cpp
-  - test/4_aoj/ALDS1_5.test.cpp
+  - test/1_mytest/fenwick01.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
   - test/4_aoj/ALDS1_2_A.test.cpp
+  - test/4_aoj/ALDS1_5.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree_01.hpp
 layout: document
 redirect_from:

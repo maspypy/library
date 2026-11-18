@@ -12,7 +12,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1977.test.cpp
     title: test/3_yukicoder/1977.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2242.test.cpp
     title: test/3_yukicoder/2242.test.cpp
   _isVerificationFailed: true
@@ -89,9 +89,9 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/1977.test.cpp
   - test/3_yukicoder/1097.test.cpp
   - test/3_yukicoder/2242.test.cpp
+  - test/3_yukicoder/1977.test.cpp
 documentation_of: ds/doubling.hpp
 layout: document
 redirect_from:

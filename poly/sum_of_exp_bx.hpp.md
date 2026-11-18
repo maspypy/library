@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
   - icon: ':heavy_check_mark:'
@@ -54,12 +54,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_ex_minus_1.test.cpp
     title: test/1_mytest/composition_ex_minus_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1875.test.cpp
     title: test/3_yukicoder/1875.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/poly/sum_of_exp_bx.hpp
@@ -772,15 +772,15 @@ data:
   isVerificationFile: false
   path: poly/sum_of_exp_bx.hpp
   requiredBy:
-  - poly/composition_f_ex_minus_1.hpp
-  - poly/composition_f_1_minus_ex.hpp
   - poly/composition_f_ex.hpp
+  - poly/composition_f_1_minus_ex.hpp
+  - poly/composition_f_ex_minus_1.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1875.test.cpp
-  - test/1_mytest/composition_1_minus_ex.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
+  - test/1_mytest/composition_1_minus_ex.test.cpp
 documentation_of: poly/sum_of_exp_bx.hpp
 layout: document
 redirect_from:

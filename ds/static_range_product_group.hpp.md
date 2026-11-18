@@ -21,7 +21,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/2065.test.cpp
     title: test/3_yukicoder/2065.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/924.test.cpp
     title: test/3_yukicoder/924.test.cpp
   _isVerificationFailed: true
@@ -69,8 +69,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
-  - test/2_library_checker/data_structure/static_range_sum.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
+  - test/2_library_checker/data_structure/static_range_sum.test.cpp
   - test/3_yukicoder/924.test.cpp
   - test/3_yukicoder/2065.test.cpp
 documentation_of: ds/static_range_product_group.hpp

@@ -8,7 +8,7 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
   - icon: ':warning:'
@@ -27,7 +27,7 @@ data:
     path: graph/maximum_weighted_antichain.hpp
     title: graph/maximum_weighted_antichain.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1541.test.cpp
     title: test/3_yukicoder/1541.test.cpp
   - icon: ':heavy_check_mark:'
@@ -45,9 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_6_A.test.cpp
     title: test/4_aoj/GRL_6_A.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/flow/maxflow.hpp
@@ -348,21 +348,21 @@ data:
   isVerificationFile: false
   path: flow/maxflow.hpp
   requiredBy:
-  - graph/maximum_weighted_antichain.hpp
+  - game/graph_path_game.hpp
   - graph/dag_path_cover.hpp
+  - graph/maximum_weighted_antichain.hpp
   - flow/k_ary_optimization.hpp
   - flow/binary_optimization.hpp
   - flow/gomory_hu_tree.hpp
-  - game/graph_path_game.hpp
   timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/177.test.cpp
   - test/3_yukicoder/2320.test.cpp
   - test/3_yukicoder/1541.test.cpp
-  - test/3_yukicoder/177.test.cpp
-  - test/4_aoj/2251_1.test.cpp
-  - test/4_aoj/GRL_6_A.test.cpp
   - test/4_aoj/2835.test.cpp
+  - test/4_aoj/GRL_6_A.test.cpp
+  - test/4_aoj/2251_1.test.cpp
 documentation_of: flow/maxflow.hpp
 layout: document
 redirect_from:

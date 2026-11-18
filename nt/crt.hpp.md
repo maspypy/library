@@ -24,7 +24,7 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/187.test.cpp
     title: test/3_yukicoder/187.test.cpp
   - icon: ':heavy_check_mark:'
@@ -234,8 +234,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2119.test.cpp
-  - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/1956.test.cpp
+  - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/187.test.cpp
 documentation_of: nt/crt.hpp
 layout: document
