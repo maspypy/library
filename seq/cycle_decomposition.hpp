@@ -9,7 +9,9 @@ struct Cycle_Decomposition {
   using np = decltype(ST)::np;
   vc<np> node;
 
-  Cycle_Decomposition(int N) : N(N), n_comp(N), ST(N), node(N) { FOR(i, N) node[i] = ST.new_node(i); }
+  Cycle_Decomposition(int N) : N(N), n_comp(N), ST(N), node(N) {
+    FOR(i, N) node[i] = ST.new_node(i);
+  }
 
   // v が属する成分の番号, その成分の何番目か
   pair<int, int> get(int v) {
@@ -36,6 +38,7 @@ struct Cycle_Decomposition {
   }
 
   void swap(int i, int j) {
+    if (i == j) return;
     if (get_comp(i) != get_comp(j)) {
       --n_comp;
       rotate(i), rotate(j);

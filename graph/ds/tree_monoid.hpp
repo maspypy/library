@@ -126,7 +126,7 @@ struct Tree_Monoid {
   int max_path_edge(F check, int u, int v) {
     static_assert(edge);
     if (!check(MX::id())) return -1;
-    int lca = tree.lca(u, v);
+    int lca = tree.LCA(u, v);
     auto pd = tree.get_path_decomposition(u, lca, edge);
     X val = MX::id();
 

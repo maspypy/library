@@ -96,7 +96,8 @@ vc<Point<REAL>> cross_point(const Circle<T> C, const Line<T> L) {
 
 // https://codeforces.com/contest/2/problem/C
 template <typename REAL, typename T>
-tuple<bool, Point<T>, Point<T>> cross_point_circle(Circle<T> C1, Circle<T> C2) {
+tuple<bool, Point<REAL>, Point<REAL>> cross_point_circle(
+    Circle<T> C1, Circle<T> C2) {
   using P = Point<REAL>;
   P O{0, 0};
   P A = C1.O, B = C2.O;

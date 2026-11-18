@@ -7,8 +7,10 @@ template <typename GT>
 vi tree_all_distances(GT& G) {
   assert(G.is_prepared());
   int N = G.N;
+  if (N == 1) return {0};
   vi ANS(N);
-  auto f = [&](vc<int>& par, vc<int>& V, int L1, int R1, int L2, int R2) -> void {
+  auto f = [&](vc<int>& par, vc<int>& V, int L1, int R1, int L2,
+               int R2) -> void {
     int N = len(par);
     vc<int> dist(N);
     FOR(i, 1, N) { dist[i] = 1 + dist[par[i]]; }

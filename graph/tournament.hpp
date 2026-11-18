@@ -3,6 +3,7 @@
 // https://codeforces.com/problemset/problem/412/D
 template <typename F>
 vc<int> hamiltonian_path_in_tournament(int n, F check) {
+  assert(n > 0);
   auto dfs = [&](auto& dfs, int L, int R) -> vc<int> {
     if (R == L + 1) return {L};
     int M = (L + R) / 2;

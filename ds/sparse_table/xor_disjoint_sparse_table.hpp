@@ -27,6 +27,7 @@ struct Xor_Disjoint_Sparse_Table {
     assert(m == (1 << log));
     // 各 k, i に対して、prod_{0<=j<2^k} A[i^j] を持つ
     dat.resize(log + 1);
+    dat[0].clear();
     dat[0].reserve(1 << log);
     FOR(i, 1 << log) dat[0].eb(f(i));
     FOR(k, log) {

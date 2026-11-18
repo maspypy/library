@@ -22,7 +22,7 @@ struct Monoid_Add_Divide {
     if (t <= infty<ll> / 2) return {infty<ll> - t, infty<ll>, c};
     return {infty<ll> / 2, infty<ll>, c};
   }
-  static X add(ll x) { return {x, 1, 0}; }
+  static X add(ll x) { return {0, 1, x}; }
   static X divide(ll x) { return {0, x, 0}; }
 
   static ll eval(X f, ll x) {
