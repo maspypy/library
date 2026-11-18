@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':heavy_check_mark:'
@@ -39,10 +39,10 @@ data:
     using f128 = __float128;\n\ntemplate <class>\nconstexpr bool dependent_false =\
     \ false;\n\ntemplate <class T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>,\
     \ \"infty<T> is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int\
-    \ infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
+    \ infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 4'040'000'000'000'000'000;\n\
     template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
     \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
+    \ * 4'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
     \ infty<i128>;\ntemplate <>\nconstexpr long double infty<long double> = infty<i128>;\n\
     \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
     \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
@@ -343,27 +343,27 @@ data:
     \ 1300ms\n// https://codeforces.com/problemset/submission/765/240821486\n// https://codeforces.com/problemset/problem/2206/E\n\
     struct Rollback_Mo {\n  vc<pair<int, int>> LR;\n  void add(int L, int R) { LR.emplace_back(L,\
     \ R); }\n\n  // reset \u56DE\u6570: O(sqrt)\n  template <typename AL, typename\
-    \ AR, typename F1, typename F2, typename F3,\n            typename O>\n  void\
-    \ calc(AL add_left, AR add_right, F1 reset, F2 save, F3 rollback,\n          \
-    \  O query) {\n    const int Q = len(LR);\n    if (Q == 0) return;\n    int N\
-    \ = 0;\n    for (auto &&[L, R] : LR) chmax(N, R);\n    const int b_num = sqrt(Q);\n\
-    \    const int b_sz = ceil(N, b_num);\n    vvc<int> QID((N - 1) / b_sz + 1);\n\
-    \    // \u5DE6\u7AEF\u306E\u5C5E\u3059\u308B\u30D6\u30ED\u30C3\u30AF\u3067\u5206\
-    \u985E\n    // \u5DE6\u7AEF\u3068\u53F3\u7AEF\u304C\u540C\u3058\u30D6\u30ED\u30C3\
-    \u30AF\u306B\u5C5E\u3059\u308B\u3082\u306E\u306F\u3001\u5148\u306B\u51E6\u7406\
-    \u3057\u3066\u3057\u307E\u3046\u3002\n    auto naive = [&](int qid) -> void {\n\
-    \      save();\n      auto [L, R] = LR[qid];\n      FOR(i, L, R) add_right(i);\n\
-    \      query(qid);\n      rollback();\n    };\n\n    FOR(qid, Q) {\n      auto\
-    \ [L, R] = LR[qid];\n      int iL = L / b_sz, iR = R / b_sz;\n      if (iL ==\
-    \ iR) {\n        naive(qid);\n        continue;\n      }\n      QID[iL].eb(qid);\n\
-    \    }\n\n    FOR(iL, len(QID)) {\n      auto &I = QID[iL];\n      if (I.empty())\
-    \ continue;\n      sort(all(I),\n           [&](auto &a, auto &b) -> bool { return\
-    \ LR[a].se < LR[b].se; });\n      int LMAX = 0;\n      for (auto &&qid : I) {\n\
-    \        auto [L, R] = LR[qid];\n        chmax(LMAX, L);\n      }\n      reset();\n\
-    \      int l = LMAX, r = LMAX;\n      for (auto &&qid : I) {\n        auto [L,\
-    \ R] = LR[qid];\n        while (r < R) add_right(r++);\n        save();\n    \
-    \    while (L < l) add_left(--l);\n        query(qid);\n        rollback();\n\
-    \        l = LMAX;\n      }\n    }\n  }\n};\n#line 7 \"test/2_library_checker/data_structure/static_range_inversions_mo2.test.cpp\"\
+    \ AR, typename F1, typename F2, typename F3,\n      typename O>\n  void calc(\n\
+    \      AL add_left, AR add_right, F1 reset, F2 save, F3 rollback, O query) {\n\
+    \    const int Q = len(LR);\n    if (Q == 0) return;\n    int N = 1;\n    for\
+    \ (auto &&[L, R] : LR) chmax(N, R);\n    const int b_num = sqrt(Q);\n    const\
+    \ int b_sz = ceil(N, b_num);\n    vvc<int> QID((N - 1) / b_sz + 1);\n    // \u5DE6\
+    \u7AEF\u306E\u5C5E\u3059\u308B\u30D6\u30ED\u30C3\u30AF\u3067\u5206\u985E\n   \
+    \ // \u5DE6\u7AEF\u3068\u53F3\u7AEF\u304C\u540C\u3058\u30D6\u30ED\u30C3\u30AF\u306B\
+    \u5C5E\u3059\u308B\u3082\u306E\u306F\u3001\u5148\u306B\u51E6\u7406\u3057\u3066\
+    \u3057\u307E\u3046\u3002\n    auto naive = [&](int qid) -> void {\n      save();\n\
+    \      auto [L, R] = LR[qid];\n      FOR(i, L, R) add_right(i);\n      query(qid);\n\
+    \      rollback();\n    };\n\n    FOR(qid, Q) {\n      auto [L, R] = LR[qid];\n\
+    \      int iL = L / b_sz, iR = R / b_sz;\n      if (iL == iR) {\n        naive(qid);\n\
+    \        continue;\n      }\n      QID[iL].eb(qid);\n    }\n\n    FOR(iL, len(QID))\
+    \ {\n      auto &I = QID[iL];\n      if (I.empty()) continue;\n      sort(all(I),\n\
+    \          [&](auto &a, auto &b) -> bool { return LR[a].se < LR[b].se; });\n \
+    \     int LMAX = 0;\n      for (auto &&qid : I) {\n        auto [L, R] = LR[qid];\n\
+    \        chmax(LMAX, L);\n      }\n      reset();\n      int l = LMAX, r = LMAX;\n\
+    \      for (auto &&qid : I) {\n        auto [L, R] = LR[qid];\n        while (r\
+    \ < R) add_right(r++);\n        save();\n        while (L < l) add_left(--l);\n\
+    \        query(qid);\n        rollback();\n        l = LMAX;\n      }\n    }\n\
+    \  }\n};\n#line 7 \"test/2_library_checker/data_structure/static_range_inversions_mo2.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  vi key = A;\n  UNIQUE(key);\n\
     \n  for (auto&& x: A) x = LB(key, x);\n  ll K = len(key);\n  FenwickTree<Monoid_Add<int>>\
     \ bit(K);\n\n  Rollback_Mo mo;\n  vi ANS(Q);\n  FOR(Q) {\n    LL(L, R);\n    mo.add(L,\
@@ -406,7 +406,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/static_range_inversions_mo2.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
+  timestamp: '2026-11-18 15:44:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/static_range_inversions_mo2.test.cpp

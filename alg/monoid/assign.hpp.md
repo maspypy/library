@@ -5,10 +5,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/max_assign.hpp
     title: alg/acted_monoid/max_assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
   - icon: ':heavy_check_mark:'
@@ -51,21 +51,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/summin_assign.test.cpp
     title: test/1_mytest/summin_assign.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2292.test.cpp
     title: test/3_yukicoder/2292.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DSL_2_D.test.cpp
     title: test/4_aoj/DSL_2_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DSL_2_F.test.cpp
     title: test/4_aoj/DSL_2_F.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DSL_2_I.test.cpp
     title: test/4_aoj/DSL_2_I.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/alg/monoid/assign.hpp
@@ -91,7 +91,7 @@ data:
   - alg/acted_monoid/sum_assign.hpp
   - alg/acted_monoid/min_assign.hpp
   timestamp: '2026-11-17 04:29:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2292.test.cpp
   - test/1_mytest/rbst_am_persistent.test.cpp

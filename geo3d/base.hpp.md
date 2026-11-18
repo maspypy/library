@@ -21,20 +21,20 @@ data:
     \ y * t, z * t}; }\n  Point_3D operator/(T t) const { return {x / t, y / t, z\
     \ / t}; }\n  bool operator==(Point_3D p) const { return x == p.x && y == p.y &&\
     \ z == p.z; }\n  bool operator!=(Point_3D p) const { return x != p.x || y != p.y\
-    \ || z == p.z; }\n  Point_3D operator-() const { return {-x, -y, -z}; }\n\n  bool\
+    \ || z != p.z; }\n  Point_3D operator-() const { return {-x, -y, -z}; }\n\n  bool\
     \ is_parallel(Point_3D p) const {\n    return x * p.y == y * p.x && y * p.z ==\
     \ z * p.y && z * p.x == x * p.z;\n  }\n\n  T dot(Point_3D other) { return x *\
     \ other.x + y * other.y + z * other.z; }\n  double norm() { return sqrt(x * x\
     \ + y * y + z * z); }\n  Point_3D cross(Point_3D other) {\n    return Point_3D(y\
-    \ * other.z - z * other.y, z * other.x - x * other.z,\n                    x *\
-    \ other.y - y * other.x);\n  }\n};\n\ntemplate <typename T>\nstruct Line_3D {\n\
-    \  // a + td\n  Point_3D<T> a, d;\n\n  Line_3D(Point_3D<T> A, Point_3D<T> B) :\
-    \ a(A), d(B - A) {\n    assert(d.dot(d) != 0);\n  }\n  bool is_parallel(Line_3D<T>\
-    \ other) {\n    Point_3D<T> n = d.cross(other.d);\n    return (n.x == T(0) &&\
-    \ n.y == T(0) && n.z == T(0));\n  }\n  bool contain(Point_3D<T> p) {\n    p =\
-    \ p - a;\n    p = p.cross(d);\n    return (p.x == T(0) && p.y == T(0) && p.z ==\
-    \ T(0));\n  }\n};\n\ntemplate <typename T>\nstruct Plane {\n  // ax + by + cz\
-    \ == d\n  T a, b, c, d;\n  Point_3D<T> normal_vec;\n\n  Plane(Point_3D<T> A, Point_3D<T>\
+    \ * other.z - z * other.y, z * other.x - x * other.z,\n        x * other.y - y\
+    \ * other.x);\n  }\n};\n\ntemplate <typename T>\nstruct Line_3D {\n  // a + td\n\
+    \  Point_3D<T> a, d;\n\n  Line_3D(Point_3D<T> A, Point_3D<T> B) : a(A), d(B -\
+    \ A) {\n    assert(d.dot(d) != 0);\n  }\n  bool is_parallel(Line_3D<T> other)\
+    \ {\n    Point_3D<T> n = d.cross(other.d);\n    return (n.x == T(0) && n.y ==\
+    \ T(0) && n.z == T(0));\n  }\n  bool contain(Point_3D<T> p) {\n    p = p - a;\n\
+    \    p = p.cross(d);\n    return (p.x == T(0) && p.y == T(0) && p.z == T(0));\n\
+    \  }\n};\n\ntemplate <typename T>\nstruct Plane {\n  // ax + by + cz == d\n  T\
+    \ a, b, c, d;\n  Point_3D<T> normal_vec;\n\n  Plane(Point_3D<T> A, Point_3D<T>\
     \ B, Point_3D<T> C) {\n    Point_3D<T> AB = B - A;\n    Point_3D<T> AC = C - A;\n\
     \    normal_vec = AB.cross(AC);\n    a = normal_vec.x, b = normal_vec.y, c = normal_vec.z;\n\
     \    d = normal_vec.dot(A);\n  }\n\n  int side(Point_3D<T> p) {\n    T x = normal_vec.dot(p)\
@@ -53,20 +53,20 @@ data:
     \ y * t, z * t}; }\n  Point_3D operator/(T t) const { return {x / t, y / t, z\
     \ / t}; }\n  bool operator==(Point_3D p) const { return x == p.x && y == p.y &&\
     \ z == p.z; }\n  bool operator!=(Point_3D p) const { return x != p.x || y != p.y\
-    \ || z == p.z; }\n  Point_3D operator-() const { return {-x, -y, -z}; }\n\n  bool\
+    \ || z != p.z; }\n  Point_3D operator-() const { return {-x, -y, -z}; }\n\n  bool\
     \ is_parallel(Point_3D p) const {\n    return x * p.y == y * p.x && y * p.z ==\
     \ z * p.y && z * p.x == x * p.z;\n  }\n\n  T dot(Point_3D other) { return x *\
     \ other.x + y * other.y + z * other.z; }\n  double norm() { return sqrt(x * x\
     \ + y * y + z * z); }\n  Point_3D cross(Point_3D other) {\n    return Point_3D(y\
-    \ * other.z - z * other.y, z * other.x - x * other.z,\n                    x *\
-    \ other.y - y * other.x);\n  }\n};\n\ntemplate <typename T>\nstruct Line_3D {\n\
-    \  // a + td\n  Point_3D<T> a, d;\n\n  Line_3D(Point_3D<T> A, Point_3D<T> B) :\
-    \ a(A), d(B - A) {\n    assert(d.dot(d) != 0);\n  }\n  bool is_parallel(Line_3D<T>\
-    \ other) {\n    Point_3D<T> n = d.cross(other.d);\n    return (n.x == T(0) &&\
-    \ n.y == T(0) && n.z == T(0));\n  }\n  bool contain(Point_3D<T> p) {\n    p =\
-    \ p - a;\n    p = p.cross(d);\n    return (p.x == T(0) && p.y == T(0) && p.z ==\
-    \ T(0));\n  }\n};\n\ntemplate <typename T>\nstruct Plane {\n  // ax + by + cz\
-    \ == d\n  T a, b, c, d;\n  Point_3D<T> normal_vec;\n\n  Plane(Point_3D<T> A, Point_3D<T>\
+    \ * other.z - z * other.y, z * other.x - x * other.z,\n        x * other.y - y\
+    \ * other.x);\n  }\n};\n\ntemplate <typename T>\nstruct Line_3D {\n  // a + td\n\
+    \  Point_3D<T> a, d;\n\n  Line_3D(Point_3D<T> A, Point_3D<T> B) : a(A), d(B -\
+    \ A) {\n    assert(d.dot(d) != 0);\n  }\n  bool is_parallel(Line_3D<T> other)\
+    \ {\n    Point_3D<T> n = d.cross(other.d);\n    return (n.x == T(0) && n.y ==\
+    \ T(0) && n.z == T(0));\n  }\n  bool contain(Point_3D<T> p) {\n    p = p - a;\n\
+    \    p = p.cross(d);\n    return (p.x == T(0) && p.y == T(0) && p.z == T(0));\n\
+    \  }\n};\n\ntemplate <typename T>\nstruct Plane {\n  // ax + by + cz == d\n  T\
+    \ a, b, c, d;\n  Point_3D<T> normal_vec;\n\n  Plane(Point_3D<T> A, Point_3D<T>\
     \ B, Point_3D<T> C) {\n    Point_3D<T> AB = B - A;\n    Point_3D<T> AC = C - A;\n\
     \    normal_vec = AB.cross(AC);\n    a = normal_vec.x, b = normal_vec.y, c = normal_vec.z;\n\
     \    d = normal_vec.dot(A);\n  }\n\n  int side(Point_3D<T> p) {\n    T x = normal_vec.dot(p)\
@@ -81,7 +81,7 @@ data:
   path: geo3d/base.hpp
   requiredBy:
   - geo3d/cross_point.hpp
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-11-18 15:44:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo3d/base.hpp

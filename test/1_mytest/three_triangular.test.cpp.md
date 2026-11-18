@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
   - icon: ':heavy_check_mark:'
@@ -28,7 +28,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/three_triangular.hpp
     title: nt/three_triangular.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -54,9 +54,9 @@ data:
     \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
     \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
     );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
+    template <>\nconstexpr ll infty<ll> = 4'040'000'000'000'000'000;\ntemplate <>\n\
     constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 4'000'000'000'000'000'000;\n\
     template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
     \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
     using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
@@ -431,7 +431,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/three_triangular.test.cpp
   requiredBy: []
-  timestamp: '2026-10-26 22:59:32+09:00'
+  timestamp: '2026-11-18 15:44:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/three_triangular.test.cpp

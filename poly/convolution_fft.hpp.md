@@ -35,24 +35,9 @@ data:
     \ j < k; j++) {\n        C z = a[i + j + k] * rts[j + k];\n        a[i + j + k]\
     \ = a[i + j] - z;\n        a[i + j] = a[i + j] + z;\n      }\n    }\n  }\n}\n\
     } // namespace CFFT\n#line 3 \"poly/convolution_fft.hpp\"\n\ntemplate <typename\
-    \ R>\nvc<double> convolution_fft(const vc<R>& a, const vc<R>& b) {\n  using C\
-    \ = CFFT::C;\n  int need = (int)a.size() + (int)b.size() - 1;\n  int nbase = 1;\n\
-    \  while ((1 << nbase) < need) nbase++;\n  CFFT::ensure_base(nbase);\n  int sz\
-    \ = 1 << nbase;\n  vector<C> fa(sz);\n  for (int i = 0; i < sz; i++) {\n    double\
-    \ x = (i < (int)a.size() ? a[i] : 0);\n    double y = (i < (int)b.size() ? b[i]\
-    \ : 0);\n    fa[i] = C(x, y);\n  }\n  CFFT::fft(fa, sz);\n  C r(0, -0.25 / (sz\
-    \ >> 1)), s(0, 1), t(0.5, 0);\n  for (int i = 0; i <= (sz >> 1); i++) {\n    int\
-    \ j = (sz - i) & (sz - 1);\n    C z = (fa[j] * fa[j] - (fa[i] * fa[i]).conj())\
-    \ * r;\n    fa[j] = (fa[i] * fa[i] - (fa[j] * fa[j]).conj()) * r;\n    fa[i] =\
-    \ z;\n  }\n  for (int i = 0; i < (sz >> 1); i++) {\n    C A0 = (fa[i] + fa[i +\
-    \ (sz >> 1)]) * t;\n    C A1 = (fa[i] - fa[i + (sz >> 1)]) * t * CFFT::rts[(sz\
-    \ >> 1) + i];\n    fa[i] = A0 + A1 * s;\n  }\n  CFFT::fft(fa, sz >> 1);\n  vector<double>\
-    \ ret(need);\n  for (int i = 0; i < need; i++) { ret[i] = (i & 1 ? fa[i >> 1].y\
-    \ : fa[i >> 1].x); }\n  return ret;\n}\n"
-  code: "// Source: https://github.com/maspypy/library/blob/main/poly/convolution_fft.hpp\n\
-    #include \"poly/fft.hpp\"\n\ntemplate <typename R>\nvc<double> convolution_fft(const\
-    \ vc<R>& a, const vc<R>& b) {\n  using C = CFFT::C;\n  int need = (int)a.size()\
-    \ + (int)b.size() - 1;\n  int nbase = 1;\n  while ((1 << nbase) < need) nbase++;\n\
+    \ R>\nvc<double> convolution_fft(const vc<R>& a, const vc<R>& b) {\n  if (a.empty()\
+    \ || b.empty()) return {};\n  using C = CFFT::C;\n  int need = (int)a.size() +\
+    \ (int)b.size() - 1;\n  int nbase = 1;\n  while ((1 << nbase) < need) nbase++;\n\
     \  CFFT::ensure_base(nbase);\n  int sz = 1 << nbase;\n  vector<C> fa(sz);\n  for\
     \ (int i = 0; i < sz; i++) {\n    double x = (i < (int)a.size() ? a[i] : 0);\n\
     \    double y = (i < (int)b.size() ? b[i] : 0);\n    fa[i] = C(x, y);\n  }\n \
@@ -63,14 +48,30 @@ data:
     \ >> 1); i++) {\n    C A0 = (fa[i] + fa[i + (sz >> 1)]) * t;\n    C A1 = (fa[i]\
     \ - fa[i + (sz >> 1)]) * t * CFFT::rts[(sz >> 1) + i];\n    fa[i] = A0 + A1 *\
     \ s;\n  }\n  CFFT::fft(fa, sz >> 1);\n  vector<double> ret(need);\n  for (int\
-    \ i = 0; i < need; i++) { ret[i] = (i & 1 ? fa[i >> 1].y : fa[i >> 1].x); }\n\
-    \  return ret;\n}\n"
+    \ i = 0; i < need; i++) {\n    ret[i] = (i & 1 ? fa[i >> 1].y : fa[i >> 1].x);\n\
+    \  }\n  return ret;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/poly/convolution_fft.hpp\n\
+    #include \"poly/fft.hpp\"\n\ntemplate <typename R>\nvc<double> convolution_fft(const\
+    \ vc<R>& a, const vc<R>& b) {\n  if (a.empty() || b.empty()) return {};\n  using\
+    \ C = CFFT::C;\n  int need = (int)a.size() + (int)b.size() - 1;\n  int nbase =\
+    \ 1;\n  while ((1 << nbase) < need) nbase++;\n  CFFT::ensure_base(nbase);\n  int\
+    \ sz = 1 << nbase;\n  vector<C> fa(sz);\n  for (int i = 0; i < sz; i++) {\n  \
+    \  double x = (i < (int)a.size() ? a[i] : 0);\n    double y = (i < (int)b.size()\
+    \ ? b[i] : 0);\n    fa[i] = C(x, y);\n  }\n  CFFT::fft(fa, sz);\n  C r(0, -0.25\
+    \ / (sz >> 1)), s(0, 1), t(0.5, 0);\n  for (int i = 0; i <= (sz >> 1); i++) {\n\
+    \    int j = (sz - i) & (sz - 1);\n    C z = (fa[j] * fa[j] - (fa[i] * fa[i]).conj())\
+    \ * r;\n    fa[j] = (fa[i] * fa[i] - (fa[j] * fa[j]).conj()) * r;\n    fa[i] =\
+    \ z;\n  }\n  for (int i = 0; i < (sz >> 1); i++) {\n    C A0 = (fa[i] + fa[i +\
+    \ (sz >> 1)]) * t;\n    C A1 = (fa[i] - fa[i + (sz >> 1)]) * t * CFFT::rts[(sz\
+    \ >> 1) + i];\n    fa[i] = A0 + A1 * s;\n  }\n  CFFT::fft(fa, sz >> 1);\n  vector<double>\
+    \ ret(need);\n  for (int i = 0; i < need; i++) {\n    ret[i] = (i & 1 ? fa[i >>\
+    \ 1].y : fa[i >> 1].x);\n  }\n  return ret;\n}\n"
   dependsOn:
   - poly/fft.hpp
   isVerificationFile: false
   path: poly/convolution_fft.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-11-18 15:44:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: poly/convolution_fft.hpp

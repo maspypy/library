@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_array.hpp
     title: ds/bit_array.hpp
   - icon: ':warning:'

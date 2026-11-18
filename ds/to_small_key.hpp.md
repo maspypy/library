@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: ds/offline_query/offline_set_intersection.hpp
     title: ds/offline_query/offline_set_intersection.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/static_range_frequency.hpp
     title: ds/static_range_frequency.hpp
   - icon: ':warning:'
@@ -18,15 +18,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_freq.test.cpp
     title: test/2_library_checker/data_structure/static_range_freq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/static_range_frequency.test.cpp
     title: test/2_library_checker/data_structure/static_range_frequency.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_mode_query.test.cpp
     title: test/2_library_checker/data_structure/static_range_mode_query.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/to_small_key.hpp
@@ -81,7 +81,7 @@ data:
   - ds/offline_query/offline_set_intersection.hpp
   - string/aho_corasick_for_general_trie.hpp
   timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/data_structure/static_range_frequency.test.cpp
   - test/2_library_checker/data_structure/static_range_mode_query.test.cpp

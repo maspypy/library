@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: enumerate/ceil_range.hpp
     title: enumerate/ceil_range.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     \ <class>\nconstexpr bool dependent_false = false;\n\ntemplate <class T>\nconstexpr\
     \ T infty = [] {\n  static_assert(dependent_false<T>, \"infty<T> is not defined\"\
     );\n  return T{};\n}();\ntemplate <>\nconstexpr int infty<int> = 1'010'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\ntemplate <>\n\
+    template <>\nconstexpr ll infty<ll> = 4'040'000'000'000'000'000;\ntemplate <>\n\
     constexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\n\
+    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * 4'000'000'000'000'000'000;\n\
     template <>\nconstexpr double infty<double> = infty<i128>;\ntemplate <>\nconstexpr\
     \ long double infty<long double> = infty<i128>;\n\nusing pi = pair<ll, ll>;\n\
     using vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
@@ -203,7 +203,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/floor_ceil_ranges.test.cpp
   requiredBy: []
-  timestamp: '2026-11-16 15:34:21+09:00'
+  timestamp: '2026-11-18 15:44:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/floor_ceil_ranges.test.cpp

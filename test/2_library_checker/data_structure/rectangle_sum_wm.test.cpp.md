@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/dummy.hpp
     title: alg/monoid/dummy.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/dummy_data_structure.hpp
     title: ds/dummy_data_structure.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
   - icon: ':heavy_check_mark:'
     path: ds/prefix_sum.hpp
     title: ds/prefix_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/static_range_product_group.hpp
     title: ds/static_range_product_group.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - icon: ':question:'
@@ -57,10 +57,10 @@ data:
     using f128 = __float128;\n\ntemplate <class>\nconstexpr bool dependent_false =\
     \ false;\n\ntemplate <class T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>,\
     \ \"infty<T> is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int\
-    \ infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
+    \ infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 4'040'000'000'000'000'000;\n\
     template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
     \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
+    \ * 4'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
     \ infty<i128>;\ntemplate <>\nconstexpr long double infty<long double> = infty<i128>;\n\
     \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
     \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
@@ -592,7 +592,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
   requiredBy: []
-  timestamp: '2026-11-06 18:54:57+09:00'
+  timestamp: '2026-11-18 15:44:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
