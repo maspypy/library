@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
   - icon: ':question:'
@@ -310,8 +310,8 @@ data:
   isVerificationFile: false
   path: nt/three_square.hpp
   requiredBy:
-  - nt/three_triangular.hpp
   - nt/four_square.hpp
+  - nt/three_triangular.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -12,19 +12,19 @@ data:
     path: string/basic_substring_structure.hpp
     title: string/basic_substring_structure.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2102.test.cpp
     title: test/3_yukicoder/2102.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2231.test.cpp
     title: test/3_yukicoder/2231.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/2626.test.cpp
     title: test/3_yukicoder/2626.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/263.test.cpp
     title: test/3_yukicoder/263.test.cpp
   _isVerificationFailed: true
@@ -124,10 +124,10 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - test/3_yukicoder/2626.test.cpp
-  - test/3_yukicoder/2102.test.cpp
   - test/3_yukicoder/2231.test.cpp
+  - test/3_yukicoder/2102.test.cpp
   - test/3_yukicoder/263.test.cpp
+  - test/3_yukicoder/2626.test.cpp
 documentation_of: string/rolling_hash.hpp
 layout: document
 redirect_from:

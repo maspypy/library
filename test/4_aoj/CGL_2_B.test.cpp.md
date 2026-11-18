@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B
@@ -364,18 +364,18 @@ data:
     \ x2 = (-b * y2 - c) / a;\n  if (SW) swap(x1, y1), swap(x2, y2);\n  x1 += C.O.x,\
     \ x2 += C.O.x;\n  y1 += C.O.y, y2 += C.O.y;\n  if (D == 0) return {Point<REAL>(x1,\
     \ y1)};\n  return {Point<REAL>(x1, y1), Point<REAL>(x2, y2)};\n}\n\n// https://codeforces.com/contest/2/problem/C\n\
-    template <typename REAL, typename T>\ntuple<bool, Point<T>, Point<T>> cross_point_circle(Circle<T>\
-    \ C1, Circle<T> C2) {\n  using P = Point<REAL>;\n  P O{0, 0};\n  P A = C1.O, B\
-    \ = C2.O;\n  if (A == B) return {false, O, O};\n  T d = (B - A).norm();\n  REAL\
-    \ cos_val = (C1.r * C1.r + d * d - C2.r * C2.r) / (2 * C1.r * d);\n  if (cos_val\
-    \ < -1 || 1 < cos_val) return {false, O, O};\n  REAL t = acos(cos_val);\n  REAL\
-    \ u = (B - A).angle();\n  P X = A + P{C1.r * cos(u + t), C1.r * sin(u + t)};\n\
-    \  P Y = A + P{C1.r * cos(u - t), C1.r * sin(u - t)};\n  return {true, X, Y};\n\
-    }\n#line 8 \"test/4_aoj/CGL_2_B.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  FOR(Q)\
-    \ {\n    LL(a, b, c, d, e, f, g, h);\n    Segment<ll> S1(a, b, c, d);\n    Segment<ll>\
-    \ S2(e, f, g, h);\n    int n = count_cross<ll>(S1, S2, true);\n    print(n ? 1\
-    \ : 0);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n \
-    \ ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    template <typename REAL, typename T>\ntuple<bool, Point<REAL>, Point<REAL>> cross_point_circle(\n\
+    \    Circle<T> C1, Circle<T> C2) {\n  using P = Point<REAL>;\n  P O{0, 0};\n \
+    \ P A = C1.O, B = C2.O;\n  if (A == B) return {false, O, O};\n  T d = (B - A).norm();\n\
+    \  REAL cos_val = (C1.r * C1.r + d * d - C2.r * C2.r) / (2 * C1.r * d);\n  if\
+    \ (cos_val < -1 || 1 < cos_val) return {false, O, O};\n  REAL t = acos(cos_val);\n\
+    \  REAL u = (B - A).angle();\n  P X = A + P{C1.r * cos(u + t), C1.r * sin(u +\
+    \ t)};\n  P Y = A + P{C1.r * cos(u - t), C1.r * sin(u - t)};\n  return {true,\
+    \ X, Y};\n}\n#line 8 \"test/4_aoj/CGL_2_B.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n\
+    \  FOR(Q) {\n    LL(a, b, c, d, e, f, g, h);\n    Segment<ll> S1(a, b, c, d);\n\
+    \    Segment<ll> S2(e, f, g, h);\n    int n = count_cross<ll>(S1, S2, true);\n\
+    \    print(n ? 1 : 0);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_B\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/cross_point.hpp\"\
     \n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c, d, e, f, g, h);\n  \
@@ -391,8 +391,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/CGL_2_B.test.cpp
   requiredBy: []
-  timestamp: '2026-11-18 15:44:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-18 16:40:02+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/CGL_2_B.test.cpp
 layout: document

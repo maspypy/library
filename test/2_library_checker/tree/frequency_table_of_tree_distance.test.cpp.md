@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
   - icon: ':heavy_check_mark:'
@@ -754,14 +754,14 @@ data:
     \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
     #line 4 \"graph/tree_all_distances.hpp\"\n\n// sum of result array = binom(N,2)\n\
     template <typename GT>\nvi tree_all_distances(GT& G) {\n  assert(G.is_prepared());\n\
-    \  int N = G.N;\n  vi ANS(N);\n  auto f = [&](vc<int>& par, vc<int>& V, int L1,\
-    \ int R1, int L2, int R2) -> void {\n    int N = len(par);\n    vc<int> dist(N);\n\
-    \    FOR(i, 1, N) { dist[i] = 1 + dist[par[i]]; }\n    int mx = MAX(dist);\n \
-    \   vi f(1 + mx), g(1 + mx);\n    FOR(i, L1, R1) f[dist[i]]++;\n    FOR(i, L2,\
-    \ R2) g[dist[i]]++;\n    while (len(f) && f.back() == 0) POP(f);\n    while (len(g)\
-    \ && g.back() == 0) POP(g);\n    f = convolution(f, g);\n    FOR(i, len(f)) ANS[i]\
-    \ += f[i];\n  };\n  centroid_decomposition<1>(G, f);\n  ANS[1] = N - 1;\n  return\
-    \ ANS;\n}\n#line 7 \"test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp\"\
+    \  int N = G.N;\n  if (N == 1) return {0};\n  vi ANS(N);\n  auto f = [&](vc<int>&\
+    \ par, vc<int>& V, int L1, int R1, int L2,\n               int R2) -> void {\n\
+    \    int N = len(par);\n    vc<int> dist(N);\n    FOR(i, 1, N) { dist[i] = 1 +\
+    \ dist[par[i]]; }\n    int mx = MAX(dist);\n    vi f(1 + mx), g(1 + mx);\n   \
+    \ FOR(i, L1, R1) f[dist[i]]++;\n    FOR(i, L2, R2) g[dist[i]]++;\n    while (len(f)\
+    \ && f.back() == 0) POP(f);\n    while (len(g) && g.back() == 0) POP(g);\n   \
+    \ f = convolution(f, g);\n    FOR(i, len(f)) ANS[i] += f[i];\n  };\n  centroid_decomposition<1>(G,\
+    \ f);\n  ANS[1] = N - 1;\n  return ANS;\n}\n#line 7 \"test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N);\r\n  Graph<int> G(N);\r\n  G.read_tree(0, 0);\r\
     \n\r\n  vi ANS = tree_all_distances(G);\r\n  ANS.erase(ANS.begin());\r\n  print(ANS);\r\
     \n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
@@ -789,7 +789,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2026-11-18 15:44:25+09:00'
+  timestamp: '2026-11-18 16:40:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp

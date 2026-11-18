@@ -9,13 +9,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/palindrome_decomposition_dp.test.cpp
     title: test/1_mytest/palindrome_decomposition_dp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/eertree.test.cpp
     title: test/2_library_checker/string/eertree.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/2606.test.cpp
     title: test/3_yukicoder/2606.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/263.test.cpp
     title: test/3_yukicoder/263.test.cpp
   - icon: ':x:'
@@ -116,8 +116,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/string/eertree.test.cpp
-  - test/3_yukicoder/263.test.cpp
   - test/3_yukicoder/2606.test.cpp
+  - test/3_yukicoder/263.test.cpp
   - test/3_yukicoder/465.test.cpp
   - test/1_mytest/palindrome_decomposition_dp.test.cpp
 documentation_of: string/palindromic_tree.hpp

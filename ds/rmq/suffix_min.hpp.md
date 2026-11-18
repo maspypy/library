@@ -6,9 +6,9 @@ data:
     title: ds/unionfind/unionfind.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/rmq/suffix_min.hpp
@@ -56,7 +56,7 @@ data:
   path: ds/rmq/suffix_min.hpp
   requiredBy: []
   timestamp: '2026-10-22 01:32:06+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith: []
 documentation_of: ds/rmq/suffix_min.hpp
 layout: document

@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: ds/unionfind/rollback_potentialized_unionfind.hpp
     title: ds/unionfind/rollback_potentialized_unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/rollback_unionfind.hpp
     title: ds/unionfind/rollback_unionfind.hpp
   _extendedVerifiedWith:
@@ -57,8 +57,8 @@ data:
   timestamp: '2026-10-27 03:17:11+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/data_structure/add_remove_query.test.cpp
   - test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
+  - test/2_library_checker/data_structure/add_remove_query.test.cpp
   - test/3_yukicoder/2293.test.cpp
 documentation_of: ds/rollback_array.hpp
 layout: document

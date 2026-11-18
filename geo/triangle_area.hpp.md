@@ -5,13 +5,13 @@ data:
   - icon: ':warning:'
     path: geo/delaunay_triangulation_of_convex_polygon.hpp
     title: geo/delaunay_triangulation_of_convex_polygon.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/incircle.hpp
     title: geo/incircle.hpp
   - icon: ':warning:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
   _extendedVerifiedWith:
@@ -21,15 +21,15 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/3005.test.cpp
     title: test/3_yukicoder/3005.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_B.test.cpp
     title: test/4_aoj/CGL_7_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_C.test.cpp
     title: test/4_aoj/CGL_7_C.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/geo/triangle_area.hpp
@@ -43,17 +43,17 @@ data:
   isVerificationFile: false
   path: geo/triangle_area.hpp
   requiredBy:
-  - geo/incircle.hpp
-  - geo/outcircle.hpp
   - geo/delaunay_triangulation_of_convex_polygon.hpp
+  - geo/outcircle.hpp
   - geo/minimum_enclosing_circle.hpp
+  - geo/incircle.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/3005.test.cpp
   - test/3_yukicoder/2602.test.cpp
-  - test/4_aoj/CGL_7_C.test.cpp
   - test/4_aoj/CGL_7_B.test.cpp
+  - test/4_aoj/CGL_7_C.test.cpp
 documentation_of: geo/triangle_area.hpp
 layout: document
 redirect_from:

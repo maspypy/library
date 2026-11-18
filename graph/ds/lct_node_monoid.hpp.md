@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/graph/ds/lct_node_monoid.hpp
@@ -53,7 +53,7 @@ data:
   path: graph/ds/lct_node_monoid.hpp
   requiredBy: []
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
 documentation_of: graph/ds/lct_node_monoid.hpp

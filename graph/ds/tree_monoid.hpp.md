@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
   - icon: ':question:'
@@ -13,11 +13,11 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
@@ -30,24 +30,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
     title: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
     title: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
     title: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1212.test.cpp
     title: test/3_yukicoder/1212.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/529.test.cpp
     title: test/3_yukicoder/529.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/graph/ds/tree_monoid.hpp
@@ -385,7 +385,7 @@ data:
     \      return (a <= b) ? seg.prod(a, b + 1) : seg.prod(b, a + 1);\n    }\n   \
     \ return (a <= b) ? seg.prod(a, b + 1) : seg_r.prod(b, a + 1);\n  }\n\n private:\n\
     \  template <class F>\n  int max_path_edge(F check, int u, int v) {\n    static_assert(edge);\n\
-    \    if (!check(MX::id())) return -1;\n    int lca = tree.lca(u, v);\n    auto\
+    \    if (!check(MX::id())) return -1;\n    int lca = tree.LCA(u, v);\n    auto\
     \ pd = tree.get_path_decomposition(u, lca, edge);\n    X val = MX::id();\n\n \
     \   // climb\n    for (auto &&[a, b] : pd) {\n      assert(a >= b);\n      X x\
     \ = _get_prod(a, b);\n      if (check(MX::op(val, x))) {\n        val = MX::op(val,\
@@ -446,7 +446,7 @@ data:
     \      return (a <= b) ? seg.prod(a, b + 1) : seg.prod(b, a + 1);\n    }\n   \
     \ return (a <= b) ? seg.prod(a, b + 1) : seg_r.prod(b, a + 1);\n  }\n\n private:\n\
     \  template <class F>\n  int max_path_edge(F check, int u, int v) {\n    static_assert(edge);\n\
-    \    if (!check(MX::id())) return -1;\n    int lca = tree.lca(u, v);\n    auto\
+    \    if (!check(MX::id())) return -1;\n    int lca = tree.LCA(u, v);\n    auto\
     \ pd = tree.get_path_decomposition(u, lca, edge);\n    X val = MX::id();\n\n \
     \   // climb\n    for (auto &&[a, b] : pd) {\n      assert(a >= b);\n      X x\
     \ = _get_prod(a, b);\n      if (check(MX::op(val, x))) {\n        val = MX::op(val,\
@@ -471,15 +471,15 @@ data:
   path: graph/ds/tree_monoid.hpp
   requiredBy:
   - graph/minimum_spanning_tree.hpp
-  timestamp: '2026-11-16 13:02:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2026-11-18 16:40:02+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
-  - test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
   - test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
   - test/2_library_checker/tree/mst.test.cpp
-  - test/3_yukicoder/529.test.cpp
+  - test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
+  - test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
   - test/3_yukicoder/1212.test.cpp
+  - test/3_yukicoder/529.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
   - test/4_aoj/GRL_2_A.test.cpp
 documentation_of: graph/ds/tree_monoid.hpp

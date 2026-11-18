@@ -48,12 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/two_square.test.cpp
     title: test/2_library_checker/number_theory/two_square.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1593.test.cpp
     title: test/3_yukicoder/1593.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/nt/gaussian_integers.hpp
@@ -300,12 +300,12 @@ data:
   isVerificationFile: false
   path: nt/gaussian_integers.hpp
   requiredBy:
-  - nt/three_triangular.hpp
-  - nt/three_square.hpp
   - nt/two_square.hpp
   - nt/four_square.hpp
+  - nt/three_square.hpp
+  - nt/three_triangular.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/number_theory/two_square.test.cpp
   - test/2_library_checker/number_theory/gaussian_integers.test.cpp

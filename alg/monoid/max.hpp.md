@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
   - icon: ':heavy_check_mark:'
@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_max.hpp
     title: alg/acted_monoid/min_max.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
@@ -45,34 +45,34 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1625.test.cpp
     title: test/3_yukicoder/1625.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1625_2.test.cpp
     title: test/3_yukicoder/1625_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1790.test.cpp
     title: test/3_yukicoder/1790.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1826.test.cpp
     title: test/3_yukicoder/1826.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1826_2.test.cpp
     title: test/3_yukicoder/1826_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2026.test.cpp
     title: test/3_yukicoder/2026.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/2242.test.cpp
     title: test/3_yukicoder/2242.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2295.test.cpp
     title: test/3_yukicoder/2295.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2859.test.cpp
     title: test/3_yukicoder/2859.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/686.test.cpp
     title: test/3_yukicoder/686.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
   _isVerificationFailed: true
@@ -95,32 +95,32 @@ data:
   isVerificationFile: false
   path: alg/monoid/max.hpp
   requiredBy:
-  - alg/acted_monoid/max_min.hpp
-  - alg/acted_monoid/max_assign.hpp
+  - graph/minimum_spanning_tree.hpp
   - alg/acted_monoid/max_max.hpp
+  - alg/acted_monoid/max_assign.hpp
+  - alg/acted_monoid/max_min.hpp
   - alg/acted_monoid/min_max.hpp
   - alg/acted_monoid/max_add.hpp
-  - graph/minimum_spanning_tree.hpp
   timestamp: '2026-10-24 10:08:11+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/tree/mst.test.cpp
-  - test/3_yukicoder/1790.test.cpp
-  - test/3_yukicoder/2026.test.cpp
-  - test/3_yukicoder/1625_2.test.cpp
-  - test/3_yukicoder/1625.test.cpp
-  - test/3_yukicoder/686.test.cpp
-  - test/3_yukicoder/2295.test.cpp
-  - test/3_yukicoder/1826_2.test.cpp
-  - test/3_yukicoder/1117.test.cpp
-  - test/3_yukicoder/2859.test.cpp
-  - test/3_yukicoder/2242.test.cpp
   - test/3_yukicoder/1826.test.cpp
-  - test/1_mytest/range_add_range_max.test.cpp
-  - test/1_mytest/min_max.test.cpp
+  - test/3_yukicoder/1826_2.test.cpp
+  - test/3_yukicoder/1625_2.test.cpp
+  - test/3_yukicoder/2295.test.cpp
+  - test/3_yukicoder/2026.test.cpp
+  - test/3_yukicoder/686.test.cpp
+  - test/3_yukicoder/1117.test.cpp
+  - test/3_yukicoder/2242.test.cpp
+  - test/3_yukicoder/1625.test.cpp
+  - test/3_yukicoder/1790.test.cpp
+  - test/3_yukicoder/2859.test.cpp
   - test/1_mytest/max_assign.test.cpp
-  - test/1_mytest/max_max.test.cpp
+  - test/1_mytest/range_add_range_max.test.cpp
   - test/1_mytest/max_min.test.cpp
+  - test/1_mytest/max_max.test.cpp
+  - test/1_mytest/min_max.test.cpp
   - test/4_aoj/GRL_2_A.test.cpp
 documentation_of: alg/monoid/max.hpp
 layout: document

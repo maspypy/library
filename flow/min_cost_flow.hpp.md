@@ -30,7 +30,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/2604.test.cpp
     title: test/3_yukicoder/2604.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_6_B.test.cpp
     title: test/4_aoj/GRL_6_B.test.cpp
   _isVerificationFailed: true
@@ -264,13 +264,13 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/graph/assignment_mcf.test.cpp
-  - test/3_yukicoder/1324.test.cpp
   - test/3_yukicoder/1301.test.cpp
-  - test/3_yukicoder/1678.test.cpp
   - test/3_yukicoder/1288.test.cpp
-  - test/3_yukicoder/1676.test.cpp
-  - test/3_yukicoder/1341.test.cpp
   - test/3_yukicoder/2604.test.cpp
+  - test/3_yukicoder/1678.test.cpp
+  - test/3_yukicoder/1341.test.cpp
+  - test/3_yukicoder/1676.test.cpp
+  - test/3_yukicoder/1324.test.cpp
   - test/4_aoj/GRL_6_B.test.cpp
 documentation_of: flow/min_cost_flow.hpp
 layout: document

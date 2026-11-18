@@ -8,7 +8,7 @@ data:
   - icon: ':warning:'
     path: ds/offline_query/offline_set_intersection.hpp
     title: ds/offline_query/offline_set_intersection.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/static_range_frequency.hpp
     title: ds/static_range_frequency.hpp
   - icon: ':warning:'
@@ -18,15 +18,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_freq.test.cpp
     title: test/2_library_checker/data_structure/static_range_freq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_frequency.test.cpp
     title: test/2_library_checker/data_structure/static_range_frequency.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_mode_query.test.cpp
     title: test/2_library_checker/data_structure/static_range_mode_query.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/to_small_key.hpp
@@ -77,15 +77,15 @@ data:
   isVerificationFile: false
   path: ds/to_small_key.hpp
   requiredBy:
-  - ds/static_range_frequency.hpp
   - ds/offline_query/offline_set_intersection.hpp
+  - ds/static_range_frequency.hpp
   - string/aho_corasick_for_general_trie.hpp
   timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/data_structure/static_range_frequency.test.cpp
-  - test/2_library_checker/data_structure/static_range_mode_query.test.cpp
   - test/2_library_checker/data_structure/static_range_freq.test.cpp
+  - test/2_library_checker/data_structure/static_range_mode_query.test.cpp
+  - test/2_library_checker/data_structure/static_range_frequency.test.cpp
 documentation_of: ds/to_small_key.hpp
 layout: document
 redirect_from:

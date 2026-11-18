@@ -212,10 +212,10 @@ data:
   timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/graph/cycle_detection.test.cpp
   - test/2_library_checker/graph/cycle_detection_undirected.test.cpp
-  - test/1_mytest/find_cycle_minimum.test.cpp
+  - test/2_library_checker/graph/cycle_detection.test.cpp
   - test/1_mytest/all_cycle_common_vertex.test.cpp
+  - test/1_mytest/find_cycle_minimum.test.cpp
 documentation_of: graph/find_cycle.hpp
 layout: document
 redirect_from:

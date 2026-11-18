@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   _extendedRequiredBy: []
@@ -114,25 +114,26 @@ data:
     \ x2 = (-b * y2 - c) / a;\n  if (SW) swap(x1, y1), swap(x2, y2);\n  x1 += C.O.x,\
     \ x2 += C.O.x;\n  y1 += C.O.y, y2 += C.O.y;\n  if (D == 0) return {Point<REAL>(x1,\
     \ y1)};\n  return {Point<REAL>(x1, y1), Point<REAL>(x2, y2)};\n}\n\n// https://codeforces.com/contest/2/problem/C\n\
-    template <typename REAL, typename T>\ntuple<bool, Point<T>, Point<T>> cross_point_circle(Circle<T>\
-    \ C1, Circle<T> C2) {\n  using P = Point<REAL>;\n  P O{0, 0};\n  P A = C1.O, B\
-    \ = C2.O;\n  if (A == B) return {false, O, O};\n  T d = (B - A).norm();\n  REAL\
-    \ cos_val = (C1.r * C1.r + d * d - C2.r * C2.r) / (2 * C1.r * d);\n  if (cos_val\
-    \ < -1 || 1 < cos_val) return {false, O, O};\n  REAL t = acos(cos_val);\n  REAL\
-    \ u = (B - A).angle();\n  P X = A + P{C1.r * cos(u + t), C1.r * sin(u + t)};\n\
-    \  P Y = A + P{C1.r * cos(u - t), C1.r * sin(u - t)};\n  return {true, X, Y};\n\
-    }\n#line 3 \"geo/minimum_three_distance_sum.hpp\"\n\n// Fermat point OR vertex\n\
-    // https://codeforces.com/problemset/problem/1662/K\ntemplate <typename Re>\n\
-    Re minimum_three_distance_sum(Point<Re> A, Point<Re> B, Point<Re> C) {\n  using\
-    \ P = Point<Re>;\n  const Re PI = acos(-1);\n  if (ccw(A, B, C) == -1) {\n   \
-    \ swap(B, C);\n  }\n  Re ANS = infty<Re>;\n  Re AB = distance<Re>(A, B);\n  Re\
-    \ AC = distance<Re>(A, C);\n  Re BC = distance<Re>(B, C);\n  chmin(ANS, AB + AC);\n\
-    \  chmin(ANS, AB + BC);\n  chmin(ANS, AC + BC);\n\n  auto get = [&](P A, P B)\
-    \ -> Circle<Re> {\n    P p = B - A;\n    p = p.rotate(-PI / 6);\n    p = p * (sqrtl(Re(1.0)\
-    \ / 3));\n    Re r = p.norm();\n    return Circle<Re>(A + p, r);\n  };\n\n  Circle<Re>\
-    \ C1 = get(A, B), C2 = get(B, C);\n  auto [ok, p1, p2] = cross_point_circle<Re,\
-    \ Re>(C1, C2);\n  for (auto& p : {p1, p2}) {\n    Re d = 0;\n    for (P q : {A,\
-    \ B, C}) d += distance<Re>(p, q);\n    chmin(ANS, d);\n  }\n  return ANS;\n}\n"
+    template <typename REAL, typename T>\ntuple<bool, Point<REAL>, Point<REAL>> cross_point_circle(\n\
+    \    Circle<T> C1, Circle<T> C2) {\n  using P = Point<REAL>;\n  P O{0, 0};\n \
+    \ P A = C1.O, B = C2.O;\n  if (A == B) return {false, O, O};\n  T d = (B - A).norm();\n\
+    \  REAL cos_val = (C1.r * C1.r + d * d - C2.r * C2.r) / (2 * C1.r * d);\n  if\
+    \ (cos_val < -1 || 1 < cos_val) return {false, O, O};\n  REAL t = acos(cos_val);\n\
+    \  REAL u = (B - A).angle();\n  P X = A + P{C1.r * cos(u + t), C1.r * sin(u +\
+    \ t)};\n  P Y = A + P{C1.r * cos(u - t), C1.r * sin(u - t)};\n  return {true,\
+    \ X, Y};\n}\n#line 3 \"geo/minimum_three_distance_sum.hpp\"\n\n// Fermat point\
+    \ OR vertex\n// https://codeforces.com/problemset/problem/1662/K\ntemplate <typename\
+    \ Re>\nRe minimum_three_distance_sum(Point<Re> A, Point<Re> B, Point<Re> C) {\n\
+    \  using P = Point<Re>;\n  const Re PI = acos(-1);\n  if (ccw(A, B, C) == -1)\
+    \ {\n    swap(B, C);\n  }\n  Re ANS = infty<Re>;\n  Re AB = distance<Re>(A, B);\n\
+    \  Re AC = distance<Re>(A, C);\n  Re BC = distance<Re>(B, C);\n  chmin(ANS, AB\
+    \ + AC);\n  chmin(ANS, AB + BC);\n  chmin(ANS, AC + BC);\n\n  auto get = [&](P\
+    \ A, P B) -> Circle<Re> {\n    P p = B - A;\n    p = p.rotate(-PI / 6);\n    p\
+    \ = p * (sqrtl(Re(1.0) / 3));\n    Re r = p.norm();\n    return Circle<Re>(A +\
+    \ p, r);\n  };\n\n  Circle<Re> C1 = get(A, B), C2 = get(B, C);\n  auto [ok, p1,\
+    \ p2] = cross_point_circle<Re, Re>(C1, C2);\n  for (auto& p : {p1, p2}) {\n  \
+    \  Re d = 0;\n    for (P q : {A, B, C}) d += distance<Re>(p, q);\n    chmin(ANS,\
+    \ d);\n  }\n  return ANS;\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/geo/minimum_three_distance_sum.hpp\n\
     #include \"geo/cross_point.hpp\"\n\n// Fermat point OR vertex\n// https://codeforces.com/problemset/problem/1662/K\n\
     template <typename Re>\nRe minimum_three_distance_sum(Point<Re> A, Point<Re> B,\
@@ -152,7 +153,7 @@ data:
   isVerificationFile: false
   path: geo/minimum_three_distance_sum.hpp
   requiredBy: []
-  timestamp: '2026-10-27 15:41:25+09:00'
+  timestamp: '2026-11-18 16:40:02+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/minimum_three_distance_sum.hpp

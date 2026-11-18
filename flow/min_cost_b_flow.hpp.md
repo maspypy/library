@@ -6,12 +6,12 @@ data:
     path: flow/dual_mcf.hpp
     title: flow/dual_mcf.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/min_cost_b-flow.test.cpp
     title: test/2_library_checker/graph/min_cost_b-flow.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/flow/min_cost_b_flow.hpp
@@ -203,7 +203,7 @@ data:
   requiredBy:
   - flow/dual_mcf.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/graph/min_cost_b-flow.test.cpp
 documentation_of: flow/min_cost_b_flow.hpp

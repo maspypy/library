@@ -5,7 +5,7 @@ data:
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/distance.hpp
     title: geo/distance.hpp
   - icon: ':warning:'
@@ -21,21 +21,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_B.test.cpp
     title: test/4_aoj/CGL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_C.test.cpp
     title: test/4_aoj/CGL_2_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_D.test.cpp
     title: test/4_aoj/CGL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_B.test.cpp
     title: test/4_aoj/CGL_7_B.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/2/problem/C
@@ -138,14 +138,14 @@ data:
     \ x2 = (-b * y2 - c) / a;\n  if (SW) swap(x1, y1), swap(x2, y2);\n  x1 += C.O.x,\
     \ x2 += C.O.x;\n  y1 += C.O.y, y2 += C.O.y;\n  if (D == 0) return {Point<REAL>(x1,\
     \ y1)};\n  return {Point<REAL>(x1, y1), Point<REAL>(x2, y2)};\n}\n\n// https://codeforces.com/contest/2/problem/C\n\
-    template <typename REAL, typename T>\ntuple<bool, Point<T>, Point<T>> cross_point_circle(Circle<T>\
-    \ C1, Circle<T> C2) {\n  using P = Point<REAL>;\n  P O{0, 0};\n  P A = C1.O, B\
-    \ = C2.O;\n  if (A == B) return {false, O, O};\n  T d = (B - A).norm();\n  REAL\
-    \ cos_val = (C1.r * C1.r + d * d - C2.r * C2.r) / (2 * C1.r * d);\n  if (cos_val\
-    \ < -1 || 1 < cos_val) return {false, O, O};\n  REAL t = acos(cos_val);\n  REAL\
-    \ u = (B - A).angle();\n  P X = A + P{C1.r * cos(u + t), C1.r * sin(u + t)};\n\
-    \  P Y = A + P{C1.r * cos(u - t), C1.r * sin(u - t)};\n  return {true, X, Y};\n\
-    }\n"
+    template <typename REAL, typename T>\ntuple<bool, Point<REAL>, Point<REAL>> cross_point_circle(\n\
+    \    Circle<T> C1, Circle<T> C2) {\n  using P = Point<REAL>;\n  P O{0, 0};\n \
+    \ P A = C1.O, B = C2.O;\n  if (A == B) return {false, O, O};\n  T d = (B - A).norm();\n\
+    \  REAL cos_val = (C1.r * C1.r + d * d - C2.r * C2.r) / (2 * C1.r * d);\n  if\
+    \ (cos_val < -1 || 1 < cos_val) return {false, O, O};\n  REAL t = acos(cos_val);\n\
+    \  REAL u = (B - A).angle();\n  P X = A + P{C1.r * cos(u + t), C1.r * sin(u +\
+    \ t)};\n  P Y = A + P{C1.r * cos(u - t), C1.r * sin(u - t)};\n  return {true,\
+    \ X, Y};\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/geo/cross_point.hpp\n\
     \n#include \"geo/base.hpp\"\n\n// \u5E73\u884C\u3067\u306A\u3044\u3053\u3068\u3092\
     \u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(const\
@@ -187,14 +187,14 @@ data:
     \ x2 = (-b * y2 - c) / a;\n  if (SW) swap(x1, y1), swap(x2, y2);\n  x1 += C.O.x,\
     \ x2 += C.O.x;\n  y1 += C.O.y, y2 += C.O.y;\n  if (D == 0) return {Point<REAL>(x1,\
     \ y1)};\n  return {Point<REAL>(x1, y1), Point<REAL>(x2, y2)};\n}\n\n// https://codeforces.com/contest/2/problem/C\n\
-    template <typename REAL, typename T>\ntuple<bool, Point<T>, Point<T>> cross_point_circle(Circle<T>\
-    \ C1, Circle<T> C2) {\n  using P = Point<REAL>;\n  P O{0, 0};\n  P A = C1.O, B\
-    \ = C2.O;\n  if (A == B) return {false, O, O};\n  T d = (B - A).norm();\n  REAL\
-    \ cos_val = (C1.r * C1.r + d * d - C2.r * C2.r) / (2 * C1.r * d);\n  if (cos_val\
-    \ < -1 || 1 < cos_val) return {false, O, O};\n  REAL t = acos(cos_val);\n  REAL\
-    \ u = (B - A).angle();\n  P X = A + P{C1.r * cos(u + t), C1.r * sin(u + t)};\n\
-    \  P Y = A + P{C1.r * cos(u - t), C1.r * sin(u - t)};\n  return {true, X, Y};\n\
-    }"
+    template <typename REAL, typename T>\ntuple<bool, Point<REAL>, Point<REAL>> cross_point_circle(\n\
+    \    Circle<T> C1, Circle<T> C2) {\n  using P = Point<REAL>;\n  P O{0, 0};\n \
+    \ P A = C1.O, B = C2.O;\n  if (A == B) return {false, O, O};\n  T d = (B - A).norm();\n\
+    \  REAL cos_val = (C1.r * C1.r + d * d - C2.r * C2.r) / (2 * C1.r * d);\n  if\
+    \ (cos_val < -1 || 1 < cos_val) return {false, O, O};\n  REAL t = acos(cos_val);\n\
+    \  REAL u = (B - A).angle();\n  P X = A + P{C1.r * cos(u + t), C1.r * sin(u +\
+    \ t)};\n  P Y = A + P{C1.r * cos(u - t), C1.r * sin(u - t)};\n  return {true,\
+    \ X, Y};\n}"
   dependsOn:
   - geo/base.hpp
   isVerificationFile: false
@@ -204,13 +204,13 @@ data:
   - geo/minimum_three_distance_sum.hpp
   - geo/polygon.hpp
   - geo/distance.hpp
-  timestamp: '2026-10-27 15:41:25+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2026-11-18 16:40:02+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/polygon_triangulation.test.cpp
   - test/4_aoj/CGL_2_C.test.cpp
-  - test/4_aoj/CGL_7_B.test.cpp
   - test/4_aoj/CGL_2_B.test.cpp
+  - test/4_aoj/CGL_7_B.test.cpp
   - test/4_aoj/CGL_2_D.test.cpp
 documentation_of: geo/cross_point.hpp
 layout: document

@@ -2,23 +2,23 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/dirichlet.hpp
     title: nt/dirichlet.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/dirichlet.test.cpp
     title: test/1_mytest/dirichlet.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/dirichlet.test.cpp
     title: test/2_library_checker/number_theory/dirichlet.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/dirichlet_inv.test.cpp
     title: test/2_library_checker/number_theory/dirichlet_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/kth_root_integer.test.cpp
     title: test/2_library_checker/number_theory/kth_root_integer.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1260.test.cpp
     title: test/3_yukicoder/1260.test.cpp
   - icon: ':x:'
@@ -56,9 +56,9 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/number_theory/dirichlet.test.cpp
   - test/2_library_checker/number_theory/dirichlet_inv.test.cpp
   - test/2_library_checker/number_theory/kth_root_integer.test.cpp
+  - test/2_library_checker/number_theory/dirichlet.test.cpp
   - test/3_yukicoder/1260.test.cpp
   - test/3_yukicoder/1666.test.cpp
   - test/1_mytest/dirichlet.test.cpp

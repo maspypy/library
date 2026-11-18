@@ -5,7 +5,7 @@ data:
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
   - icon: ':warning:'
@@ -17,7 +17,7 @@ data:
   - icon: ':warning:'
     path: random/random_bracket.hpp
     title: random/random_bracket.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   - icon: ':warning:'
@@ -60,7 +60,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/find_even_cycle.test.cpp
     title: test/1_mytest/find_even_cycle.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/find_odd_cycle.test.cpp
     title: test/1_mytest/find_odd_cycle.test.cpp
   - icon: ':heavy_check_mark:'
@@ -99,18 +99,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/closest_pair.test.cpp
     title: test/2_library_checker/geometry/closest_pair.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/closest_pair_dc.test.cpp
     title: test/2_library_checker/geometry/closest_pair_dc.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_5_A.test.cpp
     title: test/4_aoj/CGL_5_A.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/random/shuffle.hpp
@@ -133,42 +133,42 @@ data:
   isVerificationFile: false
   path: random/shuffle.hpp
   requiredBy:
-  - setfunc/boolean_range_add_point_get.hpp
   - random/random_graph.hpp
   - random/random_bracket.hpp
   - geo/delaunay_triangulation_of_convex_polygon.hpp
-  - geo/closest_pair.hpp
   - geo/minimum_enclosing_circle.hpp
+  - geo/closest_pair.hpp
+  - setfunc/boolean_range_add_point_get.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/geometry/closest_pair_dc.test.cpp
   - test/2_library_checker/geometry/closest_pair.test.cpp
-  - test/1_mytest/find_even_cycle.test.cpp
-  - test/1_mytest/independent_set_knapsack.test.cpp
-  - test/1_mytest/nth_element_from_sorted_lists.test.cpp
-  - test/1_mytest/nth_element_from_sorted_matrix.test.cpp
-  - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
-  - test/1_mytest/connected_set_knapsack.test.cpp
-  - test/1_mytest/count_clique.test.cpp
-  - test/1_mytest/find_odd_cycle.test.cpp
-  - test/1_mytest/extended_lichao_2.test.cpp
-  - test/1_mytest/find_C4.test.cpp
+  - test/2_library_checker/geometry/closest_pair_dc.test.cpp
   - test/1_mytest/count_K4.test.cpp
-  - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/incremental_scc.test.cpp
-  - test/1_mytest/count_indep_set.test.cpp
-  - test/1_mytest/slope_super.test.cpp
-  - test/1_mytest/outer_planar.test.cpp
-  - test/1_mytest/find_cycle_minimum.test.cpp
   - test/1_mytest/count_P3P4P5.test.cpp
-  - test/1_mytest/decremental_fastset.test.cpp
-  - test/1_mytest/remove_one_vertex.test.cpp
-  - test/1_mytest/remove_one_edge.test.cpp
-  - test/1_mytest/matching_ve.test.cpp
-  - test/1_mytest/matching_line_graph.test.cpp
-  - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/extended_lichao.test.cpp
+  - test/1_mytest/find_C4.test.cpp
+  - test/1_mytest/decremental_fastset.test.cpp
+  - test/1_mytest/count_clique.test.cpp
+  - test/1_mytest/find_even_cycle.test.cpp
+  - test/1_mytest/matching_line_graph.test.cpp
+  - test/1_mytest/independent_set_knapsack.test.cpp
+  - test/1_mytest/outer_planar.test.cpp
+  - test/1_mytest/nth_element_from_sorted_lists.test.cpp
+  - test/1_mytest/tree_walk_gf.test.cpp
+  - test/1_mytest/count_indep_set.test.cpp
+  - test/1_mytest/find_odd_cycle.test.cpp
+  - test/1_mytest/remove_one_edge.test.cpp
+  - test/1_mytest/find_cycle_minimum.test.cpp
+  - test/1_mytest/rolling_hash_on_tree.test.cpp
+  - test/1_mytest/connected_set_knapsack.test.cpp
+  - test/1_mytest/remove_one_vertex.test.cpp
+  - test/1_mytest/slope_super.test.cpp
+  - test/1_mytest/ancestor_closed_set_knapsack.test.cpp
+  - test/1_mytest/extended_lichao_2.test.cpp
+  - test/1_mytest/nth_element_from_sorted_matrix.test.cpp
+  - test/1_mytest/matching_ve.test.cpp
   - test/4_aoj/CGL_5_A.test.cpp
 documentation_of: random/shuffle.hpp
 layout: document

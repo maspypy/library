@@ -18,19 +18,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tdpc_grid_dp.test.cpp
     title: test/1_mytest/tdpc_grid_dp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1397.test.cpp
     title: test/3_yukicoder/1397.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/578.test.cpp
     title: test/3_yukicoder/578.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
   _isVerificationFailed: true
@@ -271,9 +271,9 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/579.test.cpp
-  - test/3_yukicoder/1397.test.cpp
-  - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/541.test.cpp
+  - test/3_yukicoder/578.test.cpp
+  - test/3_yukicoder/1397.test.cpp
   - test/3_yukicoder/1561.test.cpp
   - test/1_mytest/tdpc_grid_dp.test.cpp
 documentation_of: other/connected_dp.hpp

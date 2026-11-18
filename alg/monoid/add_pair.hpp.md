@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsum_add.hpp
     title: alg/acted_monoid/cntsum_add.hpp
   - icon: ':x:'
@@ -33,7 +33,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1919_2.test.cpp
     title: test/3_yukicoder/1919_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/235.test.cpp
     title: test/3_yukicoder/235.test.cpp
   - icon: ':x:'
@@ -74,16 +74,16 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
-  - test/3_yukicoder/2627.test.cpp
   - test/3_yukicoder/255.test.cpp
+  - test/3_yukicoder/1919_2.test.cpp
+  - test/3_yukicoder/2627.test.cpp
   - test/3_yukicoder/235.test.cpp
   - test/3_yukicoder/1919.test.cpp
-  - test/3_yukicoder/1919_2.test.cpp
   - test/3_yukicoder/749.test.cpp
-  - test/1_mytest/cf702_F.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
-  - test/1_mytest/slope_super.test.cpp
   - test/1_mytest/cf702_F_splay.test.cpp
+  - test/1_mytest/cf702_F.test.cpp
+  - test/1_mytest/slope_super.test.cpp
 documentation_of: alg/monoid/add_pair.hpp
 layout: document
 redirect_from:

@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   - icon: ':heavy_check_mark:'
@@ -34,7 +34,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   - icon: ':heavy_check_mark:'
@@ -422,14 +422,14 @@ data:
     \ x2 = (-b * y2 - c) / a;\n  if (SW) swap(x1, y1), swap(x2, y2);\n  x1 += C.O.x,\
     \ x2 += C.O.x;\n  y1 += C.O.y, y2 += C.O.y;\n  if (D == 0) return {Point<REAL>(x1,\
     \ y1)};\n  return {Point<REAL>(x1, y1), Point<REAL>(x2, y2)};\n}\n\n// https://codeforces.com/contest/2/problem/C\n\
-    template <typename REAL, typename T>\ntuple<bool, Point<T>, Point<T>> cross_point_circle(Circle<T>\
-    \ C1, Circle<T> C2) {\n  using P = Point<REAL>;\n  P O{0, 0};\n  P A = C1.O, B\
-    \ = C2.O;\n  if (A == B) return {false, O, O};\n  T d = (B - A).norm();\n  REAL\
-    \ cos_val = (C1.r * C1.r + d * d - C2.r * C2.r) / (2 * C1.r * d);\n  if (cos_val\
-    \ < -1 || 1 < cos_val) return {false, O, O};\n  REAL t = acos(cos_val);\n  REAL\
-    \ u = (B - A).angle();\n  P X = A + P{C1.r * cos(u + t), C1.r * sin(u + t)};\n\
-    \  P Y = A + P{C1.r * cos(u - t), C1.r * sin(u - t)};\n  return {true, X, Y};\n\
-    }\n#line 1 \"geo/count_points_in_triangles.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/count_points_in_triangles.hpp\n\
+    template <typename REAL, typename T>\ntuple<bool, Point<REAL>, Point<REAL>> cross_point_circle(\n\
+    \    Circle<T> C1, Circle<T> C2) {\n  using P = Point<REAL>;\n  P O{0, 0};\n \
+    \ P A = C1.O, B = C2.O;\n  if (A == B) return {false, O, O};\n  T d = (B - A).norm();\n\
+    \  REAL cos_val = (C1.r * C1.r + d * d - C2.r * C2.r) / (2 * C1.r * d);\n  if\
+    \ (cos_val < -1 || 1 < cos_val) return {false, O, O};\n  REAL t = acos(cos_val);\n\
+    \  REAL u = (B - A).angle();\n  P X = A + P{C1.r * cos(u + t), C1.r * sin(u +\
+    \ t)};\n  P Y = A + P{C1.r * cos(u - t), C1.r * sin(u - t)};\n  return {true,\
+    \ X, Y};\n}\n#line 1 \"geo/count_points_in_triangles.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/count_points_in_triangles.hpp\n\
     \n#line 1 \"geo/angle_sort.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/angle_sort.hpp\n\
     \n#line 1 \"geo/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/geo/base.hpp\n\
     template <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
@@ -1362,7 +1362,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/polygon_triangulation.test.cpp
   requiredBy: []
-  timestamp: '2026-11-18 15:44:25+09:00'
+  timestamp: '2026-11-18 16:40:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/polygon_triangulation.test.cpp

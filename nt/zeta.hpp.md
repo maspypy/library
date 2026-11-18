@@ -17,13 +17,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/lcm_convolution.hpp
     title: nt/lcm_convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/mertens.hpp
     title: nt/mertens.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
@@ -45,10 +45,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1760.test.cpp
     title: test/3_yukicoder/1760.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2266.test.cpp
     title: test/3_yukicoder/2266.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_1_D.test.cpp
     title: test/4_aoj/NTL_1_D.test.cpp
   _isVerificationFailed: true
@@ -98,23 +98,23 @@ data:
   isVerificationFile: false
   path: nt/zeta.hpp
   requiredBy:
-  - nt/mobius_table.hpp
-  - nt/euler_phi.hpp
+  - nt/mertens.hpp
   - nt/lcm_convolution.hpp
   - nt/range_rational_count.hpp
+  - nt/euler_phi.hpp
+  - nt/mobius_table.hpp
   - nt/gcd_convolution.hpp
-  - nt/mertens.hpp
   - mod/tetration.hpp
   timestamp: '2026-10-24 09:51:44+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/number_theory/tetration.test.cpp
   - test/2_library_checker/convolution/lcm_convolution.test.cpp
   - test/2_library_checker/convolution/gcd_convolution.test.cpp
+  - test/2_library_checker/number_theory/tetration.test.cpp
   - test/3_yukicoder/1262.test.cpp
-  - test/3_yukicoder/1666.test.cpp
-  - test/3_yukicoder/2266.test.cpp
   - test/3_yukicoder/1760.test.cpp
+  - test/3_yukicoder/2266.test.cpp
+  - test/3_yukicoder/1666.test.cpp
   - test/4_aoj/NTL_1_D.test.cpp
 documentation_of: nt/zeta.hpp
 layout: document

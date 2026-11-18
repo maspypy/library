@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/rollback_array.hpp
     title: ds/rollback_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/rollback_unionfind.hpp
     title: ds/unionfind/rollback_unionfind.hpp
   - icon: ':question:'

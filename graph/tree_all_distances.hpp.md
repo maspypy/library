@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
   - icon: ':question:'
@@ -502,25 +502,26 @@ data:
     \ convolution_karatsuba<mint>(a, b);\n  return convolution_garner(a, b);\n}\n\
     #line 4 \"graph/tree_all_distances.hpp\"\n\n// sum of result array = binom(N,2)\n\
     template <typename GT>\nvi tree_all_distances(GT& G) {\n  assert(G.is_prepared());\n\
-    \  int N = G.N;\n  vi ANS(N);\n  auto f = [&](vc<int>& par, vc<int>& V, int L1,\
-    \ int R1, int L2, int R2) -> void {\n    int N = len(par);\n    vc<int> dist(N);\n\
+    \  int N = G.N;\n  if (N == 1) return {0};\n  vi ANS(N);\n  auto f = [&](vc<int>&\
+    \ par, vc<int>& V, int L1, int R1, int L2,\n               int R2) -> void {\n\
+    \    int N = len(par);\n    vc<int> dist(N);\n    FOR(i, 1, N) { dist[i] = 1 +\
+    \ dist[par[i]]; }\n    int mx = MAX(dist);\n    vi f(1 + mx), g(1 + mx);\n   \
+    \ FOR(i, L1, R1) f[dist[i]]++;\n    FOR(i, L2, R2) g[dist[i]]++;\n    while (len(f)\
+    \ && f.back() == 0) POP(f);\n    while (len(g) && g.back() == 0) POP(g);\n   \
+    \ f = convolution(f, g);\n    FOR(i, len(f)) ANS[i] += f[i];\n  };\n  centroid_decomposition<1>(G,\
+    \ f);\n  ANS[1] = N - 1;\n  return ANS;\n}\n"
+  code: "// Source: https://github.com/maspypy/library/blob/main/graph/tree_all_distances.hpp\n\
+    #include \"graph/centroid_decomposition.hpp\"\n#include \"poly/convolution.hpp\"\
+    \n\n// sum of result array = binom(N,2)\ntemplate <typename GT>\nvi tree_all_distances(GT&\
+    \ G) {\n  assert(G.is_prepared());\n  int N = G.N;\n  if (N == 1) return {0};\n\
+    \  vi ANS(N);\n  auto f = [&](vc<int>& par, vc<int>& V, int L1, int R1, int L2,\n\
+    \               int R2) -> void {\n    int N = len(par);\n    vc<int> dist(N);\n\
     \    FOR(i, 1, N) { dist[i] = 1 + dist[par[i]]; }\n    int mx = MAX(dist);\n \
     \   vi f(1 + mx), g(1 + mx);\n    FOR(i, L1, R1) f[dist[i]]++;\n    FOR(i, L2,\
     \ R2) g[dist[i]]++;\n    while (len(f) && f.back() == 0) POP(f);\n    while (len(g)\
     \ && g.back() == 0) POP(g);\n    f = convolution(f, g);\n    FOR(i, len(f)) ANS[i]\
     \ += f[i];\n  };\n  centroid_decomposition<1>(G, f);\n  ANS[1] = N - 1;\n  return\
     \ ANS;\n}\n"
-  code: "// Source: https://github.com/maspypy/library/blob/main/graph/tree_all_distances.hpp\n\
-    #include \"graph/centroid_decomposition.hpp\"\n#include \"poly/convolution.hpp\"\
-    \n\n// sum of result array = binom(N,2)\ntemplate <typename GT>\nvi tree_all_distances(GT&\
-    \ G) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vi ANS(N);\n  auto f = [&](vc<int>&\
-    \ par, vc<int>& V, int L1, int R1, int L2, int R2) -> void {\n    int N = len(par);\n\
-    \    vc<int> dist(N);\n    FOR(i, 1, N) { dist[i] = 1 + dist[par[i]]; }\n    int\
-    \ mx = MAX(dist);\n    vi f(1 + mx), g(1 + mx);\n    FOR(i, L1, R1) f[dist[i]]++;\n\
-    \    FOR(i, L2, R2) g[dist[i]]++;\n    while (len(f) && f.back() == 0) POP(f);\n\
-    \    while (len(g) && g.back() == 0) POP(g);\n    f = convolution(f, g);\n   \
-    \ FOR(i, len(f)) ANS[i] += f[i];\n  };\n  centroid_decomposition<1>(G, f);\n \
-    \ ANS[1] = N - 1;\n  return ANS;\n}\n"
   dependsOn:
   - graph/centroid_decomposition.hpp
   - graph/base.hpp
@@ -536,7 +537,7 @@ data:
   isVerificationFile: false
   path: graph/tree_all_distances.hpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
+  timestamp: '2026-11-18 16:40:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp

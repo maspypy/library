@@ -21,18 +21,18 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1838.test.cpp
     title: test/3_yukicoder/1838.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/694.test.cpp
     title: test/3_yukicoder/694.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_2_A.test.cpp
     title: test/4_aoj/ALDS1_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_5.test.cpp
     title: test/4_aoj/ALDS1_5.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/seq/inversion.hpp
@@ -246,12 +246,12 @@ data:
   requiredBy:
   - other/sliding_puzzle_solver.hpp
   timestamp: '2026-11-06 18:54:57+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/694.test.cpp
   - test/3_yukicoder/1838.test.cpp
-  - test/4_aoj/ALDS1_2_A.test.cpp
   - test/4_aoj/ALDS1_5.test.cpp
+  - test/4_aoj/ALDS1_2_A.test.cpp
 documentation_of: seq/inversion.hpp
 layout: document
 redirect_from:

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
   - icon: ':question:'
@@ -16,10 +16,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -616,7 +616,7 @@ data:
     \      return (a <= b) ? seg.prod(a, b + 1) : seg.prod(b, a + 1);\n    }\n   \
     \ return (a <= b) ? seg.prod(a, b + 1) : seg_r.prod(b, a + 1);\n  }\n\n private:\n\
     \  template <class F>\n  int max_path_edge(F check, int u, int v) {\n    static_assert(edge);\n\
-    \    if (!check(MX::id())) return -1;\n    int lca = tree.lca(u, v);\n    auto\
+    \    if (!check(MX::id())) return -1;\n    int lca = tree.LCA(u, v);\n    auto\
     \ pd = tree.get_path_decomposition(u, lca, edge);\n    X val = MX::id();\n\n \
     \   // climb\n    for (auto &&[a, b] : pd) {\n      assert(a >= b);\n      X x\
     \ = _get_prod(a, b);\n      if (check(MX::op(val, x))) {\n        val = MX::op(val,\
@@ -670,7 +670,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
   requiredBy: []
-  timestamp: '2026-11-18 15:44:25+09:00'
+  timestamp: '2026-11-18 16:40:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp

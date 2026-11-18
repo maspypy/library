@@ -35,10 +35,10 @@ data:
   - icon: ':warning:'
     path: poly/2d/compositional_inverse_2d.hpp
     title: poly/2d/compositional_inverse_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/schroder.hpp
     title: poly/schroder.hpp
   _extendedVerifiedWith:
@@ -54,21 +54,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/power_projection.test.cpp
     title: test/1_mytest/power_projection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/compositional_inverse.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3619.test.cpp
     title: test/3_yukicoder/3619.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3621.test.cpp
     title: test/3_yukicoder/3621.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/poly/power_projection.hpp
@@ -612,21 +612,21 @@ data:
   isVerificationFile: false
   path: poly/power_projection.hpp
   requiredBy:
-  - poly/2d/compositional_inverse_2d.hpp
-  - poly/schroder.hpp
-  - poly/compositional_inverse.hpp
   - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_biconnected.hpp
+  - poly/schroder.hpp
+  - poly/2d/compositional_inverse_2d.hpp
+  - poly/compositional_inverse.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/polynomial/compositional_inverse.test.cpp
   - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse.test.cpp
   - test/3_yukicoder/3619.test.cpp
   - test/3_yukicoder/3621.test.cpp
-  - test/1_mytest/compositional_inverset.test.cpp
   - test/1_mytest/power_projection.test.cpp
   - test/1_mytest/count_labeled_bridgeless.test.cpp
+  - test/1_mytest/compositional_inverset.test.cpp
   - test/1_mytest/count_labeled_biconnected.test.cpp
 documentation_of: poly/power_projection.hpp
 layout: document

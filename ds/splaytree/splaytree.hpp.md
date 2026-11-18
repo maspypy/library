@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_commutative_monoid.hpp
     title: ds/splaytree/splaytree_commutative_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_monoid.hpp
     title: ds/splaytree/splaytree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -69,15 +69,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1441.test.cpp
     title: test/3_yukicoder/1441.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/1508.test.cpp
     title: test/4_aoj/1508.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/splaytree/splaytree.hpp
@@ -389,30 +389,30 @@ data:
   isVerificationFile: false
   path: ds/splaytree/splaytree.hpp
   requiredBy:
-  - ds/splaytree/splaytree_commutative_monoid.hpp
-  - ds/splaytree/splaytree_acted_set.hpp
-  - ds/splaytree/splaytree_monoid.hpp
-  - ds/splaytree/splaytree_acted_monoid.hpp
-  - ds/splaytree/splaytree_basic.hpp
+  - ds/piecewise_constant/piecewise_constant.hpp
   - ds/piecewise_constant/piecewise_constant_acted_RMQ.hpp
   - ds/piecewise_constant/piecewise_constant_acted.hpp
   - ds/piecewise_constant/piecewise_constant_basic.hpp
-  - ds/piecewise_constant/piecewise_constant.hpp
-  - convex/slope_trick/slope_trick_super.hpp
+  - ds/splaytree/splaytree_acted_monoid.hpp
+  - ds/splaytree/splaytree_acted_set.hpp
+  - ds/splaytree/splaytree_commutative_monoid.hpp
+  - ds/splaytree/splaytree_monoid.hpp
+  - ds/splaytree/splaytree_basic.hpp
   - geo/polygon_triangulation.hpp
+  - convex/slope_trick/slope_trick_super.hpp
   - seq/cycle_decomposition.hpp
   timestamp: '2026-11-06 20:42:15+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
   - test/3_yukicoder/1441.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
+  - test/1_mytest/splay_monoid.test.cpp
+  - test/1_mytest/cf702_F_splay.test.cpp
   - test/1_mytest/splay_am.test.cpp
   - test/1_mytest/splay.test.cpp
   - test/1_mytest/slope_super.test.cpp
-  - test/1_mytest/splay_monoid.test.cpp
-  - test/1_mytest/polygon_triangulation.test.cpp
-  - test/1_mytest/cf702_F_splay.test.cpp
   - test/1_mytest/splay_cm.test.cpp
   - test/4_aoj/1508.test.cpp
 documentation_of: ds/splaytree/splaytree.hpp

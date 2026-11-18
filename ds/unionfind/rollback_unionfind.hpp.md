@@ -12,9 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
     title: test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/unionfind/rollback_unionfind.hpp
@@ -56,10 +56,10 @@ data:
   path: ds/unionfind/rollback_unionfind.hpp
   requiredBy: []
   timestamp: '2026-10-27 03:17:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/data_structure/add_remove_query.test.cpp
   - test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
+  - test/2_library_checker/data_structure/add_remove_query.test.cpp
 documentation_of: ds/unionfind/rollback_unionfind.hpp
 layout: document
 redirect_from:

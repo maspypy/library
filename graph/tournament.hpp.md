@@ -18,14 +18,14 @@ data:
   bundledCode: "#line 1 \"graph/tournament.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/tournament.hpp\n\
     // https://yukicoder.me/problems/no/2085\n// https://codeforces.com/problemset/problem/412/D\n\
     template <typename F>\nvc<int> hamiltonian_path_in_tournament(int n, F check)\
-    \ {\n  auto dfs = [&](auto& dfs, int L, int R) -> vc<int> {\n    if (R == L +\
-    \ 1) return {L};\n    int M = (L + R) / 2;\n    vc<int> X = dfs(dfs, L, M);\n\
-    \    vc<int> Y = dfs(dfs, M, R);\n    vc<int> P;\n    P.reserve(R - L);\n    int\
-    \ i = 0, j = 0;\n    while (len(P) < R - L) {\n      if (i == len(X)) {\n    \
-    \    P.eb(Y[j++]);\n      }\n      elif (j == len(Y)) { P.eb(X[i++]); }\n    \
-    \  else {\n        if (check(X[i], Y[j])) {\n          P.eb(X[i++]);\n       \
-    \ } else {\n          P.eb(Y[j++]);\n        }\n      }\n    }\n    return P;\n\
-    \  };\n  return dfs(dfs, 0, n);\n}\n\n// https://atcoder.jp/contests/joisp2024/tasks/joisp2024_l\n\
+    \ {\n  assert(n > 0);\n  auto dfs = [&](auto& dfs, int L, int R) -> vc<int> {\n\
+    \    if (R == L + 1) return {L};\n    int M = (L + R) / 2;\n    vc<int> X = dfs(dfs,\
+    \ L, M);\n    vc<int> Y = dfs(dfs, M, R);\n    vc<int> P;\n    P.reserve(R - L);\n\
+    \    int i = 0, j = 0;\n    while (len(P) < R - L) {\n      if (i == len(X)) {\n\
+    \        P.eb(Y[j++]);\n      }\n      elif (j == len(Y)) { P.eb(X[i++]); }\n\
+    \      else {\n        if (check(X[i], Y[j])) {\n          P.eb(X[i++]);\n   \
+    \     } else {\n          P.eb(Y[j++]);\n        }\n      }\n    }\n    return\
+    \ P;\n  };\n  return dfs(dfs, 0, n);\n}\n\n// https://atcoder.jp/contests/joisp2024/tasks/joisp2024_l\n\
     vc<string> from_outdegrees(vc<int> A) {\n  int N = len(A);\n  FOR(i, N - 1) assert(A[i]\
     \ <= A[i + 1]);\n  for (auto x : A) {\n    if (x < 0 || x >= N) return {};\n \
     \ }\n\n  vc<int> F(N);\n  for (auto x : A) F[x]++;\n\n  vc<string> ANS(N, string(N,\
@@ -40,14 +40,14 @@ data:
   code: "// Source: https://github.com/maspypy/library/blob/main/graph/tournament.hpp\n\
     // https://yukicoder.me/problems/no/2085\n// https://codeforces.com/problemset/problem/412/D\n\
     template <typename F>\nvc<int> hamiltonian_path_in_tournament(int n, F check)\
-    \ {\n  auto dfs = [&](auto& dfs, int L, int R) -> vc<int> {\n    if (R == L +\
-    \ 1) return {L};\n    int M = (L + R) / 2;\n    vc<int> X = dfs(dfs, L, M);\n\
-    \    vc<int> Y = dfs(dfs, M, R);\n    vc<int> P;\n    P.reserve(R - L);\n    int\
-    \ i = 0, j = 0;\n    while (len(P) < R - L) {\n      if (i == len(X)) {\n    \
-    \    P.eb(Y[j++]);\n      }\n      elif (j == len(Y)) { P.eb(X[i++]); }\n    \
-    \  else {\n        if (check(X[i], Y[j])) {\n          P.eb(X[i++]);\n       \
-    \ } else {\n          P.eb(Y[j++]);\n        }\n      }\n    }\n    return P;\n\
-    \  };\n  return dfs(dfs, 0, n);\n}\n\n// https://atcoder.jp/contests/joisp2024/tasks/joisp2024_l\n\
+    \ {\n  assert(n > 0);\n  auto dfs = [&](auto& dfs, int L, int R) -> vc<int> {\n\
+    \    if (R == L + 1) return {L};\n    int M = (L + R) / 2;\n    vc<int> X = dfs(dfs,\
+    \ L, M);\n    vc<int> Y = dfs(dfs, M, R);\n    vc<int> P;\n    P.reserve(R - L);\n\
+    \    int i = 0, j = 0;\n    while (len(P) < R - L) {\n      if (i == len(X)) {\n\
+    \        P.eb(Y[j++]);\n      }\n      elif (j == len(Y)) { P.eb(X[i++]); }\n\
+    \      else {\n        if (check(X[i], Y[j])) {\n          P.eb(X[i++]);\n   \
+    \     } else {\n          P.eb(Y[j++]);\n        }\n      }\n    }\n    return\
+    \ P;\n  };\n  return dfs(dfs, 0, n);\n}\n\n// https://atcoder.jp/contests/joisp2024/tasks/joisp2024_l\n\
     vc<string> from_outdegrees(vc<int> A) {\n  int N = len(A);\n  FOR(i, N - 1) assert(A[i]\
     \ <= A[i + 1]);\n  for (auto x : A) {\n    if (x < 0 || x >= N) return {};\n \
     \ }\n\n  vc<int> F(N);\n  for (auto x : A) F[x]++;\n\n  vc<string> ANS(N, string(N,\
@@ -63,7 +63,7 @@ data:
   isVerificationFile: false
   path: graph/tournament.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-11-18 16:40:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/tournament.test.cpp

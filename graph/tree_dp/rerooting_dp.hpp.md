@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
@@ -33,24 +33,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1295.test.cpp
     title: test/3_yukicoder/1295.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1418.test.cpp
     title: test/3_yukicoder/1418.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1494.test.cpp
     title: test/3_yukicoder/1494.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1718.test.cpp
     title: test/3_yukicoder/1718.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1976.test.cpp
     title: test/3_yukicoder/1976.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2360.test.cpp
     title: test/3_yukicoder/2360.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/graph/tree_dp/rerooting_dp.hpp
@@ -337,20 +337,20 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/rerooting_dp.hpp
   requiredBy:
+  - graph/tree_dp/subtree_depth_sum.hpp
   - graph/tree_dp/subtree_diameter.hpp
   - graph/tree_dp/subtree_hash.hpp
-  - graph/tree_dp/subtree_depth_sum.hpp
   timestamp: '2026-11-16 13:02:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/tree/rerooting_dp.test.cpp
   - test/2_library_checker/graph/classify_tree.test.cpp
+  - test/2_library_checker/tree/rerooting_dp.test.cpp
+  - test/3_yukicoder/2360.test.cpp
+  - test/3_yukicoder/1718.test.cpp
+  - test/3_yukicoder/1295.test.cpp
+  - test/3_yukicoder/1418.test.cpp
   - test/3_yukicoder/1494.test.cpp
   - test/3_yukicoder/1976.test.cpp
-  - test/3_yukicoder/1418.test.cpp
-  - test/3_yukicoder/1295.test.cpp
-  - test/3_yukicoder/1718.test.cpp
-  - test/3_yukicoder/2360.test.cpp
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
 documentation_of: graph/tree_dp/rerooting_dp.hpp
 layout: document

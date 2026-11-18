@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
   - icon: ':question:'
@@ -25,13 +25,13 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
@@ -39,12 +39,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/828/problem/F
@@ -727,7 +727,7 @@ data:
     \      return (a <= b) ? seg.prod(a, b + 1) : seg.prod(b, a + 1);\n    }\n   \
     \ return (a <= b) ? seg.prod(a, b + 1) : seg_r.prod(b, a + 1);\n  }\n\n private:\n\
     \  template <class F>\n  int max_path_edge(F check, int u, int v) {\n    static_assert(edge);\n\
-    \    if (!check(MX::id())) return -1;\n    int lca = tree.lca(u, v);\n    auto\
+    \    if (!check(MX::id())) return -1;\n    int lca = tree.LCA(u, v);\n    auto\
     \ pd = tree.get_path_decomposition(u, lca, edge);\n    X val = MX::id();\n\n \
     \   // climb\n    for (auto &&[a, b] : pd) {\n      assert(a >= b);\n      X x\
     \ = _get_prod(a, b);\n      if (check(MX::op(val, x))) {\n        val = MX::op(val,\
@@ -1081,8 +1081,8 @@ data:
   isVerificationFile: false
   path: graph/minimum_spanning_tree.hpp
   requiredBy: []
-  timestamp: '2026-11-16 13:02:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2026-11-18 16:40:02+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/tree/mst.test.cpp
   - test/4_aoj/GRL_2_A.test.cpp
