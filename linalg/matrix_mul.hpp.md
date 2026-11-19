@@ -11,13 +11,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_pow.hpp
     title: linalg/matrix_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -75,13 +75,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1810.test.cpp
     title: test/3_yukicoder/1810.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1907.test.cpp
     title: test/3_yukicoder/1907.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2166.test.cpp
     title: test/3_yukicoder/2166.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2810.test.cpp
     title: test/3_yukicoder/2810.test.cpp
   - icon: ':heavy_check_mark:'
@@ -90,9 +90,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/502_2.test.cpp
     title: test/3_yukicoder/502_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/linalg/matrix_mul.hpp
@@ -241,36 +241,36 @@ data:
   isVerificationFile: false
   path: linalg/matrix_mul.hpp
   requiredBy:
+  - seq/p_recursive.hpp
+  - linalg/det_A_plus_xB.hpp
+  - linalg/adjugate_matrix.hpp
+  - linalg/frobenius.hpp
+  - linalg/matrix_pow.hpp
+  - poly/sparse_exp_of_div.hpp
   - poly/prefix_product_of_poly.hpp
   - poly/from_log_differentiation.hpp
-  - poly/sparse_exp_of_div.hpp
   - random/random_matrix.hpp
-  - linalg/frobenius.hpp
-  - linalg/adjugate_matrix.hpp
-  - linalg/det_A_plus_xB.hpp
-  - linalg/matrix_pow.hpp
-  - seq/p_recursive.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
+  - test/1_mytest/min_poly.test.cpp
+  - test/1_mytest/factorial_998.test.cpp
+  - test/1_mytest/blackbox_solve_linear.test.cpp
+  - test/3_yukicoder/1303.test.cpp
+  - test/3_yukicoder/2810.test.cpp
+  - test/3_yukicoder/1907.test.cpp
+  - test/3_yukicoder/1810.test.cpp
+  - test/3_yukicoder/502_2.test.cpp
+  - test/3_yukicoder/1750.test.cpp
+  - test/3_yukicoder/2166.test.cpp
+  - test/3_yukicoder/1080_2.test.cpp
+  - test/3_yukicoder/426.test.cpp
   - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
-  - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
-  - test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
   - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   - test/2_library_checker/linear_algebra/matrix_product.test.cpp
-  - test/3_yukicoder/1810.test.cpp
-  - test/3_yukicoder/426.test.cpp
-  - test/3_yukicoder/2166.test.cpp
-  - test/3_yukicoder/1303.test.cpp
-  - test/3_yukicoder/1080_2.test.cpp
-  - test/3_yukicoder/2810.test.cpp
-  - test/3_yukicoder/1750.test.cpp
-  - test/3_yukicoder/1907.test.cpp
-  - test/3_yukicoder/502_2.test.cpp
-  - test/1_mytest/blackbox_solve_linear.test.cpp
-  - test/1_mytest/factorial_998.test.cpp
-  - test/1_mytest/min_poly.test.cpp
+  - test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
+  - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
+  - test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
 documentation_of: linalg/matrix_mul.hpp
 layout: document
 redirect_from:

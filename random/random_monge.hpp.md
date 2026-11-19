@@ -59,8 +59,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/monotone_minima.test.cpp
-  - test/1_mytest/smawk.test.cpp
   - test/1_mytest/monge_shortest_path.test.cpp
+  - test/1_mytest/smawk.test.cpp
   - test/1_mytest/check_monge.test.cpp
 documentation_of: random/random_monge.hpp
 layout: document

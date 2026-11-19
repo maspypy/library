@@ -275,11 +275,11 @@ data:
   timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
-  - test/3_yukicoder/2292.test.cpp
-  - test/3_yukicoder/789_2.test.cpp
-  - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/1_mytest/dynamic_lazy_segtree.test.cpp
+  - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
+  - test/3_yukicoder/789_2.test.cpp
+  - test/3_yukicoder/2292.test.cpp
+  - test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
 documentation_of: ds/segtree/dynamic_lazy_segtree.hpp
 layout: document
 redirect_from:

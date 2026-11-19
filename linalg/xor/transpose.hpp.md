@@ -57,14 +57,14 @@ data:
   isVerificationFile: false
   path: linalg/xor/transpose.hpp
   requiredBy:
-  - linalg/xor/solve_linear.hpp
   - linalg/xor/vector_space.hpp
+  - linalg/xor/solve_linear.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
-  - test/3_yukicoder/184.test.cpp
   - test/1_mytest/xor_transpose.test.cpp
+  - test/3_yukicoder/184.test.cpp
+  - test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
 documentation_of: linalg/xor/transpose.hpp
 layout: document
 redirect_from:

@@ -702,8 +702,8 @@ data:
   timestamp: '2026-11-16 13:02:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/graph/classify_tree.test.cpp
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
+  - test/2_library_checker/graph/classify_tree.test.cpp
 documentation_of: graph/tree_dp/subtree_hash.hpp
 layout: document
 redirect_from:

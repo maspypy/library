@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
   - icon: ':question:'
@@ -478,9 +478,9 @@ data:
   timestamp: '2026-11-16 13:02:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1242.test.cpp
   - test/3_yukicoder/2122.test.cpp
   - test/3_yukicoder/1211.test.cpp
+  - test/3_yukicoder/1242.test.cpp
 documentation_of: graph/functional_graph.hpp
 layout: document
 redirect_from:

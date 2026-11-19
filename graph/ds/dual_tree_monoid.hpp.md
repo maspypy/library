@@ -325,8 +325,8 @@ data:
   timestamp: '2026-11-16 13:02:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/tree/mst.test.cpp
   - test/4_aoj/GRL_2_A.test.cpp
+  - test/2_library_checker/tree/mst.test.cpp
 documentation_of: graph/ds/dual_tree_monoid.hpp
 layout: document
 redirect_from:

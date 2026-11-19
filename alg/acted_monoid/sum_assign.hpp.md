@@ -60,9 +60,9 @@ data:
   timestamp: '2026-11-17 04:45:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2292.test.cpp
-  - test/1_mytest/range_assign.test.cpp
   - test/4_aoj/DSL_2_I.test.cpp
+  - test/1_mytest/range_assign.test.cpp
+  - test/3_yukicoder/2292.test.cpp
 documentation_of: alg/acted_monoid/sum_assign.hpp
 layout: document
 redirect_from:

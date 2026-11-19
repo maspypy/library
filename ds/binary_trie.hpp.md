@@ -180,8 +180,8 @@ data:
   timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/data_structure/set_xor_min.test.cpp
   - test/1_mytest/binary_trie.test.cpp
+  - test/2_library_checker/data_structure/set_xor_min.test.cpp
 documentation_of: ds/binary_trie.hpp
 layout: document
 redirect_from:

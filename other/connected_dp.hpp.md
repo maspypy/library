@@ -270,12 +270,12 @@ data:
   timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/579.test.cpp
-  - test/3_yukicoder/1397.test.cpp
+  - test/1_mytest/tdpc_grid_dp.test.cpp
   - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/541.test.cpp
   - test/3_yukicoder/1561.test.cpp
-  - test/1_mytest/tdpc_grid_dp.test.cpp
+  - test/3_yukicoder/579.test.cpp
+  - test/3_yukicoder/1397.test.cpp
 documentation_of: other/connected_dp.hpp
 layout: document
 redirect_from:

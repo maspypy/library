@@ -60,8 +60,8 @@ data:
   timestamp: '2026-11-14 12:09:13+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/952.test.cpp
   - test/1_mytest/smawk.test.cpp
+  - test/3_yukicoder/952.test.cpp
 documentation_of: convex/smawk.hpp
 layout: document
 redirect_from:

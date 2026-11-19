@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/eertree.test.cpp
     title: test/2_library_checker/string/eertree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2606.test.cpp
     title: test/3_yukicoder/2606.test.cpp
   - icon: ':heavy_check_mark:'
@@ -115,11 +115,11 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/string/eertree.test.cpp
-  - test/3_yukicoder/263.test.cpp
-  - test/3_yukicoder/2606.test.cpp
-  - test/3_yukicoder/465.test.cpp
   - test/1_mytest/palindrome_decomposition_dp.test.cpp
+  - test/3_yukicoder/263.test.cpp
+  - test/3_yukicoder/465.test.cpp
+  - test/3_yukicoder/2606.test.cpp
+  - test/2_library_checker/string/eertree.test.cpp
 documentation_of: string/palindromic_tree.hpp
 layout: document
 redirect_from:

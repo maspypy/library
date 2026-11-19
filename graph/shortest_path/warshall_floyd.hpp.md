@@ -162,10 +162,10 @@ data:
   timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/1789.test.cpp
-  - test/3_yukicoder/1344.test.cpp
-  - test/3_yukicoder/17.test.cpp
   - test/4_aoj/GRL_1_C.test.cpp
+  - test/3_yukicoder/17.test.cpp
+  - test/3_yukicoder/1344.test.cpp
+  - test/3_yukicoder/1789.test.cpp
 documentation_of: graph/shortest_path/warshall_floyd.hpp
 layout: document
 redirect_from:

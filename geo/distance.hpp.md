@@ -176,8 +176,8 @@ data:
   timestamp: '2026-11-18 16:40:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/4_aoj/CGL_7_B.test.cpp
   - test/4_aoj/CGL_2_D.test.cpp
+  - test/4_aoj/CGL_7_B.test.cpp
 documentation_of: geo/distance.hpp
 layout: document
 redirect_from:

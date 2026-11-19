@@ -95,8 +95,8 @@ data:
   timestamp: '2026-10-30 01:10:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/data_structure/persistent_unionfind.test.cpp
   - test/2_library_checker/data_structure/persistent_queue.test.cpp
+  - test/2_library_checker/data_structure/persistent_unionfind.test.cpp
 documentation_of: ds/dynamic_array.hpp
 layout: document
 redirect_from:

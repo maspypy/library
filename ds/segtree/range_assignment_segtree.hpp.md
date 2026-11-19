@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
   - icon: ':question:'
@@ -224,8 +224,8 @@ data:
   timestamp: '2026-11-16 16:23:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   - test/1_mytest/range_assign.test.cpp
+  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
 documentation_of: ds/segtree/range_assignment_segtree.hpp
 layout: document
 redirect_from:

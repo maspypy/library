@@ -333,8 +333,8 @@ data:
   timestamp: '2026-11-16 13:41:10+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/4_2.test.cpp
   - test/1_mytest/subset_sum.test.cpp
+  - test/3_yukicoder/4_2.test.cpp
 documentation_of: knapsack/subset_sum.hpp
 layout: document
 redirect_from:

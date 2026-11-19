@@ -33,7 +33,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/2119.test.cpp
     title: test/3_yukicoder/2119.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/590.test.cpp
     title: test/3_yukicoder/590.test.cpp
   _isVerificationFailed: true
@@ -233,10 +233,10 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/3_yukicoder/187.test.cpp
   - test/3_yukicoder/2119.test.cpp
   - test/3_yukicoder/1956.test.cpp
   - test/3_yukicoder/590.test.cpp
-  - test/3_yukicoder/187.test.cpp
 documentation_of: nt/crt.hpp
 layout: document
 redirect_from:

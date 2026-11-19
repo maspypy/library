@@ -37,13 +37,13 @@ data:
   isVerificationFile: false
   path: alg/monoid/minmax.hpp
   requiredBy:
-  - ds/segtree/range_minmax.hpp
   - alg/acted_monoid/minmax_add.hpp
+  - ds/segtree/range_minmax.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/minmax_add.test.cpp
   - test/4_aoj/ITP2_3_B.test.cpp
+  - test/1_mytest/minmax_add.test.cpp
 documentation_of: alg/monoid/minmax.hpp
 layout: document
 redirect_from:

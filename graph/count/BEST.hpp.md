@@ -675,8 +675,8 @@ data:
   timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
   - test/2_library_checker/graph/counting_eulerian_dense.test.cpp
+  - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
 documentation_of: graph/count/BEST.hpp
 layout: document
 redirect_from:

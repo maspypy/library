@@ -211,47 +211,47 @@ data:
   isVerificationFile: false
   path: ds/index_compression.hpp
   requiredBy:
-  - other/sliding_puzzle_solver.hpp
-  - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
-  - ds/offline_query/coefficient_query_2d.hpp
-  - ds/offline_query/rectangle_add_rectangle_sum.hpp
-  - string/basic_substring_structure.hpp
-  - string/suffix_lcp_change.hpp
-  - string/lex_max_suffix_for_all_prefix.hpp
-  - string/suffix_array.hpp
-  - string/suffix_tree.hpp
-  - string/substring_shortest_border.hpp
-  - string/longest_common_substring.hpp
-  - string/many_string_compare.hpp
-  - string/sort_substrings.hpp
   - seq/inversion.hpp
+  - other/sliding_puzzle_solver.hpp
+  - ds/offline_query/rectangle_add_rectangle_sum.hpp
+  - ds/offline_query/coefficient_query_2d.hpp
+  - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
+  - string/many_string_compare.hpp
+  - string/suffix_array.hpp
+  - string/basic_substring_structure.hpp
+  - string/lex_max_suffix_for_all_prefix.hpp
+  - string/longest_common_substring.hpp
+  - string/suffix_lcp_change.hpp
+  - string/sort_substrings.hpp
+  - string/substring_shortest_border.hpp
+  - string/suffix_tree.hpp
   timestamp: '2026-11-06 18:54:57+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
-  - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
-  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
-  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
-  - test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
-  - test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - test/2_library_checker/string/number_of_substrings.test.cpp
-  - test/2_library_checker/string/suffix_array.test.cpp
-  - test/2_library_checker/string/longest_common_substring.test.cpp
-  - test/2_library_checker/string/suffix_array_vec.test.cpp
-  - test/3_yukicoder/1625_2.test.cpp
-  - test/3_yukicoder/1490.test.cpp
+  - test/4_aoj/ALDS1_2_A.test.cpp
+  - test/4_aoj/ALDS1_5.test.cpp
+  - test/1_mytest/lex_minmax_suffix.test.cpp
+  - test/1_mytest/index_compression.test.cpp
+  - test/1_mytest/suffix_lcp_change.test.cpp
+  - test/1_mytest/longest_common_substr.test.cpp
+  - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/2859.test.cpp
-  - test/3_yukicoder/1919_2.test.cpp
   - test/3_yukicoder/694.test.cpp
   - test/3_yukicoder/1838.test.cpp
   - test/3_yukicoder/1600_2.test.cpp
-  - test/3_yukicoder/2361.test.cpp
-  - test/1_mytest/suffix_lcp_change.test.cpp
-  - test/1_mytest/lex_minmax_suffix.test.cpp
-  - test/1_mytest/longest_common_substr.test.cpp
-  - test/1_mytest/index_compression.test.cpp
-  - test/4_aoj/ALDS1_2_A.test.cpp
-  - test/4_aoj/ALDS1_5.test.cpp
+  - test/3_yukicoder/1490.test.cpp
+  - test/3_yukicoder/1625_2.test.cpp
+  - test/3_yukicoder/1919_2.test.cpp
+  - test/2_library_checker/string/suffix_array_vec.test.cpp
+  - test/2_library_checker/string/suffix_array.test.cpp
+  - test/2_library_checker/string/number_of_substrings.test.cpp
+  - test/2_library_checker/string/longest_common_substring.test.cpp
+  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
+  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
+  - test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
 documentation_of: ds/index_compression.hpp
 layout: document
 redirect_from:

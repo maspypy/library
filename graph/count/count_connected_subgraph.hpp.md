@@ -327,8 +327,8 @@ data:
   isVerificationFile: false
   path: graph/count/count_connected_subgraph.hpp
   requiredBy:
-  - graph/count/count_bridgeless_subgraph.hpp
   - graph/count/count_biconnected_subgraph.hpp
+  - graph/count/count_bridgeless_subgraph.hpp
   timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

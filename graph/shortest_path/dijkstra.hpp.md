@@ -213,13 +213,13 @@ data:
   timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/4_aoj/2251_2.test.cpp
+  - test/4_aoj/2251_1.test.cpp
+  - test/4_aoj/0275.test.cpp
+  - test/3_yukicoder/1601.test.cpp
+  - test/3_yukicoder/1602.test.cpp
   - test/2_library_checker/graph/K_shortest_walk.test.cpp
   - test/2_library_checker/graph/shortest_path.test.cpp
-  - test/3_yukicoder/1602.test.cpp
-  - test/3_yukicoder/1601.test.cpp
-  - test/4_aoj/0275.test.cpp
-  - test/4_aoj/2251_1.test.cpp
-  - test/4_aoj/2251_2.test.cpp
 documentation_of: graph/shortest_path/dijkstra.hpp
 layout: document
 redirect_from:

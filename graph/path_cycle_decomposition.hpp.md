@@ -173,8 +173,8 @@ data:
   timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/count_clique.test.cpp
   - test/1_mytest/count_indep_set.test.cpp
+  - test/1_mytest/count_clique.test.cpp
 documentation_of: graph/path_cycle_decomposition.hpp
 layout: document
 redirect_from:

@@ -256,9 +256,9 @@ data:
   timestamp: '2026-11-16 13:22:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1728.test.cpp
   - test/3_yukicoder/2264.test.cpp
   - test/3_yukicoder/2578.test.cpp
+  - test/3_yukicoder/1728.test.cpp
 documentation_of: nt/array_on_divisors.hpp
 layout: document
 redirect_from:

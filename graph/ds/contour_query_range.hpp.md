@@ -284,9 +284,9 @@ data:
   timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/1038.test.cpp
   - test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
-  - test/3_yukicoder/1038.test.cpp
 documentation_of: graph/ds/contour_query_range.hpp
 layout: document
 redirect_from:

@@ -240,8 +240,8 @@ data:
   timestamp: '2026-11-16 16:23:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2809.test.cpp
   - test/1_mytest/sortable_array.test.cpp
+  - test/3_yukicoder/2809.test.cpp
 documentation_of: ds/sortable_array.hpp
 layout: document
 redirect_from:
