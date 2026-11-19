@@ -128,6 +128,25 @@ def prepare(args: argparse.Namespace) -> None:
     save_output("origin_sha", origin)
 
 
+def check_shards(args: argparse.Namespace) -> None:
+    """Require complete artifacts, even when verification itself failed."""
+    if args.shards <= 0:
+        raise ValueError("--shards must be positive")
+    missing = [
+        f"{kind}-{group}-{shard}.json"
+        for group in GROUPS
+        for shard in range(args.shards)
+        for kind in ("complete", "states", "timestamps")
+        if not (args.input_dir / f"{kind}-{group}-{shard}.json").is_file()
+    ]
+    if args.job_result not in ("success", "failure") or missing:
+        raise RuntimeError(
+            f"cannot finalize verification: verify_all result={args.job_result!r}; "
+            f"missing shard outputs ({len(missing)}): {', '.join(missing)}. "
+            "Check workflow annotations for reusable-workflow input errors, "
+            "and shard setup/verification/upload logs. No state will be published.")
+
+
 def summarize(args: argparse.Namespace) -> None:
     if args.round < 0 or args.round > MAX_CONTINUATIONS:
         raise ValueError("invalid round")
@@ -332,6 +351,11 @@ def parser() -> argparse.ArgumentParser:
     d = subs.add_parser("assert-final")
     d.add_argument("--state", type=pathlib.Path, required=True)
     d.set_defaults(func=assert_final)
+    e = subs.add_parser("check-shards")
+    e.add_argument("--input-dir", type=pathlib.Path, required=True)
+    e.add_argument("--shards", type=int, required=True)
+    e.add_argument("--job-result", required=True)
+    e.set_defaults(func=check_shards)
     return p
 
 

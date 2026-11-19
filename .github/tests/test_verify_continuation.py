@@ -316,6 +316,39 @@ class RunnerSkipTests(Fixture):
 
 
 
+class ShardOutputGuardTests(Fixture):
+    def check(self, result):
+        args = cont.parser().parse_args([
+            "check-shards", "--input-dir", str(self.root / "artifacts"),
+            "--shards", "16", "--job-result", result,
+        ])
+        args.func(args)
+
+    def test_no_shards_reports_job_result_and_all_missing_outputs(self):
+        with self.assertRaisesRegex(RuntimeError, "verify_all result='failure'") as ctx:
+            self.check("failure")
+        self.assertIn("missing shard outputs (48)", str(ctx.exception))
+        self.assertIn("complete-all-0.json", str(ctx.exception))
+        self.assertIn("timestamps-all-15.json", str(ctx.exception))
+
+    def test_complete_outputs_allow_success_and_test_failure(self):
+        self.artifact_round({})
+        self.check("success")
+        self.check("failure")
+
+    def test_partial_upload_is_rejected_even_if_jobs_succeeded(self):
+        self.artifact_round({})
+        (self.root / "artifacts/states-all-7.json").unlink()
+        with self.assertRaisesRegex(RuntimeError, r"missing shard outputs \(1\): states-all-7.json"):
+            self.check("success")
+
+    def test_skipped_or_cancelled_jobs_cannot_publish_state(self):
+        self.artifact_round({})
+        for result in ("skipped", "cancelled", ""):
+            with self.subTest(result=result), self.assertRaises(RuntimeError):
+                self.check(result)
+
+
 class SourceGuardTests(Fixture):
     def test_git_changed_code_stops_continuation_but_timestamps_are_ignored(self):
         with self.working_dir():

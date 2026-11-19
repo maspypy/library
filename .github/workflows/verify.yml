@@ -97,7 +97,8 @@ jobs:
       continuation: ${{ inputs.continuation == true }}
       previous_run_id: ${{ inputs.previous_run_id || '' }}
       origin_sha: ${{ needs.prepare.outputs.origin_sha }}
-      round: ${{ inputs.round || 0 }}
+      # workflow_dispatch can supply a string; workflow_call requires a number.
+      round: ${{ fromJSON(format('{0}', inputs.round || 0)) }}
     secrets:
       YUKICODER_TOKEN: ${{ secrets.YUKICODER_TOKEN }}
       DROPBOX_TOKEN: ${{ secrets.DROPBOX_TOKEN }}
@@ -136,6 +137,15 @@ jobs:
           pattern: verify-*-shard-*
           path: verify-shards
           merge-multiple: true
+
+      - name: Check shard outputs before finalization
+        env:
+          VERIFY_ALL_RESULT: ${{ needs.verify_all.result }}
+        run: |
+          python .github/scripts/continue_verify.py check-shards \
+            --input-dir verify-shards \
+            --shards "$VERIFY_SHARDS" \
+            --job-result "$VERIFY_ALL_RESULT"
 
       - name: Download previous verification state
         if: inputs.continuation == true
