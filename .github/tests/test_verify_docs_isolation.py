@@ -14,7 +14,7 @@ def validate_layout(workflow):
     jobs = workflow["jobs"]
     finalize = jobs["finalize"]
     steps = finalize["steps"]
-    assert not any("oj-verify docs" in s.get("run", "") for s in steps)
+    assert not any("oj-verify docs" in s.get("run", "") or "publish_verify_docs.py" in s.get("run", "") for s in steps)
     upload = next(i for i, s in enumerate(steps) if s.get("id") == "state")
     commit = next(i for i, s in enumerate(steps) if s.get("id") == "commit")
     dispatch = next(i for i, s in enumerate(steps) if "continue_verify.py dispatch" in s.get("run", ""))
@@ -27,10 +27,13 @@ def validate_layout(workflow):
     assert 'echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"' in steps[commit]["run"]
     docs = jobs["documentation"]
     assert docs["needs"] == "finalize"
-    assert docs["if"] == "always() && needs.finalize.outputs.state_saved == 'true'"
+    assert docs["if"] == "always() && needs.finalize.outputs.state_saved == 'true' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)"
     checkout = next(s for s in docs["steps"] if s.get("uses", "").startswith("actions/checkout@"))
     assert checkout["with"]["ref"] == "${{ needs.finalize.outputs.verified_sha }}"
-    assert any("oj-verify docs" in s.get("run", "") for s in docs["steps"])
+    publish = next(s for s in docs["steps"] if "publish_verify_docs.py" in s.get("run", ""))
+    assert publish["env"]["DEFAULT_BRANCH"] == "${{ github.event.repository.default_branch }}"
+    assert publish["env"]["VERIFIED_SHA"] == "${{ needs.finalize.outputs.verified_sha }}"
+    assert publish["env"]["GH_PAT"] == "${{ secrets.GH_PAT }}"
 
 
 class DocumentationIsolationTests(unittest.TestCase):
