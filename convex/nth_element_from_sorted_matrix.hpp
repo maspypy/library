@@ -1,9 +1,10 @@
 // Source: https://github.com/maspypy/library/blob/main/convex/nth_element_from_sorted_matrix.hpp
 
 // https://uoj.ac/problem/891
-template <typename T, typename F>
-vi nth_element_from_sorted_matrix(ll N, ll M, ll K, F f, int k1 = 0, int k2 = 0,
-                                  bool tr = false) {
+template <typename T, bool MINIMIZE, typename F>
+vi nth_element_from_sorted_matrix(
+    ll N, ll M, ll K, F f, int k1 = 0, int k2 = 0, bool tr = false) {
+  static_assert(is_same_v<T, int> || is_same_v<T, ll> || is_same_v<T, i128>);
   if (K == 0) return vi(N, 0);
   if (N > M) {
     vi A = nth_element_from_sorted_matrix<T>(M, N, K, f, k2, k1, !tr);
@@ -15,8 +16,8 @@ vi nth_element_from_sorted_matrix(ll N, ll M, ll K, F f, int k1 = 0, int k2 = 0,
   }
   vi A(N);
   if (K > N) {
-    A = nth_element_from_sorted_matrix<T>(N, M / 2, (K - N) / 2, f, k1, k2 + 1,
-                                          tr);
+    A = nth_element_from_sorted_matrix<T, MINIMIZE>(
+        N, M / 2, (K - N) / 2, f, k1, k2 + 1, tr);
     for (auto &a : A) a *= 2;
     K = K - (K - N) / 2 * 2;
   }
@@ -24,7 +25,8 @@ vi nth_element_from_sorted_matrix(ll N, ll M, ll K, F f, int k1 = 0, int k2 = 0,
   auto g = [&](ll i, ll j) -> T {
     i = ((i + 1) << k1) - 1;
     j = ((j + 1) << k2) - 1;
-    return (tr ? f(j, i) : f(i, j));
+    T x = (tr ? f(j, i) : f(i, j));
+    return (MINIMIZE ? x : -x);
   };
   if (A[0] < M) que.emplace(g(0, A[0]), 0);
   FOR(i, 1, N) if (A[i] < A[i - 1]) que.emplace(g(i, A[i]), i);

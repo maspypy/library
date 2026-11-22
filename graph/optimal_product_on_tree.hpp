@@ -9,7 +9,8 @@
 // https://qoj.ac/problem/6561
 // いや抽象化が足りていないな、x<=y iff xy<=yx がいるか？
 template <typename TREE, typename Monoid, bool MINIMIZE, typename F>
-pair<vc<int>, typename Monoid::value_type> optimal_product_on_tree(TREE& tree, vc<typename Monoid::value_type> A, F compare) {
+pair<vc<int>, typename Monoid::value_type> optimal_product_on_tree(
+    TREE& tree, vc<typename Monoid::value_type> A, F compare) {
   const int N = tree.N;
   const int root = tree.V[0];
   using X = typename Monoid::value_type;
@@ -34,7 +35,9 @@ pair<vc<int>, typename Monoid::value_type> optimal_product_on_tree(TREE& tree, v
   auto set = [&](int i, int x) -> void {
     i += size;
     seg[i] = x;
-    while (i > 1) { i /= 2, upd(i); }
+    while (i > 1) {
+      i /= 2, upd(i);
+    }
   };
   FOR(i, N) if (i != root) seg[size + i] = i;
   FOR_R(i, 1, size) upd(i);

@@ -14,19 +14,15 @@ void solve() {
 
   ll ANS = infty<ll>;
   FOR3(i, 1, N - 1) FOR3(j, 1, N - 1) if (i != j) {
-    chmin(ANS, dist[0][i] + dist[i][j] + dist[j][N - 1] + COST[i] + COST[j]);
+    i128 ans =
+        i128(dist[0][i]) + dist[i][j] + dist[j][N - 1] + COST[i] + COST[j];
+    chmin(ANS, ans);
   }
   print(ANS);
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
+  solve();
 
   return 0;
 }

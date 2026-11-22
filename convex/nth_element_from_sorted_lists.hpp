@@ -1,13 +1,16 @@
 // Source: https://github.com/maspypy/library/blob/main/convex/nth_element_from_sorted_lists.hpp
 
 // 行の要素数が S[0], S[1], ..., S[N-1]
+// MINIMIZE=true: 昇順ソートされていて小さい方からとる
+// MINIMIZE=false: 降順されていて大きい方からとる
 // O(N(logN+logK)) time
 // query num: O(NlogK), あまり最適じゃないと思う
 // 通ったがあやしいっぽい: https://codeforces.com/contest/1275/problem/F
 // 列方向もソートされているなら matrix を使おう!!
 // https://codeforces.com/problemset/problem/1034/D
-template <typename T, typename F>
+template <typename T, bool MINIMIZE, typename F>
 vi nth_element_from_sorted_lists(vi S, ll K, F f, int k = 0) {
+  static_assert(is_same_v<T, int> || is_same_v<T, ll> || is_same_v<T, i128>);
   ll N = len(S);
   ll sm = 0;
   for (auto& x : S) sm += x >> k;
@@ -20,11 +23,13 @@ vi nth_element_from_sorted_lists(vi S, ll K, F f, int k = 0) {
 
   auto g = [&](int i, ll j) -> T {
     j = ((j + 1) << k) - 1;
-    return (j >= S[i] ? infty<T> : f(i, j));
+    if (j >= S[i]) return infty<T>;
+    T x = f(i, j);
+    return (MINIMIZE ? x : -x);
   };
   vi A(N);
   if (K > row) {
-    A = nth_element_from_sorted_lists<T>(S, (K - row) / 2, f, k + 1);
+    A = nth_element_from_sorted_lists<T, MINIMIZE>(S, (K - row) / 2, f, k + 1);
     for (auto& a : A) a *= 2;
     K = K - (K - row) / 2 * 2;
   }
