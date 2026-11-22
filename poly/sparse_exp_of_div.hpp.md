@@ -7,13 +7,13 @@ data:
   - icon: ':question:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/solve_linear.hpp
     title: linalg/solve_linear.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
   - icon: ':question:'

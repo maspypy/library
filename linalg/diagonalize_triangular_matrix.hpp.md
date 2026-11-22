@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
   _extendedRequiredBy: []

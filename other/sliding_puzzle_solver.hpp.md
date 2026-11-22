@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
   - icon: ':heavy_check_mark:'

@@ -5,7 +5,7 @@ data:
   - icon: ':x:'
     path: ds/segtree/rollback_lazy_segtree.hpp
     title: ds/segtree/rollback_lazy_segtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/unionfind/rollback_potentialized_unionfind.hpp
     title: ds/unionfind/rollback_potentialized_unionfind.hpp
   - icon: ':question:'
@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
     title: test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2293.test.cpp
     title: test/3_yukicoder/2293.test.cpp
   _isVerificationFailed: true

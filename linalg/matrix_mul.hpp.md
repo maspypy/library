@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_pow.hpp
     title: linalg/matrix_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -81,18 +81,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2166.test.cpp
     title: test/3_yukicoder/2166.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2810.test.cpp
     title: test/3_yukicoder/2810.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/426.test.cpp
     title: test/3_yukicoder/426.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/502_2.test.cpp
     title: test/3_yukicoder/502_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/linalg/matrix_mul.hpp
@@ -252,7 +252,7 @@ data:
   - poly/from_log_differentiation.hpp
   - random/random_matrix.hpp
   timestamp: '2026-11-23 02:04:21+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/min_poly.test.cpp
   - test/1_mytest/factorial_998.test.cpp

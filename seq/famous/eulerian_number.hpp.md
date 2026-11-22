@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/power_table.hpp
     title: mod/power_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   - icon: ':question:'
