@@ -1,49 +1,49 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
   - icon: ':question:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/solve_linear.hpp
     title: linalg/solve_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
   - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   - icon: ':heavy_check_mark:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -132,13 +132,14 @@ data:
     \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
     \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
     \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
-    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
-    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
-    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
-    \  if (n < 0) return inverse().pow(-n);\n    assert(n >= 0);\n    modint ret(1),\
-    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
-    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod()\
-    \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
+    \ }\n  // gcd=1 \u3067\u3042\u308B\u524D\u63D0\n  modint inverse() const {\n \
+    \   int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a /\
+    \ b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    assert(a ==\
+    \ 1);\n    return modint(u);\n  }\n  modint pow(ll n) const {\n    if (n < 0)\
+    \ return inverse().pow(-n);\n    assert(n >= 0);\n    modint ret(1), mul(val);\n\
+    \    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n\
+    \ >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod() { return\
+    \ mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
     \ pair<int, int> ntt_info() {\n    if (mod == 120586241) return {20, 74066978};\n\
     \    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
     \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
@@ -282,13 +283,14 @@ data:
     \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
     \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
     \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
-    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
-    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
-    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
-    \  if (n < 0) return inverse().pow(-n);\n    assert(n >= 0);\n    modint ret(1),\
-    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
-    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod()\
-    \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
+    \ }\n  // gcd=1 \u3067\u3042\u308B\u524D\u63D0\n  modint inverse() const {\n \
+    \   int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a /\
+    \ b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    assert(a ==\
+    \ 1);\n    return modint(u);\n  }\n  modint pow(ll n) const {\n    if (n < 0)\
+    \ return inverse().pow(-n);\n    assert(n >= 0);\n    modint ret(1), mul(val);\n\
+    \    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n\
+    \ >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod() { return\
+    \ mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
     \ pair<int, int> ntt_info() {\n    if (mod == 120586241) return {20, 74066978};\n\
     \    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
     \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
@@ -574,57 +576,58 @@ data:
     \ * (1 + max_deg);\n  auto idx = [&](int i, int d) -> int { return (1 + max_deg)\
     \ * i + d; };\n\n  assert(len(A) >= N + max_m);\n  vv(mint, mat, N, N);\n  FOR(row,\
     \ N) {\n    FOR(i, max_m + 1) {\n      mint pw = 1;\n      FOR(j, max_deg + 1)\
-    \ { mat[row][idx(i, j)] = A[row + max_m - i] * pw, pw *= row; }\n    }\n  }\n\
-    \  auto Xs = solve_linear<mint>(mat, vc<mint>(N, mint(0)));\n  Xs.erase(Xs.begin());\n\
-    \  if (Xs.empty()) return {};\n  vvc<mint> F(max_m + 1);\n  FOR(i, max_m + 1)\
-    \ {\n    vc<mint> f(max_deg + 1);\n    FOR(j, max_deg + 1) f[j] = Xs[0][idx(i,\
-    \ j)];\n    while (len(f) && f.back() == mint(0)) POP(f);\n    F[i] = f;\n  }\n\
-    \  while (F[0].empty()) F.erase(F.begin());\n  int m = len(F) - 1;\n  auto poly_eval\
-    \ = [&](vc<mint>& f, mint x) -> mint {\n    mint pw = 1, ans = 0;\n    FOR(i,\
-    \ len(f)) ans += f[i] * pw, pw *= x;\n    return ans;\n  };\n\n  FOR(n, len(A)\
-    \ - m) {\n    mint sm = 0;\n    FOR(i, m + 1) sm += poly_eval(F[i], n) * A[n +\
-    \ m - i];\n    if (sm != 0) return {};\n  }\n  return F;\n}\n\n// A[0], ..., A[N]\n\
-    template <typename mint>\nvc<mint> extend_p_recursive(vc<mint> A, vvc<mint> F,\
-    \ int N) {\n  auto poly_eval = [&](vc<mint>& f, mint x) -> mint {\n    mint pw\
-    \ = 1, ans = 0;\n    FOR(i, len(f)) ans += f[i] * pw, pw *= x;\n    return ans;\n\
-    \  };\n  int M = len(F) - 1;\n  if (len(A) >= N + 1) return {A.begin(), A.begin()\
-    \ + N + 1};\n  A.resize(N + 1);\n  vc<mint> S(N - M + 1);\n  FOR(n, N - M + 1)\
-    \ S[n] = poly_eval(F[0], n);\n  S = all_inverse<mint>(S);\n  FOR(n, N - M + 1)\
-    \ {\n    mint ans = 0;\n    FOR(i, 1, M + 1) ans += A[n + M - i] * poly_eval(F[i],\
-    \ n);\n    A[n + M] = (-ans) * S[n];\n  }\n  return A;\n}\n\n// a0, ..., a_{r-1}\
-    \ \u304A\u3088\u3073 f_0, ..., f_r \u3092\u4E0E\u3048\u308B\n// a_r f_0(0) + a_{r-1}f_1(0)\
-    \ + ... = 0\n// a_{r+1} f_0(1) + a_{r}f_1(1) + ... = 0\ntemplate <typename T>\n\
-    T kth_term_of_p_recursive(vc<T> a, vc<vc<T>>& fs, ll k) {\n  if (k < len(a)) return\
-    \ a[k];\n  int r = len(fs) - 1;\n  assert(len(a) >= r);\n  a.resize(r);\n  assert(len(fs)\
-    \ == r + 1);\n\n  vc<vc<vc<T>>> A;\n  A.resize(r);\n  FOR(i, r) A[i].resize(r);\n\
-    \  FOR(i, r) {\n    // A[0][i] = -fs[i + 1];\n    for (auto&& x: fs[i + 1]) A[0][i].eb(-x);\n\
-    \  }\n  FOR3(i, 1, r) A[i][i - 1] = fs[0];\n  vc<T> den = fs[0];\n  auto res =\
-    \ prefix_product_of_poly_matrix(A, k - r + 1);\n  reverse(all(a));\n  T ANS =\
-    \ 0;\n  FOR(j, r) ANS += res[0][j] * a[j];\n  ANS /= prefix_product_of_poly(den,\
-    \ k - r + 1);\n  return ANS;\n}\n\ntemplate <typename mint>\nvvc<mint> interpolate_p_recursive(vc<mint>\
-    \ a, int max_m, int max_deg, int k) {\n  auto fs = find_p_recursive<mint>(a, max_m,\
-    \ max_deg);\n  return kth_term_of_p_recursive<mint>(a, fs, k);\n}\n#line 4 \"\
-    poly/from_log_differentiation.hpp\"\n\n// \u5BFE\u6570\u5FAE\u5206 F'/F = a(x)/b(x)\
-    \ \u304B\u3089 F \u3092\u5FA9\u5143\u3059\u308B\u3002\n// a, b \u304C sparse \u3067\
-    \u3042\u308C\u3070\u3001O(N(K1+K2)) \u6642\u9593\u3067\u3067\u304D\u308B\n// [0,\
-    \ N] \u3092\u8A08\u7B97\ntemplate <typename mint>\nvc<mint> from_log_differentiation(int\
-    \ N, const vc<mint>& a, const vc<mint>& b) {\n  assert(b[0] == mint(1));\n  using\
-    \ P = pair<int, mint>;\n\n  vc<P> dat_a, dat_b;\n  FOR(i, len(a)) if (a[i] !=\
-    \ mint(0)) dat_a.eb(i, a[i]);\n  FOR(i, 1, len(b)) if (b[i] != mint(0)) dat_b.eb(i,\
-    \ b[i]);\n\n  vc<mint> f(N + 1);\n  vc<mint> df(N);\n  f[0] = mint(1);\n  FOR(n,\
-    \ N) {\n    mint v = 0;\n    for (auto&& [i, bi]: dat_b) {\n      if (i > n) break;\n\
-    \      v -= bi * df[n - i];\n    }\n    for (auto&& [i, ai]: dat_a) {\n      if\
-    \ (i > n) break;\n      v += ai * f[n - i];\n    }\n    df[n] = v;\n    f[n +\
-    \ 1] = df[n] * inv<mint>(n + 1);\n  }\n  return f;\n}\n\n// F'/F = a/b \u306E\u89E3\
-    \u306E\u3001[x^K]F \u3092\u6C42\u3081\u308B\u3002\u53F3\u8FBA\u306F\u4F4E\u6B21\
-    \u306E\u6709\u7406\u5F0F\u3002\ntemplate <typename mint>\nmint from_log_differentiation_kth(int\
-    \ K, vc<mint>& a, vc<mint>& b) {\n  assert(b[0] == mint(1));\n  int r = max(len(a),\
-    \ len(b) - 1);\n  vvc<mint> c(r + 1);\n  FOR(i, r + 1) {\n    mint c0 = 0, c1\
-    \ = 0;\n    if (i < len(b)) c0 += mint(r - i) * b[i];\n    if (i < len(b)) c1\
-    \ += b[i];\n    if (0 <= i - 1 && i - 1 < len(b)) c0 -= a[i - 1];\n    c[i] =\
-    \ {c0, c1};\n  }\n  auto f = from_log_differentiation(r - 1, a, b);\n  mint ANS\
-    \ = kth_term_of_p_recursive(f, c, K);\n  return ANS;\n}\n#line 3 \"poly/sparse_exp_of_div.hpp\"\
-    \n\n// exp(f/g) \u3067 f,g \u304C sparse\ntemplate <typename mint>\nvc<mint> sparse_exp_of_div(int\
+    \ {\n        mat[row][idx(i, j)] = A[row + max_m - i] * pw, pw *= row;\n     \
+    \ }\n    }\n  }\n  auto Xs = solve_linear<mint>(mat, vc<mint>(N, mint(0)));\n\
+    \  Xs.erase(Xs.begin());\n  if (Xs.empty()) return {};\n  vvc<mint> F(max_m +\
+    \ 1);\n  FOR(i, max_m + 1) {\n    vc<mint> f(max_deg + 1);\n    FOR(j, max_deg\
+    \ + 1) f[j] = Xs[0][idx(i, j)];\n    while (len(f) && f.back() == mint(0)) POP(f);\n\
+    \    F[i] = f;\n  }\n  while (F[0].empty()) F.erase(F.begin());\n  int m = len(F)\
+    \ - 1;\n  auto poly_eval = [&](vc<mint>& f, mint x) -> mint {\n    mint pw = 1,\
+    \ ans = 0;\n    FOR(i, len(f)) ans += f[i] * pw, pw *= x;\n    return ans;\n \
+    \ };\n\n  FOR(n, len(A) - m) {\n    mint sm = 0;\n    FOR(i, m + 1) sm += poly_eval(F[i],\
+    \ n) * A[n + m - i];\n    if (sm != 0) return {};\n  }\n  return F;\n}\n\n// A[0],\
+    \ ..., A[N]\ntemplate <typename mint>\nvc<mint> extend_p_recursive(vc<mint> A,\
+    \ vvc<mint> F, int N) {\n  auto poly_eval = [&](vc<mint>& f, mint x) -> mint {\n\
+    \    mint pw = 1, ans = 0;\n    FOR(i, len(f)) ans += f[i] * pw, pw *= x;\n  \
+    \  return ans;\n  };\n  int M = len(F) - 1;\n  if (len(A) >= N + 1) return {A.begin(),\
+    \ A.begin() + N + 1};\n  A.resize(N + 1);\n  vc<mint> S(N - M + 1);\n  FOR(n,\
+    \ N - M + 1) S[n] = poly_eval(F[0], n);\n  S = all_inverse<mint>(S);\n  FOR(n,\
+    \ N - M + 1) {\n    mint ans = 0;\n    FOR(i, 1, M + 1) ans += A[n + M - i] *\
+    \ poly_eval(F[i], n);\n    A[n + M] = (-ans) * S[n];\n  }\n  return A;\n}\n\n\
+    // a0, ..., a_{r-1} \u304A\u3088\u3073 f_0, ..., f_r \u3092\u4E0E\u3048\u308B\n\
+    // a_r f_0(0) + a_{r-1}f_1(0) + ... = 0\n// a_{r+1} f_0(1) + a_{r}f_1(1) + ...\
+    \ = 0\ntemplate <typename T>\nT kth_term_of_p_recursive(vc<T> a, vc<vc<T>>& fs,\
+    \ ll k) {\n  if (k < len(a)) return a[k];\n  int r = len(fs) - 1;\n  assert(len(a)\
+    \ >= r);\n  a.resize(r);\n  assert(len(fs) == r + 1);\n\n  vc<vc<vc<T>>> A;\n\
+    \  A.resize(r);\n  FOR(i, r) A[i].resize(r);\n  FOR(i, r) {\n    // A[0][i] =\
+    \ -fs[i + 1];\n    for (auto&& x : fs[i + 1]) A[0][i].eb(-x);\n  }\n  FOR3(i,\
+    \ 1, r) A[i][i - 1] = fs[0];\n  vc<T> den = fs[0];\n  auto res = prefix_product_of_poly_matrix(A,\
+    \ k - r + 1);\n  reverse(all(a));\n  T ANS = 0;\n  FOR(j, r) ANS += res[0][j]\
+    \ * a[j];\n  ANS /= prefix_product_of_poly(den, k - r + 1);\n  return ANS;\n}\n\
+    \ntemplate <typename mint>\nmint interpolate_p_recursive(vc<mint> a, int max_m,\
+    \ int max_deg, int k) {\n  auto fs = find_p_recursive<mint>(a, max_m, max_deg);\n\
+    \  return kth_term_of_p_recursive<mint>(a, fs, k);\n}\n#line 4 \"poly/from_log_differentiation.hpp\"\
+    \n\n// \u5BFE\u6570\u5FAE\u5206 F'/F = a(x)/b(x) \u304B\u3089 F \u3092\u5FA9\u5143\
+    \u3059\u308B\u3002\n// a, b \u304C sparse \u3067\u3042\u308C\u3070\u3001O(N(K1+K2))\
+    \ \u6642\u9593\u3067\u3067\u304D\u308B\n// [0, N] \u3092\u8A08\u7B97\ntemplate\
+    \ <typename mint>\nvc<mint> from_log_differentiation(int N, const vc<mint>& a,\
+    \ const vc<mint>& b) {\n  assert(b[0] == mint(1));\n  using P = pair<int, mint>;\n\
+    \n  vc<P> dat_a, dat_b;\n  FOR(i, len(a)) if (a[i] != mint(0)) dat_a.eb(i, a[i]);\n\
+    \  FOR(i, 1, len(b)) if (b[i] != mint(0)) dat_b.eb(i, b[i]);\n\n  vc<mint> f(N\
+    \ + 1);\n  vc<mint> df(N);\n  f[0] = mint(1);\n  FOR(n, N) {\n    mint v = 0;\n\
+    \    for (auto&& [i, bi]: dat_b) {\n      if (i > n) break;\n      v -= bi * df[n\
+    \ - i];\n    }\n    for (auto&& [i, ai]: dat_a) {\n      if (i > n) break;\n \
+    \     v += ai * f[n - i];\n    }\n    df[n] = v;\n    f[n + 1] = df[n] * inv<mint>(n\
+    \ + 1);\n  }\n  return f;\n}\n\n// F'/F = a/b \u306E\u89E3\u306E\u3001[x^K]F \u3092\
+    \u6C42\u3081\u308B\u3002\u53F3\u8FBA\u306F\u4F4E\u6B21\u306E\u6709\u7406\u5F0F\
+    \u3002\ntemplate <typename mint>\nmint from_log_differentiation_kth(int K, vc<mint>&\
+    \ a, vc<mint>& b) {\n  assert(b[0] == mint(1));\n  int r = max(len(a), len(b)\
+    \ - 1);\n  vvc<mint> c(r + 1);\n  FOR(i, r + 1) {\n    mint c0 = 0, c1 = 0;\n\
+    \    if (i < len(b)) c0 += mint(r - i) * b[i];\n    if (i < len(b)) c1 += b[i];\n\
+    \    if (0 <= i - 1 && i - 1 < len(b)) c0 -= a[i - 1];\n    c[i] = {c0, c1};\n\
+    \  }\n  auto f = from_log_differentiation(r - 1, a, b);\n  mint ANS = kth_term_of_p_recursive(f,\
+    \ c, K);\n  return ANS;\n}\n#line 3 \"poly/sparse_exp_of_div.hpp\"\n\n// exp(f/g)\
+    \ \u3067 f,g \u304C sparse\ntemplate <typename mint>\nvc<mint> sparse_exp_of_div(int\
     \ N, const vc<mint>& f, const vc<mint>& g) {\n  assert(f[0] == mint(0));\n  assert(g[0]\
     \ == mint(1));\n  using P = pair<int, mint>;\n  vc<P> dat_f, dat_g;\n  FOR(i,\
     \ len(f)) if (f[i] != mint(0)) dat_f.eb(i, f[i]);\n  FOR(i, len(g)) if (g[i] !=\
@@ -665,7 +668,7 @@ data:
   isVerificationFile: false
   path: poly/sparse_exp_of_div.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-11-23 02:04:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1080_2.test.cpp

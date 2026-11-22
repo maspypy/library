@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   _extendedRequiredBy:
@@ -29,10 +29,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_a_plus_bx.hpp
     title: poly/composition_f_a_plus_bx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - icon: ':heavy_check_mark:'
@@ -44,16 +44,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_x_plus_1x.hpp
     title: poly/composition_f_x_plus_1x.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/prefix_sum_of_polynomial.hpp
     title: poly/prefix_sum_of_polynomial.hpp
   - icon: ':heavy_check_mark:'
     path: poly/schroder.hpp
     title: poly/schroder.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
   - icon: ':heavy_check_mark:'
@@ -177,10 +177,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2206_2.test.cpp
     title: test/3_yukicoder/2206_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2580.test.cpp
     title: test/3_yukicoder/2580.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
   - icon: ':heavy_check_mark:'
@@ -195,9 +195,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3621.test.cpp
     title: test/3_yukicoder/3621.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/mod/power_table.hpp
@@ -262,7 +262,7 @@ data:
   - poly/prefix_sum_of_polynomial.hpp
   - poly/composition_f_log_1_minus_x.hpp
   timestamp: '2026-10-24 09:51:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/qoj5443.test.cpp
   - test/1_mytest/composition_1_minus_ex.test.cpp

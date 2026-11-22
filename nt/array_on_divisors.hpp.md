@@ -18,7 +18,7 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1728.test.cpp
     title: test/3_yukicoder/1728.test.cpp
   - icon: ':heavy_check_mark:'
@@ -27,9 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2578.test.cpp
     title: test/3_yukicoder/2578.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/nt/array_on_divisors.hpp
@@ -254,7 +254,7 @@ data:
   path: nt/array_on_divisors.hpp
   requiredBy: []
   timestamp: '2026-11-16 13:22:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2264.test.cpp
   - test/3_yukicoder/2578.test.cpp

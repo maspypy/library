@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: flow/gomory_hu_tree.hpp
     title: flow/gomory_hu_tree.hpp
   - icon: ':warning:'

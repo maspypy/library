@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
   - icon: ':question:'

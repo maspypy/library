@@ -35,8 +35,8 @@ data:
     \ ++k)\n      for (int j = p - (1 << k); j < p; ++j) A[j] -= A[j - (1 << k)];\n\
     \    return ans;\n  }\n\n  // assume a[i], return zeta(a)[i]. not increment the\
     \ pointer.\n  T assume(int i, T ai) {\n    assert(p == i);\n    T ans = ai;\n\
-    \    enumerate_all_bit<u32>(i, [&](int j) -> void { ans -= A[i - (1 << j)]; });\n\
-    \    return ans;\n  }\n};\n"
+    \    enumerate_all_bit<u32>(\n        i, [&](int j, bool) -> void { ans -= A[i\
+    \ - (1 << j)]; });\n    return ans;\n  }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/setfunc/online/online_subset_mobius.hpp\n\
     #include \"enumerate/bits.hpp\"\n\ntemplate <typename T>\nstruct Online_Subset_Mobius\
     \ {\n  int n;\n  int p = 0;\n  vc<T> A;\n  Online_Subset_Mobius(int LOG) : n(LOG),\
@@ -45,15 +45,16 @@ data:
     \ = lowbit(p);\n    for (int k = 0; k < K; ++k)\n      for (int j = p - (1 <<\
     \ k); j < p; ++j) A[j] -= A[j - (1 << k)];\n    return ans;\n  }\n\n  // assume\
     \ a[i], return zeta(a)[i]. not increment the pointer.\n  T assume(int i, T ai)\
-    \ {\n    assert(p == i);\n    T ans = ai;\n    enumerate_all_bit<u32>(i, [&](int\
-    \ j) -> void { ans -= A[i - (1 << j)]; });\n    return ans;\n  }\n};\n"
+    \ {\n    assert(p == i);\n    T ans = ai;\n    enumerate_all_bit<u32>(\n     \
+    \   i, [&](int j, bool) -> void { ans -= A[i - (1 << j)]; });\n    return ans;\n\
+    \  }\n};\n"
   dependsOn:
   - enumerate/bits.hpp
   isVerificationFile: false
   path: setfunc/online/online_subset_mobius.hpp
   requiredBy:
   - setfunc/online/online_or_convolution.hpp
-  timestamp: '2026-11-16 12:41:54+09:00'
+  timestamp: '2026-11-23 02:04:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: setfunc/online/online_subset_mobius.hpp

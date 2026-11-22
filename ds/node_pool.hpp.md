@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_trick_super.hpp
     title: convex/slope_trick/slope_trick_super.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
   - icon: ':heavy_check_mark:'

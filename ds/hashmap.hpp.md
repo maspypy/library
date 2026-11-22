@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/bipartite_matching.hpp
     title: flow/bipartite_matching.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: flow/gomory_hu_tree.hpp
     title: flow/gomory_hu_tree.hpp
   - icon: ':warning:'
@@ -293,7 +293,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/bellman_ford.hpp
     title: graph/shortest_path/bellman_ford.hpp
   - icon: ':heavy_check_mark:'
@@ -389,7 +389,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modfast.hpp
     title: mod/modfast.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/array_on_divisors.hpp
     title: nt/array_on_divisors.hpp
   - icon: ':heavy_check_mark:'
@@ -819,7 +819,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1726.test.cpp
     title: test/3_yukicoder/1726.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1728.test.cpp
     title: test/3_yukicoder/1728.test.cpp
   - icon: ':heavy_check_mark:'
@@ -891,7 +891,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2264.test.cpp
     title: test/3_yukicoder/2264.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2305.test.cpp
     title: test/3_yukicoder/2305.test.cpp
   - icon: ':heavy_check_mark:'

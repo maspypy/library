@@ -30,7 +30,7 @@ data:
     \ const {\n    return modint_real(*this) *= p;\n  }\n  modint_real operator/(const\
     \ modint_real &p) const {\n    return modint_real(*this) /= p;\n  }\n  bool operator==(const\
     \ modint_real &p) const { return a == p.a; }\n  bool operator!=(const modint_real\
-    \ &p) const { return b != p.b; }\n  modint_real inverse() const { return modint_real(a.inverse(),\
+    \ &p) const { return a != p.a; }\n  modint_real inverse() const { return modint_real(a.inverse(),\
     \ 1 / b); }\n  mint to_modint() { return a; }\n  Re to_real() { return b; }\n\
     };\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/geo/modint_real.hpp\n\
@@ -53,14 +53,14 @@ data:
     \ const {\n    return modint_real(*this) *= p;\n  }\n  modint_real operator/(const\
     \ modint_real &p) const {\n    return modint_real(*this) /= p;\n  }\n  bool operator==(const\
     \ modint_real &p) const { return a == p.a; }\n  bool operator!=(const modint_real\
-    \ &p) const { return b != p.b; }\n  modint_real inverse() const { return modint_real(a.inverse(),\
+    \ &p) const { return a != p.a; }\n  modint_real inverse() const { return modint_real(a.inverse(),\
     \ 1 / b); }\n  mint to_modint() { return a; }\n  Re to_real() { return b; }\n\
     };\n"
   dependsOn: []
   isVerificationFile: false
   path: geo/modint_real.hpp
   requiredBy: []
-  timestamp: '2026-11-13 14:14:25+09:00'
+  timestamp: '2026-11-23 02:04:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/modint_real.hpp

@@ -38,8 +38,9 @@ data:
     \ = lowbit(p);\n    for (int k = 0; k < K; ++k)\n      for (int j = p - (1 <<\
     \ k); j < p; ++j) A[j] += A[j - (1 << k)];\n    return ans;\n  }\n\n  // assume\
     \ a[i], return zeta(a)[i]. not increment the pointer.\n  T assume(int i, T ai)\
-    \ {\n    assert(p == i);\n    T ans = ai;\n    enumerate_all_bit<u32>(i, [&](int\
-    \ j) -> void { ans += A[i - (1 << j)]; });\n    return ans;\n  }\n};\n"
+    \ {\n    assert(p == i);\n    T ans = ai;\n    enumerate_all_bit<u32>(\n     \
+    \   i, [&](int j, bool) -> void { ans += A[i - (1 << j)]; });\n    return ans;\n\
+    \  }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/setfunc/online/online_subset_zeta.hpp\n\
     #include \"enumerate/bits.hpp\"\n\n/*\nsegtree \u3092\u8003\u3048\u308B\n\u73FE\
     \u5728\u306E\u30DD\u30A4\u30F3\u30BF\u306E\u4F4D\u7F6E\u304C\u3042\u308B\n\u3082\
@@ -52,15 +53,15 @@ data:
     \ (int k = 0; k < K; ++k)\n      for (int j = p - (1 << k); j < p; ++j) A[j] +=\
     \ A[j - (1 << k)];\n    return ans;\n  }\n\n  // assume a[i], return zeta(a)[i].\
     \ not increment the pointer.\n  T assume(int i, T ai) {\n    assert(p == i);\n\
-    \    T ans = ai;\n    enumerate_all_bit<u32>(i, [&](int j) -> void { ans += A[i\
-    \ - (1 << j)]; });\n    return ans;\n  }\n};\n"
+    \    T ans = ai;\n    enumerate_all_bit<u32>(\n        i, [&](int j, bool) ->\
+    \ void { ans += A[i - (1 << j)]; });\n    return ans;\n  }\n};\n"
   dependsOn:
   - enumerate/bits.hpp
   isVerificationFile: false
   path: setfunc/online/online_subset_zeta.hpp
   requiredBy:
   - setfunc/online/online_or_convolution.hpp
-  timestamp: '2026-11-16 12:41:54+09:00'
+  timestamp: '2026-11-23 02:04:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: setfunc/online/online_subset_zeta.hpp

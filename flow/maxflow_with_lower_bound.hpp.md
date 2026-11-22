@@ -3,9 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/flow/maxflow_with_lower_bound.hpp
@@ -122,7 +122,7 @@ data:
   path: flow/maxflow_with_lower_bound.hpp
   requiredBy: []
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith: []
 documentation_of: flow/maxflow_with_lower_bound.hpp
 layout: document

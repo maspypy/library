@@ -42,9 +42,9 @@ data:
     \ = lowbit(p);\n    for (int k = 0; k < K; ++k)\n      for (int j = p - (1 <<\
     \ k); j < p; ++j) A[j] += A[j - (1 << k)];\n    return ans;\n  }\n\n  // assume\
     \ a[i], return zeta(a)[i]. not increment the pointer.\n  T assume(int i, T ai)\
-    \ {\n    assert(p == i);\n    T ans = ai;\n    enumerate_all_bit<u32>(i, [&](int\
-    \ j) -> void { ans += A[i - (1 << j)]; });\n    return ans;\n  }\n};\n#line 1\
-    \ \"setfunc/online/online_subset_mobius.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/setfunc/online/online_subset_mobius.hpp\n\
+    \ {\n    assert(p == i);\n    T ans = ai;\n    enumerate_all_bit<u32>(\n     \
+    \   i, [&](int j, bool) -> void { ans += A[i - (1 << j)]; });\n    return ans;\n\
+    \  }\n};\n#line 1 \"setfunc/online/online_subset_mobius.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/setfunc/online/online_subset_mobius.hpp\n\
     #line 1 \"enumerate/bits.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/enumerate/bits.hpp\n\
     template <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L, int\
     \ R, F&& f) {\n  if (L >= len(b)) return;\n  bool end = false;\n  int p = (b[L]\
@@ -64,8 +64,8 @@ data:
     \ ++k)\n      for (int j = p - (1 << k); j < p; ++j) A[j] -= A[j - (1 << k)];\n\
     \    return ans;\n  }\n\n  // assume a[i], return zeta(a)[i]. not increment the\
     \ pointer.\n  T assume(int i, T ai) {\n    assert(p == i);\n    T ans = ai;\n\
-    \    enumerate_all_bit<u32>(i, [&](int j) -> void { ans -= A[i - (1 << j)]; });\n\
-    \    return ans;\n  }\n};\n#line 4 \"setfunc/online/online_or_convolution.hpp\"\
+    \    enumerate_all_bit<u32>(\n        i, [&](int j, bool) -> void { ans -= A[i\
+    \ - (1 << j)]; });\n    return ans;\n  }\n};\n#line 4 \"setfunc/online/online_or_convolution.hpp\"\
     \n\ntemplate <typename T>\nstruct Online_Or_Convolution {\n  Online_Subset_Zeta<T>\
     \ X1, X2;\n  Online_Subset_Mobius<T> Y;\n  Online_Or_Convolution(int LOG) : X1(LOG),\
     \ X2(LOG), Y(LOG) {}\n  // set a[i] and b[i], return conv(a,b)[i]\n  T set(int\
@@ -89,7 +89,7 @@ data:
   isVerificationFile: false
   path: setfunc/online/online_or_convolution.hpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
+  timestamp: '2026-11-23 02:04:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: setfunc/online/online_or_convolution.hpp

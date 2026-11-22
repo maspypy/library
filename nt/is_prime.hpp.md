@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
   - icon: ':heavy_check_mark:'
@@ -23,10 +23,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modfast.hpp
     title: mod/modfast.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/multiplicative_convolution_mod_p.hpp
     title: mod/multiplicative_convolution_mod_p.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':heavy_check_mark:'
@@ -35,13 +35,13 @@ data:
   - icon: ':warning:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/array_on_divisors.hpp
     title: nt/array_on_divisors.hpp
   - icon: ':question:'
     path: nt/crt.hpp
     title: nt/crt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
   - icon: ':heavy_check_mark:'
@@ -210,7 +210,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1411.test.cpp
     title: test/3_yukicoder/1411.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1575.test.cpp
     title: test/3_yukicoder/1575.test.cpp
   - icon: ':heavy_check_mark:'
@@ -219,7 +219,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1667.test.cpp
     title: test/3_yukicoder/1667.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1728.test.cpp
     title: test/3_yukicoder/1728.test.cpp
   - icon: ':heavy_check_mark:'
@@ -249,13 +249,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2578.test.cpp
     title: test/3_yukicoder/2578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2613.test.cpp
     title: test/3_yukicoder/2613.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/590.test.cpp
     title: test/3_yukicoder/590.test.cpp
   - icon: ':heavy_check_mark:'

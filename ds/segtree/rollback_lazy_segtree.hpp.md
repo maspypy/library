@@ -6,9 +6,9 @@ data:
     title: ds/rollback_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/segtree/rollback_lazy_segtree.hpp
@@ -152,7 +152,7 @@ data:
   path: ds/segtree/rollback_lazy_segtree.hpp
   requiredBy: []
   timestamp: '2026-10-27 03:17:11+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith: []
 documentation_of: ds/segtree/rollback_lazy_segtree.hpp
 layout: document

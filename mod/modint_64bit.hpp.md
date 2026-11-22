@@ -30,17 +30,18 @@ data:
     \  T operator*(const T& p) const { return modint_64bit(*this) *= p; }\n  T operator/(const\
     \ T& p) const { return modint_64bit(*this) /= p; }\n  bool operator==(const T&\
     \ p) const { return val == p.val; }\n  bool operator!=(const T& p) const { return\
-    \ val != p.val; }\n  T inverse() const {\n    int a = val, b = mod, u = 1, v =\
-    \ 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\n    }\n    return modint_64bit(u);\n  }\n  T pow(ll n) const\
-    \ {\n    assert(n >= 0);\n    T ret(1), mul(val);\n    while (n > 0) {\n     \
-    \ if (n & 1) ret *= mul;\n      mul *= mul, n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  static constexpr ll get_mod() { return mod; }\n  // (n, r), r \u306F 1\
-    \ \u306E 2^n \u4E57\u6839\n  static constexpr pair<ll, ll> ntt_info() { return\
-    \ {-1, -1}; }\n  static constexpr bool can_ntt() { return ntt_info().fi != -1;\
-    \ }\n};\n#ifdef FASTIO\ntemplate <ll mod>\nvoid rd(modint_64bit<mod>& x) {\n \
-    \ fastio::rd(x.val);\n  x.val %= mod;\n}\ntemplate <ll mod>\nvoid wt(modint_64bit<mod>\
-    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n"
+    \ val != p.val; }\n  // gcd=1 \u3067\u3042\u308B\u524D\u63D0\n  T inverse() const\
+    \ {\n    ll a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t =\
+    \ a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    assert(a\
+    \ == 1);\n    return modint_64bit(u);\n  }\n  T pow(ll n) const {\n    assert(n\
+    \ >= 0);\n    T ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *=\
+    \ mul;\n      mul *= mul, n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr\
+    \ ll get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
+    \n  static constexpr pair<ll, ll> ntt_info() { return {-1, -1}; }\n  static constexpr\
+    \ bool can_ntt() { return ntt_info().fi != -1; }\n};\n#ifdef FASTIO\ntemplate\
+    \ <ll mod>\nvoid rd(modint_64bit<mod>& x) {\n  fastio::rd(x.val);\n  x.val %=\
+    \ mod;\n}\ntemplate <ll mod>\nvoid wt(modint_64bit<mod> x) {\n  fastio::wt(x.val);\n\
+    }\n#endif\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/mod/modint_64bit.hpp\n\
     // https://qoj.ac/problem/969\ntemplate <ll mod>\nstruct modint_64bit {\n  using\
     \ T = modint_64bit;\n  static constexpr u64 umod = u64(mod);\n  static_assert(umod\
@@ -61,22 +62,23 @@ data:
     \  T operator*(const T& p) const { return modint_64bit(*this) *= p; }\n  T operator/(const\
     \ T& p) const { return modint_64bit(*this) /= p; }\n  bool operator==(const T&\
     \ p) const { return val == p.val; }\n  bool operator!=(const T& p) const { return\
-    \ val != p.val; }\n  T inverse() const {\n    int a = val, b = mod, u = 1, v =\
-    \ 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u\
-    \ -= t * v, v);\n    }\n    return modint_64bit(u);\n  }\n  T pow(ll n) const\
-    \ {\n    assert(n >= 0);\n    T ret(1), mul(val);\n    while (n > 0) {\n     \
-    \ if (n & 1) ret *= mul;\n      mul *= mul, n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  static constexpr ll get_mod() { return mod; }\n  // (n, r), r \u306F 1\
-    \ \u306E 2^n \u4E57\u6839\n  static constexpr pair<ll, ll> ntt_info() { return\
-    \ {-1, -1}; }\n  static constexpr bool can_ntt() { return ntt_info().fi != -1;\
-    \ }\n};\n#ifdef FASTIO\ntemplate <ll mod>\nvoid rd(modint_64bit<mod>& x) {\n \
-    \ fastio::rd(x.val);\n  x.val %= mod;\n}\ntemplate <ll mod>\nvoid wt(modint_64bit<mod>\
-    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n"
+    \ val != p.val; }\n  // gcd=1 \u3067\u3042\u308B\u524D\u63D0\n  T inverse() const\
+    \ {\n    ll a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t =\
+    \ a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    assert(a\
+    \ == 1);\n    return modint_64bit(u);\n  }\n  T pow(ll n) const {\n    assert(n\
+    \ >= 0);\n    T ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *=\
+    \ mul;\n      mul *= mul, n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr\
+    \ ll get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
+    \n  static constexpr pair<ll, ll> ntt_info() { return {-1, -1}; }\n  static constexpr\
+    \ bool can_ntt() { return ntt_info().fi != -1; }\n};\n#ifdef FASTIO\ntemplate\
+    \ <ll mod>\nvoid rd(modint_64bit<mod>& x) {\n  fastio::rd(x.val);\n  x.val %=\
+    \ mod;\n}\ntemplate <ll mod>\nvoid wt(modint_64bit<mod> x) {\n  fastio::wt(x.val);\n\
+    }\n#endif\n"
   dependsOn: []
   isVerificationFile: false
   path: mod/modint_64bit.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-11-23 02:04:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: mod/modint_64bit.hpp

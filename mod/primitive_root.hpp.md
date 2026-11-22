@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':question:'
@@ -20,7 +20,7 @@ data:
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
   - icon: ':heavy_check_mark:'
@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modfast.hpp
     title: mod/modfast.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/multiplicative_convolution_mod_p.hpp
     title: mod/multiplicative_convolution_mod_p.hpp
   - icon: ':heavy_check_mark:'
@@ -141,15 +141,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2181.test.cpp
     title: test/3_yukicoder/2181.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2613.test.cpp
     title: test/3_yukicoder/2613.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/1190/problem/F
@@ -325,7 +325,7 @@ data:
   - seq/reeds_sloane.hpp
   - poly/multivar_convolution_cyclic.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/modfast.test.cpp
   - test/1_mytest/O1_inv.test.cpp

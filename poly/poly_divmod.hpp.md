@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
   - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -38,19 +38,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_spanning_tree.hpp
     title: graph/count/count_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/blackbox/det.hpp
     title: linalg/blackbox/det.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':heavy_check_mark:'
     path: poly/find_roots_of_polynomial.hpp
     title: poly/find_roots_of_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
   - icon: ':heavy_check_mark:'
@@ -62,7 +62,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   - icon: ':heavy_check_mark:'
@@ -144,10 +144,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2305.test.cpp
     title: test/3_yukicoder/2305.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
   - icon: ':heavy_check_mark:'
@@ -159,7 +159,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/310.test.cpp
     title: test/3_yukicoder/310.test.cpp
   - icon: ':heavy_check_mark:'
@@ -171,9 +171,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/poly/poly_divmod.hpp
@@ -247,13 +247,14 @@ data:
     \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
     \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
     \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
-    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
-    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
-    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
-    \  if (n < 0) return inverse().pow(-n);\n    assert(n >= 0);\n    modint ret(1),\
-    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
-    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod()\
-    \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
+    \ }\n  // gcd=1 \u3067\u3042\u308B\u524D\u63D0\n  modint inverse() const {\n \
+    \   int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a /\
+    \ b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    assert(a ==\
+    \ 1);\n    return modint(u);\n  }\n  modint pow(ll n) const {\n    if (n < 0)\
+    \ return inverse().pow(-n);\n    assert(n >= 0);\n    modint ret(1), mul(val);\n\
+    \    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n\
+    \ >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod() { return\
+    \ mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
     \ pair<int, int> ntt_info() {\n    if (mod == 120586241) return {20, 74066978};\n\
     \    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
     \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
@@ -515,8 +516,8 @@ data:
   - poly/poly_gcd.hpp
   - poly/find_roots_of_polynomial.hpp
   - poly/coef_of_rational_fps.hpp
-  timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-23 02:04:21+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/coef_of_rational.test.cpp
   - test/1_mytest/min_poly.test.cpp

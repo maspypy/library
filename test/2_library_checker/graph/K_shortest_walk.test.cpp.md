@@ -700,24 +700,24 @@ data:
     \ G1.build();\n  return G1;\n}\n#line 5 \"graph/shortest_path/K_shortest_walk.hpp\"\
     \n\n// infty<T> \u57CB\u3081\u3057\u3066\u5FC5\u305A\u9577\u3055 K \u306B\u3057\
     \u305F\u3082\u306E\u3092\u304B\u3048\u3059\u3002\ntemplate <typename T, typename\
-    \ GT>\nvc<T> K_shortest_walk(GT &G, int s, int t, int K) {\n  static_assert(GT::is_directed);\n\
-    \  int N = G.N;\n  auto RG = reverse_graph(G);\n  auto [dist, par] = dijkstra<T,\
-    \ decltype(RG)>(RG, t);\n  if (dist[s] == infty<T>) {\n    return vc<T>(K, infty<T>);\n\
-    \  }\n\n  using P = pair<T, int>;\n  Meldable_Heap<P, true, true> X;\n  using\
-    \ np = typename decltype(X)::np;\n  vc<np> nodes(N, nullptr);\n\n  vc<bool> vis(N);\n\
-    \  vc<int> st = {t};\n  vis[t] = 1;\n  while (len(st)) {\n    int v = POP(st);\n\
-    \    bool done = 0;\n    for (auto &&e : G[v]) {\n      if (dist[e.to] == infty<T>)\
-    \ continue;\n      if (!done && par[v] == e.to && dist[v] == dist[e.to] + e.cost)\
-    \ {\n        done = 1;\n        continue;\n      }\n      T cost = -dist[v] +\
-    \ e.cost + dist[e.to];\n      nodes[v] = X.push(nodes[v], {cost, e.to});\n   \
-    \ }\n    for (auto &&e : RG[v]) {\n      if (vis[e.to]) continue;\n      if (par[e.to]\
-    \ == v) {\n        nodes[e.to] = X.meld(nodes[e.to], nodes[v]);\n        vis[e.to]\
-    \ = 1;\n        st.eb(e.to);\n      }\n    }\n  }\n\n  T base = dist[s];\n  vc<T>\
-    \ ANS = {base};\n  if (nodes[s]) {\n    using PAIR = pair<T, np>;\n    auto comp\
-    \ = [](auto a, auto b) { return a.fi > b.fi; };\n    priority_queue<PAIR, vc<PAIR>,\
-    \ decltype(comp)> que(comp);\n    que.emplace(base + X.top(nodes[s]).fi, nodes[s]);\n\
-    \    while (len(ANS) < K && len(que)) {\n      auto [d, n] = que.top();\n    \
-    \  que.pop();\n      ANS.eb(d);\n      if (n->l) que.emplace(d + (n->l->x.fi)\
+    \ GT>\nvc<T> K_shortest_walk(GT &G, int s, int t, int K) {\n  if (K == 0) return\
+    \ {};\n  static_assert(GT::is_directed);\n  int N = G.N;\n  auto RG = reverse_graph(G);\n\
+    \  auto [dist, par] = dijkstra<T, decltype(RG)>(RG, t);\n  if (dist[s] == infty<T>)\
+    \ {\n    return vc<T>(K, infty<T>);\n  }\n\n  using P = pair<T, int>;\n  Meldable_Heap<P,\
+    \ true, true> X;\n  using np = typename decltype(X)::np;\n  vc<np> nodes(N, nullptr);\n\
+    \n  vc<bool> vis(N);\n  vc<int> st = {t};\n  vis[t] = 1;\n  while (len(st)) {\n\
+    \    int v = POP(st);\n    bool done = 0;\n    for (auto &&e : G[v]) {\n     \
+    \ if (dist[e.to] == infty<T>) continue;\n      if (!done && par[v] == e.to &&\
+    \ dist[v] == dist[e.to] + e.cost) {\n        done = 1;\n        continue;\n  \
+    \    }\n      T cost = -dist[v] + e.cost + dist[e.to];\n      nodes[v] = X.push(nodes[v],\
+    \ {cost, e.to});\n    }\n    for (auto &&e : RG[v]) {\n      if (vis[e.to]) continue;\n\
+    \      if (par[e.to] == v) {\n        nodes[e.to] = X.meld(nodes[e.to], nodes[v]);\n\
+    \        vis[e.to] = 1;\n        st.eb(e.to);\n      }\n    }\n  }\n\n  T base\
+    \ = dist[s];\n  vc<T> ANS = {base};\n  if (nodes[s]) {\n    using PAIR = pair<T,\
+    \ np>;\n    auto comp = [](auto a, auto b) { return a.fi > b.fi; };\n    priority_queue<PAIR,\
+    \ vc<PAIR>, decltype(comp)> que(comp);\n    que.emplace(base + X.top(nodes[s]).fi,\
+    \ nodes[s]);\n    while (len(ANS) < K && len(que)) {\n      auto [d, n] = que.top();\n\
+    \      que.pop();\n      ANS.eb(d);\n      if (n->l) que.emplace(d + (n->l->x.fi)\
     \ - (n->x.fi), n->l);\n      if (n->r) que.emplace(d + (n->r->x.fi) - (n->x.fi),\
     \ n->r);\n      np m = nodes[n->x.se];\n      if (m) {\n        que.emplace(d\
     \ + m->x.fi, m);\n      }\n    }\n  }\n  while (len(ANS) < K) ANS.eb(infty<T>);\n\
@@ -746,7 +746,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/K_shortest_walk.test.cpp
   requiredBy: []
-  timestamp: '2026-11-18 15:44:25+09:00'
+  timestamp: '2026-11-23 02:04:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/K_shortest_walk.test.cpp

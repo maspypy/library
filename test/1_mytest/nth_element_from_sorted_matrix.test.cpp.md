@@ -164,15 +164,15 @@ data:
     \ F>\nvi nth_element_from_sorted_matrix(\n    ll N, ll M, ll K, F f, int k1 =\
     \ 0, int k2 = 0, bool tr = false) {\n  static_assert(is_same_v<T, int> || is_same_v<T,\
     \ ll> || is_same_v<T, i128>);\n  if (K == 0) return vi(N, 0);\n  if (N > M) {\n\
-    \    vi A = nth_element_from_sorted_matrix<T>(M, N, K, f, k2, k1, !tr);\n    vi\
-    \ B(N + 1);\n    FOR(i, M) B[0] += 1, B[A[i]] -= 1;\n    FOR(i, N) B[i + 1] +=\
-    \ B[i];\n    B.pop_back();\n    return B;\n  }\n  vi A(N);\n  if (K > N) {\n \
-    \   A = nth_element_from_sorted_matrix<T, MINIMIZE>(\n        N, M / 2, (K - N)\
-    \ / 2, f, k1, k2 + 1, tr);\n    for (auto &a : A) a *= 2;\n    K = K - (K - N)\
-    \ / 2 * 2;\n  }\n  pq_min<pair<T, int>> que;\n  auto g = [&](ll i, ll j) -> T\
-    \ {\n    i = ((i + 1) << k1) - 1;\n    j = ((j + 1) << k2) - 1;\n    T x = (tr\
-    \ ? f(j, i) : f(i, j));\n    return (MINIMIZE ? x : -x);\n  };\n  if (A[0] < M)\
-    \ que.emplace(g(0, A[0]), 0);\n  FOR(i, 1, N) if (A[i] < A[i - 1]) que.emplace(g(i,\
+    \    vi A = nth_element_from_sorted_matrix<T, MINIMIZE>(M, N, K, f, k2, k1, !tr);\n\
+    \    vi B(N + 1);\n    FOR(i, M) B[0] += 1, B[A[i]] -= 1;\n    FOR(i, N) B[i +\
+    \ 1] += B[i];\n    B.pop_back();\n    return B;\n  }\n  vi A(N);\n  if (K > N)\
+    \ {\n    A = nth_element_from_sorted_matrix<T, MINIMIZE>(\n        N, M / 2, (K\
+    \ - N) / 2, f, k1, k2 + 1, tr);\n    for (auto &a : A) a *= 2;\n    K = K - (K\
+    \ - N) / 2 * 2;\n  }\n  pq_min<pair<T, int>> que;\n  auto g = [&](ll i, ll j)\
+    \ -> T {\n    i = ((i + 1) << k1) - 1;\n    j = ((j + 1) << k2) - 1;\n    T x\
+    \ = (tr ? f(j, i) : f(i, j));\n    return (MINIMIZE ? x : -x);\n  };\n  if (A[0]\
+    \ < M) que.emplace(g(0, A[0]), 0);\n  FOR(i, 1, N) if (A[i] < A[i - 1]) que.emplace(g(i,\
     \ A[i]), i);\n  while (K) {\n    --K;\n    auto [x, i] = POP(que);\n    A[i]++;\n\
     \    if (K == 0) break;\n    if (A[i] < M && (i == 0 || A[i - 1] > A[i])) {\n\
     \      que.emplace(g(i, A[i]), i);\n    }\n    if (i + 1 < N && A[i + 1] == A[i]\
@@ -232,7 +232,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/nth_element_from_sorted_matrix.test.cpp
   requiredBy: []
-  timestamp: '2026-11-22 23:28:55+09:00'
+  timestamp: '2026-11-23 02:04:21+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/nth_element_from_sorted_matrix.test.cpp

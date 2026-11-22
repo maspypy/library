@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/bellman_ford.hpp
     title: graph/shortest_path/bellman_ford.hpp
   - icon: ':question:'

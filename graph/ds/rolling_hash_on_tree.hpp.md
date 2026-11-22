@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'

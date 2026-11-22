@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/lichao.hpp
     title: convex/lichao.hpp
   - icon: ':question:'
@@ -306,8 +306,8 @@ data:
     \     if (bl) i = 2 * i + 1, l = m;\n      }\n      if (!bm) {\n        if (bl)\
     \ i = 2 * i + 0, r = m;\n        if (!bl) i = 2 * i + 1, l = m;\n      }\n   \
     \ }\n  }\n\n private:\n  inline T evaluate_inner(FUNC& f, ll x) {\n    return\
-    \ f((COMPRESS ? X[min<int>(x, n - 1)] : min<int>(x + lo, hi - 1)));\n  }\n};\n\
-    #line 5 \"test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp\"\
+    \ f((COMPRESS ? X[min<ll>(x, n - 1)] : min<ll>(x + lo, hi - 1)));\n  }\n};\n#line\
+    \ 5 \"test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp\"\
     \n\nstruct F {\n  using value_type = ll;\n  int a;\n  ll b;\n  ll operator()(ll\
     \ x) { return a * x + b; }\n};\n\nvoid solve() {\n  LL(N, Q);\n  using T = tuple<int,\
     \ int, ll>;\n  vc<T> query;\n  query.reserve(N + Q);\n  FOR(N) {\n    LL(a, b);\n\
@@ -335,7 +335,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
   requiredBy: []
-  timestamp: '2026-11-18 15:44:25+09:00'
+  timestamp: '2026-11-23 02:04:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp

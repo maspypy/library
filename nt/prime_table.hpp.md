@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modfast.hpp
     title: mod/modfast.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/power_table.hpp
     title: mod/power_table.hpp
   - icon: ':heavy_check_mark:'
@@ -71,7 +71,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/spf_table.hpp
     title: nt/spf_table.hpp
   - icon: ':heavy_check_mark:'
@@ -83,10 +83,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_a_plus_bx.hpp
     title: poly/composition_f_a_plus_bx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - icon: ':heavy_check_mark:'
@@ -98,16 +98,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_x_plus_1x.hpp
     title: poly/composition_f_x_plus_1x.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/prefix_sum_of_polynomial.hpp
     title: poly/prefix_sum_of_polynomial.hpp
   - icon: ':heavy_check_mark:'
     path: poly/schroder.hpp
     title: poly/schroder.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
   - icon: ':heavy_check_mark:'
@@ -252,7 +252,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1411.test.cpp
     title: test/3_yukicoder/1411.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1575.test.cpp
     title: test/3_yukicoder/1575.test.cpp
   - icon: ':heavy_check_mark:'
@@ -288,10 +288,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2266.test.cpp
     title: test/3_yukicoder/2266.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2580.test.cpp
     title: test/3_yukicoder/2580.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
   - icon: ':heavy_check_mark:'
@@ -309,9 +309,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_1_D.test.cpp
     title: test/4_aoj/NTL_1_D.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/nt/prime_table.hpp
@@ -388,7 +388,7 @@ data:
   - nt/zeta.hpp
   - nt/lcm_convolution.hpp
   timestamp: '2026-10-24 09:51:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/4_aoj/NTL_1_D.test.cpp
   - test/1_mytest/modfast.test.cpp

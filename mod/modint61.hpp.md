@@ -29,7 +29,7 @@ data:
   - icon: ':warning:'
     path: string/deque_rolling_hash.hpp
     title: string/deque_rolling_hash.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/rolling_hash.hpp
     title: string/rolling_hash.hpp
   - icon: ':heavy_check_mark:'
@@ -81,7 +81,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2231.test.cpp
     title: test/3_yukicoder/2231.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2626.test.cpp
     title: test/3_yukicoder/2626.test.cpp
   - icon: ':heavy_check_mark:'
@@ -102,9 +102,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_14_C.test.cpp
     title: test/4_aoj/ALDS1_14_C.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/mod/modint61.hpp
@@ -182,7 +182,7 @@ data:
   - string/deque_rolling_hash.hpp
   - random/hash_vector.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/4_aoj/ALDS1_14_C.test.cpp
   - test/1_mytest/matching_line_graph.test.cpp

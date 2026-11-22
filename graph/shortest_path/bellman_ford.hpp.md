@@ -12,9 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_1_B.test.cpp
     title: test/4_aoj/GRL_1_B.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/graph/shortest_path/bellman_ford.hpp
@@ -166,7 +166,7 @@ data:
   path: graph/shortest_path/bellman_ford.hpp
   requiredBy: []
   timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/4_aoj/GRL_1_B.test.cpp
 documentation_of: graph/shortest_path/bellman_ford.hpp

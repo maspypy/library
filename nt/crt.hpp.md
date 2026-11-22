@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2119.test.cpp
     title: test/3_yukicoder/2119.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/590.test.cpp
     title: test/3_yukicoder/590.test.cpp
   _isVerificationFailed: true

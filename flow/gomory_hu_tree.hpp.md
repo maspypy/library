@@ -12,9 +12,9 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/flow/gomory_hu_tree.hpp
@@ -349,7 +349,7 @@ data:
   path: flow/gomory_hu_tree.hpp
   requiredBy: []
   timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith: []
 documentation_of: flow/gomory_hu_tree.hpp
 layout: document

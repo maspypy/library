@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: nt/is_prime.hpp
     title: nt/is_prime.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/prime_table.hpp
     title: nt/prime_table.hpp
   - icon: ':heavy_check_mark:'

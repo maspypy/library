@@ -29,7 +29,7 @@ data:
   - icon: ':warning:'
     path: poly/composed_sum.hpp
     title: poly/composed_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - icon: ':heavy_check_mark:'
@@ -38,10 +38,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -192,7 +192,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1875.test.cpp
     title: test/3_yukicoder/1875.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1939.test.cpp
     title: test/3_yukicoder/1939.test.cpp
   - icon: ':heavy_check_mark:'
@@ -201,7 +201,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2097.test.cpp
     title: test/3_yukicoder/2097.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
   - icon: ':heavy_check_mark:'
@@ -210,9 +210,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3621.test.cpp
     title: test/3_yukicoder/3621.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/poly/integrate.hpp
@@ -263,7 +263,7 @@ data:
   - poly/fps_pow.hpp
   - poly/product_of_pow_of_linear.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/online_exp.test.cpp
   - test/1_mytest/bell_number.test.cpp

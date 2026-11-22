@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
   - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -62,7 +62,7 @@ data:
   - icon: ':warning:'
     path: poly/composed_sum.hpp
     title: poly/composed_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - icon: ':heavy_check_mark:'
@@ -71,7 +71,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -222,7 +222,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1875.test.cpp
     title: test/3_yukicoder/1875.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1939.test.cpp
     title: test/3_yukicoder/1939.test.cpp
   - icon: ':heavy_check_mark:'
@@ -231,7 +231,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2097.test.cpp
     title: test/3_yukicoder/2097.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
   - icon: ':heavy_check_mark:'
@@ -240,9 +240,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3621.test.cpp
     title: test/3_yukicoder/3621.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/poly/fps_exp.hpp
@@ -312,13 +312,14 @@ data:
     \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
     \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
     \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
-    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
-    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
-    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
-    \  if (n < 0) return inverse().pow(-n);\n    assert(n >= 0);\n    modint ret(1),\
-    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
-    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod()\
-    \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
+    \ }\n  // gcd=1 \u3067\u3042\u308B\u524D\u63D0\n  modint inverse() const {\n \
+    \   int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a /\
+    \ b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    assert(a ==\
+    \ 1);\n    return modint(u);\n  }\n  modint pow(ll n) const {\n    if (n < 0)\
+    \ return inverse().pow(-n);\n    assert(n >= 0);\n    modint ret(1), mul(val);\n\
+    \    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n\
+    \ >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod() { return\
+    \ mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
     \ pair<int, int> ntt_info() {\n    if (mod == 120586241) return {20, 74066978};\n\
     \    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
     \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
@@ -648,8 +649,8 @@ data:
   - poly/product_of_one_plus_xn.hpp
   - poly/fps_pow.hpp
   - poly/product_of_pow_of_linear.hpp
-  timestamp: '2026-10-27 04:18:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-23 02:04:21+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/online_exp.test.cpp
   - test/1_mytest/bell_number.test.cpp

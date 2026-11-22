@@ -33,9 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_6_B.test.cpp
     title: test/4_aoj/GRL_6_B.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/flow/min_cost_flow.hpp
@@ -261,7 +261,7 @@ data:
   requiredBy:
   - flow/longest_shortest_path.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/4_aoj/GRL_6_B.test.cpp
   - test/3_yukicoder/1676.test.cpp

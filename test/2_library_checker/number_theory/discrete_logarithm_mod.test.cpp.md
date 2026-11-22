@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_set/from_monoid.hpp
     title: alg/acted_set/from_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
   - icon: ':question:'
@@ -19,16 +19,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
     path: mod/montgomery_modint.hpp
     title: mod/montgomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':question:'
