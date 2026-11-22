@@ -6,6 +6,7 @@
 // infty<T> 埋めして必ず長さ K にしたものをかえす。
 template <typename T, typename GT>
 vc<T> K_shortest_walk(GT &G, int s, int t, int K) {
+  if (K == 0) return {};
   static_assert(GT::is_directed);
   int N = G.N;
   auto RG = reverse_graph(G);

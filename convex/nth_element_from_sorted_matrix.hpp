@@ -7,7 +7,7 @@ vi nth_element_from_sorted_matrix(
   static_assert(is_same_v<T, int> || is_same_v<T, ll> || is_same_v<T, i128>);
   if (K == 0) return vi(N, 0);
   if (N > M) {
-    vi A = nth_element_from_sorted_matrix<T>(M, N, K, f, k2, k1, !tr);
+    vi A = nth_element_from_sorted_matrix<T, MINIMIZE>(M, N, K, f, k2, k1, !tr);
     vi B(N + 1);
     FOR(i, M) B[0] += 1, B[A[i]] -= 1;
     FOR(i, N) B[i + 1] += B[i];

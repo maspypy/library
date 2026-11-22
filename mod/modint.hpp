@@ -43,12 +43,14 @@ struct modint {
   modint operator/(const modint &p) const { return modint(*this) /= p; }
   bool operator==(const modint &p) const { return val == p.val; }
   bool operator!=(const modint &p) const { return val != p.val; }
+  // gcd=1 である前提
   modint inverse() const {
     int a = val, b = mod, u = 1, v = 0, t;
     while (b > 0) {
       t = a / b;
       swap(a -= t * b, b), swap(u -= t * v, v);
     }
+    assert(a == 1);
     return modint(u);
   }
   modint pow(ll n) const {

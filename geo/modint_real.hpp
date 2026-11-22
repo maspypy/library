@@ -44,7 +44,7 @@ struct modint_real {
     return modint_real(*this) /= p;
   }
   bool operator==(const modint_real &p) const { return a == p.a; }
-  bool operator!=(const modint_real &p) const { return b != p.b; }
+  bool operator!=(const modint_real &p) const { return a != p.a; }
   modint_real inverse() const { return modint_real(a.inverse(), 1 / b); }
   mint to_modint() { return a; }
   Re to_real() { return b; }

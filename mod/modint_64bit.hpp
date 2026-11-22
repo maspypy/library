@@ -41,12 +41,14 @@ struct modint_64bit {
   T operator/(const T& p) const { return modint_64bit(*this) /= p; }
   bool operator==(const T& p) const { return val == p.val; }
   bool operator!=(const T& p) const { return val != p.val; }
+  // gcd=1 である前提
   T inverse() const {
-    int a = val, b = mod, u = 1, v = 0, t;
+    ll a = val, b = mod, u = 1, v = 0, t;
     while (b > 0) {
       t = a / b;
       swap(a -= t * b, b), swap(u -= t * v, v);
     }
+    assert(a == 1);
     return modint_64bit(u);
   }
   T pow(ll n) const {

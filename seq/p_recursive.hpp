@@ -19,7 +19,9 @@ vvc<mint> find_p_recursive(vc<mint> A, int max_m, int max_deg) {
   FOR(row, N) {
     FOR(i, max_m + 1) {
       mint pw = 1;
-      FOR(j, max_deg + 1) { mat[row][idx(i, j)] = A[row + max_m - i] * pw, pw *= row; }
+      FOR(j, max_deg + 1) {
+        mat[row][idx(i, j)] = A[row + max_m - i] * pw, pw *= row;
+      }
     }
   }
   auto Xs = solve_linear<mint>(mat, vc<mint>(N, mint(0)));
@@ -86,7 +88,7 @@ T kth_term_of_p_recursive(vc<T> a, vc<vc<T>>& fs, ll k) {
   FOR(i, r) A[i].resize(r);
   FOR(i, r) {
     // A[0][i] = -fs[i + 1];
-    for (auto&& x: fs[i + 1]) A[0][i].eb(-x);
+    for (auto&& x : fs[i + 1]) A[0][i].eb(-x);
   }
   FOR3(i, 1, r) A[i][i - 1] = fs[0];
   vc<T> den = fs[0];
@@ -99,7 +101,7 @@ T kth_term_of_p_recursive(vc<T> a, vc<vc<T>>& fs, ll k) {
 }
 
 template <typename mint>
-vvc<mint> interpolate_p_recursive(vc<mint> a, int max_m, int max_deg, int k) {
+mint interpolate_p_recursive(vc<mint> a, int max_m, int max_deg, int k) {
   auto fs = find_p_recursive<mint>(a, max_m, max_deg);
   return kth_term_of_p_recursive<mint>(a, fs, k);
 }

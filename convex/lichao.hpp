@@ -126,6 +126,6 @@ struct LiChao_Tree {
 
  private:
   inline T evaluate_inner(FUNC& f, ll x) {
-    return f((COMPRESS ? X[min<int>(x, n - 1)] : min<int>(x + lo, hi - 1)));
+    return f((COMPRESS ? X[min<ll>(x, n - 1)] : min<ll>(x + lo, hi - 1)));
   }
 };
