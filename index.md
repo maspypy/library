@@ -268,10 +268,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/monotone_minima.hpp
       title: convex/monotone_minima.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: convex/nth_element_from_sorted_lists.hpp
       title: convex/nth_element_from_sorted_lists.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: convex/nth_element_from_sorted_matrix.hpp
       title: convex/nth_element_from_sorted_matrix.hpp
     - icon: ':heavy_check_mark:'
@@ -390,7 +390,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/prefix_sum.hpp
       title: ds/prefix_sum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/range_add_range_sum.hpp
       title: ds/range_add_range_sum.hpp
     - icon: ':warning:'
@@ -429,7 +429,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/static_range_product.hpp
       title: ds/static_range_product.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/static_range_product_group.hpp
       title: ds/static_range_product_group.hpp
     - icon: ':warning:'
@@ -449,7 +449,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/dual_fenwicktree_2d.hpp
       title: ds/fenwicktree/dual_fenwicktree_2d.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/fenwicktree/fenwicktree.hpp
       title: ds/fenwicktree/fenwicktree.hpp
     - icon: ':heavy_check_mark:'
@@ -2314,7 +2314,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -2341,7 +2341,7 @@ data:
     - icon: ':warning:'
       path: random/random_real.hpp
       title: random/random_real.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/shuffle.hpp
       title: random/shuffle.hpp
   - name: scripts
@@ -3176,10 +3176,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/nimber_log.test.cpp
       title: test/1_mytest/nimber_log.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/nth_element_from_sorted_lists.test.cpp
       title: test/1_mytest/nth_element_from_sorted_lists.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/nth_element_from_sorted_matrix.test.cpp
       title: test/1_mytest/nth_element_from_sorted_matrix.test.cpp
     - icon: ':heavy_check_mark:'

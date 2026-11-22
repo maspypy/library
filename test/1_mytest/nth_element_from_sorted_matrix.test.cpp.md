@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/nth_element_from_sorted_matrix.hpp
     title: convex/nth_element_from_sorted_matrix.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -160,24 +160,26 @@ data:
     \ <typename T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) {\n    int j = RNG(0,\
     \ i + 1);\n    if (i != j) swap(A[i], A[j]);\n  }\n}\n#line 1 \"convex/nth_element_from_sorted_matrix.hpp\"\
     \n// Source: https://github.com/maspypy/library/blob/main/convex/nth_element_from_sorted_matrix.hpp\n\
-    \n// https://uoj.ac/problem/891\ntemplate <typename T, typename F>\nvi nth_element_from_sorted_matrix(ll\
-    \ N, ll M, ll K, F f, int k1 = 0, int k2 = 0,\n                              \
-    \    bool tr = false) {\n  if (K == 0) return vi(N, 0);\n  if (N > M) {\n    vi\
-    \ A = nth_element_from_sorted_matrix<T>(M, N, K, f, k2, k1, !tr);\n    vi B(N\
-    \ + 1);\n    FOR(i, M) B[0] += 1, B[A[i]] -= 1;\n    FOR(i, N) B[i + 1] += B[i];\n\
-    \    B.pop_back();\n    return B;\n  }\n  vi A(N);\n  if (K > N) {\n    A = nth_element_from_sorted_matrix<T>(N,\
-    \ M / 2, (K - N) / 2, f, k1, k2 + 1,\n                                       \
-    \   tr);\n    for (auto &a : A) a *= 2;\n    K = K - (K - N) / 2 * 2;\n  }\n \
-    \ pq_min<pair<T, int>> que;\n  auto g = [&](ll i, ll j) -> T {\n    i = ((i +\
-    \ 1) << k1) - 1;\n    j = ((j + 1) << k2) - 1;\n    return (tr ? f(j, i) : f(i,\
-    \ j));\n  };\n  if (A[0] < M) que.emplace(g(0, A[0]), 0);\n  FOR(i, 1, N) if (A[i]\
-    \ < A[i - 1]) que.emplace(g(i, A[i]), i);\n  while (K) {\n    --K;\n    auto [x,\
-    \ i] = POP(que);\n    A[i]++;\n    if (K == 0) break;\n    if (A[i] < M && (i\
-    \ == 0 || A[i - 1] > A[i])) {\n      que.emplace(g(i, A[i]), i);\n    }\n    if\
-    \ (i + 1 < N && A[i + 1] == A[i] - 1) {\n      que.emplace(g(i + 1, A[i + 1]),\
-    \ i + 1);\n    }\n  }\n  return A;\n}\n#line 7 \"test/1_mytest/nth_element_from_sorted_matrix.test.cpp\"\
-    \n\nvoid test() {\n  ll N = RNG(1, 20);\n  ll M = RNG(1, 20);\n  vv(int, A, N,\
-    \ M);\n  vc<pair<int, int>> IJ;\n  FOR(i, N) FOR(j, M) IJ.eb(i, j);\n  shuffle(IJ);\n\
+    \n// https://uoj.ac/problem/891\ntemplate <typename T, bool MINIMIZE, typename\
+    \ F>\nvi nth_element_from_sorted_matrix(\n    ll N, ll M, ll K, F f, int k1 =\
+    \ 0, int k2 = 0, bool tr = false) {\n  static_assert(is_same_v<T, int> || is_same_v<T,\
+    \ ll> || is_same_v<T, i128>);\n  if (K == 0) return vi(N, 0);\n  if (N > M) {\n\
+    \    vi A = nth_element_from_sorted_matrix<T>(M, N, K, f, k2, k1, !tr);\n    vi\
+    \ B(N + 1);\n    FOR(i, M) B[0] += 1, B[A[i]] -= 1;\n    FOR(i, N) B[i + 1] +=\
+    \ B[i];\n    B.pop_back();\n    return B;\n  }\n  vi A(N);\n  if (K > N) {\n \
+    \   A = nth_element_from_sorted_matrix<T, MINIMIZE>(\n        N, M / 2, (K - N)\
+    \ / 2, f, k1, k2 + 1, tr);\n    for (auto &a : A) a *= 2;\n    K = K - (K - N)\
+    \ / 2 * 2;\n  }\n  pq_min<pair<T, int>> que;\n  auto g = [&](ll i, ll j) -> T\
+    \ {\n    i = ((i + 1) << k1) - 1;\n    j = ((j + 1) << k2) - 1;\n    T x = (tr\
+    \ ? f(j, i) : f(i, j));\n    return (MINIMIZE ? x : -x);\n  };\n  if (A[0] < M)\
+    \ que.emplace(g(0, A[0]), 0);\n  FOR(i, 1, N) if (A[i] < A[i - 1]) que.emplace(g(i,\
+    \ A[i]), i);\n  while (K) {\n    --K;\n    auto [x, i] = POP(que);\n    A[i]++;\n\
+    \    if (K == 0) break;\n    if (A[i] < M && (i == 0 || A[i - 1] > A[i])) {\n\
+    \      que.emplace(g(i, A[i]), i);\n    }\n    if (i + 1 < N && A[i + 1] == A[i]\
+    \ - 1) {\n      que.emplace(g(i + 1, A[i + 1]), i + 1);\n    }\n  }\n  return\
+    \ A;\n}\n#line 7 \"test/1_mytest/nth_element_from_sorted_matrix.test.cpp\"\n\n\
+    void test() {\n  ll N = RNG(1, 20);\n  ll M = RNG(1, 20);\n  vv(int, A, N, M);\n\
+    \  vc<pair<int, int>> IJ;\n  FOR(i, N) FOR(j, M) IJ.eb(i, j);\n  shuffle(IJ);\n\
     \  FOR(k, len(IJ)) {\n    auto [i, j] = IJ[k];\n    A[i][j] = k;\n  }\n\n  FOR(i,\
     \ N) sort(all(A[i]));\n  FOR(j, M) {\n    vc<int> col(N);\n    FOR(i, N) col[i]\
     \ = A[i][j];\n    sort(all(col));\n    FOR(i, N) A[i][j] = col[i];\n  }\n  if\
@@ -230,8 +232,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/nth_element_from_sorted_matrix.test.cpp
   requiredBy: []
-  timestamp: '2026-11-18 15:44:25+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-22 23:28:55+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/nth_element_from_sorted_matrix.test.cpp
 layout: document

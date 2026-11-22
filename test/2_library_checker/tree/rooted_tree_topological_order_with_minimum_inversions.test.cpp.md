@@ -583,7 +583,7 @@ data:
     // https://qoj.ac/problem/6561\n// \u3044\u3084\u62BD\u8C61\u5316\u304C\u8DB3\u308A\
     \u3066\u3044\u306A\u3044\u306A\u3001x<=y iff xy<=yx \u304C\u3044\u308B\u304B\uFF1F\
     \ntemplate <typename TREE, typename Monoid, bool MINIMIZE, typename F>\npair<vc<int>,\
-    \ typename Monoid::value_type> optimal_product_on_tree(TREE& tree, vc<typename\
+    \ typename Monoid::value_type> optimal_product_on_tree(\n    TREE& tree, vc<typename\
     \ Monoid::value_type> A, F compare) {\n  const int N = tree.N;\n  const int root\
     \ = tree.V[0];\n  using X = typename Monoid::value_type;\n\n  vc<int> head(N),\
     \ tail(N), nxt(N);\n  FOR(v, N) head[v] = v, tail[v] = v, nxt[v] = -1;\n\n  UnionFind\
@@ -596,10 +596,10 @@ data:
     \  // if seg[i]==x: return \u3057\u3088\u3046\u3068\u601D\u3063\u305F\u304C\u30C7\
     \u30FC\u30BF\u304C\u5909\u308F\u308B\u3068\u3044\u3046\u8A71\u306A\u306E\u3067\
     \u307E\u305A\u3044\n  auto set = [&](int i, int x) -> void {\n    i += size;\n\
-    \    seg[i] = x;\n    while (i > 1) { i /= 2, upd(i); }\n  };\n  FOR(i, N) if\
-    \ (i != root) seg[size + i] = i;\n  FOR_R(i, 1, size) upd(i);\n\n  FOR(N - 1)\
-    \ {\n    int v = seg[1];\n    int a = head[uf[v]], b = tail[uf[v]];\n    int p\
-    \ = uf[tree.parent[a]];\n    int c = head[p], d = tail[p];\n    X pv = Monoid::op(A[p],\
+    \    seg[i] = x;\n    while (i > 1) {\n      i /= 2, upd(i);\n    }\n  };\n  FOR(i,\
+    \ N) if (i != root) seg[size + i] = i;\n  FOR_R(i, 1, size) upd(i);\n\n  FOR(N\
+    \ - 1) {\n    int v = seg[1];\n    int a = head[uf[v]], b = tail[uf[v]];\n   \
+    \ int p = uf[tree.parent[a]];\n    int c = head[p], d = tail[p];\n    X pv = Monoid::op(A[p],\
     \ A[v]);\n    uf.merge(p, v);\n    int w = uf[v];\n    A[w] = pv, head[w] = c,\
     \ tail[w] = b, nxt[d] = a;\n    int av = -1, ap = -1;\n    if (v == w && uf[v]\
     \ != uf[root]) av = v;\n    if (p == w && uf[p] != uf[root]) ap = p;\n    set(v,\
@@ -645,7 +645,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
   requiredBy: []
-  timestamp: '2026-11-18 15:44:25+09:00'
+  timestamp: '2026-11-22 23:28:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp

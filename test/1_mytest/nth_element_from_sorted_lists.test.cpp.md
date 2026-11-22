@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/nth_element_from_sorted_lists.hpp
     title: convex/nth_element_from_sorted_lists.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -160,23 +160,27 @@ data:
     \ <typename T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) {\n    int j = RNG(0,\
     \ i + 1);\n    if (i != j) swap(A[i], A[j]);\n  }\n}\n#line 6 \"test/1_mytest/nth_element_from_sorted_lists.test.cpp\"\
     \n\n#line 1 \"convex/nth_element_from_sorted_lists.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/convex/nth_element_from_sorted_lists.hpp\n\
-    \n// \u884C\u306E\u8981\u7D20\u6570\u304C S[0], S[1], ..., S[N-1]\n// O(N(logN+logK))\
+    \n// \u884C\u306E\u8981\u7D20\u6570\u304C S[0], S[1], ..., S[N-1]\n// MINIMIZE=true:\
+    \ \u6607\u9806\u30BD\u30FC\u30C8\u3055\u308C\u3066\u3044\u3066\u5C0F\u3055\u3044\
+    \u65B9\u304B\u3089\u3068\u308B\n// MINIMIZE=false: \u964D\u9806\u3055\u308C\u3066\
+    \u3044\u3066\u5927\u304D\u3044\u65B9\u304B\u3089\u3068\u308B\n// O(N(logN+logK))\
     \ time\n// query num: O(NlogK), \u3042\u307E\u308A\u6700\u9069\u3058\u3083\u306A\
     \u3044\u3068\u601D\u3046\n// \u901A\u3063\u305F\u304C\u3042\u3084\u3057\u3044\u3063\
     \u307D\u3044: https://codeforces.com/contest/1275/problem/F\n// \u5217\u65B9\u5411\
     \u3082\u30BD\u30FC\u30C8\u3055\u308C\u3066\u3044\u308B\u306A\u3089 matrix \u3092\
     \u4F7F\u304A\u3046!!\n// https://codeforces.com/problemset/problem/1034/D\ntemplate\
-    \ <typename T, typename F>\nvi nth_element_from_sorted_lists(vi S, ll K, F f,\
-    \ int k = 0) {\n  ll N = len(S);\n  ll sm = 0;\n  for (auto& x : S) sm += x >>\
-    \ k;\n  assert(0 <= K && K <= sm);\n  if (K == 0) return vi(N, 0);\n  if (K ==\
-    \ sm) return S;\n\n  ll row = 0;\n  for (auto& x : S) row += (x >= (1LL << k));\n\
-    \n  auto g = [&](int i, ll j) -> T {\n    j = ((j + 1) << k) - 1;\n    return\
-    \ (j >= S[i] ? infty<T> : f(i, j));\n  };\n  vi A(N);\n  if (K > row) {\n    A\
-    \ = nth_element_from_sorted_lists<T>(S, (K - row) / 2, f, k + 1);\n    for (auto&\
-    \ a : A) a *= 2;\n    K = K - (K - row) / 2 * 2;\n  }\n  pq_min<pair<T, int>>\
-    \ que;\n  FOR(i, N) que.emplace(g(i, A[i]), i);\n  while (K) {\n    --K;\n   \
-    \ auto [x, i] = POP(que);\n    A[i]++;\n    if (K) que.emplace(g(i, A[i]), i);\n\
-    \  }\n  return A;\n}\n#line 8 \"test/1_mytest/nth_element_from_sorted_lists.test.cpp\"\
+    \ <typename T, bool MINIMIZE, typename F>\nvi nth_element_from_sorted_lists(vi\
+    \ S, ll K, F f, int k = 0) {\n  static_assert(is_same_v<T, int> || is_same_v<T,\
+    \ ll> || is_same_v<T, i128>);\n  ll N = len(S);\n  ll sm = 0;\n  for (auto& x\
+    \ : S) sm += x >> k;\n  assert(0 <= K && K <= sm);\n  if (K == 0) return vi(N,\
+    \ 0);\n  if (K == sm) return S;\n\n  ll row = 0;\n  for (auto& x : S) row += (x\
+    \ >= (1LL << k));\n\n  auto g = [&](int i, ll j) -> T {\n    j = ((j + 1) << k)\
+    \ - 1;\n    if (j >= S[i]) return infty<T>;\n    T x = f(i, j);\n    return (MINIMIZE\
+    \ ? x : -x);\n  };\n  vi A(N);\n  if (K > row) {\n    A = nth_element_from_sorted_lists<T,\
+    \ MINIMIZE>(S, (K - row) / 2, f, k + 1);\n    for (auto& a : A) a *= 2;\n    K\
+    \ = K - (K - row) / 2 * 2;\n  }\n  pq_min<pair<T, int>> que;\n  FOR(i, N) que.emplace(g(i,\
+    \ A[i]), i);\n  while (K) {\n    --K;\n    auto [x, i] = POP(que);\n    A[i]++;\n\
+    \    if (K) que.emplace(g(i, A[i]), i);\n  }\n  return A;\n}\n#line 8 \"test/1_mytest/nth_element_from_sorted_lists.test.cpp\"\
     \n\nvoid test() {\n  ll N = RNG(1, 20);\n  vi S(N);\n  FOR(i, N) S[i] = RNG(0,\
     \ 20);\n  vvc<int> dat(N);\n  vc<int> A;\n  FOR(i, N) FOR(S[i]) A.eb(i);\n  shuffle(A);\n\
     \  FOR(p, len(A)) dat[A[p]].eb(p);\n  int K = RNG(0, SUM<ll>(S) + 1);\n\n  set<pair<int,\
@@ -205,8 +209,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/nth_element_from_sorted_lists.test.cpp
   requiredBy: []
-  timestamp: '2026-11-18 15:44:25+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-22 23:28:55+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/nth_element_from_sorted_lists.test.cpp
 layout: document
