@@ -45,7 +45,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/minmincnt_add.hpp
       title: alg/acted_monoid/minmincnt_add.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/acted_monoid/sum_add.hpp
       title: alg/acted_monoid/sum_add.hpp
     - icon: ':heavy_check_mark:'
@@ -318,7 +318,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/bit_array.hpp
       title: ds/bit_array.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/bit_vector.hpp
       title: ds/bit_vector.hpp
     - icon: ':heavy_check_mark:'
@@ -372,7 +372,7 @@ data:
     - icon: ':warning:'
       path: ds/my_multiset.hpp
       title: ds/my_multiset.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/node_pool.hpp
       title: ds/node_pool.hpp
     - icon: ':warning:'
@@ -601,7 +601,7 @@ data:
     - icon: ':warning:'
       path: ds/segtree/dynamic_dual_segtree.hpp
       title: ds/segtree/dynamic_dual_segtree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/segtree/dynamic_lazy_segtree.hpp
       title: ds/segtree/dynamic_lazy_segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -819,7 +819,7 @@ data:
     - icon: ':warning:'
       path: flow/longest_shortest_path.hpp
       title: flow/longest_shortest_path.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: flow/maxflow.hpp
       title: flow/maxflow.hpp
     - icon: ':warning:'
@@ -1049,10 +1049,10 @@ data:
     - icon: ':warning:'
       path: graph/degree_sequence.hpp
       title: graph/degree_sequence.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/directed_mst.hpp
       title: graph/directed_mst.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/dominator_tree.hpp
       title: graph/dominator_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -1154,7 +1154,7 @@ data:
     - icon: ':warning:'
       path: graph/restore_euler_tour.hpp
       title: graph/restore_euler_tour.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/reverse_graph.hpp
       title: graph/reverse_graph.hpp
     - icon: ':heavy_check_mark:'
@@ -1187,7 +1187,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':heavy_check_mark:'
@@ -1239,7 +1239,7 @@ data:
     - icon: ':warning:'
       path: graph/blackbox/bfs.hpp
       title: graph/blackbox/bfs.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: graph/blackbox/complement_graph_bfs.hpp
       title: graph/blackbox/complement_graph_bfs.hpp
     - icon: ':warning:'
@@ -1647,7 +1647,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/all_inverse.hpp
       title: mod/all_inverse.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/barrett.hpp
       title: mod/barrett.hpp
     - icon: ':heavy_check_mark:'
@@ -1695,7 +1695,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/min_of_linear_segments.hpp
       title: mod/min_of_linear_segments.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/mod_inv.hpp
       title: mod/mod_inv.hpp
     - icon: ':warning:'
@@ -1740,7 +1740,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/modular_subset_sum.hpp
       title: mod/modular_subset_sum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: mod/montgomery_modint.hpp
       title: mod/montgomery_modint.hpp
     - icon: ':heavy_check_mark:'
@@ -1800,13 +1800,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/convex_floor_sum.hpp
       title: nt/convex_floor_sum.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/coprime_factorization.hpp
       title: nt/coprime_factorization.hpp
     - icon: ':heavy_check_mark:'
       path: nt/count_by_factor_type.hpp
       title: nt/count_by_factor_type.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/crt.hpp
       title: nt/crt.hpp
     - icon: ':heavy_check_mark:'
@@ -1830,7 +1830,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/ext_gcd.hpp
       title: nt/ext_gcd.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/factor.hpp
       title: nt/factor.hpp
     - icon: ':warning:'
@@ -1854,7 +1854,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/integer_kth_root.hpp
       title: nt/integer_kth_root.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/is_prime.hpp
       title: nt/is_prime.hpp
     - icon: ':heavy_check_mark:'
@@ -2689,7 +2689,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/suffix_array.hpp
       title: string/suffix_array.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: string/suffix_automaton.hpp
       title: string/suffix_automaton.hpp
     - icon: ':heavy_check_mark:'

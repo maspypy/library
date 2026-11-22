@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: graph/blackbox/complement_graph_bfs.hpp
     title: graph/blackbox/complement_graph_bfs.hpp
   _extendedRequiredBy: []

@@ -116,7 +116,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/EGZ.hpp
     title: nt/EGZ.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/crt.hpp
     title: nt/crt.hpp
   - icon: ':warning:'
@@ -963,9 +963,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/mod/mod_inv.hpp
@@ -1110,7 +1110,7 @@ data:
   - nt/EGZ.hpp
   - nt/crt.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/4_aoj/NTL_2_C.test.cpp
   - test/4_aoj/NTL_2_B.test.cpp

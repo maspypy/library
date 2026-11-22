@@ -98,7 +98,7 @@ data:
   - icon: ':warning:'
     path: string/generalized_suffix_automaton.hpp
     title: string/generalized_suffix_automaton.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
   _extendedVerifiedWith:
@@ -273,9 +273,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/500/G
@@ -671,7 +671,7 @@ data:
   - string/enumerate_occurrences.hpp
   - string/suffix_automaton.hpp
   timestamp: '2026-11-16 13:02:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/4_aoj/GRL_5_E.test.cpp
   - test/4_aoj/GRL_2_A.test.cpp

@@ -26,7 +26,7 @@ data:
   - icon: ':warning:'
     path: flow/longest_shortest_path.hpp
     title: flow/longest_shortest_path.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':heavy_check_mark:'
@@ -56,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: graph/blackbox/complement_graph_bfs.hpp
     title: graph/blackbox/complement_graph_bfs.hpp
   - icon: ':warning:'
@@ -128,10 +128,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/directed_mst.hpp
     title: graph/directed_mst.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/dominator_tree.hpp
     title: graph/dominator_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -269,7 +269,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -314,7 +314,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -377,7 +377,7 @@ data:
   - icon: ':warning:'
     path: string/generalized_suffix_automaton.hpp
     title: string/generalized_suffix_automaton.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
   - icon: ':heavy_check_mark:'

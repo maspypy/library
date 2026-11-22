@@ -12,9 +12,9 @@ data:
     path: graph/blackbox/complement_graph_distance.hpp
     title: graph/blackbox/complement_graph_distance.hpp
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/graph/blackbox/complement_graph_bfs.hpp
@@ -153,7 +153,7 @@ data:
   requiredBy:
   - graph/blackbox/complement_graph_distance.hpp
   timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith: []
 documentation_of: graph/blackbox/complement_graph_bfs.hpp
 layout: document

@@ -56,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/directed_mst.hpp
     title: graph/directed_mst.hpp
   - icon: ':warning:'
