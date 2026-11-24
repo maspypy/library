@@ -204,7 +204,7 @@ struct Dynamic_SegTree {
   ll min_left_rec(np c, const F &check, ll l, ll r, ll qr, X &x) {
     if (qr <= l) return L0;
     if (r <= qr && check(MX::op(c->x, x))) {
-      x = MX::op(x, c->x);
+      x = MX::op(c->x, x);
       return L0;
     }
     if (r == l + 1) return r;

@@ -22,7 +22,7 @@ struct FenwickTree_2D_Dense {
   template <typename F>
   void build(int H0, int W0, F f) {
     H = H0, W = W0;
-    dat.assign(H * W);
+    dat.resize(H * W);
     FOR(x, H) FOR(y, W) { dat[W * x + y] = f(x, y); }
     FOR(x, 1, H + 1) {
       FOR(y, 1, W + 1) {

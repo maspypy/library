@@ -32,6 +32,7 @@ struct SQRT_Tree {
   void build(int n_, F f) {
     N = n_;
     assert(N <= (1 << 24));
+    A.clear();
     A.reserve(N);
     FOR(i, N) A.eb(f(i));
     // まず prefix, suffix の構築
@@ -47,6 +48,7 @@ struct SQRT_Tree {
     // between の構築
     BETWEEN.resize(K);
     FOR(k, K) {
+      BETWEEN[k].clear();
       // n : 全体の小ブロックの個数
       auto get = [&](int i) -> X { return SUFF[k][SZ[k] * i]; };
       int n = N / SZ[k];
@@ -59,8 +61,8 @@ struct SQRT_Tree {
     }
   }
 
-  static constexpr int BIT_TO_LAYER[] = {0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2,
-                                         3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3};
+  static constexpr int BIT_TO_LAYER[] = {
+      0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3};
 
   X prod(int L, int R) {
     assert(0 <= L && L <= R && R <= N);

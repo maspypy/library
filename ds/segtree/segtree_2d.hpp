@@ -2,6 +2,7 @@
 // 点の重複があっても別の点として set などがされる
 template <typename Monoid, typename XY, bool SMALL_X = false>
 struct SegTree_2D {
+  static_assert(!SMALL_X || is_same_v<XY, int>);
   using MX = Monoid;
   using S = typename MX::value_type;
   static_assert(MX::commute);
@@ -20,14 +21,13 @@ struct SegTree_2D {
   vc<int> to_left;
 
   SegTree_2D(vc<XY>& X, vc<XY>& Y)
-      : SegTree_2D(len(X), [&](int i) -> tuple<XY, XY, S> {
-          return {X[i], Y[i], MX::id()};
-        }) {}
+      : SegTree_2D(len(X),
+            [&](int i) -> tuple<XY, XY, S> { return {X[i], Y[i], MX::id()}; }) {
+  }
 
   SegTree_2D(vc<XY>& X, vc<XY>& Y, vc<S>& vals)
-      : SegTree_2D(len(X), [&](int i) -> tuple<XY, XY, S> {
-          return {X[i], Y[i], vals[i]};
-        }) {}
+      : SegTree_2D(len(X),
+            [&](int i) -> tuple<XY, XY, S> { return {X[i], Y[i], vals[i]}; }) {}
 
   // f(i) = (x,y,val)
   template <typename F>
@@ -54,7 +54,7 @@ struct SegTree_2D {
     vc<int> IX(N);
     FOR(i, N) IX[i] = xtoi(X[i]);
     indptr.assign(2 * size, 0);
-    for (auto i: IX) {
+    for (auto i : IX) {
       i += size;
       while (i) indptr[i]++, i /= 2;
     }
@@ -66,14 +66,16 @@ struct SegTree_2D {
     vc<int> I = argsort(Y);
     pos.resize(N);
     FOR(i, N) pos[I[i]] = i;
-    for (auto raw_idx: I) {
+    for (auto raw_idx : I) {
       int i = IX[raw_idx] + size;
       int j = -1;
       while (i) {
         int p = ptr[i];
         ptr[i]++;
         dat[indptr[i + 1] + p] = wt[raw_idx];
-        if (j != -1) { to_left[p] = (j % 2 == 0); }
+        if (j != -1) {
+          to_left[p] = (j % 2 == 0);
+        }
         j = i, i /= 2;
       }
     }
@@ -170,7 +172,7 @@ struct SegTree_2D {
     return res;
   }
 
-private:
+ private:
   inline int xtoi(XY x) {
     if constexpr (SMALL_X) return clamp<XY>(x - minX, 0, NX);
     return LB(keyX, x);

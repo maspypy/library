@@ -8,7 +8,7 @@
 // https://atcoder.jp/contests/agc023/tasks/agc023_f
 // https://qoj.ac/problem/6561
 // いや抽象化が足りていないな、x<=y iff xy<=yx がいるか？
-template <typename TREE, typename Monoid, bool MINIMIZE, typename F>
+template <typename TREE, typename Monoid, typename F>
 pair<vc<int>, typename Monoid::value_type> optimal_product_on_tree(
     TREE& tree, vc<typename Monoid::value_type> A, F compare) {
   const int N = tree.N;

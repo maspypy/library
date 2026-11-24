@@ -1,6 +1,6 @@
 // Source: https://github.com/maspypy/library/blob/main/geo/pick_formula.hpp
 
-// input: simple polygon
+// input: ccw simple polygon
 // return: area2, inner, boundary
 template <typename T>
 tuple<i128, i128, i128> pick_formula(vc<Point<T>>& A) {
@@ -14,6 +14,7 @@ tuple<i128, i128, i128> pick_formula(vc<Point<T>>& A) {
     P d = b - a;
     bd += gcd(d.x, d.y);
   }
+  assert(area2 >= 0);
   i128 in = (area2 + 2 - bd) / 2;
   return {area2, in, bd};
 }

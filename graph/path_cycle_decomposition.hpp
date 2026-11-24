@@ -8,8 +8,7 @@ template <typename GT>
 pair<vvc<int>, vvc<int>> path_cycle_decomposition(GT& G) {
   static_assert(!GT::is_directed);
   int N = G.N;
-  auto deg = G.deg_array();
-  assert(MAX(deg) <= 2);
+  FOR(v, N) assert(G.deg(v) <= 2);
 
   vc<bool> done(N);
   auto calc_frm = [&](int v) -> vc<int> {
@@ -30,11 +29,11 @@ pair<vvc<int>, vvc<int>> path_cycle_decomposition(GT& G) {
   };
   vvc<int> paths, cycs;
   FOR(v, N) {
-    if (deg[v] == 0) {
+    if (G.deg(v) == 0) {
       done[v] = 1;
       paths.eb(vc<int>({int(v)}));
     }
-    if (done[v] || deg[v] != 1) continue;
+    if (done[v] || G.deg(v) != 1) continue;
     paths.eb(calc_frm(v));
   }
   FOR(v, N) {

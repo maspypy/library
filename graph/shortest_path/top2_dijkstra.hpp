@@ -4,7 +4,7 @@
 
 // 経路復元はなしで距離と種類だけになっている
 template <typename T, typename GT>
-vc<typename Monoid_Min2<T, int>::Data> top2_dijkstra(GT& G, vc<int> vs) {
+vc<typename Monoid_Min2<T, int>::Data> top2_dijkstra(GT& G, vc<T> init_dist) {
   assert(G.is_prepared());
   int N = G.N;
   using Mono = Monoid_Min2<T, int>;
@@ -16,9 +16,7 @@ vc<typename Monoid_Min2<T, int>::Data> top2_dijkstra(GT& G, vc<int> vs) {
     if (dist[v].add_element(c, x)) que.emplace(x, v, c);
   };
 
-  for (auto& v : vs) {
-    upd(v, v, 0);
-  }
+  FOR(v, N) if (init_dist[v] < infty<T>) upd(v, v, init_dist[v]);
 
   while (len(que)) {
     auto [dv, v, c] = POP(que);

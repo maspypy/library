@@ -12,7 +12,7 @@ template <typename T, bool MINIMIZE, typename F>
 vi nth_element_from_sorted_lists(vi S, ll K, F f, int k = 0) {
   static_assert(is_same_v<T, int> || is_same_v<T, ll> || is_same_v<T, i128>);
   ll N = len(S);
-  ll sm = 0;
+  i128 sm = 0;
   for (auto& x : S) sm += x >> k;
   assert(0 <= K && K <= sm);
   if (K == 0) return vi(N, 0);

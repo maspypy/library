@@ -30,8 +30,7 @@ pair<vc<T>, vc<int>> dijkstra(GT& G, int v) {
   vector<T> dist(N, infty<T>);
   vector<int> par(N, -1);
   using P = pair<T, int>;
-
-  priority_queue<P, vector<P>, greater<P>> que;
+  pq_min<P> que;
 
   dist[v] = 0;
   que.emplace(0, v);
@@ -51,27 +50,23 @@ pair<vc<T>, vc<int>> dijkstra(GT& G, int v) {
 
 // 多点スタート。[dist, par, root]
 template <typename T, typename GT>
-tuple<vc<T>, vc<int>, vc<int>> dijkstra(GT& G, vc<int> vs) {
+tuple<vc<T>, vc<int>, vc<int>> dijkstra(GT& G, vc<T> init_dist) {
   assert(G.is_prepared());
   int N = G.N;
-  vc<T> dist(N, infty<T>);
+  vc<T>& dist = init_dist;
   vc<int> par(N, -1);
   vc<int> root(N, -1);
 
   using P = pair<T, int>;
+  pq_min<P> que;
 
-  priority_queue<P, vector<P>, greater<P>> que;
-
-  FOR(k, len(vs)) {
-    int v = vs[k];
-    if (chmin(dist[v], 0)) root[v] = v, que.emplace(T(0), v);
-  }
+  FOR(v, N) if (dist[v] < infty<T>) que.emplace(dist[v], v), root[v] = v;
 
   while (!que.empty()) {
     auto [dv, v] = que.top();
     que.pop();
     if (dv > dist[v]) continue;
-    for (auto&& e : G[v]) {
+    for (auto& e : G[v]) {
       if (chmin(dist[e.to], dist[e.frm] + e.cost)) {
         root[e.to] = root[e.frm];
         par[e.to] = e.frm;

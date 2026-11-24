@@ -62,15 +62,17 @@ struct Slope_Trick_1 {
     auto [x0, x1] = domain(f);
     f.min_f += b;
     while (a > 0) {
-      f.min_f += f.que_l.pop_max();
-      f.que_r.push(f.que_l.pop_max());
+      ll x = f.que_l.pop_max();
+      f.min_f += x;
+      f.que_r.push(x);
       if (f.que_l.empty()) f.que_l.push(x0);
       --a;
     }
     while (a < 0) {
-      f.min_f -= f.que_r.pop_min();
-      f.que_l.push(f.que_r.pop_min());
-      if (f.que_r.empty()) f.que_r.push(x0);
+      ll x = f.que_r.pop_min();
+      f.min_f -= x;
+      f.que_l.push(x);
+      if (f.que_r.empty()) f.que_r.push(x1);
       ++a;
     }
     return f;

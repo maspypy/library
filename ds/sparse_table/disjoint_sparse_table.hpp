@@ -26,6 +26,7 @@ struct Disjoint_Sparse_Table {
     n = m, log = 1;
     while ((1 << log) < n) ++log;
     dat.resize(log);
+    dat[0].clear();
     dat[0].reserve(n);
     FOR(i, n) dat[0].eb(f(i));
     FOR(i, 1, log) {
