@@ -28,7 +28,7 @@ struct Compress_Tree {
     if (len(FS) == 0) FS.build(N);
     for (int v : V) FS.insert(tree.LID[v]);
     int k = 0;
-    FS.enumerate(0, N, [&](int i) -> void {
+    FS.enumerate(0, N, [&](int i, bool) -> void {
       FS.erase(i);
       V[k++] = tree.V[i];
     });
