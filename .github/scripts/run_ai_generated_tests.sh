@@ -26,8 +26,22 @@ index=0
 for source in "${tests[@]}"; do
   exe="$work_dir/test-$index"
   echo "::group::${source}"
+  compile_source="$source"
+  # Gomory–Hu includes graph/base.hpp both directly and through maxflow.hpp.
+  # The library expander deduplicates these intentionally unguarded headers.
+  if [[ "${source##*/}" == gomory_hu_all_pairs_cuts.test.cpp ]]; then
+    compile_source="$work_dir/test-$index.cpp"
+    if ! python3 scripts/expander.py "$source" > "$compile_source" ||
+       grep -Fq '// [warning] include not found:' "$compile_source"; then
+      echo "::error file=${source}::Library header expansion failed"
+      fails=$((fails + 1))
+      echo "::endgroup::"
+      index=$((index + 1))
+      continue
+    fi
+  fi
   echo "[compile] $source"
-  if "$CXX" -std=c++17 -O2 -Wall -g -mavx2 -mpopcnt -I. "$source" -o "$exe"; then
+  if "$CXX" -std=c++17 -O2 -Wall -g -mavx2 -mpopcnt -I. "$compile_source" -o "$exe"; then
     echo "[run] $source (timeout: ${TEST_TIMEOUT}s)"
     if timeout --kill-after=5s "${TEST_TIMEOUT}s" "$exe" < /dev/null; then
       echo "[PASS] $source"
