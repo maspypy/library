@@ -1,7 +1,6 @@
 // Source: https://github.com/maspypy/library/blob/main/ds/binary_trie.hpp
 #include "ds/node_pool.hpp"
 
-// 非永続ならば、2 * 要素数 のノード数
 template <int LOG, bool PERSISTENT, typename UINT = u64,
     typename SIZE_TYPE = u32>
 struct Binary_Trie {
@@ -10,8 +9,6 @@ struct Binary_Trie {
   static_assert(0 < LOG && LOG <= numeric_limits<UINT>::digits);
 
   struct Node {
-    int width;
-    UINT val;
     T cnt;
     Node *l, *r;
   };
@@ -40,12 +37,12 @@ struct Binary_Trie {
       }
       np c = root->l;
       if (c) {
-        dfs(dfs, c, val << (c->width) | (c->val), ht - (c->width));
+        dfs(dfs, c, 2 * val + 0, ht - 1);
         if (end) return;
       }
       c = root->r;
       if (c) {
-        dfs(dfs, c, val << (c->width) | (c->val), ht - (c->width));
+        dfs(dfs, c, 2 * val + 1, ht - 1);
         if (end) return;
       }
     };
@@ -82,12 +79,12 @@ struct Binary_Trie {
   }
 
  private:
-  inline UINT mask(int k) { return (UINT(1) << k) - 1; }
+  inline UINT mask(int k) { UINT(full_mask(k)); }
 
-  np new_node(int width, UINT val) {
+  np new_node() {
     np c = pool.create();
     c->l = c->r = nullptr;
-    c->width = width, c->val = val, c->cnt = 0;
+    c->cnt = 0;
     return c;
   }
 
@@ -104,36 +101,13 @@ struct Binary_Trie {
     bool go_r = (val >> (ht - 1)) & 1;
     np c = (go_r ? root->r : root->l);
     if (!c) {
-      c = new_node(ht, val);
+      c = new_node();
       c->cnt = cnt;
       if (!go_r) root->l = c;
       if (go_r) root->r = c;
       return root;
     }
-    int w = c->width;
-    if ((val >> (ht - w)) == c->val) {
-      c = add_rec(c, ht - w, val & mask(ht - w), cnt);
-      if (!go_r) root->l = c;
-      if (go_r) root->r = c;
-      return root;
-    }
-    int same = w - 1 - topbit((val >> (ht - w)) ^ (c->val));
-    np n = new_node(same, (c->val) >> (w - same));
-    n->cnt = c->cnt + cnt;
-    c = clone(c);
-    c->width = w - same;
-    c->val = c->val & mask(w - same);
-    if ((val >> (ht - same - 1)) & 1) {
-      n->l = c;
-      n->r = new_node(ht - same, val & mask(ht - same));
-      n->r->cnt = cnt;
-    } else {
-      n->r = c;
-      n->l = new_node(ht - same, val & mask(ht - same));
-      n->l->cnt = cnt;
-    }
-    if (!go_r) root->l = n;
-    if (go_r) root->r = n;
+    (go_r ? root->r : root->l) = add_rec(c, ht - 1, val & mask(ht - 1), cnt);
     return root;
   }
 
@@ -149,8 +123,7 @@ struct Binary_Trie {
     if (k >= sl) {
       c = right, k -= sl;
     }
-    int w = c->width;
-    return kth_rec(c, val << w | (c->val), k, ht - w, xor_val);
+    return kth_rec(c, k, ht - 1, xor_val);
   }
 
   T prefix_count_rec(np root, int ht, UINT LIM, UINT xor_val, UINT val) {
