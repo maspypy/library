@@ -289,9 +289,9 @@ data:
     \ A.end = B.end;\n      return A;\n    };\n    auto f_ev = [&](Data A, int v)\
     \ -> Data {\n      if (A.diam == -1) {\n        A.diam = 0, A.left = v, A.right\
     \ = v, A.path = 0, A.end = v;\n      }\n      return A;\n    };\n    auto f_ve\
-    \ = [&](Data A, int r, int nxt_r) -> Data {\n      A.path += abs(tree.depth_weight[r]\
-    \ - tree.depth_weight[nxt_r]);\n      if (chmax(A.diam, A.path)) {\n        A.left\
-    \ = nxt_r, A.right = A.end;\n      }\n      return A;\n    };\n\n    Rerooting_DP<TREE,\
+    \ = [&](Data A, int r, int nxt_r) -> Data {\n      A.path += abs(tree.depth_weighted[r]\
+    \ - tree.depth_weighted[nxt_r]);\n      if (chmax(A.diam, A.path)) {\n       \
+    \ A.left = nxt_r, A.right = A.end;\n      }\n      return A;\n    };\n\n    Rerooting_DP<TREE,\
     \ Data> DP(tree, f_ee, f_ev, f_ve, id);\n    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n\
     \    FOR(v, N) {\n      dp[v] = {DP.dp[v].left, DP.dp[v].right, DP.dp[v].diam};\n\
     \      dp_1[v] = {\n          DP.dp_subtree[v].left, DP.dp_subtree[v].right, DP.dp_subtree[v].diam};\n\
@@ -318,7 +318,7 @@ data:
     \ f_ev = [&](Data A, int v) -> Data {\n      if (A.diam == -1) {\n        A.diam\
     \ = 0, A.left = v, A.right = v, A.path = 0, A.end = v;\n      }\n      return\
     \ A;\n    };\n    auto f_ve = [&](Data A, int r, int nxt_r) -> Data {\n      A.path\
-    \ += abs(tree.depth_weight[r] - tree.depth_weight[nxt_r]);\n      if (chmax(A.diam,\
+    \ += abs(tree.depth_weighted[r] - tree.depth_weighted[nxt_r]);\n      if (chmax(A.diam,\
     \ A.path)) {\n        A.left = nxt_r, A.right = A.end;\n      }\n      return\
     \ A;\n    };\n\n    Rerooting_DP<TREE, Data> DP(tree, f_ee, f_ev, f_ve, id);\n\
     \    dp.resize(N), dp_1.resize(N), dp_2.resize(N);\n    FOR(v, N) {\n      dp[v]\
@@ -339,7 +339,7 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/subtree_diameter.hpp
   requiredBy: []
-  timestamp: '2026-11-16 13:02:54+09:00'
+  timestamp: '2026-11-25 01:47:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree_dp/subtree_diameter.hpp

@@ -72,7 +72,7 @@ data:
     \ xor_val \u3057\u305F\u3042\u3068\u306E\u5024\u3067 [lo, hi) \u5185\u306B\u5165\
     \u308B\u3082\u306E\u306E\u500B\u6570\n  T count(np root, UINT lo, UINT hi, UINT\
     \ xor_val) {\n    return prefix_count(root, hi, xor_val) - prefix_count(root,\
-    \ lo, xor_val);\n  }\n\n private:\n  inline UINT mask(int k) { UINT(full_mask(k));\
+    \ lo, xor_val);\n  }\n\n private:\n  inline UINT mask(int k) { return UINT(full_mask(k));\
     \ }\n\n  np new_node(int width, UINT val) {\n    np c = pool.create();\n    c->l\
     \ = c->r = nullptr;\n    c->width = width, c->val = val, c->cnt = 0;\n    return\
     \ c;\n  }\n\n  np clone(np c) {\n    if (!c || !PERSISTENT) return c;\n    return\
@@ -135,7 +135,7 @@ data:
     \ 0);\n  }\n\n  // xor_val \u3057\u305F\u3042\u3068\u306E\u5024\u3067 [lo, hi)\
     \ \u5185\u306B\u5165\u308B\u3082\u306E\u306E\u500B\u6570\n  T count(np root, UINT\
     \ lo, UINT hi, UINT xor_val) {\n    return prefix_count(root, hi, xor_val) - prefix_count(root,\
-    \ lo, xor_val);\n  }\n\n private:\n  inline UINT mask(int k) { UINT(full_mask(k));\
+    \ lo, xor_val);\n  }\n\n private:\n  inline UINT mask(int k) { return UINT(full_mask(k));\
     \ }\n\n  np new_node(int width, UINT val) {\n    np c = pool.create();\n    c->l\
     \ = c->r = nullptr;\n    c->width = width, c->val = val, c->cnt = 0;\n    return\
     \ c;\n  }\n\n  np clone(np c) {\n    if (!c || !PERSISTENT) return c;\n    return\
@@ -171,7 +171,7 @@ data:
   isVerificationFile: false
   path: ds/binary_trie_compressed.hpp
   requiredBy: []
-  timestamp: '2026-11-24 20:53:33+09:00'
+  timestamp: '2026-11-25 01:47:58+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/binary_trie_compressed.hpp
