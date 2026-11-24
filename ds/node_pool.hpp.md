@@ -11,6 +11,9 @@ data:
   - icon: ':question:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
+  - icon: ':warning:'
+    path: ds/binary_trie_compressed.hpp
+    title: ds/binary_trie_compressed.hpp
   - icon: ':heavy_check_mark:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
@@ -339,6 +342,7 @@ data:
   - ds/splaytree/splaytree_basic.hpp
   - ds/splaytree/splaytree_monoid.hpp
   - ds/splaytree/splaytree_acted_set.hpp
+  - ds/binary_trie_compressed.hpp
   - ds/sortable_array.hpp
   - ds/weight_balanced_tree/wbt_basic.hpp
   - ds/weight_balanced_tree/wbt_monoid.hpp

@@ -315,6 +315,9 @@ data:
     - icon: ':question:'
       path: ds/binary_trie.hpp
       title: ds/binary_trie.hpp
+    - icon: ':warning:'
+      path: ds/binary_trie_compressed.hpp
+      title: ds/binary_trie_compressed.hpp
     - icon: ':heavy_check_mark:'
       path: ds/bit_array.hpp
       title: ds/bit_array.hpp
