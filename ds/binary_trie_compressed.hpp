@@ -82,7 +82,7 @@ struct Binary_Trie_Compressed {
   }
 
  private:
-  inline UINT mask(int k) { UINT(full_mask(k)); }
+  inline UINT mask(int k) { return UINT(full_mask(k)); }
 
   np new_node(int width, UINT val) {
     np c = pool.create();
