@@ -497,18 +497,18 @@ data:
     \u308B\u3068\u304D\u306B\u3001\n// \u30D1\u30B9\u306E\u9802\u70B9\u5217, \u30B5\
     \u30A4\u30AF\u30EB\u306E\u9802\u70B9\u5217\n// \u306B\u5206\u89E3\u3059\u308B\n\
     template <typename GT>\npair<vvc<int>, vvc<int>> path_cycle_decomposition(GT&\
-    \ G) {\n  static_assert(!GT::is_directed);\n  int N = G.N;\n  auto deg = G.deg_array();\n\
-    \  assert(MAX(deg) <= 2);\n\n  vc<bool> done(N);\n  auto calc_frm = [&](int v)\
-    \ -> vc<int> {\n    vc<int> P = {v};\n    done[v] = 1;\n    while (1) {\n    \
-    \  bool ok = 0;\n      for (auto&& e : G[P.back()]) {\n        if (done[e.to])\
-    \ continue;\n        P.eb(e.to);\n        done[e.to] = 1;\n        ok = 1;\n \
-    \       break;\n      }\n      if (!ok) break;\n    }\n    return P;\n  };\n \
-    \ vvc<int> paths, cycs;\n  FOR(v, N) {\n    if (deg[v] == 0) {\n      done[v]\
-    \ = 1;\n      paths.eb(vc<int>({int(v)}));\n    }\n    if (done[v] || deg[v] !=\
-    \ 1) continue;\n    paths.eb(calc_frm(v));\n  }\n  FOR(v, N) {\n    if (done[v])\
-    \ continue;\n    cycs.eb(calc_frm(v));\n  }\n  return {paths, cycs};\n}\n#line\
-    \ 1 \"poly/convolution.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/poly/convolution.hpp\n\
-    #line 1 \"mod/modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint.hpp\n\
+    \ G) {\n  static_assert(!GT::is_directed);\n  int N = G.N;\n  FOR(v, N) assert(G.deg(v)\
+    \ <= 2);\n\n  vc<bool> done(N);\n  auto calc_frm = [&](int v) -> vc<int> {\n \
+    \   vc<int> P = {v};\n    done[v] = 1;\n    while (1) {\n      bool ok = 0;\n\
+    \      for (auto&& e : G[P.back()]) {\n        if (done[e.to]) continue;\n   \
+    \     P.eb(e.to);\n        done[e.to] = 1;\n        ok = 1;\n        break;\n\
+    \      }\n      if (!ok) break;\n    }\n    return P;\n  };\n  vvc<int> paths,\
+    \ cycs;\n  FOR(v, N) {\n    if (G.deg(v) == 0) {\n      done[v] = 1;\n      paths.eb(vc<int>({int(v)}));\n\
+    \    }\n    if (done[v] || G.deg(v) != 1) continue;\n    paths.eb(calc_frm(v));\n\
+    \  }\n  FOR(v, N) {\n    if (done[v]) continue;\n    cycs.eb(calc_frm(v));\n \
+    \ }\n  return {paths, cycs};\n}\n#line 1 \"poly/convolution.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/poly/convolution.hpp\n#line 1 \"\
+    mod/modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint.hpp\n\
     #line 1 \"mod/modint_common.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint_common.hpp\n\
     \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
     \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
@@ -918,7 +918,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/count_clique.test.cpp
   requiredBy: []
-  timestamp: '2026-11-23 02:04:21+09:00'
+  timestamp: '2026-11-24 17:55:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/count_clique.test.cpp

@@ -358,14 +358,14 @@ data:
     \u3059\u308B\u3068\u304D\u306F\u3001(mp[x]+1) \u306E\u5217\u3092\u6301\u3064\u3068\
     \u5C0F\u3055\u3044\u884C\u5217\u306B\u306A\u308B\u3053\u3068\u304C\u3042\u308B\
     .\n// https://yukicoder.me/problems/no/2762\ntemplate <typename mint, typename\
-    \ STRING>\nmint count_subsequence(STRING& S) {\n  map<int, mint> dp;\n  mint sm\
-    \ = 1;\n  for (auto&& x : S) {\n    auto it = dp.find(x);\n    if (it == dp.end())\
-    \ {\n      dp[x] = sm;\n      sm += sm;\n    } else {\n      mint d = (*it).se;\n\
-    \      (*it).se = sm;\n      sm += sm - d;\n    }\n  }\n  return sm;\n}\n#line\
-    \ 6 \"test/2_library_checker/string/number_of_subsequences.test.cpp\"\n\nusing\
-    \ mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  mint ANS\
-    \ = count_subsequence<mint>(A);\n  ANS -= mint(1);\n  print(ANS);\n}\n\nsigned\
-    \ main() {\n  solve();\n  return 0;\n}\n"
+    \ STRING>\nmint count_subsequence(const STRING& S) {\n  using T = typename STRING::value_type;\n\
+    \  map<T, mint> dp;\n  mint sm = 1;\n  for (auto&& x : S) {\n    auto it = dp.find(x);\n\
+    \    if (it == dp.end()) {\n      dp[x] = sm;\n      sm += sm;\n    } else {\n\
+    \      mint d = (*it).se;\n      (*it).se = sm;\n      sm += sm - d;\n    }\n\
+    \  }\n  return sm;\n}\n#line 6 \"test/2_library_checker/string/number_of_subsequences.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n \
+    \ mint ANS = count_subsequence<mint>(A);\n  ANS -= mint(1);\n  print(ANS);\n}\n\
+    \nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_subsequences\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
     \n#include \"string/count_subsequence.hpp\"\n\nusing mint = modint998;\n\nvoid\
@@ -381,7 +381,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/number_of_subsequences.test.cpp
   requiredBy: []
-  timestamp: '2026-11-23 02:04:21+09:00'
+  timestamp: '2026-11-24 17:55:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/string/number_of_subsequences.test.cpp

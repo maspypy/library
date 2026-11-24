@@ -375,7 +375,7 @@ data:
     \ m, r, ql, x);\n  }\n\n  // \u3053\u308C new node \u4F5C\u3063\u3066\u308B\u306E\
     \u306F\u3055\u307C\u308A\n  template <typename F>\n  ll min_left_rec(np c, const\
     \ F &check, ll l, ll r, ll qr, X &x) {\n    if (qr <= l) return L0;\n    if (r\
-    \ <= qr && check(MX::op(c->x, x))) {\n      x = MX::op(x, c->x);\n      return\
+    \ <= qr && check(MX::op(c->x, x))) {\n      x = MX::op(c->x, x);\n      return\
     \ L0;\n    }\n    if (r == l + 1) return r;\n    ll m = (l + r) / 2;\n    if (!c->r)\
     \ c->r = new_node(m, r);\n    ll k = min_left_rec(c->r, check, m, r, qr, x);\n\
     \    if (k != L0) return k;\n    if (!c->l) c->l = new_node(l, m);\n    return\
@@ -405,7 +405,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
   requiredBy: []
-  timestamp: '2026-11-18 15:44:25+09:00'
+  timestamp: '2026-11-24 17:55:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp

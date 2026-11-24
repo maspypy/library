@@ -85,10 +85,10 @@ data:
     \    }\n    while (!f.que_r.empty() && f.que_r.max() >= R) {\n      f.que_r.pop_max();\n\
     \    }\n    f.que_l.push(L);\n    f.que_r.push(R);\n    return f;\n  }\n\n  //\
     \ +(ax+b), O(|a|*log)\n  FUNC add_linear(FUNC &f, ll a, ll b) {\n    auto [x0,\
-    \ x1] = domain(f);\n    f.min_f += b;\n    while (a > 0) {\n      f.min_f += f.que_l.pop_max();\n\
-    \      f.que_r.push(f.que_l.pop_max());\n      if (f.que_l.empty()) f.que_l.push(x0);\n\
-    \      --a;\n    }\n    while (a < 0) {\n      f.min_f -= f.que_r.pop_min();\n\
-    \      f.que_l.push(f.que_r.pop_min());\n      if (f.que_r.empty()) f.que_r.push(x0);\n\
+    \ x1] = domain(f);\n    f.min_f += b;\n    while (a > 0) {\n      ll x = f.que_l.pop_max();\n\
+    \      f.min_f += x;\n      f.que_r.push(x);\n      if (f.que_l.empty()) f.que_l.push(x0);\n\
+    \      --a;\n    }\n    while (a < 0) {\n      ll x = f.que_r.pop_min();\n   \
+    \   f.min_f -= x;\n      f.que_l.push(x);\n      if (f.que_r.empty()) f.que_r.push(x1);\n\
     \      ++a;\n    }\n    return f;\n  }\n\n  // (a-x)+\n  FUNC add_a_minus_x(FUNC\
     \ &f, ll a) {\n    auto [x0, x1] = domain(f);\n    assert(x0 <= x1);\n    if (a\
     \ <= x0) return f;\n    if (x1 <= a) return add_linear(f, -1, a);\n    ll x =\
@@ -167,10 +167,10 @@ data:
     \    }\n    while (!f.que_r.empty() && f.que_r.max() >= R) {\n      f.que_r.pop_max();\n\
     \    }\n    f.que_l.push(L);\n    f.que_r.push(R);\n    return f;\n  }\n\n  //\
     \ +(ax+b), O(|a|*log)\n  FUNC add_linear(FUNC &f, ll a, ll b) {\n    auto [x0,\
-    \ x1] = domain(f);\n    f.min_f += b;\n    while (a > 0) {\n      f.min_f += f.que_l.pop_max();\n\
-    \      f.que_r.push(f.que_l.pop_max());\n      if (f.que_l.empty()) f.que_l.push(x0);\n\
-    \      --a;\n    }\n    while (a < 0) {\n      f.min_f -= f.que_r.pop_min();\n\
-    \      f.que_l.push(f.que_r.pop_min());\n      if (f.que_r.empty()) f.que_r.push(x0);\n\
+    \ x1] = domain(f);\n    f.min_f += b;\n    while (a > 0) {\n      ll x = f.que_l.pop_max();\n\
+    \      f.min_f += x;\n      f.que_r.push(x);\n      if (f.que_l.empty()) f.que_l.push(x0);\n\
+    \      --a;\n    }\n    while (a < 0) {\n      ll x = f.que_r.pop_min();\n   \
+    \   f.min_f -= x;\n      f.que_l.push(x);\n      if (f.que_r.empty()) f.que_r.push(x1);\n\
     \      ++a;\n    }\n    return f;\n  }\n\n  // (a-x)+\n  FUNC add_a_minus_x(FUNC\
     \ &f, ll a) {\n    auto [x0, x1] = domain(f);\n    assert(x0 <= x1);\n    if (a\
     \ <= x0) return f;\n    if (x1 <= a) return add_linear(f, -1, a);\n    ll x =\
@@ -232,7 +232,7 @@ data:
   isVerificationFile: false
   path: convex/slope_trick/slope_trick_1.hpp
   requiredBy: []
-  timestamp: '2026-11-17 02:53:18+09:00'
+  timestamp: '2026-11-24 17:55:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1077_2.test.cpp

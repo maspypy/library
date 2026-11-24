@@ -186,7 +186,7 @@ data:
     \      ntt(b1, false);\n      FOR(i, 2 * w) b0[i] += b1[i] * fm[z][i];\n     \
     \ s = w - 1;\n    }\n    ntt(b0, true);\n    FOR(i, s + 1) h[p + i] += b0[s +\
     \ i];\n    return h[p++];\n  }\n};\n#line 3 \"poly/online/online_exp.hpp\"\n\n\
-    // query(i)\uFF1Af[i] \u3092\u4E0E\u3048\u3066 (f^{-1})[i] \u3092\u5F97\u308B\u3002\
+    // query(i)\uFF1Af[i] \u3092\u4E0E\u3048\u3066 exp(f)[i] \u3092\u5F97\u308B\u3002\
     \ntemplate <typename mint>\nstruct Online_Exp {\n  vc<mint> F;\n  Online_Convolution<mint>\
     \ X;\n\n  mint query(int i, mint f_i) {\n    assert(i == len(F));\n    if (i ==\
     \ 0) {\n      assert(f_i == mint(0));\n      F.eb(mint(1));\n      return mint(1);\n\
@@ -194,7 +194,7 @@ data:
     \    F.eb(x);\n    return x;\n  }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/poly/online/online_exp.hpp\n\
     #include \"poly/online/online_convolution.hpp\"\n\n// query(i)\uFF1Af[i] \u3092\
-    \u4E0E\u3048\u3066 (f^{-1})[i] \u3092\u5F97\u308B\u3002\ntemplate <typename mint>\n\
+    \u4E0E\u3048\u3066 exp(f)[i] \u3092\u5F97\u308B\u3002\ntemplate <typename mint>\n\
     struct Online_Exp {\n  vc<mint> F;\n  Online_Convolution<mint> X;\n\n  mint query(int\
     \ i, mint f_i) {\n    assert(i == len(F));\n    if (i == 0) {\n      assert(f_i\
     \ == mint(0));\n      F.eb(mint(1));\n      return mint(1);\n    }\n    mint x\
@@ -209,7 +209,7 @@ data:
   path: poly/online/online_exp.hpp
   requiredBy:
   - graph/count/count_unlabeled_tree.hpp
-  timestamp: '2026-11-23 02:04:21+09:00'
+  timestamp: '2026-11-24 17:55:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/online_exp.test.cpp

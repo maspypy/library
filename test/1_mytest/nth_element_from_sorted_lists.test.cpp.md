@@ -171,8 +171,8 @@ data:
     \u4F7F\u304A\u3046!!\n// https://codeforces.com/problemset/problem/1034/D\ntemplate\
     \ <typename T, bool MINIMIZE, typename F>\nvi nth_element_from_sorted_lists(vi\
     \ S, ll K, F f, int k = 0) {\n  static_assert(is_same_v<T, int> || is_same_v<T,\
-    \ ll> || is_same_v<T, i128>);\n  ll N = len(S);\n  ll sm = 0;\n  for (auto& x\
-    \ : S) sm += x >> k;\n  assert(0 <= K && K <= sm);\n  if (K == 0) return vi(N,\
+    \ ll> || is_same_v<T, i128>);\n  ll N = len(S);\n  i128 sm = 0;\n  for (auto&\
+    \ x : S) sm += x >> k;\n  assert(0 <= K && K <= sm);\n  if (K == 0) return vi(N,\
     \ 0);\n  if (K == sm) return S;\n\n  ll row = 0;\n  for (auto& x : S) row += (x\
     \ >= (1LL << k));\n\n  auto g = [&](int i, ll j) -> T {\n    j = ((j + 1) << k)\
     \ - 1;\n    if (j >= S[i]) return infty<T>;\n    T x = f(i, j);\n    return (MINIMIZE\
@@ -209,7 +209,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/nth_element_from_sorted_lists.test.cpp
   requiredBy: []
-  timestamp: '2026-11-22 23:28:55+09:00'
+  timestamp: '2026-11-24 17:55:07+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/nth_element_from_sorted_lists.test.cpp

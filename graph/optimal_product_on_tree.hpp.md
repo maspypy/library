@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':question:'
@@ -18,15 +18,15 @@ data:
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
     title: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/3148.test.cpp
     title: test/3_yukicoder/3148.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://atcoder.jp/contests/agc023/tasks/agc023_f
@@ -335,29 +335,29 @@ data:
     \u3092\u6700\u5927\u5316\u3059\u308B\n// https://atcoder.jp/contests/agc023/tasks/agc023_f\n\
     // https://qoj.ac/problem/6561\n// \u3044\u3084\u62BD\u8C61\u5316\u304C\u8DB3\u308A\
     \u3066\u3044\u306A\u3044\u306A\u3001x<=y iff xy<=yx \u304C\u3044\u308B\u304B\uFF1F\
-    \ntemplate <typename TREE, typename Monoid, bool MINIMIZE, typename F>\npair<vc<int>,\
-    \ typename Monoid::value_type> optimal_product_on_tree(\n    TREE& tree, vc<typename\
-    \ Monoid::value_type> A, F compare) {\n  const int N = tree.N;\n  const int root\
-    \ = tree.V[0];\n  using X = typename Monoid::value_type;\n\n  vc<int> head(N),\
-    \ tail(N), nxt(N);\n  FOR(v, N) head[v] = v, tail[v] = v, nxt[v] = -1;\n\n  UnionFind\
-    \ uf(N);\n\n  int size = 1;\n  while (size < N) size *= 2;\n  vc<int> seg(2 *\
-    \ size, -1);\n\n  // prique \u3060\u3068\u52D5\u7684\u30C7\u30FC\u30BF\u69CB\u9020\
-    \u3092\u6301\u305F\u305B\u308B\u3068\u304D\u306B\u6DF7\u4E71\u3057\u305F\u306E\
-    \u3067\u30BB\u30B0\u6728\u3067\n  auto upd = [&](int i) -> void {\n    int a =\
-    \ seg[2 * i + 0], b = seg[2 * i + 1];\n    if (a == -1) seg[i] = b;\n    elif\
-    \ (b == -1) seg[i] = a;\n    else seg[i] = (compare(A[a], A[b]) ? a : b);\n  };\n\
-    \  // if seg[i]==x: return \u3057\u3088\u3046\u3068\u601D\u3063\u305F\u304C\u30C7\
-    \u30FC\u30BF\u304C\u5909\u308F\u308B\u3068\u3044\u3046\u8A71\u306A\u306E\u3067\
-    \u307E\u305A\u3044\n  auto set = [&](int i, int x) -> void {\n    i += size;\n\
-    \    seg[i] = x;\n    while (i > 1) {\n      i /= 2, upd(i);\n    }\n  };\n  FOR(i,\
-    \ N) if (i != root) seg[size + i] = i;\n  FOR_R(i, 1, size) upd(i);\n\n  FOR(N\
-    \ - 1) {\n    int v = seg[1];\n    int a = head[uf[v]], b = tail[uf[v]];\n   \
-    \ int p = uf[tree.parent[a]];\n    int c = head[p], d = tail[p];\n    X pv = Monoid::op(A[p],\
-    \ A[v]);\n    uf.merge(p, v);\n    int w = uf[v];\n    A[w] = pv, head[w] = c,\
-    \ tail[w] = b, nxt[d] = a;\n    int av = -1, ap = -1;\n    if (v == w && uf[v]\
-    \ != uf[root]) av = v;\n    if (p == w && uf[p] != uf[root]) ap = p;\n    set(v,\
-    \ av), set(p, ap);\n  }\n  vc<int> I = {root};\n  while (nxt[I.back()] != -1)\
-    \ I.eb(nxt[I.back()]);\n  return {I, A[uf[root]]};\n}\n"
+    \ntemplate <typename TREE, typename Monoid, typename F>\npair<vc<int>, typename\
+    \ Monoid::value_type> optimal_product_on_tree(\n    TREE& tree, vc<typename Monoid::value_type>\
+    \ A, F compare) {\n  const int N = tree.N;\n  const int root = tree.V[0];\n  using\
+    \ X = typename Monoid::value_type;\n\n  vc<int> head(N), tail(N), nxt(N);\n  FOR(v,\
+    \ N) head[v] = v, tail[v] = v, nxt[v] = -1;\n\n  UnionFind uf(N);\n\n  int size\
+    \ = 1;\n  while (size < N) size *= 2;\n  vc<int> seg(2 * size, -1);\n\n  // prique\
+    \ \u3060\u3068\u52D5\u7684\u30C7\u30FC\u30BF\u69CB\u9020\u3092\u6301\u305F\u305B\
+    \u308B\u3068\u304D\u306B\u6DF7\u4E71\u3057\u305F\u306E\u3067\u30BB\u30B0\u6728\
+    \u3067\n  auto upd = [&](int i) -> void {\n    int a = seg[2 * i + 0], b = seg[2\
+    \ * i + 1];\n    if (a == -1) seg[i] = b;\n    elif (b == -1) seg[i] = a;\n  \
+    \  else seg[i] = (compare(A[a], A[b]) ? a : b);\n  };\n  // if seg[i]==x: return\
+    \ \u3057\u3088\u3046\u3068\u601D\u3063\u305F\u304C\u30C7\u30FC\u30BF\u304C\u5909\
+    \u308F\u308B\u3068\u3044\u3046\u8A71\u306A\u306E\u3067\u307E\u305A\u3044\n  auto\
+    \ set = [&](int i, int x) -> void {\n    i += size;\n    seg[i] = x;\n    while\
+    \ (i > 1) {\n      i /= 2, upd(i);\n    }\n  };\n  FOR(i, N) if (i != root) seg[size\
+    \ + i] = i;\n  FOR_R(i, 1, size) upd(i);\n\n  FOR(N - 1) {\n    int v = seg[1];\n\
+    \    int a = head[uf[v]], b = tail[uf[v]];\n    int p = uf[tree.parent[a]];\n\
+    \    int c = head[p], d = tail[p];\n    X pv = Monoid::op(A[p], A[v]);\n    uf.merge(p,\
+    \ v);\n    int w = uf[v];\n    A[w] = pv, head[w] = c, tail[w] = b, nxt[d] = a;\n\
+    \    int av = -1, ap = -1;\n    if (v == w && uf[v] != uf[root]) av = v;\n   \
+    \ if (p == w && uf[p] != uf[root]) ap = p;\n    set(v, av), set(p, ap);\n  }\n\
+    \  vc<int> I = {root};\n  while (nxt[I.back()] != -1) I.eb(nxt[I.back()]);\n \
+    \ return {I, A[uf[root]]};\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/graph/optimal_product_on_tree.hpp\n\
     #include \"graph/tree.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\n#include\
     \ \"ds/segtree/segtree.hpp\"\n\n// \u6728\u306E\u5404\u9802\u70B9\u306B\u5168\u9806\
@@ -366,29 +366,29 @@ data:
     \u308B\u3068\u304D\uFF0C\u7D50\u679C\u3092\u6700\u5927\u5316\u3059\u308B\n// https://atcoder.jp/contests/agc023/tasks/agc023_f\n\
     // https://qoj.ac/problem/6561\n// \u3044\u3084\u62BD\u8C61\u5316\u304C\u8DB3\u308A\
     \u3066\u3044\u306A\u3044\u306A\u3001x<=y iff xy<=yx \u304C\u3044\u308B\u304B\uFF1F\
-    \ntemplate <typename TREE, typename Monoid, bool MINIMIZE, typename F>\npair<vc<int>,\
-    \ typename Monoid::value_type> optimal_product_on_tree(\n    TREE& tree, vc<typename\
-    \ Monoid::value_type> A, F compare) {\n  const int N = tree.N;\n  const int root\
-    \ = tree.V[0];\n  using X = typename Monoid::value_type;\n\n  vc<int> head(N),\
-    \ tail(N), nxt(N);\n  FOR(v, N) head[v] = v, tail[v] = v, nxt[v] = -1;\n\n  UnionFind\
-    \ uf(N);\n\n  int size = 1;\n  while (size < N) size *= 2;\n  vc<int> seg(2 *\
-    \ size, -1);\n\n  // prique \u3060\u3068\u52D5\u7684\u30C7\u30FC\u30BF\u69CB\u9020\
-    \u3092\u6301\u305F\u305B\u308B\u3068\u304D\u306B\u6DF7\u4E71\u3057\u305F\u306E\
-    \u3067\u30BB\u30B0\u6728\u3067\n  auto upd = [&](int i) -> void {\n    int a =\
-    \ seg[2 * i + 0], b = seg[2 * i + 1];\n    if (a == -1) seg[i] = b;\n    elif\
-    \ (b == -1) seg[i] = a;\n    else seg[i] = (compare(A[a], A[b]) ? a : b);\n  };\n\
-    \  // if seg[i]==x: return \u3057\u3088\u3046\u3068\u601D\u3063\u305F\u304C\u30C7\
-    \u30FC\u30BF\u304C\u5909\u308F\u308B\u3068\u3044\u3046\u8A71\u306A\u306E\u3067\
-    \u307E\u305A\u3044\n  auto set = [&](int i, int x) -> void {\n    i += size;\n\
-    \    seg[i] = x;\n    while (i > 1) {\n      i /= 2, upd(i);\n    }\n  };\n  FOR(i,\
-    \ N) if (i != root) seg[size + i] = i;\n  FOR_R(i, 1, size) upd(i);\n\n  FOR(N\
-    \ - 1) {\n    int v = seg[1];\n    int a = head[uf[v]], b = tail[uf[v]];\n   \
-    \ int p = uf[tree.parent[a]];\n    int c = head[p], d = tail[p];\n    X pv = Monoid::op(A[p],\
-    \ A[v]);\n    uf.merge(p, v);\n    int w = uf[v];\n    A[w] = pv, head[w] = c,\
-    \ tail[w] = b, nxt[d] = a;\n    int av = -1, ap = -1;\n    if (v == w && uf[v]\
-    \ != uf[root]) av = v;\n    if (p == w && uf[p] != uf[root]) ap = p;\n    set(v,\
-    \ av), set(p, ap);\n  }\n  vc<int> I = {root};\n  while (nxt[I.back()] != -1)\
-    \ I.eb(nxt[I.back()]);\n  return {I, A[uf[root]]};\n}"
+    \ntemplate <typename TREE, typename Monoid, typename F>\npair<vc<int>, typename\
+    \ Monoid::value_type> optimal_product_on_tree(\n    TREE& tree, vc<typename Monoid::value_type>\
+    \ A, F compare) {\n  const int N = tree.N;\n  const int root = tree.V[0];\n  using\
+    \ X = typename Monoid::value_type;\n\n  vc<int> head(N), tail(N), nxt(N);\n  FOR(v,\
+    \ N) head[v] = v, tail[v] = v, nxt[v] = -1;\n\n  UnionFind uf(N);\n\n  int size\
+    \ = 1;\n  while (size < N) size *= 2;\n  vc<int> seg(2 * size, -1);\n\n  // prique\
+    \ \u3060\u3068\u52D5\u7684\u30C7\u30FC\u30BF\u69CB\u9020\u3092\u6301\u305F\u305B\
+    \u308B\u3068\u304D\u306B\u6DF7\u4E71\u3057\u305F\u306E\u3067\u30BB\u30B0\u6728\
+    \u3067\n  auto upd = [&](int i) -> void {\n    int a = seg[2 * i + 0], b = seg[2\
+    \ * i + 1];\n    if (a == -1) seg[i] = b;\n    elif (b == -1) seg[i] = a;\n  \
+    \  else seg[i] = (compare(A[a], A[b]) ? a : b);\n  };\n  // if seg[i]==x: return\
+    \ \u3057\u3088\u3046\u3068\u601D\u3063\u305F\u304C\u30C7\u30FC\u30BF\u304C\u5909\
+    \u308F\u308B\u3068\u3044\u3046\u8A71\u306A\u306E\u3067\u307E\u305A\u3044\n  auto\
+    \ set = [&](int i, int x) -> void {\n    i += size;\n    seg[i] = x;\n    while\
+    \ (i > 1) {\n      i /= 2, upd(i);\n    }\n  };\n  FOR(i, N) if (i != root) seg[size\
+    \ + i] = i;\n  FOR_R(i, 1, size) upd(i);\n\n  FOR(N - 1) {\n    int v = seg[1];\n\
+    \    int a = head[uf[v]], b = tail[uf[v]];\n    int p = uf[tree.parent[a]];\n\
+    \    int c = head[p], d = tail[p];\n    X pv = Monoid::op(A[p], A[v]);\n    uf.merge(p,\
+    \ v);\n    int w = uf[v];\n    A[w] = pv, head[w] = c, tail[w] = b, nxt[d] = a;\n\
+    \    int av = -1, ap = -1;\n    if (v == w && uf[v] != uf[root]) av = v;\n   \
+    \ if (p == w && uf[p] != uf[root]) ap = p;\n    set(v, av), set(p, ap);\n  }\n\
+    \  vc<int> I = {root};\n  while (nxt[I.back()] != -1) I.eb(nxt[I.back()]);\n \
+    \ return {I, A[uf[root]]};\n}"
   dependsOn:
   - graph/tree.hpp
   - graph/base.hpp
@@ -398,8 +398,8 @@ data:
   isVerificationFile: false
   path: graph/optimal_product_on_tree.hpp
   requiredBy: []
-  timestamp: '2026-11-22 23:28:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2026-11-24 17:55:07+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/3148.test.cpp
   - test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp

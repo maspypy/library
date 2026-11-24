@@ -241,22 +241,20 @@ data:
     \ par};\n}\n\ntemplate <typename T, typename GT, bool DENSE = false>\npair<vc<T>,\
     \ vc<int>> dijkstra(GT& G, int v) {\n  if (DENSE) return dijkstra_dense<T>(G,\
     \ v);\n  auto N = G.N;\n  vector<T> dist(N, infty<T>);\n  vector<int> par(N, -1);\n\
-    \  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\
-    \n  dist[v] = 0;\n  que.emplace(0, v);\n  while (!que.empty()) {\n    auto [dv,\
-    \ v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n    for (auto&&\
-    \ e : G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost)) {\n        par[e.to]\
-    \ = e.frm;\n        que.emplace(dist[e.to], e.to);\n      }\n    }\n  }\n  return\
-    \ {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par,\
-    \ root]\ntemplate <typename T, typename GT>\ntuple<vc<T>, vc<int>, vc<int>> dijkstra(GT&\
-    \ G, vc<int> vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<T> dist(N,\
-    \ infty<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n\n  using P = pair<T,\
-    \ int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  FOR(k, len(vs))\
-    \ {\n    int v = vs[k];\n    if (chmin(dist[v], 0)) root[v] = v, que.emplace(T(0),\
-    \ v);\n  }\n\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n\
+    \  using P = pair<T, int>;\n  pq_min<P> que;\n\n  dist[v] = 0;\n  que.emplace(0,\
+    \ v);\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n\
     \    if (dv > dist[v]) continue;\n    for (auto&& e : G[v]) {\n      if (chmin(dist[e.to],\
-    \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
-    \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
-    \ {dist, par, root};\n}\n#line 5 \"graph/shortest_path/nonzero_group_product_shortest_path.hpp\"\
+    \ dist[e.frm] + e.cost)) {\n        par[e.to] = e.frm;\n        que.emplace(dist[e.to],\
+    \ e.to);\n      }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\
+    \u30BF\u30FC\u30C8\u3002[dist, par, root]\ntemplate <typename T, typename GT>\n\
+    tuple<vc<T>, vc<int>, vc<int>> dijkstra(GT& G, vc<T> init_dist) {\n  assert(G.is_prepared());\n\
+    \  int N = G.N;\n  vc<T>& dist = init_dist;\n  vc<int> par(N, -1);\n  vc<int>\
+    \ root(N, -1);\n\n  using P = pair<T, int>;\n  pq_min<P> que;\n\n  FOR(v, N) if\
+    \ (dist[v] < infty<T>) que.emplace(dist[v], v), root[v] = v;\n\n  while (!que.empty())\
+    \ {\n    auto [dv, v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n\
+    \    for (auto& e : G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost))\
+    \ {\n        root[e.to] = root[e.frm];\n        par[e.to] = e.frm;\n        que.push(mp(dist[e.to],\
+    \ e.to));\n      }\n    }\n  }\n  return {dist, par, root};\n}\n#line 5 \"graph/shortest_path/nonzero_group_product_shortest_path.hpp\"\
     \n\n// given: group-labeled undirected graph G, and s.\n// return: shortest path\
     \ length from s to v, for each v.\n// remark: path is not a walk. directed case\
     \ is NP hard.\n// https://arxiv.org/abs/1906.04062\ntemplate <typename WT, typename\
@@ -328,7 +326,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/nonzero_group_product_shortest_path.hpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
+  timestamp: '2026-11-24 17:55:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1602.test.cpp

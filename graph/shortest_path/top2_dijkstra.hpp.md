@@ -137,30 +137,30 @@ data:
     \ = true;\n};\n#line 4 \"graph/shortest_path/top2_dijkstra.hpp\"\n\n// \u7D4C\u8DEF\
     \u5FA9\u5143\u306F\u306A\u3057\u3067\u8DDD\u96E2\u3068\u7A2E\u985E\u3060\u3051\
     \u306B\u306A\u3063\u3066\u3044\u308B\ntemplate <typename T, typename GT>\nvc<typename\
-    \ Monoid_Min2<T, int>::Data> top2_dijkstra(GT& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
+    \ Monoid_Min2<T, int>::Data> top2_dijkstra(GT& G, vc<T> init_dist) {\n  assert(G.is_prepared());\n\
     \  int N = G.N;\n  using Mono = Monoid_Min2<T, int>;\n  using Data = typename\
     \ Mono::Data;\n  vc<Data> dist(N, Mono::id());\n  pq_min<tuple<T, int, int>> que;\
     \  // \u8DDD\u96E2\u3001\u753A\u3001\u8272\n\n  auto upd = [&](int v, int c, T\
     \ x) -> void {\n    if (dist[v].add_element(c, x)) que.emplace(x, v, c);\n  };\n\
-    \n  for (auto& v : vs) {\n    upd(v, v, 0);\n  }\n\n  while (len(que)) {\n   \
-    \ auto [dv, v, c] = POP(que);\n    bool ok = 0;\n    auto& e = dist[v];\n    if\
-    \ (e.min1 == dv && e.key1 == c) ok = 1;\n    if (e.min2 == dv && e.key2 == c)\
-    \ ok = 1;\n    if (!ok) continue;\n    for (auto&& e : G[v]) {\n      upd(e.to,\
-    \ c, dv + e.cost);\n    }\n  }\n  return dist;\n}\n"
+    \n  FOR(v, N) if (init_dist[v] < infty<T>) upd(v, v, init_dist[v]);\n\n  while\
+    \ (len(que)) {\n    auto [dv, v, c] = POP(que);\n    bool ok = 0;\n    auto& e\
+    \ = dist[v];\n    if (e.min1 == dv && e.key1 == c) ok = 1;\n    if (e.min2 ==\
+    \ dv && e.key2 == c) ok = 1;\n    if (!ok) continue;\n    for (auto&& e : G[v])\
+    \ {\n      upd(e.to, c, dv + e.cost);\n    }\n  }\n  return dist;\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/graph/shortest_path/top2_dijkstra.hpp\n\
     #include \"graph/base.hpp\"\n#include \"alg/monoid/min2.hpp\"\n\n// \u7D4C\u8DEF\
     \u5FA9\u5143\u306F\u306A\u3057\u3067\u8DDD\u96E2\u3068\u7A2E\u985E\u3060\u3051\
     \u306B\u306A\u3063\u3066\u3044\u308B\ntemplate <typename T, typename GT>\nvc<typename\
-    \ Monoid_Min2<T, int>::Data> top2_dijkstra(GT& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
+    \ Monoid_Min2<T, int>::Data> top2_dijkstra(GT& G, vc<T> init_dist) {\n  assert(G.is_prepared());\n\
     \  int N = G.N;\n  using Mono = Monoid_Min2<T, int>;\n  using Data = typename\
     \ Mono::Data;\n  vc<Data> dist(N, Mono::id());\n  pq_min<tuple<T, int, int>> que;\
     \  // \u8DDD\u96E2\u3001\u753A\u3001\u8272\n\n  auto upd = [&](int v, int c, T\
     \ x) -> void {\n    if (dist[v].add_element(c, x)) que.emplace(x, v, c);\n  };\n\
-    \n  for (auto& v : vs) {\n    upd(v, v, 0);\n  }\n\n  while (len(que)) {\n   \
-    \ auto [dv, v, c] = POP(que);\n    bool ok = 0;\n    auto& e = dist[v];\n    if\
-    \ (e.min1 == dv && e.key1 == c) ok = 1;\n    if (e.min2 == dv && e.key2 == c)\
-    \ ok = 1;\n    if (!ok) continue;\n    for (auto&& e : G[v]) {\n      upd(e.to,\
-    \ c, dv + e.cost);\n    }\n  }\n  return dist;\n}"
+    \n  FOR(v, N) if (init_dist[v] < infty<T>) upd(v, v, init_dist[v]);\n\n  while\
+    \ (len(que)) {\n    auto [dv, v, c] = POP(que);\n    bool ok = 0;\n    auto& e\
+    \ = dist[v];\n    if (e.min1 == dv && e.key1 == c) ok = 1;\n    if (e.min2 ==\
+    \ dv && e.key2 == c) ok = 1;\n    if (!ok) continue;\n    for (auto&& e : G[v])\
+    \ {\n      upd(e.to, c, dv + e.cost);\n    }\n  }\n  return dist;\n}"
   dependsOn:
   - graph/base.hpp
   - ds/hashmap.hpp
@@ -168,7 +168,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/top2_dijkstra.hpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
+  timestamp: '2026-11-24 17:55:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/shortest_path/top2_dijkstra.hpp

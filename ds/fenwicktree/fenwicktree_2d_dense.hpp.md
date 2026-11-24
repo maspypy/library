@@ -33,7 +33,7 @@ data:
     \ : H(H), W(W) {\n    build(H, W, [&](int x, int y) -> E { return dat_raw[x][y];\
     \ });\n  }\n  template <typename F>\n  FenwickTree_2D_Dense(int H, int W, F f)\
     \ : H(H), W(W) {\n    build(H, W, f);\n  }\n\n  template <typename F>\n  void\
-    \ build(int H0, int W0, F f) {\n    H = H0, W = W0;\n    dat.assign(H * W);\n\
+    \ build(int H0, int W0, F f) {\n    H = H0, W = W0;\n    dat.resize(H * W);\n\
     \    FOR(x, H) FOR(y, W) { dat[W * x + y] = f(x, y); }\n    FOR(x, 1, H + 1) {\n\
     \      FOR(y, 1, W + 1) {\n        int ny = y + (y & -y);\n        if (ny <= W)\
     \ dat[idx(x, ny)] = G::op(dat[idx(x, ny)], dat[idx(x, y)]);\n      }\n    }\n\
@@ -66,7 +66,7 @@ data:
     \ int W, vvc<E>& dat_raw) : H(H), W(W) {\n    build(H, W, [&](int x, int y) ->\
     \ E { return dat_raw[x][y]; });\n  }\n  template <typename F>\n  FenwickTree_2D_Dense(int\
     \ H, int W, F f) : H(H), W(W) {\n    build(H, W, f);\n  }\n\n  template <typename\
-    \ F>\n  void build(int H0, int W0, F f) {\n    H = H0, W = W0;\n    dat.assign(H\
+    \ F>\n  void build(int H0, int W0, F f) {\n    H = H0, W = W0;\n    dat.resize(H\
     \ * W);\n    FOR(x, H) FOR(y, W) { dat[W * x + y] = f(x, y); }\n    FOR(x, 1,\
     \ H + 1) {\n      FOR(y, 1, W + 1) {\n        int ny = y + (y & -y);\n       \
     \ if (ny <= W) dat[idx(x, ny)] = G::op(dat[idx(x, ny)], dat[idx(x, y)]);\n   \
@@ -96,7 +96,7 @@ data:
   isVerificationFile: false
   path: ds/fenwicktree/fenwicktree_2d_dense.hpp
   requiredBy: []
-  timestamp: '2026-10-15 19:54:56+09:00'
+  timestamp: '2026-11-24 17:55:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/2842.test.cpp

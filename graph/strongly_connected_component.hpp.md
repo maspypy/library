@@ -20,6 +20,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
+  - icon: ':warning:'
+    path: graph/bitset/transitive_closure.hpp
+    title: graph/bitset/transitive_closure.hpp
+  - icon: ':warning:'
+    path: graph/bitset/transitive_reduction.hpp
+    title: graph/bitset/transitive_reduction.hpp
   - icon: ':heavy_check_mark:'
     path: graph/find_odd_cycle.hpp
     title: graph/find_odd_cycle.hpp
@@ -253,6 +259,8 @@ data:
   path: graph/strongly_connected_component.hpp
   requiredBy:
   - graph/maximum_antichain.hpp
+  - graph/bitset/transitive_reduction.hpp
+  - graph/bitset/transitive_closure.hpp
   - graph/all_cycle_common_vertices.hpp
   - graph/find_odd_cycle.hpp
   - graph/reachability.hpp

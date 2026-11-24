@@ -226,7 +226,7 @@ data:
     \    p++;\n    u64 x0 = OC0.query(i, f_i.val, g_i.val).val;\n    u64 x1 = OC1.query(i,\
     \ f_i.val, g_i.val).val;\n    u64 x2 = OC2.query(i, f_i.val, g_i.val).val;\n \
     \   return CRT3<mint, p0, p1, p2>(x0, x1, x2);\n  }\n};\n#line 3 \"poly/online/online_exp_garner.hpp\"\
-    \n\n// query(i)\uFF1Af[i] \u3092\u4E0E\u3048\u3066 (f^{-1})[i] \u3092\u5F97\u308B\
+    \n\n// query(i)\uFF1Af[i] \u3092\u4E0E\u3048\u3066 exp(f)[i] \u3092\u5F97\u308B\
     \u3002\ntemplate <typename mint>\nstruct Online_Exp_Garner {\n  vc<mint> F;\n\
     \  Online_Convolution_Garner<mint> X;\n\n  mint query(int i, mint f_i) {\n   \
     \ assert(i == len(F));\n    if (i == 0) {\n      assert(f_i == mint(0));\n   \
@@ -235,7 +235,7 @@ data:
     };\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/poly/online/online_exp_garner.hpp\n\
     #include \"poly/online/online_convolution_garner.hpp\"\n\n// query(i)\uFF1Af[i]\
-    \ \u3092\u4E0E\u3048\u3066 (f^{-1})[i] \u3092\u5F97\u308B\u3002\ntemplate <typename\
+    \ \u3092\u4E0E\u3048\u3066 exp(f)[i] \u3092\u5F97\u308B\u3002\ntemplate <typename\
     \ mint>\nstruct Online_Exp_Garner {\n  vc<mint> F;\n  Online_Convolution_Garner<mint>\
     \ X;\n\n  mint query(int i, mint f_i) {\n    assert(i == len(F));\n    if (i ==\
     \ 0) {\n      assert(f_i == mint(0));\n      F.eb(mint(1));\n      return mint(1);\n\
@@ -251,7 +251,7 @@ data:
   isVerificationFile: false
   path: poly/online/online_exp_garner.hpp
   requiredBy: []
-  timestamp: '2026-11-23 02:04:21+09:00'
+  timestamp: '2026-11-24 17:55:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: poly/online/online_exp_garner.hpp

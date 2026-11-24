@@ -245,56 +245,54 @@ data:
     \ par};\n}\n\ntemplate <typename T, typename GT, bool DENSE = false>\npair<vc<T>,\
     \ vc<int>> dijkstra(GT& G, int v) {\n  if (DENSE) return dijkstra_dense<T>(G,\
     \ v);\n  auto N = G.N;\n  vector<T> dist(N, infty<T>);\n  vector<int> par(N, -1);\n\
-    \  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\
-    \n  dist[v] = 0;\n  que.emplace(0, v);\n  while (!que.empty()) {\n    auto [dv,\
-    \ v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n    for (auto&&\
-    \ e : G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost)) {\n        par[e.to]\
-    \ = e.frm;\n        que.emplace(dist[e.to], e.to);\n      }\n    }\n  }\n  return\
-    \ {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par,\
-    \ root]\ntemplate <typename T, typename GT>\ntuple<vc<T>, vc<int>, vc<int>> dijkstra(GT&\
-    \ G, vc<int> vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<T> dist(N,\
-    \ infty<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n\n  using P = pair<T,\
-    \ int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  FOR(k, len(vs))\
-    \ {\n    int v = vs[k];\n    if (chmin(dist[v], 0)) root[v] = v, que.emplace(T(0),\
-    \ v);\n  }\n\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n\
+    \  using P = pair<T, int>;\n  pq_min<P> que;\n\n  dist[v] = 0;\n  que.emplace(0,\
+    \ v);\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n\
     \    if (dv > dist[v]) continue;\n    for (auto&& e : G[v]) {\n      if (chmin(dist[e.to],\
-    \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
-    \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
-    \ {dist, par, root};\n}\n#line 4 \"flow/longest_shortest_path.hpp\"\n\n/*\npotential\
-    \ p[v]\n\u8DDD\u96E2\u3092 L \u4EE5\u4E0A\u306B\u3057\u305F\u3044 : L<=p[t]-p[s]\n\
-    \u8FBA (u,v,w)\n\u4F38\u3070\u3059\u91CF max(0,p[v]-p[u]-w)\n- t \u304B\u3089\
-    \ s \u306B\u8CBB\u7528-L, \u5BB9\u91CFINF\n- u \u304B\u3089 v \u306B\u8CBB\u7528\
-    \ w, \u5BB9\u91CF 1\n\u3053\u308C\u306E\u5FAA\u74B0\u6D41\n*/\n\n// https://qoj.ac/contest/1435/problem/7737\n\
-    template <typename T = ll, bool DAG = false>\nstruct Longest_Shortest_Path {\n\
-    \  int N, s, t;\n  T F, L, K;\n  bool solved;\n  vc<tuple<int, int, T, T>> dat;\n\
-    \  vc<T> pot;\n  Longest_Shortest_Path(int N, int s, int t)\n      : N(N), s(s),\
-    \ t(t), F(0), solved(0) {}\n\n  // \u73FE\u5728\u306E\u9577\u3055, \u9577\u3055\
-    \u3092+1\u3059\u308B\u30B3\u30B9\u30C8\n  void add(int frm, int to, T length,\
-    \ T cost) {\n    assert(0 <= frm && frm < N && 0 <= to && to < N && !solved);\n\
-    \    if (DAG) assert(frm < to);\n    dat.eb(frm, to, length, cost);\n  }\n\n \
-    \ T init_dist() {\n    Graph<T, 1> G(N);\n    for (auto& [a, b, c, d] : dat) G.add(a,\
-    \ b, c);\n    G.build();\n    auto [dist, par] = dijkstra<T>(G, s);\n    return\
-    \ dist[t];\n  }\n\n  // \u8DDD\u96E2\u304C L \u4EE5\u4E0A\u306B\u306A\u308B\u3088\
-    \u3046\u306B\u305B\u3088. return: min cost.\n  T solve_by_target_length(T target_length)\
-    \ {\n    L = target_length;\n    assert(!solved && L >= init_dist());\n    solved\
-    \ = 1;\n    Min_Cost_Flow<T, T, DAG> G(N, s, t);\n    for (auto& [a, b, length,\
-    \ cost] : dat) {\n      G.add(a, b, cost, length);\n    }\n    T ans = -infty<T>;\n\
-    \    for (auto& [x, y] : G.slope()) {\n      if (chmax(ans, x * L - y)) F = x;\n\
-    \    }\n    return K = ans;\n  }\n\n  // \u30B3\u30B9\u30C8\u304C K \u3067\u6700\
-    \u5927\u8DDD\u96E2\u306B\u305B\u3088. return: max dist.\n  T solve_by_cost(T K)\
-    \ {}\n\n  // frm, to, cost. add_edge \u9806.\n  vc<T> get_potentials() {\n   \
-    \ assert(solved);\n    if (len(pot)) return pot;\n    Min_Cost_Flow<T, T, DAG>\
-    \ G(N, s, t);\n    for (auto& [a, b, length, cost] : dat) {\n      G.add(a, b,\
-    \ cost, length);\n    }\n    G.flow(F);\n    pot = G.get_potentials();\n    Graph<T,\
-    \ 1> resG(N);\n    auto add = [&](int a, int b, T x) -> void {\n      x = x +\
-    \ pot[a] - pot[b];\n      resG.add(a, b, x);\n    };\n    for (auto& e : G.edges())\
-    \ {\n      if (e.cap > e.flow) add(e.frm, e.to, e.cost);\n      if (e.flow > 0)\
-    \ add(e.to, e.frm, -e.cost);\n    }\n    add(s, t, L), add(t, s, -L);\n    resG.build();\n\
-    \    vc<T> dist = dijkstra<T>(resG, s).fi;\n    FOR(x, N) pot[x] += dist[x];\n\
-    \    return pot;\n  }\n\n  // \u5909\u66F4\u5F8C\u306E\u9577\u3055\n  vc<T> get_edges()\
-    \ {\n    get_potentials();\n    vc<T> res;\n    for (auto [frm, to, length, cost]\
-    \ : dat) {\n      res.eb(max<T>(length, pot[to] - pot[frm]));\n    }\n    return\
-    \ res;\n  }\n};\n"
+    \ dist[e.frm] + e.cost)) {\n        par[e.to] = e.frm;\n        que.emplace(dist[e.to],\
+    \ e.to);\n      }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\
+    \u30BF\u30FC\u30C8\u3002[dist, par, root]\ntemplate <typename T, typename GT>\n\
+    tuple<vc<T>, vc<int>, vc<int>> dijkstra(GT& G, vc<T> init_dist) {\n  assert(G.is_prepared());\n\
+    \  int N = G.N;\n  vc<T>& dist = init_dist;\n  vc<int> par(N, -1);\n  vc<int>\
+    \ root(N, -1);\n\n  using P = pair<T, int>;\n  pq_min<P> que;\n\n  FOR(v, N) if\
+    \ (dist[v] < infty<T>) que.emplace(dist[v], v), root[v] = v;\n\n  while (!que.empty())\
+    \ {\n    auto [dv, v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n\
+    \    for (auto& e : G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost))\
+    \ {\n        root[e.to] = root[e.frm];\n        par[e.to] = e.frm;\n        que.push(mp(dist[e.to],\
+    \ e.to));\n      }\n    }\n  }\n  return {dist, par, root};\n}\n#line 4 \"flow/longest_shortest_path.hpp\"\
+    \n\n/*\npotential p[v]\n\u8DDD\u96E2\u3092 L \u4EE5\u4E0A\u306B\u3057\u305F\u3044\
+    \ : L<=p[t]-p[s]\n\u8FBA (u,v,w)\n\u4F38\u3070\u3059\u91CF max(0,p[v]-p[u]-w)\n\
+    - t \u304B\u3089 s \u306B\u8CBB\u7528-L, \u5BB9\u91CFINF\n- u \u304B\u3089 v \u306B\
+    \u8CBB\u7528 w, \u5BB9\u91CF 1\n\u3053\u308C\u306E\u5FAA\u74B0\u6D41\n*/\n\n//\
+    \ https://qoj.ac/contest/1435/problem/7737\ntemplate <typename T = ll, bool DAG\
+    \ = false>\nstruct Longest_Shortest_Path {\n  int N, s, t;\n  T F, L, K;\n  bool\
+    \ solved;\n  vc<tuple<int, int, T, T>> dat;\n  vc<T> pot;\n  Longest_Shortest_Path(int\
+    \ N, int s, int t)\n      : N(N), s(s), t(t), F(0), solved(0) {}\n\n  // \u73FE\
+    \u5728\u306E\u9577\u3055, \u9577\u3055\u3092+1\u3059\u308B\u30B3\u30B9\u30C8\n\
+    \  void add(int frm, int to, T length, T cost) {\n    assert(0 <= frm && frm <\
+    \ N && 0 <= to && to < N && !solved);\n    if (DAG) assert(frm < to);\n    dat.eb(frm,\
+    \ to, length, cost);\n  }\n\n  T init_dist() {\n    Graph<T, 1> G(N);\n    for\
+    \ (auto& [a, b, c, d] : dat) G.add(a, b, c);\n    G.build();\n    auto [dist,\
+    \ par] = dijkstra<T>(G, s);\n    return dist[t];\n  }\n\n  // \u8DDD\u96E2\u304C\
+    \ L \u4EE5\u4E0A\u306B\u306A\u308B\u3088\u3046\u306B\u305B\u3088. return: min\
+    \ cost.\n  T solve_by_target_length(T target_length) {\n    L = target_length;\n\
+    \    assert(!solved && L >= init_dist());\n    solved = 1;\n    Min_Cost_Flow<T,\
+    \ T, DAG> G(N, s, t);\n    for (auto& [a, b, length, cost] : dat) {\n      G.add(a,\
+    \ b, cost, length);\n    }\n    T ans = -infty<T>;\n    for (auto& [x, y] : G.slope())\
+    \ {\n      if (chmax(ans, x * L - y)) F = x;\n    }\n    return K = ans;\n  }\n\
+    \n  // \u30B3\u30B9\u30C8\u304C K \u3067\u6700\u5927\u8DDD\u96E2\u306B\u305B\u3088\
+    . return: max dist.\n  T solve_by_cost(T K) {}\n\n  // frm, to, cost. add_edge\
+    \ \u9806.\n  vc<T> get_potentials() {\n    assert(solved);\n    if (len(pot))\
+    \ return pot;\n    Min_Cost_Flow<T, T, DAG> G(N, s, t);\n    for (auto& [a, b,\
+    \ length, cost] : dat) {\n      G.add(a, b, cost, length);\n    }\n    G.flow(F);\n\
+    \    pot = G.get_potentials();\n    Graph<T, 1> resG(N);\n    auto add = [&](int\
+    \ a, int b, T x) -> void {\n      x = x + pot[a] - pot[b];\n      resG.add(a,\
+    \ b, x);\n    };\n    for (auto& e : G.edges()) {\n      if (e.cap > e.flow) add(e.frm,\
+    \ e.to, e.cost);\n      if (e.flow > 0) add(e.to, e.frm, -e.cost);\n    }\n  \
+    \  add(s, t, L), add(t, s, -L);\n    resG.build();\n    vc<T> dist = dijkstra<T>(resG,\
+    \ s).fi;\n    FOR(x, N) pot[x] += dist[x];\n    return pot;\n  }\n\n  // \u5909\
+    \u66F4\u5F8C\u306E\u9577\u3055\n  vc<T> get_edges() {\n    get_potentials();\n\
+    \    vc<T> res;\n    for (auto [frm, to, length, cost] : dat) {\n      res.eb(max<T>(length,\
+    \ pot[to] - pot[frm]));\n    }\n    return res;\n  }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/flow/longest_shortest_path.hpp\n\
     #include \"flow/min_cost_flow.hpp\"\n#include \"graph/shortest_path/dijkstra.hpp\"\
     \n\n/*\npotential p[v]\n\u8DDD\u96E2\u3092 L \u4EE5\u4E0A\u306B\u3057\u305F\u3044\
@@ -339,7 +337,7 @@ data:
   isVerificationFile: false
   path: flow/longest_shortest_path.hpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
+  timestamp: '2026-11-24 17:55:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: flow/longest_shortest_path.hpp
