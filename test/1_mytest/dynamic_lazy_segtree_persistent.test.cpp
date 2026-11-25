@@ -13,8 +13,8 @@ void test() {
 
     vvc<int> AA;
     AA.eb(vc<int>(N, 10));
-    Dynamic_Lazy_SegTree<AM, true> X(
-        0, N, [](ll l, ll r) -> P { return {10 * (r - l), 10}; });
+    auto fun = [&](ll l, ll r) -> P { return {10 * (r - l), 10}; };
+    Dynamic_Lazy_SegTree<AM, true, decltype(fun)> X(0, N, fun);
     using np = typename decltype(X)::np;
 
     int Q = RNG(1, 1000);

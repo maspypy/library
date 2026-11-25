@@ -131,7 +131,7 @@ struct Dynamic_SegTree_Sparse {
       update(c);
       return c;
     }
-    ll m = (l + r - 1) / 2;
+    ll m = l + (r - l) / 2;
     if (i < m) {
       if (node[c].idx < i) swap(node[c].idx, i), swap(node[c].x, x);
       node[c].ch[0] = set_rec(node[c].ch[0], l, m, i, x);
