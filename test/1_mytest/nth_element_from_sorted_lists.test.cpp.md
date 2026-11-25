@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/nth_element_from_sorted_lists.hpp
     title: convex/nth_element_from_sorted_lists.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -185,7 +185,7 @@ data:
     \ 20);\n  vvc<int> dat(N);\n  vc<int> A;\n  FOR(i, N) FOR(S[i]) A.eb(i);\n  shuffle(A);\n\
     \  FOR(p, len(A)) dat[A[p]].eb(p);\n  int K = RNG(0, SUM<ll>(S) + 1);\n\n  set<pair<int,\
     \ int>> st;\n  auto f = [&](int i, int j) -> int { return dat[i][j]; };\n  vi\
-    \ L = nth_element_from_sorted_lists<int>(S, K, f);\n  FOR(i, N) {\n    FOR(j,\
+    \ L = nth_element_from_sorted_lists<int, true>(S, K, f);\n  FOR(i, N) {\n    FOR(j,\
     \ L[i]) { assert(dat[i][j] < K); }\n    FOR(j, L[i], len(dat[i])) { assert(dat[i][j]\
     \ >= K); }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout <<\
     \ a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(500000) test();\n  solve();\n\
@@ -196,10 +196,10 @@ data:
     \ 20);\n  vi S(N);\n  FOR(i, N) S[i] = RNG(0, 20);\n  vvc<int> dat(N);\n  vc<int>\
     \ A;\n  FOR(i, N) FOR(S[i]) A.eb(i);\n  shuffle(A);\n  FOR(p, len(A)) dat[A[p]].eb(p);\n\
     \  int K = RNG(0, SUM<ll>(S) + 1);\n\n  set<pair<int, int>> st;\n  auto f = [&](int\
-    \ i, int j) -> int { return dat[i][j]; };\n  vi L = nth_element_from_sorted_lists<int>(S,\
-    \ K, f);\n  FOR(i, N) {\n    FOR(j, L[i]) { assert(dat[i][j] < K); }\n    FOR(j,\
-    \ L[i], len(dat[i])) { assert(dat[i][j] >= K); }\n  }\n}\n\nvoid solve() {\n \
-    \ int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ i, int j) -> int { return dat[i][j]; };\n  vi L = nth_element_from_sorted_lists<int,\
+    \ true>(S, K, f);\n  FOR(i, N) {\n    FOR(j, L[i]) { assert(dat[i][j] < K); }\n\
+    \    FOR(j, L[i], len(dat[i])) { assert(dat[i][j] >= K); }\n  }\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
     \ {\n  FOR(500000) test();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
@@ -209,8 +209,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/nth_element_from_sorted_lists.test.cpp
   requiredBy: []
-  timestamp: '2026-11-24 17:55:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-25 12:44:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/nth_element_from_sorted_lists.test.cpp
 layout: document

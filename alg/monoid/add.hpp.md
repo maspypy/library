@@ -226,6 +226,12 @@ data:
     path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/ordered_set.test.cpp
+    title: test/2_library_checker/data_structure/ordered_set.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/ordered_set_2.test.cpp
+    title: test/2_library_checker/data_structure/ordered_set_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
     title: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -665,12 +671,14 @@ data:
   - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
   - test/2_library_checker/data_structure/rect_add_pt_get.test.cpp
   - test/2_library_checker/data_structure/static_range_inversions_mo2.test.cpp
+  - test/2_library_checker/data_structure/ordered_set_2.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem_3.test.cpp
   - test/2_library_checker/data_structure/static_range_inversions_mo.test.cpp
   - test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_pbs.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp
+  - test/2_library_checker/data_structure/ordered_set.test.cpp
   - test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem_2.test.cpp
   - test/2_library_checker/data_structure/double_ended_pq_2.test.cpp

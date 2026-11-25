@@ -441,7 +441,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/nimber_log.test.cpp
     title: test/1_mytest/nimber_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/nth_element_from_sorted_lists.test.cpp
     title: test/1_mytest/nth_element_from_sorted_lists.test.cpp
   - icon: ':x:'
@@ -789,6 +789,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
     title: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/ordered_set.test.cpp
+    title: test/2_library_checker/data_structure/ordered_set.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/ordered_set_2.test.cpp
+    title: test/2_library_checker/data_structure/ordered_set_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/persistent_queue.test.cpp
     title: test/2_library_checker/data_structure/persistent_queue.test.cpp
@@ -2250,7 +2256,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/310.test.cpp
     title: test/3_yukicoder/310.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3148.test.cpp
     title: test/3_yukicoder/3148.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3619,6 +3625,7 @@ data:
   - test/2_library_checker/data_structure/rect_add_pt_get.test.cpp
   - test/2_library_checker/data_structure/static_range_inversions_mo2.test.cpp
   - test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
+  - test/2_library_checker/data_structure/ordered_set_2.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem_3.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
   - test/2_library_checker/data_structure/static_range_inversions_mo.test.cpp
@@ -3639,6 +3646,7 @@ data:
   - test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp
   - test/2_library_checker/data_structure/range_affine_point_add.test.cpp
+  - test/2_library_checker/data_structure/ordered_set.test.cpp
   - test/2_library_checker/data_structure/staticrmq_seg.test.cpp
   - test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
   - test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp

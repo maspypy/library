@@ -34,6 +34,12 @@ data:
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/ordered_set.test.cpp
+    title: test/2_library_checker/data_structure/ordered_set.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/ordered_set_2.test.cpp
+    title: test/2_library_checker/data_structure/ordered_set_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
     title: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -244,7 +250,9 @@ data:
   - test/3_yukicoder/1838.test.cpp
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
+  - test/2_library_checker/data_structure/ordered_set_2.test.cpp
   - test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
+  - test/2_library_checker/data_structure/ordered_set.test.cpp
   - test/2_library_checker/data_structure/point_set_range_freq.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree_01.hpp
 layout: document

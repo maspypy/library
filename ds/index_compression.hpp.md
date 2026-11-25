@@ -58,6 +58,9 @@ data:
     path: test/1_mytest/suffix_lcp_change.test.cpp
     title: test/1_mytest/suffix_lcp_change.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/ordered_set_2.test.cpp
+    title: test/2_library_checker/data_structure/ordered_set_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
   - icon: ':heavy_check_mark:'
@@ -249,6 +252,7 @@ data:
   - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
+  - test/2_library_checker/data_structure/ordered_set_2.test.cpp
   - test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp

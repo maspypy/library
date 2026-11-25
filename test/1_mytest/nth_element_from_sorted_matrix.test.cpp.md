@@ -185,13 +185,13 @@ data:
     \ = A[i][j];\n    sort(all(col));\n    FOR(i, N) A[i][j] = col[i];\n  }\n  if\
     \ (RNG(0, 2)) {\n    vv(int, B, M, N);\n    FOR(i, N) FOR(j, M) B[j][i] = A[i][j];\n\
     \    swap(A, B);\n    swap(N, M);\n  }\n\n  int K = RNG(0, N * M + 1);\n  auto\
-    \ f = [&](int i, int j) -> int { return A[i][j]; };\n\n  vi L = nth_element_from_sorted_matrix<int>(N,\
-    \ M, K, f);\n\n  FOR(i, N) {\n    FOR(j, L[i]) { assert(A[i][j] < K); }\n    FOR(j,\
-    \ L[i], M) { assert(A[i][j] >= K); }\n  }\n}\n\nvoid test2() {\n  ll N = RNG(1,\
-    \ 20);\n  ll M = N;\n  vv(int, A, N, M);\n  vc<pair<int, int>> IJ;\n  FOR(i, N)\
-    \ FOR(j, M) IJ.eb(i, j);\n  shuffle(IJ);\n  FOR(k, len(IJ)) {\n    auto [i, j]\
-    \ = IJ[k];\n    A[i][j] = k;\n  }\n\n  FOR(i, N) sort(all(A[i]));\n  FOR(j, M)\
-    \ {\n    vc<int> col(N);\n    FOR(i, N) col[i] = A[i][j];\n    sort(all(col));\n\
+    \ f = [&](int i, int j) -> int { return A[i][j]; };\n\n  vi L = nth_element_from_sorted_matrix<int,\
+    \ true>(N, M, K, f);\n\n  FOR(i, N) {\n    FOR(j, L[i]) { assert(A[i][j] < K);\
+    \ }\n    FOR(j, L[i], M) { assert(A[i][j] >= K); }\n  }\n}\n\nvoid test2() {\n\
+    \  ll N = RNG(1, 20);\n  ll M = N;\n  vv(int, A, N, M);\n  vc<pair<int, int>>\
+    \ IJ;\n  FOR(i, N) FOR(j, M) IJ.eb(i, j);\n  shuffle(IJ);\n  FOR(k, len(IJ)) {\n\
+    \    auto [i, j] = IJ[k];\n    A[i][j] = k;\n  }\n\n  FOR(i, N) sort(all(A[i]));\n\
+    \  FOR(j, M) {\n    vc<int> col(N);\n    FOR(i, N) col[i] = A[i][j];\n    sort(all(col));\n\
     \    FOR(i, N) A[i][j] = col[i];\n  }\n  if (RNG(0, 2)) {\n    vv(int, B, M, N);\n\
     \    FOR(i, N) FOR(j, M) B[j][i] = A[i][j];\n    swap(A, B);\n    swap(N, M);\n\
     \  }\n\n  int K = RNG(0, N * M + 1);\n  set<pair<int, int>> st;\n  auto f = [&](int\
@@ -210,8 +210,8 @@ data:
     \    FOR(i, N) A[i][j] = col[i];\n  }\n  if (RNG(0, 2)) {\n    vv(int, B, M, N);\n\
     \    FOR(i, N) FOR(j, M) B[j][i] = A[i][j];\n    swap(A, B);\n    swap(N, M);\n\
     \  }\n\n  int K = RNG(0, N * M + 1);\n  auto f = [&](int i, int j) -> int { return\
-    \ A[i][j]; };\n\n  vi L = nth_element_from_sorted_matrix<int>(N, M, K, f);\n\n\
-    \  FOR(i, N) {\n    FOR(j, L[i]) { assert(A[i][j] < K); }\n    FOR(j, L[i], M)\
+    \ A[i][j]; };\n\n  vi L = nth_element_from_sorted_matrix<int, true>(N, M, K, f);\n\
+    \n  FOR(i, N) {\n    FOR(j, L[i]) { assert(A[i][j] < K); }\n    FOR(j, L[i], M)\
     \ { assert(A[i][j] >= K); }\n  }\n}\n\nvoid test2() {\n  ll N = RNG(1, 20);\n\
     \  ll M = N;\n  vv(int, A, N, M);\n  vc<pair<int, int>> IJ;\n  FOR(i, N) FOR(j,\
     \ M) IJ.eb(i, j);\n  shuffle(IJ);\n  FOR(k, len(IJ)) {\n    auto [i, j] = IJ[k];\n\
@@ -232,7 +232,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/nth_element_from_sorted_matrix.test.cpp
   requiredBy: []
-  timestamp: '2026-11-23 02:04:21+09:00'
+  timestamp: '2026-11-25 12:44:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/nth_element_from_sorted_matrix.test.cpp

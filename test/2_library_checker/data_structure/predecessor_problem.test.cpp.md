@@ -321,17 +321,17 @@ data:
     \     i /= B;\n    }\n  }\n};\n#line 5 \"test/2_library_checker/data_structure/predecessor_problem.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  FastSet ss(N);\n  STR(S);\n  FOR(x, N) {\n\
     \    if (S[x] == '1') ss.insert(x);\n  }\n\n  FOR(Q) {\n    LL(t, k);\n    if\
-    \ (t == 0) { ss.insert(k); }\n    elif (t == 1) { ss.erase(k); }\n    elif (t\
-    \ == 2) { print(ss[k]); }\n    elif (t == 3) {\n      ll x = ss.next(k);\n   \
-    \   if (x == N) x = -1;\n      print(x);\n    }\n    elif (t == 4) { print(ss.prev(k));\
+    \ (t == 0) {\n      ss.insert(k);\n    }\n    elif (t == 1) { ss.erase(k); }\n\
+    \    elif (t == 2) { print(ss[k]); }\n    elif (t == 3) {\n      ll x = ss.next(k);\n\
+    \      if (x == N) x = -1;\n      print(x);\n    }\n    elif (t == 4) { print(ss.prev(k));\
     \ }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/predecessor_problem\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/fastset.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  FastSet ss(N);\n  STR(S);\n  FOR(x, N) {\n\
     \    if (S[x] == '1') ss.insert(x);\n  }\n\n  FOR(Q) {\n    LL(t, k);\n    if\
-    \ (t == 0) { ss.insert(k); }\n    elif (t == 1) { ss.erase(k); }\n    elif (t\
-    \ == 2) { print(ss[k]); }\n    elif (t == 3) {\n      ll x = ss.next(k);\n   \
-    \   if (x == N) x = -1;\n      print(x);\n    }\n    elif (t == 4) { print(ss.prev(k));\
+    \ (t == 0) {\n      ss.insert(k);\n    }\n    elif (t == 1) { ss.erase(k); }\n\
+    \    elif (t == 2) { print(ss[k]); }\n    elif (t == 3) {\n      ll x = ss.next(k);\n\
+    \      if (x == N) x = -1;\n      print(x);\n    }\n    elif (t == 4) { print(ss.prev(k));\
     \ }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
@@ -340,7 +340,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/predecessor_problem.test.cpp
   requiredBy: []
-  timestamp: '2026-11-18 15:44:25+09:00'
+  timestamp: '2026-11-25 12:44:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/predecessor_problem.test.cpp
