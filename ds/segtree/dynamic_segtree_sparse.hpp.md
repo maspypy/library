@@ -9,7 +9,7 @@ data:
     path: ds/rmq/range_add_range_max.hpp
     title: ds/rmq/range_add_range_max.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/dynamic_segtree_sparse.test.cpp
     title: test/1_mytest/dynamic_segtree_sparse.test.cpp
   - icon: ':heavy_check_mark:'
@@ -21,7 +21,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/data_structure/point_set_range_composite_large.test.cpp
     title: test/2_library_checker/data_structure/point_set_range_composite_large.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -96,7 +96,7 @@ data:
     \   return int(node.size()) - 1;\n    }\n  }\n\n  int set_rec(int c, ll l, ll\
     \ r, ll i, X x) {\n    if (c == NIL) return new_node(i, x);\n    c = clone(c);\n\
     \    if (node[c].idx == i) {\n      node[c].x = x;\n      update(c);\n      return\
-    \ c;\n    }\n    ll m = (l + r - 1) / 2;\n    if (i < m) {\n      if (node[c].idx\
+    \ c;\n    }\n    ll m = l + (r - l) / 2;\n    if (i < m) {\n      if (node[c].idx\
     \ < i) swap(node[c].idx, i), swap(node[c].x, x);\n      node[c].ch[0] = set_rec(node[c].ch[0],\
     \ l, m, i, x);\n    }\n    if (m <= i) {\n      if (i < node[c].idx) swap(node[c].idx,\
     \ i), swap(node[c].x, x);\n      node[c].ch[1] = set_rec(node[c].ch[1], m, r,\
@@ -180,7 +180,7 @@ data:
     \   return int(node.size()) - 1;\n    }\n  }\n\n  int set_rec(int c, ll l, ll\
     \ r, ll i, X x) {\n    if (c == NIL) return new_node(i, x);\n    c = clone(c);\n\
     \    if (node[c].idx == i) {\n      node[c].x = x;\n      update(c);\n      return\
-    \ c;\n    }\n    ll m = (l + r - 1) / 2;\n    if (i < m) {\n      if (node[c].idx\
+    \ c;\n    }\n    ll m = l + (r - l) / 2;\n    if (i < m) {\n      if (node[c].idx\
     \ < i) swap(node[c].idx, i), swap(node[c].x, x);\n      node[c].ch[0] = set_rec(node[c].ch[0],\
     \ l, m, i, x);\n    }\n    if (m <= i) {\n      if (i < node[c].idx) swap(node[c].idx,\
     \ i), swap(node[c].x, x);\n      node[c].ch[1] = set_rec(node[c].ch[1], m, r,\
@@ -220,7 +220,7 @@ data:
   requiredBy:
   - ds/rmq/range_add_range_max.hpp
   - ds/my_multiset.hpp
-  timestamp: '2026-11-25 16:46:10+09:00'
+  timestamp: '2026-11-25 17:20:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/range_add_range_max.test.cpp

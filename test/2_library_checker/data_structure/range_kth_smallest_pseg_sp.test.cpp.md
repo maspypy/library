@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -322,7 +322,7 @@ data:
     \   return int(node.size()) - 1;\n    }\n  }\n\n  int set_rec(int c, ll l, ll\
     \ r, ll i, X x) {\n    if (c == NIL) return new_node(i, x);\n    c = clone(c);\n\
     \    if (node[c].idx == i) {\n      node[c].x = x;\n      update(c);\n      return\
-    \ c;\n    }\n    ll m = (l + r - 1) / 2;\n    if (i < m) {\n      if (node[c].idx\
+    \ c;\n    }\n    ll m = l + (r - l) / 2;\n    if (i < m) {\n      if (node[c].idx\
     \ < i) swap(node[c].idx, i), swap(node[c].x, x);\n      node[c].ch[0] = set_rec(node[c].ch[0],\
     \ l, m, i, x);\n    }\n    if (m <= i) {\n      if (i < node[c].idx) swap(node[c].idx,\
     \ i), swap(node[c].x, x);\n      node[c].ch[1] = set_rec(node[c].ch[1], m, r,\
@@ -380,8 +380,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
   requiredBy: []
-  timestamp: '2026-11-25 16:46:10+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-25 17:20:30+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/nth_element_from_sorted_matrix.hpp
     title: convex/nth_element_from_sorted_matrix.hpp
   - icon: ':question:'
@@ -10,14 +10,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -196,10 +196,10 @@ data:
     \    FOR(i, N) FOR(j, M) B[j][i] = A[i][j];\n    swap(A, B);\n    swap(N, M);\n\
     \  }\n\n  int K = RNG(0, N * M + 1);\n  set<pair<int, int>> st;\n  auto f = [&](int\
     \ i, int j) -> int {\n    st.insert(mp(i, j));\n    return A[i][j];\n  };\n\n\
-    \  nth_element_from_sorted_matrix<int>(N, M, K, f);\n  int QLE = len(st);\n  assert(QLE\
-    \ <= 5 * N);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a\
-    \ + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(50000) test();\n  FOR(50000) test2();\n\
-    \  solve();\n  return 0;\n}\n"
+    \  nth_element_from_sorted_matrix<int, true>(N, M, K, f);\n  int QLE = len(st);\n\
+    \  assert(QLE <= 5 * N);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
+    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(50000) test();\n  FOR(50000)\
+    \ test2();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/base.hpp\"\n#include \"random/shuffle.hpp\"\n#include \"\
     convex/nth_element_from_sorted_matrix.hpp\"\n\nvoid test() {\n  ll N = RNG(1,\
@@ -220,10 +220,11 @@ data:
     \ A[i][j] = col[i];\n  }\n  if (RNG(0, 2)) {\n    vv(int, B, M, N);\n    FOR(i,\
     \ N) FOR(j, M) B[j][i] = A[i][j];\n    swap(A, B);\n    swap(N, M);\n  }\n\n \
     \ int K = RNG(0, N * M + 1);\n  set<pair<int, int>> st;\n  auto f = [&](int i,\
-    \ int j) -> int {\n    st.insert(mp(i, j));\n    return A[i][j];\n  };\n\n  nth_element_from_sorted_matrix<int>(N,\
-    \ M, K, f);\n  int QLE = len(st);\n  assert(QLE <= 5 * N);\n}\n\nvoid solve()\
-    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  FOR(50000) test();\n  FOR(50000) test2();\n  solve();\n  return 0;\n}"
+    \ int j) -> int {\n    st.insert(mp(i, j));\n    return A[i][j];\n  };\n\n  nth_element_from_sorted_matrix<int,\
+    \ true>(N, M, K, f);\n  int QLE = len(st);\n  assert(QLE <= 5 * N);\n}\n\nvoid\
+    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
+    signed main() {\n  FOR(50000) test();\n  FOR(50000) test2();\n  solve();\n  return\
+    \ 0;\n}"
   dependsOn:
   - my_template.hpp
   - random/base.hpp
@@ -232,8 +233,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/nth_element_from_sorted_matrix.test.cpp
   requiredBy: []
-  timestamp: '2026-11-25 12:44:29+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-25 17:22:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/nth_element_from_sorted_matrix.test.cpp
 layout: document
