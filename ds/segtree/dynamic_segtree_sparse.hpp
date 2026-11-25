@@ -1,10 +1,10 @@
 // Source: https://github.com/maspypy/library/blob/main/ds/segtree/dynamic_segtree_sparse.hpp
 
 // 常にほとんどの要素が id であることが保証されるような動的セグ木
-// したがって、default_prod の類は持たせられず、acted monoid も一般には扱えない
-// 追加 N 回のときノード数 N 以下が保証される
+// 秘永続ならば追加 N 回のときノード数 N 以下が保証される
 template <typename Monoid, bool PERSISTENT>
 struct Dynamic_SegTree_Sparse {
+  using np = int;
   using MX = Monoid;
   using X = typename MX::value_type;
 
@@ -131,7 +131,7 @@ struct Dynamic_SegTree_Sparse {
       update(c);
       return c;
     }
-    ll m = l + (i128(r) - l) / 2;
+    ll m = (l + r - 1) / 2;
     if (i < m) {
       if (node[c].idx < i) swap(node[c].idx, i), swap(node[c].x, x);
       node[c].ch[0] = set_rec(node[c].ch[0], l, m, i, x);
@@ -152,7 +152,7 @@ struct Dynamic_SegTree_Sparse {
       update(c);
       return c;
     }
-    ll m = l + (i128(r) - l) / 2;
+    ll m = l + (r - l) / 2;
     if (i < m) {
       if (node[c].idx < i) swap(node[c].idx, i), swap(node[c].x, x);
       node[c].ch[0] = multiply_rec(node[c].ch[0], l, m, i, x);
@@ -166,26 +166,28 @@ struct Dynamic_SegTree_Sparse {
   }
 
   void prod_rec(int c, ll l, ll r, ll ql, ll qr, X &x) {
-    chmax(ql, l), chmin(qr, r);
-    if (ql >= qr || c == NIL) return;
-    if (l == ql && r == qr) {
+    if (c == NIL || qr <= l || r <= ql) return;
+    if (ql <= l && r <= qr) {
       x = MX::op(x, node[c].prod);
       return;
     }
-    ll m = l + (i128(r) - l) / 2;
-    prod_rec(node[c].ch[0], l, m, ql, qr, x);
-    if (ql <= (node[c].idx) && (node[c].idx) < qr) x = MX::op(x, node[c].x);
-    prod_rec(node[c].ch[1], m, r, ql, qr, x);
+    ll m = l + (r - l) / 2;
+    if (ql < m) prod_rec(node[c].ch[0], l, m, ql, qr, x);
+    if (ql <= node[c].idx && node[c].idx < qr) x = MX::op(x, node[c].x);
+    if (m < qr) prod_rec(node[c].ch[1], m, r, ql, qr, x);
   }
 
   template <typename F>
   ll max_right_rec(int c, const F &check, ll l, ll r, ll ql, X &x) {
     if (c == NIL || r <= ql) return R0;
-    if (ql <= l && check(MX::op(x, node[c].prod))) {
-      x = MX::op(x, node[c].prod);
-      return R0;
+    if (ql <= l) {
+      X y = MX::op(x, node[c].prod);
+      if (check(y)) {
+        x = y;
+        return R0;
+      }
     }
-    ll m = l + (i128(r) - l) / 2;
+    ll m = l + (r - l) / 2;
     ll k = max_right_rec(node[c].ch[0], check, l, m, ql, x);
     if (k != R0) return k;
     if (ql <= node[c].idx) {
@@ -202,7 +204,14 @@ struct Dynamic_SegTree_Sparse {
       x = MX::op(node[c].prod, x);
       return L0;
     }
-    ll m = l + (i128(r) - l) / 2;
+    if (r <= qr) {
+      X y = MX::op(node[c].prod, x);
+      if (check(y)) {
+        x = y;
+        return L0;
+      }
+    }
+    ll m = l + (r - l) / 2;
     ll k = min_left_rec(node[c].ch[1], check, m, r, qr, x);
     if (k != L0) return k;
     if (node[c].idx < qr) {

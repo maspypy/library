@@ -1,0 +1,36 @@
+#define PROBLEM "Range Affine Range Sum (Large Array)"
+#include "my_template.hpp"
+#include "other/io.hpp"
+
+#include "mod/modint.hpp"
+#include "alg/acted_monoid/sum_affine.hpp"
+#include "ds/segtree/dynamic_lazy_segtree_sparse.hpp"
+
+using mint = modint998;
+using AM = ActedMonoid_Sum_Affine<mint>;
+
+void solve() {
+  LL(N, Q);
+  Dynamic_Lazy_SegTree_Sparse<AM, false> seg(0, N);
+  using np = decltype(seg)::np;
+
+  np root = seg.new_root();
+
+  FOR(Q) {
+    INT(t, l, r);
+    if (t == 0) {
+      mint b, c;
+      read(b, c);
+      SHOW(t, l, r, b, c);
+      pair<mint, mint> f = {b, c};
+      root = seg.apply(root, l, r, f);
+    } else {
+      print(seg.prod(root, l, r));
+    }
+  }
+}
+
+signed main() {
+  solve();
+  return 0;
+}
