@@ -53,6 +53,9 @@ data:
   - icon: ':question:'
     path: ds/segtree/dynamic_lazy_segtree.hpp
     title: ds/segtree/dynamic_lazy_segtree.hpp
+  - icon: ':x:'
+    path: ds/segtree/dynamic_lazy_segtree_sparse.hpp
+    title: ds/segtree/dynamic_lazy_segtree_sparse.hpp
   - icon: ':heavy_check_mark:'
     path: ds/segtree/dynamic_segtree.hpp
     title: ds/segtree/dynamic_segtree.hpp
@@ -117,10 +120,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/cf702_F_splay.test.cpp
     title: test/1_mytest/cf702_F_splay.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/dynamic_lazy_segtree.test.cpp
     title: test/1_mytest/dynamic_lazy_segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
     title: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
   - icon: ':heavy_check_mark:'
@@ -192,6 +195,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
     title: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/range_affine_range_sum_large.test.cpp
+    title: test/2_library_checker/data_structure/range_affine_range_sum_large.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/range_affine_range_sum_large_2.test.cpp
+    title: test/2_library_checker/data_structure/range_affine_range_sum_large_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
@@ -231,7 +240,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1826.test.cpp
     title: test/3_yukicoder/1826.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2292.test.cpp
     title: test/3_yukicoder/2292.test.cpp
   - icon: ':heavy_check_mark:'
@@ -329,6 +338,7 @@ data:
   - ds/meldable_heap.hpp
   - ds/segtree/dynamic_segtree.hpp
   - ds/segtree/sortable_segtree.hpp
+  - ds/segtree/dynamic_lazy_segtree_sparse.hpp
   - ds/segtree/dynamic_dual_segtree.hpp
   - ds/segtree/dynamic_lazy_segtree.hpp
   - ds/piecewise_constant/piecewise_constant_basic.hpp
@@ -400,10 +410,12 @@ data:
   - test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
   - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
+  - test/2_library_checker/data_structure/range_affine_range_sum_large_2.test.cpp
   - test/2_library_checker/data_structure/persistent_queue.test.cpp
   - test/2_library_checker/data_structure/sort_segtree.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/2_library_checker/data_structure/persistent_unionfind.test.cpp
+  - test/2_library_checker/data_structure/range_affine_range_sum_large.test.cpp
   - test/2_library_checker/data_structure/segment_add_get_min.test.cpp
   - test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
   - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp

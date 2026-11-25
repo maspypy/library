@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   _extendedRequiredBy: []
@@ -21,12 +21,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/range_affine_range_sum_large.test.cpp
+    title: test/2_library_checker/data_structure/range_affine_range_sum_large.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/range_affine_range_sum_large_2.test.cpp
+    title: test/2_library_checker/data_structure/range_affine_range_sum_large_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2342.test.cpp
     title: test/3_yukicoder/2342.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/alg/acted_monoid/sum_affine.hpp
@@ -65,13 +71,15 @@ data:
   path: alg/acted_monoid/sum_affine.hpp
   requiredBy: []
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2342.test.cpp
   - test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
   - test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - test/2_library_checker/data_structure/range_affine_range_sum_large_2.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - test/2_library_checker/data_structure/range_affine_range_sum_large.test.cpp
 documentation_of: alg/acted_monoid/sum_affine.hpp
 layout: document
 redirect_from:

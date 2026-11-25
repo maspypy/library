@@ -1,17 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: ds/segtree/range_max.hpp
     title: ds/segtree/range_max.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/staticrmq_simd.test.cpp
+    title: test/2_library_checker/data_structure/staticrmq_simd.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/segtree/range_min.hpp
@@ -261,8 +264,9 @@ data:
   requiredBy:
   - ds/segtree/range_max.hpp
   timestamp: '2026-11-13 14:14:25+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/2_library_checker/data_structure/staticrmq_simd.test.cpp
 documentation_of: ds/segtree/range_min.hpp
 layout: document
 redirect_from:

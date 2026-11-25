@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsum_affine.hpp
     title: alg/acted_monoid/cntsum_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_affine.hpp
     title: alg/acted_monoid/sum_affine.hpp
   - icon: ':warning:'
@@ -42,6 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
     title: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/point_set_range_composite_large.test.cpp
+    title: test/2_library_checker/data_structure/point_set_range_composite_large.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
     title: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
@@ -54,6 +57,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/range_affine_range_sum_large.test.cpp
+    title: test/2_library_checker/data_structure/range_affine_range_sum_large.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/range_affine_range_sum_large_2.test.cpp
+    title: test/2_library_checker/data_structure/range_affine_range_sum_large_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
     title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
@@ -87,9 +96,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/alg/monoid/affine.hpp
@@ -119,7 +128,7 @@ data:
   - alg/acted_monoid/cntsum_affine.hpp
   - alg/acted_set/affine.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/prefix_max_segtree.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
@@ -140,12 +149,15 @@ data:
   - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   - test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
   - test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
+  - test/2_library_checker/data_structure/range_affine_range_sum_large_2.test.cpp
   - test/2_library_checker/data_structure/sort_segtree.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
   - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   - test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
+  - test/2_library_checker/data_structure/point_set_range_composite_large.test.cpp
   - test/2_library_checker/data_structure/range_affine_point_add.test.cpp
+  - test/2_library_checker/data_structure/range_affine_range_sum_large.test.cpp
 documentation_of: alg/monoid/affine.hpp
 layout: document
 redirect_from:

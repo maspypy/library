@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/range_min.hpp
     title: ds/segtree/range_min.hpp
   _extendedRequiredBy: []

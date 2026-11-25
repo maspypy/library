@@ -192,6 +192,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
     title: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/point_set_range_composite_large.test.cpp
+    title: test/2_library_checker/data_structure/point_set_range_composite_large.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
     title: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
@@ -222,6 +225,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/range_affine_range_sum_large.test.cpp
+    title: test/2_library_checker/data_structure/range_affine_range_sum_large.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/range_affine_range_sum_large_2.test.cpp
+    title: test/2_library_checker/data_structure/range_affine_range_sum_large_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_chmin_chmax_add_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_chmin_chmax_add_range_sum.test.cpp
@@ -231,7 +240,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -315,6 +324,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/staticrmq_simd.test.cpp
+    title: test/2_library_checker/data_structure/staticrmq_simd.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
@@ -1449,7 +1461,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2288.test.cpp
     title: test/3_yukicoder/2288.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2292.test.cpp
     title: test/3_yukicoder/2292.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2803,6 +2815,7 @@ data:
   - test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
   - test/2_library_checker/data_structure/ordered_set_2.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem_3.test.cpp
+  - test/2_library_checker/data_structure/range_affine_range_sum_large_2.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
   - test/2_library_checker/data_structure/static_range_inversions_mo.test.cpp
   - test/2_library_checker/data_structure/double_ended_q.test.cpp
@@ -2821,9 +2834,12 @@ data:
   - test/2_library_checker/data_structure/range_kth_smallest_pbs.test.cpp
   - test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp
+  - test/2_library_checker/data_structure/point_set_range_composite_large.test.cpp
   - test/2_library_checker/data_structure/range_affine_point_add.test.cpp
   - test/2_library_checker/data_structure/ordered_set.test.cpp
+  - test/2_library_checker/data_structure/range_affine_range_sum_large.test.cpp
   - test/2_library_checker/data_structure/staticrmq_seg.test.cpp
+  - test/2_library_checker/data_structure/staticrmq_simd.test.cpp
   - test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
   - test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem_2.test.cpp

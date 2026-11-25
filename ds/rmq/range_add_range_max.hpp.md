@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
   - icon: ':question:'
@@ -23,19 +23,18 @@ data:
     #line 1 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/dynamic_segtree_sparse.hpp\n\
     \n// \u5E38\u306B\u307B\u3068\u3093\u3069\u306E\u8981\u7D20\u304C id \u3067\u3042\
     \u308B\u3053\u3068\u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\u52D5\
-    \u7684\u30BB\u30B0\u6728\n// \u3057\u305F\u304C\u3063\u3066\u3001default_prod\
-    \ \u306E\u985E\u306F\u6301\u305F\u305B\u3089\u308C\u305A\u3001acted monoid \u3082\
-    \u4E00\u822C\u306B\u306F\u6271\u3048\u306A\u3044\n// \u8FFD\u52A0 N \u56DE\u306E\
-    \u3068\u304D\u30CE\u30FC\u30C9\u6570 N \u4EE5\u4E0B\u304C\u4FDD\u8A3C\u3055\u308C\
-    \u308B\ntemplate <typename Monoid, bool PERSISTENT>\nstruct Dynamic_SegTree_Sparse\
-    \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\n  struct Node\
-    \ {\n    int ch[2];\n    ll idx;\n    X prod, x;\n  };\n  const ll L0, R0;\n \
-    \ static constexpr int NIL = 0;\n  vc<Node> node;\n  vc<int> FREE;\n\n  Dynamic_SegTree_Sparse(ll\
-    \ L0, ll R0) : L0(L0), R0(R0) { reset(); }\n  void reserve(int n) { node.reserve(n\
-    \ + 1); }\n  void reset() {\n    node.clear(), FREE.clear();\n    node.eb(Node{{NIL,\
-    \ NIL}, 0, MX::id(), MX::id()});  // NIL\n  }\n\n  // \u6728 dp \u306E\u30DE\u30FC\
-    \u30B8\u306E\u3068\u304D\u306A\u3069\u306B\u4F7F\u7528\u3059\u308B\u3068 MLE \u56DE\
-    \u907F\u3067\u304D\u308B\u3053\u3068\u304C\u3042\u308B\n  // https://codeforces.com/problemset/problem/671/D\n\
+    \u7684\u30BB\u30B0\u6728\n// \u79D8\u6C38\u7D9A\u306A\u3089\u3070\u8FFD\u52A0\
+    \ N \u56DE\u306E\u3068\u304D\u30CE\u30FC\u30C9\u6570 N \u4EE5\u4E0B\u304C\u4FDD\
+    \u8A3C\u3055\u308C\u308B\ntemplate <typename Monoid, bool PERSISTENT>\nstruct\
+    \ Dynamic_SegTree_Sparse {\n  using np = int;\n  using MX = Monoid;\n  using X\
+    \ = typename MX::value_type;\n\n  struct Node {\n    int ch[2];\n    ll idx;\n\
+    \    X prod, x;\n  };\n  const ll L0, R0;\n  static constexpr int NIL = 0;\n \
+    \ vc<Node> node;\n  vc<int> FREE;\n\n  Dynamic_SegTree_Sparse(ll L0, ll R0) :\
+    \ L0(L0), R0(R0) { reset(); }\n  void reserve(int n) { node.reserve(n + 1); }\n\
+    \  void reset() {\n    node.clear(), FREE.clear();\n    node.eb(Node{{NIL, NIL},\
+    \ 0, MX::id(), MX::id()});  // NIL\n  }\n\n  // \u6728 dp \u306E\u30DE\u30FC\u30B8\
+    \u306E\u3068\u304D\u306A\u3069\u306B\u4F7F\u7528\u3059\u308B\u3068 MLE \u56DE\u907F\
+    \u3067\u304D\u308B\u3053\u3068\u304C\u3042\u308B\n  // https://codeforces.com/problemset/problem/671/D\n\
     \  void free_subtree(int c) {\n    assert(c != NIL);\n    auto dfs = [&](auto\
     \ &dfs, int c) -> void {\n      if (c == NIL) return;\n      dfs(dfs, node[c].ch[0]),\
     \ dfs(dfs, node[c].ch[1]);\n      FREE.eb(c);\n    };\n    dfs(dfs, c);\n  }\n\
@@ -71,39 +70,41 @@ data:
     \   return int(node.size()) - 1;\n    }\n  }\n\n  int set_rec(int c, ll l, ll\
     \ r, ll i, X x) {\n    if (c == NIL) return new_node(i, x);\n    c = clone(c);\n\
     \    if (node[c].idx == i) {\n      node[c].x = x;\n      update(c);\n      return\
-    \ c;\n    }\n    ll m = l + (i128(r) - l) / 2;\n    if (i < m) {\n      if (node[c].idx\
+    \ c;\n    }\n    ll m = (l + r - 1) / 2;\n    if (i < m) {\n      if (node[c].idx\
     \ < i) swap(node[c].idx, i), swap(node[c].x, x);\n      node[c].ch[0] = set_rec(node[c].ch[0],\
     \ l, m, i, x);\n    }\n    if (m <= i) {\n      if (i < node[c].idx) swap(node[c].idx,\
     \ i), swap(node[c].x, x);\n      node[c].ch[1] = set_rec(node[c].ch[1], m, r,\
     \ i, x);\n    }\n    update(c);\n    return c;\n  }\n\n  int multiply_rec(int\
     \ c, ll l, ll r, ll i, X x) {\n    if (c == NIL) return new_node(i, x);\n    c\
     \ = clone(c);\n    if (node[c].idx == i) {\n      node[c].x = MX::op(node[c].x,\
-    \ x);\n      update(c);\n      return c;\n    }\n    ll m = l + (i128(r) - l)\
-    \ / 2;\n    if (i < m) {\n      if (node[c].idx < i) swap(node[c].idx, i), swap(node[c].x,\
+    \ x);\n      update(c);\n      return c;\n    }\n    ll m = l + (r - l) / 2;\n\
+    \    if (i < m) {\n      if (node[c].idx < i) swap(node[c].idx, i), swap(node[c].x,\
     \ x);\n      node[c].ch[0] = multiply_rec(node[c].ch[0], l, m, i, x);\n    }\n\
     \    if (m <= i) {\n      if (i < node[c].idx) swap(node[c].idx, i), swap(node[c].x,\
     \ x);\n      node[c].ch[1] = multiply_rec(node[c].ch[1], m, r, i, x);\n    }\n\
     \    update(c);\n    return c;\n  }\n\n  void prod_rec(int c, ll l, ll r, ll ql,\
-    \ ll qr, X &x) {\n    chmax(ql, l), chmin(qr, r);\n    if (ql >= qr || c == NIL)\
-    \ return;\n    if (l == ql && r == qr) {\n      x = MX::op(x, node[c].prod);\n\
-    \      return;\n    }\n    ll m = l + (i128(r) - l) / 2;\n    prod_rec(node[c].ch[0],\
-    \ l, m, ql, qr, x);\n    if (ql <= (node[c].idx) && (node[c].idx) < qr) x = MX::op(x,\
-    \ node[c].x);\n    prod_rec(node[c].ch[1], m, r, ql, qr, x);\n  }\n\n  template\
+    \ ll qr, X &x) {\n    if (c == NIL || qr <= l || r <= ql) return;\n    if (ql\
+    \ <= l && r <= qr) {\n      x = MX::op(x, node[c].prod);\n      return;\n    }\n\
+    \    ll m = l + (r - l) / 2;\n    if (ql < m) prod_rec(node[c].ch[0], l, m, ql,\
+    \ qr, x);\n    if (ql <= node[c].idx && node[c].idx < qr) x = MX::op(x, node[c].x);\n\
+    \    if (m < qr) prod_rec(node[c].ch[1], m, r, ql, qr, x);\n  }\n\n  template\
     \ <typename F>\n  ll max_right_rec(int c, const F &check, ll l, ll r, ll ql, X\
-    \ &x) {\n    if (c == NIL || r <= ql) return R0;\n    if (ql <= l && check(MX::op(x,\
-    \ node[c].prod))) {\n      x = MX::op(x, node[c].prod);\n      return R0;\n  \
-    \  }\n    ll m = l + (i128(r) - l) / 2;\n    ll k = max_right_rec(node[c].ch[0],\
+    \ &x) {\n    if (c == NIL || r <= ql) return R0;\n    if (ql <= l) {\n      X\
+    \ y = MX::op(x, node[c].prod);\n      if (check(y)) {\n        x = y;\n      \
+    \  return R0;\n      }\n    }\n    ll m = l + (r - l) / 2;\n    ll k = max_right_rec(node[c].ch[0],\
     \ check, l, m, ql, x);\n    if (k != R0) return k;\n    if (ql <= node[c].idx)\
     \ {\n      x = MX::op(x, node[c].x);\n      if (!check(x)) return node[c].idx;\n\
     \    }\n    return max_right_rec(node[c].ch[1], check, m, r, ql, x);\n  }\n\n\
     \  template <typename F>\n  ll min_left_rec(int c, const F &check, ll l, ll r,\
     \ ll qr, X &x) {\n    if (c == NIL || qr <= l) return L0;\n    if (r <= qr &&\
     \ check(MX::op(node[c].prod, x))) {\n      x = MX::op(node[c].prod, x);\n    \
-    \  return L0;\n    }\n    ll m = l + (i128(r) - l) / 2;\n    ll k = min_left_rec(node[c].ch[1],\
-    \ check, m, r, qr, x);\n    if (k != L0) return k;\n    if (node[c].idx < qr)\
-    \ {\n      x = MX::op(node[c].x, x);\n      if (!check(x)) return node[c].idx\
-    \ + 1;\n    }\n    return min_left_rec(node[c].ch[0], check, l, m, qr, x);\n \
-    \ }\n};\n#line 1 \"ds/segtree/segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/segtree.hpp\n\
+    \  return L0;\n    }\n    if (r <= qr) {\n      X y = MX::op(node[c].prod, x);\n\
+    \      if (check(y)) {\n        x = y;\n        return L0;\n      }\n    }\n \
+    \   ll m = l + (r - l) / 2;\n    ll k = min_left_rec(node[c].ch[1], check, m,\
+    \ r, qr, x);\n    if (k != L0) return k;\n    if (node[c].idx < qr) {\n      x\
+    \ = MX::op(node[c].x, x);\n      if (!check(x)) return node[c].idx + 1;\n    }\n\
+    \    return min_left_rec(node[c].ch[0], check, l, m, qr, x);\n  }\n};\n#line 1\
+    \ \"ds/segtree/segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/segtree.hpp\n\
     \ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X =\
     \ typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log,\
     \ size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
@@ -267,7 +268,7 @@ data:
   isVerificationFile: false
   path: ds/rmq/range_add_range_max.hpp
   requiredBy: []
-  timestamp: '2026-11-14 12:23:55+09:00'
+  timestamp: '2026-11-25 16:46:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/range_add_range_max.test.cpp
