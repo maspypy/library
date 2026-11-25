@@ -19,7 +19,7 @@ void test() {
 
   set<pair<int, int>> st;
   auto f = [&](int i, int j) -> int { return dat[i][j]; };
-  vi L = nth_element_from_sorted_lists<int>(S, K, f);
+  vi L = nth_element_from_sorted_lists<int, true>(S, K, f);
   FOR(i, N) {
     FOR(j, L[i]) { assert(dat[i][j] < K); }
     FOR(j, L[i], len(dat[i])) { assert(dat[i][j] >= K); }

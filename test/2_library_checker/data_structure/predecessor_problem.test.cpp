@@ -13,7 +13,9 @@ void solve() {
 
   FOR(Q) {
     LL(t, k);
-    if (t == 0) { ss.insert(k); }
+    if (t == 0) {
+      ss.insert(k);
+    }
     elif (t == 1) { ss.erase(k); }
     elif (t == 2) { print(ss[k]); }
     elif (t == 3) {

@@ -54,7 +54,8 @@ void solve() {
     if (y.x0 == 0 && y.x1 == 0) return true;
     return x.x0 * y.x1 > x.x1 * y.x0;
   };
-  auto [ord, x] = optimal_product_on_tree<decltype(tree), Mono, false>(tree, dat, comp);
+  auto [ord, x] =
+      optimal_product_on_tree<decltype(tree), Mono>(tree, dat, comp);
   ll ANS = 0;
   FOR(i, 1, len(ord)) {
     int v = ord[i];

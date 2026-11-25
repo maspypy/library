@@ -34,7 +34,7 @@ void test() {
   int K = RNG(0, N * M + 1);
   auto f = [&](int i, int j) -> int { return A[i][j]; };
 
-  vi L = nth_element_from_sorted_matrix<int>(N, M, K, f);
+  vi L = nth_element_from_sorted_matrix<int, true>(N, M, K, f);
 
   FOR(i, N) {
     FOR(j, L[i]) { assert(A[i][j] < K); }
