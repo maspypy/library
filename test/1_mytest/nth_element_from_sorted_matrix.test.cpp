@@ -75,7 +75,7 @@ void test2() {
     return A[i][j];
   };
 
-  nth_element_from_sorted_matrix<int>(N, M, K, f);
+  nth_element_from_sorted_matrix<int, true>(N, M, K, f);
   int QLE = len(st);
   assert(QLE <= 5 * N);
 }
