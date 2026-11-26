@@ -9,9 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1493.test.cpp
     title: test/3_yukicoder/1493.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/count_subsequence.test.cpp
+    title: test/5_ai_generated_test/count_subsequence.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/string/count_subsequence.hpp
@@ -42,8 +45,9 @@ data:
   path: string/count_subsequence.hpp
   requiredBy: []
   timestamp: '2026-11-24 17:55:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/count_subsequence.test.cpp
   - test/3_yukicoder/1493.test.cpp
   - test/2_library_checker/string/number_of_subsequences.test.cpp
 documentation_of: string/count_subsequence.hpp

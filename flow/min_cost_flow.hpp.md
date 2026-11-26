@@ -33,6 +33,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_6_B.test.cpp
     title: test/4_aoj/GRL_6_B.test.cpp
+  - icon: ':x:'
+    path: test/5_ai_generated_test/min_cost_flow_dag_negative_slope_red.test.cpp
+    title: test/5_ai_generated_test/min_cost_flow_dag_negative_slope_red.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/min_cost_flow_nonnegative_enumeration.test.cpp
+    title: test/5_ai_generated_test/min_cost_flow_nonnegative_enumeration.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -263,6 +269,8 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/5_ai_generated_test/min_cost_flow_dag_negative_slope_red.test.cpp
+  - test/5_ai_generated_test/min_cost_flow_nonnegative_enumeration.test.cpp
   - test/4_aoj/GRL_6_B.test.cpp
   - test/3_yukicoder/1676.test.cpp
   - test/3_yukicoder/1288.test.cpp

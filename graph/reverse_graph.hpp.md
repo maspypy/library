@@ -14,7 +14,7 @@ data:
   - icon: ':warning:'
     path: game/graph_path_game.hpp
     title: game/graph_path_game.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/dominator_tree.hpp
     title: graph/dominator_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -36,9 +36,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/0275.test.cpp
     title: test/4_aoj/0275.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/dominator_tree_vertex_deletion.test.cpp
+    title: test/5_ai_generated_test/dominator_tree_vertex_deletion.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/graph/reverse_graph.hpp
@@ -167,8 +170,9 @@ data:
   - game/graph_game.hpp
   - game/graph_path_game.hpp
   timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/dominator_tree_vertex_deletion.test.cpp
   - test/4_aoj/0275.test.cpp
   - test/3_yukicoder/1601.test.cpp
   - test/2_library_checker/graph/K_shortest_walk.test.cpp

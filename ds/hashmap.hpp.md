@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/bipartite_matching.hpp
     title: flow/bipartite_matching.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: flow/gomory_hu_tree.hpp
     title: flow/gomory_hu_tree.hpp
   - icon: ':warning:'
@@ -77,7 +77,7 @@ data:
   - icon: ':warning:'
     path: graph/bitset/transitive_reduction.hpp
     title: graph/bitset/transitive_reduction.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/blackbox/complement_graph_bfs.hpp
     title: graph/blackbox/complement_graph_bfs.hpp
   - icon: ':warning:'
@@ -149,10 +149,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/directed_mst.hpp
     title: graph/directed_mst.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/dominator_tree.hpp
     title: graph/dominator_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -290,7 +290,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -299,7 +299,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bellman_ford.hpp
     title: graph/shortest_path/bellman_ford.hpp
   - icon: ':heavy_check_mark:'
@@ -428,7 +428,7 @@ data:
   - icon: ':warning:'
     path: string/generalized_suffix_automaton.hpp
     title: string/generalized_suffix_automaton.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
   - icon: ':heavy_check_mark:'
@@ -1023,6 +1023,30 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_D.test.cpp
     title: test/4_aoj/ITP1_11_D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/bellman_ford_negative_cycle_oracle.test.cpp
+    title: test/5_ai_generated_test/bellman_ford_negative_cycle_oracle.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/complement_graph_bfs_oracle.test.cpp
+    title: test/5_ai_generated_test/complement_graph_bfs_oracle.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/directed_mst_bruteforce.test.cpp
+    title: test/5_ai_generated_test/directed_mst_bruteforce.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/dominator_tree_vertex_deletion.test.cpp
+    title: test/5_ai_generated_test/dominator_tree_vertex_deletion.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/gomory_hu_all_pairs_cuts.test.cpp
+    title: test/5_ai_generated_test/gomory_hu_all_pairs_cuts.test.cpp
+  - icon: ':x:'
+    path: test/5_ai_generated_test/maxflow_capacity_change_cut.test.cpp
+    title: test/5_ai_generated_test/maxflow_capacity_change_cut.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/maxflow_mincut_oracle.test.cpp
+    title: test/5_ai_generated_test/maxflow_mincut_oracle.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/suffix_automaton_occ_next.test.cpp
+    title: test/5_ai_generated_test/suffix_automaton_occ_next.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -1234,6 +1258,14 @@ data:
   timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/5_ai_generated_test/maxflow_mincut_oracle.test.cpp
+  - test/5_ai_generated_test/gomory_hu_all_pairs_cuts.test.cpp
+  - test/5_ai_generated_test/maxflow_capacity_change_cut.test.cpp
+  - test/5_ai_generated_test/directed_mst_bruteforce.test.cpp
+  - test/5_ai_generated_test/complement_graph_bfs_oracle.test.cpp
+  - test/5_ai_generated_test/dominator_tree_vertex_deletion.test.cpp
+  - test/5_ai_generated_test/bellman_ford_negative_cycle_oracle.test.cpp
+  - test/5_ai_generated_test/suffix_automaton_occ_next.test.cpp
   - test/4_aoj/GRL_6_A.test.cpp
   - test/4_aoj/GRL_3_B.test.cpp
   - test/4_aoj/2251_2.test.cpp

@@ -1,0 +1,572 @@
+---
+data:
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: ds/hashmap.hpp
+    title: ds/hashmap.hpp
+  - icon: ':question:'
+    path: flow/maxflow.hpp
+    title: flow/maxflow.hpp
+  - icon: ':question:'
+    path: graph/base.hpp
+    title: graph/base.hpp
+  - icon: ':question:'
+    path: my_template.hpp
+    title: my_template.hpp
+  - icon: ':question:'
+    path: other/io.hpp
+    title: other/io.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
+  _pathExtension: cpp
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    links: []
+  bundledCode: "#line 1 \"my_template.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n\
+    #if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\n#if defined(__GNUC__)\n\
+    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
+    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n\n#else  // MASPY_TEMPLATE_BODY\n\
+    #include <bits/stdc++.h>\n#include <cassert>\n\n#if defined(__GNUC__)\n#pragma\
+    \ GCC optimize(\"Ofast,unroll-loops\")\n#endif\n\nusing namespace std;\n\nusing\
+    \ ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\n\
+    using u64 = uint64_t;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
+    using f128 = __float128;\n\ntemplate <class>\nconstexpr bool dependent_false =\
+    \ false;\n\ntemplate <class T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>,\
+    \ \"infty<T> is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int\
+    \ infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 4'040'000'000'000'000'000;\n\
+    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
+    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
+    \ * 4'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
+    \ infty<i128>;\ntemplate <>\nconstexpr long double infty<long double> = infty<i128>;\n\
+    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
+    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing pq_max = priority_queue<T>;\ntemplate <class T>\nusing\
+    \ pq_min = priority_queue<T, vector<T>, greater<T>>;\n\n#define vv(type, name,\
+    \ h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n#define\
+    \ vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name( \\\n \
+    \     h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
+    \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
+    \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR1_R(a)\
+    \ for (ll i = ll(a) - 1; i >= ll(0); --i)\n#define FOR2_R(i, a) for (ll i = ll(a)\
+    \ - 1; i >= ll(0); --i)\n#define FOR3_R(i, a, b) for (ll i = ll(b) - 1; i >= ll(a);\
+    \ --i)\n#define overload3(a, b, c, d, ...) d\n#define FOR(...) overload3(__VA_ARGS__,\
+    \ FOR3, FOR2, FOR1)(__VA_ARGS__)\n#define FOR_R(...) overload3(__VA_ARGS__, FOR3_R,\
+    \ FOR2_R, FOR1_R)(__VA_ARGS__)\n\n#define all(x) (x).begin(), (x).end()\n#define\
+    \ len(x) ll(x.size())\n#define elif else if\n\n#define eb emplace_back\n#define\
+    \ mp make_pair\n#define mt make_tuple\n#define fi first\n#define se second\n\n\
+    #define stoi stoll\n\n// require y > 0\ntemplate <typename T>\nT floor(T x, T\
+    \ y) {\n  return x / y - (x % y < 0);\n}\n\n// require y > 0\ntemplate <typename\
+    \ T>\nT ceil(T x, T y) {\n  return (x / y) + (x % y > 0);\n}\n\n// require y >\
+    \ 0\ntemplate <typename T>\nT bmod(T x, T y) {\n  T r = x % y;\n  return (r <\
+    \ 0 ? r + y : r);\n}\n\n// require y > 0\ntemplate <typename T>\npair<T, T> divmod(T\
+    \ x, T y) {\n  T q = x / y, r = x % y;\n  if (r < 0) --q, r += y;\n  return {q,\
+    \ r};\n}\n\nconstexpr auto TEN = [] {\n  array<u64, 20> A{};\n  A[0] = 1;\n  for\
+    \ (int i = 1; i < 20; ++i) A[i] = 10 * A[i - 1];\n  return A;\n}();\n\ntemplate\
+    \ <typename T, typename U>\nT SUM(const U &A) {\n  return std::accumulate(A.begin(),\
+    \ A.end(), T{});\n}\n\n#define MIN(v) *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n\
+    template <class C, class T>\ninline long long LB(const C &c, const T &x) {\n \
+    \ return lower_bound(c.begin(), c.end(), x) - c.begin();\n}\ntemplate <class C,\
+    \ class T>\ninline long long UB(const C &c, const T &x) {\n  return upper_bound(c.begin(),\
+    \ c.end(), x) - c.begin();\n}\n#define UNIQUE(x) sort(all(x)), x.erase(unique(all(x)),\
+    \ x.end())\n\ntemplate <typename T>\nT POP(deque<T> &que) {\n  T a = que.front();\n\
+    \  que.pop_front();\n  return a;\n}\ntemplate <class T, class Container, class\
+    \ Compare>\nT POP(priority_queue<T, Container, Compare> &que) {\n  T a = que.top();\n\
+    \  que.pop();\n  return a;\n}\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T\
+    \ a = que.back();\n  que.pop_back();\n  return a;\n}\n\ntemplate <typename F>\n\
+    i128 binary_search(F check, i128 ok, i128 ng, bool check_ok = true) {\n  if (check_ok)\
+    \ assert(check(ok));\n  while (1) {\n    i128 x = (ok + ng) / 2;\n    if (x ==\
+    \ ok || x == ng) break;\n    (check(x) ? ok : ng) = x;\n  }\n  return ok;\n}\n\
+    \ntemplate <typename F>\ndouble binary_search_real(F check, double ok, double\
+    \ ng, int iter = 100) {\n  FOR(iter) {\n    double x = (ok + ng) / 2;\n    (check(x)\
+    \ ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n}\n\ntemplate <class T, class\
+    \ S>\ninline bool chmax(T &a, const S &b) {\n  T c = max<T>(a, b);\n  bool changed\
+    \ = (c != a);\n  a = c;\n  return changed;\n}\ntemplate <class T, class S>\ninline\
+    \ bool chmin(T &a, const S &b) {\n  T c = min<T>(a, b);\n  bool changed = (c !=\
+    \ a);\n  a = c;\n  return changed;\n}\n\n// bit operations\nint popcnt(int x)\
+    \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1)\
+    \ << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0\
+    \ <= k && k < int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename\
+    \ T>\nstruct all_bit {\n  static_assert(is_integral<T>::value);\n  T s;\n  all_bit(T\
+    \ s) : s(s) { assert(s >= 0); }\n  struct iter {\n    T s;\n    int operator*()\
+    \ const { return lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool\
+    \ operator!=(nullptr_t) const { return s; }\n  };\n  iter begin() const { return\
+    \ {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate <typename\
+    \ T>\nstruct all_subset {\n  static_assert(is_integral<T>::value);\n  T s;\n \
+    \ all_subset(T s) : s(s) { assert(s >= 0); }\n  struct iter {\n    T s, t;\n \
+    \   bool done = false;\n    T operator*() const { return t; }\n    void operator++()\
+    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
+    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0\
+    \ <= n && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
+    \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
+    \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
+    \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
+    \  x = ((x & 0x00ff00ff00ff00ffULL) << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n\
+    \  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n\
+    \  x = (x << 32) | (x >> 32);\n  return x;\n}\n\n// ? \u306F -1\nvc<int> s_to_vi(const\
+    \ string &S, char first_char) {\n  vc<int> A(S.size());\n  FOR(i, S.size()) {\
+    \ A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return A;\n}\n\ntemplate\
+    \ <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int off = 1) {\n  int\
+    \ N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] = B[i] + A[i]; }\n\
+    \  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable sort\ntemplate\
+    \ <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n  iota(all(ids),\
+    \ 0);\n  sort(all(ids),\n      [&](int i, int j) { return (A[i] == A[j] ? i <\
+    \ j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate\
+    \ <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n\
+    \  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\ntemplate <typename T, typename...\
+    \ Vectors>\nvoid concat(vc<T> &first, const Vectors &...others) {\n  first.reserve(first.size()\
+    \ + (others.size() + ... + 0));\n  (first.insert(first.end(), others.begin(),\
+    \ others.end()), ...);\n}\n\n// i128\ntemplate <class T, enable_if_t<is_same_v<T,\
+    \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
+    constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
+    \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif  // MASPY_TEMPLATE_BODY\n\
+    #line 1 \"other/io.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/other/io.hpp\n\
+    #define FASTIO\n\n// https://judge.yosupo.jp/submission/21623\nnamespace fastio\
+    \ {\nstatic constexpr uint32_t SZ = 1 << 17;\nchar ibuf[SZ];\nchar obuf[SZ];\n\
+    char out[100];\n// pointer of ibuf, obuf\nuint32_t pil = 0, pir = 0, por = 0;\n\
+    bool input_eof = false;\n\ntemplate <class T>\nconstexpr bool is_signed_integer_v\
+    \ = is_signed_v<T> || is_same_v<T, i128>;\n\ntemplate <class T>\nstruct unsigned_integer\
+    \ {\n  using type = make_unsigned_t<T>;\n};\ntemplate <>\nstruct unsigned_integer<i128>\
+    \ {\n  using type = u128;\n};\ntemplate <>\nstruct unsigned_integer<u128> {\n\
+    \  using type = u128;\n};\ntemplate <class T>\nusing unsigned_integer_t = typename\
+    \ unsigned_integer<T>::type;\n\n[[noreturn]] inline void input_error(const char\
+    \ *message) {\n  fputs(message, stderr);\n  fputc('\\n', stderr);\n  exit(EXIT_FAILURE);\n\
+    }\n\nstruct Pre {\n  char num[10000][4];\n  constexpr Pre() : num() {\n    for\
+    \ (int i = 0; i < 10000; i++) {\n      int n = i;\n      for (int j = 3; j >=\
+    \ 0; j--) {\n        num[i][j] = n % 10 | '0';\n        n /= 10;\n      }\n  \
+    \  }\n  }\n} constexpr pre;\n\ninline void load() {\n  uint32_t n = pir - pil;\n\
+    \  memmove(ibuf, ibuf + pil, n);\n  pil = 0;\n  pir = n;\n  if (input_eof) return;\n\
+    \n  pir += fread(ibuf + pir, 1, SZ - pir, stdin);\n  if (ferror(stdin)) input_error(\"\
+    fastio: input error\");\n  if (feof(stdin)) {\n    input_eof = true;\n    // Allows\
+    \ the last token to end exactly at EOF without a trailing\n    // whitespace.\n\
+    \    if (pir < SZ) ibuf[pir++] = '\\n';\n  }\n}\n\ninline char get_char() {\n\
+    \  if (pil == pir) {\n    load();\n    if (pil == pir) input_error(\"fastio: unexpected\
+    \ EOF\");\n  }\n  return ibuf[pil++];\n}\n\ninline void flush() {\n  fwrite(obuf,\
+    \ 1, por, stdout);\n  por = 0;\n}\n\nvoid rd(char &c) {\n  do c = get_char();\n\
+    \  while (isspace(static_cast<unsigned char>(c)));\n}\n\nvoid rd(string &x) {\n\
+    \  x.clear();\n  char c;\n  do c = get_char();\n  while (isspace(static_cast<unsigned\
+    \ char>(c)));\n  do {\n    x += c;\n    c = get_char();\n  } while (!isspace(static_cast<unsigned\
+    \ char>(c)));\n}\n\ntemplate <typename T>\nvoid rd_real(T &x) {\n  string s;\n\
+    \  rd(s);\n  x = stod(s);\n}\n\ntemplate <typename T>\nvoid rd_integer_slow(T\
+    \ &x) {\n  char c;\n  do c = get_char();\n  while (c < '-');\n  bool minus = 0;\n\
+    \  if constexpr (is_signed_integer_v<T>) {\n    if (c == '-') {\n      minus =\
+    \ 1, c = get_char();\n    }\n  }\n  x = 0;\n  assert('0' <= c && c <= '9');\n\
+    \  while ('0' <= c && c <= '9') {\n    x = x * 10 + (c & 15), c = get_char();\n\
+    \  }\n  assert(isspace(static_cast<unsigned char>(c)));\n  if constexpr (is_signed_integer_v<T>)\
+    \ {\n    if (minus) x = -x;\n  }\n}\n\ntemplate <typename T>\nvoid rd_integer(T\
+    \ &x) {\n  if (pil + 100 > pir) {\n    load();\n    if (pil + 100 > pir) {\n \
+    \     rd_integer_slow(x);\n      return;\n    }\n  }\n  char c;\n  do c = ibuf[pil++];\n\
+    \  while (c < '-');\n  bool minus = 0;\n  if constexpr (is_signed_integer_v<T>)\
+    \ {\n    if (c == '-') {\n      minus = 1, c = ibuf[pil++];\n    }\n  }\n  x =\
+    \ 0;\n  assert('0' <= c && c <= '9');\n  while ('0' <= c && c <= '9') {\n    x\
+    \ = x * 10 + (c & 15), c = ibuf[pil++];\n  }\n  assert(isspace(static_cast<unsigned\
+    \ char>(c)));\n  if constexpr (is_signed_integer_v<T>) {\n    if (minus) x = -x;\n\
+    \  }\n}\n\ntemplate <class T>\nenable_if_t<is_integral_v<T> || is_same_v<T, i128>\
+    \ || is_same_v<T, u128>> rd(\n    T &x) {\n  rd_integer(x);\n}\n\ntemplate <class\
+    \ T>\nenable_if_t<is_floating_point_v<T> || is_same_v<T, f128>> rd(T &x) {\n \
+    \ rd_real(x);\n}\n\ntemplate <class T, class U>\nvoid rd(pair<T, U> &p) {\n  rd(p.first),\
+    \ rd(p.second);\n}\ntemplate <size_t N = 0, typename T>\nvoid rd_tuple(T &t) {\n\
+    \  if constexpr (N < tuple_size<T>::value) {\n    auto &x = get<N>(t);\n    rd(x);\n\
+    \    rd_tuple<N + 1>(t);\n  }\n}\ntemplate <class... T>\nvoid rd(tuple<T...> &tpl)\
+    \ {\n  rd_tuple(tpl);\n}\n\ntemplate <class T, size_t N>\nvoid rd(array<T, N>\
+    \ &x) {\n  for (auto &d : x) rd(d);\n}\ntemplate <class T>\nvoid rd(vc<T> &x)\
+    \ {\n  for (auto &d : x) rd(d);\n}\n\ntemplate <class... T>\nvoid read(T &...x)\
+    \ {\n  (rd(x), ...);\n}\n\ninline void wt_range(const char *s, size_t n) {\n \
+    \ size_t i = 0;\n  while (i < n) {\n    if (por == SZ) flush();\n    size_t chunk\
+    \ = min(n - i, (size_t)(SZ - por));\n    memcpy(obuf + por, s + i, chunk);\n \
+    \   por += chunk;\n    i += chunk;\n  }\n}\n\nvoid wt(const char c) {\n  if (por\
+    \ == SZ) flush();\n  obuf[por++] = c;\n}\nvoid wt(const char *s) { wt_range(s,\
+    \ strlen(s)); }\nvoid wt(const string &s) { wt_range(s.data(), s.size()); }\n\n\
+    template <typename T>\nvoid wt_integer(T x) {\n  if (por > SZ - 100) flush();\n\
+    \  using U = unsigned_integer_t<T>;\n  U y = static_cast<U>(x);\n  if constexpr\
+    \ (is_signed_integer_v<T>) {\n    if (x < 0) {\n      obuf[por++] = '-';\n   \
+    \   y = U(0) - y;\n    }\n  }\n  int outi;\n  for (outi = 96; y >= 10000; outi\
+    \ -= 4) {\n    memcpy(out + outi, pre.num[y % 10000], 4);\n    y /= 10000;\n \
+    \ }\n  if (y >= 1000) {\n    memcpy(obuf + por, pre.num[y], 4);\n    por += 4;\n\
+    \  } else if (y >= 100) {\n    memcpy(obuf + por, pre.num[y] + 1, 3);\n    por\
+    \ += 3;\n  } else if (y >= 10) {\n    int q = (y * 103) >> 10;\n    obuf[por]\
+    \ = q | '0';\n    obuf[por + 1] = (y - q * 10) | '0';\n    por += 2;\n  } else\n\
+    \    obuf[por++] = y | '0';\n  memcpy(obuf + por, out + outi + 4, 96 - outi);\n\
+    \  por += 96 - outi;\n}\n\ntemplate <typename T>\ninline void wt_real(T x) {\n\
+    \  static char buf[1000];\n  int n = std::snprintf(buf, sizeof(buf), \"%.15f\"\
+    , (double)x);\n  wt_range(buf, (size_t)n);\n}\n\ntemplate <class T>\nenable_if_t<is_integral_v<T>\
+    \ || is_same_v<T, i128> || is_same_v<T, u128>> wt(\n    T x) {\n  wt_integer(x);\n\
+    }\n\ntemplate <class T>\nenable_if_t<is_floating_point_v<T> || is_same_v<T, f128>>\
+    \ wt(T x) {\n  wt_real(x);\n}\n\ninline void wt(bool b) { wt(static_cast<char>('0'\
+    \ + (b ? 1 : 0))); }\n\ntemplate <class T, class U>\nvoid wt(const pair<T, U>\
+    \ &val) {\n  wt(val.first);\n  wt(' ');\n  wt(val.second);\n}\ntemplate <size_t\
+    \ N = 0, typename T>\nvoid wt_tuple(const T &t) {\n  if constexpr (N < tuple_size<T>::value)\
+    \ {\n    if constexpr (N > 0) wt(' ');\n    wt(get<N>(t));\n    wt_tuple<N + 1>(t);\n\
+    \  }\n}\ntemplate <class... T>\nvoid wt(const tuple<T...> &tpl) {\n  wt_tuple(tpl);\n\
+    }\ntemplate <class T, size_t S>\nvoid wt(const array<T, S> &val) {\n  auto n =\
+    \ val.size();\n  for (size_t i = 0; i < n; i++) {\n    if (i) wt(' ');\n    wt(val[i]);\n\
+    \  }\n}\ntemplate <class T>\nvoid wt(const vector<T> &val) {\n  auto n = val.size();\n\
+    \  for (size_t i = 0; i < n; i++) {\n    if (i) wt(' ');\n    wt(val[i]);\n  }\n\
+    }\n\nvoid print() { wt('\\n'); }\ntemplate <class Head, class... Tail>\nvoid print(Head\
+    \ &&head, Tail &&...tail) {\n  wt(forward<Head>(head));\n  ((wt(' '), wt(forward<Tail>(tail))),\
+    \ ...);\n  wt('\\n');\n}\n\n// gcc expansion. called automaticall after main.\n\
+    void __attribute__((destructor)) _d() { flush(); }\n}  // namespace fastio\nusing\
+    \ fastio::flush;\nusing fastio::print;\nusing fastio::read;\n\n#if defined(LOCAL)\n\
+    #define HDR \"[DEBUG:\", __func__, __LINE__, \"]\"\n#define SHOW(...)        \
+    \                                                 \\\n  SHOW_IMPL(__VA_ARGS__,\
+    \ SHOW8, SHOW7, SHOW6, SHOW5, SHOW4, SHOW3, SHOW2, \\\n            SHOW1)    \
+    \                                                    \\\n  (__VA_ARGS__)\n#define\
+    \ SHOW_IMPL(_1, _2, _3, _4, _5, _6, _7, _8, NAME, ...) NAME\n#define SHOW1(x)\
+    \ print(HDR, #x, \"=\", (x)), flush()\n#define SHOW2(x, y) print(HDR, #x, \"=\"\
+    , (x), #y, \"=\", (y)), flush()\n#define SHOW3(x, y, z) \\\n  print(HDR, #x, \"\
+    =\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\n#define SHOW4(x, y, z, w)\
+    \ \\\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\",\
+    \ (w)), flush()\n#define SHOW5(x, y, z, w, v)                                \
+    \                  \\\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\"\
+    , (z), #w, \"=\", (w), #v, \"=\", \\\n        (v)),                          \
+    \                                       \\\n      flush()\n#define SHOW6(x, y,\
+    \ z, w, v, u)                                               \\\n  print(HDR, #x,\
+    \ \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\n\
+    \        (v), #u, \"=\", (u)),                                               \
+    \    \\\n      flush()\n#define SHOW7(x, y, z, w, v, u, t)                   \
+    \                         \\\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z,\
+    \ \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\n        (v), #u, \"=\", (u), #t,\
+    \ \"=\", (t)),                                     \\\n      flush()\n#define\
+    \ SHOW8(x, y, z, w, v, u, t, s)                                         \\\n \
+    \ print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v,\
+    \ \"=\", \\\n        (v), #u, \"=\", (u), #t, \"=\", (t), #s, \"=\", (s)),   \
+    \                    \\\n      flush()\n#else\n#define SHOW(...)\n#endif\n\n#define\
+    \ INT(...)   \\\n  int __VA_ARGS__; \\\n  read(__VA_ARGS__)\n#define LL(...) \
+    \  \\\n  ll __VA_ARGS__; \\\n  read(__VA_ARGS__)\n#define U32(...)   \\\n  u32\
+    \ __VA_ARGS__; \\\n  read(__VA_ARGS__)\n#define U64(...)   \\\n  u64 __VA_ARGS__;\
+    \ \\\n  read(__VA_ARGS__)\n#define STR(...)      \\\n  string __VA_ARGS__; \\\n\
+    \  read(__VA_ARGS__)\n#define CHAR(...)   \\\n  char __VA_ARGS__; \\\n  read(__VA_ARGS__)\n\
+    #define DBL(...)      \\\n  double __VA_ARGS__; \\\n  read(__VA_ARGS__)\n\n#define\
+    \ VEC(type, name, size) \\\n  vector<type> name(size);    \\\n  read(name)\n#define\
+    \ VV(type, name, h, w)                     \\\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\n  read(name)\n\nvoid YES(bool t = 1) { print(t ? \"YES\"\
+    \ : \"NO\"); }\nvoid NO(bool t = 1) { YES(!t); }\nvoid Yes(bool t = 1) { print(t\
+    \ ? \"Yes\" : \"No\"); }\nvoid No(bool t = 1) { Yes(!t); }\nvoid yes(bool t =\
+    \ 1) { print(t ? \"yes\" : \"no\"); }\nvoid no(bool t = 1) { yes(!t); }\nvoid\
+    \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\nvoid TIDAK(bool t = 1) {\
+    \ YA(!t); }\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\nvoid\
+    \ Bob(bool t = 1) { Alice(!t); }\n#line 1 \"flow/maxflow.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/flow/maxflow.hpp\n\
+    #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
+    #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
+    \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\n  HashMap(u32 n = 0)\
+    \ { build(n); }\n  void build(u32 n) {\n    u32 k = 8;\n    while (k < n * 2)\
+    \ k *= 2;\n    cap = k / 2, mask = k - 1;\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\n  }\n\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
+    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\n  void clear() {\n \
+    \   used.assign(len(used), 0);\n    cap = (mask + 1) / 2;\n  }\n  int size() {\
+    \ return len(used) / 2 - cap; }\n\n  int index(const u64& k) {\n    int i = 0;\n\
+    \    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {\n    }\n\
+    \    return i;\n  }\n\n  Val& operator[](const u64& k) {\n    int i = index(k);\n\
+    \    if (used[i]) return val[i];\n    if (cap == 0) extend(), i = index(k);\n\
+    \    used[i] = 1, key[i] = k, val[i] = Val{}, --cap;\n    return val[i];\n  }\n\
+    \n  Val get(const u64& k, Val default_value) {\n    int i = index(k);\n    return\
+    \ (used[i] ? val[i] : default_value);\n  }\n\n  bool count(const u64& k) {\n \
+    \   int i = index(k);\n    return used[i] && key[i] == k;\n  }\n\n  // f(key,\
+    \ val)\n  template <typename F>\n  void enumerate_all(F f) {\n    bool end = false;\n\
+    \    FOR(i, len(used)) {\n      if (used[i]) f(key[i], val[i], end);\n      if\
+    \ (end) break;\n    }\n  }\n\n private:\n  u32 cap, mask;\n  vc<u64> key;\n  vc<Val>\
+    \ val;\n  vc<bool> used;\n\n  u64 hash(u64 x) {\n    static const u64 FIXED_RANDOM\
+    \ =\n        std::chrono::steady_clock::now().time_since_epoch().count();\n  \
+    \  x += FIXED_RANDOM;\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\n    x =\
+    \ (x ^ (x >> 27)) * 0x94d049bb133111eb;\n    return (x ^ (x >> 31)) & mask;\n\
+    \  }\n\n  void extend() {\n    vc<pair<u64, Val>> dat;\n    dat.reserve(len(used)\
+    \ / 2 - cap);\n    FOR(i, len(used)) {\n      if (used[i]) dat.eb(key[i], val[i]);\n\
+    \    }\n    build(2 * len(dat));\n    for (auto& [a, b] : dat) (*this)[a] = b;\n\
+    \  }\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
+    \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
+    \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
+    \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  mutable vc<int>\
+    \ vc_deg, vc_indeg, vc_outdeg;\n  mutable HashMap<int> MP_FOR_EID;\n  bool prepared;\n\
+    \n  class OutgoingEdges {\n   public:\n    OutgoingEdges(const Graph* G, int l,\
+    \ int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n     \
+    \ if (l == r) {\n        return 0;\n      }\n      return &G->csr_edges[l];\n\
+    \    }\n\n    const edge_type* end() const {\n      if (l == r) {\n        return\
+    \ 0;\n      }\n      return &G->csr_edges[r];\n    }\n\n   private:\n    const\
+    \ Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() const { return prepared;\
+    \ }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+    \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
+    \    vc_outdeg.clear();\n    MP_FOR_EID.clear();\n  }\n\n  void add(int frm, int\
+    \ to, T cost = 1, int i = -1) {\n    assert(!prepared);\n    assert(0 <= frm &&\
+    \ frm < N && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto e = edge_type({frm,\
+    \ to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n#ifdef FASTIO\n  // wt, off\n\
+    \  void read_tree(bool wt = false, int off = 1) { read_graph(N - 1, wt, off);\
+    \ }\n\n  void read_graph(int M, bool wt = false, int off = 1) {\n    for (int\
+    \ m = 0; m < M; ++m) {\n      INT(a, b);\n      a -= off, b -= off;\n      if\
+    \ (!wt) {\n        add(a, b);\n      } else {\n        T c;\n        read(c);\n\
+    \        add(a, b, c);\n      }\n    }\n    build();\n  }\n#endif\n\n  void build()\
+    \ {\n    assert(!prepared);\n    prepared = true;\n    indptr.assign(N + 1, 0);\n\
+    \    for (auto&& e : edges) {\n      indptr[e.frm + 1]++;\n      if (!directed)\
+    \ indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) {\n      indptr[v\
+    \ + 1] += indptr[v];\n    }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
+    \ + 1);\n    for (auto&& e : edges) {\n      csr_edges[counter[e.frm]++] = e;\n\
+    \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
+    \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
+    \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
+    \ vc<int> deg_array() const {\n    if (vc_deg.empty()) calc_deg();\n    return\
+    \ vc_deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() const {\n    if (vc_indeg.empty())\
+    \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
+    \ const {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n\
+    \  int in_deg(int v) const {\n    if (vc_indeg.empty()) calc_deg_inout();\n  \
+    \  return vc_indeg[v];\n  }\n\n  int out_deg(int v) const {\n    if (vc_outdeg.empty())\
+    \ calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\n#ifdef FASTIO\n  void debug()\
+    \ {\n#ifdef LOCAL\n    print(\"Graph\");\n    if (!prepared) {\n      print(\"\
+    frm to cost id\");\n      for (auto&& e : edges) print(e.frm, e.to, e.cost, e.id);\n\
+    \    } else {\n      print(\"indptr\", indptr);\n      print(\"frm to cost id\"\
+    );\n      FOR(v, N) for (auto&& e : (*this)[v]) print(e.frm, e.to, e.cost, e.id);\n\
+    \    }\n    flush();\n#endif\n  }\n#endif\n\n  mutable vc<int> new_idx;\n  mutable\
+    \ vc<bool> used_e;\n\n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\
+    \u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\
+    \u3059\u308B\n  // {G, es}\n  // sum(deg(v)) \u306E\u8A08\u7B97\u91CF\u306B\u306A\
+    \u3063\u3066\u3044\u3066\u3001\n  // \u65B0\u3057\u3044\u30B0\u30E9\u30D5\u306E\
+    \ n+m \u3088\u308A\u5927\u304D\u3044\u53EF\u80FD\u6027\u304C\u3042\u308B\u306E\
+    \u3067\u6CE8\u610F\n  Graph<T, directed> rearrange(const vc<int>& V, bool keep_eid\
+    \ = 0) const {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    int n =\
+    \ len(V);\n    FOR(i, n) new_idx[V[i]] = i;\n    Graph<T, directed> G(n);\n  \
+    \  vc<int> history;\n    FOR(i, n) {\n      for (auto&& e : (*this)[V[i]]) {\n\
+    \        if (len(used_e) <= e.id) used_e.resize(e.id + 1);\n        if (used_e[e.id])\
+    \ continue;\n        int a = e.frm, b = e.to;\n        if (new_idx[a] != -1 &&\
+    \ new_idx[b] != -1) {\n          history.eb(e.id);\n          used_e[e.id] = 1;\n\
+    \          int eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b],\
+    \ e.cost, eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n\
+    \    for (auto&& eid : history) used_e[eid] = 0;\n    G.build();\n    return G;\n\
+    \  }\n\n  Graph<T, true> to_directed_tree(int root = -1) const {\n    if (root\
+    \ == -1) root = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T,\
+    \ true> G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v)\
+    \ -> void {\n      for (auto& e : (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
+    \    for (auto& e : edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
+    \    }\n    G1.build();\n    return G1;\n  }\n\n  int get_eid(u64 a, u64 b) const\
+    \ {\n    if (len(MP_FOR_EID) == 0) {\n      MP_FOR_EID.build(N - 1);\n      for\
+    \ (auto& e : edges) {\n        u64 a = e.frm, b = e.to;\n        u64 k = to_eid_key(a,\
+    \ b);\n        MP_FOR_EID[k] = e.id;\n      }\n    }\n    return MP_FOR_EID.get(to_eid_key(a,\
+    \ b), -1);\n  }\n\n  u64 to_eid_key(u64 a, u64 b) const {\n    if (!directed &&\
+    \ a > b) swap(a, b);\n    return N * a + b;\n  }\n\n private:\n  void calc_deg()\
+    \ const {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&&\
+    \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
+    \   }\n  }\n};\n#line 3 \"flow/maxflow.hpp\"\n\ntemplate <typename Cap>\nstruct\
+    \ MaxFlow {\n  struct Edge {\n    int to, rev;\n    Cap cap;\n  };\n\n  vc<Edge>\
+    \ edges;\n  vc<int> indptr, level;\n  vc<Cap> init_cap;\n  vc<tuple<int, int,\
+    \ Cap, Cap>> edge_pool;\n\n  const int N, source, sink;\n  bool calculated;\n\
+    \  Cap flow_ans;\n  vc<int> pos;\n\n  MaxFlow(int N, int source, int sink)\n \
+    \     : N(N), source(source), sink(sink), calculated(0), flow_ans(0) {}\n\n  void\
+    \ add(int frm, int to, Cap cap, Cap rev_cap = 0) {\n    calculated = 0;\n    assert(0\
+    \ <= frm && frm < N);\n    assert(0 <= to && to < N);\n    assert(Cap(0) <= cap);\n\
+    \    edge_pool.eb(frm, to, cap, rev_cap);\n  }\n\n  void build_csr() {\n    int\
+    \ M = len(edge_pool);\n    indptr.assign(N + 1, 0);\n    for (auto [a, b, c, d]\
+    \ : edge_pool) indptr[a + 1]++, indptr[b + 1]++;\n    FOR(i, N) indptr[i + 1]\
+    \ += indptr[i];\n    vc<int> prog = indptr;\n    edges.resize(2 * M);\n    init_cap.resize(2\
+    \ * M);\n    for (auto [a, b, c, d] : edge_pool) {\n      int I1 = prog[a], I2\
+    \ = prog[b];\n      edges[I1] = Edge{b, I2, c}, init_cap[I1] = c, prog[a]++;\n\
+    \      edges[I2] = Edge{a, I1, d}, init_cap[I2] = d, prog[b]++;\n      pos.eb(I1);\n\
+    \    }\n  }\n\n  Cap flow() {\n    if (calculated) return flow_ans;\n    calculated\
+    \ = true;\n    if (indptr.empty()) build_csr();\n    vc<int> prog = indptr;\n\
+    \    level.resize(N);\n    vc<int> que(N);\n    auto bfs = [&]() -> void {\n \
+    \     fill(all(level), -1);\n      int ql = 0, qr = 0;\n      level[source] =\
+    \ 0, que[qr++] = source;\n      while (ql < qr) {\n        int v = que[ql++];\n\
+    \        FOR(i, indptr[v], indptr[v + 1]) {\n          Edge& e = edges[i];\n \
+    \         if (e.cap > 0 && level[e.to] == -1) {\n            level[e.to] = level[v]\
+    \ + 1;\n            que[qr++] = e.to;\n            if (e.to == sink) return;\n\
+    \          }\n        }\n      }\n    };\n\n    // ACL \u53C2\u8003. v \u307E\u3067\
+    \u3044\u304F\u3064\u6D41\u3057\u3066\u304F\u308B\u3068\u3044\u3046\u65B9\u5F0F\
+    .\n    // source-sink\u4E0A\u306B\u3042\u308B\u3068\u3053\u308D\u3060\u3051\u63A2\
+    \u7D22\u3059\u308B\u306E\u3067\u3053\u3061\u3089\u306E\u65B9\u304C\u9AD8\u901F\
+    \u3068\u3044\u3046\u3053\u3068\u3060\u3068\u601D\u3046.\n    auto dfs = [&](auto&\
+    \ dfs, int v, Cap lim) -> Cap {\n      if (v == source) return lim;\n      Cap\
+    \ res = 0;\n      int nxt_lv = level[v] - 1;\n      for (int& i = prog[v]; i <\
+    \ indptr[v + 1]; ++i) {\n        auto& e = edges[i];\n        if (level[e.to]\
+    \ != nxt_lv || edges[e.rev].cap == 0) continue;\n        Cap a = dfs(dfs, e.to,\
+    \ min(lim - res, edges[e.rev].cap));\n        if (a <= 0) continue;\n        e.cap\
+    \ += a, edges[e.rev].cap -= a, res += a;\n        if (res == lim) return res;\n\
+    \      }\n      level[v] = N;\n      return res;\n    };\n    while (1) {\n  \
+    \    bfs();\n      if (level[sink] == -1) break;\n      copy(all(indptr), prog.begin());\n\
+    \      Cap x = dfs(dfs, sink, infty<Cap>);\n      flow_ans += x;\n      if (flow_ans\
+    \ >= infty<Cap>) return infty<Cap>;\n    }\n    return flow_ans;\n  }\n\n  void\
+    \ change_capacity(int i, Cap after) {\n    i = pos[i];\n    auto& e = edges[i];\n\
+    \    Cap before = init_cap[i];\n    Cap f = before - e.cap;\n    init_cap[i] =\
+    \ after;\n    if (before < after) {\n      calculated = (e.cap > 0);\n      e.cap\
+    \ += after - before;\n      return;\n    }\n    e.cap = after - f;\n    // \u5DEE\
+    \u5206\u3092\u62BC\u3057\u623B\u3059\u51E6\u7406\u767A\u751F\n    if (e.cap <\
+    \ 0) flow_push_back(e);\n  }\n\n  void flow_push_back(Edge& e0) {\n    auto& re0\
+    \ = edges[e0.rev];\n    int a = re0.to;\n    int b = e0.to;\n    /*\n    \u8FBA\
+    \ e0 \u306E\u5BB9\u91CF\u304C\u6B63\u306B\u306A\u308B\u3088\u3046\u306B\u623B\u3059\
+    \n    path-cycle \u5206\u89E3\u3092\u8003\u3048\u308C\u3070\u3001\n    - uv \u8FBA\
+    \u3092\u542B\u3080\u30B5\u30A4\u30AF\u30EB\u3092\u6D88\u3059\n    - suvt \u30D1\
+    \u30B9\u3092\u6D88\u3059\n    \u524D\u8005\u306F\u6B8B\u4F59\u30B0\u30E9\u30D5\
+    \u3067 ab \u30D1\u30B9\uFF08flow_ans \u304C\u5909\u308F\u3089\u306A\u3044\uFF09\
+    \n    \u5F8C\u8005\u306F\u6B8B\u4F59\u30B0\u30E9\u30D5\u3067 tb, as \u30D1\u30B9\
+    \n    */\n\n    vc<int> prog(N + 1);\n    auto find_path = [&](int s, int t, Cap\
+    \ lim) -> Cap {\n      vc<bool> vis(N);\n      copy(all(indptr), prog.begin());\n\
+    \      auto dfs = [&](auto& dfs, int v, Cap f) -> Cap {\n        if (v == t) return\
+    \ f;\n        for (int& i = prog[v]; i < indptr[v + 1]; ++i) {\n          auto&\
+    \ e = edges[i];\n          if (vis[e.to] || e.cap <= Cap(0)) continue;\n     \
+    \     vis[e.to] = 1;\n          Cap a = dfs(dfs, e.to, min(f, e.cap));\n     \
+    \     assert(a >= 0);\n          if (a == Cap(0)) continue;\n          e.cap -=\
+    \ a, edges[e.rev].cap += a;\n          return a;\n        }\n        return 0;\n\
+    \      };\n      return dfs(dfs, s, lim);\n    };\n\n    while (e0.cap < 0) {\n\
+    \      Cap x = find_path(a, b, -e0.cap);\n      if (x == Cap(0)) break;\n    \
+    \  e0.cap += x, re0.cap -= x;\n    }\n    Cap c = -e0.cap;\n    while (c > 0 &&\
+    \ a != source) {\n      Cap x = find_path(a, source, c);\n      assert(x > 0);\n\
+    \      c -= x;\n    }\n    c = -e0.cap;\n    while (c > 0 && b != sink) {\n  \
+    \    Cap x = find_path(sink, b, c);\n      assert(x > 0);\n      c -= x;\n   \
+    \ }\n    c = -e0.cap;\n    e0.cap += c, re0.cap -= c;\n    flow_ans -= c;\n  }\n\
+    \n  // frm, to, flow\n  vc<tuple<int, int, Cap>> get_flow_edges() {\n    vc<tuple<int,\
+    \ int, Cap>> res;\n    FOR(v, N) {\n      FOR(i, indptr[v], indptr[v + 1]) {\n\
+    \        Edge& e = edges[i];\n        Cap f = init_cap[i] - e.cap;\n        if\
+    \ (f > 0) res.eb(v, e.to, f);\n      }\n    }\n    return res;\n  }\n\n  // \u307E\
+    \u3060\u4F7F\u3063\u305F\u3053\u3068\u304C\u306A\u3044\u306F\u305A\u306A\u306E\
+    \u3067\u8981\u78BA\u8A8D\n  Graph<int, 1> res_graph() {\n    Graph<int, 1> G(N);\n\
+    \    vc<tuple<int, int, Cap>> res;\n    FOR(v, N) {\n      FOR(i, indptr[v], indptr[v\
+    \ + 1]) {\n        Edge& e = edges[i];\n        if (e.cap > 0) {\n          G.add(v,\
+    \ e.to);\n        }\n      }\n    }\n    G.build();\n    return G;\n  }\n\n  //\
+    \ \u6700\u5C0F\u30AB\u30C3\u30C8\u306E\u5024\u304A\u3088\u3073\u3001\u30AB\u30C3\
+    \u30C8\u3092\u8868\u3059 01 \u5217\u3092\u8FD4\u3059\n  pair<Cap, vc<int>> cut()\
+    \ {\n    flow();\n    vc<int> res(N);\n    FOR(v, N) res[v] = (level[v] >= 0 ?\
+    \ 0 : 1);\n    return {flow_ans, res};\n  }\n\n  // O(F(N+M)) \u304F\u3089\u3044\
+    \u4F7F\u3063\u3066\u7D4C\u8DEF\u5FA9\u5143\n  // simple path \u306B\u306A\u308B\
+    \n  vvc<int> path_decomposition() {\n    flow();\n    auto edges = get_flow_edges();\n\
+    \    vvc<int> TO(N);\n    for (auto&& [frm, to, flow] : edges) {\n      FOR(flow)\
+    \ TO[frm].eb(to);\n    }\n    vvc<int> res;\n    vc<int> vis(N);\n\n    FOR(flow_ans)\
+    \ {\n      vc<int> path = {source};\n      vis[source] = 1;\n      while (path.back()\
+    \ != sink) {\n        int to = POP(TO[path.back()]);\n        while (vis[to])\
+    \ {\n          vis[POP(path)] = 0;\n        }\n        path.eb(to), vis[to] =\
+    \ 1;\n      }\n      for (auto&& v : path) vis[v] = 0;\n      res.eb(path);\n\
+    \    }\n    return res;\n  }\n\n  void debug() {\n#ifdef LOCAL\n    if (indptr.empty())\
+    \ build_csr();\n    print(\"source\", source);\n    print(\"sink\", sink);\n \
+    \   print(\"edges (frm, to, cap, flow)\");\n    SHOW(N, len(indptr));\n    FOR(v,\
+    \ N) {\n      FOR(i, indptr[v], indptr[v + 1]) {\n        Edge& e = edges[i];\n\
+    \        Cap f = init_cap[i] - e.cap;\n        SHOW(i, v, e.to, e.cap, f);\n \
+    \     }\n    }\n#endif\n  }\n};\n#line 4 \"test/5_ai_generated_test/maxflow_mincut_oracle.test.cpp\"\
+    \n\n/*\n\u5BFE\u8C61: flow/maxflow.hpp \u306E add/flow/cut\u3001\u9759\u7684\u306A\
+    \u5C0F\u30B0\u30E9\u30D5\u306E\u6700\u5927\u6D41\u30FB\u6700\u5C0F\u30AB\u30C3\
+    \u30C8\u3002\nAOJ\u7B49\u306E\u65E2\u5B58\u30C6\u30B9\u30C8\u306F\u554F\u984C\u5225\
+    \u5165\u529B\u3067\u3042\u308A\u3001\u5168s-t\u30AB\u30C3\u30C8\u3068\u306E\u6BD4\
+    \u8F03\u306F\u5B9F\u65BD\u3057\u3066\u3044\u306A\u3044\u3002\n\u72EC\u7ACBoracle:\
+    \ source\u5074\u306E\u5168\u9802\u70B9\u90E8\u5206\u96C6\u5408\u3092\u5217\u6319\
+    \u3057\u3066\u30AB\u30C3\u30C8\u5BB9\u91CF\u3092\u76F4\u63A5\u8A08\u7B97\u3002\
+    \n\u5E73\u884C\u8FBA\u30FB0\u5BB9\u91CF\u30FB\u9006\u5411\u304D\u5BB9\u91CF\u30FB\
+    \u4EFB\u610F\u306Esource/sink\u3092\u691C\u8A3C\u3059\u308B\u3002\nn=2..7\u3001\
+    \u975E\u8CA0\u5C0F\u5BB9\u91CF\u3001\u81EA\u5DF1\u30EB\u30FC\u30D7\u306A\u3057\
+    \u3001seed=0xF10C0FFEE2026ULL\u3002\n*/\n\nnamespace {\nstruct InputEdge {\n \
+    \ int u, v, cap, rev;\n};\nvoid fail(int n, int trial, int operation, const string&\
+    \ why) {\n  cerr << \"MaxFlow n=\" << n << \" trial=\" << trial\n       << \"\
+    \ op=\" << operation << \" : \" << why << '\\n';\n  abort();\n}\nint cut_value(const\
+    \ vector<InputEdge>& edges, int mask) {\n  int ans = 0;\n  for (const auto& e\
+    \ : edges) {\n    bool a = (mask >> e.u & 1), b = (mask >> e.v & 1);\n    if (a\
+    \ && !b) ans += e.cap;\n    if (b && !a) ans += e.rev;\n  }\n  return ans;\n}\n\
+    int brute_mincut(int n, int s, int t, const vector<InputEdge>& edges) {\n  int\
+    \ best = numeric_limits<int>::max();\n  for (int mask = 0; mask < (1 << n); ++mask)\
+    \ {\n    if (!(mask >> s & 1) || (mask >> t & 1)) continue;\n    best = min(best,\
+    \ cut_value(edges, mask));\n  }\n  return best;\n}\nvoid verify(MaxFlow<int>&\
+    \ mf, int n, int s, int t,\n            const vector<InputEdge>& edges, int trial,\
+    \ int step) {\n  int expected = brute_mincut(n, s, t, edges);\n  int got = mf.flow();\n\
+    \  if (got != expected) fail(n, trial, step, \"flow=\" + to_string(got) +\n  \
+    \                                                \" mincut=\" + to_string(expected));\n\
+    \  if (mf.flow() != got) fail(n, trial, step, \"repeated flow changed\");\n  const\
+    \ auto [value, side] = mf.cut();\n  if (value != expected || int(side.size())\
+    \ != n)\n    fail(n, trial, step, \"cut return value or length mismatch\");\n\
+    \  if (side[s] != 0 || side[t] != 1)\n    fail(n, trial, step, \"cut side for\
+    \ source/sink\");\n  int mask = 0;\n  for (int v = 0; v < n; ++v) {\n    if (side[v]\
+    \ != 0 && side[v] != 1) fail(n, trial, step, \"nonbinary cut\");\n    if (side[v]\
+    \ == 0) mask |= 1 << v;\n  }\n  if (cut_value(edges, mask) != expected)\n    fail(n,\
+    \ trial, step, \"returned cut has capacity=\" + to_string(cut_value(edges, mask))\
+    \ + \" but minimum=\" + to_string(expected) + \" source-side-mask=\" + to_string(mask));\n\
+    }\nvoid static_cases(mt19937_64& rng) {\n  int trial = 0;\n  for (int n = 2; n\
+    \ <= 7; ++n) {\n    for (int rep = 0; rep < 250; ++rep) {\n      int s = int(rng()\
+    \ % n), t = int(rng() % n);\n      if (t == s) t = (t + 1) % n;\n      MaxFlow<int>\
+    \ mf(n, s, t);\n      vector<InputEdge> edges;\n      int m = int(rng() % 16);\n\
+    \      for (int i = 0; i < m; ++i) {\n        int u = int(rng() % n), v = int(rng()\
+    \ % (n - 1));\n        if (v >= u) ++v;\n        int cap = int(rng() % 7), rev\
+    \ = int(rng() % 4);\n        mf.add(u, v, cap, rev);\n        edges.push_back({u,\
+    \ v, cap, rev});\n      }\n      verify(mf, n, s, t, edges, trial++, -1);\n  \
+    \  }\n  }\n}\n} // namespace\n\nint main() {\n  mt19937_64 rng(0xF10C0FFEE2026ULL);\n\
+    \  static_cases(rng);\n  return 0;\n}\n"
+  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"flow/maxflow.hpp\"\
+    \n\n/*\n\u5BFE\u8C61: flow/maxflow.hpp \u306E add/flow/cut\u3001\u9759\u7684\u306A\
+    \u5C0F\u30B0\u30E9\u30D5\u306E\u6700\u5927\u6D41\u30FB\u6700\u5C0F\u30AB\u30C3\
+    \u30C8\u3002\nAOJ\u7B49\u306E\u65E2\u5B58\u30C6\u30B9\u30C8\u306F\u554F\u984C\u5225\
+    \u5165\u529B\u3067\u3042\u308A\u3001\u5168s-t\u30AB\u30C3\u30C8\u3068\u306E\u6BD4\
+    \u8F03\u306F\u5B9F\u65BD\u3057\u3066\u3044\u306A\u3044\u3002\n\u72EC\u7ACBoracle:\
+    \ source\u5074\u306E\u5168\u9802\u70B9\u90E8\u5206\u96C6\u5408\u3092\u5217\u6319\
+    \u3057\u3066\u30AB\u30C3\u30C8\u5BB9\u91CF\u3092\u76F4\u63A5\u8A08\u7B97\u3002\
+    \n\u5E73\u884C\u8FBA\u30FB0\u5BB9\u91CF\u30FB\u9006\u5411\u304D\u5BB9\u91CF\u30FB\
+    \u4EFB\u610F\u306Esource/sink\u3092\u691C\u8A3C\u3059\u308B\u3002\nn=2..7\u3001\
+    \u975E\u8CA0\u5C0F\u5BB9\u91CF\u3001\u81EA\u5DF1\u30EB\u30FC\u30D7\u306A\u3057\
+    \u3001seed=0xF10C0FFEE2026ULL\u3002\n*/\n\nnamespace {\nstruct InputEdge {\n \
+    \ int u, v, cap, rev;\n};\nvoid fail(int n, int trial, int operation, const string&\
+    \ why) {\n  cerr << \"MaxFlow n=\" << n << \" trial=\" << trial\n       << \"\
+    \ op=\" << operation << \" : \" << why << '\\n';\n  abort();\n}\nint cut_value(const\
+    \ vector<InputEdge>& edges, int mask) {\n  int ans = 0;\n  for (const auto& e\
+    \ : edges) {\n    bool a = (mask >> e.u & 1), b = (mask >> e.v & 1);\n    if (a\
+    \ && !b) ans += e.cap;\n    if (b && !a) ans += e.rev;\n  }\n  return ans;\n}\n\
+    int brute_mincut(int n, int s, int t, const vector<InputEdge>& edges) {\n  int\
+    \ best = numeric_limits<int>::max();\n  for (int mask = 0; mask < (1 << n); ++mask)\
+    \ {\n    if (!(mask >> s & 1) || (mask >> t & 1)) continue;\n    best = min(best,\
+    \ cut_value(edges, mask));\n  }\n  return best;\n}\nvoid verify(MaxFlow<int>&\
+    \ mf, int n, int s, int t,\n            const vector<InputEdge>& edges, int trial,\
+    \ int step) {\n  int expected = brute_mincut(n, s, t, edges);\n  int got = mf.flow();\n\
+    \  if (got != expected) fail(n, trial, step, \"flow=\" + to_string(got) +\n  \
+    \                                                \" mincut=\" + to_string(expected));\n\
+    \  if (mf.flow() != got) fail(n, trial, step, \"repeated flow changed\");\n  const\
+    \ auto [value, side] = mf.cut();\n  if (value != expected || int(side.size())\
+    \ != n)\n    fail(n, trial, step, \"cut return value or length mismatch\");\n\
+    \  if (side[s] != 0 || side[t] != 1)\n    fail(n, trial, step, \"cut side for\
+    \ source/sink\");\n  int mask = 0;\n  for (int v = 0; v < n; ++v) {\n    if (side[v]\
+    \ != 0 && side[v] != 1) fail(n, trial, step, \"nonbinary cut\");\n    if (side[v]\
+    \ == 0) mask |= 1 << v;\n  }\n  if (cut_value(edges, mask) != expected)\n    fail(n,\
+    \ trial, step, \"returned cut has capacity=\" + to_string(cut_value(edges, mask))\
+    \ + \" but minimum=\" + to_string(expected) + \" source-side-mask=\" + to_string(mask));\n\
+    }\nvoid static_cases(mt19937_64& rng) {\n  int trial = 0;\n  for (int n = 2; n\
+    \ <= 7; ++n) {\n    for (int rep = 0; rep < 250; ++rep) {\n      int s = int(rng()\
+    \ % n), t = int(rng() % n);\n      if (t == s) t = (t + 1) % n;\n      MaxFlow<int>\
+    \ mf(n, s, t);\n      vector<InputEdge> edges;\n      int m = int(rng() % 16);\n\
+    \      for (int i = 0; i < m; ++i) {\n        int u = int(rng() % n), v = int(rng()\
+    \ % (n - 1));\n        if (v >= u) ++v;\n        int cap = int(rng() % 7), rev\
+    \ = int(rng() % 4);\n        mf.add(u, v, cap, rev);\n        edges.push_back({u,\
+    \ v, cap, rev});\n      }\n      verify(mf, n, s, t, edges, trial++, -1);\n  \
+    \  }\n  }\n}\n} // namespace\n\nint main() {\n  mt19937_64 rng(0xF10C0FFEE2026ULL);\n\
+    \  static_cases(rng);\n  return 0;\n}\n"
+  dependsOn:
+  - my_template.hpp
+  - other/io.hpp
+  - flow/maxflow.hpp
+  - graph/base.hpp
+  - ds/hashmap.hpp
+  isVerificationFile: true
+  path: test/5_ai_generated_test/maxflow_mincut_oracle.test.cpp
+  requiredBy: []
+  timestamp: '2026-11-23 00:27:17+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/5_ai_generated_test/maxflow_mincut_oracle.test.cpp
+layout: document
+redirect_from:
+- /verify/test/5_ai_generated_test/maxflow_mincut_oracle.test.cpp
+- /verify/test/5_ai_generated_test/maxflow_mincut_oracle.test.cpp.html
+title: test/5_ai_generated_test/maxflow_mincut_oracle.test.cpp
+---

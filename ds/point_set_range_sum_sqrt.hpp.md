@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/point_set_range_sum_sqrt.test.cpp
+    title: test/5_ai_generated_test/point_set_range_sum_sqrt.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/point_set_range_sum_sqrt.hpp
@@ -90,8 +93,9 @@ data:
   path: ds/point_set_range_sum_sqrt.hpp
   requiredBy: []
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/5_ai_generated_test/point_set_range_sum_sqrt.test.cpp
 documentation_of: ds/point_set_range_sum_sqrt.hpp
 layout: document
 redirect_from:

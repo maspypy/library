@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/crt.hpp
     title: nt/crt.hpp
   _extendedVerifiedWith:
@@ -21,9 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/590.test.cpp
     title: test/3_yukicoder/590.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/crt_small_bruteforce.test.cpp
+    title: test/5_ai_generated_test/crt_small_bruteforce.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/blog/entry/108053
@@ -74,8 +77,9 @@ data:
   requiredBy:
   - nt/crt.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/crt_small_bruteforce.test.cpp
   - test/1_mytest/coprime_factorization.test.cpp
   - test/3_yukicoder/187.test.cpp
   - test/3_yukicoder/2119.test.cpp

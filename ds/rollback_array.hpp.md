@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/rollback_lazy_segtree.hpp
     title: ds/segtree/rollback_lazy_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/rollback_potentialized_unionfind.hpp
     title: ds/unionfind/rollback_potentialized_unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/rollback_unionfind.hpp
     title: ds/unionfind/rollback_unionfind.hpp
   _extendedVerifiedWith:
@@ -21,9 +21,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2293.test.cpp
     title: test/3_yukicoder/2293.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/rollback_lazy_segtree_snapshot.test.cpp
+    title: test/5_ai_generated_test/rollback_lazy_segtree_snapshot.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/rollback_potentialized_permutation.test.cpp
+    title: test/5_ai_generated_test/rollback_potentialized_permutation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/rollback_unionfind.test.cpp
+    title: test/5_ai_generated_test/rollback_unionfind.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/rollback_array.hpp
@@ -55,8 +64,11 @@ data:
   - ds/unionfind/rollback_potentialized_unionfind.hpp
   - ds/unionfind/rollback_unionfind.hpp
   timestamp: '2026-10-27 03:17:11+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/rollback_potentialized_permutation.test.cpp
+  - test/5_ai_generated_test/rollback_unionfind.test.cpp
+  - test/5_ai_generated_test/rollback_lazy_segtree_snapshot.test.cpp
   - test/3_yukicoder/2293.test.cpp
   - test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
   - test/2_library_checker/data_structure/add_remove_query.test.cpp

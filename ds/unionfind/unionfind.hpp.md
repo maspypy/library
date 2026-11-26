@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: ds/rmq/suffix_max.hpp
     title: ds/rmq/suffix_max.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/rmq/suffix_min.hpp
     title: ds/rmq/suffix_min.hpp
   - icon: ':heavy_check_mark:'
@@ -56,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/directed_mst.hpp
     title: graph/directed_mst.hpp
   - icon: ':warning:'
@@ -294,6 +294,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/directed_mst_bruteforce.test.cpp
+    title: test/5_ai_generated_test/directed_mst_bruteforce.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/suffix_min.test.cpp
+    title: test/5_ai_generated_test/suffix_min.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -365,6 +371,8 @@ data:
   timestamp: '2026-10-22 01:32:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/5_ai_generated_test/suffix_min.test.cpp
+  - test/5_ai_generated_test/directed_mst_bruteforce.test.cpp
   - test/4_aoj/2251_2.test.cpp
   - test/4_aoj/1566.test.cpp
   - test/4_aoj/GRL_2_A.test.cpp

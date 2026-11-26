@@ -1,14 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/intervals_fast.test.cpp
+    title: test/5_ai_generated_test/intervals_fast.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/intervals_map.test.cpp
+    title: test/5_ai_generated_test/intervals_map.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/1638/problem/E
@@ -224,8 +230,10 @@ data:
   path: ds/intervals.hpp
   requiredBy: []
   timestamp: '2026-11-16 16:23:07+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/5_ai_generated_test/intervals_map.test.cpp
+  - test/5_ai_generated_test/intervals_fast.test.cpp
 documentation_of: ds/intervals.hpp
 layout: document
 redirect_from:

@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_trick_super.hpp
     title: convex/slope_trick/slope_trick_super.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
   - icon: ':warning:'
@@ -50,7 +50,7 @@ data:
   - icon: ':warning:'
     path: ds/segtree/dynamic_dual_segtree.hpp
     title: ds/segtree/dynamic_dual_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/dynamic_lazy_segtree.hpp
     title: ds/segtree/dynamic_lazy_segtree.hpp
   - icon: ':heavy_check_mark:'
@@ -264,9 +264,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/1508_2.test.cpp
     title: test/4_aoj/1508_2.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/binary_trie_persistent_xor.test.cpp
+    title: test/5_ai_generated_test/binary_trie_persistent_xor.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/dynamic_lazy_persistent_copy_add.test.cpp
+    title: test/5_ai_generated_test/dynamic_lazy_persistent_copy_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/dynamic_lazy_self_copy_nonidentity_red.test.cpp
+    title: test/5_ai_generated_test/dynamic_lazy_self_copy_nonidentity_red.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/node_pool.hpp
@@ -366,8 +375,11 @@ data:
   - ds/randomized_bst/rbst_acted_monoid.hpp
   - string/aho_corasick_for_general_trie.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/dynamic_lazy_self_copy_nonidentity_red.test.cpp
+  - test/5_ai_generated_test/binary_trie_persistent_xor.test.cpp
+  - test/5_ai_generated_test/dynamic_lazy_persistent_copy_add.test.cpp
   - test/4_aoj/1508_2.test.cpp
   - test/4_aoj/1508.test.cpp
   - test/1_mytest/splay_cm.test.cpp

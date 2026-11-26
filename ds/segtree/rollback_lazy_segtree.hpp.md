@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/rollback_array.hpp
     title: ds/rollback_array.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/rollback_lazy_segtree_snapshot.test.cpp
+    title: test/5_ai_generated_test/rollback_lazy_segtree_snapshot.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/segtree/rollback_lazy_segtree.hpp
@@ -152,8 +155,9 @@ data:
   path: ds/segtree/rollback_lazy_segtree.hpp
   requiredBy: []
   timestamp: '2026-10-27 03:17:11+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/5_ai_generated_test/rollback_lazy_segtree_snapshot.test.cpp
 documentation_of: ds/segtree/rollback_lazy_segtree.hpp
 layout: document
 redirect_from:

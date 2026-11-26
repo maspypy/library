@@ -2580,6 +2580,99 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/bellman_ford_negative_cycle_oracle.test.cpp
+    title: test/5_ai_generated_test/bellman_ford_negative_cycle_oracle.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/binary_trie_persistent_xor.test.cpp
+    title: test/5_ai_generated_test/binary_trie_persistent_xor.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/bit_vector_rank_reset.test.cpp
+    title: test/5_ai_generated_test/bit_vector_rank_reset.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/complement_graph_bfs_oracle.test.cpp
+    title: test/5_ai_generated_test/complement_graph_bfs_oracle.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/count_subsequence.test.cpp
+    title: test/5_ai_generated_test/count_subsequence.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/crt_small_bruteforce.test.cpp
+    title: test/5_ai_generated_test/crt_small_bruteforce.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/directed_mst_bruteforce.test.cpp
+    title: test/5_ai_generated_test/directed_mst_bruteforce.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/dominator_tree_vertex_deletion.test.cpp
+    title: test/5_ai_generated_test/dominator_tree_vertex_deletion.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/doubling_noncommutative.test.cpp
+    title: test/5_ai_generated_test/doubling_noncommutative.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/dynamic_lazy_persistent_copy_add.test.cpp
+    title: test/5_ai_generated_test/dynamic_lazy_persistent_copy_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/dynamic_lazy_self_copy_nonidentity_red.test.cpp
+    title: test/5_ai_generated_test/dynamic_lazy_self_copy_nonidentity_red.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/fastset_bulk_erase_rebuild.test.cpp
+    title: test/5_ai_generated_test/fastset_bulk_erase_rebuild.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/gomory_hu_all_pairs_cuts.test.cpp
+    title: test/5_ai_generated_test/gomory_hu_all_pairs_cuts.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/intervals_fast.test.cpp
+    title: test/5_ai_generated_test/intervals_fast.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/intervals_map.test.cpp
+    title: test/5_ai_generated_test/intervals_map.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/lower_bound_flow_enumeration.test.cpp
+    title: test/5_ai_generated_test/lower_bound_flow_enumeration.test.cpp
+  - icon: ':x:'
+    path: test/5_ai_generated_test/maxflow_capacity_change_cut.test.cpp
+    title: test/5_ai_generated_test/maxflow_capacity_change_cut.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/maxflow_mincut_oracle.test.cpp
+    title: test/5_ai_generated_test/maxflow_mincut_oracle.test.cpp
+  - icon: ':x:'
+    path: test/5_ai_generated_test/min_cost_flow_dag_negative_slope_red.test.cpp
+    title: test/5_ai_generated_test/min_cost_flow_dag_negative_slope_red.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/min_cost_flow_nonnegative_enumeration.test.cpp
+    title: test/5_ai_generated_test/min_cost_flow_nonnegative_enumeration.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/point_set_range_sum_sqrt.test.cpp
+    title: test/5_ai_generated_test/point_set_range_sum_sqrt.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/range_add_range_sum_groups.test.cpp
+    title: test/5_ai_generated_test/range_add_range_sum_groups.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/range_minmax.test.cpp
+    title: test/5_ai_generated_test/range_minmax.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/rollback_lazy_segtree_snapshot.test.cpp
+    title: test/5_ai_generated_test/rollback_lazy_segtree_snapshot.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/rollback_potentialized_permutation.test.cpp
+    title: test/5_ai_generated_test/rollback_potentialized_permutation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/rollback_unionfind.test.cpp
+    title: test/5_ai_generated_test/rollback_unionfind.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/slide_split_sum.test.cpp
+    title: test/5_ai_generated_test/slide_split_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/sliding_window_aggregation.test.cpp
+    title: test/5_ai_generated_test/sliding_window_aggregation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/static_range_product_group_noncommutative.test.cpp
+    title: test/5_ai_generated_test/static_range_product_group_noncommutative.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/suffix_automaton_occ_next.test.cpp
+    title: test/5_ai_generated_test/suffix_automaton_occ_next.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/suffix_min.test.cpp
+    title: test/5_ai_generated_test/suffix_min.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -2830,6 +2923,37 @@ data:
   timestamp: '2026-11-18 15:44:25+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/5_ai_generated_test/sliding_window_aggregation.test.cpp
+  - test/5_ai_generated_test/min_cost_flow_dag_negative_slope_red.test.cpp
+  - test/5_ai_generated_test/doubling_noncommutative.test.cpp
+  - test/5_ai_generated_test/crt_small_bruteforce.test.cpp
+  - test/5_ai_generated_test/rollback_potentialized_permutation.test.cpp
+  - test/5_ai_generated_test/min_cost_flow_nonnegative_enumeration.test.cpp
+  - test/5_ai_generated_test/intervals_map.test.cpp
+  - test/5_ai_generated_test/dynamic_lazy_self_copy_nonidentity_red.test.cpp
+  - test/5_ai_generated_test/binary_trie_persistent_xor.test.cpp
+  - test/5_ai_generated_test/maxflow_mincut_oracle.test.cpp
+  - test/5_ai_generated_test/range_add_range_sum_groups.test.cpp
+  - test/5_ai_generated_test/count_subsequence.test.cpp
+  - test/5_ai_generated_test/intervals_fast.test.cpp
+  - test/5_ai_generated_test/slide_split_sum.test.cpp
+  - test/5_ai_generated_test/static_range_product_group_noncommutative.test.cpp
+  - test/5_ai_generated_test/point_set_range_sum_sqrt.test.cpp
+  - test/5_ai_generated_test/gomory_hu_all_pairs_cuts.test.cpp
+  - test/5_ai_generated_test/maxflow_capacity_change_cut.test.cpp
+  - test/5_ai_generated_test/fastset_bulk_erase_rebuild.test.cpp
+  - test/5_ai_generated_test/range_minmax.test.cpp
+  - test/5_ai_generated_test/suffix_min.test.cpp
+  - test/5_ai_generated_test/directed_mst_bruteforce.test.cpp
+  - test/5_ai_generated_test/complement_graph_bfs_oracle.test.cpp
+  - test/5_ai_generated_test/dominator_tree_vertex_deletion.test.cpp
+  - test/5_ai_generated_test/rollback_unionfind.test.cpp
+  - test/5_ai_generated_test/bellman_ford_negative_cycle_oracle.test.cpp
+  - test/5_ai_generated_test/bit_vector_rank_reset.test.cpp
+  - test/5_ai_generated_test/dynamic_lazy_persistent_copy_add.test.cpp
+  - test/5_ai_generated_test/lower_bound_flow_enumeration.test.cpp
+  - test/5_ai_generated_test/rollback_lazy_segtree_snapshot.test.cpp
+  - test/5_ai_generated_test/suffix_automaton_occ_next.test.cpp
   - test/4_aoj/GRL_6_A.test.cpp
   - test/4_aoj/0350.test.cpp
   - test/4_aoj/CGL_1_B.test.cpp

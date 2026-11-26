@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minmax_add.hpp
     title: alg/acted_monoid/minmax_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/range_minmax.hpp
     title: ds/segtree/range_minmax.hpp
   _extendedVerifiedWith:
@@ -15,9 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP2_3_B.test.cpp
     title: test/4_aoj/ITP2_3_B.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/range_minmax.test.cpp
+    title: test/5_ai_generated_test/range_minmax.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/alg/monoid/minmax.hpp
@@ -40,8 +43,9 @@ data:
   - alg/acted_monoid/minmax_add.hpp
   - ds/segtree/range_minmax.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/range_minmax.test.cpp
   - test/4_aoj/ITP2_3_B.test.cpp
   - test/1_mytest/minmax_add.test.cpp
 documentation_of: alg/monoid/minmax.hpp

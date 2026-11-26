@@ -5,10 +5,13 @@ data:
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/suffix_min.test.cpp
+    title: test/5_ai_generated_test/suffix_min.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/rmq/suffix_min.hpp
@@ -56,8 +59,9 @@ data:
   path: ds/rmq/suffix_min.hpp
   requiredBy: []
   timestamp: '2026-10-22 01:32:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/5_ai_generated_test/suffix_min.test.cpp
 documentation_of: ds/rmq/suffix_min.hpp
 layout: document
 redirect_from:

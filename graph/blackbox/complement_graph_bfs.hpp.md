@@ -11,10 +11,13 @@ data:
   - icon: ':warning:'
     path: graph/blackbox/complement_graph_distance.hpp
     title: graph/blackbox/complement_graph_distance.hpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/complement_graph_bfs_oracle.test.cpp
+    title: test/5_ai_generated_test/complement_graph_bfs_oracle.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/graph/blackbox/complement_graph_bfs.hpp
@@ -153,8 +156,9 @@ data:
   requiredBy:
   - graph/blackbox/complement_graph_distance.hpp
   timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/5_ai_generated_test/complement_graph_bfs_oracle.test.cpp
 documentation_of: graph/blackbox/complement_graph_bfs.hpp
 layout: document
 redirect_from:

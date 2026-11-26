@@ -11,10 +11,13 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/gomory_hu_all_pairs_cuts.test.cpp
+    title: test/5_ai_generated_test/gomory_hu_all_pairs_cuts.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/flow/gomory_hu_tree.hpp
@@ -349,8 +352,9 @@ data:
   path: flow/gomory_hu_tree.hpp
   requiredBy: []
   timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/5_ai_generated_test/gomory_hu_all_pairs_cuts.test.cpp
 documentation_of: flow/gomory_hu_tree.hpp
 layout: document
 redirect_from:

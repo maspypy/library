@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: flow/gomory_hu_tree.hpp
     title: flow/gomory_hu_tree.hpp
   - icon: ':warning:'
@@ -45,6 +45,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_6_A.test.cpp
     title: test/4_aoj/GRL_6_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/gomory_hu_all_pairs_cuts.test.cpp
+    title: test/5_ai_generated_test/gomory_hu_all_pairs_cuts.test.cpp
+  - icon: ':x:'
+    path: test/5_ai_generated_test/maxflow_capacity_change_cut.test.cpp
+    title: test/5_ai_generated_test/maxflow_capacity_change_cut.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/maxflow_mincut_oracle.test.cpp
+    title: test/5_ai_generated_test/maxflow_mincut_oracle.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -357,6 +366,9 @@ data:
   timestamp: '2026-11-16 12:41:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/5_ai_generated_test/maxflow_mincut_oracle.test.cpp
+  - test/5_ai_generated_test/gomory_hu_all_pairs_cuts.test.cpp
+  - test/5_ai_generated_test/maxflow_capacity_change_cut.test.cpp
   - test/4_aoj/GRL_6_A.test.cpp
   - test/4_aoj/2835.test.cpp
   - test/4_aoj/2251_1.test.cpp

@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/lower_bound_flow_enumeration.test.cpp
+    title: test/5_ai_generated_test/lower_bound_flow_enumeration.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/flow/maxflow_with_lower_bound.hpp
@@ -122,8 +125,9 @@ data:
   path: flow/maxflow_with_lower_bound.hpp
   requiredBy: []
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/5_ai_generated_test/lower_bound_flow_enumeration.test.cpp
 documentation_of: flow/maxflow_with_lower_bound.hpp
 layout: document
 redirect_from:

@@ -15,9 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/directed_mst.test.cpp
     title: test/2_library_checker/graph/directed_mst.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/directed_mst_bruteforce.test.cpp
+    title: test/5_ai_generated_test/directed_mst_bruteforce.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/graph/directed_mst.hpp
@@ -223,8 +226,9 @@ data:
   path: graph/directed_mst.hpp
   requiredBy: []
   timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/directed_mst_bruteforce.test.cpp
   - test/2_library_checker/graph/directed_mst.test.cpp
 documentation_of: graph/directed_mst.hpp
 layout: document

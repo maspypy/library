@@ -12,9 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_1_B.test.cpp
     title: test/4_aoj/GRL_1_B.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/bellman_ford_negative_cycle_oracle.test.cpp
+    title: test/5_ai_generated_test/bellman_ford_negative_cycle_oracle.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/graph/shortest_path/bellman_ford.hpp
@@ -166,8 +169,9 @@ data:
   path: graph/shortest_path/bellman_ford.hpp
   requiredBy: []
   timestamp: '2026-11-16 12:41:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/bellman_ford_negative_cycle_oracle.test.cpp
   - test/4_aoj/GRL_1_B.test.cpp
 documentation_of: graph/shortest_path/bellman_ford.hpp
 layout: document

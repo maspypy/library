@@ -8,7 +8,7 @@ data:
   - icon: ':warning:'
     path: ds/incremental_rectangle_union.hpp
     title: ds/incremental_rectangle_union.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/intervals.hpp
     title: ds/intervals.hpp
   - icon: ':warning:'
@@ -87,9 +87,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2636.test.cpp
     title: test/4_aoj/2636.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/fastset_bulk_erase_rebuild.test.cpp
+    title: test/5_ai_generated_test/fastset_bulk_erase_rebuild.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/intervals_fast.test.cpp
+    title: test/5_ai_generated_test/intervals_fast.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/intervals_map.test.cpp
+    title: test/5_ai_generated_test/intervals_map.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/fastset.hpp
@@ -226,8 +235,11 @@ data:
   - string/enumerate_occurrences.hpp
   - string/suffix_tree.hpp
   timestamp: '2026-11-16 16:23:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/intervals_map.test.cpp
+  - test/5_ai_generated_test/intervals_fast.test.cpp
+  - test/5_ai_generated_test/fastset_bulk_erase_rebuild.test.cpp
   - test/4_aoj/2636.test.cpp
   - test/4_aoj/2251_1.test.cpp
   - test/1_mytest/decremental_fastset.test.cpp

@@ -45,7 +45,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/minmincnt_add.hpp
       title: alg/acted_monoid/minmincnt_add.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/sum_add.hpp
       title: alg/acted_monoid/sum_add.hpp
     - icon: ':heavy_check_mark:'
@@ -87,7 +87,7 @@ data:
       title: alg/monoid_pow.hpp
   - name: alg/monoid
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':warning:'
@@ -162,7 +162,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/minidx.hpp
       title: alg/monoid/minidx.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/minmax.hpp
       title: alg/monoid/minmax.hpp
     - icon: ':heavy_check_mark:'
@@ -195,7 +195,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/summin.hpp
       title: alg/monoid/summin.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/xor.hpp
       title: alg/monoid/xor.hpp
   - name: bigint
@@ -312,7 +312,7 @@ data:
       title: datetime/datetime.hpp
   - name: ds
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/binary_trie.hpp
       title: ds/binary_trie.hpp
     - icon: ':warning:'
@@ -321,7 +321,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/bit_array.hpp
       title: ds/bit_array.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/bit_vector.hpp
       title: ds/bit_vector.hpp
     - icon: ':heavy_check_mark:'
@@ -339,7 +339,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/double_ended_queue_const_add.hpp
       title: ds/double_ended_queue_const_add.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/doubling.hpp
       title: ds/doubling.hpp
     - icon: ':heavy_check_mark:'
@@ -348,7 +348,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/dynamic_array.hpp
       title: ds/dynamic_array.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
     - icon: ':question:'
@@ -363,7 +363,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/index_compression.hpp
       title: ds/index_compression.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/intervals.hpp
       title: ds/intervals.hpp
     - icon: ':heavy_check_mark:'
@@ -375,7 +375,7 @@ data:
     - icon: ':warning:'
       path: ds/my_multiset.hpp
       title: ds/my_multiset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/node_pool.hpp
       title: ds/node_pool.hpp
     - icon: ':warning:'
@@ -384,7 +384,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/pbds.hpp
       title: ds/pbds.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/point_set_range_sum_sqrt.hpp
       title: ds/point_set_range_sum_sqrt.hpp
     - icon: ':heavy_check_mark:'
@@ -393,7 +393,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/prefix_sum.hpp
       title: ds/prefix_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/range_add_range_sum.hpp
       title: ds/range_add_range_sum.hpp
     - icon: ':warning:'
@@ -408,16 +408,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/rectangle_union.hpp
       title: ds/rectangle_union.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/removable_queue.hpp
       title: ds/removable_queue.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/rollback_array.hpp
       title: ds/rollback_array.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/slide_split_sum.hpp
       title: ds/slide_split_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/sliding_window_aggregation.hpp
       title: ds/sliding_window_aggregation.hpp
     - icon: ':heavy_check_mark:'
@@ -432,7 +432,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/static_range_product.hpp
       title: ds/static_range_product.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/static_range_product_group.hpp
       title: ds/static_range_product_group.hpp
     - icon: ':warning:'
@@ -452,7 +452,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/dual_fenwicktree_2d.hpp
       title: ds/fenwicktree/dual_fenwicktree_2d.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/fenwicktree.hpp
       title: ds/fenwicktree/fenwicktree.hpp
     - icon: ':heavy_check_mark:'
@@ -575,7 +575,7 @@ data:
     - icon: ':warning:'
       path: ds/rmq/suffix_max.hpp
       title: ds/rmq/suffix_max.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/rmq/suffix_min.hpp
       title: ds/rmq/suffix_min.hpp
   - name: ds/segtree
@@ -604,7 +604,7 @@ data:
     - icon: ':warning:'
       path: ds/segtree/dynamic_dual_segtree.hpp
       title: ds/segtree/dynamic_dual_segtree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/dynamic_lazy_segtree.hpp
       title: ds/segtree/dynamic_lazy_segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -640,10 +640,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/range_min.hpp
       title: ds/segtree/range_min.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/range_minmax.hpp
       title: ds/segtree/range_minmax.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/rollback_lazy_segtree.hpp
       title: ds/segtree/rollback_lazy_segtree.hpp
     - icon: ':question:'
@@ -712,10 +712,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/unionfind/potentialized_unionfind.hpp
       title: ds/unionfind/potentialized_unionfind.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/unionfind/rollback_potentialized_unionfind.hpp
       title: ds/unionfind/rollback_potentialized_unionfind.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/unionfind/rollback_unionfind.hpp
       title: ds/unionfind/rollback_unionfind.hpp
     - icon: ':question:'
@@ -813,7 +813,7 @@ data:
     - icon: ':warning:'
       path: flow/dynamic_mcf_on_line.hpp
       title: flow/dynamic_mcf_on_line.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: flow/gomory_hu_tree.hpp
       title: flow/gomory_hu_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -831,7 +831,7 @@ data:
     - icon: ':question:'
       path: flow/maxflow.hpp
       title: flow/maxflow.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: flow/maxflow_with_lower_bound.hpp
       title: flow/maxflow_with_lower_bound.hpp
     - icon: ':heavy_check_mark:'
@@ -1058,10 +1058,10 @@ data:
     - icon: ':warning:'
       path: graph/degree_sequence.hpp
       title: graph/degree_sequence.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/directed_mst.hpp
       title: graph/directed_mst.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/dominator_tree.hpp
       title: graph/dominator_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -1163,7 +1163,7 @@ data:
     - icon: ':warning:'
       path: graph/restore_euler_tour.hpp
       title: graph/restore_euler_tour.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/reverse_graph.hpp
       title: graph/reverse_graph.hpp
     - icon: ':heavy_check_mark:'
@@ -1248,7 +1248,7 @@ data:
     - icon: ':warning:'
       path: graph/blackbox/bfs.hpp
       title: graph/blackbox/bfs.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/blackbox/complement_graph_bfs.hpp
       title: graph/blackbox/complement_graph_bfs.hpp
     - icon: ':warning:'
@@ -1440,7 +1440,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/K_shortest_walk.hpp
       title: graph/shortest_path/K_shortest_walk.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path/bellman_ford.hpp
       title: graph/shortest_path/bellman_ford.hpp
     - icon: ':heavy_check_mark:'
@@ -1656,7 +1656,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/all_inverse.hpp
       title: mod/all_inverse.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/barrett.hpp
       title: mod/barrett.hpp
     - icon: ':heavy_check_mark:'
@@ -1704,7 +1704,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/min_of_linear_segments.hpp
       title: mod/min_of_linear_segments.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/mod_inv.hpp
       title: mod/mod_inv.hpp
     - icon: ':warning:'
@@ -1749,7 +1749,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/modular_subset_sum.hpp
       title: mod/modular_subset_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/montgomery_modint.hpp
       title: mod/montgomery_modint.hpp
     - icon: ':heavy_check_mark:'
@@ -1809,13 +1809,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/convex_floor_sum.hpp
       title: nt/convex_floor_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/coprime_factorization.hpp
       title: nt/coprime_factorization.hpp
     - icon: ':heavy_check_mark:'
       path: nt/count_by_factor_type.hpp
       title: nt/count_by_factor_type.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/crt.hpp
       title: nt/crt.hpp
     - icon: ':heavy_check_mark:'
@@ -1839,7 +1839,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/ext_gcd.hpp
       title: nt/ext_gcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/factor.hpp
       title: nt/factor.hpp
     - icon: ':warning:'
@@ -1863,7 +1863,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/integer_kth_root.hpp
       title: nt/integer_kth_root.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/is_prime.hpp
       title: nt/is_prime.hpp
     - icon: ':heavy_check_mark:'
@@ -2323,7 +2323,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -2587,7 +2587,7 @@ data:
     - icon: ':warning:'
       path: string/basic_substring_structure.hpp
       title: string/basic_substring_structure.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/count_subsequence.hpp
       title: string/count_subsequence.hpp
     - icon: ':heavy_check_mark:'
@@ -2698,7 +2698,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/suffix_array.hpp
       title: string/suffix_array.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/suffix_automaton.hpp
       title: string/suffix_automaton.hpp
     - icon: ':heavy_check_mark:'
@@ -5358,6 +5358,101 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/4_aoj/NTL_2_C.test.cpp
       title: test/4_aoj/NTL_2_C.test.cpp
+  - name: test/5_ai_generated_test
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/bellman_ford_negative_cycle_oracle.test.cpp
+      title: test/5_ai_generated_test/bellman_ford_negative_cycle_oracle.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/binary_trie_persistent_xor.test.cpp
+      title: test/5_ai_generated_test/binary_trie_persistent_xor.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/bit_vector_rank_reset.test.cpp
+      title: test/5_ai_generated_test/bit_vector_rank_reset.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/complement_graph_bfs_oracle.test.cpp
+      title: test/5_ai_generated_test/complement_graph_bfs_oracle.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/count_subsequence.test.cpp
+      title: test/5_ai_generated_test/count_subsequence.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/crt_small_bruteforce.test.cpp
+      title: test/5_ai_generated_test/crt_small_bruteforce.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/directed_mst_bruteforce.test.cpp
+      title: test/5_ai_generated_test/directed_mst_bruteforce.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/dominator_tree_vertex_deletion.test.cpp
+      title: test/5_ai_generated_test/dominator_tree_vertex_deletion.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/doubling_noncommutative.test.cpp
+      title: test/5_ai_generated_test/doubling_noncommutative.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/dynamic_lazy_persistent_copy_add.test.cpp
+      title: test/5_ai_generated_test/dynamic_lazy_persistent_copy_add.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/dynamic_lazy_self_copy_nonidentity_red.test.cpp
+      title: test/5_ai_generated_test/dynamic_lazy_self_copy_nonidentity_red.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/fastset_bulk_erase_rebuild.test.cpp
+      title: test/5_ai_generated_test/fastset_bulk_erase_rebuild.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/gomory_hu_all_pairs_cuts.test.cpp
+      title: test/5_ai_generated_test/gomory_hu_all_pairs_cuts.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/intervals_fast.test.cpp
+      title: test/5_ai_generated_test/intervals_fast.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/intervals_map.test.cpp
+      title: test/5_ai_generated_test/intervals_map.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/lower_bound_flow_enumeration.test.cpp
+      title: test/5_ai_generated_test/lower_bound_flow_enumeration.test.cpp
+    - icon: ':x:'
+      path: test/5_ai_generated_test/maxflow_capacity_change_cut.test.cpp
+      title: test/5_ai_generated_test/maxflow_capacity_change_cut.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/maxflow_mincut_oracle.test.cpp
+      title: test/5_ai_generated_test/maxflow_mincut_oracle.test.cpp
+    - icon: ':x:'
+      path: test/5_ai_generated_test/min_cost_flow_dag_negative_slope_red.test.cpp
+      title: test/5_ai_generated_test/min_cost_flow_dag_negative_slope_red.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/min_cost_flow_nonnegative_enumeration.test.cpp
+      title: test/5_ai_generated_test/min_cost_flow_nonnegative_enumeration.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/point_set_range_sum_sqrt.test.cpp
+      title: test/5_ai_generated_test/point_set_range_sum_sqrt.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/range_add_range_sum_groups.test.cpp
+      title: test/5_ai_generated_test/range_add_range_sum_groups.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/range_minmax.test.cpp
+      title: test/5_ai_generated_test/range_minmax.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/rollback_lazy_segtree_snapshot.test.cpp
+      title: test/5_ai_generated_test/rollback_lazy_segtree_snapshot.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/rollback_potentialized_permutation.test.cpp
+      title: test/5_ai_generated_test/rollback_potentialized_permutation.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/rollback_unionfind.test.cpp
+      title: test/5_ai_generated_test/rollback_unionfind.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/slide_split_sum.test.cpp
+      title: test/5_ai_generated_test/slide_split_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/sliding_window_aggregation.test.cpp
+      title: test/5_ai_generated_test/sliding_window_aggregation.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/static_range_product_group_noncommutative.test.cpp
+      title: test/5_ai_generated_test/static_range_product_group_noncommutative.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/suffix_automaton_occ_next.test.cpp
+      title: test/5_ai_generated_test/suffix_automaton_occ_next.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/suffix_min.test.cpp
+      title: test/5_ai_generated_test/suffix_min.test.cpp
 layout: toppage
 ---
 ライブラリ整備を支援する / Support developping this library

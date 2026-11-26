@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy:
@@ -24,9 +24,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/924.test.cpp
     title: test/3_yukicoder/924.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/static_range_product_group_noncommutative.test.cpp
+    title: test/5_ai_generated_test/static_range_product_group_noncommutative.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/static_range_product_group.hpp
@@ -66,8 +69,9 @@ data:
   requiredBy:
   - ds/prefix_sum.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/static_range_product_group_noncommutative.test.cpp
   - test/3_yukicoder/2065.test.cpp
   - test/3_yukicoder/924.test.cpp
   - test/2_library_checker/data_structure/static_range_sum.test.cpp

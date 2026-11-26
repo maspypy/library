@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_add.hpp
     title: alg/acted_monoid/sum_add.hpp
   - icon: ':heavy_check_mark:'
@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/cumsum_2d.hpp
     title: ds/cumsum_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/doubling.hpp
     title: ds/doubling.hpp
   - icon: ':heavy_check_mark:'
@@ -56,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/dual_fenwicktree_2d.hpp
     title: ds/fenwicktree/dual_fenwicktree_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':heavy_check_mark:'
@@ -83,13 +83,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/point_set_range_sum_sqrt.hpp
     title: ds/point_set_range_sum_sqrt.hpp
   - icon: ':heavy_check_mark:'
     path: ds/prefix_sum.hpp
     title: ds/prefix_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/range_add_range_sum.hpp
     title: ds/range_add_range_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -101,7 +101,7 @@ data:
   - icon: ':warning:'
     path: ds/segtree/range_add_make_increasing.hpp
     title: ds/segtree/range_add_make_increasing.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/static_range_product_group.hpp
     title: ds/static_range_product_group.hpp
   - icon: ':warning:'
@@ -504,9 +504,30 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/doubling_noncommutative.test.cpp
+    title: test/5_ai_generated_test/doubling_noncommutative.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/dynamic_lazy_persistent_copy_add.test.cpp
+    title: test/5_ai_generated_test/dynamic_lazy_persistent_copy_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/dynamic_lazy_self_copy_nonidentity_red.test.cpp
+    title: test/5_ai_generated_test/dynamic_lazy_self_copy_nonidentity_red.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/point_set_range_sum_sqrt.test.cpp
+    title: test/5_ai_generated_test/point_set_range_sum_sqrt.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/range_add_range_sum_groups.test.cpp
+    title: test/5_ai_generated_test/range_add_range_sum_groups.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/rollback_lazy_segtree_snapshot.test.cpp
+    title: test/5_ai_generated_test/rollback_lazy_segtree_snapshot.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/static_range_product_group_noncommutative.test.cpp
+    title: test/5_ai_generated_test/static_range_product_group_noncommutative.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp
@@ -576,8 +597,15 @@ data:
   - flow/dynamic_mcf_on_line.hpp
   - random/random_polygon.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/doubling_noncommutative.test.cpp
+  - test/5_ai_generated_test/dynamic_lazy_self_copy_nonidentity_red.test.cpp
+  - test/5_ai_generated_test/range_add_range_sum_groups.test.cpp
+  - test/5_ai_generated_test/static_range_product_group_noncommutative.test.cpp
+  - test/5_ai_generated_test/point_set_range_sum_sqrt.test.cpp
+  - test/5_ai_generated_test/dynamic_lazy_persistent_copy_add.test.cpp
+  - test/5_ai_generated_test/rollback_lazy_segtree_snapshot.test.cpp
   - test/4_aoj/DSL_2_G.test.cpp
   - test/4_aoj/ALDS1_2_A.test.cpp
   - test/4_aoj/DSL_2_E.test.cpp

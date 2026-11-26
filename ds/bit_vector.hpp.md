@@ -60,9 +60,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/924.test.cpp
     title: test/3_yukicoder/924.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/bit_vector_rank_reset.test.cpp
+    title: test/5_ai_generated_test/bit_vector_rank_reset.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/bit_vector.hpp
@@ -106,8 +109,9 @@ data:
   - ds/wavelet_matrix/wavelet_matrix.hpp
   - string/prefix_substring_LCS.hpp
   timestamp: '2026-10-15 19:54:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/bit_vector_rank_reset.test.cpp
   - test/3_yukicoder/1332.test.cpp
   - test/3_yukicoder/2065.test.cpp
   - test/3_yukicoder/2859.test.cpp

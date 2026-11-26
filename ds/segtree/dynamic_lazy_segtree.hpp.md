@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   _extendedRequiredBy: []
@@ -24,9 +24,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/789_2.test.cpp
     title: test/3_yukicoder/789_2.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/dynamic_lazy_persistent_copy_add.test.cpp
+    title: test/5_ai_generated_test/dynamic_lazy_persistent_copy_add.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/dynamic_lazy_self_copy_nonidentity_red.test.cpp
+    title: test/5_ai_generated_test/dynamic_lazy_self_copy_nonidentity_red.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/segtree/dynamic_lazy_segtree.hpp
@@ -294,8 +300,10 @@ data:
   path: ds/segtree/dynamic_lazy_segtree.hpp
   requiredBy: []
   timestamp: '2026-11-25 16:46:10+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/dynamic_lazy_self_copy_nonidentity_red.test.cpp
+  - test/5_ai_generated_test/dynamic_lazy_persistent_copy_add.test.cpp
   - test/1_mytest/dynamic_lazy_segtree.test.cpp
   - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/3_yukicoder/789_2.test.cpp

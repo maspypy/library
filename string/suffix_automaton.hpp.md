@@ -15,9 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/number_of_substrings2.test.cpp
     title: test/2_library_checker/string/number_of_substrings2.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/suffix_automaton_occ_next.test.cpp
+    title: test/5_ai_generated_test/suffix_automaton_occ_next.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/string/suffix_automaton.hpp
@@ -105,8 +108,9 @@ data:
   path: string/suffix_automaton.hpp
   requiredBy: []
   timestamp: '2026-11-16 13:02:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/suffix_automaton_occ_next.test.cpp
   - test/2_library_checker/string/number_of_substrings2.test.cpp
 documentation_of: string/suffix_automaton.hpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/rollback_array.hpp
     title: ds/rollback_array.hpp
   _extendedRequiredBy: []
@@ -9,9 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2293.test.cpp
     title: test/3_yukicoder/2293.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/rollback_potentialized_permutation.test.cpp
+    title: test/5_ai_generated_test/rollback_potentialized_permutation.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/unionfind/rollback_potentialized_unionfind.hpp
@@ -64,8 +67,9 @@ data:
   path: ds/unionfind/rollback_potentialized_unionfind.hpp
   requiredBy: []
   timestamp: '2026-10-27 03:17:11+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/rollback_potentialized_permutation.test.cpp
   - test/3_yukicoder/2293.test.cpp
 documentation_of: ds/unionfind/rollback_potentialized_unionfind.hpp
 layout: document
