@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_affine.hpp
     title: alg/acted_monoid/sum_affine.hpp
   - icon: ':question:'
@@ -30,17 +30,18 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: Range Affine Range Sum (Large Array)
-    links: []
+    PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum_large_array
+    links:
+    - https://judge.yosupo.jp/problem/range_affine_range_sum_large_array
   bundledCode: "#line 1 \"test/2_library_checker/data_structure/range_affine_range_sum_large.test.cpp\"\
-    \n#define PROBLEM \"Range Affine Range Sum (Large Array)\"\n#line 1 \"my_template.hpp\"\
-    \n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n#if\
-    \ defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\n#if defined(__GNUC__)\n\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/range_affine_range_sum_large_array\"\
+    \n#line 1 \"my_template.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n\
+    #if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\n#if defined(__GNUC__)\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
     \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n\n#else  // MASPY_TEMPLATE_BODY\n\
     #include <bits/stdc++.h>\n#include <cassert>\n\n#if defined(__GNUC__)\n#pragma\
@@ -280,7 +281,7 @@ data:
     \ 1) { print(t ? \"yes\" : \"no\"); }\nvoid no(bool t = 1) { yes(!t); }\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\nvoid TIDAK(bool t = 1) {\
     \ YA(!t); }\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\nvoid\
-    \ Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/2_library_checker/data_structure/range_affine_range_sum_large.test.cpp\"\
+    \ Bob(bool t = 1) { Alice(!t); }\n#line 5 \"test/2_library_checker/data_structure/range_affine_range_sum_large.test.cpp\"\
     \n\n#line 1 \"mod/modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint.hpp\n\
     #line 1 \"mod/modint_common.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint_common.hpp\n\
     \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
@@ -527,7 +528,7 @@ data:
     \ }\n    if (r - l == 1) return r;\n    ll m = (l + r) / 2;\n    if (c) a = MA::op(c->lazy,\
     \ a);\n    if (m < qr) {\n      ll k = min_left_rec(c ? c->r : nullptr, check,\
     \ m, r, qr, x, a);\n      if (m < k) return k;\n    }\n    return min_left_rec(c\
-    \ ? c->l : nullptr, check, l, m, qr, x, a);\n  }\n};\n#line 8 \"test/2_library_checker/data_structure/range_affine_range_sum_large.test.cpp\"\
+    \ ? c->l : nullptr, check, l, m, qr, x, a);\n  }\n};\n#line 9 \"test/2_library_checker/data_structure/range_affine_range_sum_large.test.cpp\"\
     \n\nusing mint = modint998;\nusing AM = ActedMonoid_Sum_Affine<mint>;\n\nvoid\
     \ solve() {\n  LL(N, Q);\n  Dynamic_Lazy_SegTree<AM, false> seg(0, N);\n  using\
     \ np = decltype(seg)::np;\n\n  np root = seg.new_root();\n\n  FOR(Q) {\n    INT(t,\
@@ -535,15 +536,16 @@ data:
     \ l, r, b, c);\n      pair<mint, mint> f = {b, c};\n      root = seg.apply(root,\
     \ l, r, f);\n    } else {\n      SHOW(t, l, r);\n      print(seg.prod(root, l,\
     \ r));\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"Range Affine Range Sum (Large Array)\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\n#include \"alg/acted_monoid/sum_affine.hpp\"\
-    \n#include \"ds/segtree/dynamic_lazy_segtree.hpp\"\n\nusing mint = modint998;\n\
-    using AM = ActedMonoid_Sum_Affine<mint>;\n\nvoid solve() {\n  LL(N, Q);\n  Dynamic_Lazy_SegTree<AM,\
-    \ false> seg(0, N);\n  using np = decltype(seg)::np;\n\n  np root = seg.new_root();\n\
-    \n  FOR(Q) {\n    INT(t, l, r);\n    if (t == 0) {\n      mint b, c;\n      read(b,\
-    \ c);\n      SHOW(t, l, r, b, c);\n      pair<mint, mint> f = {b, c};\n      root\
-    \ = seg.apply(root, l, r, f);\n    } else {\n      SHOW(t, l, r);\n      print(seg.prod(root,\
-    \ l, r));\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/range_affine_range_sum_large_array\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
+    \n#include \"alg/acted_monoid/sum_affine.hpp\"\n#include \"ds/segtree/dynamic_lazy_segtree.hpp\"\
+    \n\nusing mint = modint998;\nusing AM = ActedMonoid_Sum_Affine<mint>;\n\nvoid\
+    \ solve() {\n  LL(N, Q);\n  Dynamic_Lazy_SegTree<AM, false> seg(0, N);\n  using\
+    \ np = decltype(seg)::np;\n\n  np root = seg.new_root();\n\n  FOR(Q) {\n    INT(t,\
+    \ l, r);\n    if (t == 0) {\n      mint b, c;\n      read(b, c);\n      SHOW(t,\
+    \ l, r, b, c);\n      pair<mint, mint> f = {b, c};\n      root = seg.apply(root,\
+    \ l, r, f);\n    } else {\n      SHOW(t, l, r);\n      print(seg.prod(root, l,\
+    \ r));\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -557,8 +559,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_affine_range_sum_large.test.cpp
   requiredBy: []
-  timestamp: '2026-11-25 16:46:10+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-27 04:31:26+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_affine_range_sum_large.test.cpp
 layout: document

@@ -26,11 +26,11 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
+    PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum_large_array
     links:
-    - https://judge.yosupo.jp/problem/point_set_range_composite
+    - https://judge.yosupo.jp/problem/range_affine_range_sum_large_array
   bundledCode: "#line 1 \"test/2_library_checker/data_structure/point_set_range_composite_large.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/range_affine_range_sum_large_array\"\
     \n#line 1 \"my_template.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n\
     #if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\n#if defined(__GNUC__)\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
@@ -272,7 +272,7 @@ data:
     \ 1) { print(t ? \"yes\" : \"no\"); }\nvoid no(bool t = 1) { yes(!t); }\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\nvoid TIDAK(bool t = 1) {\
     \ YA(!t); }\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\nvoid\
-    \ Bob(bool t = 1) { Alice(!t); }\n#line 4 \"test/2_library_checker/data_structure/point_set_range_composite_large.test.cpp\"\
+    \ Bob(bool t = 1) { Alice(!t); }\n#line 5 \"test/2_library_checker/data_structure/point_set_range_composite_large.test.cpp\"\
     \n\n#line 1 \"mod/modint.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint.hpp\n\
     #line 1 \"mod/modint_common.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/mod/modint_common.hpp\n\
     \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
@@ -449,7 +449,7 @@ data:
     \   ll m = l + (r - l) / 2;\n    ll k = min_left_rec(node[c].ch[1], check, m,\
     \ r, qr, x);\n    if (k != L0) return k;\n    if (node[c].idx < qr) {\n      x\
     \ = MX::op(node[c].x, x);\n      if (!check(x)) return node[c].idx + 1;\n    }\n\
-    \    return min_left_rec(node[c].ch[0], check, l, m, qr, x);\n  }\n};\n#line 8\
+    \    return min_left_rec(node[c].ch[0], check, l, m, qr, x);\n  }\n};\n#line 9\
     \ \"test/2_library_checker/data_structure/point_set_range_composite_large.test.cpp\"\
     \n\nusing mint = modint998;\nusing Mono = Monoid_Affine<mint>;\n\nvoid solve()\
     \ {\n  LL(N, Q);\n  Dynamic_SegTree_Sparse<Mono, false> seg(0, N);\n\n  using\
@@ -460,7 +460,7 @@ data:
     \      auto f = seg.prod(root, l, r);\n      mint ANS = Mono::eval(f, x);\n  \
     \    print(ANS);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
     }\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/range_affine_range_sum_large_array\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"alg/monoid/affine.hpp\"\n#include \"ds/segtree/dynamic_segtree_sparse.hpp\"\
     \n\nusing mint = modint998;\nusing Mono = Monoid_Affine<mint>;\n\nvoid solve()\
@@ -481,7 +481,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/point_set_range_composite_large.test.cpp
   requiredBy: []
-  timestamp: '2026-11-25 17:20:30+09:00'
+  timestamp: '2026-11-27 04:31:26+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/point_set_range_composite_large.test.cpp

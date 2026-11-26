@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
   - icon: ':question:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
   - icon: ':question:'
@@ -19,16 +19,16 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -57,7 +57,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
     title: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
@@ -72,9 +72,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/502_2.test.cpp
     title: test/3_yukicoder/502_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/poly/lagrange_interpolate_iota.hpp
@@ -413,13 +413,14 @@ data:
     \  ll n = len(f);\n  auto a = f;\n  FOR(i, n) {\n    a[i] = a[i] * fact_inv<mint>(i)\
     \ * fact_inv<mint>(n - 1 - i);\n    if ((n - 1 - i) & 1) a[i] = -a[i];\n  }\n\
     \  // x = c, c+1, ... \u306B\u5BFE\u3057\u3066 a0/x + a1/(x-1) + ... \u3092\u6C42\
-    \u3081\u3066\u304A\u304F\n  vc<mint> b(n + m - 1);\n  FOR(i, n + m - 1) b[i] =\
-    \ mint(1) / (c + mint(i - n + 1));\n  a = convolution(a, b);\n\n  Sliding_Window_Aggregation<Monoid_Mul<mint>>\
+    \u3081\u3066\u304A\u304F\n  vc<mint> b(n + m - 1);\n  FOR(i, n + m - 1) {\n  \
+    \  mint x = c + mint(i - n + 1);\n    b[i] = (x == mint(0) ? mint(0) : x.inverse());\n\
+    \  }\n  a = convolution(a, b);\n\n  Sliding_Window_Aggregation<Monoid_Mul<mint>>\
     \ swag;\n  vc<mint> ANS(m);\n  ll L = 0, R = 0;\n  FOR(i, m) {\n    while (L <\
-    \ i) { swag.pop(), ++L; }\n    while (R - L < n) { swag.push(c + mint((R++) -\
-    \ n + 1)); }\n    auto coef = swag.prod();\n    if (coef == 0) {\n      ANS[i]\
-    \ = f[(c + i).val];\n    } else {\n      ANS[i] = a[i + n - 1] * coef;\n    }\n\
-    \  }\n  return ANS;\n}\n"
+    \ i) {\n      swag.pop(), ++L;\n    }\n    while (R - L < n) {\n      swag.push(c\
+    \ + mint((R++) - n + 1));\n    }\n    auto coef = swag.prod();\n    if (coef ==\
+    \ 0) {\n      ANS[i] = f[(c + i).val];\n    } else {\n      ANS[i] = a[i + n -\
+    \ 1] * coef;\n    }\n  }\n  return ANS;\n}\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/poly/lagrange_interpolate_iota.hpp\n\
     #include \"alg/monoid/mul.hpp\"\n#include \"ds/sliding_window_aggregation.hpp\"\
     \n#include \"poly/convolution.hpp\"\n\n// Input: f(0), ..., f(n-1) and c. Return:\
@@ -449,13 +450,14 @@ data:
     \  ll n = len(f);\n  auto a = f;\n  FOR(i, n) {\n    a[i] = a[i] * fact_inv<mint>(i)\
     \ * fact_inv<mint>(n - 1 - i);\n    if ((n - 1 - i) & 1) a[i] = -a[i];\n  }\n\
     \  // x = c, c+1, ... \u306B\u5BFE\u3057\u3066 a0/x + a1/(x-1) + ... \u3092\u6C42\
-    \u3081\u3066\u304A\u304F\n  vc<mint> b(n + m - 1);\n  FOR(i, n + m - 1) b[i] =\
-    \ mint(1) / (c + mint(i - n + 1));\n  a = convolution(a, b);\n\n  Sliding_Window_Aggregation<Monoid_Mul<mint>>\
+    \u3081\u3066\u304A\u304F\n  vc<mint> b(n + m - 1);\n  FOR(i, n + m - 1) {\n  \
+    \  mint x = c + mint(i - n + 1);\n    b[i] = (x == mint(0) ? mint(0) : x.inverse());\n\
+    \  }\n  a = convolution(a, b);\n\n  Sliding_Window_Aggregation<Monoid_Mul<mint>>\
     \ swag;\n  vc<mint> ANS(m);\n  ll L = 0, R = 0;\n  FOR(i, m) {\n    while (L <\
-    \ i) { swag.pop(), ++L; }\n    while (R - L < n) { swag.push(c + mint((R++) -\
-    \ n + 1)); }\n    auto coef = swag.prod();\n    if (coef == 0) {\n      ANS[i]\
-    \ = f[(c + i).val];\n    } else {\n      ANS[i] = a[i + n - 1] * coef;\n    }\n\
-    \  }\n  return ANS;\n}\n"
+    \ i) {\n      swag.pop(), ++L;\n    }\n    while (R - L < n) {\n      swag.push(c\
+    \ + mint((R++) - n + 1));\n    }\n    auto coef = swag.prod();\n    if (coef ==\
+    \ 0) {\n      ANS[i] = f[(c + i).val];\n    } else {\n      ANS[i] = a[i + n -\
+    \ 1] * coef;\n    }\n  }\n  return ANS;\n}\n"
   dependsOn:
   - alg/monoid/mul.hpp
   - ds/sliding_window_aggregation.hpp
@@ -475,8 +477,8 @@ data:
   - poly/sparse_exp_of_div.hpp
   - poly/prefix_product_of_poly.hpp
   - poly/from_log_differentiation.hpp
-  timestamp: '2026-11-23 02:04:21+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2026-11-27 04:31:26+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/factorial_998.test.cpp
   - test/3_yukicoder/2747.test.cpp

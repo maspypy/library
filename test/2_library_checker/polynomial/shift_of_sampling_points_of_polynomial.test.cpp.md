@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
   - icon: ':question:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
   - icon: ':question:'
@@ -25,26 +25,26 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/shift_of_sampling_points_of_polynomial
@@ -713,13 +713,14 @@ data:
     \  ll n = len(f);\n  auto a = f;\n  FOR(i, n) {\n    a[i] = a[i] * fact_inv<mint>(i)\
     \ * fact_inv<mint>(n - 1 - i);\n    if ((n - 1 - i) & 1) a[i] = -a[i];\n  }\n\
     \  // x = c, c+1, ... \u306B\u5BFE\u3057\u3066 a0/x + a1/(x-1) + ... \u3092\u6C42\
-    \u3081\u3066\u304A\u304F\n  vc<mint> b(n + m - 1);\n  FOR(i, n + m - 1) b[i] =\
-    \ mint(1) / (c + mint(i - n + 1));\n  a = convolution(a, b);\n\n  Sliding_Window_Aggregation<Monoid_Mul<mint>>\
+    \u3081\u3066\u304A\u304F\n  vc<mint> b(n + m - 1);\n  FOR(i, n + m - 1) {\n  \
+    \  mint x = c + mint(i - n + 1);\n    b[i] = (x == mint(0) ? mint(0) : x.inverse());\n\
+    \  }\n  a = convolution(a, b);\n\n  Sliding_Window_Aggregation<Monoid_Mul<mint>>\
     \ swag;\n  vc<mint> ANS(m);\n  ll L = 0, R = 0;\n  FOR(i, m) {\n    while (L <\
-    \ i) { swag.pop(), ++L; }\n    while (R - L < n) { swag.push(c + mint((R++) -\
-    \ n + 1)); }\n    auto coef = swag.prod();\n    if (coef == 0) {\n      ANS[i]\
-    \ = f[(c + i).val];\n    } else {\n      ANS[i] = a[i + n - 1] * coef;\n    }\n\
-    \  }\n  return ANS;\n}\n#line 8 \"test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp\"\
+    \ i) {\n      swag.pop(), ++L;\n    }\n    while (R - L < n) {\n      swag.push(c\
+    \ + mint((R++) - n + 1));\n    }\n    auto coef = swag.prod();\n    if (coef ==\
+    \ 0) {\n      ANS[i] = f[(c + i).val];\n    } else {\n      ANS[i] = a[i + n -\
+    \ 1] * coef;\n    }\n  }\n  return ANS;\n}\n#line 8 \"test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp\"\
     \nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N, M, c);\r\n  VEC(mint, f,\
     \ N);\r\n  print(lagrange_interpolate_iota(f, mint(c), M));\r\n}\r\n\r\nsigned\
     \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
@@ -748,8 +749,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2026-11-23 02:04:21+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-27 04:31:26+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
 layout: document
