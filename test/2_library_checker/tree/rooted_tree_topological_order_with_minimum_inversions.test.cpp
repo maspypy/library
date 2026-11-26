@@ -1,4 +1,6 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/rooted_tree_topological_order_with_minimum_inversions"
+#define PROBLEM                      \
+  "https://judge.yosupo.jp/problem/" \
+  "rooted_tree_topological_order_with_minimum_inversions"
 
 #include "my_template.hpp"
 #include "other/io.hpp"
@@ -48,7 +50,7 @@ void solve() {
     if (y.x0 == 0 && y.x1 == 0) return true;
     return x.x0 * y.x1 > x.x1 * y.x0;
   };
-  auto [ord, x] = optimal_product_on_tree<decltype(tree), Mono, true>(tree, A, comp);
+  auto [ord, x] = optimal_product_on_tree<decltype(tree), Mono>(tree, A, comp);
   print(x.ans);
   print(ord);
 }

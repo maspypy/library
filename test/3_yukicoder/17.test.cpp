@@ -11,11 +11,12 @@ void solve() {
   G.read_graph(M, 1, 0);
 
   auto dist = warshall_floyd<ll>(G);
-
+  FOR(i, N) SHOW(dist[i]);
   ll ANS = infty<ll>;
   FOR3(i, 1, N - 1) FOR3(j, 1, N - 1) if (i != j) {
     i128 ans =
         i128(dist[0][i]) + dist[i][j] + dist[j][N - 1] + COST[i] + COST[j];
+    chmin(ans, infty<ll>);
     chmin(ANS, ans);
   }
   print(ANS);

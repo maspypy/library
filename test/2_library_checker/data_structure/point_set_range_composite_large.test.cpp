@@ -1,4 +1,5 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_composite"
+#define PROBLEM \
+  "https://judge.yosupo.jp/problem/range_affine_range_sum_large_array"
 #include "my_template.hpp"
 #include "other/io.hpp"
 

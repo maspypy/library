@@ -72,15 +72,22 @@ vc<mint> lagrange_interpolate_iota(vc<mint> &f, mint c, int m) {
   }
   // x = c, c+1, ... に対して a0/x + a1/(x-1) + ... を求めておく
   vc<mint> b(n + m - 1);
-  FOR(i, n + m - 1) b[i] = mint(1) / (c + mint(i - n + 1));
+  FOR(i, n + m - 1) {
+    mint x = c + mint(i - n + 1);
+    b[i] = (x == mint(0) ? mint(0) : x.inverse());
+  }
   a = convolution(a, b);
 
   Sliding_Window_Aggregation<Monoid_Mul<mint>> swag;
   vc<mint> ANS(m);
   ll L = 0, R = 0;
   FOR(i, m) {
-    while (L < i) { swag.pop(), ++L; }
-    while (R - L < n) { swag.push(c + mint((R++) - n + 1)); }
+    while (L < i) {
+      swag.pop(), ++L;
+    }
+    while (R - L < n) {
+      swag.push(c + mint((R++) - n + 1));
+    }
     auto coef = swag.prod();
     if (coef == 0) {
       ANS[i] = f[(c + i).val];
