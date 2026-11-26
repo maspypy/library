@@ -70,9 +70,9 @@ def load_timestamp_file(path: pathlib.Path) -> dict[str, str]:
     return data
 
 
-def pipeline_timestamp() -> datetime.datetime:
+def pipeline_timestamp(files=PIPELINE_FILES) -> datetime.datetime:
     value = subprocess.check_output(
-        ["git", "log", "-1", "--date=iso", "--pretty=%ad", "--", *PIPELINE_FILES],
+        ["git", "log", "-1", "--date=iso", "--pretty=%ad", "--", *files],
         text=True,
     ).strip()
     if not value:
@@ -291,7 +291,6 @@ def main() -> int:
 
     files = sorted(
         p for p in pathlib.Path("test").rglob("*.test.cpp")
-        if not p.is_relative_to("test/5_ai_generated_test")
     )
     selected = [path for path in files if
                 shard_of(path, args.shards) == args.shard]
@@ -302,9 +301,17 @@ def main() -> int:
 
     timestamp_path = pathlib.Path(".verify-helper/timestamps.remote.json")
     pipeline_time = pipeline_timestamp()
+    standalone = [p for p in selected if p.is_relative_to("test/5_ai_generated_test")]
+    # Changes to the standalone runner should invalidate only its own tests.
+    standalone_time = max(pipeline_time, pipeline_timestamp((
+        ".github/scripts/verify_trace.py",))) if standalone else pipeline_time
     adjust_pipeline_timestamps(
         timestamp_path, selected, pipeline_time, before_verify=True
     )
+    if standalone:
+        adjust_pipeline_timestamps(
+            timestamp_path, standalone, standalone_time, before_verify=True
+        )
 
     print(f"group {args.group}, shard {args.shard}/{args.shards}: "
           f"{len(selected)} files, {len(previous_skips)} previous failures ignored "
@@ -341,6 +348,10 @@ def main() -> int:
     adjust_pipeline_timestamps(
         timestamp_path, selected, pipeline_time, before_verify=False
     )
+    if standalone:
+        adjust_pipeline_timestamps(
+            timestamp_path, standalone, standalone_time, before_verify=False
+        )
     collect_yukicoder_testcases(to_run)
 
     trace = read_trace(trace_path)

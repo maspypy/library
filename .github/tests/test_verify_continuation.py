@@ -122,6 +122,23 @@ class Decisions(Fixture):
         return self.summarize(round_number=round_number, target="all",
                               previous=previous, previous_run_id=10 if old else 0)
 
+    def test_standalone_paths_participate_in_continuation(self):
+        statuses = {"test/a.test.cpp": "ac",
+                    "test/5_ai_generated_test/a.test.cpp": "pending",
+                    "test/5_ai_generated_test/b.test.cpp": "failed"}
+        state = self.check(statuses)
+        self.assertEqual(state["statuses"], statuses)
+        updated = dict(statuses, **{"test/5_ai_generated_test/a.test.cpp": "ac"})
+        state = self.check(updated, statuses, 1)
+        self.assertEqual(state["statuses"], updated)
+        self.assertEqual(state["retry_target"], "none")
+
+    def test_missing_standalone_status_is_rejected(self):
+        self.artifact_round({"test/a.test.cpp": "ac"})
+        self.make_test_sources({"test/5_ai_generated_test/a.test.cpp": "pending"})
+        with self.assertRaisesRegex(ValueError, "state does not cover all test sources"):
+            self.summarize()
+
     def test_pending_immediate_failed_preserved(self):
         r = self.check({"test/a.test.cpp":"failed", "test/b.test.cpp":"pending"})
         self.assertEqual((r["retry_target"], r["not_before"]), ("all",0))

@@ -216,7 +216,6 @@ def summarize(args: argparse.Namespace) -> None:
     expected_paths = {
         p.as_posix()
         for p in pathlib.Path("test").rglob("*.test.cpp")
-        if not p.is_relative_to("test/5_ai_generated_test")
     }
     if set(statuses) != expected_paths:
         missing = sorted(expected_paths - set(statuses))

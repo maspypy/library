@@ -1,15 +1,16 @@
 name: AI-generated standalone tests
 
 on:
-  push:
   pull_request:
-  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
   standalone-tests:
+    # Pushes and manual dispatches are covered by the main verify workflow.
+    # Keep a read-only fallback for pull requests from forks.
+    if: github.event.pull_request.head.repo.full_name != github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
