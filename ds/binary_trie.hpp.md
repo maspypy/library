@@ -19,8 +19,10 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 1 \"ds/node_pool.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/node_pool.hpp\n\
+    links:
+    - https://github.com/maspypy/library/blob/main/ds/binary_trie.hpp
+  bundledCode: "#line 1 \"ds/binary_trie.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/binary_trie.hpp\n\
+    #line 1 \"ds/node_pool.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/node_pool.hpp\n\
     // \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\
     \u6E08\u307F chunk \u3092\u518D\u5229\u7528\u3059\u308B\ntemplate <class Node>\n\
     struct Node_Pool {\n  union Slot {\n    Node node;\n    Slot* next;\n\n    Slot()\
@@ -47,7 +49,7 @@ data:
     \ {\n      Slot* s = free_head;\n      free_head = free_head->next;\n      return\
     \ s;\n    }\n\n    if (chunk_id == len(chunks)) alloc_chunk();\n\n    Slot* s\
     \ = &chunks[chunk_id][pos++];\n    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n\
-    \      pos = 0;\n    }\n    return s;\n  }\n};\n#line 2 \"ds/binary_trie.hpp\"\
+    \      pos = 0;\n    }\n    return s;\n  }\n};\n#line 3 \"ds/binary_trie.hpp\"\
     \n\ntemplate <int LOG, bool PERSISTENT, typename UINT = u64,\n    typename SIZE_TYPE\
     \ = u32>\nstruct Binary_Trie {\n  using T = SIZE_TYPE;\n  static_assert(is_same_v<T,\
     \ u32> || is_same_v<T, u64>);\n  static_assert(0 < LOG && LOG <= numeric_limits<UINT>::digits);\n\
@@ -91,7 +93,8 @@ data:
     \ : new_node());\n    root->cnt += cnt;\n    if (ht == 0) return root;\n    bool\
     \ b = (val >> (ht - 1)) & 1;\n    np& c = (b ? root->r : root->l);\n    c = add_rec(c,\
     \ ht - 1, val, cnt);\n    return root;\n  }\n};\n"
-  code: "#include \"ds/node_pool.hpp\"\n\ntemplate <int LOG, bool PERSISTENT, typename\
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/binary_trie.hpp\n\
+    #include \"ds/node_pool.hpp\"\n\ntemplate <int LOG, bool PERSISTENT, typename\
     \ UINT = u64,\n    typename SIZE_TYPE = u32>\nstruct Binary_Trie {\n  using T\
     \ = SIZE_TYPE;\n  static_assert(is_same_v<T, u32> || is_same_v<T, u64>);\n  static_assert(0\
     \ < LOG && LOG <= numeric_limits<UINT>::digits);\n\n  struct Node {\n    T cnt;\n\
@@ -140,7 +143,7 @@ data:
   isVerificationFile: false
   path: ds/binary_trie.hpp
   requiredBy: []
-  timestamp: '2026-11-24 20:56:40+09:00'
+  timestamp: '2026-11-27 17:01:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/5_ai_generated_test/binary_trie_persistent_xor.test.cpp

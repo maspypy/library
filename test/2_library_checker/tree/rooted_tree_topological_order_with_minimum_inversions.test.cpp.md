@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -27,18 +27,17 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/" "rooted_tree_topological_order_with_minimum_inversions
+    PROBLEM: https://judge.yosupo.jp/problem/rooted_tree_topological_order_with_minimum_inversions
     links:
-    - https://judge.yosupo.jp/problem/
+    - https://judge.yosupo.jp/problem/rooted_tree_topological_order_with_minimum_inversions
   bundledCode: "#line 1 \"test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp\"\
-    \n#define PROBLEM                      \\\n  \"https://judge.yosupo.jp/problem/\"\
-    \ \\\n  \"rooted_tree_topological_order_with_minimum_inversions\"\n\n#line 1 \"\
-    my_template.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/rooted_tree_topological_order_with_minimum_inversions\"\
+    \n\n#line 1 \"my_template.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n\
     #if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\n#if defined(__GNUC__)\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
     \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n\n#else  // MASPY_TEMPLATE_BODY\n\
@@ -279,7 +278,7 @@ data:
     \ 1) { print(t ? \"yes\" : \"no\"); }\nvoid no(bool t = 1) { yes(!t); }\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\nvoid TIDAK(bool t = 1) {\
     \ YA(!t); }\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\nvoid\
-    \ Bob(bool t = 1) { Alice(!t); }\n#line 7 \"test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp\"\
+    \ Bob(bool t = 1) { Alice(!t); }\n#line 6 \"test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp\"\
     \n\n#line 1 \"graph/optimal_product_on_tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/optimal_product_on_tree.hpp\n\
     #line 1 \"graph/tree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/tree.hpp\n\
     \n#line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
@@ -605,7 +604,7 @@ data:
     \    int av = -1, ap = -1;\n    if (v == w && uf[v] != uf[root]) av = v;\n   \
     \ if (p == w && uf[p] != uf[root]) ap = p;\n    set(v, av), set(p, ap);\n  }\n\
     \  vc<int> I = {root};\n  while (nxt[I.back()] != -1) I.eb(nxt[I.back()]);\n \
-    \ return {I, A[uf[root]]};\n}\n#line 9 \"test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp\"\
+    \ return {I, A[uf[root]]};\n}\n#line 8 \"test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp\"\
     \n\nstruct Data {\n  ll ans, x0, x1;\n};\n\nstruct Mono {\n  using value_type\
     \ = Data;\n  using X = value_type;\n  static X op(X x, X y) {\n    X z;\n    z.ans\
     \ = x.ans + y.ans + x.x1 * y.x0;\n    z.x0 = x.x0 + y.x0, z.x1 = x.x1 + y.x1;\n\
@@ -619,9 +618,8 @@ data:
     \ true;\n    return x.x0 * y.x1 > x.x1 * y.x0;\n  };\n  auto [ord, x] = optimal_product_on_tree<decltype(tree),\
     \ Mono>(tree, A, comp);\n  print(x.ans);\n  print(ord);\n}\n\nsigned main() {\
     \ solve(); }\n"
-  code: "#define PROBLEM                      \\\n  \"https://judge.yosupo.jp/problem/\"\
-    \ \\\n  \"rooted_tree_topological_order_with_minimum_inversions\"\n\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/optimal_product_on_tree.hpp\"\
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/rooted_tree_topological_order_with_minimum_inversions\"\
+    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/optimal_product_on_tree.hpp\"\
     \n\nstruct Data {\n  ll ans, x0, x1;\n};\n\nstruct Mono {\n  using value_type\
     \ = Data;\n  using X = value_type;\n  static X op(X x, X y) {\n    X z;\n    z.ans\
     \ = x.ans + y.ans + x.x1 * y.x0;\n    z.x0 = x.x0 + y.x0, z.x1 = x.x1 + y.x1;\n\
@@ -647,8 +645,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
   requiredBy: []
-  timestamp: '2026-11-27 04:31:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-27 16:55:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
 layout: document

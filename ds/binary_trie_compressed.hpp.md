@@ -11,8 +11,8 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links:
-    - https://github.com/maspypy/library/blob/main/ds/binary_trie.hpp
-  bundledCode: "#line 1 \"ds/binary_trie_compressed.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/binary_trie.hpp\n\
+    - https://github.com/maspypy/library/blob/main/ds/binary_trie_compressed.hpp
+  bundledCode: "#line 1 \"ds/binary_trie_compressed.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/binary_trie_compressed.hpp\n\
     #line 1 \"ds/node_pool.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/node_pool.hpp\n\
     // \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\
     \u6E08\u307F chunk \u3092\u518D\u5229\u7528\u3059\u308B\ntemplate <class Node>\n\
@@ -103,7 +103,7 @@ data:
     \ root->r);\n      if (c) {\n        int w = c->width;\n        res += prefix_count_rec(c,\
     \ ht - w, LIM, xor_val, val << w | c->val);\n      }\n    }\n    return res;\n\
     \  }\n};\n"
-  code: "// Source: https://github.com/maspypy/library/blob/main/ds/binary_trie.hpp\n\
+  code: "// Source: https://github.com/maspypy/library/blob/main/ds/binary_trie_compressed.hpp\n\
     #include \"ds/node_pool.hpp\"\n\n// \u975E\u6C38\u7D9A\u306A\u3089\u3070\u3001\
     2 * \u8981\u7D20\u6570 \u306E\u30CE\u30FC\u30C9\u6570\ntemplate <int LOG, bool\
     \ PERSISTENT, typename UINT = u64,\n    typename SIZE_TYPE = u32>\nstruct Binary_Trie_Compressed\
@@ -171,7 +171,7 @@ data:
   isVerificationFile: false
   path: ds/binary_trie_compressed.hpp
   requiredBy: []
-  timestamp: '2026-11-25 01:47:58+09:00'
+  timestamp: '2026-11-27 17:01:09+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/binary_trie_compressed.hpp

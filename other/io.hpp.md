@@ -861,7 +861,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/rerooting_dp.test.cpp
     title: test/2_library_checker/tree/rerooting_dp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
     title: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2001,7 +2001,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_ai_generated_test/maxflow_mincut_oracle.test.cpp
     title: test/5_ai_generated_test/maxflow_mincut_oracle.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_ai_generated_test/min_cost_flow_dag_negative_slope_red.test.cpp
     title: test/5_ai_generated_test/min_cost_flow_dag_negative_slope_red.test.cpp
   - icon: ':heavy_check_mark:'

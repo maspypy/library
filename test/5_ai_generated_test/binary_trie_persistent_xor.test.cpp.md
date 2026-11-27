@@ -262,7 +262,8 @@ data:
     \ 1) { print(t ? \"yes\" : \"no\"); }\nvoid no(bool t = 1) { yes(!t); }\nvoid\
     \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\nvoid TIDAK(bool t = 1) {\
     \ YA(!t); }\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\nvoid\
-    \ Bob(bool t = 1) { Alice(!t); }\n#line 1 \"ds/node_pool.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/node_pool.hpp\n\
+    \ Bob(bool t = 1) { Alice(!t); }\n#line 1 \"ds/binary_trie.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/binary_trie.hpp\n\
+    #line 1 \"ds/node_pool.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/node_pool.hpp\n\
     // \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\
     \u6E08\u307F chunk \u3092\u518D\u5229\u7528\u3059\u308B\ntemplate <class Node>\n\
     struct Node_Pool {\n  union Slot {\n    Node node;\n    Slot* next;\n\n    Slot()\
@@ -289,7 +290,7 @@ data:
     \ {\n      Slot* s = free_head;\n      free_head = free_head->next;\n      return\
     \ s;\n    }\n\n    if (chunk_id == len(chunks)) alloc_chunk();\n\n    Slot* s\
     \ = &chunks[chunk_id][pos++];\n    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n\
-    \      pos = 0;\n    }\n    return s;\n  }\n};\n#line 2 \"ds/binary_trie.hpp\"\
+    \      pos = 0;\n    }\n    return s;\n  }\n};\n#line 3 \"ds/binary_trie.hpp\"\
     \n\ntemplate <int LOG, bool PERSISTENT, typename UINT = u64,\n    typename SIZE_TYPE\
     \ = u32>\nstruct Binary_Trie {\n  using T = SIZE_TYPE;\n  static_assert(is_same_v<T,\
     \ u32> || is_same_v<T, u64>);\n  static_assert(0 < LOG && LOG <= numeric_limits<UINT>::digits);\n\
@@ -440,7 +441,7 @@ data:
   isVerificationFile: true
   path: test/5_ai_generated_test/binary_trie_persistent_xor.test.cpp
   requiredBy: []
-  timestamp: '2026-11-24 20:56:40+09:00'
+  timestamp: '2026-11-27 17:01:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/5_ai_generated_test/binary_trie_persistent_xor.test.cpp

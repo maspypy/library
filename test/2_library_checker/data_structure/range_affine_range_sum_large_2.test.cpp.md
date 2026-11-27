@@ -386,7 +386,8 @@ data:
     \ Monoid_Add<E>;\n  using Monoid_A = Monoid_Affine<E>;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X\
     \ &x, const A &a, const ll &size) {\n    return x * a.fi + E(size) * a.se;\n \
-    \ }\n};\n#line 1 \"ds/node_pool.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/node_pool.hpp\n\
+    \ }\n};\n#line 1 \"ds/segtree/dynamic_lazy_segtree_sparse.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/dynamic_lazy_segtree_sparse.hpp\n\
+    #line 1 \"ds/node_pool.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/node_pool.hpp\n\
     // \u30DE\u30EB\u30C1\u30C6\u30B9\u30C8\u30B1\u30FC\u30B9\u3067\u3082\u78BA\u4FDD\
     \u6E08\u307F chunk \u3092\u518D\u5229\u7528\u3059\u308B\ntemplate <class Node>\n\
     struct Node_Pool {\n  union Slot {\n    Node node;\n    Slot* next;\n\n    Slot()\
@@ -413,7 +414,7 @@ data:
     \ {\n      Slot* s = free_head;\n      free_head = free_head->next;\n      return\
     \ s;\n    }\n\n    if (chunk_id == len(chunks)) alloc_chunk();\n\n    Slot* s\
     \ = &chunks[chunk_id][pos++];\n    if (pos == CHUNK_SIZE) {\n      ++chunk_id;\n\
-    \      pos = 0;\n    }\n    return s;\n  }\n};\n#line 2 \"ds/segtree/dynamic_lazy_segtree_sparse.hpp\"\
+    \      pos = 0;\n    }\n    return s;\n  }\n};\n#line 3 \"ds/segtree/dynamic_lazy_segtree_sparse.hpp\"\
     \n\ntemplate <typename AM>\nstruct Dynamic_Lazy_SegTree_Sparse_Default_Prod {\n\
     \  using MX = typename AM::Monoid_X;\n  using X = typename AM::X;\n  X operator()(ll,\
     \ ll) const { return MX::id(); }\n};\n\n// \u533A\u9593\u306E\u5DE6\u7AEF\u3092\
@@ -587,7 +588,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_affine_range_sum_large_2.test.cpp
   requiredBy: []
-  timestamp: '2026-11-27 04:31:26+09:00'
+  timestamp: '2026-11-27 17:01:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_affine_range_sum_large_2.test.cpp
