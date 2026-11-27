@@ -9,3 +9,4 @@ ColumnLimit: 80
 CommentPragmas: '^ Source:'
 BinPackParameters: true
 AlignAfterOpenBracket: false
+BreakStringLiterals: false
