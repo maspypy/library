@@ -26,7 +26,7 @@ data:
   - icon: ':warning:'
     path: flow/longest_shortest_path.hpp
     title: flow/longest_shortest_path.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':heavy_check_mark:'
@@ -900,7 +900,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_ai_generated_test/gomory_hu_all_pairs_cuts.test.cpp
     title: test/5_ai_generated_test/gomory_hu_all_pairs_cuts.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_ai_generated_test/maxflow_capacity_change_cut.test.cpp
     title: test/5_ai_generated_test/maxflow_capacity_change_cut.test.cpp
   - icon: ':heavy_check_mark:'
