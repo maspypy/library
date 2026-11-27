@@ -3,6 +3,8 @@
 
 template <typename Cap>
 struct MaxFlow {
+  static_assert(
+      is_same_v<Cap, int> || is_same_v<Cap, ll> || is_same_v<Cap, i128>);
   struct Edge {
     int to, rev;
     Cap cap;
@@ -98,6 +100,9 @@ struct MaxFlow {
   }
 
   void change_capacity(int i, Cap after) {
+    assert(0 <= i && i < len(pos));
+    assert(after >= 0);
+    calculated = false;
     i = pos[i];
     auto& e = edges[i];
     Cap before = init_cap[i];
