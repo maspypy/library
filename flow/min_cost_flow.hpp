@@ -6,11 +6,18 @@ template <class E>
 struct csr {
   vector<int> start;
   vector<E> elist;
-  explicit csr(int n, const vector<pair<int, E>>& edges) : start(n + 1), elist(edges.size()) {
-    for (auto e: edges) { start[e.first + 1]++; }
-    for (int i = 1; i <= n; i++) { start[i] += start[i - 1]; }
+  explicit csr(int n, const vector<pair<int, E>>& edges)
+      : start(n + 1), elist(edges.size()) {
+    for (auto e : edges) {
+      start[e.first + 1]++;
+    }
+    for (int i = 1; i <= n; i++) {
+      start[i] += start[i - 1];
+    }
     auto counter = start;
-    for (auto e: edges) { elist[counter[e.first]++] = e.second; }
+    for (auto e : edges) {
+      elist[counter[e.first]++] = e.second;
+    }
   }
 };
 
@@ -30,7 +37,7 @@ struct simple_queue {
   void pop() { pos++; }
 };
 
-} // namespace internal
+}  // namespace internal
 
 /*
 ・atcoder library をすこし改変したもの
@@ -39,9 +46,10 @@ struct simple_queue {
 */
 template <class Cap = int, class Cost = ll, bool DAG = false>
 struct Min_Cost_Flow {
-public:
+ public:
   Min_Cost_Flow() {}
-  explicit Min_Cost_Flow(int n, int source, int sink) : n(n), source(source), sink(sink) {
+  explicit Min_Cost_Flow(int n, int source, int sink)
+      : n(n), source(source), sink(sink) {
     assert(0 <= source && source < n);
     assert(0 <= sink && sink < n);
     assert(source != sink);
@@ -62,7 +70,9 @@ public:
   void debug() {
     print("flow graph");
     print("frm, to, cap, cost");
-    for (auto&& [frm, to, cap, flow, cost]: _edges) { print(frm, to, cap, cost); }
+    for (auto&& [frm, to, cap, flow, cost] : _edges) {
+      print(frm, to, cap, cost);
+    }
   }
 
   struct edge {
@@ -122,7 +132,9 @@ public:
   // O(F(N+M)) くらい使って経路復元
   vvc<int> path_decomposition() {
     vvc<int> TO(n);
-    for (auto&& e: edges()) { FOR(e.flow) TO[e.frm].eb(e.to); }
+    for (auto&& e : edges()) {
+      FOR(e.flow) TO[e.frm].eb(e.to);
+    }
     vvc<int> res;
     vc<int> vis(n);
 
@@ -131,10 +143,12 @@ public:
       vis[source] = 1;
       while (path.back() != sink) {
         int to = POP(TO[path.back()]);
-        while (vis[to]) { vis[POP(path)] = 0; }
+        while (vis[to]) {
+          vis[POP(path)] = 0;
+        }
         path.eb(to), vis[to] = 1;
       }
-      for (auto&& v: path) vis[v] = 0;
+      for (auto&& v : path) vis[v] = 0;
       res.eb(path);
     }
     return res;
@@ -142,7 +156,7 @@ public:
 
   vc<Cost> get_potentials() { return potential; }
 
-private:
+ private:
   int n, source, sink;
   vector<edge> _edges;
 
@@ -168,7 +182,9 @@ private:
     vector<int> que_min;
     vector<Q> que;
     auto dual_ref = [&]() {
-      for (int i = 0; i < n; i++) { dual_dist[i].second = infty<Cost>; }
+      for (int i = 0; i < n; i++) {
+        dual_dist[i].second = infty<Cost>;
+      }
       fill(vis.begin(), vis.end(), false);
       que_min.clear();
       que.clear();
@@ -213,7 +229,9 @@ private:
           }
         }
       }
-      if (!vis[sink]) { return false; }
+      if (!vis[sink]) {
+        return false;
+      }
 
       for (int v = 0; v < n; v++) {
         if (!vis[v]) continue;
@@ -243,7 +261,9 @@ private:
           }
         }
       }
-      if (!vis[sink]) { return false; }
+      if (!vis[sink]) {
+        return false;
+      }
 
       for (int v = 0; v < n; v++) {
         if (!vis[v]) continue;
@@ -262,7 +282,9 @@ private:
         if (!dual_ref()) break;
       }
       Cap c = flow_limit - flow;
-      for (int v = sink; v != source; v = g.elist[prev_e[v]].to) { c = min(c, g.elist[g.elist[prev_e[v]].rev].cap); }
+      for (int v = sink; v != source; v = g.elist[prev_e[v]].to) {
+        c = min(c, g.elist[g.elist[prev_e[v]].rev].cap);
+      }
       for (int v = sink; v != source; v = g.elist[prev_e[v]].to) {
         auto& e = g.elist[prev_e[v]];
         e.cap += c;
@@ -271,7 +293,9 @@ private:
       Cost d = -dual_dist[source].first;
       flow += c;
       cost += c * d;
-      if (prev_cost_per_flow == d) { result.pop_back(); }
+      if (len(result) > 1 && prev_cost_per_flow == d) {
+        result.pop_back();
+      }
       result.push_back({flow, cost});
       prev_cost_per_flow = d;
     }
