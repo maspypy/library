@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/binary_trie.hpp
 #include "ds/node_pool.hpp"
 
 template <int LOG, bool PERSISTENT, typename UINT = u64,

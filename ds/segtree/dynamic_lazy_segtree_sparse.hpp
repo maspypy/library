@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/ds/segtree/dynamic_lazy_segtree_sparse.hpp
 #include "ds/node_pool.hpp"
 
 template <typename AM>

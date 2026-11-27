@@ -1,4 +1,4 @@
-// Source: https://github.com/maspypy/library/blob/main/ds/binary_trie.hpp
+// Source: https://github.com/maspypy/library/blob/main/ds/binary_trie_compressed.hpp
 #include "ds/node_pool.hpp"
 
 // 非永続ならば、2 * 要素数 のノード数

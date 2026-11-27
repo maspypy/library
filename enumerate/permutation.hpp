@@ -1,3 +1,4 @@
+// Source: https://github.com/maspypy/library/blob/main/enumerate/permutation.hpp
 // f(A, end)
 template <typename F>
 void enumerate_partition(int N, F f) {
