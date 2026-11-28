@@ -7,6 +7,7 @@
 void solve() {
   STR(S);
   auto Z = z_algorithm(S);
+  Z.pop_back();
   print(Z);
 }
 

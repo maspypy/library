@@ -1,5 +1,5 @@
 #define PROBLEM \
-  "https://judge.yosupo.jp/problem/range_affine_range_sum_large_array"
+  "https://judge.yosupo.jp/problem/point_set_range_composite_large_array"
 #include "my_template.hpp"
 #include "other/io.hpp"
 
@@ -31,6 +31,7 @@ void solve() {
       int l, r;
       mint x;
       read(l, r, x);
+      SHOW(t, l, r, x);
       auto f = seg.prod(root, l, r);
       mint ANS = Mono::eval(f, x);
       print(ANS);
