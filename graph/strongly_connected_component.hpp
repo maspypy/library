@@ -1,5 +1,6 @@
 // Source: https://github.com/maspypy/library/blob/main/graph/strongly_connected_component.hpp
 #include "graph/base.hpp"
+#include "ds/csr.hpp"
 
 template <typename GT>
 pair<int, vc<int>> strongly_connected_component(const GT& G) {
@@ -50,15 +51,24 @@ pair<int, vc<int>> strongly_connected_component(const GT& G) {
 template <typename GT>
 Graph<int, 1> scc_dag(const GT& G, int nc, const vc<int>& comp) {
   Graph<int, 1> DAG(nc);
-  vvc<int> edges(nc);
+  CSR<int> edges(nc);
   for (auto&& e : G.edges) {
     int x = comp[e.frm], y = comp[e.to];
     if (x == y) continue;
-    edges[x].eb(y);
+    edges.add(x, y);
   }
+  edges.build();
+  vc<bool> used(nc);
+
   FOR(c, nc) {
-    UNIQUE(edges[c]);
-    for (auto&& to : edges[c]) DAG.add(c, to);
+    for (auto& x : edges[c]) {
+      if (used[x]) continue;
+      used[x] = 1;
+      DAG.add(c, x);
+    }
+    for (auto& x : edges[c]) {
+      used[x] = 0;
+    }
   }
   DAG.build();
   return DAG;

@@ -1,7 +1,7 @@
 // Source: https://github.com/maspypy/library/blob/main/enumerate/permutation.hpp
 // f(A, end)
 template <typename F>
-void enumerate_partition(int N, F f) {
+void enumerate_permutation(int N, F f) {
   bool end = false;
   vc<int> A(N);
   FOR(i, N) A[i] = i;
