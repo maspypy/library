@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/binary_trie_compressed.hpp
     title: ds/binary_trie_compressed.hpp
   - icon: ':heavy_check_mark:'
@@ -265,6 +265,12 @@ data:
     path: test/4_aoj/1508_2.test.cpp
     title: test/4_aoj/1508_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/binary_trie_compressed_full_width.test.cpp
+    title: test/5_ai_generated_test/binary_trie_compressed_full_width.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/binary_trie_compressed_split.test.cpp
+    title: test/5_ai_generated_test/binary_trie_compressed_split.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/5_ai_generated_test/binary_trie_persistent_xor.test.cpp
     title: test/5_ai_generated_test/binary_trie_persistent_xor.test.cpp
   - icon: ':heavy_check_mark:'
@@ -380,6 +386,8 @@ data:
   - test/5_ai_generated_test/dynamic_lazy_self_copy_nonidentity_red.test.cpp
   - test/5_ai_generated_test/binary_trie_persistent_xor.test.cpp
   - test/5_ai_generated_test/dynamic_lazy_persistent_copy_add.test.cpp
+  - test/5_ai_generated_test/binary_trie_compressed_full_width.test.cpp
+  - test/5_ai_generated_test/binary_trie_compressed_split.test.cpp
   - test/4_aoj/1508_2.test.cpp
   - test/4_aoj/1508.test.cpp
   - test/1_mytest/splay_cm.test.cpp

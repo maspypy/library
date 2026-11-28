@@ -523,8 +523,14 @@ data:
     path: test/5_ai_generated_test/rollback_lazy_segtree_snapshot.test.cpp
     title: test/5_ai_generated_test/rollback_lazy_segtree_snapshot.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/segtree_2d_dense_rectangles.test.cpp
+    title: test/5_ai_generated_test/segtree_2d_dense_rectangles.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/5_ai_generated_test/static_range_product_group_noncommutative.test.cpp
     title: test/5_ai_generated_test/static_range_product_group_noncommutative.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/wavelet_matrix_weighted_queries.test.cpp
+    title: test/5_ai_generated_test/wavelet_matrix_weighted_queries.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -600,10 +606,12 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/5_ai_generated_test/doubling_noncommutative.test.cpp
+  - test/5_ai_generated_test/wavelet_matrix_weighted_queries.test.cpp
   - test/5_ai_generated_test/dynamic_lazy_self_copy_nonidentity_red.test.cpp
   - test/5_ai_generated_test/range_add_range_sum_groups.test.cpp
   - test/5_ai_generated_test/static_range_product_group_noncommutative.test.cpp
   - test/5_ai_generated_test/point_set_range_sum_sqrt.test.cpp
+  - test/5_ai_generated_test/segtree_2d_dense_rectangles.test.cpp
   - test/5_ai_generated_test/dynamic_lazy_persistent_copy_add.test.cpp
   - test/5_ai_generated_test/rollback_lazy_segtree_snapshot.test.cpp
   - test/4_aoj/DSL_2_G.test.cpp

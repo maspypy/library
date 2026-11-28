@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: ds/csr.hpp
+    title: ds/csr.hpp
+  - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':heavy_check_mark:'
@@ -136,7 +139,21 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\n\ntemplate\
+    \   }\n  }\n};\n#line 1 \"ds/csr.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/csr.hpp\n\
+    \ntemplate <typename T>\nstruct CSR {\n  int n;\n  bool prepared;\n  vc<int> ptr;\n\
+    \  vc<int> I;\n  vc<T> dat;\n\n  CSR(int n = 0) : n(n), prepared(false) {}\n \
+    \ void reserve(int n) { dat.reserve(n); }\n\n  void add(int i, const T& x) {\n\
+    \    assert(0 <= i && i < n && !prepared);\n    I.eb(i), dat.eb(x);\n  }\n\n \
+    \ void build() {\n    assert(!prepared);\n    prepared = 1;\n    ptr.assign(n\
+    \ + 1, 0);\n    for (auto& i : I) ptr[1 + i]++;\n    FOR(i, len(ptr) - 1) ptr[i\
+    \ + 1] += ptr[i];\n    vc<T> tmp(len(dat));\n    FOR(k, len(dat)) {\n      int\
+    \ i = I[k];\n      tmp[ptr[i]++] = dat[k];\n    }\n    swap(dat, tmp);\n    ptr.pop_back();\n\
+    \    ptr.insert(ptr.begin(), 0);\n    I.clear();\n  }\n\n  struct range {\n  \
+    \  T *first, *last;\n    T* begin() const { return first; }\n    T* end() const\
+    \ { return last; }\n    bool empty() const { return first == last; }\n    int\
+    \ size() const { return last - first; }\n  };\n\n  range operator[](int i) {\n\
+    \    assert(prepared);\n    return range{dat.data() + ptr[i], dat.data() + ptr[i\
+    \ + 1]};\n  }\n};\n#line 4 \"graph/strongly_connected_component.hpp\"\n\ntemplate\
     \ <typename GT>\npair<int, vc<int>> strongly_connected_component(const GT& G)\
     \ {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n  int N =\
     \ G.N;\n  int nc = 0;\n  vc<int> comp(N), low(N), ord(N, -1), path;\n  vc<int>\
@@ -152,11 +169,13 @@ data:
     \       if (p != -1) chmin(low[p], low[v]);\n        v = p;\n      }\n    }\n\
     \  }\n  FOR(v, N) comp[v] = nc - 1 - comp[v];\n  return {nc, comp};\n}\n\ntemplate\
     \ <typename GT>\nGraph<int, 1> scc_dag(const GT& G, int nc, const vc<int>& comp)\
-    \ {\n  Graph<int, 1> DAG(nc);\n  vvc<int> edges(nc);\n  for (auto&& e : G.edges)\
+    \ {\n  Graph<int, 1> DAG(nc);\n  CSR<int> edges(nc);\n  for (auto&& e : G.edges)\
     \ {\n    int x = comp[e.frm], y = comp[e.to];\n    if (x == y) continue;\n   \
-    \ edges[x].eb(y);\n  }\n  FOR(c, nc) {\n    UNIQUE(edges[c]);\n    for (auto&&\
-    \ to : edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line\
-    \ 1 \"graph/toposort.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/toposort.hpp\n\
+    \ edges.add(x, y);\n  }\n  edges.build();\n  vc<bool> used(nc);\n\n  FOR(c, nc)\
+    \ {\n    for (auto& x : edges[c]) {\n      if (used[x]) continue;\n      used[x]\
+    \ = 1;\n      DAG.add(c, x);\n    }\n    for (auto& x : edges[c]) {\n      used[x]\
+    \ = 0;\n    }\n  }\n  DAG.build();\n  return DAG;\n}\n#line 1 \"graph/toposort.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/graph/toposort.hpp\n\
     #line 1 \"graph/base.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/graph/base.hpp\n\
     #line 1 \"ds/hashmap.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/hashmap.hpp\n\
     \n// u64 -> Val\ntemplate <typename Val>\nstruct HashMap {\n  // n \u306F\u5165\
@@ -542,13 +561,14 @@ data:
   - graph/strongly_connected_component.hpp
   - graph/base.hpp
   - ds/hashmap.hpp
+  - ds/csr.hpp
   - graph/toposort.hpp
   - ds/fastset.hpp
   - graph/find_cycle.hpp
   isVerificationFile: false
   path: graph/all_cycle_common_vertices.hpp
   requiredBy: []
-  timestamp: '2026-11-16 16:23:07+09:00'
+  timestamp: '2026-11-29 04:16:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/all_cycle_common_vertex.test.cpp

@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/z_algorithm.hpp
     title: string/z_algorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/zalgorithm
@@ -267,12 +267,13 @@ data:
     \n\r\n#line 1 \"string/z_algorithm.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/z_algorithm.hpp\n\
     \ntemplate <typename STRING>  // string, vector \u3069\u3061\u3089\u3067\u3082\
     \nvector<int> z_algorithm(const STRING& s) {\n  int n = int(s.size());\n  if (n\
-    \ == 0) return {};\n  vector<int> z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0;\
-    \ i < n; i++) {\n    int& k = z[i];\n    k = (j + z[j] <= i) ? 0 : min(j + z[j]\
-    \ - i, z[i - j]);\n    while (i + k < n && s[k] == s[i + k]) k++;\n    if (j +\
-    \ z[j] < i + z[i]) j = i;\n  }\n  z[0] = n;\n  return z;\n}\n#line 6 \"test/2_library_checker/string/zalgorithm.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  STR(S);\r\n  auto Z = z_algorithm(S);\r\n  print(Z);\r\
-    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
+    \ == 0) return {};\n  vector<int> z(n + 1);\n  z[0] = 0;\n  for (int i = 1, j\
+    \ = 0; i < n; i++) {\n    int& k = z[i];\n    k = (j + z[j] <= i) ? 0 : min(j\
+    \ + z[j] - i, z[i - j]);\n    while (i + k < n && s[k] == s[i + k]) k++;\n   \
+    \ if (j + z[j] < i + z[i]) j = i;\n  }\n  z[0] = n, z[n] = 0;\n  return z;\n}\n\
+    #line 6 \"test/2_library_checker/string/zalgorithm.test.cpp\"\n\r\nvoid solve()\
+    \ {\r\n  STR(S);\r\n  auto Z = z_algorithm(S);\r\n  print(Z);\r\n}\r\n\r\nsigned\
+    \ main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"string/z_algorithm.hpp\"\
     \r\n\r\nvoid solve() {\r\n  STR(S);\r\n  auto Z = z_algorithm(S);\r\n  print(Z);\r\
@@ -284,8 +285,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/zalgorithm.test.cpp
   requiredBy: []
-  timestamp: '2026-11-18 15:44:25+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2026-11-29 04:16:05+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/string/zalgorithm.test.cpp
 layout: document

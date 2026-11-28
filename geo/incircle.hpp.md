@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_B.test.cpp
     title: test/4_aoj/CGL_7_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/incircle_tangency_permutations.test.cpp
+    title: test/5_ai_generated_test/incircle_tangency_permutations.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -101,6 +104,7 @@ data:
   timestamp: '2026-10-27 15:41:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/incircle_tangency_permutations.test.cpp
   - test/4_aoj/CGL_7_B.test.cpp
 documentation_of: geo/incircle.hpp
 layout: document

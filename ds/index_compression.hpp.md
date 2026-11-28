@@ -120,6 +120,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_5.test.cpp
     title: test/4_aoj/ALDS1_5.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/suffix_array_lcp_ranges.test.cpp
+    title: test/5_ai_generated_test/suffix_array_lcp_ranges.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -231,6 +234,7 @@ data:
   timestamp: '2026-11-06 18:54:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/suffix_array_lcp_ranges.test.cpp
   - test/4_aoj/ALDS1_2_A.test.cpp
   - test/4_aoj/ALDS1_5.test.cpp
   - test/1_mytest/lex_minmax_suffix.test.cpp

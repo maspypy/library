@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1891.test.cpp
     title: test/3_yukicoder/1891.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/xor_disjoint_sparse_table_rebuild.test.cpp
+    title: test/5_ai_generated_test/xor_disjoint_sparse_table_rebuild.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -60,6 +63,7 @@ data:
   timestamp: '2026-11-18 16:40:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/xor_disjoint_sparse_table_rebuild.test.cpp
   - test/3_yukicoder/1891.test.cpp
 documentation_of: ds/sparse_table/xor_disjoint_sparse_table.hpp
 layout: document

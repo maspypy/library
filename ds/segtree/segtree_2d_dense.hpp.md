@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2842_2.test.cpp
     title: test/4_aoj/2842_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/segtree_2d_dense_rectangles.test.cpp
+    title: test/5_ai_generated_test/segtree_2d_dense_rectangles.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -69,6 +72,7 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/segtree_2d_dense_rectangles.test.cpp
   - test/4_aoj/2842_2.test.cpp
 documentation_of: ds/segtree/segtree_2d_dense.hpp
 layout: document

@@ -594,6 +594,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/fps_exp_binomial_thresholds.test.cpp
+    title: test/5_ai_generated_test/fps_exp_binomial_thresholds.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/fps_inv_dispatch_boundaries.test.cpp
+    title: test/5_ai_generated_test/fps_inv_dispatch_boundaries.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -684,6 +690,8 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/fps_inv_dispatch_boundaries.test.cpp
+  - test/5_ai_generated_test/fps_exp_binomial_thresholds.test.cpp
   - test/1_mytest/online_exp.test.cpp
   - test/1_mytest/composition_1_minus_ex.test.cpp
   - test/1_mytest/bell_number.test.cpp

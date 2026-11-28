@@ -66,6 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/suffix_array_lcp_ranges.test.cpp
+    title: test/5_ai_generated_test/suffix_array_lcp_ranges.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -211,6 +214,7 @@ data:
   timestamp: '2026-11-24 17:55:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/suffix_array_lcp_ranges.test.cpp
   - test/1_mytest/lex_minmax_suffix.test.cpp
   - test/1_mytest/suffix_lcp_change.test.cpp
   - test/1_mytest/longest_common_substr.test.cpp

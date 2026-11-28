@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: ds/csr.hpp
+    title: ds/csr.hpp
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
@@ -594,7 +597,21 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\n\ntemplate\
+    \   }\n  }\n};\n#line 1 \"ds/csr.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/csr.hpp\n\
+    \ntemplate <typename T>\nstruct CSR {\n  int n;\n  bool prepared;\n  vc<int> ptr;\n\
+    \  vc<int> I;\n  vc<T> dat;\n\n  CSR(int n = 0) : n(n), prepared(false) {}\n \
+    \ void reserve(int n) { dat.reserve(n); }\n\n  void add(int i, const T& x) {\n\
+    \    assert(0 <= i && i < n && !prepared);\n    I.eb(i), dat.eb(x);\n  }\n\n \
+    \ void build() {\n    assert(!prepared);\n    prepared = 1;\n    ptr.assign(n\
+    \ + 1, 0);\n    for (auto& i : I) ptr[1 + i]++;\n    FOR(i, len(ptr) - 1) ptr[i\
+    \ + 1] += ptr[i];\n    vc<T> tmp(len(dat));\n    FOR(k, len(dat)) {\n      int\
+    \ i = I[k];\n      tmp[ptr[i]++] = dat[k];\n    }\n    swap(dat, tmp);\n    ptr.pop_back();\n\
+    \    ptr.insert(ptr.begin(), 0);\n    I.clear();\n  }\n\n  struct range {\n  \
+    \  T *first, *last;\n    T* begin() const { return first; }\n    T* end() const\
+    \ { return last; }\n    bool empty() const { return first == last; }\n    int\
+    \ size() const { return last - first; }\n  };\n\n  range operator[](int i) {\n\
+    \    assert(prepared);\n    return range{dat.data() + ptr[i], dat.data() + ptr[i\
+    \ + 1]};\n  }\n};\n#line 4 \"graph/strongly_connected_component.hpp\"\n\ntemplate\
     \ <typename GT>\npair<int, vc<int>> strongly_connected_component(const GT& G)\
     \ {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n  int N =\
     \ G.N;\n  int nc = 0;\n  vc<int> comp(N), low(N), ord(N, -1), path;\n  vc<int>\
@@ -610,59 +627,60 @@ data:
     \       if (p != -1) chmin(low[p], low[v]);\n        v = p;\n      }\n    }\n\
     \  }\n  FOR(v, N) comp[v] = nc - 1 - comp[v];\n  return {nc, comp};\n}\n\ntemplate\
     \ <typename GT>\nGraph<int, 1> scc_dag(const GT& G, int nc, const vc<int>& comp)\
-    \ {\n  Graph<int, 1> DAG(nc);\n  vvc<int> edges(nc);\n  for (auto&& e : G.edges)\
+    \ {\n  Graph<int, 1> DAG(nc);\n  CSR<int> edges(nc);\n  for (auto&& e : G.edges)\
     \ {\n    int x = comp[e.frm], y = comp[e.to];\n    if (x == y) continue;\n   \
-    \ edges[x].eb(y);\n  }\n  FOR(c, nc) {\n    UNIQUE(edges[c]);\n    for (auto&&\
-    \ to : edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line\
-    \ 3 \"graph/find_odd_cycle.hpp\"\n\n// (vs, es), size=(n+1,n)\n// https://yukicoder.me/problems/no/1436\n\
-    template <typename GT>\npair<vc<int>, vc<int>> find_odd_cycle(GT& G) {\n  int\
-    \ N = G.N;\n  vc<int> comp(N);\n  if constexpr (GT::is_directed) {\n    comp =\
-    \ strongly_connected_component<GT>(G).se;\n  }\n  vc<int> dist(2 * N, infty<int>);\n\
-    \  vc<int> par(2 * N, -1); // edge index\n  deque<int> que;\n  auto add = [&](int\
-    \ v, int d, int p) -> void {\n    if (chmin(dist[v], d)) { que.eb(v), par[v] =\
-    \ p; }\n  };\n  FOR(root, N) {\n    if (dist[2 * root + 0] < infty<int>) continue;\n\
-    \    if (dist[2 * root + 1] < infty<int>) continue;\n    add(2 * root, 0, -1);\n\
-    \    while (len(que)) {\n      auto v = POP(que);\n      auto [a, b] = divmod(v,\
-    \ 2);\n      for (auto&& e: G[a]) {\n        if (comp[e.frm] != comp[e.to]) continue;\n\
-    \        int w = 2 * e.to + (b ^ 1);\n        add(w, dist[v] + 1, e.id);\n   \
-    \   }\n    }\n    if (dist[2 * root + 1] == infty<int>) continue;\n    // found\n\
-    \    vc<int> edges;\n    vc<int> vs;\n    vs.eb(root);\n    int v = 2 * root +\
-    \ 1;\n    while (par[v] != -1) {\n      int i = par[v];\n      edges.eb(i);\n\
-    \      auto& e = G.edges[i];\n      v = 2 * (e.frm + e.to) + 1 - v;\n      vs.eb(v\
-    \ / 2);\n    }\n    reverse(all(edges));\n    reverse(all(vs));\n    // walk ->\
-    \ cycle\n    vc<int> used(N, -1);\n    int l = -1, r = -1;\n    FOR(i, len(vs))\
-    \ {\n      if (used[vs[i]] == -1) {\n        used[vs[i]] = i;\n        continue;\n\
-    \      }\n      l = used[vs[i]];\n      r = i;\n      break;\n    }\n    assert(l\
-    \ != -1);\n    vs = {vs.begin() + l, vs.begin() + r};\n    edges = {edges.begin()\
-    \ + l, edges.begin() + r};\n    vs.eb(vs[0]);\n    return {vs, edges};\n  }\n\
-    \  return {};\n}\n#line 7 \"test/1_mytest/find_odd_cycle.test.cpp\"\n\nvc<int>\
-    \ find_odd_cycle_naive(Graph<int, 1> G) {\n  int N = G.N;\n  vc<int> used_v(N);\n\
-    \  vc<int> path;\n  vc<int> ANS;\n  auto dfs = [&](auto& dfs, int v) -> void {\n\
-    \    if (!ANS.empty()) return;\n    for (auto& e : G[v]) {\n      if (e.to ==\
-    \ path[0] && len(path) % 2 == 1) {\n        ANS = path;\n        return;\n   \
-    \   }\n      if (!used_v[e.to]) {\n        used_v[e.to] = 1;\n        path.eb(e.to);\n\
-    \        dfs(dfs, e.to);\n        POP(path);\n        used_v[e.to] = 0;\n    \
-    \  }\n    }\n  };\n  FOR(v, N) {\n    used_v[v] = 1;\n    path.eb(v);\n    dfs(dfs,\
-    \ v);\n    used_v[v] = 0;\n    path.pop_back();\n  }\n  return ANS;\n}\n\nvoid\
-    \ test() {\n  FOR(N, 1, 30) {\n    FOR(100) {\n      Graph<int, 0> G(N);\n   \
-    \   for (auto& [a, b] : random_graph<0>(N, false)) G.add(a, b);\n      G.build();\n\
-    \      auto color = bipartite_vertex_coloring(G);\n      if (!color.empty()) continue;\n\
-    \      auto [vs, es] = find_odd_cycle(G);\n      int n = len(es);\n      assert(n\
-    \ % 2 == 1);\n      assert(len(vs) == 1 + n);\n      assert(vs[0] == vs[n]);\n\
-    \      FOR(i, n) {\n        int a = vs[i], b = vs[i + 1];\n        auto& e = G.edges[es[i]];\n\
-    \        assert((e.frm == a && e.to == b) || (e.frm == b && e.to == a));\n   \
-    \   }\n      UNIQUE(vs);\n      assert(len(vs) == n);\n    }\n  }\n  FOR(N, 1,\
-    \ 20) {\n    FOR(100) {\n      Graph<int, 1> G(N);\n      for (auto& [a, b] :\
-    \ random_graph<1>(N, false)) G.add(a, b);\n      G.build();\n      auto [vs, es]\
-    \ = find_odd_cycle(G);\n      vc<int> ans = find_odd_cycle_naive(G);\n      if\
-    \ (vs.empty()) {\n        assert(ans.empty());\n        continue;\n      }\n \
-    \     assert(!ans.empty());\n      int n = len(es);\n\n      assert(n % 2 == 1);\n\
-    \      assert(len(vs) == 1 + n);\n      assert(vs[0] == vs[n]);\n      FOR(i,\
-    \ n) {\n        int a = vs[i], b = vs[i + 1];\n        auto& e = G.edges[es[i]];\n\
-    \        assert(e.frm == a && e.to == b);\n      }\n      UNIQUE(vs);\n      assert(len(vs)\
-    \ == n);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
-    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
-    \ 0;\n}\n"
+    \ edges.add(x, y);\n  }\n  edges.build();\n  vc<bool> used(nc);\n\n  FOR(c, nc)\
+    \ {\n    for (auto& x : edges[c]) {\n      if (used[x]) continue;\n      used[x]\
+    \ = 1;\n      DAG.add(c, x);\n    }\n    for (auto& x : edges[c]) {\n      used[x]\
+    \ = 0;\n    }\n  }\n  DAG.build();\n  return DAG;\n}\n#line 3 \"graph/find_odd_cycle.hpp\"\
+    \n\n// (vs, es), size=(n+1,n)\n// https://yukicoder.me/problems/no/1436\ntemplate\
+    \ <typename GT>\npair<vc<int>, vc<int>> find_odd_cycle(GT& G) {\n  int N = G.N;\n\
+    \  vc<int> comp(N);\n  if constexpr (GT::is_directed) {\n    comp = strongly_connected_component<GT>(G).se;\n\
+    \  }\n  vc<int> dist(2 * N, infty<int>);\n  vc<int> par(2 * N, -1); // edge index\n\
+    \  deque<int> que;\n  auto add = [&](int v, int d, int p) -> void {\n    if (chmin(dist[v],\
+    \ d)) { que.eb(v), par[v] = p; }\n  };\n  FOR(root, N) {\n    if (dist[2 * root\
+    \ + 0] < infty<int>) continue;\n    if (dist[2 * root + 1] < infty<int>) continue;\n\
+    \    add(2 * root, 0, -1);\n    while (len(que)) {\n      auto v = POP(que);\n\
+    \      auto [a, b] = divmod(v, 2);\n      for (auto&& e: G[a]) {\n        if (comp[e.frm]\
+    \ != comp[e.to]) continue;\n        int w = 2 * e.to + (b ^ 1);\n        add(w,\
+    \ dist[v] + 1, e.id);\n      }\n    }\n    if (dist[2 * root + 1] == infty<int>)\
+    \ continue;\n    // found\n    vc<int> edges;\n    vc<int> vs;\n    vs.eb(root);\n\
+    \    int v = 2 * root + 1;\n    while (par[v] != -1) {\n      int i = par[v];\n\
+    \      edges.eb(i);\n      auto& e = G.edges[i];\n      v = 2 * (e.frm + e.to)\
+    \ + 1 - v;\n      vs.eb(v / 2);\n    }\n    reverse(all(edges));\n    reverse(all(vs));\n\
+    \    // walk -> cycle\n    vc<int> used(N, -1);\n    int l = -1, r = -1;\n   \
+    \ FOR(i, len(vs)) {\n      if (used[vs[i]] == -1) {\n        used[vs[i]] = i;\n\
+    \        continue;\n      }\n      l = used[vs[i]];\n      r = i;\n      break;\n\
+    \    }\n    assert(l != -1);\n    vs = {vs.begin() + l, vs.begin() + r};\n   \
+    \ edges = {edges.begin() + l, edges.begin() + r};\n    vs.eb(vs[0]);\n    return\
+    \ {vs, edges};\n  }\n  return {};\n}\n#line 7 \"test/1_mytest/find_odd_cycle.test.cpp\"\
+    \n\nvc<int> find_odd_cycle_naive(Graph<int, 1> G) {\n  int N = G.N;\n  vc<int>\
+    \ used_v(N);\n  vc<int> path;\n  vc<int> ANS;\n  auto dfs = [&](auto& dfs, int\
+    \ v) -> void {\n    if (!ANS.empty()) return;\n    for (auto& e : G[v]) {\n  \
+    \    if (e.to == path[0] && len(path) % 2 == 1) {\n        ANS = path;\n     \
+    \   return;\n      }\n      if (!used_v[e.to]) {\n        used_v[e.to] = 1;\n\
+    \        path.eb(e.to);\n        dfs(dfs, e.to);\n        POP(path);\n       \
+    \ used_v[e.to] = 0;\n      }\n    }\n  };\n  FOR(v, N) {\n    used_v[v] = 1;\n\
+    \    path.eb(v);\n    dfs(dfs, v);\n    used_v[v] = 0;\n    path.pop_back();\n\
+    \  }\n  return ANS;\n}\n\nvoid test() {\n  FOR(N, 1, 30) {\n    FOR(100) {\n \
+    \     Graph<int, 0> G(N);\n      for (auto& [a, b] : random_graph<0>(N, false))\
+    \ G.add(a, b);\n      G.build();\n      auto color = bipartite_vertex_coloring(G);\n\
+    \      if (!color.empty()) continue;\n      auto [vs, es] = find_odd_cycle(G);\n\
+    \      int n = len(es);\n      assert(n % 2 == 1);\n      assert(len(vs) == 1\
+    \ + n);\n      assert(vs[0] == vs[n]);\n      FOR(i, n) {\n        int a = vs[i],\
+    \ b = vs[i + 1];\n        auto& e = G.edges[es[i]];\n        assert((e.frm ==\
+    \ a && e.to == b) || (e.frm == b && e.to == a));\n      }\n      UNIQUE(vs);\n\
+    \      assert(len(vs) == n);\n    }\n  }\n  FOR(N, 1, 20) {\n    FOR(100) {\n\
+    \      Graph<int, 1> G(N);\n      for (auto& [a, b] : random_graph<1>(N, false))\
+    \ G.add(a, b);\n      G.build();\n      auto [vs, es] = find_odd_cycle(G);\n \
+    \     vc<int> ans = find_odd_cycle_naive(G);\n      if (vs.empty()) {\n      \
+    \  assert(ans.empty());\n        continue;\n      }\n      assert(!ans.empty());\n\
+    \      int n = len(es);\n\n      assert(n % 2 == 1);\n      assert(len(vs) ==\
+    \ 1 + n);\n      assert(vs[0] == vs[n]);\n      FOR(i, n) {\n        int a = vs[i],\
+    \ b = vs[i + 1];\n        auto& e = G.edges[es[i]];\n        assert(e.frm == a\
+    \ && e.to == b);\n      }\n      UNIQUE(vs);\n      assert(len(vs) == n);\n  \
+    \  }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b\
+    \ << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n#include \"random/random_graph.hpp\"\n#include \"graph/bipartite_vertex_coloring.hpp\"\
     \n#include \"graph/find_odd_cycle.hpp\"\n\nvc<int> find_odd_cycle_naive(Graph<int,\
@@ -704,10 +722,11 @@ data:
   - graph/bipartite_vertex_coloring.hpp
   - graph/find_odd_cycle.hpp
   - graph/strongly_connected_component.hpp
+  - ds/csr.hpp
   isVerificationFile: true
   path: test/1_mytest/find_odd_cycle.test.cpp
   requiredBy: []
-  timestamp: '2026-11-18 15:44:25+09:00'
+  timestamp: '2026-11-29 04:16:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/find_odd_cycle.test.cpp

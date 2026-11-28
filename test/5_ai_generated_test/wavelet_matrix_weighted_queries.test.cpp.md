@@ -1,0 +1,618 @@
+---
+data:
+  _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/add.hpp
+    title: alg/monoid/add.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/dummy.hpp
+    title: alg/monoid/dummy.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/bit_vector.hpp
+    title: ds/bit_vector.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/dummy_data_structure.hpp
+    title: ds/dummy_data_structure.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/segtree/segtree.hpp
+    title: ds/segtree/segtree.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/wavelet_matrix/wavelet_matrix.hpp
+    title: ds/wavelet_matrix/wavelet_matrix.hpp
+  - icon: ':question:'
+    path: my_template.hpp
+    title: my_template.hpp
+  - icon: ':question:'
+    path: other/io.hpp
+    title: other/io.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
+  _pathExtension: cpp
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    links: []
+  bundledCode: "#line 1 \"my_template.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n\
+    #if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\n#if defined(__GNUC__)\n\
+    #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
+    \ GCC target(\"avx2,popcnt\")\n#endif\n#endif\n\n#else  // MASPY_TEMPLATE_BODY\n\
+    #include <bits/stdc++.h>\n#include <cassert>\n\n#if defined(__GNUC__)\n#pragma\
+    \ GCC optimize(\"Ofast,unroll-loops\")\n#endif\n\nusing namespace std;\n\nusing\
+    \ ll = long long;\nusing u8 = uint8_t;\nusing u16 = uint16_t;\nusing u32 = uint32_t;\n\
+    using u64 = uint64_t;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
+    using f128 = __float128;\n\ntemplate <class>\nconstexpr bool dependent_false =\
+    \ false;\n\ntemplate <class T>\nconstexpr T infty = [] {\n  static_assert(dependent_false<T>,\
+    \ \"infty<T> is not defined\");\n  return T{};\n}();\ntemplate <>\nconstexpr int\
+    \ infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 4'040'000'000'000'000'000;\n\
+    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
+    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
+    \ * 4'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
+    \ infty<i128>;\ntemplate <>\nconstexpr long double infty<long double> = infty<i128>;\n\
+    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
+    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing pq_max = priority_queue<T>;\ntemplate <class T>\nusing\
+    \ pq_min = priority_queue<T, vector<T>, greater<T>>;\n\n#define vv(type, name,\
+    \ h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n#define\
+    \ vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name( \\\n \
+    \     h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
+    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
+    \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
+    \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR1_R(a)\
+    \ for (ll i = ll(a) - 1; i >= ll(0); --i)\n#define FOR2_R(i, a) for (ll i = ll(a)\
+    \ - 1; i >= ll(0); --i)\n#define FOR3_R(i, a, b) for (ll i = ll(b) - 1; i >= ll(a);\
+    \ --i)\n#define overload3(a, b, c, d, ...) d\n#define FOR(...) overload3(__VA_ARGS__,\
+    \ FOR3, FOR2, FOR1)(__VA_ARGS__)\n#define FOR_R(...) overload3(__VA_ARGS__, FOR3_R,\
+    \ FOR2_R, FOR1_R)(__VA_ARGS__)\n\n#define all(x) (x).begin(), (x).end()\n#define\
+    \ len(x) ll(x.size())\n#define elif else if\n\n#define eb emplace_back\n#define\
+    \ mp make_pair\n#define mt make_tuple\n#define fi first\n#define se second\n\n\
+    #define stoi stoll\n\n// require y > 0\ntemplate <typename T>\nT floor(T x, T\
+    \ y) {\n  return x / y - (x % y < 0);\n}\n\n// require y > 0\ntemplate <typename\
+    \ T>\nT ceil(T x, T y) {\n  return (x / y) + (x % y > 0);\n}\n\n// require y >\
+    \ 0\ntemplate <typename T>\nT bmod(T x, T y) {\n  T r = x % y;\n  return (r <\
+    \ 0 ? r + y : r);\n}\n\n// require y > 0\ntemplate <typename T>\npair<T, T> divmod(T\
+    \ x, T y) {\n  T q = x / y, r = x % y;\n  if (r < 0) --q, r += y;\n  return {q,\
+    \ r};\n}\n\nconstexpr auto TEN = [] {\n  array<u64, 20> A{};\n  A[0] = 1;\n  for\
+    \ (int i = 1; i < 20; ++i) A[i] = 10 * A[i - 1];\n  return A;\n}();\n\ntemplate\
+    \ <typename T, typename U>\nT SUM(const U &A) {\n  return std::accumulate(A.begin(),\
+    \ A.end(), T{});\n}\n\n#define MIN(v) *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n\
+    template <class C, class T>\ninline long long LB(const C &c, const T &x) {\n \
+    \ return lower_bound(c.begin(), c.end(), x) - c.begin();\n}\ntemplate <class C,\
+    \ class T>\ninline long long UB(const C &c, const T &x) {\n  return upper_bound(c.begin(),\
+    \ c.end(), x) - c.begin();\n}\n#define UNIQUE(x) sort(all(x)), x.erase(unique(all(x)),\
+    \ x.end())\n\ntemplate <typename T>\nT POP(deque<T> &que) {\n  T a = que.front();\n\
+    \  que.pop_front();\n  return a;\n}\ntemplate <class T, class Container, class\
+    \ Compare>\nT POP(priority_queue<T, Container, Compare> &que) {\n  T a = que.top();\n\
+    \  que.pop();\n  return a;\n}\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T\
+    \ a = que.back();\n  que.pop_back();\n  return a;\n}\n\ntemplate <typename F>\n\
+    i128 binary_search(F check, i128 ok, i128 ng, bool check_ok = true) {\n  if (check_ok)\
+    \ assert(check(ok));\n  while (1) {\n    i128 x = (ok + ng) / 2;\n    if (x ==\
+    \ ok || x == ng) break;\n    (check(x) ? ok : ng) = x;\n  }\n  return ok;\n}\n\
+    \ntemplate <typename F>\ndouble binary_search_real(F check, double ok, double\
+    \ ng, int iter = 100) {\n  FOR(iter) {\n    double x = (ok + ng) / 2;\n    (check(x)\
+    \ ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n}\n\ntemplate <class T, class\
+    \ S>\ninline bool chmax(T &a, const S &b) {\n  T c = max<T>(a, b);\n  bool changed\
+    \ = (c != a);\n  a = c;\n  return changed;\n}\ntemplate <class T, class S>\ninline\
+    \ bool chmin(T &a, const S &b) {\n  T c = min<T>(a, b);\n  bool changed = (c !=\
+    \ a);\n  a = c;\n  return changed;\n}\n\n// bit operations\nint popcnt(int x)\
+    \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T kth_bit(int k) {\n  assert(0 <= k && k < int(8 * sizeof(T)));\n  return T(1)\
+    \ << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T x, int k) {\n  assert(0\
+    \ <= k && k < int(8 * sizeof(T)));\n  return x >> k & 1;\n}\n\ntemplate <typename\
+    \ T>\nstruct all_bit {\n  static_assert(is_integral<T>::value);\n  T s;\n  all_bit(T\
+    \ s) : s(s) { assert(s >= 0); }\n  struct iter {\n    T s;\n    int operator*()\
+    \ const { return lowbit(s); }\n    void operator++() { s &= s - 1; }\n    bool\
+    \ operator!=(nullptr_t) const { return s; }\n  };\n  iter begin() const { return\
+    \ {s}; }\n  nullptr_t end() const { return nullptr; }\n};\n\ntemplate <typename\
+    \ T>\nstruct all_subset {\n  static_assert(is_integral<T>::value);\n  T s;\n \
+    \ all_subset(T s) : s(s) { assert(s >= 0); }\n  struct iter {\n    T s, t;\n \
+    \   bool done = false;\n    T operator*() const { return t; }\n    void operator++()\
+    \ {\n      done = (t == 0);\n      t = (t - 1) & s;\n    }\n    bool operator!=(nullptr_t)\
+    \ const { return !done; }\n  };\n  iter begin() const { return {s, s}; }\n  nullptr_t\
+    \ end() const { return nullptr; }\n};\n\nconstexpr u64 full_mask(int n) {\n  assert(0\
+    \ <= n && n <= 64);\n  return n == 64 ? -1ULL : (1ULL << n) - 1;\n}\n\nu64 bit_reverse(u64\
+    \ x) {\n  x = ((x & 0x5555555555555555ULL) << 1) | ((x >> 1) & 0x5555555555555555ULL);\n\
+    \  x = ((x & 0x3333333333333333ULL) << 2) | ((x >> 2) & 0x3333333333333333ULL);\n\
+    \  x = ((x & 0x0f0f0f0f0f0f0f0fULL) << 4) | ((x >> 4) & 0x0f0f0f0f0f0f0f0fULL);\n\
+    \  x = ((x & 0x00ff00ff00ff00ffULL) << 8) | ((x >> 8) & 0x00ff00ff00ff00ffULL);\n\
+    \  x = ((x & 0x0000ffff0000ffffULL) << 16) | ((x >> 16) & 0x0000ffff0000ffffULL);\n\
+    \  x = (x << 32) | (x >> 32);\n  return x;\n}\n\n// ? \u306F -1\nvc<int> s_to_vi(const\
+    \ string &S, char first_char) {\n  vc<int> A(S.size());\n  FOR(i, S.size()) {\
+    \ A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return A;\n}\n\ntemplate\
+    \ <typename T, typename U>\nvc<T> cumsum(const vc<U> &A, int off = 1) {\n  int\
+    \ N = A.size();\n  vc<T> B(N + 1);\n  FOR(i, N) { B[i + 1] = B[i] + A[i]; }\n\
+    \  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable sort\ntemplate\
+    \ <typename T>\nvc<int> argsort(const vc<T> &A) {\n  vc<int> ids(len(A));\n  iota(all(ids),\
+    \ 0);\n  sort(all(ids),\n      [&](int i, int j) { return (A[i] == A[j] ? i <\
+    \ j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate\
+    \ <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n\
+    \  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\ntemplate <typename T, typename...\
+    \ Vectors>\nvoid concat(vc<T> &first, const Vectors &...others) {\n  first.reserve(first.size()\
+    \ + (others.size() + ... + 0));\n  (first.insert(first.end(), others.begin(),\
+    \ others.end()), ...);\n}\n\n// i128\ntemplate <class T, enable_if_t<is_same_v<T,\
+    \ i128>, int> = 0>\nconstexpr i128 abs(T x) {\n  return x < 0 ? -x : x;\n}\n\n\
+    constexpr i128 gcd(i128 a, i128 b) {\n  while (b != 0) {\n    i128 c = a % b;\n\
+    \    a = b, b = c;\n  }\n  return abs(a);\n}\n#endif  // MASPY_TEMPLATE_BODY\n\
+    #line 1 \"other/io.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/other/io.hpp\n\
+    #define FASTIO\n\n// https://judge.yosupo.jp/submission/21623\nnamespace fastio\
+    \ {\nstatic constexpr uint32_t SZ = 1 << 17;\nchar ibuf[SZ];\nchar obuf[SZ];\n\
+    char out[100];\n// pointer of ibuf, obuf\nuint32_t pil = 0, pir = 0, por = 0;\n\
+    bool input_eof = false;\n\ntemplate <class T>\nconstexpr bool is_signed_integer_v\
+    \ = is_signed_v<T> || is_same_v<T, i128>;\n\ntemplate <class T>\nstruct unsigned_integer\
+    \ {\n  using type = make_unsigned_t<T>;\n};\ntemplate <>\nstruct unsigned_integer<i128>\
+    \ {\n  using type = u128;\n};\ntemplate <>\nstruct unsigned_integer<u128> {\n\
+    \  using type = u128;\n};\ntemplate <class T>\nusing unsigned_integer_t = typename\
+    \ unsigned_integer<T>::type;\n\n[[noreturn]] inline void input_error(const char\
+    \ *message) {\n  fputs(message, stderr);\n  fputc('\\n', stderr);\n  exit(EXIT_FAILURE);\n\
+    }\n\nstruct Pre {\n  char num[10000][4];\n  constexpr Pre() : num() {\n    for\
+    \ (int i = 0; i < 10000; i++) {\n      int n = i;\n      for (int j = 3; j >=\
+    \ 0; j--) {\n        num[i][j] = n % 10 | '0';\n        n /= 10;\n      }\n  \
+    \  }\n  }\n} constexpr pre;\n\ninline void load() {\n  uint32_t n = pir - pil;\n\
+    \  memmove(ibuf, ibuf + pil, n);\n  pil = 0;\n  pir = n;\n  if (input_eof) return;\n\
+    \n  pir += fread(ibuf + pir, 1, SZ - pir, stdin);\n  if (ferror(stdin)) input_error(\"\
+    fastio: input error\");\n  if (feof(stdin)) {\n    input_eof = true;\n    // Allows\
+    \ the last token to end exactly at EOF without a trailing\n    // whitespace.\n\
+    \    if (pir < SZ) ibuf[pir++] = '\\n';\n  }\n}\n\ninline char get_char() {\n\
+    \  if (pil == pir) {\n    load();\n    if (pil == pir) input_error(\"fastio: unexpected\
+    \ EOF\");\n  }\n  return ibuf[pil++];\n}\n\ninline void flush() {\n  fwrite(obuf,\
+    \ 1, por, stdout);\n  por = 0;\n}\n\nvoid rd(char &c) {\n  do c = get_char();\n\
+    \  while (isspace(static_cast<unsigned char>(c)));\n}\n\nvoid rd(string &x) {\n\
+    \  x.clear();\n  char c;\n  do c = get_char();\n  while (isspace(static_cast<unsigned\
+    \ char>(c)));\n  do {\n    x += c;\n    c = get_char();\n  } while (!isspace(static_cast<unsigned\
+    \ char>(c)));\n}\n\ntemplate <typename T>\nvoid rd_real(T &x) {\n  string s;\n\
+    \  rd(s);\n  x = stod(s);\n}\n\ntemplate <typename T>\nvoid rd_integer_slow(T\
+    \ &x) {\n  char c;\n  do c = get_char();\n  while (c < '-');\n  bool minus = 0;\n\
+    \  if constexpr (is_signed_integer_v<T>) {\n    if (c == '-') {\n      minus =\
+    \ 1, c = get_char();\n    }\n  }\n  x = 0;\n  assert('0' <= c && c <= '9');\n\
+    \  while ('0' <= c && c <= '9') {\n    x = x * 10 + (c & 15), c = get_char();\n\
+    \  }\n  assert(isspace(static_cast<unsigned char>(c)));\n  if constexpr (is_signed_integer_v<T>)\
+    \ {\n    if (minus) x = -x;\n  }\n}\n\ntemplate <typename T>\nvoid rd_integer(T\
+    \ &x) {\n  if (pil + 100 > pir) {\n    load();\n    if (pil + 100 > pir) {\n \
+    \     rd_integer_slow(x);\n      return;\n    }\n  }\n  char c;\n  do c = ibuf[pil++];\n\
+    \  while (c < '-');\n  bool minus = 0;\n  if constexpr (is_signed_integer_v<T>)\
+    \ {\n    if (c == '-') {\n      minus = 1, c = ibuf[pil++];\n    }\n  }\n  x =\
+    \ 0;\n  assert('0' <= c && c <= '9');\n  while ('0' <= c && c <= '9') {\n    x\
+    \ = x * 10 + (c & 15), c = ibuf[pil++];\n  }\n  assert(isspace(static_cast<unsigned\
+    \ char>(c)));\n  if constexpr (is_signed_integer_v<T>) {\n    if (minus) x = -x;\n\
+    \  }\n}\n\ntemplate <class T>\nenable_if_t<is_integral_v<T> || is_same_v<T, i128>\
+    \ || is_same_v<T, u128>> rd(\n    T &x) {\n  rd_integer(x);\n}\n\ntemplate <class\
+    \ T>\nenable_if_t<is_floating_point_v<T> || is_same_v<T, f128>> rd(T &x) {\n \
+    \ rd_real(x);\n}\n\ntemplate <class T, class U>\nvoid rd(pair<T, U> &p) {\n  rd(p.first),\
+    \ rd(p.second);\n}\ntemplate <size_t N = 0, typename T>\nvoid rd_tuple(T &t) {\n\
+    \  if constexpr (N < tuple_size<T>::value) {\n    auto &x = get<N>(t);\n    rd(x);\n\
+    \    rd_tuple<N + 1>(t);\n  }\n}\ntemplate <class... T>\nvoid rd(tuple<T...> &tpl)\
+    \ {\n  rd_tuple(tpl);\n}\n\ntemplate <class T, size_t N>\nvoid rd(array<T, N>\
+    \ &x) {\n  for (auto &d : x) rd(d);\n}\ntemplate <class T>\nvoid rd(vc<T> &x)\
+    \ {\n  for (auto &d : x) rd(d);\n}\n\ntemplate <class... T>\nvoid read(T &...x)\
+    \ {\n  (rd(x), ...);\n}\n\ninline void wt_range(const char *s, size_t n) {\n \
+    \ size_t i = 0;\n  while (i < n) {\n    if (por == SZ) flush();\n    size_t chunk\
+    \ = min(n - i, (size_t)(SZ - por));\n    memcpy(obuf + por, s + i, chunk);\n \
+    \   por += chunk;\n    i += chunk;\n  }\n}\n\nvoid wt(const char c) {\n  if (por\
+    \ == SZ) flush();\n  obuf[por++] = c;\n}\nvoid wt(const char *s) { wt_range(s,\
+    \ strlen(s)); }\nvoid wt(const string &s) { wt_range(s.data(), s.size()); }\n\n\
+    template <typename T>\nvoid wt_integer(T x) {\n  if (por > SZ - 100) flush();\n\
+    \  using U = unsigned_integer_t<T>;\n  U y = static_cast<U>(x);\n  if constexpr\
+    \ (is_signed_integer_v<T>) {\n    if (x < 0) {\n      obuf[por++] = '-';\n   \
+    \   y = U(0) - y;\n    }\n  }\n  int outi;\n  for (outi = 96; y >= 10000; outi\
+    \ -= 4) {\n    memcpy(out + outi, pre.num[y % 10000], 4);\n    y /= 10000;\n \
+    \ }\n  if (y >= 1000) {\n    memcpy(obuf + por, pre.num[y], 4);\n    por += 4;\n\
+    \  } else if (y >= 100) {\n    memcpy(obuf + por, pre.num[y] + 1, 3);\n    por\
+    \ += 3;\n  } else if (y >= 10) {\n    int q = (y * 103) >> 10;\n    obuf[por]\
+    \ = q | '0';\n    obuf[por + 1] = (y - q * 10) | '0';\n    por += 2;\n  } else\n\
+    \    obuf[por++] = y | '0';\n  memcpy(obuf + por, out + outi + 4, 96 - outi);\n\
+    \  por += 96 - outi;\n}\n\ntemplate <typename T>\ninline void wt_real(T x) {\n\
+    \  static char buf[1000];\n  int n = std::snprintf(buf, sizeof(buf), \"%.15f\"\
+    , (double)x);\n  wt_range(buf, (size_t)n);\n}\n\ntemplate <class T>\nenable_if_t<is_integral_v<T>\
+    \ || is_same_v<T, i128> || is_same_v<T, u128>> wt(\n    T x) {\n  wt_integer(x);\n\
+    }\n\ntemplate <class T>\nenable_if_t<is_floating_point_v<T> || is_same_v<T, f128>>\
+    \ wt(T x) {\n  wt_real(x);\n}\n\ninline void wt(bool b) { wt(static_cast<char>('0'\
+    \ + (b ? 1 : 0))); }\n\ntemplate <class T, class U>\nvoid wt(const pair<T, U>\
+    \ &val) {\n  wt(val.first);\n  wt(' ');\n  wt(val.second);\n}\ntemplate <size_t\
+    \ N = 0, typename T>\nvoid wt_tuple(const T &t) {\n  if constexpr (N < tuple_size<T>::value)\
+    \ {\n    if constexpr (N > 0) wt(' ');\n    wt(get<N>(t));\n    wt_tuple<N + 1>(t);\n\
+    \  }\n}\ntemplate <class... T>\nvoid wt(const tuple<T...> &tpl) {\n  wt_tuple(tpl);\n\
+    }\ntemplate <class T, size_t S>\nvoid wt(const array<T, S> &val) {\n  auto n =\
+    \ val.size();\n  for (size_t i = 0; i < n; i++) {\n    if (i) wt(' ');\n    wt(val[i]);\n\
+    \  }\n}\ntemplate <class T>\nvoid wt(const vector<T> &val) {\n  auto n = val.size();\n\
+    \  for (size_t i = 0; i < n; i++) {\n    if (i) wt(' ');\n    wt(val[i]);\n  }\n\
+    }\n\nvoid print() { wt('\\n'); }\ntemplate <class Head, class... Tail>\nvoid print(Head\
+    \ &&head, Tail &&...tail) {\n  wt(forward<Head>(head));\n  ((wt(' '), wt(forward<Tail>(tail))),\
+    \ ...);\n  wt('\\n');\n}\n\n// gcc expansion. called automaticall after main.\n\
+    void __attribute__((destructor)) _d() { flush(); }\n}  // namespace fastio\nusing\
+    \ fastio::flush;\nusing fastio::print;\nusing fastio::read;\n\n#if defined(LOCAL)\n\
+    #define HDR \"[DEBUG:\", __func__, __LINE__, \"]\"\n#define SHOW(...)        \
+    \                                                 \\\n  SHOW_IMPL(__VA_ARGS__,\
+    \ SHOW8, SHOW7, SHOW6, SHOW5, SHOW4, SHOW3, SHOW2, \\\n            SHOW1)    \
+    \                                                    \\\n  (__VA_ARGS__)\n#define\
+    \ SHOW_IMPL(_1, _2, _3, _4, _5, _6, _7, _8, NAME, ...) NAME\n#define SHOW1(x)\
+    \ print(HDR, #x, \"=\", (x)), flush()\n#define SHOW2(x, y) print(HDR, #x, \"=\"\
+    , (x), #y, \"=\", (y)), flush()\n#define SHOW3(x, y, z) \\\n  print(HDR, #x, \"\
+    =\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\n#define SHOW4(x, y, z, w)\
+    \ \\\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\",\
+    \ (w)), flush()\n#define SHOW5(x, y, z, w, v)                                \
+    \                  \\\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\"\
+    , (z), #w, \"=\", (w), #v, \"=\", \\\n        (v)),                          \
+    \                                       \\\n      flush()\n#define SHOW6(x, y,\
+    \ z, w, v, u)                                               \\\n  print(HDR, #x,\
+    \ \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\n\
+    \        (v), #u, \"=\", (u)),                                               \
+    \    \\\n      flush()\n#define SHOW7(x, y, z, w, v, u, t)                   \
+    \                         \\\n  print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z,\
+    \ \"=\", (z), #w, \"=\", (w), #v, \"=\", \\\n        (v), #u, \"=\", (u), #t,\
+    \ \"=\", (t)),                                     \\\n      flush()\n#define\
+    \ SHOW8(x, y, z, w, v, u, t, s)                                         \\\n \
+    \ print(HDR, #x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v,\
+    \ \"=\", \\\n        (v), #u, \"=\", (u), #t, \"=\", (t), #s, \"=\", (s)),   \
+    \                    \\\n      flush()\n#else\n#define SHOW(...)\n#endif\n\n#define\
+    \ INT(...)   \\\n  int __VA_ARGS__; \\\n  read(__VA_ARGS__)\n#define LL(...) \
+    \  \\\n  ll __VA_ARGS__; \\\n  read(__VA_ARGS__)\n#define U32(...)   \\\n  u32\
+    \ __VA_ARGS__; \\\n  read(__VA_ARGS__)\n#define U64(...)   \\\n  u64 __VA_ARGS__;\
+    \ \\\n  read(__VA_ARGS__)\n#define STR(...)      \\\n  string __VA_ARGS__; \\\n\
+    \  read(__VA_ARGS__)\n#define CHAR(...)   \\\n  char __VA_ARGS__; \\\n  read(__VA_ARGS__)\n\
+    #define DBL(...)      \\\n  double __VA_ARGS__; \\\n  read(__VA_ARGS__)\n\n#define\
+    \ VEC(type, name, size) \\\n  vector<type> name(size);    \\\n  read(name)\n#define\
+    \ VV(type, name, h, w)                     \\\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\n  read(name)\n\nvoid YES(bool t = 1) { print(t ? \"YES\"\
+    \ : \"NO\"); }\nvoid NO(bool t = 1) { YES(!t); }\nvoid Yes(bool t = 1) { print(t\
+    \ ? \"Yes\" : \"No\"); }\nvoid No(bool t = 1) { Yes(!t); }\nvoid yes(bool t =\
+    \ 1) { print(t ? \"yes\" : \"no\"); }\nvoid no(bool t = 1) { yes(!t); }\nvoid\
+    \ YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\nvoid TIDAK(bool t = 1) {\
+    \ YA(!t); }\nvoid Alice(bool t = 1) { print(t ? \"Alice\" : \"Bob\"); }\nvoid\
+    \ Bob(bool t = 1) { Alice(!t); }\n#line 1 \"alg/monoid/add.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/add.hpp\n\
+    \ntemplate <typename E>\nstruct Monoid_Add {\n  using X = E;\n  using value_type\
+    \ = X;\n  static constexpr X op(const X &x, const X &y) noexcept { return x +\
+    \ y; }\n  static constexpr X inverse(const X &x) noexcept { return -x; }\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\n  static\
+    \ constexpr X id() { return X(0); }\n  static constexpr bool commute = true;\n\
+    };\n#line 1 \"ds/segtree/segtree.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/segtree/segtree.hpp\n\
+    \ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X =\
+    \ typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log,\
+    \ size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
+    \ F>\n  SegTree(int n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v)\
+    \ { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return\
+    \ MX::id(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int\
+    \ i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
+    \ F f) {\n    n = m, log = 0;\n    while ((1 << log) < n) ++log;\n    size = 1\
+    \ << log;\n    dat.assign(size << 1, MX::id());\n    FOR(i, n) dat[size + i] =\
+    \ f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  X get(int i) const { return\
+    \ dat[size + i]; }\n  vc<X> get_all() const { return {dat.begin() + size, dat.begin()\
+    \ + size + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2\
+    \ * i + 1]); }\n  void set(int i, const X& x) {\n    assert(0 <= i && i < n);\n\
+    \    dat[i += size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int\
+    \ i, const X& x) {\n    assert(0 <= i && i < n);\n    i += size;\n    dat[i] =\
+    \ Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n  X prod(int\
+    \ L, int R) const {\n    assert(0 <= L && L <= R && R <= n);\n    X vl = Monoid::id(),\
+    \ vr = Monoid::id();\n    L += size, R += size;\n    while (L < R) {\n      if\
+    \ (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R],\
+    \ vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n\
+    \  vc<int> prod_ids(int L, int R) const {\n    assert(0 <= L && L <= R && R <=\
+    \ n);\n    vc<int> I, J;\n    L += size, R += size;\n    while (L < R) {\n   \
+    \   if (L & 1) I.eb(L++);\n      if (R & 1) J.eb(--R);\n      L >>= 1, R >>= 1;\n\
+    \    }\n    reverse(all(J));\n    concat(I, J);\n    return I;\n  }\n\n  X prod_all()\
+    \ const { return dat[1]; }\n\n  template <class F>\n  int max_right(F check, int\
+    \ L) const {\n    assert(0 <= L && L <= n && check(Monoid::id()));\n    if (L\
+    \ == n) return n;\n    L += size;\n    X sm = Monoid::id();\n    do {\n      while\
+    \ (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L]))) {\n       \
+    \ while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
+    \ dat[L]))) {\n            sm = Monoid::op(sm, dat[L++]);\n          }\n     \
+    \   }\n        return L - size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n\
+    \    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class F>\n  int\
+    \ min_left(F check, int R) const {\n    assert(0 <= R && R <= n && check(Monoid::id()));\n\
+    \    if (R == 0) return 0;\n    R += size;\n    X sm = Monoid::id();\n    do {\n\
+    \      --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
+    \ sm))) {\n        while (R < size) {\n          R = 2 * R + 1;\n          if\
+    \ (check(Monoid::op(dat[R], sm))) {\n            sm = Monoid::op(dat[R--], sm);\n\
+    \          }\n        }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R],\
+    \ sm);\n    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // prod_{l<=i<r}\
+    \ A[i xor x]\n  X xor_prod(int l, int r, int xor_val) const {\n    static_assert(Monoid::commute);\n\
+    \    X x = Monoid::id();\n    for (int k = 0; k < log + 1; ++k) {\n      if (l\
+    \ >= r) break;\n      if (l & 1) {\n        x = Monoid::op(x, dat[(size >> k)\
+    \ + ((l++) ^ xor_val)]);\n      }\n      if (r & 1) {\n        x = Monoid::op(x,\
+    \ dat[(size >> k) + ((--r) ^ xor_val)]);\n      }\n      l /= 2, r /= 2, xor_val\
+    \ /= 2;\n    }\n    return x;\n  }\n\n  // f(i), i in I\n  // \u8FD1\u3044\u30A4\
+    \u30F3\u30C7\u30C3\u30AF\u30B9\u3092\u5927\u91CF\u306B\u540C\u6642\u66F4\u65B0\
+    \u3057\u305F\u3044\u3068\u304D\u306B\u52B9\u7387\u304C\u826F\u304F\u306A\u308B\
+    \u3068\u3044\u3046\u72D9\u3044\n  template <typename F>\n  void set_many_sorted(vc<int>\
+    \ I, F f) {\n    if (I.empty()) return;\n\n    FOR(k, len(I)) {\n      assert(0\
+    \ <= I[k] && I[k] < n);\n      if (k) assert(I[k - 1] < I[k]);\n    }\n\n    FOR(k,\
+    \ len(I)) {\n      int i = I[k];\n      dat[size + i] = f(i);\n      I[k] += size;\n\
+    \    }\n\n    int m = len(I);\n    while (I[0] > 1) {\n      int nxt = 0;\n  \
+    \    int last = -1;\n      FOR(k, m) {\n        int p = I[k] >> 1;\n        if\
+    \ (p == last) continue;\n        update(p);\n        I[nxt++] = p;\n        last\
+    \ = p;\n      }\n      m = nxt;\n    }\n  }\n};\n#line 1 \"ds/wavelet_matrix/wavelet_matrix.hpp\"\
+    \n// Source: https://github.com/maspypy/library/blob/main/ds/wavelet_matrix/wavelet_matrix.hpp\n\
+    #line 1 \"ds/bit_vector.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/bit_vector.hpp\n\
+    \nstruct Bit_Vector {\n  int n;\n  bool prepared = 0;\n  vc<pair<u64, u32>> dat;\n\
+    \  Bit_Vector(int n = 0) : n(n) { dat.assign((n + 127) >> 6, {0, 0}); }\n  void\
+    \ set(int i) {\n    assert(!prepared && (0 <= i && i < n));\n    dat[i >> 6].fi\
+    \ |= u64(1) << (i & 63);\n  }\n  void reset() {\n    fill(all(dat), pair<u64,\
+    \ u32>{0, 0});\n    prepared = 0;\n  }\n  void build() {\n    prepared = 1;\n\
+    \    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n\
+    \  bool operator[](int i) const { return dat[i >> 6].fi >> (i & 63) & 1; }\n \
+    \ // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n  int count_prefix(int k, bool\
+    \ f = true) const {\n    assert(prepared);\n    auto [a, b] = dat[k >> 6];\n \
+    \   int ret = b + popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret\
+    \ : k - ret);\n  }\n  int count(int L, int R, bool f = true) const {\n    return\
+    \ count_prefix(R, f) - count_prefix(L, f);\n  }\n  string to_string() const {\n\
+    \    string ans;\n    FOR(i, n) ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n\
+    \    return ans;\n  }\n};\n#line 1 \"ds/dummy_data_structure.hpp\"\n// Source:\
+    \ https://github.com/maspypy/library/blob/main/ds/dummy_data_structure.hpp\n#line\
+    \ 1 \"alg/monoid/dummy.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/alg/monoid/dummy.hpp\n\
+    struct Monoid_Dummy {\n  using value_type = char;\n  static constexpr bool commute\
+    \ = true;\n  static value_type op(value_type, value_type) { return 0; }\n  static\
+    \ value_type id() { return 0; }\n};\n#line 3 \"ds/dummy_data_structure.hpp\"\n\
+    \nstruct Dummy_Data_Structure {\n  using MX = Monoid_Dummy;\n  using T = typename\
+    \ MX::value_type;\n  void build(const vc<T>& A) {}\n};\n#line 4 \"ds/wavelet_matrix/wavelet_matrix.hpp\"\
+    \n\ntemplate <typename Y, typename SEGTREE>\nstruct Uncompressed_Wavelet_Matrix\
+    \ {\n  using Mono = typename SEGTREE::MX;\n  using T = typename Mono::value_type;\n\
+    \  static_assert(Mono::commute);\n  static_assert(is_same_v<Y, int> || is_same_v<Y,\
+    \ ll>);\n  int n = 0, log = 0;\n  vc<int> mid;\n  vc<Bit_Vector> bv;\n  vc<SEGTREE>\
+    \ seg;\n  Y limit;\n\n  Uncompressed_Wavelet_Matrix() = default;\n\n  // f(i)\
+    \ = {A[i], dat[i]}\n  template <typename F>\n  Uncompressed_Wavelet_Matrix(int\
+    \ n, F f, int log = -1) {\n    build(n, f, log);\n  }\n  Uncompressed_Wavelet_Matrix(const\
+    \ vc<Y>& A, int log = -1) {\n    static_assert(is_same_v<SEGTREE, Dummy_Data_Structure>);\n\
+    \    build(len(A), [&](int i) -> pair<Y, T> { return {A[i], Mono::id()}; }, log);\n\
+    \  }\n\n  template <typename F>\n  void build(int n, F f, int log = -1) {\n  \
+    \  this->n = n;\n    vc<Y> A(n);\n    vc<T> S(n);\n    FOR(i, n) tie(A[i], S[i])\
+    \ = f(i);\n    if (log == -1) {\n      log = (n == 0 ? 0 : topbit(MAX(A)) + 1);\n\
+    \    } else {\n      for (auto& x : A) assert(0 <= x && topbit(x) < log);\n  \
+    \  }\n    this->log = log;\n    limit = Y(1) << log;\n    if constexpr (is_same_v<Y,\
+    \ int>) assert(0 <= log && log <= 30);\n    if constexpr (is_same_v<Y, ll>) assert(0\
+    \ <= log && log <= 62);\n    mid.resize(log), bv.assign(log, Bit_Vector(n));\n\
+    \    vc<Y> A0(n), A1(n);\n    vc<T> S0(n), S1(n);\n    seg.resize(log + 1);\n\
+    \    seg[log].build(S);\n    for (int d = log - 1; d >= 0; --d) {\n      int p0\
+    \ = 0, p1 = 0;\n      for (int i = 0; i < n; ++i) {\n        if (A[i] >> d & 1)\
+    \ {\n          bv[d].set(i), A1[p1] = A[i], S1[p1] = S[i], p1++;\n        } else\
+    \ {\n          A0[p0] = A[i], S0[p0] = S[i], p0++;\n        }\n      }\n     \
+    \ swap(A, A0), swap(S, S0);\n      move(A1.begin(), A1.begin() + p1, A.begin()\
+    \ + p0);\n      move(S1.begin(), S1.begin() + p1, S.begin() + p0);\n      mid[d]\
+    \ = p0, bv[d].build(), seg[d].build(S);\n    }\n  }\n\n  tuple<int, int, int,\
+    \ int> get_subtree(int d, int L, int R) const {\n    assert(1 <= d && d <= log);\n\
+    \    int a = bv[d - 1].count_prefix(L), b = bv[d - 1].count_prefix(R);\n    return\
+    \ {L - a, R - b, mid[d - 1] + a, mid[d - 1] + b};\n  }\n\n  template <typename\
+    \ F>\n  void work_point(F f, int i) {\n    assert(0 <= i && i < n);\n    f(log,\
+    \ i);\n    FOR_R(d, log) {\n      int a = bv[d].count_prefix(i);\n      if (bv[d][i])\
+    \ {\n        i = mid[d] + a;\n      } else {\n        i = i - a;\n      }\n  \
+    \    f(d, i);\n    }\n  }\n\n  template <typename F>\n  void work_prefix(F f,\
+    \ int L, int R, Y y) const {\n    chmin(y, limit);\n    if (y == 0) return;\n\
+    \    if (y == limit) {\n      f(log, L, R);\n      return;\n    }\n    FOR_R(d,\
+    \ log) {\n      auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);\n      if (y\
+    \ >> d & 1) {\n        f(d, L0, R0);\n        L = L1, R = R1;\n      } else {\n\
+    \        L = L0, R = R0;\n      }\n    }\n  }\n\n  template <typename F>\n  void\
+    \ work_range(F f, int L, int R, Y y1, Y y2) const {\n    chmin(y2, limit);\n \
+    \   if (y1 >= y2) return;\n    assert(0 <= y1 && y1 <= y2 && y2 <= limit);\n \
+    \   if (y1 == 0) return work_prefix(f, L, R, y2);\n    auto dfs = [&](auto& dfs,\
+    \ int d, int L, int R, Y y1, Y y2) -> void {\n      if (y1 == y2) return;\n  \
+    \    if (y1 == 0 && y2 == Y(1) << d) {\n        f(d, L, R);\n        return;\n\
+    \      }\n      assert(d > 0);\n      auto [L0, R0, L1, R1] = get_subtree(d, L,\
+    \ R);\n      Y m = (Y(1) << (d - 1));\n\n      if (y2 <= m) {\n        dfs(dfs,\
+    \ d - 1, L0, R0, y1, y2);\n      } else if (y1 >= m) {\n        dfs(dfs, d - 1,\
+    \ L1, R1, y1 - m, y2 - m);\n      } else {\n        dfs(dfs, d - 1, L0, R0, y1,\
+    \ m);\n        dfs(dfs, d - 1, L1, R1, 0, y2 - m);\n      }\n    };\n    dfs(dfs,\
+    \ log, L, R, y1, y2);\n  }\n\n  // [L,R) x [0,y)\n  int prefix_count(int L, int\
+    \ R, Y y) const {\n    int cnt = 0;\n    work_prefix([&](int d, int a, int b)\
+    \ { cnt += b - a; }, L, R, y);\n    return cnt;\n  }\n\n  // [L,R) x [y1,y2)\n\
+    \  int count(int L, int R, Y y1, Y y2) const {\n    return prefix_count(L, R,\
+    \ y2) - prefix_count(L, R, y1);\n  }\n\n  // [L,R) x [0,y)\n  T prefix_prod(int\
+    \ L, int R, Y y) const {\n    T ans = Mono::id();\n    work_prefix(\n        [&](int\
+    \ d, int a, int b) { ans = Mono::op(ans, seg[d].prod(a, b)); }, L,\n        R,\
+    \ y);\n    return ans;\n  }\n  // [L,R) x [y1,y2)\n  T prod(int L, int R, Y y1,\
+    \ Y y2) const {\n    T ans = Mono::id();\n    work_range(\n        [&](int d,\
+    \ int a, int b) { ans = Mono::op(ans, seg[d].prod(a, b)); }, L,\n        R, y1,\
+    \ y2);\n    return ans;\n  }\n  T prod_all(int L, int R) const { return seg[log].prod(L,\
+    \ R); }\n\n  // [L,R) x [0,y)\n  pair<int, T> prefix_count_and_prod(int L, int\
+    \ R, Y y) const {\n    pair<int, T> ans = {0, Mono::id()};\n    work_prefix(\n\
+    \        [&](int d, int a, int b) {\n          ans.fi += b - a;\n          ans.se\
+    \ = Mono::op(ans.se, seg[d].prod(a, b));\n        },\n        L, R, y);\n    return\
+    \ ans;\n  }\n  // [L,R) x [y1,y2)\n  pair<int, T> count_and_prod(int L, int R,\
+    \ Y y1, Y y2) const {\n    pair<int, T> ans = {0, Mono::id()};\n    work_range(\n\
+    \        [&](int d, int a, int b) {\n          ans.fi += b - a;\n          ans.se\
+    \ = Mono::op(ans.se, seg[d].prod(a, b));\n        },\n        L, R, y1, y2);\n\
+    \    return ans;\n  }\n\n  Y kth(int L, int R, int k) const {\n    assert(0 <=\
+    \ k && k < R - L);\n    Y ans = 0;\n    for (int d = log - 1; d >= 0; --d) {\n\
+    \      auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);\n      if (k < R0 - L0)\
+    \ {\n        L = L0, R = R0;\n      } else {\n        ans |= Y(1) << d;\n    \
+    \    k -= R0 - L0, L = L1, R = R1;\n      }\n    }\n    return ans;\n  }\n\n \
+    \ template <bool upper>\n  Y median(int L, int R) const {\n    assert(0 <= L &&\
+    \ L < R && R <= n);\n    int k = (upper ? (R - L) / 2 : (R - L - 1) / 2);\n  \
+    \  return kth(L, R, k);\n  }\n\n  void set(int i, T t) {\n    assert(0 <= i &&\
+    \ i < n);\n    work_point([&](int d, int i) { seg[d].set(i, t); }, i);\n  }\n\
+    \  void multiply(int i, T t) {\n    assert(0 <= i && i < n);\n    work_point([&](int\
+    \ d, int i) { seg[d].multiply(i, t); }, i);\n  }\n  void add(int i, T t) {\n \
+    \   assert(0 <= i && i < n);\n    work_point([&](int d, int i) { seg[d].add(i,\
+    \ t); }, i);\n  }\n\n  // [L,R) x [0,y) \u3067\u306E check(y, cnt, prod) \u304C\
+    \ true \u3068\u306A\u308B\u6700\u5927\u306E (Y,cnt,prod)\n  // cnt \u306F\u30C7\
+    \u30FC\u30BF\u4EF6\u6570\u5168\u4F53\u3067\u3042\u3063\u3066, activate/deactivate\
+    \ \u3092\u8003\u616E\u3059\u308B\u5834\u5408\u306B\u306F\n  // prod \u306E\u65B9\
+    \u3092\u898B\u308B\u5FC5\u8981\u304C\u3042\u308B\n  template <typename F>\n  tuple<Y,\
+    \ int, T> max_right(F check, int L, int R) const {\n    int cnt = 0;\n    Y y\
+    \ = 0;\n    T t = Mono::id();\n    T t_all = seg[log].prod(L, R);\n    assert(check(0,\
+    \ 0, Mono::id()));\n    if (check(infty<Y>, R - L, t_all)) {\n      return {infty<Y>,\
+    \ R - L, t_all};\n    }\n    for (int d = log - 1; d >= 0; --d) {\n      auto\
+    \ [L0, R0, L1, R1] = get_subtree(d + 1, L, R);\n      Y y1 = y | Y(1) << d;\n\
+    \      int cnt1 = cnt + R0 - L0;\n      T t1 = Mono::op(t, seg[d].prod(L0, R0));\n\
+    \      if (check(y1, cnt1, t1)) {\n        y = y1, cnt = cnt1, t = t1, L = L1,\
+    \ R = R1;\n      } else {\n        L = L0, R = R0;\n      }\n    }\n    return\
+    \ {y, cnt, t};\n  }\n\n  // [L,R) x [0,y) \u3067\u306E check(y, cnt, prod) \u304C\
+    \ true \u3068\u306A\u308B\u6700\u5927\u306E (Y,cnt,prod)\n  template <typename\
+    \ F>\n  tuple<Y, int, T> max_right_many(F check, vc<pair<int, int>> LR) const\
+    \ {\n    int cnt = 0;\n    Y y = 0;\n    T t = Mono::id();\n    T t_all = Mono::id();\n\
+    \    int cnt_all = 0;\n    for (auto& [l, r] : LR)\n      t_all = Mono::op(t_all,\
+    \ prod_all(l, r)), cnt_all += r - l;\n    assert(check(0, 0, Mono::id()));\n \
+    \   if (check(infty<Y>, cnt_all, t_all)) {\n      return {infty<Y>, cnt_all, t_all};\n\
+    \    }\n    for (int d = log - 1; d >= 0; --d) {\n      Y y1 = Y(1) << d;\n  \
+    \    T t1 = t;\n      int cnt1 = 0;\n      for (auto& [L, R] : LR) {\n       \
+    \ auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);\n        cnt1 += R0 - L0;\n\
+    \        t1 = Mono::op(t1, seg[d].prod(L0, R0));\n      }\n      if (check(y1,\
+    \ cnt1, t1)) {\n        y = y1, cnt = cnt1, t = t1;\n        for (auto& [L, R]\
+    \ : LR) {\n          auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);\n     \
+    \     L = L1, R = R1;\n        }\n      } else {\n        for (auto& [L, R] :\
+    \ LR) {\n          auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);\n       \
+    \   L = L0, R = R0;\n        }\n      }\n    }\n    return {y, cnt, t};\n  }\n\
+    \n  // [L,R) x [y, inf) \u3067\u306E check(y, cnt, prod) \u304C true \u3068\u306A\
+    \u308B\u6700\u5C0F\u306E (y,cnt,prod)\n  // cnt==0 \u3060\u3068 true \u3067\u3042\
+    \u308B\u3053\u3068\u306F\u4EEE\u5B9A\u3059\u308B\n  // https://qoj.ac/contest/1047/problem/5094\n\
+    \  template <typename F>\n  tuple<Y, int, T> min_left_many(F check, vc<pair<int,\
+    \ int>> LR) const {\n    assert(check(limit, 0, Mono::id()));\n    int cnt = 0;\n\
+    \    Y y = limit;\n    T t = Mono::id();\n    T t_all = Mono::id();\n    int cnt_all\
+    \ = 0;\n    for (auto& [l, r] : LR)\n      t_all = Mono::op(t_all, prod_all(l,\
+    \ r)), cnt_all += r - l;\n    if (check(0, cnt_all, t_all)) {\n      return {0,\
+    \ cnt_all, t_all};\n    }\n    for (int d = log - 1; d >= 0; --d) {\n      Y y1\
+    \ = y - (Y(1) << d);\n      T t1 = t;\n      int cnt1 = cnt;\n      for (auto&\
+    \ [L, R] : LR) {\n        auto [L0, R0, L1, R1] = get_subtree(d + 1, L, R);\n\
+    \        cnt1 += R1 - L1;\n        t1 = Mono::op(t1, seg[d].prod(L1, R1));\n \
+    \     }\n      if (check(y1, cnt1, t1)) {\n        y = y1, cnt = cnt1, t = t1;\n\
+    \        SHOW(y);\n        for (auto& [L, R] : LR) {\n          auto [L0, R0,\
+    \ L1, R1] = get_subtree(d + 1, L, R);\n          L = L0, R = R0;\n        }\n\
+    \      } else {\n        for (auto& [L, R] : LR) {\n          auto [L0, R0, L1,\
+    \ R1] = get_subtree(d + 1, L, R);\n          L = L1, R = R1;\n        }\n    \
+    \  }\n    }\n    SHOW(y, cnt, t);\n    return {y, cnt, t};\n  }\n};\n\ntemplate\
+    \ <typename Y, typename SEGTREE>\nstruct Compressed_Wavelet_Matrix {\n  using\
+    \ Mono = typename SEGTREE::MX;\n  using T = typename Mono::value_type;\n\n  int\
+    \ n = 0;\n  vc<Y> key;\n  Uncompressed_Wavelet_Matrix<int, SEGTREE> wm;\n\n  Compressed_Wavelet_Matrix()\
+    \ = default;\n\n  // f(i) = {A[i], dat[i]}\n  template <typename F>\n  Compressed_Wavelet_Matrix(int\
+    \ n, F f) {\n    build(n, f);\n  }\n\n  Compressed_Wavelet_Matrix(const vc<Y>&\
+    \ A) {\n    static_assert(is_same_v<SEGTREE, Dummy_Data_Structure>);\n    build(A);\n\
+    \  }\n\n  template <typename F>\n  void build(int n, F f) {\n    this->n = n;\n\
+    \    vc<Y> A(n);\n    vc<T> S(n);\n    FOR(i, n) tie(A[i], S[i]) = f(i);\n\n \
+    \   key = A;\n    UNIQUE(key);\n\n    wm.build(n, [&](int i) -> pair<int, T> {\n\
+    \      int k = LB(key, A[i]);\n      return {k, S[i]};\n    });\n  }\n\n  void\
+    \ build(const vc<Y>& A) {\n    static_assert(is_same_v<SEGTREE, Dummy_Data_Structure>);\n\
+    \    n = len(A);\n    key = A;\n    UNIQUE(key);\n\n    wm.build(n, [&](int i)\
+    \ -> pair<int, T> {\n      int k = LB(key, A[i]);\n      return {k, Mono::id()};\n\
+    \    });\n  }\n\n  Y kth(int L, int R, int k) const { return key[wm.kth(L, R,\
+    \ k)]; }\n\n  template <bool upper>\n  Y median(int L, int R) const {\n    return\
+    \ key[wm.template median<upper>(L, R)];\n  }\n\n  // [L,R) x [-inf,y)\n  int prefix_count(int\
+    \ L, int R, Y y) const {\n    return wm.prefix_count(L, R, LB(key, y));\n  }\n\
+    \n  // [L,R) x [y1,y2)\n  int count(int L, int R, Y y1, Y y2) const {\n    return\
+    \ wm.count(L, R, LB(key, y1), LB(key, y2));\n  }\n\n  // [L,R) x [-inf,y)\n  T\
+    \ prefix_prod(int L, int R, Y y) const {\n    return wm.prefix_prod(L, R, LB(key,\
+    \ y));\n  }\n\n  // [L,R) x [y1,y2)\n  T prod(int L, int R, Y y1, Y y2) const\
+    \ {\n    return wm.prod(L, R, LB(key, y1), LB(key, y2));\n  }\n\n  T prod_all(int\
+    \ L, int R) const { return wm.prod_all(L, R); }\n\n  // [L,R) x [-inf,y)\n  pair<int,\
+    \ T> prefix_count_and_prod(int L, int R, Y y) const {\n    return wm.prefix_count_and_prod(L,\
+    \ R, LB(key, y));\n  }\n\n  // [L,R) x [y1,y2)\n  pair<int, T> count_and_prod(int\
+    \ L, int R, Y y1, Y y2) const {\n    return wm.count_and_prod(L, R, LB(key, y1),\
+    \ LB(key, y2));\n  }\n\n  void set(int i, T t) { wm.set(i, t); }\n\n  void multiply(int\
+    \ i, T t) { wm.multiply(i, t); }\n\n  void add(int i, T t) { wm.add(i, t); }\n\
+    };\n\ntemplate <typename Y, bool compress, typename SEGTREE = Dummy_Data_Structure>\n\
+    using Wavelet_Matrix =\n    conditional_t<compress, Compressed_Wavelet_Matrix<Y,\
+    \ SEGTREE>,\n        Uncompressed_Wavelet_Matrix<Y, SEGTREE>>;\n#line 6 \"test/5_ai_generated_test/wavelet_matrix_weighted_queries.test.cpp\"\
+    \n\n// \u30AD\u30FC\u306F\u4E0D\u5909\u30FB\u91CD\u307F\u306F\u66F4\u65B0\u3059\
+    \u308B\u3002\u533A\u9593\u5185\u306E\u5143\u914D\u5217\u3092\u8D70\u67FB\u3057\
+    \u3066\u4EF6\u6570\u3068\u91CD\u307F\u306E\u548C\u3092\u5225\u3005\u306B\u8A08\
+    \u7B97\u3057\u3001\n// \u9806\u4F4D\u306F\u72EC\u7ACB\u306B\u30BD\u30FC\u30C8\u3059\
+    \u308B\u3002\u91CD\u307F\u304C0\u3084\u8CA0\u3067\u3082\u4EF6\u6570\u306B\u5165\
+    \u308B\u3053\u3068\u3001\u540C\u4E00\u30AD\u30FC\u306E\u5225\u4F4D\u7F6E\u3092\
+    \u6DF7\u540C\u3057\u306A\u3044\n// \u3053\u3068\u3092\u691C\u8A3C\u3002multiply\
+    \ \u306F\u52A0\u6CD5\u30E2\u30CE\u30A4\u30C9\u306A\u306E\u3067\u91CD\u307F\u306E\
+    \u52A0\u7B97\u3092\u610F\u5473\u3059\u308B\u3002\nint main() {\n  using WM = Wavelet_Matrix<int,\
+    \ true, SegTree<Monoid_Add<ll>>>;\n  mt19937 rng(0x91C017u);\n  constexpr int\
+    \ K = 9;\n  const array<int, K> bound = {-100,-9,-8,-3,0,1,7,8,100};\n  int queries\
+    \ = 0;\n  auto require = [](bool ok, int id, int q, const char* kind) {\n    if\
+    \ (!ok) {\n      cerr << \"wavelet weighted: case=\" << id << \" query=\" << q\
+    \ << \" op=\" << kind << '\\n';\n      abort();\n    }\n  };\n  WM wm;\n  const\
+    \ vc<int> sizes = {0,1,2,3,7,31,32,63,64,65,127,128,129,65,2,0,64};\n  for (int\
+    \ id = 0; id < 160; ++id) {\n    int n = id < int(sizes.size()) ? sizes[id] :\
+    \ rng() % 135;\n    vc<int> a(n);\n    vc<ll> w(n);\n    for (int i = 0; i < n;\
+    \ ++i) {\n      a[i] = id % 6 == 1 ? -3 : int(rng() % 17) - 8;\n      w[i] = int(rng()\
+    \ % 13) - 6;\n    }\n    wm.build(n, [&](int i) { return pair<int,ll>{a[i],w[i]};\
+    \ });\n    for (int q = 0; q < 180; ++q) {\n      if (n > 0) {\n        int i\
+    \ = rng() % n;\n        ll z = int(rng() % 17) - 8;\n        if (q % 2 == 0) wm.set(i,z),\
+    \ w[i] = z;\n        else wm.multiply(i,z), w[i] += z;\n      }\n      int l =\
+    \ q % 7 == 0 ? 0 : rng() % (n + 1);\n      int r = q % 7 == 0 ? n : rng() % (n\
+    \ + 1);\n      if (l > r) swap(l,r);\n      int y1 = bound[rng() % K], y2 = bound[rng()\
+    \ % K];\n      if (y1 > y2) swap(y1,y2);\n      pair<int,ll> range{0,0}, prefix{0,0};\n\
+    \      ll all_sum = 0;\n      vc<int> vals;\n      for (int i = l; i < r; ++i)\
+    \ {\n        vals.push_back(a[i]);\n        all_sum += w[i];\n        if (a[i]\
+    \ < y2) {\n          ++prefix.first;\n          prefix.second += w[i];\n     \
+    \     if (y1 <= a[i]) ++range.first, range.second += w[i];\n        }\n      }\n\
+    \      require(wm.count_and_prod(l,r,y1,y2) == range,id,q,\"count_and_prod\");\n\
+    \      require(wm.prefix_count_and_prod(l,r,y2) == prefix,id,q,\"prefix_count_and_prod\"\
+    );\n      require(wm.count(l,r,y1,y2) == range.first,id,q,\"count\");\n      require(wm.prod(l,r,y1,y2)\
+    \ == range.second,id,q,\"prod\");\n      require(wm.prod_all(l,r) == all_sum,id,q,\"\
+    prod_all\");\n      if (!vals.empty()) {\n        sort(vals.begin(),vals.end());\n\
+    \        int k = rng() % vals.size();\n        require(wm.kth(l,r,k) == vals[k],id,q,\"\
+    kth\");\n        require(wm.median<false>(l,r) == vals[(vals.size()-1)/2],id,q,\"\
+    median lower\");\n        require(wm.median<true>(l,r) == vals[vals.size()/2],id,q,\"\
+    median upper\");\n      }\n      ++queries;\n    }\n  }\n  cerr << \"wavelet weighted:\
+    \ \" << queries << \" query groups PASS\\n\";\n}\n"
+  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/monoid/add.hpp\"\
+    \n#include \"ds/segtree/segtree.hpp\"\n#include \"ds/wavelet_matrix/wavelet_matrix.hpp\"\
+    \n\n// \u30AD\u30FC\u306F\u4E0D\u5909\u30FB\u91CD\u307F\u306F\u66F4\u65B0\u3059\
+    \u308B\u3002\u533A\u9593\u5185\u306E\u5143\u914D\u5217\u3092\u8D70\u67FB\u3057\
+    \u3066\u4EF6\u6570\u3068\u91CD\u307F\u306E\u548C\u3092\u5225\u3005\u306B\u8A08\
+    \u7B97\u3057\u3001\n// \u9806\u4F4D\u306F\u72EC\u7ACB\u306B\u30BD\u30FC\u30C8\u3059\
+    \u308B\u3002\u91CD\u307F\u304C0\u3084\u8CA0\u3067\u3082\u4EF6\u6570\u306B\u5165\
+    \u308B\u3053\u3068\u3001\u540C\u4E00\u30AD\u30FC\u306E\u5225\u4F4D\u7F6E\u3092\
+    \u6DF7\u540C\u3057\u306A\u3044\n// \u3053\u3068\u3092\u691C\u8A3C\u3002multiply\
+    \ \u306F\u52A0\u6CD5\u30E2\u30CE\u30A4\u30C9\u306A\u306E\u3067\u91CD\u307F\u306E\
+    \u52A0\u7B97\u3092\u610F\u5473\u3059\u308B\u3002\nint main() {\n  using WM = Wavelet_Matrix<int,\
+    \ true, SegTree<Monoid_Add<ll>>>;\n  mt19937 rng(0x91C017u);\n  constexpr int\
+    \ K = 9;\n  const array<int, K> bound = {-100,-9,-8,-3,0,1,7,8,100};\n  int queries\
+    \ = 0;\n  auto require = [](bool ok, int id, int q, const char* kind) {\n    if\
+    \ (!ok) {\n      cerr << \"wavelet weighted: case=\" << id << \" query=\" << q\
+    \ << \" op=\" << kind << '\\n';\n      abort();\n    }\n  };\n  WM wm;\n  const\
+    \ vc<int> sizes = {0,1,2,3,7,31,32,63,64,65,127,128,129,65,2,0,64};\n  for (int\
+    \ id = 0; id < 160; ++id) {\n    int n = id < int(sizes.size()) ? sizes[id] :\
+    \ rng() % 135;\n    vc<int> a(n);\n    vc<ll> w(n);\n    for (int i = 0; i < n;\
+    \ ++i) {\n      a[i] = id % 6 == 1 ? -3 : int(rng() % 17) - 8;\n      w[i] = int(rng()\
+    \ % 13) - 6;\n    }\n    wm.build(n, [&](int i) { return pair<int,ll>{a[i],w[i]};\
+    \ });\n    for (int q = 0; q < 180; ++q) {\n      if (n > 0) {\n        int i\
+    \ = rng() % n;\n        ll z = int(rng() % 17) - 8;\n        if (q % 2 == 0) wm.set(i,z),\
+    \ w[i] = z;\n        else wm.multiply(i,z), w[i] += z;\n      }\n      int l =\
+    \ q % 7 == 0 ? 0 : rng() % (n + 1);\n      int r = q % 7 == 0 ? n : rng() % (n\
+    \ + 1);\n      if (l > r) swap(l,r);\n      int y1 = bound[rng() % K], y2 = bound[rng()\
+    \ % K];\n      if (y1 > y2) swap(y1,y2);\n      pair<int,ll> range{0,0}, prefix{0,0};\n\
+    \      ll all_sum = 0;\n      vc<int> vals;\n      for (int i = l; i < r; ++i)\
+    \ {\n        vals.push_back(a[i]);\n        all_sum += w[i];\n        if (a[i]\
+    \ < y2) {\n          ++prefix.first;\n          prefix.second += w[i];\n     \
+    \     if (y1 <= a[i]) ++range.first, range.second += w[i];\n        }\n      }\n\
+    \      require(wm.count_and_prod(l,r,y1,y2) == range,id,q,\"count_and_prod\");\n\
+    \      require(wm.prefix_count_and_prod(l,r,y2) == prefix,id,q,\"prefix_count_and_prod\"\
+    );\n      require(wm.count(l,r,y1,y2) == range.first,id,q,\"count\");\n      require(wm.prod(l,r,y1,y2)\
+    \ == range.second,id,q,\"prod\");\n      require(wm.prod_all(l,r) == all_sum,id,q,\"\
+    prod_all\");\n      if (!vals.empty()) {\n        sort(vals.begin(),vals.end());\n\
+    \        int k = rng() % vals.size();\n        require(wm.kth(l,r,k) == vals[k],id,q,\"\
+    kth\");\n        require(wm.median<false>(l,r) == vals[(vals.size()-1)/2],id,q,\"\
+    median lower\");\n        require(wm.median<true>(l,r) == vals[vals.size()/2],id,q,\"\
+    median upper\");\n      }\n      ++queries;\n    }\n  }\n  cerr << \"wavelet weighted:\
+    \ \" << queries << \" query groups PASS\\n\";\n}\n"
+  dependsOn:
+  - my_template.hpp
+  - other/io.hpp
+  - alg/monoid/add.hpp
+  - ds/segtree/segtree.hpp
+  - ds/wavelet_matrix/wavelet_matrix.hpp
+  - ds/bit_vector.hpp
+  - ds/dummy_data_structure.hpp
+  - alg/monoid/dummy.hpp
+  isVerificationFile: true
+  path: test/5_ai_generated_test/wavelet_matrix_weighted_queries.test.cpp
+  requiredBy: []
+  timestamp: '2026-11-29 04:16:05+09:00'
+  verificationStatus: TEST_ACCEPTED
+  verifiedWith: []
+documentation_of: test/5_ai_generated_test/wavelet_matrix_weighted_queries.test.cpp
+layout: document
+redirect_from:
+- /verify/test/5_ai_generated_test/wavelet_matrix_weighted_queries.test.cpp
+- /verify/test/5_ai_generated_test/wavelet_matrix_weighted_queries.test.cpp.html
+title: test/5_ai_generated_test/wavelet_matrix_weighted_queries.test.cpp
+---

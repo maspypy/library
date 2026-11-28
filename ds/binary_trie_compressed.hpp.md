@@ -5,10 +5,16 @@ data:
     path: ds/node_pool.hpp
     title: ds/node_pool.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/binary_trie_compressed_full_width.test.cpp
+    title: test/5_ai_generated_test/binary_trie_compressed_full_width.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/binary_trie_compressed_split.test.cpp
+    title: test/5_ai_generated_test/binary_trie_compressed_split.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/ds/binary_trie_compressed.hpp
@@ -172,8 +178,10 @@ data:
   path: ds/binary_trie_compressed.hpp
   requiredBy: []
   timestamp: '2026-11-27 17:01:09+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/5_ai_generated_test/binary_trie_compressed_full_width.test.cpp
+  - test/5_ai_generated_test/binary_trie_compressed_split.test.cpp
 documentation_of: ds/binary_trie_compressed.hpp
 layout: document
 redirect_from:

@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: ds/csr.hpp
+    title: ds/csr.hpp
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
@@ -126,7 +129,21 @@ data:
     \ e : edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ const {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e : edges) {\n      vc_indeg[e.to]++, vc_outdeg[e.frm]++;\n \
-    \   }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\n\ntemplate\
+    \   }\n  }\n};\n#line 1 \"ds/csr.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/ds/csr.hpp\n\
+    \ntemplate <typename T>\nstruct CSR {\n  int n;\n  bool prepared;\n  vc<int> ptr;\n\
+    \  vc<int> I;\n  vc<T> dat;\n\n  CSR(int n = 0) : n(n), prepared(false) {}\n \
+    \ void reserve(int n) { dat.reserve(n); }\n\n  void add(int i, const T& x) {\n\
+    \    assert(0 <= i && i < n && !prepared);\n    I.eb(i), dat.eb(x);\n  }\n\n \
+    \ void build() {\n    assert(!prepared);\n    prepared = 1;\n    ptr.assign(n\
+    \ + 1, 0);\n    for (auto& i : I) ptr[1 + i]++;\n    FOR(i, len(ptr) - 1) ptr[i\
+    \ + 1] += ptr[i];\n    vc<T> tmp(len(dat));\n    FOR(k, len(dat)) {\n      int\
+    \ i = I[k];\n      tmp[ptr[i]++] = dat[k];\n    }\n    swap(dat, tmp);\n    ptr.pop_back();\n\
+    \    ptr.insert(ptr.begin(), 0);\n    I.clear();\n  }\n\n  struct range {\n  \
+    \  T *first, *last;\n    T* begin() const { return first; }\n    T* end() const\
+    \ { return last; }\n    bool empty() const { return first == last; }\n    int\
+    \ size() const { return last - first; }\n  };\n\n  range operator[](int i) {\n\
+    \    assert(prepared);\n    return range{dat.data() + ptr[i], dat.data() + ptr[i\
+    \ + 1]};\n  }\n};\n#line 4 \"graph/strongly_connected_component.hpp\"\n\ntemplate\
     \ <typename GT>\npair<int, vc<int>> strongly_connected_component(const GT& G)\
     \ {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n  int N =\
     \ G.N;\n  int nc = 0;\n  vc<int> comp(N), low(N), ord(N, -1), path;\n  vc<int>\
@@ -142,28 +159,29 @@ data:
     \       if (p != -1) chmin(low[p], low[v]);\n        v = p;\n      }\n    }\n\
     \  }\n  FOR(v, N) comp[v] = nc - 1 - comp[v];\n  return {nc, comp};\n}\n\ntemplate\
     \ <typename GT>\nGraph<int, 1> scc_dag(const GT& G, int nc, const vc<int>& comp)\
-    \ {\n  Graph<int, 1> DAG(nc);\n  vvc<int> edges(nc);\n  for (auto&& e : G.edges)\
+    \ {\n  Graph<int, 1> DAG(nc);\n  CSR<int> edges(nc);\n  for (auto&& e : G.edges)\
     \ {\n    int x = comp[e.frm], y = comp[e.to];\n    if (x == y) continue;\n   \
-    \ edges[x].eb(y);\n  }\n  FOR(c, nc) {\n    UNIQUE(edges[c]);\n    for (auto&&\
-    \ to : edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line\
-    \ 3 \"graph/twosat.hpp\"\n\nstruct TwoSat {\n  Graph<bool, 1> G;\n  vc<int> values;\n\
-    \  vc<pair<int, int>> edges;\n\n  TwoSat(ll n) : G(n + n), values(n, -1) {}\n\
-    \  void add(int a, int b) {\n    a = (a >= 0 ? 2 * a + 1 : 2 * (~a));\n    b =\
-    \ (b >= 0 ? 2 * b + 1 : 2 * (~b));\n    edges.eb(a ^ 1, b);\n    edges.eb(b ^\
-    \ 1, a);\n  }\n  void set(int a) {\n    if (a >= 0)\n      values[a] = 1;\n  \
-    \  else\n      values[~a] = 0;\n    a = (a >= 0 ? 2 * a + 1 : 2 * (~a));\n   \
-    \ edges.eb(a ^ 1, a);\n  }\n\n  // \u52DD\u624B\u306B\u5F85\u9047\u8FBA\u3082\u5165\
-    \u308B\n  void implies(int a, int b) { add(~a, b); }\n  void debug() {\n    for\
-    \ (auto& [a, b]: edges) {\n      string A, B;\n      if (a % 2 == 0) A = \"([\"\
-    \ + to_string(a / 2) + \"] == 0)\";\n      if (a % 2 == 1) A = \"([\" + to_string(a\
-    \ / 2) + \"] == 1)\";\n      if (b % 2 == 0) B = \"([\" + to_string(b / 2) + \"\
-    ] == 0)\";\n      if (b % 2 == 1) B = \"([\" + to_string(b / 2) + \"] == 1)\"\
-    ;\n      print(A, \"->\", B);\n    }\n  }\n\n  pair<bool, vc<int>> calc() {\n\
-    \    UNIQUE(edges);\n    for (auto&& [a, b]: edges) G.add(a, b);\n    G.build();\n\
-    \    ll n = len(values);\n    auto [C, comp] = strongly_connected_component(G);\n\
-    \    FOR(i, n) {\n      if (comp[2 * i] == comp[2 * i + 1]) return {false, values};\n\
-    \      values[i] = comp[2 * i] < comp[2 * i + 1];\n    }\n    return {true, values};\n\
-    \  }\n};\n"
+    \ edges.add(x, y);\n  }\n  edges.build();\n  vc<bool> used(nc);\n\n  FOR(c, nc)\
+    \ {\n    for (auto& x : edges[c]) {\n      if (used[x]) continue;\n      used[x]\
+    \ = 1;\n      DAG.add(c, x);\n    }\n    for (auto& x : edges[c]) {\n      used[x]\
+    \ = 0;\n    }\n  }\n  DAG.build();\n  return DAG;\n}\n#line 3 \"graph/twosat.hpp\"\
+    \n\nstruct TwoSat {\n  Graph<bool, 1> G;\n  vc<int> values;\n  vc<pair<int, int>>\
+    \ edges;\n\n  TwoSat(ll n) : G(n + n), values(n, -1) {}\n  void add(int a, int\
+    \ b) {\n    a = (a >= 0 ? 2 * a + 1 : 2 * (~a));\n    b = (b >= 0 ? 2 * b + 1\
+    \ : 2 * (~b));\n    edges.eb(a ^ 1, b);\n    edges.eb(b ^ 1, a);\n  }\n  void\
+    \ set(int a) {\n    if (a >= 0)\n      values[a] = 1;\n    else\n      values[~a]\
+    \ = 0;\n    a = (a >= 0 ? 2 * a + 1 : 2 * (~a));\n    edges.eb(a ^ 1, a);\n  }\n\
+    \n  // \u52DD\u624B\u306B\u5F85\u9047\u8FBA\u3082\u5165\u308B\n  void implies(int\
+    \ a, int b) { add(~a, b); }\n  void debug() {\n    for (auto& [a, b]: edges) {\n\
+    \      string A, B;\n      if (a % 2 == 0) A = \"([\" + to_string(a / 2) + \"\
+    ] == 0)\";\n      if (a % 2 == 1) A = \"([\" + to_string(a / 2) + \"] == 1)\"\
+    ;\n      if (b % 2 == 0) B = \"([\" + to_string(b / 2) + \"] == 0)\";\n      if\
+    \ (b % 2 == 1) B = \"([\" + to_string(b / 2) + \"] == 1)\";\n      print(A, \"\
+    ->\", B);\n    }\n  }\n\n  pair<bool, vc<int>> calc() {\n    UNIQUE(edges);\n\
+    \    for (auto&& [a, b]: edges) G.add(a, b);\n    G.build();\n    ll n = len(values);\n\
+    \    auto [C, comp] = strongly_connected_component(G);\n    FOR(i, n) {\n    \
+    \  if (comp[2 * i] == comp[2 * i + 1]) return {false, values};\n      values[i]\
+    \ = comp[2 * i] < comp[2 * i + 1];\n    }\n    return {true, values};\n  }\n};\n"
   code: "// Source: https://github.com/maspypy/library/blob/main/graph/twosat.hpp\n\
     #include \"graph/strongly_connected_component.hpp\"\n\nstruct TwoSat {\n  Graph<bool,\
     \ 1> G;\n  vc<int> values;\n  vc<pair<int, int>> edges;\n\n  TwoSat(ll n) : G(n\
@@ -187,10 +205,11 @@ data:
   - graph/strongly_connected_component.hpp
   - graph/base.hpp
   - ds/hashmap.hpp
+  - ds/csr.hpp
   isVerificationFile: false
   path: graph/twosat.hpp
   requiredBy: []
-  timestamp: '2026-11-16 12:41:54+09:00'
+  timestamp: '2026-11-29 04:16:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/other/twosat.test.cpp

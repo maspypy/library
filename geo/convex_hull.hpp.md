@@ -60,6 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/static_convex_hull.test.cpp
     title: test/2_library_checker/geometry/static_convex_hull.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/convex_hull_supporting_lines.test.cpp
+    title: test/5_ai_generated_test/convex_hull_supporting_lines.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -183,6 +186,7 @@ data:
   timestamp: '2026-10-27 15:41:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/convex_hull_supporting_lines.test.cpp
   - test/1_mytest/convex_polygon_visible_range.test.cpp
   - test/1_mytest/max_dot.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp

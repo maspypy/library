@@ -186,6 +186,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP2_3_B.test.cpp
     title: test/4_aoj/ITP2_3_B.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/suffix_array_lcp_ranges.test.cpp
+    title: test/5_ai_generated_test/suffix_array_lcp_ranges.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/wavelet_matrix_weighted_queries.test.cpp
+    title: test/5_ai_generated_test/wavelet_matrix_weighted_queries.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -332,6 +338,8 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/wavelet_matrix_weighted_queries.test.cpp
+  - test/5_ai_generated_test/suffix_array_lcp_ranges.test.cpp
   - test/4_aoj/GRL_2_A.test.cpp
   - test/4_aoj/ITP2_3_B.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp

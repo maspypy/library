@@ -966,6 +966,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_ai_generated_test/crt_small_bruteforce.test.cpp
     title: test/5_ai_generated_test/crt_small_bruteforce.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/fps_exp_binomial_thresholds.test.cpp
+    title: test/5_ai_generated_test/fps_exp_binomial_thresholds.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/fps_inv_dispatch_boundaries.test.cpp
+    title: test/5_ai_generated_test/fps_inv_dispatch_boundaries.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -1116,6 +1122,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/5_ai_generated_test/crt_small_bruteforce.test.cpp
+  - test/5_ai_generated_test/fps_inv_dispatch_boundaries.test.cpp
+  - test/5_ai_generated_test/fps_exp_binomial_thresholds.test.cpp
   - test/4_aoj/NTL_2_C.test.cpp
   - test/4_aoj/NTL_2_B.test.cpp
   - test/4_aoj/NTL_2_A.test.cpp

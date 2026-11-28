@@ -210,6 +210,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3621.test.cpp
     title: test/3_yukicoder/3621.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/fps_exp_binomial_thresholds.test.cpp
+    title: test/5_ai_generated_test/fps_exp_binomial_thresholds.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -265,6 +268,7 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/fps_exp_binomial_thresholds.test.cpp
   - test/1_mytest/online_exp.test.cpp
   - test/1_mytest/bell_number.test.cpp
   - test/1_mytest/graph_count.test.cpp

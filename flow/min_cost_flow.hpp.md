@@ -37,6 +37,9 @@ data:
     path: test/5_ai_generated_test/min_cost_flow_dag_negative_slope_red.test.cpp
     title: test/5_ai_generated_test/min_cost_flow_dag_negative_slope_red.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/min_cost_flow_dag_slope_enumeration.test.cpp
+    title: test/5_ai_generated_test/min_cost_flow_dag_slope_enumeration.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/5_ai_generated_test/min_cost_flow_nonnegative_enumeration.test.cpp
     title: test/5_ai_generated_test/min_cost_flow_nonnegative_enumeration.test.cpp
   _isVerificationFailed: false
@@ -273,6 +276,7 @@ data:
   verifiedWith:
   - test/5_ai_generated_test/min_cost_flow_dag_negative_slope_red.test.cpp
   - test/5_ai_generated_test/min_cost_flow_nonnegative_enumeration.test.cpp
+  - test/5_ai_generated_test/min_cost_flow_dag_slope_enumeration.test.cpp
   - test/4_aoj/GRL_6_B.test.cpp
   - test/3_yukicoder/1676.test.cpp
   - test/3_yukicoder/1288.test.cpp

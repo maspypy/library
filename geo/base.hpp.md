@@ -204,6 +204,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_C.test.cpp
     title: test/4_aoj/CGL_7_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/convex_hull_supporting_lines.test.cpp
+    title: test/5_ai_generated_test/convex_hull_supporting_lines.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/incircle_tangency_permutations.test.cpp
+    title: test/5_ai_generated_test/incircle_tangency_permutations.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/pick_formula_ccw_lattice_points.test.cpp
+    title: test/5_ai_generated_test/pick_formula_ccw_lattice_points.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -366,6 +375,9 @@ data:
   timestamp: '2026-10-27 15:41:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/convex_hull_supporting_lines.test.cpp
+  - test/5_ai_generated_test/pick_formula_ccw_lattice_points.test.cpp
+  - test/5_ai_generated_test/incircle_tangency_permutations.test.cpp
   - test/4_aoj/CGL_1_B.test.cpp
   - test/4_aoj/CGL_2_A.test.cpp
   - test/4_aoj/CGL_2_D.test.cpp

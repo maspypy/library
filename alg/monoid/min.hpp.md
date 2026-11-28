@@ -198,6 +198,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/suffix_array_lcp_ranges.test.cpp
+    title: test/5_ai_generated_test/suffix_array_lcp_ranges.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -244,6 +247,7 @@ data:
   timestamp: '2026-10-24 10:08:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/suffix_array_lcp_ranges.test.cpp
   - test/4_aoj/DSL_2_F.test.cpp
   - test/4_aoj/1508_2.test.cpp
   - test/4_aoj/1508.test.cpp

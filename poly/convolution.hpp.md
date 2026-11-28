@@ -939,6 +939,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/fps_exp_binomial_thresholds.test.cpp
+    title: test/5_ai_generated_test/fps_exp_binomial_thresholds.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/fps_inv_dispatch_boundaries.test.cpp
+    title: test/5_ai_generated_test/fps_inv_dispatch_boundaries.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -1388,6 +1394,8 @@ data:
   timestamp: '2026-11-23 02:04:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/fps_inv_dispatch_boundaries.test.cpp
+  - test/5_ai_generated_test/fps_exp_binomial_thresholds.test.cpp
   - test/4_aoj/NTL_2_C.test.cpp
   - test/4_aoj/NTL_2_B.test.cpp
   - test/4_aoj/NTL_2_A.test.cpp

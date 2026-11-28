@@ -315,10 +315,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/binary_trie.hpp
       title: ds/binary_trie.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/binary_trie_compressed.hpp
       title: ds/binary_trie_compressed.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/bit_array.hpp
       title: ds/bit_array.hpp
     - icon: ':heavy_check_mark:'
@@ -967,7 +967,7 @@ data:
     - icon: ':warning:'
       path: geo/perpendicular_bisector.hpp
       title: geo/perpendicular_bisector.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: geo/pick_formula.hpp
       title: geo/pick_formula.hpp
     - icon: ':warning:'
@@ -2716,7 +2716,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/wildcard_pattern_matching.hpp
       title: string/wildcard_pattern_matching.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: string/z_algorithm.hpp
       title: string/z_algorithm.hpp
   - name: template
@@ -4207,7 +4207,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/string/suffix_array_vec.test.cpp
       title: test/2_library_checker/string/suffix_array_vec.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/string/zalgorithm.test.cpp
       title: test/2_library_checker/string/zalgorithm.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4972,7 +4972,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2626.test.cpp
       title: test/3_yukicoder/2626.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/3_yukicoder/2626_2.test.cpp
       title: test/3_yukicoder/2626_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -5364,6 +5364,12 @@ data:
       path: test/5_ai_generated_test/bellman_ford_negative_cycle_oracle.test.cpp
       title: test/5_ai_generated_test/bellman_ford_negative_cycle_oracle.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/binary_trie_compressed_full_width.test.cpp
+      title: test/5_ai_generated_test/binary_trie_compressed_full_width.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/binary_trie_compressed_split.test.cpp
+      title: test/5_ai_generated_test/binary_trie_compressed_split.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/5_ai_generated_test/binary_trie_persistent_xor.test.cpp
       title: test/5_ai_generated_test/binary_trie_persistent_xor.test.cpp
     - icon: ':heavy_check_mark:'
@@ -5372,6 +5378,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_ai_generated_test/complement_graph_bfs_oracle.test.cpp
       title: test/5_ai_generated_test/complement_graph_bfs_oracle.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/convex_hull_supporting_lines.test.cpp
+      title: test/5_ai_generated_test/convex_hull_supporting_lines.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/5_ai_generated_test/count_subsequence.test.cpp
       title: test/5_ai_generated_test/count_subsequence.test.cpp
@@ -5394,11 +5403,23 @@ data:
       path: test/5_ai_generated_test/dynamic_lazy_self_copy_nonidentity_red.test.cpp
       title: test/5_ai_generated_test/dynamic_lazy_self_copy_nonidentity_red.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/factor_known_large_products.test.cpp
+      title: test/5_ai_generated_test/factor_known_large_products.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/5_ai_generated_test/fastset_bulk_erase_rebuild.test.cpp
       title: test/5_ai_generated_test/fastset_bulk_erase_rebuild.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/fps_exp_binomial_thresholds.test.cpp
+      title: test/5_ai_generated_test/fps_exp_binomial_thresholds.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/fps_inv_dispatch_boundaries.test.cpp
+      title: test/5_ai_generated_test/fps_inv_dispatch_boundaries.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/5_ai_generated_test/gomory_hu_all_pairs_cuts.test.cpp
       title: test/5_ai_generated_test/gomory_hu_all_pairs_cuts.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/incircle_tangency_permutations.test.cpp
+      title: test/5_ai_generated_test/incircle_tangency_permutations.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/5_ai_generated_test/intervals_fast.test.cpp
       title: test/5_ai_generated_test/intervals_fast.test.cpp
@@ -5406,8 +5427,17 @@ data:
       path: test/5_ai_generated_test/intervals_map.test.cpp
       title: test/5_ai_generated_test/intervals_map.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/link_cut_tree_ordered_prefix.test.cpp
+      title: test/5_ai_generated_test/link_cut_tree_ordered_prefix.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/5_ai_generated_test/lower_bound_flow_enumeration.test.cpp
       title: test/5_ai_generated_test/lower_bound_flow_enumeration.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/manacher_centers_match.test.cpp
+      title: test/5_ai_generated_test/manacher_centers_match.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/matrix_mul_rectangular_boundaries.test.cpp
+      title: test/5_ai_generated_test/matrix_mul_rectangular_boundaries.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/5_ai_generated_test/maxflow_capacity_change_cut.test.cpp
       title: test/5_ai_generated_test/maxflow_capacity_change_cut.test.cpp
@@ -5418,8 +5448,14 @@ data:
       path: test/5_ai_generated_test/min_cost_flow_dag_negative_slope_red.test.cpp
       title: test/5_ai_generated_test/min_cost_flow_dag_negative_slope_red.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/min_cost_flow_dag_slope_enumeration.test.cpp
+      title: test/5_ai_generated_test/min_cost_flow_dag_slope_enumeration.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/5_ai_generated_test/min_cost_flow_nonnegative_enumeration.test.cpp
       title: test/5_ai_generated_test/min_cost_flow_nonnegative_enumeration.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/pick_formula_ccw_lattice_points.test.cpp
+      title: test/5_ai_generated_test/pick_formula_ccw_lattice_points.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/5_ai_generated_test/point_set_range_sum_sqrt.test.cpp
       title: test/5_ai_generated_test/point_set_range_sum_sqrt.test.cpp
@@ -5439,20 +5475,35 @@ data:
       path: test/5_ai_generated_test/rollback_unionfind.test.cpp
       title: test/5_ai_generated_test/rollback_unionfind.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/segtree_2d_dense_rectangles.test.cpp
+      title: test/5_ai_generated_test/segtree_2d_dense_rectangles.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/5_ai_generated_test/slide_split_sum.test.cpp
       title: test/5_ai_generated_test/slide_split_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/5_ai_generated_test/sliding_window_aggregation.test.cpp
       title: test/5_ai_generated_test/sliding_window_aggregation.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/sqrt_tree_rebuild_affine.test.cpp
+      title: test/5_ai_generated_test/sqrt_tree_rebuild_affine.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/5_ai_generated_test/static_range_product_group_noncommutative.test.cpp
       title: test/5_ai_generated_test/static_range_product_group_noncommutative.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/suffix_array_lcp_ranges.test.cpp
+      title: test/5_ai_generated_test/suffix_array_lcp_ranges.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/5_ai_generated_test/suffix_automaton_occ_next.test.cpp
       title: test/5_ai_generated_test/suffix_automaton_occ_next.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/5_ai_generated_test/suffix_min.test.cpp
       title: test/5_ai_generated_test/suffix_min.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/wavelet_matrix_weighted_queries.test.cpp
+      title: test/5_ai_generated_test/wavelet_matrix_weighted_queries.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/5_ai_generated_test/xor_disjoint_sparse_table_rebuild.test.cpp
+      title: test/5_ai_generated_test/xor_disjoint_sparse_table_rebuild.test.cpp
 layout: toppage
 ---
 ライブラリ整備を支援する / Support developping this library

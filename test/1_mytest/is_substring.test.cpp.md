@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/is_substring.hpp
     title: string/is_substring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/z_algorithm.hpp
     title: string/z_algorithm.hpp
   _extendedRequiredBy: []
@@ -152,24 +152,24 @@ data:
     #line 1 \"string/z_algorithm.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/string/z_algorithm.hpp\n\
     \ntemplate <typename STRING>  // string, vector \u3069\u3061\u3089\u3067\u3082\
     \nvector<int> z_algorithm(const STRING& s) {\n  int n = int(s.size());\n  if (n\
-    \ == 0) return {};\n  vector<int> z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0;\
-    \ i < n; i++) {\n    int& k = z[i];\n    k = (j + z[j] <= i) ? 0 : min(j + z[j]\
-    \ - i, z[i - j]);\n    while (i + k < n && s[k] == s[i + k]) k++;\n    if (j +\
-    \ z[j] < i + z[i]) j = i;\n  }\n  z[0] = n;\n  return z;\n}\n#line 3 \"string/is_substring.hpp\"\
-    \n\n// \u9023\u7D9A\u90E8\u5206\u5217\u306B\u542B\u3080\u304B\u3069\u3046\u304B\
-    \u3002z-algo \u3067\u7DDA\u5F62\u6642\u9593\ntemplate <typename STRING>\nbool\
-    \ is_substring(const STRING& S, const STRING& T) {\n  int n = int(S.size()), m\
-    \ = int(T.size());\n  STRING ST;\n  for (auto&& x : S) ST.push_back(x);\n  for\
-    \ (auto&& x : T) ST.push_back(x);\n  auto Z = z_algorithm(ST);\n  for (int i =\
-    \ n; i < n + m; ++i) {\n    if (Z[i] >= n) return true;\n  }\n  return false;\n\
-    }\n#line 6 \"test/1_mytest/is_substring.test.cpp\"\n\nstring gen(int n) {\n  string\
-    \ s;\n  FOR(n) { s += char('a' + RNG(3)); }\n  return s;\n}\n\nbool naive(string\
-    \ S, string T) {\n  FOR(i, len(T)) if (T.substr(i, len(S)) == S) return true;\n\
-    \  return false;\n}\n\nvoid test() {\n  FOR(1000) {\n    FOR(n, 1, 10) FOR(m,\
-    \ 1, 10) {\n      string s = gen(n), t = gen(m);\n      bool a = naive(s, t);\n\
-    \      bool b = is_substring(s, t);\n      assert(a == b);\n    }\n  }\n}\n\n\
-    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
-    \nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \ == 0) return {};\n  vector<int> z(n + 1);\n  z[0] = 0;\n  for (int i = 1, j\
+    \ = 0; i < n; i++) {\n    int& k = z[i];\n    k = (j + z[j] <= i) ? 0 : min(j\
+    \ + z[j] - i, z[i - j]);\n    while (i + k < n && s[k] == s[i + k]) k++;\n   \
+    \ if (j + z[j] < i + z[i]) j = i;\n  }\n  z[0] = n, z[n] = 0;\n  return z;\n}\n\
+    #line 3 \"string/is_substring.hpp\"\n\n// \u9023\u7D9A\u90E8\u5206\u5217\u306B\
+    \u542B\u3080\u304B\u3069\u3046\u304B\u3002z-algo \u3067\u7DDA\u5F62\u6642\u9593\
+    \ntemplate <typename STRING>\nbool is_substring(const STRING& S, const STRING&\
+    \ T) {\n  int n = int(S.size()), m = int(T.size());\n  STRING ST;\n  for (auto&&\
+    \ x : S) ST.push_back(x);\n  for (auto&& x : T) ST.push_back(x);\n  auto Z = z_algorithm(ST);\n\
+    \  for (int i = n; i < n + m; ++i) {\n    if (Z[i] >= n) return true;\n  }\n \
+    \ return false;\n}\n#line 6 \"test/1_mytest/is_substring.test.cpp\"\n\nstring\
+    \ gen(int n) {\n  string s;\n  FOR(n) { s += char('a' + RNG(3)); }\n  return s;\n\
+    }\n\nbool naive(string S, string T) {\n  FOR(i, len(T)) if (T.substr(i, len(S))\
+    \ == S) return true;\n  return false;\n}\n\nvoid test() {\n  FOR(1000) {\n   \
+    \ FOR(n, 1, 10) FOR(m, 1, 10) {\n      string s = gen(n), t = gen(m);\n      bool\
+    \ a = naive(s, t);\n      bool b = is_substring(s, t);\n      assert(a == b);\n\
+    \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
+    \ b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/base.hpp\"\n#include \"string/is_substring.hpp\"\n\nstring\
     \ gen(int n) {\n  string s;\n  FOR(n) { s += char('a' + RNG(3)); }\n  return s;\n\
@@ -187,7 +187,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/is_substring.test.cpp
   requiredBy: []
-  timestamp: '2026-11-18 15:44:25+09:00'
+  timestamp: '2026-11-29 04:16:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/is_substring.test.cpp

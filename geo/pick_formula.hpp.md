@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/pick_formula_ccw_lattice_points.test.cpp
+    title: test/5_ai_generated_test/pick_formula_ccw_lattice_points.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/maspypy/library/blob/main/geo/pick_formula.hpp
@@ -28,8 +31,9 @@ data:
   path: geo/pick_formula.hpp
   requiredBy: []
   timestamp: '2026-11-24 17:55:07+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/5_ai_generated_test/pick_formula_ccw_lattice_points.test.cpp
 documentation_of: geo/pick_formula.hpp
 layout: document
 redirect_from:

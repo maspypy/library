@@ -63,6 +63,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/924.test.cpp
     title: test/3_yukicoder/924.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/wavelet_matrix_weighted_queries.test.cpp
+    title: test/5_ai_generated_test/wavelet_matrix_weighted_queries.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -417,6 +420,7 @@ data:
   timestamp: '2026-10-15 19:54:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/wavelet_matrix_weighted_queries.test.cpp
   - test/3_yukicoder/1332.test.cpp
   - test/3_yukicoder/2065.test.cpp
   - test/3_yukicoder/2859.test.cpp

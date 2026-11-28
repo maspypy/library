@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_ai_generated_test/sqrt_tree_rebuild_affine.test.cpp
+    title: test/5_ai_generated_test/sqrt_tree_rebuild_affine.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -107,6 +110,7 @@ data:
   timestamp: '2026-11-24 17:55:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_ai_generated_test/sqrt_tree_rebuild_affine.test.cpp
   - test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
 documentation_of: ds/sqrt_tree.hpp
 layout: document
