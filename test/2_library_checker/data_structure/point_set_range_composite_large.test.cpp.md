@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
   - icon: ':question:'
@@ -21,16 +21,16 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum_large_array
+    PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite_large_array
     links:
-    - https://judge.yosupo.jp/problem/range_affine_range_sum_large_array
+    - https://judge.yosupo.jp/problem/point_set_range_composite_large_array
   bundledCode: "#line 1 \"test/2_library_checker/data_structure/point_set_range_composite_large.test.cpp\"\
-    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/range_affine_range_sum_large_array\"\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/point_set_range_composite_large_array\"\
     \n#line 1 \"my_template.hpp\"\n// Source: https://github.com/maspypy/library/blob/main/my_template.hpp\n\
     #if defined(USE_PCH)\n#include <my_template_compiled.hpp>\n\n#if defined(__GNUC__)\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n#if !defined(MASPY_NON_AVX2)\n#pragma\
@@ -457,10 +457,10 @@ data:
     \    if (t == 0) {\n      INT(p);\n      mint c, d;\n      read(c, d);\n     \
     \ SHOW(t, p, c, d);\n      pair<mint, mint> f = {c, d};\n      root = seg.set(root,\
     \ p, f);\n    } else {\n      int l, r;\n      mint x;\n      read(l, r, x);\n\
-    \      auto f = seg.prod(root, l, r);\n      mint ANS = Mono::eval(f, x);\n  \
-    \    print(ANS);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
-    }\n"
-  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/range_affine_range_sum_large_array\"\
+    \      SHOW(t, l, r, x);\n      auto f = seg.prod(root, l, r);\n      mint ANS\
+    \ = Mono::eval(f, x);\n      print(ANS);\n    }\n  }\n}\n\nsigned main() {\n \
+    \ solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/point_set_range_composite_large_array\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"alg/monoid/affine.hpp\"\n#include \"ds/segtree/dynamic_segtree_sparse.hpp\"\
     \n\nusing mint = modint998;\nusing Mono = Monoid_Affine<mint>;\n\nvoid solve()\
@@ -469,8 +469,9 @@ data:
     \    if (t == 0) {\n      INT(p);\n      mint c, d;\n      read(c, d);\n     \
     \ SHOW(t, p, c, d);\n      pair<mint, mint> f = {c, d};\n      root = seg.set(root,\
     \ p, f);\n    } else {\n      int l, r;\n      mint x;\n      read(l, r, x);\n\
-    \      auto f = seg.prod(root, l, r);\n      mint ANS = Mono::eval(f, x);\n  \
-    \    print(ANS);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
+    \      SHOW(t, l, r, x);\n      auto f = seg.prod(root, l, r);\n      mint ANS\
+    \ = Mono::eval(f, x);\n      print(ANS);\n    }\n  }\n}\n\nsigned main() {\n \
+    \ solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -481,8 +482,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/point_set_range_composite_large.test.cpp
   requiredBy: []
-  timestamp: '2026-11-27 04:31:26+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-29 04:31:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/point_set_range_composite_large.test.cpp
 layout: document

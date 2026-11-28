@@ -12,9 +12,9 @@ data:
     title: string/z_algorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/zalgorithm
@@ -272,12 +272,12 @@ data:
     \ + z[j] - i, z[i - j]);\n    while (i + k < n && s[k] == s[i + k]) k++;\n   \
     \ if (j + z[j] < i + z[i]) j = i;\n  }\n  z[0] = n, z[n] = 0;\n  return z;\n}\n\
     #line 6 \"test/2_library_checker/string/zalgorithm.test.cpp\"\n\r\nvoid solve()\
-    \ {\r\n  STR(S);\r\n  auto Z = z_algorithm(S);\r\n  print(Z);\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
+    \ {\r\n  STR(S);\r\n  auto Z = z_algorithm(S);\r\n  Z.pop_back();\r\n  print(Z);\r\
+    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\r\n#include\
     \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"string/z_algorithm.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  STR(S);\r\n  auto Z = z_algorithm(S);\r\n  print(Z);\r\
-    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
+    \r\n\r\nvoid solve() {\r\n  STR(S);\r\n  auto Z = z_algorithm(S);\r\n  Z.pop_back();\r\
+    \n  print(Z);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -285,8 +285,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/zalgorithm.test.cpp
   requiredBy: []
-  timestamp: '2026-11-29 04:16:05+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2026-11-29 04:31:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/string/zalgorithm.test.cpp
 layout: document
